@@ -1,0 +1,12 @@
+INDIGO_WELCOME_MESSAGE: "The place for all your online learning"
+INDIGO_PRIMARY_COLOR: "#3b85ff" # cool blue
+
+# Footer links are dictionaries with a "title" and "url"
+# Example:
+# INDIGO_FOOTER_NAV_LINKS:
+#   - title: "About"
+#     url: "http://mywebsite/about"
+#   - title: "Donate"
+#     url: "http://mywebsite/donations"
+INDIGO_FOOTER_NAV_LINKS: []
+INDIGO_FOOTER_LEGAL_LINKS: []

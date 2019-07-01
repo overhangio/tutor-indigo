@@ -1,0 +1,186 @@
+/////////////////// General
+
+$content_padding_top: 24px;
+$content-padding-bottom: 10px;
+$header-height: 75px;
+$footer-height: 125.5px;
+
+body, body.view-profile {
+  min-height: initial;
+  background-color: #fff;
+}
+
+%btn-pl-default-base {
+  border-radius: 0;
+}
+
+.btn, .global-header .nav-links .secondary .btn {
+  border-radius: 0;
+}
+
+%t-title {
+  font-family: $font-family-title;
+}
+
+h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
+  font-family: $font-family-title;
+}
+
+#content.content-wrapper {
+  @include media-breakpoint-up(lg) {
+    padding-top: $content-padding-top;
+    padding-bottom: $content-padding-bottom;
+    margin-top: 75px;
+  }
+  min-height: calc(100vh - #{$header-height + $content-padding-top + $content-padding-bottom + $footer-height}); // sticky footer
+}
+
+////////////////// Fonts
+@import "fonts";
+
+/////////////////// Register/Sign in header
+
+header.global-header {
+  @include media-breakpoint-up(lg) {
+    position: fixed;
+    top: 0;
+    z-index: 200; // necessary to keep the header on top of other elements
+  }
+  //background-color: #4c61bf;// TODO recommandé par clem
+  box-shadow: none;
+}
+
+header.global-header .nav-links .secondary .user-image-frame {
+  border-radius: 0;
+}
+
+header.global-header .nav-links .secondary .dropdown-user-menu {
+  position: fixed;
+}
+
+/////////////////// Home page
+.home header {
+  box-shadow: none;
+  background-color: #fff;
+}
+
+.home > header .title {
+  box-shadow: none;
+}
+
+.home > header .outer-wrapper {
+  padding: 0;
+}
+
+.home > header .title > .heading-group {
+  width: 100%;
+  text-align: center;
+}
+.home > header .title > .heading-group h1 {
+  text-align: center;
+}
+
+.animation-home-header-pop-up, .home > header .outer-wrapper {
+  animation: none;
+}
+
+.highlighted-courses .courses, .find-courses .courses {
+  padding-top: 0;
+}
+
+////////////////// User dashboard /dashboard
+.dashboard .main-container {
+  padding: initial;
+}
+
+////////////////// Course about page
+.course-info header.course-profile {
+  background: #fff;
+  box-shadow: none;
+  border-bottom: none;
+  
+  .intro-inner-wrapper {
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.course-info {
+  .container {
+    padding-bottom: 0;
+  }
+  .details .inner-wrapper > section {
+    margin-bottom: 0;
+  }
+  header.course-profile .intro-inner-wrapper .intro .main-cta {
+    span.register {
+      @extend %t-copy-base;
+      padding: 10px 0;
+    }
+    strong {
+      background-image: none;
+      border-radius: 0;
+      &:hover:not(:disabled) {
+        background-image: none;
+      }
+    }
+  }
+}
+
+
+/////////////////// Course search
+.find-courses, .university-profile {
+  background-color: #fff;
+}
+
+.home .courses-container .courses .courses-listing {
+  text-align: center;
+}
+
+.home .courses-container .courses .courses-listing .courses-listing-item {
+  float: none;
+  display: inline-block;
+}
+
+/////////////////// User profile
+.view-profile .profile-self .wrapper-profile-field-account-privacy {
+  margin-top: -$content-padding-top;
+}
+.view-profile .wrapper-profile {
+  background-color: #fff;
+}
+
+.view-profile .wrapper-profile-section-container-one .wrapper-profile-section-one {
+  border: solid $primary;
+  border-width: 5px 1px 1px 1px;
+}
+
+// Account settings
+.wrapper-account-settings .wrapper-header {
+  height: 100px;
+}
+.wrapper-account-settings .wrapper-header .header-title {
+  padding-top: 0;
+}
+.wrapper-account-settings .wrapper-header .account-nav button.active {
+  border-bottom-color: $primary;
+}
+
+/////////////////// Footer
+.wrapper-footer {
+  box-shadow: none;
+  padding: 25px 40px;
+  
+  .wrapper-logo {
+      display: none;
+  }
+  .copyright {
+      display: none;
+  }
+  .nav-legal ul {
+      display: inline-block;
+  }
+  footer#footer-openedx .footer-about-openedx a {
+      float: none;
+  }
+}
