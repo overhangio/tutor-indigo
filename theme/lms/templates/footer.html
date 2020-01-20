@@ -14,31 +14,30 @@
     <footer>
       <div class="row">
         <div class="col-md-9">
+          {% if INDIGO_FOOTER_NAV_LINKS %}
           <nav class="navbar site-nav navbar-expand-sm" aria-label="${_('About')}">
             <ul class="navbar-nav">
-              % for item_num, link in enumerate(footer['navigation_links'], start=1):
-                <li class="nav-item">
-                  <a class="nav-link" href="${link['url']}">${link['title']}</a>
-                </li>
-              % endfor
+              {% for footer_link in INDIGO_FOOTER_NAV_LINKS %}
+              <li class="nav-item"><a class="nav-link" href="{{ footer_link['url'] }}">{{ footer_link['title'] }}</a></li>
+              {% endfor %}
             </ul>
           </nav>
+          {% endif %}
 
           ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
           <p class="copyright">${footer['copyright']} ${u" | {icp}".format(icp=getattr(settings,'ICP_LICENSE')) if getattr(settings,'ICP_LICENSE',False) else ""}</p>
 
+          {% if INDIGO_FOOTER_LEGAL_LINKS %}
           <nav class="navbar legal-nav navbar-expand-sm" aria-label="${_('Legal')}">
             <ul class="navbar-nav">
-              % for item_num, link in enumerate(footer['legal_links'], start=1):
+              {% for link in INDIGO_FOOTER_LEGAL_LINKS %}
                 <li class="nav-item">
-                  <a class="nav-link" href="${link['url']}">${link['title']}</a>
+                  <a class="nav-link" href="{{ link['url'] }}">{{ link['title'] }}</a>
                 </li>
-              % endfor
-              <li class="nav-item">
-                <a class="nav-link" href="${footer['edx_org_link']['url']}">${footer['edx_org_link']['text']}</a>
-              </li>
+              {% endfor %}
             </ul>
           </nav>
+          {% endif %}
         </div>
         <div class="col-md-3">
           ## Please leave this link and use one of the logos provided
@@ -103,6 +102,7 @@
         ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
         <p class="copyright">${footer['copyright']} ${u" | {icp}".format(icp=getattr(settings,'ICP_LICENSE')) if getattr(settings,'ICP_LICENSE',False) else ""}</p>
 
+        {% if INDIGO_FOOTER_LEGAL_LINKS %}
         <nav class="nav-legal" aria-label="${_('Legal')}">
           <ul>
             {% for link in INDIGO_FOOTER_LEGAL_LINKS %}
@@ -112,6 +112,7 @@
             {% endfor %}
           </ul>
         </nav>
+        {% endif %}
       </div>
 
       ## Please leave this link and use one of the logos provided
@@ -123,7 +124,7 @@
         <p>
           <a href="https://docs.tutor.overhang.io" rel="noopener" target="_blank">
             <img src="${static.url('images/tutor-logo.png')}" height="42" />
-          </a>    
+          </a>
           <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
             <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="140" />
           </a>
