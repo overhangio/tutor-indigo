@@ -17,8 +17,8 @@
           {% if INDIGO_FOOTER_NAV_LINKS %}
           <nav class="navbar site-nav navbar-expand-sm" aria-label="${_('About')}">
             <ul class="navbar-nav">
-              {% for footer_link in INDIGO_FOOTER_NAV_LINKS %}
-              <li class="nav-item"><a class="nav-link" href="{{ footer_link['url'] }}">{{ footer_link['title'] }}</a></li>
+              {% for link in INDIGO_FOOTER_NAV_LINKS %}
+              <li class="nav-item"><a class="nav-link" href="{{ link['url'] }}">{{ link['title'] }}</a></li>
               {% endfor %}
             </ul>
           </nav>
@@ -74,8 +74,8 @@
         {% if INDIGO_FOOTER_NAV_LINKS %}
         <nav class="nav-colophon" aria-label="${_('About')}">
           <ol>
-              {% for footer_link in INDIGO_FOOTER_NAV_LINKS %}
-              <li><a href="{{ footer_link['url'] }}">{{ footer_link['title'] }}</a></li>
+              {% for link in INDIGO_FOOTER_NAV_LINKS %}
+              <li><a href="{{ link['url'] }}">{{ link['title'] }}</a></li>
               {% endfor %}
           </ol>
         </nav>
