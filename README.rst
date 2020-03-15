@@ -27,7 +27,10 @@ Restart your platform::
     
     tutor local start -d
     
-You will then have to enable the "indigo" theme, as per the `official documentation <https://edx.readthedocs.io/projects/edx-installing-configuring-and-running/en/latest/configuration/changing_appearance/theming/enable_themes.html#apply-a-theme-to-a-site>`__ (starting from step 3).
+You will then have to enable the "indigo" theme, as per the `Tutor documentation <https://docs.tutor.overhang.io/local.html#setting-a-new-theme>`__::
+    
+    tutor local settheme indigo localhost studio.localhost \
+        $(tutor config printvalue LMS_HOST) $(tutor config printvalue CMS_HOST)
 
 Customization
 -------------
