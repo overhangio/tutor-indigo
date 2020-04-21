@@ -35,6 +35,9 @@ You will then have to enable the "indigo" theme, as per the `Tutor documentation
 Customization
 -------------
 
+Setting custom values
+~~~~~~~~~~~~~~~~~~~~~
+
 A few settings in the theme can be easily customised: this includes the theme primary color, landing page tagline, footer legal links. Theme settings are defined in the `config.yml <https://github.com/overhangio/indigo/blob/master/config.yml>`__ file at the root of the repository. You can override all or part of those settings by creating you own ``config-custom.yml`` file. Then, render the theme with::
     
     tutor config render \
@@ -42,6 +45,10 @@ A few settings in the theme can be easily customised: this includes the theme pr
         --extra-config ./indigo/config-custom.yml \
         ./indigo/theme "$(tutor config printroot)/env/build/openedx/themes/indigo"
 
+Changing the default logo and other images
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The theme images are stored in `indigo/theme/lms/static/images <https://github.com/overhangio/indigo/tree/master/theme/lms/static/images>`__ for the LMS, and in `indigo/theme/cms/static/images <https://github.com/overhangio/indigo/tree/master/theme/cms/static/images>`__ for the CMS. To use custom images in your theme, just replace the files stored in these folders with your own prior to running ``tutor config render``.
 
 License
 -------
