@@ -50,6 +50,36 @@ Changing the default logo and other images
 
 The theme images are stored in `indigo/theme/lms/static/images <https://github.com/overhangio/indigo/tree/master/theme/lms/static/images>`__ for the LMS, and in `indigo/theme/cms/static/images <https://github.com/overhangio/indigo/tree/master/theme/cms/static/images>`__ for the CMS. To use custom images in your theme, just replace the files stored in these folders with your own prior to running ``tutor config render``.
 
+Overriding the default "about", "contact", etc. static pages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default, the ``/about`` and ``/contact`` pages contain a simple line of text: "This page left intentionally blank. Feel free to add your own content". This is of course unusable in production. In the following, we detail how to override just any of the static templates used in Open edX.
+
+The static templates used by Open edX to render those pages are all stored in the `edx-platform/lms/templates/static_templates <https://github.com/edx/edx-platform/tree/open-release/ironwood.master/lms/templates/static_templates>`__ folder. To override those templates, you should add your own in the following folder::
+
+    ls "$(tutor config printroot)/env/build/openedx/themes/indigo/lms/templates/static_templates"
+
+For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/ironwood.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform::
+
+    <%page expression_filter="h"/>
+    <%! from django.utils.translation import ugettext as _ %>
+    <%inherit file="../main.html" />
+
+    <%block name="pagetitle">${_("Donate")}</%block>
+
+    <main id="main" aria-label="Content" tabindex="-1">
+        <section class="container about">
+            <h1>
+                <%block name="pageheader">${page_header or _("Donate")}</%block>
+            </h1>
+            <p>
+                <%block name="pagecontent">Add a compelling message here, asking for donations.</%block>
+            </p>
+        </section>
+    </main>
+
+This new template will then be used to render the /donate url.
+
 License
 -------
 
