@@ -34,6 +34,16 @@ You will then have to enable the "indigo" theme, as per the `Tutor documentation
     tutor local settheme indigo localhost studio.localhost \
         $(tutor config printvalue LMS_HOST) $(tutor config printvalue CMS_HOST)
 
+Upgrade
+-------
+
+To upgrade the Indigo theme from a previous version, simply pull the changes from the git repository::
+    
+    cd indigo/
+    git pull
+
+Then run the commands above starting from ``tutor config render...``.
+
 Customization
 -------------
 
