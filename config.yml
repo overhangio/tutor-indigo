@@ -5,12 +5,12 @@ INDIGO_PRIMARY_COLOR: "#3b85ff" # cool blue
 # To remove all links, write:
 # INDIGO_FOOTER_NAV_LINKS: []
 # INDIGO_FOOTER_LEGAL_LINKS: []
-INDIGO_FOOTER_NAV_LINKS:
+INDIGO_FOOTER_NAV_LINKS: []
   - title: "About"
     url: "/about"
   - title: "Contact"
     url: "/contact"
-INDIGO_FOOTER_LEGAL_LINKS:
+INDIGO_FOOTER_LEGAL_LINKS: []
     - title: "Terms of service"
       url: "/tos"
     - title: "Indigo theme for Open edX"
