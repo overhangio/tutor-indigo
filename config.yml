@@ -1,5 +1,5 @@
 INDIGO_WELCOME_MESSAGE: "Education to Empower Africa!"
-INDIGO_PRIMARY_COLOR: "#3b85ff" # cool blue
+INDIGO_PRIMARY_COLOR: "#b06660" # cool blue
 
 # Footer links are dictionaries with a "title" and "url"
 # To remove all links, write:
@@ -13,5 +13,5 @@ INDIGO_FOOTER_NAV_LINKS: []
 INDIGO_FOOTER_LEGAL_LINKS: []
     - title: "Terms of service"
       url: "/tos"
-    - title: "Indigo theme for Open edX"
-      url: "https://github.com/overhangio/indigo"
+    - title: "Education to Empower Africa!"
+      url: "https://fundiacademy.com"
