@@ -1,5 +1,5 @@
 INDIGO_WELCOME_MESSAGE: "Education to Empower Africa!"
-INDIGO_PRIMARY_COLOR: "#b06660" # cool blue
+INDIGO_PRIMARY_COLOR: "#900C3F" # maroon
 
 # Footer links are dictionaries with a "title" and "url"
 # To remove all links, write:
