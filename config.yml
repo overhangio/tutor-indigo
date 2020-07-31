@@ -5,7 +5,7 @@ INDIGO_PRIMARY_COLOR: "#900C3F" # maroon
 # To remove all links, write:
 # INDIGO_FOOTER_NAV_LINKS: []
 # INDIGO_FOOTER_LEGAL_LINKS: []
-#INDIGO_FOOTER_NAV_LINKS:
+INDIGO_FOOTER_NAV_LINKS:
 # - title: "About"
 #    url: "/about"
 #  - title: "Contact"
