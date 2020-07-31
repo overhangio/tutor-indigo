@@ -1,0 +1,17 @@
+INDIGO_WELCOME_MESSAGE: "Education to Empower Africa!"
+INDIGO_PRIMARY_COLOR: "##900C3F" # maroon
+
+# Footer links are dictionaries with a "title" and "url"
+# To remove all links, write:
+# INDIGO_FOOTER_NAV_LINKS: []
+# INDIGO_FOOTER_LEGAL_LINKS: []
+INDIGO_FOOTER_NAV_LINKS:
+  - title: "About"
+    url: "/about"
+  - title: "Contact"
+    url: "/contact"
+INDIGO_FOOTER_LEGAL_LINKS:
+    - title: "Terms of service"
+      url: "/tos"
+    - title: "Education to Empower Africa!"
+      url: "https://fundiacademy.com"
