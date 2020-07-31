@@ -12,6 +12,6 @@ INDIGO_PRIMARY_COLOR: "#900C3F" # maroon
 #    url: "/contact"
 #INDIGO_FOOTER_LEGAL_LINKS:
 #    - title: "Terms of service"
-      url: "/tos"
+#      url: "/tos"
     - title: "Education to Empower Africa!"
       url: "https://fundiacademy.com"
