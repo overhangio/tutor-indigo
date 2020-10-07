@@ -42,10 +42,10 @@ h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
 
 header.global-header {
   @include media-breakpoint-up(lg) {
-    position: fixed;
+    // position: fixed;
     top: 0;
     z-index: 200; // necessary to keep the header on top of other elements
-    overflow: visible;  // fix for Safari
+    overflow: hidden;  // fix for Safari
   }
   //background-color: #4c61bf;
   box-shadow: none;
