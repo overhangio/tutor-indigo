@@ -18,7 +18,7 @@ Clone the theme repository::
     git clone https://github.com/overhangio/indigo
 
 Render your theme::
-    
+
     tutor config render --extra-config ./indigo/config.yml ./indigo/theme "$(tutor config printroot)/env/build/openedx/themes/indigo"
 
 Rebuild the Openedx docker image::
@@ -26,11 +26,11 @@ Rebuild the Openedx docker image::
     tutor images build openedx
 
 Restart your platform::
-    
+
     tutor local start -d
-    
+
 You will then have to enable the "indigo" theme, as per the `Tutor documentation <https://docs.tutor.overhang.io/local.html#setting-a-new-theme>`__::
-    
+
     tutor local settheme indigo localhost studio.localhost \
         $(tutor config printvalue LMS_HOST) $(tutor config printvalue CMS_HOST)
 
@@ -38,7 +38,7 @@ Upgrade
 -------
 
 To upgrade the Indigo theme from a previous version, simply pull the changes from the git repository::
-    
+
     cd indigo/
     git pull
 
@@ -51,7 +51,7 @@ Setting custom values
 ~~~~~~~~~~~~~~~~~~~~~
 
 A few settings in the theme can be easily customised: this includes the theme primary color, landing page tagline, footer legal links. Theme settings are defined in the `config.yml <https://github.com/overhangio/indigo/blob/master/config.yml>`__ file at the root of the repository. You can override all or part of those settings by creating you own ``config-custom.yml`` file. Then, render the theme with::
-    
+
     tutor config render \
         --extra-config ./indigo/config.yml \
         --extra-config ./indigo/config-custom.yml \

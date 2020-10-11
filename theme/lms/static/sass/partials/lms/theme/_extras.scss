@@ -30,7 +30,7 @@ h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
   @include media-breakpoint-up(lg) {
     padding-top: $content-padding-top;
     padding-bottom: $content-padding-bottom;
-    margin-top: 75px;
+    margin-top: $header-height;
   }
   min-height: calc(100vh - #{$header-height + $content-padding-top + $content-padding-bottom + $footer-height}); // sticky footer
 }
@@ -39,7 +39,6 @@ h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
 @import "fonts";
 
 /////////////////// Register/Sign in header
-
 header.global-header {
   @include media-breakpoint-up(lg) {
     position: fixed;
@@ -94,12 +93,19 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
   padding: initial;
 }
 
+////////////////// "View this course as staff/learner/..."
+.wrapper-preview-menu {
+    @include media-breakpoint-up(lg) {
+      margin-top: $header-height;
+    }
+}
+
 ////////////////// Course about page
 .course-info header.course-profile {
   background: #fff;
   box-shadow: none;
   border-bottom: none;
-  
+
   .intro-inner-wrapper {
     border: none;
     box-shadow: none;
@@ -171,7 +177,7 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
 .wrapper-footer {
   box-shadow: none;
   padding: 25px 40px;
-  
+
   .wrapper-logo {
       display: none;
   }
