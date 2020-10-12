@@ -94,7 +94,8 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
 }
 
 ////////////////// "View this course as staff/learner/..."
-.wrapper-preview-menu {
+nav.wrapper-preview-menu {
+    // It is necessary to specify `nav` in order to override the common higher priority rule
     @include media-breakpoint-up(lg) {
       margin-top: $header-height;
     }
