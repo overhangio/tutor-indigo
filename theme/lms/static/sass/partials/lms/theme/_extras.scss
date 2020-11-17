@@ -58,6 +58,15 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
   position: fixed;
 }
 
+/////////////////// Sign in form
+
+.login-register .form-field {
+    // Hide "Sign in with your company or school link"
+    button.enterprise-login {
+        display: none;
+    }
+}
+
 /////////////////// Home page
 .home header {
   box-shadow: none;

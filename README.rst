@@ -6,12 +6,12 @@ Indigo is an elegant, customizable theme for `Open edX <https://open.edx.org>`__
 .. image:: ./screenshots/01-landing-page.png
     :alt: Platform landing page
 
-**Note**: This version of the Indigo theme is compatible with the Juniper release of Open edX.
+**Note**: This version of the Indigo theme is compatible with the Koa release of Open edX.
 
 Installation
 ------------
 
-Indigo was specially developed to be used with `Tutor <https://docs.overhang.io>`__ (at least v3.11.1). If you have not installed Open edX with Tutor, then installation instructions will vary.
+Indigo was specially developed to be used with `Tutor <https://docs.overhang.io>`__ (at least v11.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
 
 Clone the theme repository::
 
@@ -67,11 +67,11 @@ Overriding the default "about", "contact", etc. static pages
 
 By default, the ``/about`` and ``/contact`` pages contain a simple line of text: "This page left intentionally blank. Feel free to add your own content". This is of course unusable in production. In the following, we detail how to override just any of the static templates used in Open edX.
 
-The static templates used by Open edX to render those pages are all stored in the `edx-platform/lms/templates/static_templates <https://github.com/edx/edx-platform/tree/open-release/juniper.master/lms/templates/static_templates>`__ folder. To override those templates, you should add your own in the following folder::
+The static templates used by Open edX to render those pages are all stored in the `edx-platform/lms/templates/static_templates <https://github.com/edx/edx-platform/tree/open-release/koa.master/lms/templates/static_templates>`__ folder. To override those templates, you should add your own in the following folder::
 
     ls "$(tutor config printroot)/env/build/openedx/themes/indigo/lms/templates/static_templates"
 
-For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/juniper.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform::
+For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/koa.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform::
 
     <%page expression_filter="h"/>
     <%! from django.utils.translation import ugettext as _ %>
