@@ -8,6 +8,8 @@ Indigo is an elegant, customizable theme for `Open edX <https://open.edx.org>`__
 
 **Note**: This version of the Indigo theme is compatible with the Koa release of Open edX.
 
+You can view the theme in action at http://demo.openedx.overhang.io.
+
 Installation
 ------------
 
