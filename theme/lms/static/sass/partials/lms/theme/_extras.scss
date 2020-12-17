@@ -197,7 +197,12 @@ nav.wrapper-preview-menu {
   .nav-legal ul {
       display: inline-block;
   }
-  footer#footer-openedx .footer-about-openedx a {
-      float: none;
+  footer#footer-openedx .footer-about-openedx {
+      a {
+          float: none;
+      }
+      p {
+          text-align: right;
+      }
   }
 }
