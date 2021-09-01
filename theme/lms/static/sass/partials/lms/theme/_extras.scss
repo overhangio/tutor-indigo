@@ -97,6 +97,19 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
   padding-top: 0;
 }
 
+.home .courses-container .courses .courses-listing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .courses-listing-item {
+    margin: 0 20px 30px 20px;
+    // Fix right margin
+    &:nth-child(4n), &:last-child {
+      margin-right: 20px;
+    }
+  }
+}
+
 ////////////////// User dashboard /dashboard
 .dashboard .main-container {
   padding: initial;
@@ -148,15 +161,6 @@ nav.wrapper-preview-menu {
 /////////////////// Course search
 .find-courses, .university-profile {
   background-color: #fff;
-}
-
-.home .courses-container .courses .courses-listing {
-  text-align: center;
-}
-
-.home .courses-container .courses .courses-listing .courses-listing-item {
-  float: none;
-  display: inline-block;
 }
 
 /////////////////// User profile
