@@ -1,0 +1,6 @@
+variables:
+    GITHUB_REPO: overhangio/indigo
+
+include:
+  - project: 'community/tutor-ci'
+    file: 'plugin-gitlab-ci.yml'
