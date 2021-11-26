@@ -33,7 +33,7 @@ Restart your platform::
 
 You will then have to enable the "indigo" theme, as per the `Tutor documentation <https://docs.tutor.overhang.io/local.html#setting-a-new-theme>`__::
 
-    tutor local settheme indigo $(tutor config printvalue LMS_HOST) $(tutor config printvalue CMS_HOST)
+    tutor local settheme indigo
 
 Upgrade
 -------
