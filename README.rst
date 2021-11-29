@@ -93,6 +93,13 @@ For instance, edit the "donate.html" file in this directory. We can derive the c
 
 This new template will then be used to render the /donate url.
 
+Troubleshooting
+---------------
+
+Please refer to the troubleshooting section of the Tutor documentation: https://docs.tutor.overhang.io/troubleshooting.html
+
+In particular, *do not* open a GitHub issue to ask about your issues. Instead, go to the Tutor forum: https://discuss.overhang.io/
+
 License
 -------
 
