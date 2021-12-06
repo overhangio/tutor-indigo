@@ -15,7 +15,7 @@ Installation
 
 Indigo was specially developed to be used with `Tutor <https://docs.overhang.io>`__ (at least v12.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
 
-Clone the theme repository::
+Clone the theme repository in your home folder::
 
     git clone https://github.com/overhangio/indigo
 
