@@ -1,2 +1,7 @@
+.*.swp
+!.gitignore
 TODO
-/config-*.yml
+__pycache__
+*.egg-info/
+/build/
+/dist/
