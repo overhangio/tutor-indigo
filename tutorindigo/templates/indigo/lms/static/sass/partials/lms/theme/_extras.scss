@@ -26,15 +26,6 @@ h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
   font-family: $font-family-title;
 }
 
-#content.content-wrapper {
-  @include media-breakpoint-up(lg) {
-    padding-top: $content-padding-top;
-    padding-bottom: $content-padding-bottom;
-    margin-top: $header-height;
-  }
-  min-height: calc(100vh - #{$header-height + $content-padding-top + $content-padding-bottom + $footer-height}); // sticky footer
-}
-
 ////////////////// Fonts
 @import "fonts";
 
