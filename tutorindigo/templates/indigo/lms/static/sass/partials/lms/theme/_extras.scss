@@ -26,7 +26,9 @@ h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
   font-family: $font-family-title;
 }
 
-header.global-header ~ #content.content-wrapper {
+// It is necessary to specify `:not(.courseware) >` in order to not affect the style
+// of `#content.content-wrapper` inside the unit iframe in the MFE
+:not(.courseware) > #content.content-wrapper {
   @include media-breakpoint-up(lg) {
     padding-top: $content-padding-top;
     padding-bottom: $content-padding-bottom;
