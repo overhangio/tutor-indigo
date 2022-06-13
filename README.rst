@@ -60,11 +60,11 @@ Overriding the default "about", "contact", etc. static pages
 
 By default, the ``/about`` and ``/contact`` pages contain a simple line of text: "This page left intentionally blank. Feel free to add your own content". This is of course unusable in production. In the following, we detail how to override just any of the static templates used in Open edX.
 
-The static templates used by Open edX to render those pages are all stored in the `edx-platform/lms/templates/static_templates <https://github.com/edx/edx-platform/tree/open-release/maple.master/lms/templates/static_templates>`__ folder. To override those templates, you should add your own in the following folder::
+The static templates used by Open edX to render those pages are all stored in the `edx-platform/lms/templates/static_templates <https://github.com/edx/edx-platform/tree/open-release/nutmeg.master/lms/templates/static_templates>`__ folder. To override those templates, you should add your own in the following folder::
 
     ls tutorindigo/templates/indigo/lms/templates/static_templates"
 
-For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/maple.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform::
+For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/nutmeg.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform::
 
     <%page expression_filter="h"/>
     <%! from django.utils.translation import ugettext as _ %>
