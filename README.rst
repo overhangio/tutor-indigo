@@ -19,6 +19,7 @@ Since Tutor v13.2.0, Indigo can be installed as a Tutor plugin::
 
     pip install tutor-indigo
     tutor plugins enable indigo
+    tutor config save
 
 Rebuild the Openedx docker image::
 
