@@ -1,0 +1,106 @@
+{
+  "semantics": [
+    {
+      "label": "Introducción",
+      "fields": [
+        {
+          "label": "Mostrar introdución"
+        },
+        {
+          "label": "Imagen de la introducción"
+        },
+        {
+          "label": "Texto alternativo para imagen de introducción"
+        },
+        {
+          "label": "Título"
+        },
+        {
+          "label": "Texto de introducción",
+          "description": "Este título será mostrado arriba del texto de la introducción."
+        }
+      ]
+    },
+    {
+      "label": "Preguntas",
+      "widgets": [
+        {
+          "label": "Predeterminado"
+        }
+      ],
+      "entity": "Pregunta",
+      "field": {
+        "label": "Pregunta"
+      }
+    },
+    {
+      "label": "Retroalimentación Global",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Predeterminado"
+            }
+          ],
+          "label": "Definir retroalimentación personalizada para cualquier rango de puntaje",
+          "description": "Haga cick en el botón para \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0-20% Mal puntaje, 21-91% Puntaje promedio, 91-100% ¡Magnífico puntaje!",
+          "entity": "rango",
+          "field": {
+            "fields": [
+              {
+                "label": "Rango de Puntaje"
+              },
+              {},
+              {
+                "label": "Retroalimentación para rango definido de puntaje",
+                "placeholder": "Escriba la retroalimentación"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Etiquetas y textos para Conjunto Diga las Palabras",
+      "fields": [
+        {
+          "label": "Etiqueta botón Introducción",
+          "default": "¡Comenzar Curso!"
+        },
+        {
+          "label": "Etiqueta resultados pantalla Solución",
+          "default": "Sus resultados:"
+        },
+        {
+          "label": "Etiqueta botón Mostrar resultados",
+          "default": "Mostrar solución"
+        },
+        {
+          "label": "Etiqueta botón Reintentar",
+          "default": "Reintentar"
+        },
+        {
+          "label": "Etiqueta accesibilidad Pregunta siguiente ",
+          "default": "Pregunta siguiente"
+        },
+        {
+          "label": "Etiqueta accesibilidad Pregunta anterior",
+          "default": "Pregunta anterior"
+        },
+        {
+          "label": "Título Barra Navegación",
+          "description": "Títulos para preguntas en barra de navegación. \":num\" será remplazado con el número de imagen actual.",
+          "default": "Imagen :num"
+        },
+        {
+          "label": "Etiqueta accesibilidad Imagen contestada",
+          "default": "Contestada"
+        },
+        {
+          "label": "Etiqueta accesibilidad Imagen activa",
+          "default": "Actualmente activa"
+        }
+      ]
+    }
+  ]
+}

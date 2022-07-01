@@ -1,0 +1,224 @@
+{
+  "semantics": [
+    {
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Optional media to display above the question."
+        },
+        {
+          "label": "Disable image zooming"
+        }
+      ]
+    },
+    {
+      "label": "Taakomschrijving",
+      "placeholder": "Beschrijf wat je gebruikers moeten doen...",
+      "description": "Wat je gebruikers moeten weten."
+    },
+    {
+      "label": "Paragrafen",
+      "entity": "paragraaf",
+      "field": {
+        "label": "Paragraaf"
+      }
+    },
+    {
+      "label": "Algehele feedback",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Standaard"
+            }
+          ],
+          "label": "Definieer de aangepaste feedback voor elke scorereeks",
+          "description": "Klik op de \"Voeg scorereeks toe\" knop om zoveel scorereeksen toe te voegen als nodig. Voorbeeld: 0-20% Onvoldoende score, 21-91% Gemiddelde score, 91-100% Uitstekende score!",
+          "entity": "reeks",
+          "field": {
+            "fields": [
+              {
+                "label": "Scorereeks"
+              },
+              {},
+              {
+                "label": "Feedback voor de gedefinieerde scorereeks",
+                "placeholder": "Vul de feedback in"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Gedragsinstellingen",
+      "description": "Met deze opties kun je controleren hoe de taak zich gedraagt.",
+      "fields": [
+        {
+          "label": "Scoremodus",
+          "description": "Decide whether to give points for each correctly placed paragraph or for each paragraph that is placed after the paragraph it is supposed to be placed after (\"correct sequence\")",
+          "options": [
+            {
+              "label": "Correct sequence"
+            },
+            {
+              "label": "Correctly placed paragraph"
+            }
+          ]
+        },
+        {
+          "label": "Minpunten toepassen",
+          "description": "Beslis of je een punt moet aftrekken voor elke paragraaf die niet correct gepositioneerd is."
+        },
+        {
+          "label": "Uitwisselbaarheid van de gedupliceerde paragrafen",
+          "description": "Indien ingesteld, worden bij het controleren van het antwoord dubbele alinea's als identiek behandeld als hun platte tekst gelijk is."
+        },
+        {
+          "label": "Add buttons for movement",
+          "description": "On mobile devices, buttons for moving paragraphs can offer an extra accessibility benefit. If you prefer, you can deactivate them here."
+        },
+        {
+          "label": "Schakel \"Opnieuw\" knop in"
+        },
+        {
+          "label": "Schakel \"Toon oplossing\" knop in"
+        }
+      ]
+    },
+    {
+      "label": "Gebruikersinterface",
+      "fields": [
+        {
+          "label": "Tekst voor \"Controleer\" knop",
+          "default": "Controleer"
+        },
+        {
+          "label": "Text for \"Submit\" button",
+          "default": "Submit"
+        },
+        {
+          "label": "Tekst voor \"Opnieuw\" knop",
+          "default": "Opnieuw"
+        },
+        {
+          "label": "Tekst voor \"Toon oplossing\" knop",
+          "default": "Toon oplossing"
+        },
+        {
+          "label": "Titel voor \"Omhoog\" knop",
+          "default": "Omhoog"
+        },
+        {
+          "label": "Titel voor \"Omlaag\" knop",
+          "default": "Omlaag"
+        },
+        {
+          "label": "Titel voor de knop die is uitgeschakeld",
+          "default": "Uitgeschakeld"
+        }
+      ]
+    },
+    {
+      "label": "Readspeaker",
+      "fields": [
+        {
+          "label": "Beschrijving van de de ondersteunende technologie voor de \"Controleer\" knop",
+          "default": "Controleer de antwoorden. De antwoorden worden gemarkeerd als juist of onjuist."
+        },
+        {
+          "label": "Beschrijving van de de ondersteunende technologie voor de \"Toon oplossing\" knop",
+          "default": "Toon de oplossing. De juiste oplossing wordt getoond."
+        },
+        {
+          "label": "Beschrijving van de de ondersteunende technologie voor de \"Opnieuw\" knop",
+          "default": "Opnieuw. Reset alle onderdelen en begin de taak opnieuw."
+        },
+        {
+          "label": "Jouw resultaat",
+          "description": "@score zal worden vervangen door het aantal punten. @total zal worden vervangen door de maximaal aantal mogelijke punten.",
+          "default": "Je hebt @score van de @total punten"
+        },
+        {
+          "label": "List description",
+          "default": "Sortable list of paragraphs."
+        },
+        {
+          "label": "List description (check answer)",
+          "default": "List of paragraphs with results."
+        },
+        {
+          "label": "List description (show solution)",
+          "default": "List of paragraphs with solutions."
+        },
+        {
+          "label": "Paragraaf",
+          "default": "Paragraaf"
+        },
+        {
+          "label": "Juist",
+          "default": "juist"
+        },
+        {
+          "label": "Onjuist",
+          "default": "onjuist"
+        },
+        {
+          "description": "@score zal worden vervangen door 1 of -1.",
+          "label": "Toelichting op de score",
+          "default": "@score punt"
+        },
+        {
+          "description": "@current zal worden vervangen door het huidige paragraafnummer. @total zal worden vervangen door het aantal paragrafen.",
+          "label": "Paragraafnummering",
+          "default": "@current van @total"
+        },
+        {
+          "description": "Wordt gevolgd door \"Paragraafnummering\".",
+          "label": "Huidige positie in de lijst",
+          "default": "Huidige positie in de lijst"
+        },
+        {
+          "label": "Instructie bij keuze van de paragraaf",
+          "default": "Druk op de spatiebalk om de volgorde te wijzigen"
+        },
+        {
+          "label": "Instructie bij het grijpen van de paragraaf",
+          "default": "Druk op de pijltjestoetsen omhoog en omlaag om de positie te veranderen, de spatiebalk om te laten zakken, Escape om te annuleren"
+        },
+        {
+          "label": "Gegrepen",
+          "default": "Gegrepen"
+        },
+        {
+          "label": "Verplaatst",
+          "default": "Verplaatst"
+        },
+        {
+          "label": "Gedropt",
+          "default": "Gedropt"
+        },
+        {
+          "label": "Herschikken geannuleerd",
+          "default": "Herschikken geannuleerd"
+        },
+        {
+          "description": "Wordt gevolgd door \"Paragraaf nummering\".",
+          "label": "Eindpositie",
+          "default": "Eindpositie"
+        },
+        {
+          "description": "Wordt gevolgd door \"juist\" of \"onjuist\".",
+          "label": "Volgende paragraaf",
+          "default": "Volgende paragraaf"
+        },
+        {
+          "description": "Wordt gevolgd door \"Paragraaf nummmering\".",
+          "label": "Juiste pragraaf",
+          "default": "Juiste pragraaf"
+        }
+      ]
+    }
+  ]
+}

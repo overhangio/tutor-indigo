@@ -1,0 +1,18 @@
+{
+  "libraryStrings": {
+    "confirmReset": "Tem certeza que deseja trocar o layout? Isto irá limpar a pré-visualização.",
+    "sameAsSpacing": "O mesmo que o espaçamento",
+    "noFrame": "Sem moldura",
+    "uploadError": "Não foi possivel carregar a imagem. O arquivo provavelmente é muito grande.",
+    "zoomIn": "Aumentar o zoom",
+    "zoomOut": "Diminuir o zoom",
+    "noMoreZoom": "Sem zoom",
+    "addImage": "Adicionar imagem",
+    "changeImage": "Mudar imagem",
+    "imageSettings": "Configurações da imagem",
+    "close": "Fechar",
+    "imageAltLabel": "Texto alternativo",
+    "imageTitleLabel": "Texto pairado",
+    "pleaseConfirm": "Please confirm"
+  }
+}

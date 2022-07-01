@@ -1,0 +1,41 @@
+{
+  "semantics": [
+    {
+      "label": "Branching Question Editor",
+      "fields": [
+        {
+          "label": "Vraag"
+        },
+        {
+          "label": "Beschikbare opties",
+          "entity": "optie",
+          "field": {
+            "label": "Optie",
+            "fields": [
+              {
+                "label": "Tekst"
+              },
+              {
+                "label": "Volgende inhoud (-1 is schermeinde)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Titel feedback tekst"
+                  },
+                  {
+                    "label": "Feedback tekst"
+                  },
+                  {
+                    "label": "Feedback afbeelding"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

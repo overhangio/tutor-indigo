@@ -1,0 +1,319 @@
+.h5p-branching-scenario .h5p-start-screen,
+.h5p-end-screen {
+  min-height: 45em;
+  background: radial-gradient(at top,#5f6883,#494a5c);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.h5p-branching-scenario .h5p-start-screen:not(.h5p-reset-start) {
+  position: relative;
+}
+
+.h5p-branching-scenario .h5p-start-screen.h5p-branching-hidden,
+.h5p-end-screen.h5p-branching-hidden {
+  display: none;
+}
+
+.h5p-branching-scenario .h5p-current-screen.h5p-end-screen {
+  display: flex;
+}
+
+.h5p-branching-scenario .h5p-screen-background {
+  height: 14.583em;
+  margin-top: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3em;
+  position: relative
+}
+
+.h5p-branching-scenario .h5p-screen-banner {
+  position: relative;
+  height: 10.250em;
+  width: 100%;
+  background: black;
+  opacity: 0.1;
+}
+
+.h5p-branching-scenario .h5p-background-image {
+  position: absolute;
+  max-height: 14.583em;
+  max-width: 95%;
+  -webkit-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.h5p-branching-scenario .h5p-image-container.h5p-default-start-image {
+  background: url(start-screen-default.jpg);
+  background-size: 100% 100%;
+}
+
+.h5p-branching-scenario .h5p-image-container.h5p-default-end-image {
+  background: url(end-screen-default.jpg);
+  background-size: 100% 100%;
+}
+
+.h5p-branching-scenario-screen-content {
+  position: relative;
+  margin-bottom: 7em;
+  width: 100%;
+}
+
+.h5p-branching-scenario .h5p-result-wrapper {
+  width: 100%;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+  padding: 0.5em;
+}
+
+.h5p-branching-scenario .h5p-result-container {
+  background: #3C3D4E;
+  color: white;
+  min-width: 4em;
+  border-style: solid;
+  border-width: 0.353em;
+  border-color: #525669;
+  border-radius: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: H5PRobotoBold;
+  padding: 0 0 0 0.5em ;
+}
+
+.h5p-branching-scenario .h5p-result-wrapper .h5p-score-text {
+  display: inline-block;
+  margin-left: 1em;
+}
+
+.h5p-branching-scenario .h5p-result-wrapper .h5p-score-circle {
+  margin: 0.3em 0.5em 0.3em 0.5em;
+  display: inline-block;
+  background: #2b2c3a;
+  padding: 0.3em 0.7em 0.3em 0.7em;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h5p-branching-scenario .h5p-score-circle .h5p-score-delimiter {
+  margin: 0 0.4em;
+}
+
+.h5p-branching-scenario-title-text {
+  margin-top: 0;
+  color: white;
+  font-size: 2.292em;
+  font-family: H5PRobotoLight;
+  margin: 0;
+  padding: 0 1em;
+}
+
+/* Override link color and set underline so it is shown in preview*/
+.h5p-branching-scenario-title-text a {
+  color: white;
+  text-decoration: underline;
+}
+
+.h5p-branching-scenario-subtitle-text {
+  color: white;
+  font-size: 1.083em;
+  font-family: H5PRobotoRegular;
+  margin: 0.83em 0;
+  padding: 0 2em;
+}
+
+/* Override link color and set underline so it is shown in preview */
+.h5p-branching-scenario-subtitle-text a {
+  text-decoration: underline;
+  color: white;
+}
+/* Reduce padding in smaller device */
+@media screen and (max-width: 400px) {
+  .h5p-content .h5p-branching-scenario.h5p-mobile-screen .h5p-branching-scenario-subtitle-text {
+    padding: 0 .5em;
+  }
+}
+
+.h5p-branching-scenario .h5p-start-button,
+.h5p-end-button,
+.h5p-back-button,
+.h5p-nav-button {
+  margin: 3rem 1rem 0rem 1rem;
+  border-style: solid;
+  border-width: 0.1250rem;
+  border-color: #98fd8e;
+  border-radius: 2rem;
+  font-size: 1.25rem;
+  color: #98fd8e;
+  background: none;
+  cursor: pointer;
+  font-family: H5PRobotoMedium;
+}
+
+.h5p-branching-scenario .h5p-start-button,
+.h5p-end-button {
+  padding: 0.9rem 1.5rem;
+}
+
+.h5p-branching-scenario .h5p-back-button,
+.h5p-branching-scenario .h5p-nav-button {
+  padding: 0.6rem 1.5rem;
+}
+
+.h5p-branching-scenario .h5p-start-button:hover,
+.h5p-end-button:hover,
+.h5p-nav-button:not(.h5p-disabled):hover {
+  border-color: #b0f88f;
+  color: #4b4c60;
+  background: #b0f88f;
+}
+
+.h5p-branching-scenario .h5p-start-button:active,
+.h5p-end-button:active,
+.h5p-back-button:not(.h5p-disabled):active,
+.h5p-nav-button:not(.h5p-disabled):active {
+  border-color: #9fe281;
+  color: #4b4c60;
+  background: #9fe281;
+}
+
+.h5p-back-button.h5p-disabled {
+  opacity: 0.2;
+  cursor: unset;
+}
+
+.h5p-branching-scenario .h5p-start-button:after {
+  font-family: 'H5PFontAwesome4';
+  content: "\f178";
+  padding-left: 10px;
+}
+
+.h5p-branching-scenario .h5p-end-button:before {
+  font-family: 'H5PFontAwesome4';
+  content: '\f01e';
+  padding-right: 10px;
+}
+
+#content h2{
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.083em !important;
+}
+
+.h5p-branching-scenario .h5p-start-screen .h5p-branching-full-screen,
+.h5p-branching-scenario .h5p-end-screen .h5p-branching-full-screen {
+  position: absolute;
+  top: 0;
+  left: 1em;
+}
+
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-scenario-title-text {
+  font-size: 1.25em;
+  padding: 0 1em;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-scenario-subtitle-text {
+  font-size: 0.85em;
+  padding: 0 1em;
+  line-height: 1.2;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-background-image {
+  max-height: 8em;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-screen-banner {
+  height: 5.250em;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-start-button,
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-end-button {
+  padding: 0.75rem 1.1rem;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-start-screen,
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-end-screen {
+  min-height: 0;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-scenario-screen-content {
+  margin-bottom: 3em;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-start-button,
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-end-button,
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-back-button,
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-nav-button {
+  font-size: 1rem;
+  margin: 0.5rem 1rem 0rem 1rem;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-screen-background {
+  height: auto;
+}
+
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-screen-header .h5p-title-wrapper h1 {
+  font-size: 1.15rem;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-back-button:before,
+.h5p-branching-scenario.h5p-phone-size .h5p-nav-button:after {
+  font-size: 1.5rem;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-back-button,
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-nav-button {
+  border-radius: 2rem;
+  padding: 0.6rem 1rem;
+  font-size: 0;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-back-button:before,
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-nav-button:after {
+  padding-left: 0;
+  padding-right: 0;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-screen-header .h5p-title-wrapper {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question h1 {
+  font-size: 1.25em;
+  line-height: 1;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question .h5p-branching-question.h5p-feedback-image {
+  max-width: 15%;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question button {
+  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-feedback-content {
+  padding: 0em;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-scenario-feedback-dialog {
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question-alternative {
+  padding: 0.25em 2.5em 0.25em 1.250em;
+  font-size: 0.85em;
+  line-height: 1;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question-icon {
+   width: 80px;
+   top: -42px;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-multichoice-wrapper {
+  margin-top: 0.5em;
+}
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question-title {
+  margin-left: 0px;
+  font-size: 0.85em;
+  line-height: 1;
+}

@@ -1,0 +1,103 @@
+{
+  "semantics": [
+    {
+      "label": "Enquête onderdelen",
+      "widgets": [
+        {
+          "label": "Standaard"
+        }
+      ],
+      "entity": "Onderdeel",
+      "field": {
+        "label": "Kies een bibliotheek",
+        "fields": [
+          {
+            "label": "Bibliotheek",
+            "description": "Kies een bibliotheek"
+          },
+          {
+            "label": "Verplicht veld"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Opties succes-scherm",
+      "fields": [
+        {
+          "label": "Activeer succes-scherm"
+        },
+        {
+          "label": "Voeg succes-schermafbeelding toe",
+          "fields": [
+            {
+              "label": "Vervang succes-pictogram door een afbeelding"
+            }
+          ]
+        },
+        {
+          "label": "Te tonen tekst voor verzenden",
+          "default": "Je hebt de enquête voltooid."
+        }
+      ]
+    },
+    {
+      "label": "Gebruikersinterface-elementen",
+      "fields": [
+        {
+          "label": "Labels van de knoppen",
+          "fields": [
+            {
+              "label": "Label vorige-knop",
+              "default": "Vorige"
+            },
+            {
+              "label": "Label verder-knop",
+              "default": "Verder"
+            },
+            {
+              "label": "Label volgende-knop",
+              "default": "Volgende"
+            },
+            {
+              "label": "Label verzend-knop",
+              "default": "Verzend"
+            }
+          ]
+        },
+        {
+          "label": "Toegankelijkheid",
+          "fields": [
+            {
+              "label": "Label vereist bericht afsluiten-knop",
+              "default": "Foutmelding sluiten"
+            },
+            {
+              "label": "Tekst voortgangsbalk",
+              "default": "Vraag %current van %max",
+              "description": "Dit wordt gebruikt om ondersteunende technologieën te vertellen welke vraag het is. Variabelen: [ %current, %max ]"
+            }
+          ]
+        },
+        {
+          "label": "Verplicht bericht",
+          "default": "Op deze vraag moet een antwoord worden gegeven",
+          "description": "Dit wordt opengeklapt weergegeven als een vraag onbeantwoord is, maar deze wel verplicht is op basis van het inhoudstype"
+        },
+        {
+          "label": "Verplicht symbooltekst",
+          "default": "verplicht",
+          "description": "De tekst die bij een asterisk hoort om aan te geven dat een vraag nodig is"
+        },
+        {
+          "label": "Titel voor een verzendscherm",
+          "default": "Je hebt alle vragen succesvol beantwoord"
+        },
+        {
+          "label": "Ondertitel voor het verzendscherm",
+          "default": "Klik hieronder om je antwoorden te verzenden"
+        }
+      ]
+    }
+  ]
+}

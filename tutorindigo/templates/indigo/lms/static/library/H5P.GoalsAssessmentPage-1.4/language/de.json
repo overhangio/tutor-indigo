@@ -1,0 +1,38 @@
+{
+  "semantics": [
+    {
+      "label": "Beschreibung",
+      "description": "Beschreibung für die Zielbewertungsseite.",
+      "default": "Die Ziele auf der Zielseite bewerten."
+    },
+    {
+      "label": "Text bei geringer Bewertung",
+      "description": "Text für die schlechteste Wertung.",
+      "default": "Wenig gelernt"
+    },
+    {
+      "label": "Text bei mittlerer Bewertung",
+      "description": "Text für mittlere Wertung.",
+      "default": "Etwas gelernt"
+    },
+    {
+      "label": "Text bei hoher Bewertung",
+      "description": "Text für hohe Wertung.",
+      "default": "Viel gelernt"
+    },
+    {
+      "label": "Text für keine Ziele",
+      "description": "Feedback Text, wenn keine Ziele erstellt wurden.",
+      "default": "Es wurden noch keine Ziele ausgewählt."
+    },
+    {
+      "label": "Label für den Hilfstext",
+      "description": "Label, um dem Benutzer zusätzliche hilfreiche Informationen anzuzeigen.",
+      "default": "Weitere Informationen"
+    },
+    {
+      "label": "Weitere hilfreiche Informationen einfügen",
+      "description": "Hier können zusätzliche hilfreiche Informationen für den Benutzer eingegeben werden."
+    }
+  ]
+}

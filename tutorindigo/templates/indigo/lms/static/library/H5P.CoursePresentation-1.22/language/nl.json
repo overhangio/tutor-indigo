@@ -1,0 +1,395 @@
+{
+  "semantics": [
+    {
+      "fields": [
+        {
+          "field": {
+            "fields": [
+              {
+                "field": {
+                  "fields": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {
+                      "label": "Opmerkingen",
+                      "description": "De opmerkingen worden getoond wanneer de gebruiker de voorgestelde antwoorden voor alle dia's toont."
+                    },
+                    {
+                      "label": "Altijd opmerkingen tonen"
+                    },
+                    {
+                      "label": "Ondoorzichtigheid achtergrond"
+                    },
+                    {
+                      "label": "Tonen als knop"
+                    },
+                    {
+                      "label": "Grootte knop",
+                      "options": [
+                        {
+                          "label": "Klein"
+                        },
+                        {
+                          "label": "Groot"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Titel"
+                    },
+                    {
+                      "label": "Ga naar",
+                      "options": [
+                        {
+                          "label": "Specifieke dia"
+                        },
+                        {
+                          "label": "Volgende dia"
+                        },
+                        {
+                          "label": "Vorige dia"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Ga naar dia",
+                      "description": "Allen mogelijk indien 'Specifieke dia' is geselecteerd"
+                    },
+                    {
+                      "label": "Onzichtbaar",
+                      "description": "Standaard cursor, geen titel en geen tab index. Let op: gebruikers met een beperking of gebruikers die alleen een toetsenbord gebruiken, zullen problemen ervaren met dit element."
+                    }
+                  ]
+                }
+              },
+              {},
+              {
+                "fields": [
+                  {
+                    "label": "Afbeelding",
+                    "description": "Achtergrondafbeelding moet een ratio van 2:1 breedte:hoogte hebben om te voorkomen dat deze wordt uitgerekt. Afbeeldingen met hoge resolutie worden beter getoond op grotere schermen."
+                  },
+                  {
+                    "label": "Kies een kleur"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {},
+        {
+          "label": "Lijst met sleutelwoorden"
+        },
+        {
+          "label": "Altijd tonen"
+        },
+        {
+          "label": "Automatisch verbergen"
+        },
+        {
+          "label": "Ondoorzichtigheid"
+        },
+        {
+          "fields": [
+            {
+              "label": "Afbeelding",
+              "description": "Achtergrondafbeelding moet een ratio van 2:1 breedte:hoogte hebben om te voorkomen dat deze wordt uitgerekt. Afbeeldingen met hoge resolutie worden beter getoond op grotere schermen."
+            },
+            {
+              "label": "Kies een kleur"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Localiseren",
+      "fields": [
+        {
+          "label": "Vertaling voor \"Dia\"",
+          "default": "Dia"
+        },
+        {
+          "label": "Vertaling voor \"Score\"",
+          "default": "Score"
+        },
+        {
+          "label": "Vertaling voor \"Jouw score\"",
+          "default": "Jouw score"
+        },
+        {
+          "label": "Vertaling voor \"Maximale score\"",
+          "default": "Max score"
+        },
+        {
+          "label": "Vertaling voor \"Totaal\"",
+          "default": "Totaal"
+        },
+        {
+          "label": "Vertaling voor \"Totale score\"",
+          "default": "Totale score"
+        },
+        {
+          "label": "Tekst voor \"Toon oplossing\"-knop",
+          "default": "Toon oplossing"
+        },
+        {
+          "label": "Tekst voor de knop Opnieuw",
+          "default": "Opnieuw proberen"
+        },
+        {
+          "label": "Vertaling voor \"Exporteer tekst\"",
+          "default": "Exporteer tekst"
+        },
+        {
+          "label": "Titel voor \"Verberg sleutelwoordenlijst\"-knop",
+          "default": "Verberg sleutelwoordenlijst"
+        },
+        {
+          "label": "Titel voor \"Toon sleutelwoordenlijst\"-knop",
+          "default": "Toon sleutelwoordenlijst"
+        },
+        {
+          "label": "Titel voor \"Volledig scherm\"-knop",
+          "default": "Volledig scherm"
+        },
+        {
+          "label": "Titel voor \"Volledig scherm afsluiten\"-knop",
+          "default": "Volledig scherm afsluiten"
+        },
+        {
+          "label": "Titel voor \"Vorige dia\"-knop",
+          "default": "Vorige dia"
+        },
+        {
+          "label": "Titel voor \"Volgende dia\"-knop",
+          "default": "Volgende dia"
+        },
+        {
+          "label": "Titel voor \"Huidige dia\"-knop",
+          "default": "Huidige dia"
+        },
+        {
+          "label": "Titel voor \"Laatste dia\"-knop",
+          "default": "Laatste dia"
+        },
+        {
+          "label": "Titel voor \"Oplossingsmodus afsluiten\"-knop",
+          "default": "Oplossingsmodus afsluiten"
+        },
+        {
+          "label": "Tekst oplossingsmodus",
+          "default": "Oplossingsmodus"
+        },
+        {
+          "label": "Tekst wanneer er meerdere taken op een pagina zijn",
+          "default": "Meerdere taken"
+        },
+        {
+          "label": "Scoretekst",
+          "default": "Jouw score:"
+        },
+        {
+          "label": "Deel op Facebook tekst",
+          "default": "Deel op Facebook"
+        },
+        {
+          "label": "Deel op Twitter tekst",
+          "default": "Deel op Twitter"
+        },
+        {
+          "label": "Deel op Google+ tekst",
+          "default": "Deel op Google+"
+        },
+        {
+          "label": "Titel voor \"Samenvattings\" dia",
+          "default": "Samenvatting"
+        },
+        {
+          "label": "Titel voor opmerkingenicoon",
+          "default": "Toon opmerkingen"
+        },
+        {
+          "label": "Titel voor \"Afdrukken\"-knop",
+          "default": "Afdrukken"
+        },
+        {
+          "label": "Afdrukken dialoog ingress",
+          "default": "Hoe wil je deze presentatie afdrukken?"
+        },
+        {
+          "label": "Titel voor \"Druk alle dia's af\"-knop",
+          "default": "Druk alle dia's af"
+        },
+        {
+          "label": "Titel voor \"Druk huidige dia af\"-knop",
+          "default": "Druk huidige dia af"
+        },
+        {
+          "label": "Label voor dia's zonder titel",
+          "default": "Geen titel"
+        },
+        {
+          "label": "Uitleg dia-navigatie voor ondersteunende technologieën",
+          "default": "Gebruik de pijl-links en pijl-rechts om de dia in die richting te veranderen als je het canvas selecteert."
+        },
+        {
+          "label": "Canvaslabel voor ondersteunende technologieën",
+          "default": "Presentatiecanvas. Gebruik de pijl naar links en de pijl naar rechts om tussen de dia's te navigeren."
+        },
+        {
+          "label": "Label voor nog niet voltooide interacties",
+          "default": "@slideName bevat een nog niet voltooide interactie"
+        },
+        {
+          "label": "Label voor voltooide interacties",
+          "default": "@slideName bevat een voltooide interactie"
+        },
+        {
+          "label": "Label voor de diateller. Variabelen zijn @index, @total",
+          "default": "Dia @index van @total"
+        },
+        {
+          "label": "Label voor dia's die alleen de juiste antwoorden bevatten",
+          "default": "@slideName heeft alleen juiste antwoorden"
+        },
+        {
+          "label": "Label voor dia's met de onjuiste antwoorden",
+          "default": "@slideName heeft onjuiste antwoorden"
+        },
+        {
+          "label": "Label voor het delen van sociale media",
+          "default": "Deel resultaat"
+        },
+        {
+          "label": "Aankondiging totaalscore van ondersteunende technologieën",
+          "default": "Je hebt @score van @maxScore punten in totaal",
+          "description": "Beschikbare variabelen zijn @score en @maxScore"
+        },
+        {
+          "label": "Entered fullscreen announcement for assistive technologies",
+          "default": "Entered fullscreen"
+        },
+        {
+          "label": "Volledig scherm beëindigd mededeling voor ondersteunende technologieën",
+          "default": "Volledig scherm beëindigd"
+        },
+        {
+          "label": "Header of submit result confirmation dialog",
+          "default": "Submit your answers"
+        },
+        {
+          "label": "Text of submit result confirmation dialog",
+          "default": "This will submit your results, do you want to continue?"
+        },
+        {
+          "label": "Confirmation button of submit result confirmation dialog",
+          "default": "Submit and see results"
+        }
+      ]
+    },
+    {
+      "label": "Gedragsinstellingen",
+      "description": "Met deze opties kun je de gedragsinstellingen overschrijven.",
+      "fields": [
+        {
+          "label": "Activeer actieve oppervlaktemodus",
+          "description": "Verwijdert navigatieregelaars voor de eindgebruiker. Gebruik 'Ga naar dia' om te navigeren."
+        },
+        {
+          "label": "Verberg samenvatting",
+          "description": "Verbergt de samenvattingsdia."
+        },
+        {
+          "label": "\"Toon oplossing\" knop instellen",
+          "description": "Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "options": [
+            {
+              "label": "Ingeschakeld"
+            },
+            {
+              "label": "Uitgeschakeld"
+            }
+          ]
+        },
+        {
+          "label": "\"Opnieuw proberen\" knop instellen",
+          "description": "Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "options": [
+            {
+              "label": "Ingeschakeld"
+            },
+            {
+              "label": "Uitgeschakeld"
+            }
+          ]
+        },
+        {
+          "label": "Show \"Show solution\" button in the summary slide",
+          "description": "If enabled, the learner will be able to show the solutions for all question when they reach the summary slide"
+        },
+        {
+          "label": "Show \"Retry\" button in the summary slide",
+          "description": "If enabled, the learner will be able to retry all questions when they reach the summary slide. Be advised that by refreshing the page the learners will be able to retry even if this button isn't showing."
+        },
+        {
+          "label": "Printknop inschakelen",
+          "description": "Schakelt printknop in"
+        },
+        {
+          "label": "Instellingen sociale media",
+          "description": "Met deze opties kun je de sociale media gedragsinstellingen overschrijven. Lege waarden worden automatisch ingevuld als er een link wordt aangeboden, anders worden alle waarden gegenereerd",
+          "fields": [
+            {
+              "label": "Toon pictogram delen via Facebook"
+            },
+            {
+              "label": "Instellingen delen via Facebook",
+              "fields": [
+                {
+                  "label": "Deel via Facebooklink",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Deel via Facebookcitaat",
+                  "default": "Ik scoorde @score van de @maxScore op een taak bij @currentpageurl."
+                }
+              ]
+            },
+            {
+              "label": "Toon pictogram delen via Twitter"
+            },
+            {
+              "label": "Instellingen delen via Twitter",
+              "fields": [
+                {
+                  "label": "Vermelding delen via Twitter",
+                  "default": "Ik scoorde @score van de @maxScore op een taak bij @currentpageurl."
+                },
+                {
+                  "label": "Delen via Twitterlink",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Delen via Twitter hashtags",
+                  "default": "h5p, cursus"
+                }
+              ]
+            },
+            {
+              "label": "Toon pictogram delen via Google+"
+            },
+            {
+              "label": "Delen via Googlelink",
+              "default": "@currentpageurl"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

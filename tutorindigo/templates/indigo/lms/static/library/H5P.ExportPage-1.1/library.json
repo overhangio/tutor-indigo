@@ -1,0 +1,27 @@
+{
+  "title": "Export page",
+  "majorVersion": 1,
+  "minorVersion": 1,
+  "patchVersion": 3,
+  "runnable": 0,
+  "machineName": "H5P.ExportPage",
+  "author": "Joubel",
+  "license": "MIT",
+  "preloadedJs": [
+    {
+      "path": "export-page.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "export-page.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "docxgenJS",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

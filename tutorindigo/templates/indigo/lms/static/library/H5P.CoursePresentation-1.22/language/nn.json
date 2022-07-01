@@ -1,0 +1,395 @@
+{
+  "semantics": [
+    {
+      "fields": [
+        {
+          "field": {
+            "fields": [
+              {
+                "field": {
+                  "fields": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {
+                      "label": "Kommentarar",
+                      "description": "Kommentarane visast når brukaren ser på fasit."
+                    },
+                    {
+                      "label": "Alltid vis kommentarer"
+                    },
+                    {
+                      "label": "Opasitet for bakgrunn"
+                    },
+                    {
+                      "label": "Vis som knapp"
+                    },
+                    {
+                      "label": "Button size",
+                      "options": [
+                        {
+                          "label": "Small"
+                        },
+                        {
+                          "label": "Big"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Tittel"
+                    },
+                    {
+                      "label": "Go to to",
+                      "options": [
+                        {
+                          "label": "Specific slide number"
+                        },
+                        {
+                          "label": "Neste side"
+                        },
+                        {
+                          "label": "Forrige side"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Gå til lysbilete",
+                      "description": "Only applicable when 'Specific slide number' is selected"
+                    },
+                    {
+                      "label": "Usynlig",
+                      "description": "Standard musepeker, ingen tittel eller tabulatorstopp. Advarsel: brukarar med funksjonshemminger eller kun tastatur vil ha problemer med å bruke elementet."
+                    }
+                  ]
+                }
+              },
+              {},
+              {
+                "fields": [
+                  {
+                    "label": "Bilete",
+                    "description": "Bakgrunnsbilder bør ha en 2:1 vidde til høyde ratio for å unngå strekking av bildet. Høyoppløselige bilder vil se bedre ut på større skjermer."
+                  },
+                  {
+                    "label": "Velg farge"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {},
+        {
+          "label": "Nøkkelordsliste"
+        },
+        {
+          "label": "Vis alltid"
+        },
+        {
+          "label": "Auto skjul"
+        },
+        {
+          "label": "Opasitet"
+        },
+        {
+          "fields": [
+            {
+              "label": "Bilete",
+              "description": "Bakgrunnsbilder bør ha en 2:1 vidde til høyde ratio for å unngå strekking av bildet. Høyoppløselige bilder vil se bedre ut på større skjermer."
+            },
+            {
+              "label": "Velg farge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Innstillinger for oppgave-oppførsel",
+      "fields": [
+        {
+          "label": "Oversetting for \"Lysbilete\"",
+          "default": "Side"
+        },
+        {
+          "label": "Translation for \"Score\"",
+          "default": "Poengsum"
+        },
+        {
+          "label": "Oversetting for \"Din poengsum\"",
+          "default": "Din poengsum"
+        },
+        {
+          "label": "Oversetting for \"Topp poengsum\"",
+          "default": "Topp poengsum"
+        },
+        {
+          "label": "Translation for \"Total\"",
+          "default": "Total"
+        },
+        {
+          "label": "Translation for \"Total Score\"",
+          "default": "Total Score"
+        },
+        {
+          "label": "Tittel på \"Vis fasit\" knappen",
+          "default": "Vis fasit"
+        },
+        {
+          "label": "Tekst til \"Omstart\" knappen",
+          "default": "Prøv igjen"
+        },
+        {
+          "label": "Oversetting for \"Eksporter tekst\"",
+          "default": "Eksporter dokument"
+        },
+        {
+          "label": "Tittel for \"Skjul nøkkelordliste\"-knapp",
+          "default": "Skjul nøkkelordliste"
+        },
+        {
+          "label": "Tittel for \"Vis nøkkelordliste\"-knapp",
+          "default": "Vis nøkkelordliste"
+        },
+        {
+          "label": "Aktiver \"Prøv igjen\"-knapp",
+          "default": "Fullskjerm"
+        },
+        {
+          "label": "Krev inndata fra brukeren før fasit gis.",
+          "default": "Forlat fullskjerm"
+        },
+        {
+          "label": "Tittel for \"Forrige side\"-knapp",
+          "default": "Førre side"
+        },
+        {
+          "label": "Tittel for \"Neste side\"-knapp",
+          "default": "Neste side"
+        },
+        {
+          "label": "Tittel for \"Denne side\"-knapp",
+          "default": "Denne sida"
+        },
+        {
+          "label": "Tittel for \"Siste side\"-knapp",
+          "default": "Siste side"
+        },
+        {
+          "label": "Tittel for \"Avslutt fasit modus\"-knapp",
+          "default": "Avslutt fasitmodus"
+        },
+        {
+          "label": "Avslutt fasit modus tekst",
+          "default": "Fasitmodus"
+        },
+        {
+          "label": "Tekst ved flere oppgaver på en side",
+          "default": "Fleire oppgåver"
+        },
+        {
+          "label": "poengTekst",
+          "default": "Du klarte:"
+        },
+        {
+          "label": "Del på Facebook tekst",
+          "default": "Del på Facebook"
+        },
+        {
+          "label": "Del på Twitter tekst",
+          "default": "Del på Twitter"
+        },
+        {
+          "label": "Share to Google text",
+          "default": "Del på Google+"
+        },
+        {
+          "label": "Tittel for \"Oppsummering\" siden",
+          "default": "Oppsummering"
+        },
+        {
+          "label": "Tittel for kommentarikonet",
+          "default": "Vis kommentarar"
+        },
+        {
+          "label": "Tittel for \"Skriv ut\"-knapp",
+          "default": "Skriv ut"
+        },
+        {
+          "label": "Skriv ut dialog ingress",
+          "default": "Korleis vil du skrive ut denne presentasjonen?"
+        },
+        {
+          "label": "Tittel for \"Skriv ut alle sider\"-knapp",
+          "default": "Skriv ut alle sider"
+        },
+        {
+          "label": "Tittel for \"Skriv ut nåværende side\"-knapp",
+          "default": "Skriv ut noverande side"
+        },
+        {
+          "label": "Label for slides without a title",
+          "default": "Ingen tittel"
+        },
+        {
+          "label": "Explanation of slide navigation for assistive technologies",
+          "default": "Bruk venstre og høgre piltast for å skifte lysbilete i den retninga når lerret er valt"
+        },
+        {
+          "label": "Canvas label for assistive technologies",
+          "default": "Presentasjonslerret. Bruk høgre og venstre piltast til å navigere mellom lysbilete."
+        },
+        {
+          "label": "Label for uncompleted interactions",
+          "default": "@slideName inneheld ikkje avslutta interaksjon"
+        },
+        {
+          "label": "Label for completed interactions",
+          "default": "@slideName inneheld avslutta interaksjon"
+        },
+        {
+          "label": "Label for slide counter. Variables are @index, @total",
+          "default": "Lysbilete @index av @total"
+        },
+        {
+          "label": "Label for slides that only contains correct answers",
+          "default": "@slideName har berre rette svar"
+        },
+        {
+          "label": "Label for slides that has incorrect answers",
+          "default": "@slideName har feil svar"
+        },
+        {
+          "label": "Label for social sharing bar",
+          "default": "Del resultat"
+        },
+        {
+          "label": "Total score announcement for assistive technologies",
+          "default": "Du fekk @score av totalt @maxScore poeng",
+          "description": "Available variables are @score and @maxScore"
+        },
+        {
+          "label": "Entered fullscreen announcement for assistive technologies",
+          "default": "Går inn i fullskjerm"
+        },
+        {
+          "label": "Exited fullscreen announcement for assistive technologies",
+          "default": "Gjekk ut av fullskjerm"
+        },
+        {
+          "label": "Header of submit result confirmation dialog",
+          "default": "Submit your answers"
+        },
+        {
+          "label": "Text of submit result confirmation dialog",
+          "default": "This will submit your results, do you want to continue?"
+        },
+        {
+          "label": "Confirmation button of submit result confirmation dialog",
+          "default": "Submit and see results"
+        }
+      ]
+    },
+    {
+      "label": "Innstillinger for oppførsel.",
+      "description": "Disse alternativene vil la deg overstyre innstillinger.",
+      "fields": [
+        {
+          "label": "Slå på aktiv flate",
+          "description": "Fjerner navigasjonskontroller for sluttbrukeren. Bruk 'Gå Til Lysbilde' for å navigere"
+        },
+        {
+          "label": "Skjul sammendrag.",
+          "description": "Aktivering vil føre til at sammendrag siden ikke vises."
+        },
+        {
+          "label": "Overstyr «Fasit»-knapp",
+          "description": "Dette valget avgjør om «Fasit»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "options": [
+            {
+              "label": "Aktivert"
+            },
+            {
+              "label": "Deaktivert"
+            }
+          ]
+        },
+        {
+          "label": "Overstyr «Prøv igjen»-knapp",
+          "description": "Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "options": [
+            {
+              "label": "Aktivert"
+            },
+            {
+              "label": "Deaktivert"
+            }
+          ]
+        },
+        {
+          "label": "Show \"Show solution\" button in the summary slide",
+          "description": "If enabled, the learner will be able to show the solutions for all question when they reach the summary slide"
+        },
+        {
+          "label": "Show \"Retry\" button in the summary slide",
+          "description": "If enabled, the learner will be able to retry all questions when they reach the summary slide. Be advised that by refreshing the page the learners will be able to retry even if this button isn't showing."
+        },
+        {
+          "label": "Aktiver print-knapp",
+          "description": "Aktiverer print-knappen."
+        },
+        {
+          "label": "Social Settings",
+          "description": "These options will let you override social behaviour settings. Empty values will be filled in automatically if a link is provided, otherwise all values will be generated.",
+          "fields": [
+            {
+              "label": "Display Facebook share icon"
+            },
+            {
+              "label": "Facebook share settings",
+              "fields": [
+                {
+                  "label": "Share to Facebook link",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Share to Facebook quote",
+                  "default": "I scored @score out of @maxScore on a task at @currentpageurl."
+                }
+              ]
+            },
+            {
+              "label": "Display Twitter share icon"
+            },
+            {
+              "label": "Twitter share settings",
+              "fields": [
+                {
+                  "label": "Share to Twitter statement",
+                  "default": "I scored @score out of @maxScore on a task at @currentpageurl."
+                },
+                {
+                  "label": "Share to Twitter link",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Share to Twitter hashtags",
+                  "default": "h5p, course"
+                }
+              ]
+            },
+            {
+              "label": "Display Google+ share icon"
+            },
+            {
+              "label": "Share to Google link",
+              "default": "@currentpageurl"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

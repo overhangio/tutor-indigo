@@ -1,0 +1,48 @@
+.h5p-branching-scenario .h5p-library-wrapper .h5p-content-overlay {
+  background-color: rgba(0, 0, 0, .8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100% - 40px);
+  left: 20px;
+  overflow: hidden;
+  position: absolute;
+  top: 20px;
+  width: calc(100% - 40px);
+  z-index: 3; /* 3 Required for IV */
+}
+
+.h5p-branching-scenario .h5p-library-wrapper .h5p-content-overlay-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+  transition: all .35s ease;
+  opacity: 1;
+  width: 100%;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper .h5p-content-overlay-buttons-container.h5p-hidden {
+  transform: translate3d(0, 300%, 0);
+  opacity: 0;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper .h5p-content-overlay-buttons-container .h5p-nav-button {
+  border-width: 0.175rem;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper .h5p-content-overlay-buttons-container .h5p-nav-button-replay::before {
+  content: "\f021";
+  font-family: 'H5PFontAwesome4';
+  padding-right: 10px;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper .h5p-content-overlay-buttons-container .h5p-nav-button-proceed::after {
+  content: "\f101";
+  font-family: 'H5PFontAwesome4';
+  padding-left: 10px;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper .h5p-content-overlay.h5p-hidden {
+  display: none;
+}

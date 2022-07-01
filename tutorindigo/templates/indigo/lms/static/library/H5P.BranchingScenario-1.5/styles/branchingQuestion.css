@@ -1,0 +1,224 @@
+@keyframes fly-in {
+  100% { transform: translateY(0%); }
+}
+
+@-webkit-keyframes fly-in {
+  100% { -webkit-transform: translateY(0%); }
+}
+
+.h5p-branching-scenario-overlay {
+  position: absolute;; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.8); /* Black background with opacity */
+}
+
+.h5p-branching-scenario .h5p-branching-question-wrapper {
+  position: absolute;; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h5p-branching-scenario .h5p-branching-question-wrapper.h5p-slide-out {
+  animation: slide-out 0.8s forwards;
+  -webkit-animation: slide-out 0.8s forwards;
+}
+
+.h5p-branching-scenario.h5p-wide-screen .h5p-branching-question-container {
+  width: 80%;
+}
+
+.h5p-branching-scenario.h5p-mobile-screen .h5p-branching-question-container {
+  width: 90%;
+}
+
+.h5p-branching-scenario .h5p-branching-question {
+  border-radius: 0.188rem;
+  width: 100%;
+}
+
+.h5p-branching-scenario .h5p-branching-question h1 {
+  font-family: H5PRobotoLight;
+  line-height: 1.25;
+}
+
+.h5p-branching-scenario .h5p-branching-question h2 {
+  font-family: H5PRobotoRegular;
+  font-weight: 200;
+}
+
+.h5p-branching-scenario .h5p-branching-question button {
+  margin-top: 1em;
+  background-color: #C4FEBF;
+  padding: 0.9rem 1.5rem;
+  border-style: solid;
+  border-width: 0.1250rem;
+  border-color: #98fd8e;
+  border-radius: 2rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  font-family: H5PRobotoMedium;
+}
+
+.h5p-branching-scenario .h5p-branching-question button:hover {
+  color: #4b495e;
+  background: #e4ffe1;
+  border-color: #b0f88f;
+}
+
+.h5p-branching-scenario .h5p-branching-question button:active {
+  color: #4b495e;
+  background: #b0f88f;
+  border-color: #9fe281;
+}
+
+.h5p-branching-scenario .h5p-branching-question button:after {
+  font-family: 'H5PFontAwesome4';
+  content: "\f101";
+  padding-left: 10px;
+}
+
+.h5p-start-outside {
+  transform: translateY(150%);
+  -webkit-transform: translateY(150%);
+}
+
+.h5p-fly-in {
+  animation: fly-in 0.8s forwards;
+  -webkit-animation: fly-in 0.8s forwards;
+}
+
+.h5p-branching-scenario .h5p-branching-question button {
+  padding: 0.6rem 1.5rem;
+}
+
+.h5p-branching-question-alternative {
+  padding: 0.5em 2.5em 0.5em 1.250em;
+  margin: 0.5em 0;
+  overflow: hidden;
+  text-align: left;
+}
+
+.h5p-branching-question-alternative-back {
+  margin-top: 1.5em;
+}
+
+.h5p-branching-question-icon {
+  top: -75px;
+  width: 130px;
+}
+
+.h5p-branching-scenario-feedback-dialog .h5p-branching-question-container {
+  padding: 0;
+}
+
+.h5p-branching-scenario-feedback-dialog .h5p-branching-question {
+  width: auto;
+  max-width: 100%;
+}
+
+.h5p-branching-question-container {
+  transition: height 2s;
+  padding-top: 5em;
+  display: flex;
+  overflow: auto;
+}
+
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question-container {
+  padding-top: 2.75em;
+}
+
+.h5p-branching-question {
+  background-color: #FFFFFF;
+  padding: 1em;
+  display: flex;
+  margin: auto;
+  position: relative;
+  flex-direction: column;
+}
+
+.h5p-branching-question.h5p-feedback-has-image{
+  flex-direction: row;
+}
+
+.h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper{
+  margin-top: 1em;
+}
+
+.h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper button {
+  margin: 0;
+  color: #4b495e;
+}
+
+.h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper button:before {
+  font-family: 'H5PFontAwesome4';
+  content: "\f100";
+  padding-right: 10px;
+}
+
+.h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper button:after {
+  content: "";
+}
+
+.h5p-branching-question .h5p-branching-question.h5p-feedback-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  max-width: 30%;
+}
+
+.h5p-branching-question .h5p-branching-question.h5p-feedback-image img {
+  width: 100%;
+  -webkit-box-shadow: 5px 7px 17px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 5px 7px 17px 0px rgba(0,0,0,0.2);
+  box-shadow: 5px 7px 17px 0px rgba(0,0,0,0.2);
+}
+
+.h5p-branching-question .h5p-feedback-content {
+  padding-left: 1em;
+  margin-left: 0;
+  display: block;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.h5p-branching-question.h5p-feedback-has-image .h5p-feedback-content {
+  margin-left: 1em;
+}
+
+.h5p-branching-question .h5p-feedback-content h2 {
+  font-size: 1em;
+}
+
+.h5p-feedback-content-content {
+  max-height: 14em;
+  overflow: auto;
+  width: 100%;
+  /* Trick so FF doesn't show a horizontal scrollbar when not needed */
+  margin-right: 1px;
+  outline: 0;
+}
+
+.h5p-feedback-default {
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.h5p-branching-scenario.h5p-semi-fullscreen .h5p-branching-question-container,
+.h5p-branching-scenario.h5p-fullscreen .h5p-branching-question-container {
+  max-height: calc(100% - 4em);
+}

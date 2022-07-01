@@ -1,0 +1,74 @@
+{
+  "semantics": [
+    {
+      "label": "Titel",
+      "placeholder": "Hier kannst du optional einen Titel angeben.",
+      "description": "Der Titel, der über dem Bild angezeigt werden soll"
+    },
+    {
+      "label": "Elemente",
+      "entity": "Element",
+      "widgets": [
+        {
+          "label": "Eingabemaske"
+        }
+      ],
+      "field": {
+        "label": "Element",
+        "fields": [
+          {
+            "label": "Bild"
+          },
+          {
+            "label": "Beschriftung",
+            "description": "Optionale Beschriftung für eine Bildposition. Bitte stelle sicher, dass sie nicht zu lang ist, sonst wird sie nicht angezeigt."
+          },
+          {
+            "label": "Beschreibung",
+            "placeholder": "Meine Bildbeschreibung ...",
+            "description": "Optionale Beschreibung für das Bild"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Verhaltenseinstellungen",
+      "description": "Diese Optionen legen fest, wie die Aufgabe im Detail funktioniert.",
+      "fields": [
+        {
+          "label": "Startbild",
+          "description": "Setzte hier die Nummer des Startbilds."
+        },
+        {
+          "label": "Schieberegler einrasten",
+          "description": "Wenn diese Option aktiviert ist, wird der Schieberegler an den Bildpositionen einrasten."
+        },
+        {
+          "label": "Bildpositionen anzeigen",
+          "description": "Wenn diese Option aktiviert ist, werden die Bildpositionen am Schieberegler markiert."
+        },
+        {
+          "label": "Beschriftungen anzeigen",
+          "description": "Wenn diese Option aktiviert ist, werden beim Schieberegler Beschriftungen zusätzlich/alternativ zu den Bildpositionen angezeigt."
+        },
+        {
+          "label": "Ersatzfarbe für Transparenz",
+          "description": "Setze hier die Farbe, durch die transparente Bereiche in den Bildern ersetzt werden."
+        }
+      ]
+    },
+    {
+      "label": "Vorlesewerkzeug (Barrierefreiheit)",
+      "fields": [
+        {
+          "label": "Bild",
+          "default": "Bild"
+        },
+        {
+          "label": "Schieberegler für Bilder",
+          "default": "Schieberegler für Bilder"
+        }
+      ]
+    }
+  ]
+}

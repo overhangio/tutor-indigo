@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "label": "Editor d’escenaris amb ramificacions",
+      "fields": [
+        {
+          "label": "Títol"
+        },
+        {
+          "label": "Pantalla d’inici",
+          "fields": [
+            {
+              "label": "Títol de la pantalla d’inici",
+              "placeholder": "Títol del vostre curs"
+            },
+            {
+              "label": "Subtítol de la pantalla d’inici",
+              "placeholder": "Detalls sobre el curs"
+            },
+            {
+              "label": "Imatge de la pantalla d’inici"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "label": "Llista de pantalles finals",
+          "field": {
+            "label": "Pantalla final",
+            "fields": [
+              {
+                "label": "Títol"
+              },
+              {
+                "label": "Text"
+              },
+              {
+                "label": "Imatge"
+              },
+              {
+                "label": "Puntuació",
+                "description": "La puntuació s’enviarà a qualsevol LMS, LRS o qualsevol altre servei connectat que rebi puntuacions de H5P per als usuaris que arriben a l’escenari final predeterminat"
+              },
+              {
+                "label": "ID del contingut"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Llista del contingut de l’escenari amb ramificacions",
+          "entity": "contingut",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Mostra el títol del contingut a la visualització",
+                "description": "Si se selecciona aquesta opció, l’usuari veurà el títol de contingut a la barra superior, a sobre d’aquest contingut"
+              },
+              {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Activat"
+                  },
+                  {
+                    "label": "Desactivat"
+                  }
+                ]
+              },
+              {
+                "label": "Identificador del contingut següent (les pantalles finals es defineixen amb números negatius)"
+              },
+              {
+                "label": "Retroacció",
+                "fields": [
+                  {
+                    "label": "Títol de la retroacció"
+                  },
+                  {
+                    "label": "Text de retroacció"
+                  },
+                  {
+                    "label": "Imatge de retroacció"
+                  },
+                  {
+                    "label": "Puntuació d’aquest escenari",
+                    "description": "La puntuació s’enviarà al LMS, LRS o qualsevol altre servei connectat que rebi puntuacions de H5P per als usuaris que arribin a aquest escenari."
+                  }
+                ]
+              },
+              {
+                "label": "Navigate back",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Activat"
+                  },
+                  {
+                    "label": "Desactivat"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Opcions de puntuació",
+          "fields": [
+            {
+              "label": "Opcions de puntuació",
+              "description": "Seleccioneu el tipus de puntuació",
+              "options": [
+                {
+                  "label": "Establiu la puntuació de manera estàtica per a cada escenari"
+                },
+                {
+                  "label": "Calculeu dinàmicament la puntuació en funció de les respostes dels usuaris"
+                },
+                {
+                  "label": "Sense puntuació"
+                }
+              ]
+            },
+            {
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+            }
+          ]
+        },
+        {
+          "label": "Opcions de comportament",
+          "fields": [
+            {
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+            },
+            {
+              "label": "Required to watch",
+              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+            }
+          ]
+        },
+        {
+          "label": "Localització",
+          "fields": [
+            {
+              "label": "Text del botó a la pantalla inicial",
+              "default": "Inicia el curs"
+            },
+            {
+              "label": "Text del botó a la pantalla final",
+              "default": "Torna a iniciar el curs"
+            },
+            {
+              "label": "Text del botó de cada una de les pantalles de biblioteca",
+              "default": "Continua"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
+              "label": "Etiqueta per a la puntuació a la pantalla final",
+              "default": "Torna a reproduir el vídeo"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Aria label for fullscreen button",
+              "default": "Fullscreen"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

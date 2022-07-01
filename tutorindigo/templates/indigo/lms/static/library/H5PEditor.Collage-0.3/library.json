@@ -1,0 +1,42 @@
+{
+  "machineName": "H5PEditor.Collage",
+  "title": "Collage Editor",
+  "license": "MIT",
+  "author": "Joubel",
+  "majorVersion": 0,
+  "minorVersion": 3,
+  "patchVersion": 17,
+  "runnable": 0,
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 24
+  },
+  "preloadedJs": [
+    {
+      "path": "collage-editor.js"
+    },
+    {
+      "path": "layout-selector.js"
+    },
+    {
+      "path": "clip-editor.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "collage-editor.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.Collage",
+      "majorVersion": 0,
+      "minorVersion": 3
+    },
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    }
+  ]
+}

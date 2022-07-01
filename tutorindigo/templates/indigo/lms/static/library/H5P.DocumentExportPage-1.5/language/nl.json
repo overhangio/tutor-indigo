@@ -1,0 +1,47 @@
+{
+  "semantics": [
+    {
+      "label": "Omschrijving",
+      "description": "Omschrijving van de exportpagina.",
+      "default": "Op deze pagina kun je er voor kiezen je tekst, je doelstellingen en je beoordeling van de doelstellingen te exporteren."
+    },
+    {
+      "label": "Maak een label voor een document knop",
+      "description": "Deze tekst wordt getoond op de \"Maak een document\"-knop.",
+      "default": "Maak een document"
+    },
+    {
+      "label": "Tekst verzend knop",
+      "description": "Deze tekst wordt getoond op de \"Verzend\"-knop.",
+      "default": "Verzend!"
+    },
+    {
+      "label": "Label verzending geslaagd",
+      "default": "Je document is succesvol verzonden!"
+    },
+    {
+      "label": "Label voor de knop selecteer alle exporteerbare tekst",
+      "description": "Deze tekst wordt getoond op de \"Selecteer alle tekst\"-knop.",
+      "default": "Selecteer alle tekst"
+    },
+    {
+      "label": "Label voor de knop exporteer tekst",
+      "description": "Deze tekst wordt getoond op de \"Exporteer tekst\"-knop.",
+      "default": "Exporteer tekst"
+    },
+    {
+      "label": "Label voor de help tekst",
+      "description": "Label om aanvullende nuttige informatie aan de gebruiker te tonen.",
+      "default": "Meer informatie"
+    },
+    {
+      "label": "Vul aanvullende help informatie in",
+      "description": "Hier kun je aanvullende nuttige informatie invullen voor de gebruiker."
+    },
+    {
+      "label": "Vereiste invoer bij ontbrekende tekst",
+      "description": "Er wordt een fout bericht getoond als tekst ontbreekt in één of meer vereiste invoervelden. @pages will be replaced with the titles of affected pages.",
+      "default": "De volgende pagina's bevatten vereiste velden die ingevoerd moeten worden om dit document te kunnen beoordelen/inzenden: @pages"
+    }
+  ]
+}

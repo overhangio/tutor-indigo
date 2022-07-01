@@ -1,0 +1,60 @@
+{
+  "semantics": [
+    {
+      "label": "Título",
+      "placeholder": "Adicione aqui um título opcional.",
+      "description": "O título que gostaria de mostrar antes da sobreposição de imagens"
+    },
+    {
+      "label": "Primeira imagem",
+      "fields": [
+        {
+          "label": "Primeira imagem",
+          "description": "A primeira imagem. Garanta que é do mesmo tamanho da segunda imagem."
+        },
+        {
+          "label": "Etiqueta para a primeira imagem",
+          "description": "Etiqueta para colocar sobre a primeira imagem"
+        }
+      ]
+    },
+    {
+      "label": "Segunda imagem",
+      "fields": [
+        {
+          "label": "Segunda imagem",
+          "description": "A segunda imagem. Garanta que é do mesmo tamanho da primera imagem."
+        },
+        {
+          "label": "Etiqueta para a segunda imagem",
+          "description": "Etiqueta para colocar sobre a segunda imagem"
+        }
+      ]
+    },
+    {
+      "label": "Definições de funcionamento",
+      "description": "Estas opções controlam como a atividade se comporta",
+      "fields": [
+        {
+          "label": "Orientação da barra de deslizamento",
+          "description": "Horizontal move a barra da esquerda para a direita, enquanto que Vertical move a barra de cima para baixo."
+        },
+        {
+          "label": "Slider orientation",
+          "description": "Horizontal will move left and right, vertical will move up and down.",
+          "options": [
+            {
+              "label": "Horizontal"
+            },
+            {
+              "label": "Vertical"
+            }
+          ]
+        },
+        {
+          "label": "Slider color"
+        }
+      ]
+    }
+  ]
+}

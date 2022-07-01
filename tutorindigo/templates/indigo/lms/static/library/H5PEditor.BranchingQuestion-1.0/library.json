@@ -1,0 +1,18 @@
+{
+  "title": "Branching Question Editor",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 3,
+  "runnable": 0,
+  "machineName": "H5PEditor.BranchingQuestion",
+  "author": "thomasmars",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 24
+  },
+  "preloadedJs": [
+    {
+      "path": "index.js"
+    }
+  ]
+}

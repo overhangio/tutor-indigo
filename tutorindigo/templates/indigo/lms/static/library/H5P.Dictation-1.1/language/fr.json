@@ -1,0 +1,368 @@
+{
+  "semantics": [
+    {
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Supports optionnels à afficher au-dessus de la question."
+        },
+        {
+          "label": "Désactiver le zoom sur les images"
+        }
+      ]
+    },
+    {
+      "label": "Description de la tâche",
+      "description": "Décrivez votre tâche ici.",
+      "placeholder": "Veuillez écouter attentivement et écrire ce que vous entendez."
+    },
+    {
+      "label": "Phrases",
+      "widgets": [
+        {
+          "label": "Par défaut"
+        }
+      ],
+      "entity": "Phrases",
+      "field": {
+        "label": "Phrases",
+        "fields": [
+          {
+            "label": "Description",
+            "description": "Vous pouvez éventuellement placer une simple description au-dessus du champ de saisie de texte, utile par exemple pour les dialogues."
+          },
+          {
+            "label": "Echantillon sonore",
+            "description": "Phrase prononcée en vitesse normale"
+          },
+          {
+            "label": "Echantillon sonore lent",
+            "description": "Phrase prononcée à vitesse lente"
+          },
+          {
+            "label": "Texte",
+            "description": "Texte qui doit être écrit. Vous pouvez ajouter des orthographes alternatives à un mot en ajoutant une ligne verticale (|) derrière, suivie d'une alternative."
+          }
+        ]
+      }
+    },
+    {
+      "label": "Feedback général",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Par défaut"
+            }
+          ],
+          "label": "Définir un retour d'information personnalisé pour toute fourchette de points",
+          "description": "Cliquez sur le bouton \"Ajouter une gamme\" pour ajouter autant de séquences que nécessaire. Exemple : 0-20 % Mauvais score, 21-91 % Score moyen, 91-100 % Grand score !",
+          "entity": "gamme",
+          "field": {
+            "fields": [
+              {
+                "label": "fourchette de score"
+              },
+              {},
+              {
+                "label": "Feedback pour une fourchette de score définie",
+                "placeholder": "Remplir les commentaires"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Paramètres comportementaux",
+      "description": "Ces options vous permettront de contrôler le déroulement de la tâche.",
+      "fields": [
+        {
+          "label": "Un maximum d'essais",
+          "description": "limitera le nombre de fois que les échantillons de chaque phrase peuvent être écoutés."
+        },
+        {
+          "label": "Nombre maximum de tentatives de vitesse lente",
+          "description": "Cela limite le nombre de fois que les exemples lents peuvent être écoutés pour chaque phrase."
+        },
+        {
+          "label": "Shuffle sentences",
+          "description": "Define when the sentences should be shuffled.",
+          "options": [
+            {
+              "label": "Never"
+            },
+            {
+              "label": "Once when starting exercise"
+            },
+            {
+              "label": "On every try"
+            }
+          ]
+        },
+        {
+          "label": "Scoring",
+          "fields": [
+            {
+              "label": "Ignorer les signes de ponctuation",
+              "description": "Si la case est cochée, les signes de ponctuation ne seront pas pris en compte pour la notation."
+            },
+            {
+              "label": "Zero mistakes mode",
+              "description": "If checked, only correct answers will be considered for scoring. Mistakes will not be punished."
+            },
+            {
+              "label": "Value of typos",
+              "description": "Déterminez dans quelle mesure les erreurs de frappe (mot de 3 à 9 caractères : jusqu'à 1 erreur, mot de plus de 9 caractères : jusqu'à 2 erreurs) comptent comme une erreur réelle.",
+              "options": [
+                {
+                  "label": "100 %"
+                },
+                {
+                  "label": "50 %"
+                },
+                {
+                  "label": "0 %"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Text",
+          "fields": [
+            {
+              "label": "Word separator",
+              "description": "Define the separator of words different than space character to support alternate solutions with different number of words.",
+              "default": " "
+            },
+            {
+              "label": "Writing direction",
+              "description": "Set whether the sentences' language is right-to-left or left-to-right.",
+              "options": [
+                {
+                  "label": "Automatic detection"
+                },
+                {
+                  "label": "Right-to-left"
+                },
+                {
+                  "label": "Left-to-right"
+                }
+              ]
+            },
+            {
+              "label": "Splitting of characters",
+              "description": "Activate if particular characters (e.g. Chinese Han characters) should be split into separate words automatically."
+            }
+          ]
+        },
+        {
+          "label": "Presentation of feedback",
+          "fields": [
+            {
+              "label": "Custom typo display",
+              "description": "If checked, typos will be displayed in a custom style distinguishing them from clear mistakes."
+            },
+            {
+              "label": "Presentation of alternate solutions",
+              "description": "Define which alternatives should be presented for wrong or missing words in the solution.",
+              "options": [
+                {
+                  "label": "Show only first alternative"
+                },
+                {
+                  "label": "Show all alternatives"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Activer \"Encore une fois\" bouton"
+        },
+        {
+          "label": "Activer \"Montrer la solution\" bouton"
+        },
+        {
+          "label": "Show solution on check"
+        }
+      ]
+    },
+    {
+      "label": "Interface utilisateur",
+      "fields": [
+        {
+          "label": "Commentaires généraux",
+          "description": "Vous pouvez utiliser plusieurs placeholders qui seront remplacés par le nombre adéquat : @matches = nombre de correspondances, @total = total des erreurs, @capped = total des erreurs plafonnées, @wrong = mots incorrects, @added = mots supplémentaires, @missing = mots manquants, @typo = erreurs de frappe",
+          "default": "Tu as commis @total erreur(s)."
+        },
+        {
+          "label": "General feedback (zero mistakes mode)",
+          "description": "You can use several placeholders that will be replaced with the adequate number: @matches = number of matches, @total = total score, @wrong = wrong words, @added = additional words, @missing = missing words, @typo = typing errors",
+          "default": "You have entered @total word(s) correctly and @typo word(s) with minor mistakes."
+        },
+        {
+          "label": "Texte pour le \"Vérifier\" bouton",
+          "default": "Vérifier"
+        },
+        {
+          "label": "Text for \"Submit\" button",
+          "default": "Submit"
+        },
+        {
+          "label": "Texte pour le \"Réessayer\" bouton",
+          "default": "Réessayer"
+        },
+        {
+          "label": "Texte pour le \"Montrer la solution\" bouton",
+          "default": "Montrer la solution"
+        },
+        {
+          "label": "Message audio non supporté",
+          "default": "Votre navigateur ne prend pas en charge cet audio."
+        }
+      ]
+    },
+    {
+      "label": "Readspeaker",
+      "fields": [
+        {
+          "label": "Assistive technology description for \"Check\" button",
+          "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+        },
+        {
+          "label": "Assistive technology description for \"Show Solution\" button",
+          "default": "Show the solution. The task will be marked with its correct solution."
+        },
+        {
+          "label": "Assistive technology description for \"Retry\" button",
+          "default": "Retry the task. Reset all responses and start the task over again."
+        },
+        {
+          "label": "Bouton de lecture",
+          "default": "Lecture"
+        },
+        {
+          "label": "Bouton de lecture lente",
+          "default": "Lecture lente"
+        },
+        {
+          "label": "Essais à gauche (texte à lire et texte à survoler)",
+          "description": "@number sera remplacé par le nombre actuel d'essais restants.",
+          "default": "Nombre d'essais restants: @number"
+        },
+        {
+          "label": "Infini (texte à lire et texte à survoler)",
+          "default": "infinie"
+        },
+        {
+          "label": "Entrez le champ de texte",
+          "default": "Entrez ce que vous avez entendu."
+        },
+        {
+          "label": "Ton résultat",
+          "description": "@score will be replaced by the number of points. @total will be replaced by the maximum possible points.",
+          "default": "You got @score out of @total points"
+        },
+        {
+          "label": "Solution",
+          "default": "Solution"
+        },
+        {
+          "label": "Phrase",
+          "default": "Phrase"
+        },
+        {
+          "label": "Item",
+          "default": "Item"
+        },
+        {
+          "label": "Correct",
+          "default": "correct"
+        },
+        {
+          "label": "Faux",
+          "default": "Faux"
+        },
+        {
+          "label": "Petite erreur",
+          "default": "Petite erreur"
+        },
+        {
+          "label": "Mot ou symbole manquant",
+          "default": "manquants"
+        },
+        {
+          "label": "Mot ou symbole ajouté",
+          "default": "ajouté"
+        },
+        {
+          "label": "Correct solution",
+          "default": "Should have been"
+        },
+        {
+          "label": "Ou",
+          "default": "ou"
+        },
+        {
+          "label": "Point",
+          "default": "point"
+        },
+        {
+          "label": "Points",
+          "default": "points"
+        },
+        {
+          "label": "Point",
+          "default": "point"
+        },
+        {
+          "label": "Point d'exclamation",
+          "default": "point d'exclamation"
+        },
+        {
+          "label": "Point d'interrogation",
+          "default": "point d'interrogation"
+        },
+        {
+          "label": "Virgule",
+          "default": "virgule"
+        },
+        {
+          "label": "Citation unique",
+          "default": "citation unique"
+        },
+        {
+          "label": "Double citation",
+          "default": "double citation"
+        },
+        {
+          "label": "Double point",
+          "default": "double point"
+        },
+        {
+          "label": "Point-virgule",
+          "default": "point-virgule"
+        },
+        {
+          "label": "Plus",
+          "default": "plus"
+        },
+        {
+          "label": "Moins",
+          "default": "moins"
+        },
+        {
+          "label": "Asterisk",
+          "default": "asterisk"
+        },
+        {
+          "label": "Barre oblique",
+          "default": "barre oblique"
+        }
+      ]
+    }
+  ]
+}

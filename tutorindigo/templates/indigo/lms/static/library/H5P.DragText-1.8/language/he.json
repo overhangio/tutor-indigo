@@ -1,0 +1,151 @@
+{
+  "semantics": [
+    {
+      "label": "תיאור משימה",
+      "description": "תארו כיצד על המשתמש לפתור את המשימה.",
+      "default": "גררו את המילים לתיבות המתאימות"
+    },
+    {
+      "label": "תוכן",
+      "placeholder": "*אוסלו* היא בירת נורווגיה, *שטוקהולם* היא בירת שוודיה ו*קופנהגן* היא בירת דנמרק. כל הערים ממוקמות בחצי האי *הסקנדינבי: בחלק הצפוני של אירופה*.",
+      "important": {
+        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
+        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+      }
+    },
+    {
+      "label": "משוב כללי",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "ברירת מחדל"
+            }
+          ],
+          "label": "הגדירו משוב מותאם אישית לכל טווח ציונים",
+          "description": "לחצו על כפתור \"הוסף טווח\" כדי להוסיף כמה טווחים לפי הצורך. דוגמה: 0-20% ציון רע, 21-91% ציון ממוצע, 91-100% ציון מעולה!",
+          "entity": "טווח",
+          "field": {
+            "fields": [
+              {
+                "label": "טווח ציונים"
+              },
+              {},
+              {
+                "label": "משוב לטווח ציונים מוגדר",
+                "placeholder": "מלאו את המשוב"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "טקסט לכפתור \"בדוק\"",
+      "default": "בדוק"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
+    },
+    {
+      "label": "טקסט לכפתור \"נסה שוב\"",
+      "default": "נסה שוב"
+    },
+    {
+      "label": "מלל לכפתור \"הצג פתרון\"",
+      "default": "הצג פתרון"
+    },
+    {
+      "label": "תווית ממוספרת של אזור יעד",
+      "default": "@index אזור יעד.",
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא את האינדקס של אזור היעד. משתנה זמין: @index"
+    },
+    {
+      "label": "תווית אזור יעד ריקה",
+      "default": "@index אזור יעד ריק.",
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא שאזור היעד ריק"
+    },
+    {
+      "label": "מכיל תווית אזור יעד",
+      "default": "אזור יעד @index מכיל את אובייקט הגרירה @draggable.",
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא שאזור היעד מכיל אובייקט גרירה"
+    },
+    {
+      "label": "תווית רכיב גרירה",
+      "default": "@index של @count אובייקטי גרירה.",
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא שזה רכיב גרירה. משתנים זמינים: index, @count@"
+    },
+    {
+      "label": "תווית לכפתור הצגת רמז",
+      "default": "הצגת עצה",
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא אותה לפני קריאת הרמז"
+    },
+    {
+      "label": "טקסט קורא-מסך לתשובה נכונה",
+      "default": "נכון!"
+    },
+    {
+      "label": "טקסט קורא-מסך עבור תשובה לא נכונה",
+      "default": "לא נכון!"
+    },
+    {
+      "label": "Confirmation dialog title that user wants to reset a droppable",
+      "default": "Reset drop"
+    },
+    {
+      "label": "Confirmation dialog description that user wants to reset a droppable",
+      "default": "Are you sure you want to reset this drop zone?"
+    },
+    {
+      "label": "תווית משמשת עבור נגישות, היכן שקורא-המסך יציין שגרירה מתבצעת",
+      "default": "Draggable is grabbed."
+    },
+    {
+      "label": "תווית משמשת עבור נגישות, היכן שקורא-המסך מציין שהגרירה התבטלה",
+      "default": "התבטלה הגרירה."
+    },
+    {
+      "label": "תווית משמשת עבור נגישות, היכן שקורא-המסך יציין שהטקסט הוא התשובה הנכונה",
+      "default": "תשובה נכונה:"
+    },
+    {
+      "label": "כותרת עבור משבצת המכילה משוב עבור תשובות נכונות/לא נכונות",
+      "default": "משוב"
+    },
+    {
+      "label": "הגדרות התנהגות הרכיב.",
+      "description": "אפשרויות אלה יאפשרו לך לשלוט בהתנהגות המשימה.",
+      "fields": [
+        {
+          "label": "הפעלת \"ניסיון חוזר\""
+        },
+        {
+          "label": "אפשר כפתור \"הצגת פתרון\""
+        },
+        {
+          "label": "אפשר כפתור \"בדיקה\""
+        },
+        {
+          "label": "משוב מיידי"
+        }
+      ]
+    },
+    {
+      "label": "ייצוג מילולי של סרגל הניקוד לאלה שמשתמשים בקורא-מסך",
+      "default": "קיבלת :num מתוך :total נקודות"
+    },
+    {
+      "label": "תווית טכנולוגיה מסייעת עבור כפתור \"בדיקה\"",
+      "default": "בדקו את התשובות. המענים יסומנו כנכון, לא נכון, או ריק."
+    },
+    {
+      "label": "תווית טכנולוגיה מסייעת עבור כפתור \"הצגת פתרון\"",
+      "default": "הציגו את הפתרון. המשימה תסומן עם התשובה הנכונה."
+    },
+    {
+      "label": "תווית טכנולוגיה מסייעת עבור כפתור \"ניסיון חוזר\"",
+      "default": "נסו שוב את המשימה. אפסו את כל ניסיונות המענה והתחילו מחדש."
+    }
+  ]
+}

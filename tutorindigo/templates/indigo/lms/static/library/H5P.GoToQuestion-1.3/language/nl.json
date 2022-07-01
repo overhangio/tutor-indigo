@@ -1,0 +1,32 @@
+{
+  "semantics": [
+    {
+      "label": "Vraagtekst",
+      "description": "De vraag waarmee de gebruiker een keuze moet maken."
+    },
+    {
+      "label": "Keuzes",
+      "entity": "choice",
+      "field": {
+        "fields": [
+          {
+            "label": "Keuzetekst",
+            "description": "Het label dat wordt getoond op de keuze-knop."
+          },
+          {
+            "label": "Ga naar",
+            "description": "Het doeltijdstip waar naartoe de gebruiker wordt gebracht wanneer op de keuze-knop wordt geklikt. Voer tijdcode in, in de opmaak M:SS."
+          },
+          {
+            "label": "Indien gekozen tekst",
+            "description": "Een optionele bevestigingstekst die wordt getoond nadat de gebruiker op de keuze-knop heeft geklikt."
+          }
+        ]
+      }
+    },
+    {
+      "label": "Doorgaan-knoplabel",
+      "default": "Doorgaan"
+    }
+  ]
+}

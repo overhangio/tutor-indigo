@@ -1,0 +1,322 @@
+{
+  "semantics": [
+    {
+      "label": "Medien",
+      "fields": [
+        {
+          "label": "Typ",
+          "description": "Optionale Medien, die über der Frage angezeigt werden können."
+        }
+      ]
+    },
+    {
+      "label": "Inhalt",
+      "fields": [
+        {
+          "label": "Aufgabenbeschreibung",
+          "default": "Trage die fehlenden Wörter ein.",
+          "description": "Eine Anleitung, die dem Nutzer erklärt, wie die Aufgabe zu beantworten ist."
+        },
+        {
+          "label": "Text mit Lücken",
+          "important": {
+            "description": "<ul><li>Lücken müssen mit __________ (drei oder mehr Unterstriche) gekennzeichnet werden.</li><li>Die Lösungen werden erst weiter unten in einem anderen Bereich eingegeben.</li></ul>",
+            "example": "Ich wollte _________ nach Norwegen fahren."
+          },
+          "description": "",
+          "font": {}
+        },
+        {
+          "label": "Lücken",
+          "entity": "Lücke",
+          "widgets": [
+            {
+              "label": "Vorgabe"
+            }
+          ],
+          "field": {
+            "label": "Lücke",
+            "fields": [
+              {
+                "label": "Richtige Antwort",
+                "description": "Alternative Antworten können jeweils mit einem Schrägstrich (/) angefügt werden."
+              },
+              {
+                "label": "Tipp"
+              },
+              {
+                "label": "Falsche Antworten",
+                "entity": "falsche Antwort",
+                "field": {
+                  "label": "Falsche Antwort",
+                  "description": "Alternative Antworten können jeweils mit einem Schrägstrich (/) angefügt werden.",
+                  "fields": [
+                    {
+                      "label": "Vom Nutzer eingegebene falsche Antwort"
+                    },
+                    {
+                      "label": "Rückmeldung",
+                      "description": "Die Rückmeldung sollte dem Nutzer dabei helfen, die richtige Antwort zu finden und dabei auf die eingegebene Antwort Rücksicht nehmen."
+                    },
+                    {
+                      "label": "Hervorhebung im Text anzeigen während die Rückmeldung gegeben wird",
+                      "description": "Hervorhebungen müssen mit !! begonnen und beendet werden. Beispiel: Dies ist !!eine Hervorhebung!!"
+                    },
+                    {
+                      "label": "Position der Hervorhebung relativ zur Lücke:",
+                      "showWhen": {
+                        "rules": [
+                          {}
+                        ]
+                      },
+                      "options": [
+                        {
+                          "label": "- 1 (die letzte Hervorhebung vor der Lücke)"
+                        },
+                        {
+                          "label": "- 2 (die vorletzte Hervorhebung vor der Lücke)"
+                        },
+                        {
+                          "label": "- 3 (drei Hervorhebungen vor der Lücke)"
+                        },
+                        {
+                          "label": "+ 1 (die erste Hervorhebung nach der Lücke)"
+                        },
+                        {
+                          "label": "+ 2 (die zweite Hervorhebung nach der Lücke)"
+                        },
+                        {
+                          "label": "+ 3 (die dritte Hervorhebung nach der Lücke)"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Textbausteine",
+      "fields": [
+        {
+          "label": "Textbausteinliste",
+          "description": "Du kannst Textbausteine in Rückmeldungstexte einfügen, indem du dort @Bausteinname eingibst. Damit ersparst du es dir, gleiche Texte immer wieder eingeben zu müssen.",
+          "entity": "Textbaustein",
+          "field": {
+            "label": "Textbaustein",
+            "fields": [
+              {
+                "label": "Name",
+                "description": "Du kannst nur Buchstaben oder Ziffern für den Namen eines Textbausteins verwenden.",
+                "regexp": {}
+              },
+              {
+                "label": "Text"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Allgemeine Rückmeldung",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Vorgabe"
+            }
+          ],
+          "label": "Lege Rückmeldungen für einzelne Punktebereiche fest",
+          "description": "Klicke auf den \"Bereich hinzufügen\"-Button, um so viele Bereiche hinzuzufügen, wie du brauchst. Beispiel: 0-20% Schlechte Punktzahl, 21-91% Durchschnittliche Punktzahl, 91-100% Großartige Punktzahl!",
+          "entity": "Bereich",
+          "field": {
+            "fields": [
+              {
+                "label": "Punktebereich"
+              },
+              {},
+              {
+                "label": "Rückmeldung für festgelegte Punktebereiche",
+                "placeholder": "Trage die Rückmeldung ein"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Verhaltenseinstellungen",
+      "description": "Diese Optionen legen fest, wie sich die Aufgabe verhält.",
+      "fields": [
+        {
+          "label": "Antwortmodus",
+          "description": "Legt fest, auf welche Weise der Nutzer Antworten gibt.",
+          "options": [
+            {
+              "label": "Der Nutzer wählt aus einer Liste aus."
+            },
+            {
+              "label": "Der Nutzer tippt sie ein."
+            }
+          ],
+          "default": "typing"
+        },
+        {
+          "label": "Alternativen, die zur Auswahl angeboten werden",
+          "showWhen": {
+            "rules": [
+              {}
+            ]
+          },
+          "options": [
+            {
+              "label": "Die für die jeweilige Lücke eingegebenen falschen Antworten"
+            },
+            {
+              "label": "Die richtigen Antworten von allen anderen Lücken"
+            }
+          ],
+          "default": "alternatives"
+        },
+        {
+          "label": "Maximalzahl der richtigen Antworten von allen anderen Lücken, die zur Auswahl angeboten werden",
+          "description": "Gib 0 ein, um keine Begrenzung zu setzen.",
+          "showWhen": {
+            "rules": [
+              {}
+            ]
+          }
+        },
+        {
+          "label": "Verhalten bei Tippfehlern",
+          "options": [
+            {
+              "label": "Als richtige Antwort akzeptieren"
+            },
+            {
+              "label": "Den Nutzer über den Fehler warnen"
+            },
+            {
+              "label": "Als Fehler ansehen"
+            }
+          ],
+          "default": "mistake",
+          "showWhen": {
+            "rules": [
+              {}
+            ]
+          }
+        },
+        {
+          "label": "Auf Groß-/Kleinschreibung achten",
+          "description": "Stellt sicher, dass die Lösung exakt der Vorgabe entspricht.",
+          "showWhen": {
+            "rules": [
+              {}
+            ]
+          }
+        },
+        {
+          "label": "Antworten nach Eingabe automatisch prüfen"
+        },
+        {
+          "label": "\"Lösung anzeigen\"-Button anzeigen"
+        },
+        {
+          "label": "Alle Lücken müssen ausgefüllt sein, bevor die Lösung angesehen werden kann."
+        },
+        {
+          "label": "\"Wiederholen\" zulassen"
+        },
+        {
+          "label": "\"Überprüfen\"-Button anzeigen"
+        },
+        {
+          "label": "Zoom des Bildes deaktivieren."
+        },
+        {
+          "label": "Bestätigungsdialog beim Klicken auf \"Überprüfen\" anzeigen",
+          "description": "Diese Option funktioniert nicht zusammen mit \"Antworten nach Eingabe automatisch prüfen\""
+        },
+        {
+          "label": "Bestätigungsdialog beim Klicken auf \"Wiederholen\" anzeigen"
+        }
+      ]
+    },
+    {
+      "label": "Beschriftung für den \"Lösung anzeigen\"-Button",
+      "default": "Lösung anzeigen"
+    },
+    {
+      "label": "Beschriftung für den \"Wiederholen\"-Button",
+      "default": "Wiederholen"
+    },
+    {
+      "label": "Beschriftung für den \"Überprüfen\"-Button",
+      "default": "Überprüfen"
+    },
+    {
+      "label": "Text für die \"Nicht ausgefüllt\"-Nachricht",
+      "default": "Bitte fülle alle Lücken aus, um die Lösung zu sehen"
+    },
+    {
+      "label": "Beschriftung für das Tipp-Icon",
+      "default": "Tipp"
+    },
+    {
+      "label": "Warnung bei Tippfehlern",
+      "description": "Diese Nachricht wird angezeigt, wenn ein Tippfehler erkannt wurde. Indem du @mistake in die Warnung einfügst, kannst du genauere Informationen zu dem Fehler geben.",
+      "default": "Überprüfe die Rechtschreibung: @mistake"
+    },
+    {
+      "label": "Bestätigungsdialog beim Prüfen",
+      "fields": [
+        {
+          "label": "Text der Titelzeile",
+          "default": "Beenden?"
+        },
+        {
+          "label": "Text des Hauptteils",
+          "default": "Ganz sicher beenden?"
+        },
+        {
+          "label": "Beschriftung des \"Abbrechen\"-Buttons",
+          "default": "Abbrechen"
+        },
+        {
+          "label": "Beschriftung des \"Beenden\"-Buttons",
+          "default": "Beenden"
+        }
+      ]
+    },
+    {
+      "label": "Bestätigungsdialog beim Wiederholen",
+      "fields": [
+        {
+          "label": "Text der Titelzeile",
+          "default": "Wiederholen?"
+        },
+        {
+          "label": "Text des Hauptteils",
+          "default": "Ganz sicher wiederholen?"
+        },
+        {
+          "label": "Beschriftung des \"Abbrechen\"-Buttons",
+          "default": "Abbrechen"
+        },
+        {
+          "label": "Beschriftung des \"Bestätigen\"-Buttons",
+          "default": "Bestätigen"
+        }
+      ]
+    },
+    {
+      "label": "Textuelle Repräsentation der Punkteleiste für diejenigen, die Readspeaker benutzen",
+      "default": "Du hast :num von :total Punkten erreicht."
+    }
+  ]
+}

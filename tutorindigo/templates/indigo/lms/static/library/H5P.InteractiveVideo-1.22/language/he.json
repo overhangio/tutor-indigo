@@ -1,0 +1,479 @@
+{
+  "semantics": [
+    {
+      "label": "עורך וידאו אינטראקטיבי",
+      "fields": [
+        {
+          "label": "העלאת/הטמעת וידאו",
+          "fields": [
+            {
+              "label": "הוספת וידאו",
+              "description": "לחצו למטה להוספת וידאו שברצונכם להשתמש בו לוידאו אינטראקטיבי. ביכולתכם להוסיף קישור לידאו או להעלות קבצים. זה אפשרי להוסיף מספר גרסאות של הוידאו באיכויות שונות. כדי להבטיח תמיכה מרבית בדפדפנים הוסיפו לפחות גרסה בפורמטים wemb ו-mp4."
+            },
+            {
+              "label": "אפשרויות מסך התחלה (לא תומך בסרטוני youtube)",
+              "fields": [
+                {
+                  "label": "הכותרת של הסרטון האינטראקטיבי הזה",
+                  "default": "סרטון אינטראקטיבי",
+                  "description": "בשימוש בתקצירים, סטטיסטיקות וכו'."
+                },
+                {
+                  "label": "הסתרת כותרת במסך ההתחלה של הסרטון"
+                },
+                {
+                  "label": "תיאור קצר (אופציונלי)",
+                  "description": "אופציונלי. הצגת תיאור מילולי קצר על מסך ההתחלה של הסרטון. לא עובד עבור סרטוני YouTube."
+                },
+                {
+                  "label": "תמונת פוסטר",
+                  "description": "תמונה המוצגת לפני שהמשתמש מפעיל את הסרטון. לא עובד עבור סרטוני YouTube."
+                }
+              ]
+            },
+            {
+              "label": "טקסט רצועות (לא נתמך עבור סרטוני YouTube)",
+              "fields": [
+                {
+                  "label": "רצועות טקסט זמינות",
+                  "entity": "רצועה",
+                  "field": {
+                    "label": "רצועה",
+                    "fields": [
+                      {
+                        "label": "תווית רצועה",
+                        "description": "בשימוש אם מציעים מספר רצועות והמשתמשים צריכים לבחור רצועה. לדוגמה \"כתוביות בספרדית\" יכולות להיות התווית של רצועת כתוביות בספרדית.",
+                        "default": "כתוביות"
+                      },
+                      {
+                        "label": "סוג של רצועת טקסט",
+                        "options": [
+                          {
+                            "label": "כתוביות"
+                          },
+                          {
+                            "label": "כיתובים"
+                          },
+                          {
+                            "label": "תיאורים"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "שפת המקור, חייבים להגדיר עבור כתוביות",
+                        "description": "חייבת להיות תווית שפה BCP 47 תקפה. שם \"כתוביות\" זה סוג רצועת הטקסט הנבחר, יש להגדיר את שפת המקור של הרצועה."
+                      },
+                      {
+                        "label": "מקור רצועה (קובץ WebVTT)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "רצועת טקסט ברירת מחדל",
+                  "description": "אם נשאר ריק או לא תואם אף אחת מרצועות הטקסט רצועת הטקסט הראשונה תשמש כברירת המחדל."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "הוספת אינטראקציות",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "הצגת זמן"
+                  },
+                  {
+                    "label": "השהיית סרטון"
+                  },
+                  {
+                    "label": "הצגה כ-",
+                    "description": "<b>Button</b> זו אינטראקציה בתצוגה מכווצת שהמשתמש צריך ללחוץ כדי לפתוח. <b>Poster</b> זו איטראקציה בתצוגה מורחבת המוצגת ישירות מעל הסרטון",
+                    "options": [
+                      {
+                        "label": "כפתור"
+                      },
+                      {
+                        "label": "פוסטר"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "הפכו לכפתור על מסכים קטנים"
+                  },
+                  {
+                    "label": "תווית",
+                    "description": "תווית המוצגת ליד אייקון האינטראקציה."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Action on all correct",
+                    "fields": [
+                      {
+                        "label": "פעולה כשכל התשובות נכונות",
+                        "fields": [
+                          {
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
+                          },
+                          {
+                            "label": "Allow the user to opt out and continue"
+                          },
+                          {
+                            "label": "הודעה"
+                          },
+                          {
+                            "label": "Label for seek button"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "פעולה על תשובה שגויה",
+                        "fields": [
+                          {
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
+                          },
+                          {
+                            "label": "Allow the user to opt out and continue"
+                          },
+                          {
+                            "label": "הודעה"
+                          },
+                          {
+                            "label": "Label for seek button"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "דרוש ציון מלא עבור המשימה לפני שממשיכים",
+                        "description": "לפונקציונליות מיטבית יש להשתמש באפשרות זו בשילוב עם האפשרות \"מנעו דילוג קדימה בסרטון\" של סרטון אינטראקטיבי."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Visuals",
+                    "fields": [
+                      {
+                        "label": "צבע רקע"
+                      },
+                      {
+                        "label": "Box shadow",
+                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Go to on click",
+                    "fields": [
+                      {
+                        "label": "סוג",
+                        "options": [
+                          {
+                            "label": "Timecode"
+                          },
+                          {
+                            "label": "עמוד נוסף (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Go To",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "פרוטוקול",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(root relative)"
+                              },
+                              {
+                                "label": "other"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Visualize",
+                        "description": "הראו שניתן ללחוץ על אינטראקציה על ידי הוספת גבול ואייקון"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "משימת סיכום",
+          "fields": [
+            {},
+            {
+              "label": "תצוגה ב-",
+              "description": "מספר השניות לפני סוף הסרטון."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "הגדרות כלליות",
+      "fields": [
+        {
+          "label": "התחילו סרטון ב-",
+          "description": "Enter timecode in the format M:SS"
+        },
+        {
+          "label": "סרטון מופעל אוטומטית",
+          "description": "התחילו להריץ את הסרטון אוטומטית"
+        },
+        {
+          "label": "הריצו את הסרטון בלולאה",
+          "description": "בדקו האם הסרטון אמור לרוץ בלולאה"
+        },
+        {
+          "label": "דריסת כפתור \"הצגת פתרון\"",
+          "description": "אפשרות זו קובעת האם כפתור \"הצגת פתרון\" יוצג עבור כל השאלות, ינוטרל עבור כולן או יוגדר עבור כל שאלה בנפרד.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "label": "עדכון כפתור \"ניסיון חוזר\"",
+          "description": "אפשרות זו קובעת האם כפתור \"ניסיון חוזר\" יוצג עבור כל השאלות, ינוטרל עבור כולן או יוגדר עבור כל שאלה בנפרד.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "label": "התחילו עם תפריט סימניות פתוח",
+          "description": "פונקציה זו לא קיימת ב-iPad כאשר משתמשים ב-YouTube בסרטון המקור."
+        },
+        {
+          "label": "Show button for rewinding 10 seconds"
+        },
+        {
+          "label": "מנעו דילוג קדימה בסרטון",
+          "description": "Enabling this options will disable user video navigation through default controls."
+        },
+        {
+          "label": "כיבוי שמע",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+        }
+      ]
+    },
+    {
+      "label": "תרגום מותאם",
+      "fields": [
+        {
+          "label": "כותרת אינטראקציה",
+          "default": "אינטראקציה"
+        },
+        {
+          "label": "כותרת נגן",
+          "default": "נגן"
+        },
+        {
+          "label": "השהיית כותרת",
+          "default": "השהייה"
+        },
+        {
+          "label": "השתקת כותרת",
+          "default": "Mute, currently unmuted"
+        },
+        {
+          "label": "הפעלת כותרת",
+          "default": "Unmute, currently muted"
+        },
+        {
+          "label": "כותרת איכות סרטון",
+          "default": "איכות סרטון"
+        },
+        {
+          "label": "כותרת כיתובי סרטון",
+          "default": "כתוביות"
+        },
+        {
+          "label": "תוכן כפתור סגירה",
+          "default": "סגירה"
+        },
+        {
+          "label": "כותרת מסך מלא",
+          "default": "מסך מלא"
+        },
+        {
+          "label": "כותרת יציאה ממסך מלא",
+          "default": "יציאה ממסך מלא"
+        },
+        {
+          "label": "כותרת סיכום",
+          "default": "Open summary dialog"
+        },
+        {
+          "label": "כותרת סימניות",
+          "default": "סימניות"
+        },
+        {
+          "label": "כותרת מסך הגשה",
+          "default": "מסך הגשה"
+        },
+        {
+          "label": "Default label for adaptivity seek button",
+          "default": "המשך"
+        },
+        {
+          "label": "תווית ברירת מחדל עבור כפתור המשך סרטון",
+          "default": "המשך סרטון"
+        },
+        {
+          "label": "הגדרת מהירות ניגון הסרטון",
+          "default": "מהירות ניגון סרטון"
+        },
+        {
+          "label": "חזרה אחורה 10 שניות",
+          "default": "חזרה אחורה 10 שניות"
+        },
+        {
+          "label": "Navigation is disabled text",
+          "default": "Navigation is disabled"
+        },
+        {
+          "label": "Sound is disabled text",
+          "default": "Sound is disabled"
+        },
+        {
+          "label": "אזהרה שהמשתמש מוכרח לענות על השאלה נכון לפני שממשיך",
+          "default": "יש לענות על כל השאלות נכון לפני שממשיכים."
+        },
+        {
+          "label": "כפתור הקודם",
+          "default": "הקודם"
+        },
+        {
+          "label": "זמן שעבר: שעות",
+          "default": "שעות"
+        },
+        {
+          "label": "זמן שעבר: דקות",
+          "default": "דקות"
+        },
+        {
+          "label": "זמן שעבר: שניות",
+          "default": "שניות"
+        },
+        {
+          "label": "תווית לזמן הנוכחי",
+          "default": "זמן נוכחי:"
+        },
+        {
+          "label": "תווית לזמן הכולל",
+          "default": "זמן כולל:"
+        },
+        {
+          "label": "תוכן שמסביר שאינטראקציה בודדת עם שם הופיעה",
+          "default": "אינטראקציה הופיעה:"
+        },
+        {
+          "label": "תוכן שמסביר שמספר אינטראקציות הופיעו",
+          "default": "מספר איטראקציות הופיעו."
+        },
+        {
+          "label": "הודעת הסרטון בהשהייה",
+          "default": "הסרטון בהשהייה"
+        },
+        {
+          "label": "תווית תוכן",
+          "default": "תוכן"
+        },
+        {
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "@answered נענו"
+        },
+        {
+          "label": "כותרת מסך הזנה",
+          "default": "@answered שאלה/ות נענו",
+          "description": "@answered יוחלף במספר השאלות שענו עליהן."
+        },
+        {
+          "label": "מידע מסך הגשה",
+          "default": "עניתם על @answered שאלות, לחצו למטה כדי להזין את התשובות.",
+          "description": "@answered יוחלף במספר השאלות שענו עליהן."
+        },
+        {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "מידע של מסך הזנה על תשובות חסרות",
+          "default": "לא ענית על אף שאלה."
+        },
+        {
+          "label": "מידע של מסך הזנה על תשובה נחוצה",
+          "default": "יש לענות לפחות כל שאלה אחת לפני שאפשר להזין תשובות."
+        },
+        {
+          "label": "כפתור הזנה השל מסך ההזנה",
+          "default": "שליחת תשובות"
+        },
+        {
+          "label": "הודעת הזנה של מסך ההזנה",
+          "default": "התשובות שלך הוזנו!"
+        },
+        {
+          "label": "כותרת שורת טבלה במסך הזנה: תשובות עם מענה",
+          "default": "תשובות עם מענה"
+        },
+        {
+          "label": "Submit screen table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Submit screen answered score",
+          "default": "answered"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "קיבלתם @score מתוך @total נקודות עבור ה@question שהופיעה אחרי @minutes דקות ו-@seconds שניות."
+        },
+        {
+          "label": "מסך הזנה שורת סיכום עבור אין ציון (לקוראי-מסך)",
+          "default": "עניתם על ה@question שהופיעה אחרי @minutes דקות ו-@seconds שניות."
+        }
+      ]
+    }
+  ]
+}

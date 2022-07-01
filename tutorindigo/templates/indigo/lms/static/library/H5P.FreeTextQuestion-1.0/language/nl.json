@@ -1,0 +1,256 @@
+{
+  "semantics": [
+    {
+      "label": "Vraag"
+    },
+    {
+      "label": "Placeholder tekst",
+      "default": "Voer je reactie hier in",
+      "description": "Tekst die bij aanvang wordt getoond in het invoerveld. Wordt automatisch verwijderd wanneer gebruiker begint met schrijven."
+    },
+    {
+      "label": "Max score",
+      "description": "Gebruikt voor beoordeling en niet getoond aan de student"
+    },
+    {
+      "label": "Vereist",
+      "description": "Studenten moeten een antwoord geven om verder te kunnen"
+    },
+    {
+      "label": "Localize Free Text Question buttons",
+      "fields": [
+        {
+          "label": "Vereist tekstlabel",
+          "description": "getoonde tekst om student te informeren dat invoer vereist is om door te gaan",
+          "default": "vereist"
+        },
+        {
+          "label": "Vereist bericht",
+          "default": "Deze vraag vereist een antwoord",
+          "description": "Wordt getoond als het veld onbeantwoord blijft en vereist is door een wrapper content type"
+        },
+        {
+          "label": "Overslaan knop label",
+          "default": "Vraag overslaan"
+        },
+        {
+          "label": "Doorgaan knop label",
+          "default": "Antwoord en doorgaan"
+        },
+        {
+          "label": "Wysiwyg editor taal",
+          "description": "De taal van de wysiwyg gebruikersinterface",
+          "options": [
+            {
+              "label": "Afrikaans"
+            },
+            {
+              "label": "Arabisch"
+            },
+            {
+              "label": "Azerbeidzjaans"
+            },
+            {
+              "label": "Bulgaars"
+            },
+            {
+              "label": "Bengaals"
+            },
+            {
+              "label": "Bosnisch"
+            },
+            {
+              "label": "Catalaans"
+            },
+            {
+              "label": "Tjechisch"
+            },
+            {
+              "label": "Welsh"
+            },
+            {
+              "label": "Deens"
+            },
+            {
+              "label": "Duits (Zwitserland)"
+            },
+            {
+              "label": "Duits"
+            },
+            {
+              "label": "Grieks"
+            },
+            {
+              "label": "Engels (Australië)"
+            },
+            {
+              "label": "Engels (Canada)"
+            },
+            {
+              "label": "Engels (United Kingdom)"
+            },
+            {
+              "label": "Engels"
+            },
+            {
+              "label": "Esperanto"
+            },
+            {
+              "label": "Spaans (Mexico)"
+            },
+            {
+              "label": "Spaans (Spanje)"
+            },
+            {
+              "label": "Ests"
+            },
+            {
+              "label": "Baskisch"
+            },
+            {
+              "label": "Farsi"
+            },
+            {
+              "label": "Fins"
+            },
+            {
+              "label": "Faeroer"
+            },
+            {
+              "label": "Frans (Canada)"
+            },
+            {
+              "label": "Frans (Standaard)"
+            },
+            {
+              "label": "Galicisch"
+            },
+            {
+              "label": "Gujarati"
+            },
+            {
+              "label": "Hebreeuws (modern)"
+            },
+            {
+              "label": "Hindi"
+            },
+            {
+              "label": "Kroatisch"
+            },
+            {
+              "label": "Hongaars"
+            },
+            {
+              "label": "Indonesisch"
+            },
+            {
+              "label": "Ijslands"
+            },
+            {
+              "label": "Italiaans (Standaard)"
+            },
+            {
+              "label": "Japans"
+            },
+            {
+              "label": "Georgisch"
+            },
+            {
+              "label": "Centraal Khmer"
+            },
+            {
+              "label": "Koreaans"
+            },
+            {
+              "label": "Koerdisch"
+            },
+            {
+              "label": "Lithouws"
+            },
+            {
+              "label": "Lets"
+            },
+            {
+              "label": "Macedonisch"
+            },
+            {
+              "label": "Mongools"
+            },
+            {
+              "label": "Maleis"
+            },
+            {
+              "label": "Noors Bokmål"
+            },
+            {
+              "label": "Nederlands (Standaard)"
+            },
+            {
+              "label": "Noors"
+            },
+            {
+              "label": "Occitaans"
+            },
+            {
+              "label": "Pools"
+            },
+            {
+              "label": "Portugees (Brazilië)"
+            },
+            {
+              "label": "Portugees (Portugal)"
+            },
+            {
+              "label": "Roemeens"
+            },
+            {
+              "label": "Russisch"
+            },
+            {
+              "label": "Singalees"
+            },
+            {
+              "label": "Slowaaks"
+            },
+            {
+              "label": "Sloveens"
+            },
+            {
+              "label": "Albanees"
+            },
+            {
+              "label": "Servisch (Latin)"
+            },
+            {
+              "label": "Servisch"
+            },
+            {
+              "label": "Zweeds"
+            },
+            {
+              "label": "Thai"
+            },
+            {
+              "label": "Turks"
+            },
+            {
+              "label": "Tatar"
+            },
+            {
+              "label": "Oeigoers"
+            },
+            {
+              "label": "Oekraiens"
+            },
+            {
+              "label": "Vietnamees"
+            },
+            {
+              "label": "Chinees (PRC)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "label": "Editor für Branching Scenario",
+      "fields": [
+        {
+          "label": "Titel"
+        },
+        {
+          "label": "Startbildschirm",
+          "fields": [
+            {
+              "label": "Titel des Startbildschirms",
+              "placeholder": "Titel für den Kurs"
+            },
+            {
+              "label": "Untertitel des Startbildschirms",
+              "placeholder": "Details zum Kurs"
+            },
+            {
+              "label": "Kursbild"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "label": "Liste der Endbildschirme",
+          "field": {
+            "label": "Endbildschirm",
+            "fields": [
+              {
+                "label": "Titel"
+              },
+              {
+                "label": "Text"
+              },
+              {
+                "label": "Bild"
+              },
+              {
+                "label": "Punkte",
+                "description": "Wenn Lernende den Standard-Endbildschirm erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
+              },
+              {
+                "label": "Inhalts-ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Liste der Branching-Scenario-Inhalte",
+          "entity": "Inhalt",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Titel anzeigen",
+                "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt"
+              },
+              {
+                "label": "Muss abgeschlossen werden",
+                "description": "Zwingt Lernende, die Interaktion zu beenden, bevor mit dem Szenario fortgefahren werden kann. Diese Einstellung funktioniert nur, wenn Interaktionen abgeschlossen werden können.",
+                "options": [
+                  {
+                    "label": "Verhaltenseinstellung verwenden"
+                  },
+                  {
+                    "label": "Aktiviert"
+                  },
+                  {
+                    "label": "Deaktiviert"
+                  }
+                ]
+              },
+              {
+                "label": "Nächste Inhalts-ID (Endbildschirme werden durch negative Zahlen definiert)"
+              },
+              {
+                "label": "Rückmeldung",
+                "fields": [
+                  {
+                    "label": "Titel der Rückmeldung"
+                  },
+                  {
+                    "label": "Text der Rückmeldung"
+                  },
+                  {
+                    "label": "Bild der Rückmeldung"
+                  },
+                  {
+                    "label": "Punkte für dieses Szenario",
+                    "description": "Wenn Lernende dieses Szenario erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
+                  }
+                ]
+              },
+              {
+                "label": "Interaktionseinstellungen",
+                "description": "Erlaubt es Nutzern, zurückzugehen und den vorherigen Inhalt / Frage im Szenario anzuschauen",
+                "options": [
+                  {
+                    "label": "Verhaltenseinstellung verwenden"
+                  },
+                  {
+                    "label": "Aktiviert"
+                  },
+                  {
+                    "label": "Deaktiviert"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Optionen für die Bepunktung",
+          "fields": [
+            {
+              "label": "Optionen für die Bepunktung",
+              "description": "Wähle die Art der Bepunktung",
+              "options": [
+                {
+                  "label": "Stelle die Punktzahl für jedes Endszenario fest ein"
+                },
+                {
+                  "label": "Berechne die Punktzahl für die Antworten der Lernenden dynamisch"
+                },
+                {
+                  "label": "Keine Bepunktung"
+                }
+              ]
+            },
+            {
+              "label": "Verwende die Punkte der Interaktionen innerhalb des Branching Scenario",
+              "description": "Wenn diese Option gewählt ist, werden Punkte aus Inhalten wie Interactive Video zur Gesamtpunktzahl hinzugezählt. Wenn die Option nicht angewählt ist, werden nur die Punkte gezählt, die bei den Rückmeldungen zu Inhalten, bei verzweigenden Fragen und bei den Endszenarios vergeben wurden."
+            }
+          ]
+        },
+        {
+          "label": "Interaktionseinstellungen",
+          "fields": [
+            {
+              "label": "Rückwärtsnavigation überschreiben",
+              "description": "Erlaube den Nutzern zurückzugehen und den vorherigen Inhalt/die vorherige Frage zu sehen"
+            },
+            {
+              "label": "Inhaltsabschluss überschreiben",
+              "description": "Überschreibt die individuellen Einstellungen, die vorgeben, dass der Inhalt abgeschlossen sein muss bevor der „Weiter“-Button klickbar wird. Hat keinen Effekt, wenn der Inhalt nicht mitteilt, dass er „abgeschlossen“ wurde, wie z.B. bei Bildern oder Kurspräsentationen mit nur einer Folie."
+            }
+          ]
+        },
+        {
+          "label": "Bezeichnungen und Beschriftungen",
+          "fields": [
+            {
+              "label": "Text des Buttons auf dem Startbildschirm",
+              "default": "Kurs starten"
+            },
+            {
+              "label": "Text des Buttons auf dem Endbildschirm",
+              "default": "Kurs neu starten"
+            },
+            {
+              "label": "Text des \"Zurück\"-Buttons auf jedem Inhaltsbildschirm und jeder Verzweigung",
+              "default": "Zurück"
+            },
+            {
+              "label": "Text des Buttons auf jedem Inhaltsbildschirm",
+              "default": "Weiter"
+            },
+            {
+              "label": "Text für den Button, der das Video erneut abspielen lässt",
+              "default": "Video wiederholen"
+            },
+            {
+              "label": "Beschriftung der Punkte auf dem Endbildschirm",
+              "default": "Deine Punktzahl:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Deine Punkte:"
+            },
+            {
+              "label": "Aria-Beschriftung des Vollbild-Buttons",
+              "default": "Vollbild"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

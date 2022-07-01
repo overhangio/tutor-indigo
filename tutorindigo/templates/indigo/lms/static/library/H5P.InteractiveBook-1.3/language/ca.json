@@ -1,0 +1,201 @@
+{
+  "semantics": [
+    {
+      "label": "Activa la portada del llibre",
+      "description": "Portada en què es mostra informació sobre el llibre abans d’accedir-hi"
+    },
+    {
+      "label": "Portada",
+      "fields": [
+        {
+          "label": "Descripció de la portada",
+          "description": "Aquest text serà la descripció del llibre."
+        },
+        {
+          "label": "Imatge de portada",
+          "description": "Una imatge de fons opcional per a la introducció."
+        },
+        {
+          "label": "Text alternatiu per a la imatge de portada",
+          "description": "Text alternatiu per a la imatge de portada"
+        }
+      ]
+    },
+    {
+      "label": "Pàgines",
+      "entity": "Pàgina",
+      "widgets": [
+        {
+          "label": "Opció predeterminada"
+        }
+      ],
+      "field": {
+        "label": "Element",
+        "fields": [
+          {
+            "label": "Pàgina"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Opcions de comportament",
+      "fields": [
+        {
+          "label": "Mostra la taula de continguts com a predeterminada",
+          "description": "Si aquesta opció està activada, l’índex es mostrarà en obrir el llibre"
+        },
+        {
+          "label": "Mostra els indicadors de progrés",
+          "description": "Si aquesta opció està activada, hi haurà indicadors per pàgina que mostraran a l’usuari si ha acabat de llegir la pàgina o no."
+        },
+        {
+          "label": "Activa el progrés automàtic",
+          "description": "Si està activat es considerarà que una pàgina sense tasques es realitza quan es visualitza. Una pàgina amb tasques, quan es fan totes les tasques. Si està desactivat hi haurà un botó a la part inferior de cada pàgina perquè l’usuari faci clic quan acabi amb la pàgina."
+        },
+        {
+          "label": "Mostra el resum",
+          "description": "Si aquesta opció està activada, l’usuari podrà veure un resum i enviar el progrés i les respostes"
+        }
+      ]
+    },
+    {
+      "label": "Traducció de \"Llegeix\"",
+      "default": "Lectura"
+    },
+    {
+      "label": "Traducció per a \"Mostra la taula de continguts\"",
+      "default": "Mostra la ’Taula de continguts’"
+    },
+    {
+      "label": "Traducció per a \"Oculta la taula de continguts\"",
+      "default": "Amaga la ’Taula de continguts’"
+    },
+    {
+      "label": "Traducció de \"Pàgina següent\"",
+      "default": "Pàgina següent"
+    },
+    {
+      "label": "Traducció de \"Pàgina anterior\"",
+      "default": "Pàgina anterior"
+    },
+    {
+      "label": "Traducció de \"Pàgina completada!\"",
+      "default": "Pàgina finalitzada!"
+    },
+    {
+      "label": "Ha finalitzat la traducció de \"@pages de @total pàgines\" (@pages i @total se substituirà pels valors reals)",
+      "default": "@pages de @total completada"
+    },
+    {
+      "label": "Traducció de \"Pàgina incompleta\"",
+      "default": "Pàgina incompleta"
+    },
+    {
+      "label": "Traducció de \"Ves a la part superior\"",
+      "default": "Ves a la part superior"
+    },
+    {
+      "label": "Traducció per a \"He finalitzat aquesta pàgina\"",
+      "default": "He acabat aquesta pàgina"
+    },
+    {
+      "label": "Pantalla completa",
+      "default": "Pantalla completa"
+    },
+    {
+      "label": "Etiqueta del botó \"Surt de la pantalla completa\"",
+      "default": "Surt de la pantalla completa"
+    },
+    {
+      "label": "Progrés de la pàgina al llibre",
+      "description": "\"@count\" serà substituït pel recompte de pàgines, i \"@total\" amb el nombre total de pàgines",
+      "default": "@count de @total pages"
+    },
+    {
+      "label": "Progrés de la interacció",
+      "description": "\"@count\" serà substituït pel nombre d’interaccions, i \"@total\" amb el nombre total d’interaccions",
+      "default": "@count de @total interactions"
+    },
+    {
+      "label": "Traducció per a \"Envia l’informe\"",
+      "default": "Envia l’informe"
+    },
+    {
+      "label": "Etiqueta per al botó \"Reinicia\"",
+      "default": "Reinicia"
+    },
+    {
+      "label": "Títol del resum",
+      "default": "Resum"
+    },
+    {
+      "label": "Traducció de \"Totes les interaccions\"",
+      "default": "Totes les interaccions"
+    },
+    {
+      "label": "Traducció de \"Interaccions sense respondre\"",
+      "default": "Interaccions sense resposta"
+    },
+    {
+      "label": "Puntuació",
+      "description": "\"@score\" se substituirà per la puntuació actual i \"@maxscore\", per la puntuació màxima que es pot assolir.",
+      "default": "@score / @maxscore"
+    },
+    {
+      "label": "Compleció d’interaccions per pàgina",
+      "description": "\"@left\" se substituirà per les interaccions restants i \"@max\", pel nombre total d’interaccions a la pàgina.",
+      "default": "@index de @count draggables."
+    },
+    {
+      "label": "Traducció de \"No hi ha interaccions\"",
+      "default": "Sense interaccions"
+    },
+    {
+      "label": "Traducció de \"Puntuació\"",
+      "default": "Puntuació"
+    },
+    {
+      "label": "Etiqueta per al botó \"Resum i enviament\"",
+      "default": "Resum i enviament"
+    },
+    {
+      "label": "Traducció de \"No heu interactuat amb cap pàgina\".",
+      "default": "No heu interactuat amb cap pàgina."
+    },
+    {
+      "label": "Traducció de \"Cal que interaccioneu com a mínim amb una pàgina per poder veure el resum\".",
+      "default": "Cal que interaccioneu com a mínim amb una pàgina per poder veure el resum."
+    },
+    {
+      "label": "Traducció de \"Les vostres respostes s’envien a revisió\".",
+      "default": "S’han enviat les respostes per a la seva revisió!"
+    },
+    {
+      "label": "Etiqueta de progrés del resum",
+      "default": "Progrés del llibre"
+    },
+    {
+      "label": "Etiqueta de progrés de les interaccions",
+      "default": "Progrés de les interaccions"
+    },
+    {
+      "label": "Etiqueta de puntuació total",
+      "default": "Puntuació total"
+    },
+    {
+      "label": "Text d’accessibilitat",
+      "fields": [
+        {
+          "label": "Text alternatiu per al progrés de la pàgina",
+          "description": "Un text alternatiu per al progrés de la pàgina visual. Hi ha disponibles les variables @page i @total.",
+          "default": "Pàgina @page de @total."
+        },
+        {
+          "label": "Etiqueta per ampliar o reduir el menú de navegació",
+          "default": "Commuta el menú de navegació"
+        }
+      ]
+    }
+  ]
+}

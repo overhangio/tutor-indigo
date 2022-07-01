@@ -1,0 +1,39 @@
+{
+  "semantics": [
+    {
+      "label": "Koptekst",
+      "default": "Documentatie tool",
+      "description": "Titel voor de documentatie tool."
+    },
+    {
+      "label": "Onderdelen",
+      "widgets": [
+        {
+          "label": "Standaard"
+        }
+      ],
+      "entity": "pagina",
+      "field": {
+        "label": "Paginatype",
+        "description": "Bibliotheek voor deze dia."
+      }
+    },
+    {
+      "label": "Lokaliseer documentatie tool knoppen",
+      "fields": [
+        {
+          "label": "Vorige knop label",
+          "default": "Vorige"
+        },
+        {
+          "label": "Volgende knop label",
+          "default": "Volgende"
+        },
+        {
+          "label": "Sluiten knop label",
+          "default": "Sluiten"
+        }
+      ]
+    }
+  ]
+}

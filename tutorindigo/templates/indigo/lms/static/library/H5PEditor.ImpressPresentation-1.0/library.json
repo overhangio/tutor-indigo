@@ -1,0 +1,64 @@
+{
+  "title": "Impress Presentation Editor",
+  "description": "Live editor for editing impressive presentations.",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 2,
+  "runnable": 0,
+  "author": "Joubel AS",
+  "license": "MIT",
+  "machineName": "H5PEditor.ImpressPresentation",
+  "preloadedCss": [
+    {
+      "path": "impress-editor.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "sortable-lib.js"
+    },
+    {
+      "path": "free-transform.js"
+    },
+    {
+      "path": "impress-editor.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.ImpressPresentation",
+      "majorVersion": 1,
+      "minorVersion": 0
+    },
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 2
+    },
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 3
+    },
+    {
+      "machineName": "H5P.AdvancedText",
+      "majorVersion": 1,
+      "minorVersion": 1
+    },
+    {
+      "machineName": "H5P.MarkTheWords",
+      "majorVersion": 1,
+      "minorVersion": 5
+    },
+    {
+      "machineName": "H5P.SingleChoiceSet",
+      "majorVersion": 1,
+      "minorVersion": 3
+    },
+    {
+      "machineName": "H5P.Blanks",
+      "majorVersion": 1,
+      "minorVersion": 4
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "semantics": [
+    {
+      "fields": [
+        {
+          "label": "Create views",
+          "description": "Here you can create views with different transitions and text.",
+          "entity": "option",
+          "field": {
+            "label": "View instance",
+            "fields": [
+              {},
+              {
+                "fields": [
+                  {
+                    "label": "center text"
+                  },
+                  {
+                    "label": "X position"
+                  },
+                  {
+                    "label": "Y position"
+                  },
+                  {
+                    "label": "Z position",
+                    "description": "Negative values are further away from the camera and positive values are closer."
+                  },
+                  {
+                    "label": "X rotation",
+                    "description": "Default rotation is 0."
+                  },
+                  {
+                    "label": "Y rotation",
+                    "description": "Default rotation is 0."
+                  },
+                  {
+                    "label": "Z rotation",
+                    "description": "Default rotation is 0."
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "label": "Transparent Background",
+                    "description": "Uncheck to choose background color or image"
+                  },
+                  {
+                    "spectrum": {},
+                    "label": "Background color",
+                    "description": "Optional, can be set to have a background color for this step",
+                    "default": "#fff"
+                  },
+                  {
+                    "label": "Background image"
+                  },
+                  {
+                    "label": "Background width"
+                  },
+                  {
+                    "label": "Background height"
+                  }
+                ]
+              },
+              {
+                "label": "Ordering",
+                "fields": [
+                  {
+                    "label": "Include step in path"
+                  },
+                  {
+                    "label": "Index in path"
+                  },
+                  {
+                    "label": "User defined name"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Perspective ratio"
+        },
+        {
+          "label": "Route path"
+        }
+      ]
+    }
+  ]
+}

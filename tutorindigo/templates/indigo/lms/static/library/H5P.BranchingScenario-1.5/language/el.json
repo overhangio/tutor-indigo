@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "label": "Επεξεργαστής Branching Scenario",
+      "fields": [
+        {
+          "label": "Τίτλος"
+        },
+        {
+          "label": "Οθόνη έναρξης",
+          "fields": [
+            {
+              "label": "Τίτλος οθόνης έναρξης",
+              "placeholder": "Τίτλος"
+            },
+            {
+              "label": "Υπότιτλος οθόνης έναρξης",
+              "placeholder": "Λεπτομέρειες"
+            },
+            {
+              "label": "Εικόνα οθόνης έναρξης"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "label": "Οθόνες λήξης",
+          "field": {
+            "label": "Οθόνη λήξης",
+            "fields": [
+              {
+                "label": "Τίτλος"
+              },
+              {
+                "label": "Κείμενο"
+              },
+              {
+                "label": "Εικόνα"
+              },
+              {
+                "label": "Βαθμολογία",
+                "description": "Η βαθμολογία αποστέλλεται σε κάθε LMS, LRS ή οποιοδήποτε άλλο σχετικό service"
+              },
+              {
+                "label": "ID αντικειμένου"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Αντικείμενα branching scenario",
+          "entity": "αντικειμενου",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Προβολή τίτλου αντικειμένου",
+                "description": "Αν επιλεγεί, ο χρήστης θα βλέπει τον τίτλο του αντικειμένου στην μπάρα πάνω από το αντικείμενο"
+              },
+              {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              },
+              {
+                "label": "ID επόμενου αντικειμένου (χρησιμοποιήστε αρνητικό αριθμό για την οθόνη λήξης)"
+              },
+              {
+                "label": "Ανατροφοδότηση",
+                "fields": [
+                  {
+                    "label": "Τίτλος ανατροφοδότησης"
+                  },
+                  {
+                    "label": "Κείμενο ανατροφοδότησης"
+                  },
+                  {
+                    "label": "Εικόνα ανατροφοδότησης"
+                  },
+                  {
+                    "label": "Βαθμολογία για αυτό το σενάριο",
+                    "description": "Η βαθμολογία αποστέλλεται σε κάθε LMS, LRS ή οποιοδήποτε άλλο σχετικό service"
+                  }
+                ]
+              },
+              {
+                "label": "Navigate back",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Επιλογές βαθμολόγησης",
+          "fields": [
+            {
+              "label": "Επιλογές βαθμολόγησης",
+              "description": "Επιλέξτε τον τύπο της βαθμολόγησης",
+              "options": [
+                {
+                  "label": "Στατική βαθμολόγηση για κάθε σενάριο"
+                },
+                {
+                  "label": "Δυναμική βαθμολόγηση από τις απαντήσεις των χρηστών"
+                },
+                {
+                  "label": "Χωρίς βαθμολόγηση"
+                }
+              ]
+            },
+            {
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+            }
+          ]
+        },
+        {
+          "label": "Behavioural settings",
+          "fields": [
+            {
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+            },
+            {
+              "label": "Required to watch",
+              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+            }
+          ]
+        },
+        {
+          "label": "Προσαρμογή",
+          "fields": [
+            {
+              "label": "Κείμενο για το κουμπί της οθόνης έναρξης",
+              "default": "Ξεκίνησε"
+            },
+            {
+              "label": "Κείμενο για το κουμπί της οθόνης λήξης",
+              "default": "Ξεκίνησε ξανά"
+            },
+            {
+              "label": "Κείμενο για το κουμπί των ενδιάμεσων οθονών",
+              "default": "Συνέχισε"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
+              "label": "Ετικέτα βαθμολογίας στην οθόνη λήξης",
+              "default": "Η βαθμολογία σου:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Aria label for fullscreen button",
+              "default": "Fullscreen"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

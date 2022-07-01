@@ -1,0 +1,18 @@
+{
+  "libraryStrings": {
+    "confirmReset": "Weet je zeker dat je de layout wilt wijzigen? Dit stelt de preview opnieuw in.",
+    "sameAsSpacing": "Zelfde als spatiëring",
+    "noFrame": "Geen frame",
+    "uploadError": "Kan afbeelding niet uploaden. Het bestand is waarschijnlijk te groot.",
+    "zoomIn": "Inzoomen",
+    "zoomOut": "Uitzoomen",
+    "noMoreZoom": "Geen zoom meer",
+    "addImage": "Afbeelding toevoegen",
+    "changeImage": "Afbeelding wijzigen",
+    "imageSettings": "Afbeelding instellingen",
+    "close": "Sluiten",
+    "imageAltLabel": "Alternatieve tekst",
+    "imageTitleLabel": "Hover tekst",
+    "pleaseConfirm": "Please confirm"
+  }
+}

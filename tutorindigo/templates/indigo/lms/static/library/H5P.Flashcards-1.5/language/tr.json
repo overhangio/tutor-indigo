@@ -1,0 +1,115 @@
+{
+  "semantics": [
+    {
+      "label": "Görev tanımı"
+    },
+    {
+      "widgets": [
+        {
+          "label": "Varsayılan"
+        }
+      ],
+      "label": "Kartlar",
+      "entity": "card",
+      "field": {
+        "label": "Kart",
+        "fields": [
+          {
+            "label": "Soru",
+            "description": "Kartta görünecek isteğe bağlı yazılı soru. (Kartta sadece bir görsel, sadece metin veya ikisi de olabilir)"
+          },
+          {
+            "label": "Answer",
+            "description": "Optional answer(solution) for the card."
+          },
+          {
+            "label": "Image",
+            "description": "Kartta görünecek isteğe bağlı görsel. (Kartta sadece bir görsel, sadece metin veya ikisi de olabilir)"
+          },
+          {
+            "label": "Alternative text for image"
+          },
+          {
+            "label": "İpucu",
+            "fields": [
+              {
+                "label": "İpucu metni"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "İlerleme metni",
+      "default": "Kart sayısı: @card / @total",
+      "description": "İlerleme metni, mevcut değişkenler: @card ve @total. Örnek: 'Kart sayısı: @card / @total'"
+    },
+    {
+      "label": "Sonraki düğmesi metni",
+      "default": "Sonraki"
+    },
+    {
+      "label": "Önceki düğmesi metni",
+      "default": "Önceki"
+    },
+    {
+      "label": "Cevapları kontrol et düğmesi metni",
+      "default": "Kontrol et"
+    },
+    {
+      "label": "Çözüm görüntülenemeden önce kullanıcı girişi gereksin"
+    },
+    {
+      "label": "Cevap girişi alanı metni",
+      "default": "Cevabınız"
+    },
+    {
+      "label": "Doğru cevap metni",
+      "default": "Doğru cevap"
+    },
+    {
+      "label": "Yanlış cevap metni",
+      "default": "Yanlış"
+    },
+    {
+      "label": "Çözümü göster metni",
+      "default": "Çözümü göster"
+    },
+    {
+      "label": "Sonuçlar başlığı metni",
+      "default": "Sonuçlar"
+    },
+    {
+      "label": "Doğru cevap sayısı metni",
+      "default": "Doğru cevap sayısı: @score / @total",
+      "description": "Sonuç metni, mevcut değişkenler: @score ve @total. Örnek: 'Doğru cvevap sayısı: @score / @total.'"
+    },
+    {
+      "label": "Sonuçları göster metni",
+      "default": "Sonuçları göster"
+    },
+    {
+      "label": "Kısa cevap etiket metni",
+      "default": "A:"
+    },
+    {
+      "label": "\"Yeniden dene\" düğmesi metni",
+      "default": "Yeniden dene"
+    },
+    {
+      "label": "Büyük küçük harf duyarlı",
+      "description": "Kullanıcı girişinin aynen cevap gibi olması gerekmesini sağlar."
+    },
+    {
+      "label": "Incorrect text for assistive technologies",
+      "default": "Incorrect answer. Correct answer was @answer",
+      "description": "Text that will be announced to assistive technologies. Use @answer as variable."
+    },
+    {
+      "label": "Card change for assistive technologies",
+      "default": "Page @current of @total",
+      "description": "Text that will be announced to assistive technologies when navigating between cards. Use @current and @total as variables."
+    }
+  ]
+}

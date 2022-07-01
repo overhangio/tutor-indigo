@@ -1,0 +1,395 @@
+{
+  "semantics": [
+    {
+      "fields": [
+        {
+          "field": {
+            "fields": [
+              {
+                "field": {
+                  "fields": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {
+                      "label": "Comentários",
+                      "description": "Os comentários são mostrados quando o usuário exibe as respostas sugeridas para todos os slides"
+                    },
+                    {
+                      "label": "Sempre exibir comentários"
+                    },
+                    {
+                      "label": "Opacidade do fundo"
+                    },
+                    {
+                      "label": "Mostrar como botão"
+                    },
+                    {
+                      "label": "Tamanho do botão",
+                      "options": [
+                        {
+                          "label": "Pequeno"
+                        },
+                        {
+                          "label": "Grande"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Título"
+                    },
+                    {
+                      "label": "Ir para",
+                      "options": [
+                        {
+                          "label": "Slide específico (número)"
+                        },
+                        {
+                          "label": "Slide seguinte"
+                        },
+                        {
+                          "label": "Slide anterior"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Slide específico (número)",
+                      "description": "Apenas aplicável quando a opção 'Slide específico' estiver selecionada"
+                    },
+                    {
+                      "label": "Invisível",
+                      "description": "Cursor padrão, sem título e sem menu de abas. Aviso: Usuários com deficiências ou usuários que utilizam apenas teclado terão problemas ao utilizar este elemento."
+                    }
+                  ]
+                }
+              },
+              {},
+              {
+                "fields": [
+                  {
+                    "label": "Imagem",
+                    "description": "A imagem de fundo deve ter uma proporção de 2:1 de largura para altura para evitar distorções de imagem. Imagens com alta resolução aparecerão melhor em telas maiores."
+                  },
+                  {
+                    "label": "Escolha uma cor"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {},
+        {
+          "label": "Lista de palavras-chave"
+        },
+        {
+          "label": "Sempre mostrar"
+        },
+        {
+          "label": "Esconder automaticamente"
+        },
+        {
+          "label": "Opacidade"
+        },
+        {
+          "fields": [
+            {
+              "label": "Imagem",
+              "description": "A imagem de fundo deve ter uma proporção de 2:1 de largura para altura para evitar distorções de imagem. Imagens com alta resolução aparecerão melhor em telas maiores."
+            },
+            {
+              "label": "Escolha uma cor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Localização",
+      "fields": [
+        {
+          "label": "Tradução para \"Slide\"",
+          "default": "Slide"
+        },
+        {
+          "label": "Tradução para \"Score\"",
+          "default": "Pontuação"
+        },
+        {
+          "label": "Tradução para \"Your Score\"",
+          "default": "Sua pontuação"
+        },
+        {
+          "label": "Tradução para \"Max Score\"",
+          "default": "Pontuação máxima"
+        },
+        {
+          "label": "tradução para \"Total\"",
+          "default": "Total"
+        },
+        {
+          "label": "Tradução para \"Total Score\"",
+          "default": "Pontuação total"
+        },
+        {
+          "label": "Texto para botão \"Mostrar solução\"",
+          "default": "Mostrar solução"
+        },
+        {
+          "label": "Texto para botão \"Tentar novamente\"",
+          "default": "Tentar novamente"
+        },
+        {
+          "label": "Texto para botão \"Exportar texto\"",
+          "default": "Exportar texto"
+        },
+        {
+          "label": "Título de botão para esconder a lista de palavras-chave",
+          "default": "Esconder palavras-chave"
+        },
+        {
+          "label": "Título de botão para exibir a lista de palavras-chave",
+          "default": "Exibir palavras-chave"
+        },
+        {
+          "label": "Rótulo de tela cheia",
+          "default": "Tela cheia"
+        },
+        {
+          "label": "Rótulo para sair de tela cheia",
+          "default": "Sair da tela cheia"
+        },
+        {
+          "label": "Rótulo de slide anterior",
+          "default": "Slide anterior"
+        },
+        {
+          "label": "Rótulo de slide seguinte",
+          "default": "Slide seguinte"
+        },
+        {
+          "label": "Rótulo de slide atual",
+          "default": "Slide atual"
+        },
+        {
+          "label": "Rótulo de último slide",
+          "default": "Último slide"
+        },
+        {
+          "label": "Texto para sair do modo de solução",
+          "default": "Sair do modo de solução"
+        },
+        {
+          "label": "Texto de modo de solução",
+          "default": "Modo de solução"
+        },
+        {
+          "label": "Texto para quando houver múltiplas tarefas numa página",
+          "default": "Múltiplas tarefas"
+        },
+        {
+          "label": "Texto de pontuação",
+          "default": "Você marcou:"
+        },
+        {
+          "label": "Texto de compartilhamento no Facebook",
+          "default": "Compartilhar no Facebook"
+        },
+        {
+          "label": "Texto de compartilhamento no Twitter",
+          "default": "Compartilhar no Twitter"
+        },
+        {
+          "label": "Texto de compartilhamento no Google+",
+          "default": "Compartilhar no Google+"
+        },
+        {
+          "label": "Título para o slide de resumo",
+          "default": "Resumo"
+        },
+        {
+          "label": "Título para o ícone de comentários",
+          "default": "Mostrar comentários"
+        },
+        {
+          "label": "Título para o botão de impressão",
+          "default": "Imprimir"
+        },
+        {
+          "label": "Diálogo de impressão",
+          "default": "Como deseja imprimir esta apresentação?"
+        },
+        {
+          "label": "Rótulo para botão \"Imprimir todos os slides\"",
+          "default": "Imprimir todos os slides"
+        },
+        {
+          "label": "Rótulo para botão \"Imprimir slide atual\"",
+          "default": "Imprimir slide atual"
+        },
+        {
+          "label": "Rótulo para slides sem título",
+          "default": "Sem título"
+        },
+        {
+          "label": "Explicação da navegação de eslides para tecnologias assistivas",
+          "default": "Use a seta direita e a seta esquerda para mudar de slide em qualquer direção em qualquer momento em que a tela de apresentação esteja selecionada"
+        },
+        {
+          "label": "Tela de apresentação para tecnologias assistivas",
+          "default": "Tela de apresentação. Use a seta direita e a seta esquerda para mudar de slide."
+        },
+        {
+          "label": "Rótulo para interações incompletas",
+          "default": "@slideName contém uma interação incompleta"
+        },
+        {
+          "label": "Rótulo para interações completas",
+          "default": "@slideName contém uma interação completa"
+        },
+        {
+          "label": "Rótulo para o contador de slides. As variáveis são @index, @total",
+          "default": "Slide @index de @total"
+        },
+        {
+          "label": "Rótulo para slides que contém apenas respostas corretas",
+          "default": "@slideName contém apenas respostas corretas"
+        },
+        {
+          "label": "Rótulo para slides que contém respostas incorretas",
+          "default": "@slideName contém respostas incorretas"
+        },
+        {
+          "label": "Rótulo da barra de compartilhamento",
+          "default": "Resultado de compartilhamento"
+        },
+        {
+          "label": "Anúncio de pontuação total para tecnologias assistivas",
+          "default": "You got @score of @maxScore points in total",
+          "description": "Variáveis disponíveis são @score e @maxScore"
+        },
+        {
+          "label": "Entered fullscreen announcement for assistive technologies",
+          "default": "Entered fullscreen"
+        },
+        {
+          "label": "Exited fullscreen announcement for assistive technologies",
+          "default": "Exited fullscreen"
+        },
+        {
+          "label": "Header of submit result confirmation dialog",
+          "default": "Submit your answers"
+        },
+        {
+          "label": "Text of submit result confirmation dialog",
+          "default": "This will submit your results, do you want to continue?"
+        },
+        {
+          "label": "Confirmation button of submit result confirmation dialog",
+          "default": "Submit and see results"
+        }
+      ]
+    },
+    {
+      "label": "Configurações comportamentais.",
+      "description": "Estas opções permitirão que você controle como a tarefa se comporta.",
+      "fields": [
+        {
+          "label": "Habilitar modo de superfície ativa",
+          "description": "Remove os controles de navegação do usuário final. Use Ir para Slide para navegar."
+        },
+        {
+          "label": "Esconder slide de resumo",
+          "description": "Esconde o slide de resumo."
+        },
+        {
+          "label": "Sobrepor botão \"Mostrar solução\"",
+          "description": "Esta opção determina se o botão \"Mostrar solução\" será mostrado para todas as questões, se estará desativado para todas ou configurado individualmente para cada questão.",
+          "options": [
+            {
+              "label": "Ativado"
+            },
+            {
+              "label": "Desativado"
+            }
+          ]
+        },
+        {
+          "label": "Sobrepor botão \"Tentar novamente\"",
+          "description": "Esta opção determina se o botão \"Tentar novamente\" será mostrado para todas as questões, se estará desativado para todas ou configurado individualmente para cada questão.",
+          "options": [
+            {
+              "label": "Ativado"
+            },
+            {
+              "label": "Desativado"
+            }
+          ]
+        },
+        {
+          "label": "Show \"Show solution\" button in the summary slide",
+          "description": "If enabled, the learner will be able to show the solutions for all question when they reach the summary slide"
+        },
+        {
+          "label": "Show \"Retry\" button in the summary slide",
+          "description": "If enabled, the learner will be able to retry all questions when they reach the summary slide. Be advised that by refreshing the page the learners will be able to retry even if this button isn't showing."
+        },
+        {
+          "label": "Habilitar botão de impressão",
+          "description": "Habilita o botão de impressão."
+        },
+        {
+          "label": "Configurações sociais",
+          "description": "Estas opções permitirão que você sobreponha configurações sociais. Valores vazios serão preenchidos automaticamente se um link for fornecido, caso contrário todos os valores serão gerados.",
+          "fields": [
+            {
+              "label": "Exibir ícone de compartilhamento do Facebook"
+            },
+            {
+              "label": "Configurações de compartilhamento do Facebook",
+              "fields": [
+                {
+                  "label": "Compartilhe um link no Facebook",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Citação de compartilhamento do Facebook",
+                  "default": "Eu marquei @score de @maxScore numa tarefa em @currentpageurl."
+                }
+              ]
+            },
+            {
+              "label": "Display Twitter share icon"
+            },
+            {
+              "label": "Configurações de compartilhamento do Twitter",
+              "fields": [
+                {
+                  "label": "Citação de compartilhamento do Twitter",
+                  "default": "Eu marquei @score de @maxScore numa tarefa em @currentpageurl."
+                },
+                {
+                  "label": "Compartilhe um link no Twitter",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Hashtags de compartilhamento no Twitter",
+                  "default": "h5p, curso"
+                }
+              ]
+            },
+            {
+              "label": "Exibir ícone de compartilhamento no Google+"
+            },
+            {
+              "label": "Compartilhe um link no Google+",
+              "default": "@currentpageurl"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

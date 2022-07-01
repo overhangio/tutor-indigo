@@ -1,0 +1,155 @@
+{
+  "semantics": [
+    {
+      "label": "Puertas",
+      "entity": "puerta",
+      "field": {
+        "fields": [
+          {
+            "label": "Imagen de puerta",
+            "description": "Imagen que será usada para la puerta. Necesita tener una proporción de tamaño 1:1 si quiere que la mitad izquierda encaje con la mitad derecha."
+          },
+          {
+            "label": "Imagen de fondo",
+            "description": "Imagen que debe aparecer dentro de la puerta. De forma predeterminada será el número de la puerta."
+          },
+          {
+            "label": "Tipo de contenido",
+            "description": "Tipo de contenido que opcionalmente saldrá cuando la puerta es abierta.",
+            "options": [
+              {
+                "label": "Audio"
+              },
+              {
+                "label": "Imagen"
+              },
+              {
+                "label": "Enlace"
+              },
+              {
+                "label": "Texto"
+              },
+              {
+                "label": "Video"
+              }
+            ]
+          },
+          {
+            "label": "Audio"
+          },
+          {
+            "label": "Imagen"
+          },
+          {
+            "label": "Enlace"
+          },
+          {
+            "label": "Texto"
+          },
+          {
+            "label": "Video"
+          },
+          {
+            "label": "Autoreproducir"
+          }
+        ]
+      },
+      "widgets": [
+        {
+          "label": "Predeterminado"
+        }
+      ]
+    },
+    {
+      "label": "Configuraciones del comportamiento",
+      "description": "Estas opcones le permitirán cambiar las configuraciones del comportamiento.",
+      "fields": [
+        {
+          "label": "Imagen del fondo del calendario"
+        },
+        {
+          "label": "Música de fondo"
+        },
+        {
+          "label": "Auto-reproducir música de fondo",
+          "description": "Si se activa, la musica de fondo se reproducirá automáticamente una vez que se abra el contenido. Por favor tenga en cuenta: Las políticas para medios de algunos navegadores podrían impedir la auto-reproducción."
+        },
+        {
+          "label": "Que caiga nieve",
+          "description": "Añadirá caída de nieve al frente del calendario. Nunca llueve en el Sur de Californa, Nunca cae nieve en IE11."
+        },
+        {
+          "label": "Plantilla de imagen de puerta",
+          "description": "Si se configura una imagen, será usada para cada puerta a menos que una imagen de puerta específica sea configurada para una sola puerta."
+        },
+        {
+          "label": "Ocultar borde de puerta"
+        },
+        {
+          "label": "Ocultar números de puerta"
+        },
+        {
+          "label": "Ocultar perillas de puerta"
+        },
+        {
+          "label": "Ocultar marco de puerta"
+        },
+        {
+          "label": "Orden aleatorio",
+          "description": "Barajear el orden de las puertas. Si la opción \"guardar estado del contenido\" está activada en las configuraciones de H5P, ese orden se conservará igual cuando el usuario regrese después."
+        },
+        {
+          "label": "Conservar orden de imágenes",
+          "description": "Barajear puertas, pero conservar las imágenes de cubierta de puertas en sus posiciones fijas comenzando con 1 en la esquina superior izquierda hasta 24 en la esquina inferior derecha."
+        },
+        {
+          "label": "Modo diseñador",
+          "description": "En modo diseñador, todas las puertas pueden abrirse. En caso contrario, las puertas solamente pueden abrirse en diciembre y después de la fecha respectiva indicada por el número de la puerta."
+        }
+      ]
+    },
+    {
+      "label": "Localización",
+      "fields": [
+        {
+          "label": "Nada para ver",
+          "default": "¡Aquí no hay nada para ver!\ud83c\udf84"
+        },
+        {
+          "label": "Dummy",
+          "default": "Dummy"
+        }
+      ]
+    },
+    {
+      "label": "Accesibilidad",
+      "fields": [
+        {
+          "label": "Puerta",
+          "default": "Puerta"
+        },
+        {
+          "label": "Cerrada",
+          "default": "Cerrada. Aun no es hora de abrir esta."
+        },
+        {
+          "description": "Anunciar el contenido. @door es una variable y será remplazada con la descripción de la puerta relacionada.",
+          "label": "Contenido de",
+          "default": "Contenido de @door"
+        },
+        {
+          "label": "Enmudecer audio",
+          "default": "Enmudecer audio"
+        },
+        {
+          "label": "Activar audio",
+          "default": "Activar audio"
+        },
+        {
+          "label": "Cerrrar ventana",
+          "default": "Cerrrar ventana"
+        }
+      ]
+    }
+  ]
+}

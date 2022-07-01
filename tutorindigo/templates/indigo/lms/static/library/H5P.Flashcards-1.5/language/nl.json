@@ -1,0 +1,115 @@
+{
+  "semantics": [
+    {
+      "label": "Taak omschrijving"
+    },
+    {
+      "widgets": [
+        {
+          "label": "Standaard"
+        }
+      ],
+      "label": "Kaarten",
+      "entity": "kaart",
+      "field": {
+        "label": "Kaart",
+        "fields": [
+          {
+            "label": "Vraag",
+            "description": "De optionele vraag voorop de kaart. (De kaart kan voorzien worden van een afbeelding en/of tekst)"
+          },
+          {
+            "label": "Antwoord",
+            "description": "Het optionele antwoord(oplossing) achterop de kaart."
+          },
+          {
+            "label": "Afbeelding",
+            "description": "De optionele afbeelding voorop de kaart. (De kaart kan voorzien worden van een afbeelding en/of tekst)"
+          },
+          {
+            "label": "Alt-tekst voor de afbeelding"
+          },
+          {
+            "label": "Tip",
+            "fields": [
+              {
+                "label": "Tip tekst"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Voortgangstekst",
+      "default": "Kaart @card van @total",
+      "description": "Voortgangstekst, beschikbare variabelen: @card and @total. Voorbeeld: 'Kaart @card van @total'"
+    },
+    {
+      "label": "Tekst voor de volgende knop",
+      "default": "Volgende"
+    },
+    {
+      "label": "Tekst voor de vorige knop",
+      "default": "Vorige"
+    },
+    {
+      "label": "Tekst voor de controleer antwoorden knop",
+      "default": "Controleer"
+    },
+    {
+      "label": "Gebruikersinvoer is vereist, voordat de oplossing kan worden bekeken"
+    },
+    {
+      "label": "Tekst voor het antwoord invoerveld",
+      "default": "Jouw antwoord"
+    },
+    {
+      "label": "Tekst voor het juiste antwoord",
+      "default": "Juist"
+    },
+    {
+      "label": "Tekst voor het onjuiste antwoord",
+      "default": "Onjuist"
+    },
+    {
+      "label": "Toon tekst oplossing",
+      "default": "Juist antwoord"
+    },
+    {
+      "label": "Titel voor de resultaten",
+      "default": "Resultaten"
+    },
+    {
+      "label": "Tekst voor het juiste aantal",
+      "default": "@score van @total juist",
+      "description": "Resultatentekst, beschikbare variabelen: @score en @total. Voorbeeld: '@score van @total juist'"
+    },
+    {
+      "label": "Tekst voor het tonen van de resultaten",
+      "default": "Toon de resultaten"
+    },
+    {
+      "label": "Tekstlabel voor een kort antwoord",
+      "default": "A:"
+    },
+    {
+      "label": "Tekst voor \"Opnieuw\" knop",
+      "default": "Opnieuw"
+    },
+    {
+      "label": "Hoofdlettergevoelig",
+      "description": "De gebruikersinvoer dient exact hetzelfde te zijn als het antwoord."
+    },
+    {
+      "label": "Onjuist tekst voor ondersteunende technologieën",
+      "default": "Onjuist antwoord. Juist antwoord was @answer",
+      "description": "Tekst die wordt gebruikt door ondersteunende technologieën. Gebruik @answer als variabele."
+    },
+    {
+      "label": "Kaart wijzigen voor ondersteunende technologieën",
+      "default": "Pagina @current van @total",
+      "description": "Tekst die wordt gebruikt door ondersteunende technologieën als van kaart wordt gewisseld. Gebruik @current en @total als variabelen."
+    }
+  ]
+}

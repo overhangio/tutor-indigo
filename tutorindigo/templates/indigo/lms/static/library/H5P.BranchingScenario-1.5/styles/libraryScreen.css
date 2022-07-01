@@ -1,0 +1,282 @@
+.h5p-branching-scenario .h5p-screen-header {
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
+}
+
+.h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper {
+  margin-left: 20px;
+  margin-right: 20px;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper h1 {
+  margin-bottom: 0;
+  font-family: H5PRobotoLight;
+  font-size: 1.458em;
+  color: #fff;
+  font-weight: 200;
+  /* ellipsis code */
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: H5PRobotoLight;
+  font-size: 0.833em;
+  color: #fff;
+  font-weight: 200;
+  /* ellipsis code */
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.h5p-branching-scenario .h5p-screen-header .library-subtitle {
+  outline: none;
+}
+
+/* Override link color and set underline so it is shown in preview*/
+.h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper .h5p-branching-header a {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.h5p-branching-scenario .h5p-screen-header .h5p-back-button:before {
+  font-family: 'H5PFontAwesome4';
+  content: "\f100";
+  padding-right: 10px;
+}
+
+.h5p-branching-scenario .h5p-screen-header .h5p-nav-button:after {
+  font-family: 'H5PFontAwesome4';
+  content: "\f101";
+  padding-left: 10px;
+}
+.h5p-branching-scenario .h5p-branching-header p {
+  margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.h5p-branching-scenario .h5p-nav-button-wrapper {
+  display: block;
+}
+
+.h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.h5p-branching-scenario .h5p-nav-button {
+  margin: 0.67em 20px 0 0;
+}
+
+.h5p-branching-scenario .h5p-back-button {
+  margin: 0.67em 10px 0 0;
+}
+
+.h5p-branching-scenario .h5p-nav-button.h5p-disabled {
+    opacity: 0.2;
+    cursor: unset;
+}
+
+.h5p-branching-scenario .h5p-nav-button.h5p-hidden {
+    visibility: hidden;
+}
+
+.h5p-branching-scenario .h5p-nav-button.h5p-animate {
+  animation: nav-flash;
+  animation-duration: 1s;
+}
+
+@keyframes nav-flash {
+  from {}
+  25% {
+    border-color: #b0f88f;
+    box-shadow: none;
+    background: #b0f88f;
+    color: #4b4c60;
+  }
+  30% {
+    box-shadow: 0 0 0.125rem 0.75rem rgba(172, 248, 143, 0.2);
+  }
+  40% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0 0 0.125rem 0.75rem rgba(172, 248, 143, 0.2);
+  }
+  60% {
+    box-shadow: none;
+  }
+  70% {
+    border-color: #b0f88f;
+    box-shadow: none;
+    background: #b0f88f;
+    color: #4b4c60;
+  }
+  to {}
+}
+
+.h5p-branching-scenario .h5p-library-wrapper {
+  position: relative;
+}
+
+.h5p-branching-scenario.h5p-semi-fullscreen .h5p-library-wrapper,
+.h5p-branching-scenario.h5p-fullscreen .h5p-library-wrapper {
+  height: calc(100% - 7em);
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
+  background: #EFEFEF;
+  color: #383838;
+  -webkit-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.h5p-branching-scenario.h5p-semi-fullscreen .h5p-library-wrapper .h5p-branching-scenario-content,
+.h5p-branching-scenario.h5p-fullscreen .h5p-library-wrapper .h5p-branching-scenario-content {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.h5p-branching-scenario .h5p-previous {
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+}
+
+.h5p-branching-scenario .h5p-next {
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+}
+
+.h5p-branching-scenario .h5p-library-wrapper.h5p-slide-pseudo {
+  animation: slide-pseudo 0s forwards;
+  -webkit-animation: slide-pseudo 0s forwards;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper.h5p-slide-out {
+  animation: slide-out 0.8s forwards;
+  -webkit-animation: slide-out 0.8s forwards;
+  position: absolute;
+  top: 3.8em;
+  left: 0;
+  height: calc(100% - 7em);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper.h5p-slide-out-reverse {
+  animation: slide-out-reverse 0.8s forwards;
+  -webkit-animation: slide-out-reverse 0.8s forwards;
+  position: absolute;
+  top: 3.8em;
+  left: 0;
+  height: calc(100% - 7em);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.h5p-branching-scenario .h5p-slide-in {
+  animation: slide-in 0.8s forwards;
+  -webkit-animation: slide-in 0.8s forwards;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content .h5p-wrapper {
+  width: 100%;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-advanced-text {
+  padding: 1em 1.4em 1em 1.4em;
+  min-height: 9em;
+  max-height: 33em;
+  overflow-y: auto;
+}
+
+.h5p-branching-scenario.h5p-fullscreen .h5p-branching-scenario-content.h5p-advanced-text {
+  max-height: 100%;
+  height: auto;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 12px;
+  background-color: #C7C8CC;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video video {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-image.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-course-presentation.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-image-hotspots.h5p-fullscreen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: 20px;
+  transform: translate(-50%, -50%);
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-interactive-video.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen {
+  background: transparent;
+  box-shadow: none;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen.h5p-video-no-source {
+  background: #EFEFEF;
+  display: block;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen{
+  display: flex;
+  align-items: center;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen > div{
+  max-height: 100%;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen iframe{
+  max-height: 100%;
+}
+
+
+/* Make CSS consistent between Preview and normal use */
+.preview-wrapper .h5p-sc-set ul {
+  margin: 1em;
+  padding: 0;
+}
+
+/* Transform: translateZ(0) to apply "hardware acceleration" causes IV posters
+ * to be hidden behind dialog overlay
+*/
+.h5peditor .preview-wrapper .hardware-accelerated {
+  transform: none;
+}

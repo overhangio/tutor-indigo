@@ -1,0 +1,63 @@
+{
+  "semantics": [
+    {
+      "label": "Elenco domande",
+      "entity": "domanda",
+      "field": {
+        "label": "Domande & alternative",
+        "fields": [
+          {
+            "label": "Domanda"
+          },
+          {
+            "label": "Alternative - La prima alternativa è quella giusta",
+            "entity": "risposta",
+            "field": {
+              "label": "Alternativa"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "label": "Impostazioni esecuzione",
+      "fields": [
+        {
+          "label": "Timeout sulle risposte corrette",
+          "description": "Valore in millisecondi"
+        },
+        {
+          "label": "Timeout sulle risposte errarte",
+          "description": "Valore in millisecondi"
+        },
+        {
+          "label": "Abilita effetti sonori"
+        },
+        {
+          "label": "Abilita pulsante Riprova"
+        },
+        {
+          "label": "Abilita pulsante Mostra soluzione"
+        }
+      ]
+    },
+    {
+      "label": "Localizza set scelta singola",
+      "fields": [
+        {
+          "label": "Titolo risultato diapositiva",
+          "description": ":numcorrect viene sostituito dal numero di risposte corrette e :maxscore è sostituito dal numero di domande."
+        },
+        {
+          "label": "Etichetta pulsante \"Mostra soluzione\""
+        },
+        {
+          "label": "Etichetta pulsante \"Riprova\""
+        },
+        {
+          "label": "Titolo per visualizzare Mostra soluzione"
+        }
+      ]
+    }
+  ]
+}

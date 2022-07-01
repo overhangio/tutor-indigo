@@ -1,0 +1,49 @@
+{
+  "semantics": [
+    {
+      "label": "Source files"
+    },
+    {
+      "label": "מצב נגן",
+      "description": "בחירת מערך הנגן",
+      "options": [
+        {
+          "label": "בסיסי"
+        },
+        {
+          "label": "מלאה"
+        },
+        {
+          "label": "שקופה"
+        }
+      ]
+    },
+    {
+      "label": "מתאימה לעטיפה"
+    },
+    {
+      "label": "Enable controls",
+      "description": "Controls allow the user to for instance pause the audio"
+    },
+    {
+      "label": "הפעלת ניגון אוטומטי",
+      "description": "עם נגן אוטומטי השמע מתחיל לנגן מיד. אם נגן אוטומטי מושבת המשתמש לוחץ על כפתור הפעל כדי להתחיל את השמע."
+    },
+    {
+      "label": "Play audio (Readspeaker)",
+      "default": "נגן שמע"
+    },
+    {
+      "label": "Pause audio (Readspeaker)",
+      "default": "השהיית שמע"
+    },
+    {
+      "label": "שם תוכן שמע",
+      "default": "שמע"
+    },
+    {
+      "label": "הודעה: שמע לא נתמך",
+      "default": "הדפדפן שלך לא תומך בסוג שמע זה"
+    }
+  ]
+}

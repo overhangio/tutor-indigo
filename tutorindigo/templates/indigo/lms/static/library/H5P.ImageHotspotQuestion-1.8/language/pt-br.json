@@ -1,0 +1,80 @@
+{
+  "semantics": [
+    {
+      "label": "Editor de questões de pontos de acessos em imagens",
+      "fields": [
+        {
+          "label": "Imagem de fundo",
+          "fields": [
+            {
+              "label": "Imagem de fundo",
+              "description": "Seleciona uma imagem para ser usada como plano de fundo para a questão de pontos de acesso em imagem."
+            }
+          ]
+        },
+        {
+          "label": "Pontos de acesso",
+          "description": "Arraste e solte a figura desejada da barra de ferramentas para criar um novo ponto de acesso. Clique duas vezes para editar um ponto de acesso existente. Arraste o ponto de acesso para movê-lo. Arraste o redimensionador no canto direito inferior para redimensionar.",
+          "fields": [
+            {
+              "label": "Descrição da tarefa",
+              "description": "isntruções para o usuário."
+            },
+            {
+              "label": "Ponto de acesso",
+              "entity": "Hotspot",
+              "field": {
+                "label": "Ponto de acesso",
+                "fields": [
+                  {
+                    "label": "Configurações de usuário",
+                    "fields": [
+                      {
+                        "label": "Correto",
+                        "description": "Pode haver múltiplos pontos de acesso corretos. Entretanto, o usuário recebe o feedback de correto/incorreto imediatamente após o primeiro clique."
+                      },
+                      {
+                        "label": "Feedback"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Configurações calculadas"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Feedback se o usuário selecionar um ponto vazio:",
+              "placeholder": "Você não localizou nenhum ponto de acesso, tente novamente!"
+            },
+            {
+              "label": "Mostrar feedback como um pop-up"
+            },
+            {
+              "label": "Localização",
+              "fields": [
+                {
+                  "label": "Texto do botão Tentar novamente",
+                  "default": "Tentar novamente"
+                },
+                {
+                  "label": "Texto do botão Fechar",
+                  "default": "Fechar"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Representação textual da barra de pontuação para aqueles que usam leitores de telas",
+      "default": "Você marcou :num out de :total pontos"
+    },
+    {
+      "label": "Assistive technology description for \"Retry\" button",
+      "default": "Retry the task. Reset all responses and start the task over again."
+    }
+  ]
+}

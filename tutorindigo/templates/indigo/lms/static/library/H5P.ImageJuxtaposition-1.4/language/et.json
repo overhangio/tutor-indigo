@@ -1,0 +1,60 @@
+{
+  "semantics": [
+    {
+      "label": "Pealkiri",
+      "placeholder": "Siin saad omal soovil lisada pealkirja.",
+      "description": "Pealkiri, mida sa tahaksid näidata enne/pärast pilti"
+    },
+    {
+      "label": "Esimene pilt",
+      "fields": [
+        {
+          "label": "Teine pilt",
+          "description": "Esimene pilt. Palun tee kindlaks, et see on sama suur, kui teine pilt."
+        },
+        {
+          "label": "Silt esimesele pildile",
+          "description": "Silt, mida esimese pildi peale panna"
+        }
+      ]
+    },
+    {
+      "label": "Teine pilt",
+      "fields": [
+        {
+          "label": "Teine pilt",
+          "description": "Teine pilt. Palun tee kindlaks, et see on sama suur, kui esimene pilt."
+        },
+        {
+          "label": "Silt teisele pildile",
+          "description": "Silt, mida teise pildi peale panna"
+        }
+      ]
+    },
+    {
+      "label": "Käitumise seaded",
+      "description": "Need seaded võimaldavad sul näha mõndasid detaile",
+      "fields": [
+        {
+          "label": "Liuguri algpositsioon %-des",
+          "description": "Määrab liuguri algpositsiooni"
+        },
+        {
+          "label": "Liuguri orientatsioon",
+          "description": "Horisontaalne liigub vasakule-paremale, vertikaalne liigub üles-alla.",
+          "options": [
+            {
+              "label": "Horisontaalne"
+            },
+            {
+              "label": "Vertikaalne"
+            }
+          ]
+        },
+        {
+          "label": "Liuguri värv"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "semantics": [
+    {
+      "label": "Goiburua",
+      "default": "Dokumentazio tresna",
+      "description": "Dokumentazio tresnarako izenburua."
+    },
+    {
+      "label": "Elementuak",
+      "widgets": [
+        {
+          "label": "Lehenetsia"
+        }
+      ],
+      "entity": "orri",
+      "field": {
+        "label": "Orri mota",
+        "description": "Diapositiba honetarako liburutegia."
+      }
+    },
+    {
+      "label": "Dokumentazio-tresna botoiak aurkitu",
+      "fields": [
+        {
+          "label": "Aurreko botoiaren etiketa",
+          "default": "Aurrekoa"
+        },
+        {
+          "label": "Hurrengo botoiaren etiketa",
+          "default": "Hurrengoa"
+        },
+        {
+          "label": "Itxi botoiaren etiketa",
+          "default": "Itxi"
+        }
+      ]
+    }
+  ]
+}

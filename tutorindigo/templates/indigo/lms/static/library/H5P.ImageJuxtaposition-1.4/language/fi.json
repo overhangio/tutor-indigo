@@ -1,0 +1,60 @@
+{
+  "semantics": [
+    {
+      "label": "Otsikointi",
+      "placeholder": "Tähän voit kirjoittaa halutessasi otsikon tehtävälle",
+      "description": "Tehtävän otsikko"
+    },
+    {
+      "label": "Ensimmäinen kuva",
+      "fields": [
+        {
+          "label": "Ensimmäinen kuva",
+          "description": "Ensimmäinen kuva. Ole hyvä ja varmista että kuva on samankokoinen kuin toinen kuva."
+        },
+        {
+          "label": "Teksti Ensimmäiselle kuvalle",
+          "description": "Teksti joka näytetään ensimmäisen kuvan yhteydessä"
+        }
+      ]
+    },
+    {
+      "label": "Toinen kuva",
+      "fields": [
+        {
+          "label": "Toinen kuva",
+          "description": "Toinen kuva. Ole hyvä ja varmista että kuva on samankokoinen kuin ensimmäinen kuva."
+        },
+        {
+          "label": "Teksti toiselle kuvalle",
+          "description": "Teksti joka näytetään toisen kuvan yhteydessä"
+        }
+      ]
+    },
+    {
+      "label": "Lisäasetukset",
+      "description": "Lisäasetukset",
+      "fields": [
+        {
+          "label": "Liukusäätimen aloitusprosentti %",
+          "description": "Määrittää liukusäätimen aloitusasennon"
+        },
+        {
+          "label": "Liukusäätimen orientaatio",
+          "description": "Horisontaalinen liukusäädin liikuu vasemmalle ja oikealle, vertikaalinen liukusäädin liikkuu pystysuunnassa ylös ja alas.",
+          "options": [
+            {
+              "label": "Horisontaalinen"
+            },
+            {
+              "label": "Pystysuuntainen"
+            }
+          ]
+        },
+        {
+          "label": "Slider color"
+        }
+      ]
+    }
+  ]
+}

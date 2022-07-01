@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "label": "Vertakkingsscenario editor",
+      "fields": [
+        {
+          "label": "Titel"
+        },
+        {
+          "label": "Startscherm",
+          "fields": [
+            {
+              "label": "Titel startscherm",
+              "placeholder": "Titel van de cursus"
+            },
+            {
+              "label": "Ondertitel startscherm",
+              "placeholder": "Details over de cursus"
+            },
+            {
+              "label": "Afbeelding startscherm"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "label": "Lijst van eindschermen",
+          "field": {
+            "label": "Eindscherm",
+            "fields": [
+              {
+                "label": "Titel"
+              },
+              {
+                "label": "Tekst"
+              },
+              {
+                "label": "Afbeelding"
+              },
+              {
+                "label": "Score",
+                "description": "De score wordt verzonden naar een LMS, LRS of een andere aangesloten dienst die scores van H5P ontvangt voor gebruikers die het standaard eindscenario bereiken."
+              },
+              {
+                "label": "ID van de inhoud"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Lijst van de inhoud van de vertakkingsscenario's",
+          "entity": "inhoud",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Toon visueel de titel van de inhoudsopgave",
+                "description": "Indien geselecteerd, ziet de gebruiker de inhoudsopgave in de bovenste balk boven deze inhoud."
+              },
+              {
+                "label": "Vereist voor voltooiing",
+                "description": "Dwingt kijkers de interactie te voltooien alvorens door te gaan met het scenario. Deze instelling werkt alleen bij interacties die kunnen worden voltooid",
+                "options": [
+                  {
+                    "label": "Gebruik gedragsinstelling"
+                  },
+                  {
+                    "label": "Ingeschakeld"
+                  },
+                  {
+                    "label": "Uitgeschakeld"
+                  }
+                ]
+              },
+              {
+                "label": "Volgende ID van de inhoud (eindschermen worden gedefinieerd door negatieve getallen)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback titel"
+                  },
+                  {
+                    "label": "Feedback tekst"
+                  },
+                  {
+                    "label": "Feedback afbeelding"
+                  },
+                  {
+                    "label": "Score voor dit scenario",
+                    "description": "De score wordt verzonden naar een LMS, LRS of een andere aangesloten dienst die scores van H5P ontvangt voor gebruikers die dit scenario bereiken."
+                  }
+                ]
+              },
+              {
+                "label": "Terug navigeren",
+                "description": "Dit staat de kijker toe terug te keren en de vorige inhoud/vraag in het scenario te bekijken",
+                "options": [
+                  {
+                    "label": "Gebruik gedragsinstelling"
+                  },
+                  {
+                    "label": "Ingeschakeld"
+                  },
+                  {
+                    "label": "Uitgeschakeld"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Score opties",
+          "fields": [
+            {
+              "label": "Score opties",
+              "description": "Selecteer het scoringstype",
+              "options": [
+                {
+                  "label": "Statistisch vastgestelde score voor elk eindscenario"
+                },
+                {
+                  "label": "Dynamisch berekende score op basis van de antwoorden van de gebruikers"
+                },
+                {
+                  "label": "Geen score"
+                }
+              ]
+            },
+            {
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+            }
+          ]
+        },
+        {
+          "label": "Gedragsinstellingen",
+          "fields": [
+            {
+              "label": "Overschrijf inhoud voltooid vereist",
+              "description": "Overschrijf de individuele instellingen, die vereisen dat inhoud is voltooid, voordat de \"Verder gaan\" knop wordt geactiveerd. Heeft geen gevolg als de inhoud niet aangeeft dat er \"voltooiing\" is, b.v. afbeeldingen of cursus presentaties met slechts een dia."
+            },
+            {
+              "label": "Vereist om te bekijken",
+              "description": "Dwingt kijkers om de Video, Interactieve Video en Cursus Presentatie te voltooien, alvorens verder te gaan met het scenario. Dit kan worden overschreven op inhoudsniveau"
+            }
+          ]
+        },
+        {
+          "label": "Lokalisatie",
+          "fields": [
+            {
+              "label": "Tekst voor de knop op het startscherm",
+              "default": "Start de cursus"
+            },
+            {
+              "label": "Tekst voor de knop op het eindscherm",
+              "default": "Herstart de cursus"
+            },
+            {
+              "label": "Tekst voor de knop op elk bibliotheekscherm",
+              "default": "Ga verder"
+            },
+            {
+              "label": "Tekst voor de knop gebruikt voor herspelen van een video",
+              "default": "Herhaal de video"
+            },
+            {
+              "label": "Label voor score op het eindscherm",
+              "default": "Jouw score:"
+            },
+            {
+              "label": "Label voor score op het eindscherm",
+              "default": "Jouw score:"
+            },
+            {
+              "label": "Label voor score op het eindscherm",
+              "default": "Jouw score:"
+            },
+            {
+              "label": "Aria label voor volledig scherm knop",
+              "default": "Volledig scherm"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "label": "Redigerare för Branching Scenario",
+      "fields": [
+        {
+          "label": "Titel"
+        },
+        {
+          "label": "Startskärm",
+          "fields": [
+            {
+              "label": "Titel på startskärm",
+              "placeholder": "Titel för din kurs"
+            },
+            {
+              "label": "Undertitel för startskärm",
+              "placeholder": "Information om kursen"
+            },
+            {
+              "label": "Bild på startskärm"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "label": "Lista med slutskärmar",
+          "field": {
+            "label": "Slutskärm",
+            "fields": [
+              {
+                "label": "Titel"
+              },
+              {
+                "label": "Text"
+              },
+              {
+                "label": "Bild"
+              },
+              {
+                "label": "Poäng",
+                "description": "Poängen kommer att skickas till något LMS, LRS eller annan kopplad tjänst som tar emot poäng från H5P för användare som når det förvalda slut-scenariot"
+              },
+              {
+                "label": "Innehålls-ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Lista över innehåll i branching scenario",
+          "entity": "innehåll",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Visa innehållstitel i vy",
+                "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll"
+              },
+              {
+                "label": "Måste genomföras",
+                "description": "Uppmanar deltagaren att genomföra interaktionen före denne kan fortsätta med scenariot. Denna inställning fungerar endast för interaktioner som kan genomföras",
+                "options": [
+                  {
+                    "label": "Använd beteende-inställning"
+                  },
+                  {
+                    "label": "Aktiverad"
+                  },
+                  {
+                    "label": "Inaktiverad"
+                  }
+                ]
+              },
+              {
+                "label": "Nästa innehålls-ID (slutskärmar definieras av negativa nummer)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback-titel"
+                  },
+                  {
+                    "label": "Feedback-text"
+                  },
+                  {
+                    "label": "Feedback-bild"
+                  },
+                  {
+                    "label": "Poäng för detta scenario",
+                    "description": "Poängen kommer att skickas till något LMS, LRS eller annan tjänst som tar emot poäng från H5P för användare som slutför detta scenario"
+                  }
+                ]
+              },
+              {
+                "label": "Beteende-inställningar",
+                "description": "Detta låter användaren gå tillbaka och se föregående innehåll/fråga i scenariot",
+                "options": [
+                  {
+                    "label": "Använd beteende-inställning"
+                  },
+                  {
+                    "label": "Aktiverad"
+                  },
+                  {
+                    "label": "Inaktiverad"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Inställningar för poängsättning",
+          "fields": [
+            {
+              "label": "Inställningar för poängsättning",
+              "description": "Välj typ av poängsättning",
+              "options": [
+                {
+                  "label": "Sätt poäng för varje slutscenario statiskt"
+                },
+                {
+                  "label": "Kalkylera poäng från användares svar dynamiskt"
+                },
+                {
+                  "label": "Ingen poängsättning"
+                }
+              ]
+            },
+            {
+              "label": "Inkludera poäng från interaktioner i Branching Scenario",
+              "description": "Om valt, så kommer poäng från exempelvis Interactive Video att läggas till i den totalt uppnådda poängen. Om inte valt, så kommer endast poäng som är specificerade i feedback-sektionerna i innehållsposter, branching-frågor samt slutscenarion att räknas."
+            }
+          ]
+        },
+        {
+          "label": "Beteende-inställningar",
+          "fields": [
+            {
+              "label": "Ignorera bakåt-navigation",
+              "description": "Ignorera de individuella inställningarna för att tillåta bakåt-navigation"
+            },
+            {
+              "label": "Ignorera att innehåll måste avslutas",
+              "description": "Ignorera de individuella inställningarna för att kräva att innehållet måste avslutas före \"Framåt\"-knappen aktiveras. Detta kommer inte ha någon effekt om innehållet inte indikerar att det var \"avslutat\", exempelvis bilder eller Course Presentations som bara har en sida."
+            }
+          ]
+        },
+        {
+          "label": "Lokalisering",
+          "fields": [
+            {
+              "label": "Text för knappen på startskärmen",
+              "default": "Starta kursen"
+            },
+            {
+              "label": "Text för knappen på slutskärmen",
+              "default": "Starta om kursen"
+            },
+            {
+              "label": "Text för tillbaka-knappen på varje biblioteksskärm och branching-fråga",
+              "default": "Tillbaka"
+            },
+            {
+              "label": "Text för knappen på varje biblioteksskärm",
+              "default": "Fortsätt"
+            },
+            {
+              "label": "Etikett för knappen som används för att starta om en video",
+              "default": "Starta om video"
+            },
+            {
+              "label": "Etikett för poäng på slutskärmen",
+              "default": "Din poäng:"
+            },
+            {
+              "label": "Etikett för poäng på slutskärmen",
+              "default": "Din poäng:"
+            },
+            {
+              "label": "Aria-etikett för helskärms-knappen",
+              "default": "Helskärm"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

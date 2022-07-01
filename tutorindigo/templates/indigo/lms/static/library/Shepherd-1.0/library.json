@@ -1,0 +1,28 @@
+{
+  "title": "Shepherd",
+  "description": "Shepherd is a javascript library for guiding users through your app (http://github.hubspot.com/shepherd)",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 3,
+  "runnable": 0,
+  "author": "Hubspot. Wrapped as H5P by Joubel (fnoks)",
+  "license": "MIT",
+  "machineName": "Shepherd",
+  "preloadedJs": [
+    {
+      "path": "scripts/shepherd.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/shepherd-theme-arrows.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "Tether",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

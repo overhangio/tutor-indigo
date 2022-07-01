@@ -1,0 +1,18 @@
+
+{
+  "title": "RactiveJS",
+  "contentType": "Library",
+  "majorVersion": 0,
+  "minorVersion": 8,
+  "patchVersion": 14,
+  "descripion": "A template driven UI library. https://ractive.js.org/",
+  "machineName": "RactiveJS",
+  "runnable": 0,
+  "author": "RactiveJS contributors, wrapped by S. Rettig",
+  "license": "MIT",
+  "preloadedJs": [
+    {
+      "path": "ractive.min.js"
+    }
+  ]
+}

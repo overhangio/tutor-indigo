@@ -1,0 +1,62 @@
+{
+  "title": "Advanced fill the blanks",
+  "description": "Fill the blanks exercise with individual feedback",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 1,
+  "runnable": 1,
+  "author": "S. Rettig",
+  "license": "MIT",
+  "machineName": "H5P.AdvancedBlanks",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 6
+  },
+  "embedTypes": [
+    "iframe"
+  ],
+  "preloadedJs": [
+    {
+      "path": "dist.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    },
+    {
+      "machineName": "H5P.Question",
+      "majorVersion": 1,
+      "minorVersion": 4
+    },
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 3
+    },
+    {
+      "machineName": "RactiveJS",
+      "majorVersion": 0,
+      "minorVersion": 8
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.VerticalTabs",
+      "majorVersion": 1,
+      "minorVersion": 3
+    },
+    {
+      "machineName": "H5PEditor.ShowWhen",
+      "majorVersion": 1,
+      "minorVersion": 0
+    },
+    {
+      "machineName": "H5PEditor.RangeList",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

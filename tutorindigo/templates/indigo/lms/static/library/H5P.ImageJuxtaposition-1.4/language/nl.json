@@ -1,0 +1,60 @@
+{
+  "semantics": [
+    {
+      "label": "Titel",
+      "placeholder": "Hier kun je optioneel een titel invoegen.",
+      "description": "De titel, die je graag wilt tonen voor/ na de afbeelding"
+    },
+    {
+      "label": "Eerste afbeelding",
+      "fields": [
+        {
+          "label": "Eerste afbeelding",
+          "description": "De eerste afbeelding. Zorg ervoor dat deze dezelfde grootte heeft als de tweede."
+        },
+        {
+          "label": "Label voor de eerste afbeelding",
+          "description": "Het label dat op de eerste afbeelding wordt getoond"
+        }
+      ]
+    },
+    {
+      "label": "Tweede afbeelding",
+      "fields": [
+        {
+          "label": "Tweede afbeelding",
+          "description": "De tweede afbeelding. Zorg ervoor dat deze dezelfde grootte heeft als de eerste."
+        },
+        {
+          "label": "Label voor de tweede afbeelding",
+          "description": "Het label dat op de tweede afbeelding wordt getoond"
+        }
+      ]
+    },
+    {
+      "label": "Gedragsinstellingen",
+      "description": "Met deze opties kun je een aantal gegevens instellen.",
+      "fields": [
+        {
+          "label": "De richting van de schuif",
+          "description": "Horizontaal beweegt naar links en rechts, verticaal beweegt naar boven en beneden"
+        },
+        {
+          "label": "Slider orientation",
+          "description": "Horizontal will move left and right, vertical will move up and down.",
+          "options": [
+            {
+              "label": "Horizontal"
+            },
+            {
+              "label": "Vertical"
+            }
+          ]
+        },
+        {
+          "label": "Slider color"
+        }
+      ]
+    }
+  ]
+}

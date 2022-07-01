@@ -1,0 +1,32 @@
+{
+  "title": "Goals assessment page",
+  "description": "A page where you can evaluate your goals.",
+  "majorVersion": 1,
+  "minorVersion": 4,
+  "patchVersion": 9,
+  "runnable": 0,
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 19
+  },
+  "author": "Joubel",
+  "license": "MIT",
+  "machineName": "H5P.GoalsAssessmentPage",
+  "preloadedCss": [
+    {
+      "path": "goals-assessment-page.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "goals-assessment-page.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "MustacheJS",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

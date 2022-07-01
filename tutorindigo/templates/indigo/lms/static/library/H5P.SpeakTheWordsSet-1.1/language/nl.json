@@ -1,0 +1,106 @@
+{
+  "semantics": [
+    {
+      "label": "Introductie",
+      "fields": [
+        {
+          "label": "Toon introductie"
+        },
+        {
+          "label": "Introductie-afbeelding"
+        },
+        {
+          "label": "Alternatieve tekst voor de introductie-afbeelding"
+        },
+        {
+          "label": "Titel"
+        },
+        {
+          "label": "Introductietekst",
+          "description": "Deze tekst zal boven de introductieknop worden getoond."
+        }
+      ]
+    },
+    {
+      "label": "Vragen",
+      "widgets": [
+        {
+          "label": "Standaard"
+        }
+      ],
+      "entity": "Vraag",
+      "field": {
+        "label": "Vraag"
+      }
+    },
+    {
+      "label": "Algehele feedback",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Standaard"
+            }
+          ],
+          "label": "Definieer de aangepaste feedback elke scorereeks",
+          "description": "Klik op de \"Voeg scorereeks toe\" -knop om zoveel scorereeksen toe te voegen als nodig. Voorbeeld: 0-20% Onvoldoende score, 21-91% Gemiddelde score, 91-100% Uitstekende score!",
+          "entity": "reeks",
+          "field": {
+            "fields": [
+              {
+                "label": "Scorereeks"
+              },
+              {},
+              {
+                "label": "Feedback voor de gedefinieerde scorereeks",
+                "placeholder": "Vul de feedback in"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Spreek de woordenset labels en teksten",
+      "fields": [
+        {
+          "label": "Label introductie-knop",
+          "default": "Start"
+        },
+        {
+          "label": "Label oplossing schermresultaten",
+          "default": "Je resultaten:"
+        },
+        {
+          "label": "Label toon oplossingen-knop",
+          "default": "Toon oplossing"
+        },
+        {
+          "label": "Label opnieuw-knop",
+          "default": "Opnieuw"
+        },
+        {
+          "label": "Toegankelijkheidslabel volgende vraag",
+          "default": "Volgende vraag"
+        },
+        {
+          "label": "Toegankelijkheidslabel vorige vraag",
+          "default": "Vorige vraag"
+        },
+        {
+          "label": "Titel navigatiebalk",
+          "description": "Titels voor vragen in de navigatiebalk. \":num\" zullen worden vervangen door het actuele dia nummer.",
+          "default": "Dia :num"
+        },
+        {
+          "label": "Toegankelijkheidslabel van de beantwoorde dia",
+          "default": "Beantwoord"
+        },
+        {
+          "label": "Toegankelijkheidslabel van de actieve dia",
+          "default": "Momenteel actief"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "label": "Golygydd Senario Ganghennog",
+      "fields": [
+        {
+          "label": "Teitl"
+        },
+        {
+          "label": "Sgrin gychwyn",
+          "fields": [
+            {
+              "label": "Teitl y sgrin gychwyn",
+              "placeholder": "Teitl ar gyfer eich cwrs"
+            },
+            {
+              "label": "Is-deitl y sgrin gychwyn",
+              "placeholder": "Manylion y cwrs"
+            },
+            {
+              "label": "Delwedd y sgrin gychwyn"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "label": "Rhestr sgriniau diweddu",
+          "field": {
+            "label": "Sgrin ddiweddu",
+            "fields": [
+              {
+                "label": "Teitl"
+              },
+              {
+                "label": "Testun"
+              },
+              {
+                "label": "Delwedd"
+              },
+              {
+                "label": "Sgôr",
+                "description": "Caiff y sgôr ei anfon i unrhyw 'LMS', 'LRS' neu unrhyw wasanaeth gysylltiedig sydd yn derbyn sgoriau oddi wrth H5P am ddefnyddwyr sydd yn cyrraedd y senario ddiweddu diofyn"
+              },
+              {
+                "label": "ID Cynnwys"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Rhestr cynnwys senario ganghennog",
+          "entity": "cynnwys",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Dangos teitl y cynnwys yn yr olygfa",
+                "description": "Os wedi'i ddewis, bydd y defnyddiwr yn gweld teitl y cynnwys yn y bar ar y brig uwchben y cynnwys hwn"
+              },
+              {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              },
+              {
+                "label": "ID Cynnwys Nesaf (caiff sgriniau diweddu eu hadnabod gan rifau negatif)"
+              },
+              {
+                "label": "Adborth",
+                "fields": [
+                  {
+                    "label": "Teitl adborth"
+                  },
+                  {
+                    "label": "Testun adborth"
+                  },
+                  {
+                    "label": "Delwedd adborth"
+                  },
+                  {
+                    "label": "Sgôr am y senario hon",
+                    "description": "Caiff y sgôr ei anfon i unrhyw 'LMS', 'LRS' neu unrhyw wasanaeth gysylltiedig sydd yn derbyn sgoriau oddi wrth H5P am ddefnyddwyr sydd yn cyrraedd y senario hon"
+                  }
+                ]
+              },
+              {
+                "label": "Navigate back",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Opsiynau Sgorio",
+          "fields": [
+            {
+              "label": "Opsiynau sgorio",
+              "description": "Dewiswch math y sgorio",
+              "options": [
+                {
+                  "label": "Gosodwch (yn statig) y sgôr ar gyfer pob senario diweddu"
+                },
+                {
+                  "label": "Cyfrifwch y sgôr (yn ddeinamig) o atebion defnyddwyr"
+                },
+                {
+                  "label": "Dim sgorio"
+                }
+              ]
+            },
+            {
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+            }
+          ]
+        },
+        {
+          "label": "Behavioural settings",
+          "fields": [
+            {
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+            },
+            {
+              "label": "Required to watch",
+              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+            }
+          ]
+        },
+        {
+          "label": "Lleoleiddio",
+          "fields": [
+            {
+              "label": "testun ar gyfer y botwm ar y sgrin gychwyn",
+              "default": "Dechreuwch y cwrs"
+            },
+            {
+              "label": "Testun ar gyfer y botwm ar y sgrin ddiweddu",
+              "default": "Ailddechreuwch y cwrs"
+            },
+            {
+              "label": "Testun ar gyfer y botwm ar bob un o'r sgriniau llyfrgell",
+              "default": "Bwrw ymlaen"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
+              "label": "Label ar gyfer y sgôr ar y sgrin diweddu",
+              "default": "Eich sgôr:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Aria label for fullscreen button",
+              "default": "Fullscreen"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

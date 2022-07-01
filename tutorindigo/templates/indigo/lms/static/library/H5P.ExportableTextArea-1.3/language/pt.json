@@ -1,0 +1,16 @@
+{
+  "semantics": [
+    {
+      "label": "Etiqueta",
+      "description": "Etiqueta/cabeçalho para resposta quando o usuário exporta todas as respostas"
+    },
+    {},
+    {
+      "label": "Export not supported label",
+      "default": "Export not supported on your device"
+    },
+    {
+      "label": "Include comments in the exported document"
+    }
+  ]
+}

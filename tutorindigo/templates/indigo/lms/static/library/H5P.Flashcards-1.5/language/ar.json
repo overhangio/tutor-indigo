@@ -1,0 +1,115 @@
+{
+  "semantics": [
+    {
+      "label": "وصف النشاط"
+    },
+    {
+      "widgets": [
+        {
+          "label": "افتراضي"
+        }
+      ],
+      "label": "البطاقات",
+      "entity": "البطاقة",
+      "field": {
+        "label": "البطاقة",
+        "fields": [
+          {
+            "label": "السؤال",
+            "description": "السؤال النصي اختياري للبطاقة. (بطاقة قد تستخدم مجرد صورة، مجرد نص أو كليهما)"
+          },
+          {
+            "label": "الإجابة",
+            "description": "الجواب اختياري (الحل) للبطاقة."
+          },
+          {
+            "label": "صورة",
+            "description": "الصورة اختيارية للحصول على بطاقة. (بطاقة قد تستخدم مجرد صورة، مجرد نص أو كليهما)"
+          },
+          {
+            "label": "Alternative text for image"
+          },
+          {
+            "label": "التلميح",
+            "fields": [
+              {
+                "label": "نص التلميح"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "نص التقدم",
+      "default": "Card @card of @total",
+      "description": "نص التقدم، والمتغيرات المتاحة: البطاقة والمجموع. مثال: بطاقة من الكل "
+    },
+    {
+      "label": "نص الزر التالي",
+      "default": "Next"
+    },
+    {
+      "label": "نص الزر السابق",
+      "default": "Previous"
+    },
+    {
+      "label": "نص الزر التحقق من الإجابات ",
+      "default": "Check"
+    },
+    {
+      "label": "طلب إدخال المستخدم اجابته قبل أن يتم عرضه الحل"
+    },
+    {
+      "label": "Text for the answer input field",
+      "default": "Your answer"
+    },
+    {
+      "label": "Text for correct answer",
+      "default": "Correct"
+    },
+    {
+      "label": "Text for incorrect answer",
+      "default": "Incorrect"
+    },
+    {
+      "label": "Show solution text",
+      "default": "Correct answer"
+    },
+    {
+      "label": "Text for results title",
+      "default": "Results"
+    },
+    {
+      "label": "Text for number of correct",
+      "default": "@score of @total correct",
+      "description": "Result text, variables available: @score and @total. Example: '@score of @total correct'"
+    },
+    {
+      "label": "Text for show results",
+      "default": "Show results"
+    },
+    {
+      "label": "Text for short answer label",
+      "default": "A:"
+    },
+    {
+      "label": "Text for \"retry\" button",
+      "default": "Retry"
+    },
+    {
+      "label": "Case sensitive",
+      "description": "Makes sure the user input has to be exactly the same as the answer."
+    },
+    {
+      "label": "Incorrect text for assistive technologies",
+      "default": "Incorrect answer. Correct answer was @answer",
+      "description": "Text that will be announced to assistive technologies. Use @answer as variable."
+    },
+    {
+      "label": "Card change for assistive technologies",
+      "default": "Page @current of @total",
+      "description": "Text that will be announced to assistive technologies when navigating between cards. Use @current and @total as variables."
+    }
+  ]
+}

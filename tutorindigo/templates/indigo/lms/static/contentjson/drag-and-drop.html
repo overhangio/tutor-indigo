@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Saral English Interactive Activity </title>
+  <link type="text/css" rel="stylesheet" media="all" href="/static/dist/styles/h5p.css" />
+  <meta charset="utf-8" />
+  <script type="text/javascript" src="/static/dist/main.bundle.js"></script>
+</head>
+
+<body>
+  <div id="h5p-container"></div>
+  <script type="text/javascript">
+    const {
+      H5P
+    } = H5PStandalone;
+    new H5P(document.getElementById('h5p-container'),  {
+      contentJsonPath: '/static/activities/examples/drag-and-drop.json',
+      h5pJsonPath: '/static/activities/html5/drag-and-drop.json',
+      librariesPath: '/static/library',
+      frameJs: '/static/dist/frame.bundle.js',
+      frameCss: '/static/dist/styles/h5p.css',
+      fullscreen: false // do you think??
+    });
+  </script>
+</body>
+
+</html>

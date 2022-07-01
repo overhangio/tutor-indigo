@@ -1,0 +1,215 @@
+{
+  "semantics": [
+    {
+      "label": "Επεξεργαστής Three Image",
+      "fields": [
+        {
+          "label": "Σκηνές",
+          "entity": "Σκηνή",
+          "field": {
+            "fields": [
+              {
+                "label": "Τύπος σκηνής",
+                "options": [
+                  {
+                    "label": "360 εικόνα"
+                  },
+                  {
+                    "label": "Στατική εικόνα"
+                  }
+                ]
+              },
+              {
+                "label": "Εμφάνιση κουμπιού \"Πίσω\"",
+                "description": "Εμφάνιση κουμπιού για μετάβαση στην προηγούμενη σκηνή"
+              },
+              {},
+              {
+                "label": "Τίτλος σκηνής",
+                "description": "Χρησιμοποιείται για να διαχωρίζει τις σκηνές"
+              },
+              {
+                "label": "Φόντο σκηνής"
+              },
+              {
+                "label": "Περιγραφή σκηνής",
+                "description": "Κείμενο που περιγράφει τη σκηνή"
+              },
+              {},
+              {
+                "field": {
+                  "fields": [
+                    {
+                      "label": "Label",
+                      "description": "If left blank no label will be displayed and we'll try to use the title field for screen readers"
+                    },
+                    {
+                      "label": "Label Settings",
+                      "fields": [
+                        {
+                          "label": "Label position",
+                          "description": "Choose where the label should appear",
+                          "options": [
+                            {
+                              "label": "Use behavioral setting"
+                            },
+                            {
+                              "label": "Right aligned"
+                            },
+                            {
+                              "label": "Left aligned"
+                            },
+                            {
+                              "label": "Top aligned"
+                            },
+                            {
+                              "label": "Bottom aligned"
+                            }
+                          ]
+                        },
+                        {
+                          "label": "Display Label",
+                          "description": "If hidden - labels will show only on mouse over",
+                          "options": [
+                            {
+                              "label": "Use behavioral setting"
+                            },
+                            {
+                              "label": "Show"
+                            },
+                            {
+                              "label": "Hide"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {},
+                    {}
+                  ]
+                }
+              },
+              {
+                "label": "Στυλ κουμπιών",
+                "description": "Επιλέξτε πως θα φαίνονται τα κουμπιά που συνδέονται μ'αυτή τη σκηνή. Για στατικές σκηνές που δεν οδηγούν σε άλλες σκηνές προτείνεται το κουμπί \"Περισσότερες πληροφορίες\".",
+                "options": [
+                  {
+                    "label": "Νέα σκηνή (βέλος)"
+                  },
+                  {
+                    "label": "Περισσότερες πληροφορίες (συν)"
+                  }
+                ]
+              },
+              {
+                "label": "Απόσπασμα ήχου",
+                "description": "Προσθήκη αποσπάσματος ήχου γι'αυτή τη σκηνή."
+              }
+            ]
+          }
+        },
+        {},
+        {
+          "label": "Απόσπασμα ήχου"
+        }
+      ]
+    },
+    {
+      "label": "Ρυθμίσεις",
+      "description": "Ρυθμίσεις που ελέγχουν τη συμπεριφορά του αντικειμένου.",
+      "fields": [
+        {
+          "label": "Απόσπασμα ήχου",
+          "description": "Προσθήκη προεπιλεγμένου αποσπάσματος ήχου για όλες τις σκηνές."
+        },
+        {
+          "label": "Ποιότητα rendering σκηνών",
+          "description": "Επιλέξτε ποιότητα (πλάτος x ύψος) για το rendering των σκηνών. Επιχειρήστε να αυξήσετε την ποιότητα, αν σε κάποια σκηνή παρατηρείτε \"μπλοκς\" ή \"κύματα\". Σημειώνεται πως η υψηλότερη ποιότητα rendering οδηγεί σε μεγαλύτερο χρόνο φόρτωσης (load) της σκηνής.",
+          "options": [
+            {
+              "label": "Υψηλή ποιότητα (128x128)"
+            },
+            {
+              "label": "Μεσαία ποιότητα (64x64)"
+            },
+            {
+              "label": "Χαμηλή ποιότητα (16x16)"
+            }
+          ]
+        },
+        {
+          "label": "Label settings",
+          "fields": [
+            {
+              "label": "Label position",
+              "description": "The default label position. The position may be overriden per interaction",
+              "options": [
+                {
+                  "label": "Right aligned"
+                },
+                {
+                  "label": "Left aligned"
+                },
+                {
+                  "label": "Top aligned"
+                },
+                {
+                  "label": "Bottom aligned"
+                }
+              ]
+            },
+            {
+              "label": "Display Labels",
+              "description": "If unchecked - labels will show only on mouse over"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Aria label for content type",
+          "default": "Virtual Tour"
+        },
+        {
+          "label": "Label for to play audio",
+          "default": "Play Audio Track"
+        },
+        {
+          "label": "Label to pause audio",
+          "default": "Pause Audio Track"
+        },
+        {
+          "label": "Title to scene dialog",
+          "default": "Scene Description"
+        },
+        {
+          "label": "Label for button to reset camera",
+          "default": "Reset Camera"
+        },
+        {
+          "label": "Label for the submit dialog button",
+          "default": "Submit Dialog"
+        },
+        {
+          "label": "Label for the close dialog button",
+          "default": "Close Dialog"
+        },
+        {
+          "label": "Aria label for the expand label button",
+          "default": "Expand the visual label"
+        },
+        {
+          "label": "Label for when background image is loading in 360 scene",
+          "default": "Loading background image..."
+        },
+        {
+          "label": "Label for when there is no content",
+          "default": "No content"
+        }
+      ]
+    }
+  ]
+}

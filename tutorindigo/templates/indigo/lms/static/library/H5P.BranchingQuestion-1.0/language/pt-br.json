@@ -1,0 +1,41 @@
+{
+  "semantics": [
+    {
+      "label": "Branching Question Editor",
+      "fields": [
+        {
+          "label": "Questão"
+        },
+        {
+          "label": "Opções disponíveis",
+          "entity": "option",
+          "field": {
+            "label": "Opção",
+            "fields": [
+              {
+                "label": "Texto"
+              },
+              {
+                "label": "Próximo conteúdo (-1 é a tela final)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Título textual do Feedback"
+                  },
+                  {
+                    "label": "Texto do feedback"
+                  },
+                  {
+                    "label": "Imagem do feedback"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

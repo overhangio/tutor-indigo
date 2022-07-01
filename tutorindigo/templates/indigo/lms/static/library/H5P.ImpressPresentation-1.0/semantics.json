@@ -1,0 +1,169 @@
+[
+  {
+    "name": "viewsGroup",
+    "type": "group",
+    "widget": "impressPresentationEditor",
+    "fields": [
+      {
+        "name": "views",
+        "type": "list",
+        "label": "Create views",
+        "description": "Here you can create views with different transitions and text.",
+        "entity": "option",
+        "field": {
+          "name": "viewInstance",
+          "type": "group",
+          "label": "View instance",
+          "fields": [
+            {
+              "name": "action",
+              "type": "library",
+              "options": [
+                "H5P.AdvancedText 1.1",
+                "H5P.MarkTheWords 1.5",
+                "H5P.SingleChoiceSet 1.3",
+                "H5P.Blanks 1.4"
+              ],
+              "optional": true
+            },
+            {
+              "name": "positioning",
+              "type": "group",
+              "fields": [
+                {
+                  "name": "centerText",
+                  "type": "boolean",
+                  "label": "center text",
+                  "default": true
+                },
+                {
+                  "name": "x",
+                  "type": "number",
+                  "label": "X position",
+                  "default": 0
+                },
+                {
+                  "name": "y",
+                  "type": "number",
+                  "label": "Y position",
+                  "default": 0
+                },
+                {
+                  "name": "z",
+                  "type": "number",
+                  "label": "Z position",
+                  "description": "Negative values are further away from the camera and positive values are closer.",
+                  "default": 0
+                },
+                {
+                  "name": "rotateX",
+                  "type": "number",
+                  "label": "X rotation",
+                  "description": "Default rotation is 0.",
+                  "default": 0
+                },
+                {
+                  "name": "rotateY",
+                  "type": "number",
+                  "label": "Y rotation",
+                  "description": "Default rotation is 0.",
+                  "default": 0
+                },
+                {
+                  "name": "rotateZ",
+                  "type": "number",
+                  "label": "Z rotation",
+                  "description": "Default rotation is 0.",
+                  "default": 0
+                }
+              ]
+            },
+            {
+              "name": "backgroundGroup",
+              "type": "group",
+              "fields": [
+                {
+                  "name": "transparentBackground",
+                  "type": "boolean",
+                  "label": "Transparent Background",
+                  "description": "Uncheck to choose background color or image",
+                  "default": true
+                },
+                {
+                  "name": "backgroundColor",
+                  "widget": "colorSelector",
+                  "spectrum": {
+                    "showInput": true
+                  },
+                  "type": "text",
+                  "label": "Background color",
+                  "description": "Optional, can be set to have a background color for this step",
+                  "default": "fff",
+                  "optional": true
+                },
+                {
+                  "name": "backgroundImage",
+                  "type": "image",
+                  "label": "Background image",
+                  "optional": true
+                },
+                {
+                  "name": "backgroundWidth",
+                  "type": "number",
+                  "label": "Background width",
+                  "default": 640,
+                  "optional": true
+                },
+                {
+                  "name": "backgroundHeight",
+                  "type": "number",
+                  "label": "Background height",
+                  "default": 360,
+                  "optional": true
+                }
+              ]
+            },
+            {
+              "name": "ordering",
+              "type": "group",
+              "label": "Ordering",
+              "fields": [
+                {
+                  "name": "includeInPath",
+                  "type": "boolean",
+                  "label": "Include step in path",
+                  "default": true
+                },
+                {
+                  "name": "uniqueId",
+                  "type": "number",
+                  "label": "Index in path",
+                  "optional": true
+                },
+                {
+                 "name": "userDefinedName",
+                  "type": "text",
+                  "label": "User defined name",
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "perspectiveRatio",
+        "type": "number",
+        "label": "Perspective ratio",
+        "default": 1
+      },
+      {
+        "name": "route",
+        "type": "group",
+        "label": "Route path",
+        "optional": true,
+        "fields": []
+      }
+    ]
+  }
+]

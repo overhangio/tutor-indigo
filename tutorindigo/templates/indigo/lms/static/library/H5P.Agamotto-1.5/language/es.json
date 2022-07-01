@@ -1,0 +1,74 @@
+{
+  "semantics": [
+    {
+      "label": "Encabezado",
+      "placeholder": "Aquí puede añadir un encabezado opcional.",
+      "description": "El encabezado que le gustaría mostrar arriba de la imagen"
+    },
+    {
+      "label": "Elemento",
+      "entity": "Elemento",
+      "widgets": [
+        {
+          "label": "Predeterminado"
+        }
+      ],
+      "field": {
+        "label": "Elemento",
+        "fields": [
+          {
+            "label": "Imagen"
+          },
+          {
+            "label": "Subtítulo",
+            "description": "Texto opcional para una imágen. Por favor, asegúrese de que no sea demasiado largo, de lo contrario no se mostrará."
+          },
+          {
+            "label": "Descripción",
+            "placeholder": "Mi descripción de la imagen...",
+            "description": "Descripción opcional para la imagen"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Configuraciones de comportamiento",
+      "description": "Estas opciones te permitirán controlar cómo se comporta la tarea.",
+      "fields": [
+        {
+          "label": "Imagen inicial",
+          "description": "Configurar el número de la imagen con la cual iniciar."
+        },
+        {
+          "label": "Deslizador ajustado a la imágen.",
+          "description": "Si esta opción está activada, el deslizador se ajustará a las posiciones de las imágenes."
+        },
+        {
+          "label": "Mostrar posicion de la imagen",
+          "description": "Cuando esta opción está habilitada, la posición de la imagen en el control deslizante estarán resaltadas."
+        },
+        {
+          "label": "Mostrar etiquetas",
+          "description": "Si esta opción está activada, el control deslizante muestra una etiqueta adicional / alternativamente a las posiciones de las imágenes."
+        },
+        {
+          "label": "Color de Remplazo de Transparencia",
+          "description": "Configurar el color que remplazará las áreas transparentes de las imágenes."
+        }
+      ]
+    },
+    {
+      "label": "Readspeaker",
+      "fields": [
+        {
+          "label": "Imagen",
+          "default": "Imagen"
+        },
+        {
+          "label": "Image Slider",
+          "default": "Image Slider"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "semantics": [
+    {
+      "label": "Beschrijving taak",
+      "description": "Optionele tekst om weer te geven boven de audiorecorder"
+    },
+    {
+      "label": "Knopteksten",
+      "fields": [
+        {
+          "label": "Tekst opnameknop",
+          "default": "Opnemen"
+        },
+        {
+          "label": "Tekst pauzeknop",
+          "default": "Pauze"
+        },
+        {
+          "label": "Tekst hervatten knop",
+          "default": "Hervatten"
+        },
+        {
+          "label": "Tekst downloadknop",
+          "default": "Downloaden"
+        },
+        {
+          "label": "Tekst Gereed knop",
+          "default": "Gereed"
+        },
+        {
+          "label": "Tekst opnieuw knop",
+          "default": "Opnieuw proberen"
+        },
+        {
+          "label": "Foutbericht - microfoon wordt niet ondersteund",
+          "default": "De microfoon wordt niet ondersteund. Selecteer een browser die spraakopnamen toestaat."
+        },
+        {
+          "label": "Foutbericht - microfoon is niet toegankelijk",
+          "default": "De microfoon is niet toegankelijk. Zorg ervoor dat de microfoon in de browserinstellingen aan staat."
+        },
+        {
+          "label": "Getoond bericht als de toegang niet is verleend in verband een onveilige verbinding",
+          "description": "Sommige browsers staan het gebruik van de microfoon niet toe als de pagina toegankelijk is via HTTP. Als dit het geval is, wordt dit bericht getoond",
+          "default": "Doordat deze pagina geen gebruik maakt van HTTPS, heb je geen toegang tot je microfoon. Neem contact op met de auteur en vraag om dit beschikbaar te maken via HTTPS."
+        },
+        {
+          "label": "Statusbericht klaar om op te nemen",
+          "default": "Druk op de onderstaande knop om je spraak op te nemen."
+        },
+        {
+          "label": "Statusbericht opnamen",
+          "default": "Opnamen..."
+        },
+        {
+          "label": "Statusbericht pauze",
+          "default": "Opname gepauzeerd. Druk op de knop om door te gaan met opnemen."
+        },
+        {
+          "label": "Statusbericht opname afgerond",
+          "default": "Je opname is correct opgenomen! Luister hieronder naar je opname."
+        },
+        {
+          "label": "Download opgenomen bericht",
+          "default": "Download deze opname of maak een nieuwe."
+        },
+        {
+          "label": "Koptekst opnieuw proberen",
+          "default": "Opnieuw proberen?"
+        },
+        {
+          "label": "Bodytekst opnieuw proberen",
+          "default": "Als je op \"Retry\" drukt, dan verlies je de huidige opname."
+        },
+        {
+          "label": "Bevestigingstekst opnieuw proberen",
+          "default": "Opnieuw proberen"
+        },
+        {
+          "label": "Annuleringtekst opnieuw proberen",
+          "default": "Annuleren"
+        },
+        {
+          "label": "Statusbericht - kan geen audio bestand maken",
+          "default": "Kan het audiobestand niet maken."
+        }
+      ]
+    }
+  ]
+}

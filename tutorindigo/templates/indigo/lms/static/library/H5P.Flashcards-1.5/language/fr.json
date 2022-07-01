@@ -1,0 +1,115 @@
+{
+  "semantics": [
+    {
+      "label": "Consigne"
+    },
+    {
+      "widgets": [
+        {
+          "label": "Par défaut"
+        }
+      ],
+      "label": "Cartes",
+      "entity": "carte",
+      "field": {
+        "label": "Carte",
+        "fields": [
+          {
+            "label": "Question",
+            "description": "Question facultative pour la carte. (La carte peut contenir une image seule, un texte seul ou les deux combinés)"
+          },
+          {
+            "label": "Réponse",
+            "description": "Réponse facultative (correction) pour la carte."
+          },
+          {
+            "label": "Image",
+            "description": "Image facultative pour la carte. (La carte peut contenir une image seule, un texte seul ou les deux combinés)"
+          },
+          {
+            "label": "Alternative text for image"
+          },
+          {
+            "label": "Indice",
+            "fields": [
+              {
+                "label": "Texte de l'indice"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Texte de progression",
+      "default": "Carte @card sur @total",
+      "description": "Texte de progression, variables possibles : @card et @total. (Exemple: 'Carte @card sur @total')"
+    },
+    {
+      "label": "Texte pour le bouton \"Suivant\"",
+      "default": "Suivant"
+    },
+    {
+      "label": "Texte pour le bouton \"Précédent\"",
+      "default": "Précédent"
+    },
+    {
+      "label": "Texte pour le bouton \"Vérifier\"",
+      "default": "Vérifier"
+    },
+    {
+      "label": "Obliger l'utilisateur à entrer une réponse avant de pouvoir afficher la correction"
+    },
+    {
+      "label": "Texte pour l'espace de la réponse",
+      "default": "Votre réponse"
+    },
+    {
+      "label": "Texte pour une bonne réponse",
+      "default": "Réponse exacte"
+    },
+    {
+      "label": "Texte pour une mauvaise réponse",
+      "default": "Réponse inexacte"
+    },
+    {
+      "label": "Texte pour afficher la réponse exacte",
+      "default": "Réponse correcte"
+    },
+    {
+      "label": "Texte pour l'intitulé des résultats",
+      "default": "Résultats"
+    },
+    {
+      "label": "Texte pour le nombre de bonnes réponses",
+      "default": "@score réponses correctes sur un total de @total",
+      "description": "Texte des résultats, variables disponibles: @score et @total. Exemple: '@score réponses correctes sur un total de @total'"
+    },
+    {
+      "label": "Texte pour montrer les résultats",
+      "default": "Montrer les résultats"
+    },
+    {
+      "label": "Texte pour l'intitulé de réponse courte",
+      "default": "R :"
+    },
+    {
+      "label": "Texte pour le bouton \"Recommencer\"",
+      "default": "Recommencer"
+    },
+    {
+      "label": "Sensible à la casse",
+      "description": "S'assure que l'entrée de l'utilisateur doit être exactement la même que la réponse."
+    },
+    {
+      "label": "Incorrect text for assistive technologies",
+      "default": "Incorrect answer. Correct answer was @answer",
+      "description": "Text that will be announced to assistive technologies. Use @answer as variable."
+    },
+    {
+      "label": "Card change for assistive technologies",
+      "default": "Page @current of @total",
+      "description": "Text that will be announced to assistive technologies when navigating between cards. Use @current and @total as variables."
+    }
+  ]
+}

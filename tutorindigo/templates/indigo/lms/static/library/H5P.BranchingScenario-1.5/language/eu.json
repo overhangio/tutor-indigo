@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "label": "Adarkatze Eskenatokien Editorea",
+      "fields": [
+        {
+          "label": "Titulua"
+        },
+        {
+          "label": "Hasierako pantaila",
+          "fields": [
+            {
+              "label": "Hasierako pantailaren titulua",
+              "placeholder": "Izenburua zure ikastaroarentzat"
+            },
+            {
+              "label": "Hasierako pantailaren azpititulua",
+              "placeholder": "Ikastaroaren xehetasunak"
+            },
+            {
+              "label": "Hasierako pantailaren irudia"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "label": "Amaierako pantailen zerrenda",
+          "field": {
+            "label": "Amaierako pantaila",
+            "fields": [
+              {
+                "label": "Izenburua"
+              },
+              {
+                "label": "Testua"
+              },
+              {
+                "label": "Irudia"
+              },
+              {
+                "label": "Kalifikazioa",
+                "description": "Lehenetsitako eskenatokiaren amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
+              },
+              {
+                "label": "Edukiaren IDa"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Aukerako erantzunen edukien zerrenda",
+          "entity": "edukia",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Erakutsi edukiaren izenburua ikuspegian",
+                "description": "Aukeratuz gero, erabiltzaileak edukiaren izenburua ikusiko du eduki honen gaineko barran"
+              },
+              {
+                "label": "Osaketa derrigorrezkoa da",
+                "description": "Ikusleek eskenatokiarekin jarraitu aurretik interakzioa osatzera derrigortzen ditu. Ezarpen honek osatu daitezkeen interakzioekin baino ez du funtzionatzen",
+                "options": [
+                  {
+                    "label": "Erabili jokaeraren ezarpena"
+                  },
+                  {
+                    "label": "Gaituta"
+                  },
+                  {
+                    "label": "Desgaituta"
+                  }
+                ]
+              },
+              {
+                "label": "Hurrengo Edukiaren IDa (amaierako pantailek zenbaki negatiboen bitartez identifikatzen dira)"
+              },
+              {
+                "label": "Feedbacka",
+                "fields": [
+                  {
+                    "label": "Feedbackaren izenburua"
+                  },
+                  {
+                    "label": "Feedbackaren testua"
+                  },
+                  {
+                    "label": "Feedbackaren irudia"
+                  },
+                  {
+                    "label": "Eskenatoki honen kalifikazioa",
+                    "description": "Eskenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
+                  }
+                ]
+              },
+              {
+                "label": "Nabigatu atzera",
+                "description": "Honek erabiltzaileari atzera egin eta eskenatokiko aurreko eduki/galderak ikustea ahalbidetzen dio",
+                "options": [
+                  {
+                    "label": "Erabili jokaeraren ezarpena"
+                  },
+                  {
+                    "label": "Gaituta"
+                  },
+                  {
+                    "label": "Desgaituta"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Kalifikazioaren aukerak",
+          "fields": [
+            {
+              "label": "Kalifikazioaren aukerak",
+              "description": "Aukeratu kalifikazio-mota",
+              "options": [
+                {
+                  "label": "Estatistikoki zehaztu eskenatoki bakoitzaren amaieraren kalifikazioa"
+                },
+                {
+                  "label": "Dinamikoki kalkulatu kalifikazioa erabiltzaileen erantzunen arabera"
+                },
+                {
+                  "label": "Kalifikaziorik ez"
+                }
+              ]
+            },
+            {
+              "label": "Sartu Adarkatze-Eszenatokiko interakzioen puntuazioak",
+              "description": "Aukeratuz gero, Bideo Interaktiboetako instantzien puntuazioak lortutako guztirako puntuaziora gehituko dira. Ez bada aukeratzen, soilik eduki-elementuen feedback-ataletan, adarkatze-galderetan eta eszenatoki-amaieratan zehaztutako puntuazioak hartuko dira kontuan."
+            }
+          ]
+        },
+        {
+          "label": "Portaera-ezarpenak",
+          "fields": [
+            {
+              "label": "Override require content finished",
+              "description": "Baliogabetu atzerako nabigazioa gaitzeko banakako ezarpenak"
+            },
+            {
+              "label": "Required to watch",
+              "description": "Baliogabetu \"Jarraitu\" botoia sakatu aurretik edukia amaitzeko banakako ezarpenak. Ez du edukian efekturik izango edukiak ez badu adierazten \"amaituta\" dagoela, esaterako irudietan edo diapositiba bakarreko ikastaro-aurkezpenetan."
+            }
+          ]
+        },
+        {
+          "label": "Kokapena",
+          "fields": [
+            {
+              "label": "Hasiera-pantailako botoiaren testua",
+              "default": "Hasi ikastaroa"
+            },
+            {
+              "label": "Amaiera-pantailako botoiaren testua",
+              "default": "Berriz hasi ikastaroa"
+            },
+            {
+              "label": "Liburutegi-pantailetako botoi bakoitzarentzako testua",
+              "default": "Jarraitu"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
+              "label": "Kalifikazioaren etiketa amaiera-pantailan",
+              "default": "Berriz erreproduzitu bideoa"
+            },
+            {
+              "label": "Puntuazioaren etiketa pantaila amaieran",
+              "default": "Zure puntuazioa:"
+            },
+            {
+              "label": "Puntuazioaren etiketa pantaila amaieran",
+              "default": "Zure puntuazioa:"
+            },
+            {
+              "label": "Aria etiketa pantaila osoko botoiarentzat",
+              "default": "Pantaila osoa"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "semantics": [
+    {
+      "label": "Destino",
+      "fields": [
+        {
+          "label": "Tipo",
+          "options": [
+            {
+              "label": "Timecode"
+            },
+            {
+              "label": "Outra página (URL)"
+            }
+          ]
+        },
+        {
+          "label": "Ir para",
+          "description": "O tempo alvo que o usuário será redirecionado ao pressionar o hotspot. Insira o tempo no formato M:SS."
+        },
+        {
+          "label": "URL",
+          "fields": [
+            {
+              "label": "Protocolo",
+              "options": [
+                {
+                  "label": "http://"
+                },
+                {
+                  "label": "https://"
+                },
+                {
+                  "label": "(root relative)"
+                },
+                {
+                  "label": "Outro"
+                }
+              ]
+            },
+            {
+              "label": "URL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Visuais",
+      "fields": [
+        {
+          "label": "Forma",
+          "options": [
+            {
+              "label": "Retangular"
+            },
+            {
+              "label": "Circular"
+            },
+            {
+              "label": "Retângulo arredondado"
+            }
+          ]
+        },
+        {
+          "label": "Cor do background para hotspot"
+        },
+        {
+          "label": "Usar cursor"
+        },
+        {
+          "label": "Adicionar efeitos piscante",
+          "description": "Nota: Efeito piscante está sempre habilitado no editor para que você seja capaz de encontrar hotspots transparentes"
+        }
+      ]
+    },
+    {
+      "label": "Textos",
+      "fields": [
+        {
+          "label": "Texto alternativo",
+          "description": "Descreve o assunto de que se trata o hotspot. Usado por leitores de tela",
+          "placeholder": "Uma maçã em uma mesa"
+        },
+        {
+          "label": "Rótulo do hotspot"
+        },
+        {
+          "label": "Mostrar rótulo"
+        },
+        {
+          "label": "Cor do rótulo"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "title": "Branching Scenario",
+  "description": "description",
+  "majorVersion": 1,
+  "minorVersion": 5,
+  "patchVersion": 6,
+  "runnable": 1,
+  "embedTypes": [
+    "iframe"
+  ],
+  "author": "Joubel AS",
+  "license": "MIT",
+  "machineName": "H5P.BranchingScenario",
+  "preloadedJs": [
+    {
+      "path": "dist/dist.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/branchingScenario.css"
+    },
+    {
+      "path": "styles/branchingQuestion.css"
+    },
+    {
+      "path": "styles/genericScreen.css"
+    },
+    {
+      "path": "styles/libraryScreen.css"
+    },
+    {
+      "path": "styles/libraryScreenOverlay.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.ShowWhen",
+      "majorVersion": 1,
+      "minorVersion": 0
+    },
+    {
+      "machineName": "H5PEditor.BranchingScenario",
+      "majorVersion": 1,
+      "minorVersion": 2
+    }
+  ]
+}

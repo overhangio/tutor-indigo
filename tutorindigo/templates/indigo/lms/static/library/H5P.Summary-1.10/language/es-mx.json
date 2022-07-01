@@ -1,0 +1,113 @@
+{
+  "semantics": [
+    {
+      "label": "Texto introductorio",
+      "default": "Elija la oración correcta.",
+      "description": "Será mostrada arriba de la tarea resumida."
+    },
+    {
+      "widgets": [
+        {
+          "label": "Predeterminado"
+        },
+        {
+          "label": "Textual"
+        }
+      ],
+      "label": "Resumen",
+      "entity": "oraciones",
+      "field": {
+        "label": "Conjunto de oraciones",
+        "fields": [
+          {
+            "label": "Lista de roraciones para el resumen - la primera oración es la correcta.",
+            "entity": "oración",
+            "field": {
+              "label": "Oración"
+            }
+          },
+          {
+            "label": "Pista",
+            "fields": [
+              {
+                "label": "Texto de la pista"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Retroalimentación Global",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Predeterminado"
+            }
+          ],
+          "label": "Definir retroalimentación personalizada para cualquier rango de puntaje",
+          "description": "Haga clic en el botón para \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0-20% Mal puntaje, 21-91% Puntaje Promedio, 91-100% ¡Magnífico Puntaje!",
+          "entity": "rango",
+          "field": {
+            "fields": [
+              {
+                "label": "Rango del Puntaje"
+              },
+              {},
+              {
+                "label": "Realimentación para rango de puntaje definido",
+                "placeholder": "LLene la realimentación"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Texto mostrado antes de varias oraciones resueltas en el trabajo resumido.",
+      "default": "Progreso:",
+      "description": "Será mostrado arriba de las oraciones. Ejemplo: 'Progreso: 2/5'"
+    },
+    {
+      "label": "Texto mostrado antes de varias oraciones incorrectas  seleccionadas en el trabajo resumido.",
+      "default": "Respuestas incorrectas:",
+      "description": "Será mostrado arriba de las oraciones. Ejemplo: 'Respuestas incorrectas: 4'"
+    },
+    {
+      "label": "Encabezado de Realimentación Resumida",
+      "default": "Su resultado",
+      "description": "Será mostrado arriba de realimentaciuón resumida."
+    },
+    {
+      "label": "Texto de Lector de voz para respuesta correcta",
+      "default": "Correcta."
+    },
+    {
+      "label": "Texto de Lector de voz para anunciar respuesta incorrecta",
+      "default": "¡Incorrecto! Por favor inténtelo nuevamente."
+    },
+    {
+      "label": "Etiqueta de Lector de voz para respuesta incorrecta",
+      "default": "Incorrecto"
+    },
+    {
+      "label": "Lista de etiqueta de respuestas correctas",
+      "default": "Respuestas correctas."
+    },
+    {
+      "label": "Etiqueta para el botón de mostrar pista",
+      "default": "Mostrar pista"
+    },
+    {
+      "label": "Representación textual de la barra de puntaje para aquellos que usan un Lector de voz",
+      "description": ":num y :total son palabras clave especiales que son actualizadas programáticamente",
+      "default": "Usted obtuvo :num de un total de :total puntos"
+    },
+    {
+      "label": "Texto usado para Lectores de voz para comunicar el progreso",
+      "description": ":num y :total son palabras clave especiales que son actualizadas programáticamente",
+      "default": "Progreso :num de :total"
+    }
+  ]
+}

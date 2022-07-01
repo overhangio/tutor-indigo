@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "label": "Hargneva stsenaariumi redaktor",
+      "fields": [
+        {
+          "label": "Pealkiri"
+        },
+        {
+          "label": "Algusvaate",
+          "fields": [
+            {
+              "label": "Algusvaate tiitel",
+              "placeholder": "Sinu kursuse tiitel"
+            },
+            {
+              "label": "Algusvaate subtiitel",
+              "placeholder": "Kursuse detailid"
+            },
+            {
+              "label": "Algusvaate pilt"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "label": "Lõppvaadete loetelu",
+          "field": {
+            "label": "Lõppvaade",
+            "fields": [
+              {
+                "label": "Pealkiri"
+              },
+              {
+                "label": "Tekst"
+              },
+              {
+                "label": "Pilt"
+              },
+              {
+                "label": "Punktisumma",
+                "description": "Punktisumma saadetakse LMS, LRS või mõnele teisele ühendatud teenusele, mis kogub H5P keskkonnas vaikelõpustsenaariumini jõudnud kasutajate tulemusi"
+              },
+              {
+                "label": "Sisu ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hargneva stsenaariumisisu loetelu",
+          "entity": "sisu",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Näita sisu pealkirja vaates",
+                "description": "Kui märgitud, siis kasutaja näeb sisu tiitlit selle sisu ülaosas"
+              },
+              {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              },
+              {
+                "label": "Järgmine sisu ID (lõppvaadete arvud on negatiivsed)"
+              },
+              {
+                "label": "Tagasiside",
+                "fields": [
+                  {
+                    "label": "Tagasiside pealkiri"
+                  },
+                  {
+                    "label": "Tagasiside tekst"
+                  },
+                  {
+                    "label": "Tagasiside pilt"
+                  },
+                  {
+                    "label": "Selle stsenaariumi punktisumma",
+                    "description": "Punktisumma saadetakse LMS, LRS või mõnele teisele ühendatud teenusele, mis kogub H5P keskkonnas selle stsenaariumini jõudnud kasutajate tulemusi"
+                  }
+                ]
+              },
+              {
+                "label": "Navigate back",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Lubatud"
+                  },
+                  {
+                    "label": "Keelatud"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Punktiarvestuse valikud",
+          "fields": [
+            {
+              "label": "Punktiarvestuse valikud",
+              "description": "Vali punktiarvestuse tüüp",
+              "options": [
+                {
+                  "label": "Määra iga stsenaariumi jaoks staatiline punktisumma"
+                },
+                {
+                  "label": "Arvuta punktisumma dünaamiliselt kasutaja vastuste alusel"
+                },
+                {
+                  "label": "Punktiarvestust ei ole"
+                }
+              ]
+            },
+            {
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+            }
+          ]
+        },
+        {
+          "label": "Käitumisseaded",
+          "fields": [
+            {
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+            },
+            {
+              "label": "Required to watch",
+              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+            }
+          ]
+        },
+        {
+          "label": "Kohandamine",
+          "fields": [
+            {
+              "label": "Algusvaate nupu tekst",
+              "default": "Alusta kursust"
+            },
+            {
+              "label": "Lõppvaate nupu tekst",
+              "default": "Taasalusta kursust"
+            },
+            {
+              "label": "Igal kogumikkuval oleva nupu tekst",
+              "default": "Jätka"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
+              "label": "Lõppvaatel näidatava punktisumma silt",
+              "default": "Mängi videot uuesti"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Aria label for fullscreen button",
+              "default": "Täisekraan"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

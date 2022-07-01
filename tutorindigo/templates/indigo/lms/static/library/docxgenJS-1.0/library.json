@@ -1,0 +1,21 @@
+{
+  "title": "Docxgen JS",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 3,
+  "runnable": 0,
+  "machineName": "docxgenJS",
+  "author": "Joubel",
+  "license": "MIT",
+  "preloadedJs": [
+    {
+      "path": "docxgen.min.js"
+    },
+    {
+      "path": "jszip.min.js"
+    },
+    {
+      "path": "jszip-utils.js"
+    }
+  ]
+}

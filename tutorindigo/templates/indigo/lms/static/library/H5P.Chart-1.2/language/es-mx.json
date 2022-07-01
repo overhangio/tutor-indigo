@@ -1,0 +1,40 @@
+{
+  "semantics":[
+    {
+      "label":"Tipo de gráfico",
+      "options":[
+        {
+          "label":"Gráfico circular"
+        },
+        {
+          "label":"Gráfico de barras"
+        }
+      ]
+    },
+    {
+      "label":"Elementos de datos",
+      "entity":"opción",
+      "field":{
+        "label":"Elemento de datos",
+        "fields":[
+          {
+            "label":"Nombre"
+          },
+          {
+            "label":"Valor"
+          },
+          {
+            "label":"Color"
+          },
+          {
+            "label":"Color de letra"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Texto leido por herramienta de lectura definiendo la figura como un gráfico.",
+      "default": "Gráfico"
+    }
+  ]
+}

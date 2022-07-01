@@ -1,0 +1,215 @@
+{
+  "semantics": [
+    {
+      "label": "3-Afbeeldingseditor",
+      "fields": [
+        {
+          "label": "Scènes",
+          "entity": "Scène",
+          "field": {
+            "fields": [
+              {
+                "label": "Scènetype",
+                "options": [
+                  {
+                    "label": "360 graden foto"
+                  },
+                  {
+                    "label": "Statische afbeelding"
+                  }
+                ]
+              },
+              {
+                "label": "Toon \"Terug\" knop",
+                "description": "Toon knop om terug te gaan naar de vorige scene"
+              },
+              {},
+              {
+                "label": "Scènetitel",
+                "description": "Deze wordt gebruikt om de scène voor de auteurs te identificeren"
+              },
+              {
+                "label": "Scèneachtergrond"
+              },
+              {
+                "label": "Scèneomschrijving",
+                "description": "Een tekst die de scène beschrijft voor de eindgebruiker"
+              },
+              {},
+              {
+                "field": {
+                  "fields": [
+                    {
+                      "label": "Label",
+                      "description": "If left blank no label will be displayed and we'll try to use the title field for screen readers"
+                    },
+                    {
+                      "label": "Label Settings",
+                      "fields": [
+                        {
+                          "label": "Label position",
+                          "description": "Choose where the label should appear",
+                          "options": [
+                            {
+                              "label": "Use behavioral setting"
+                            },
+                            {
+                              "label": "Right aligned"
+                            },
+                            {
+                              "label": "Left aligned"
+                            },
+                            {
+                              "label": "Top aligned"
+                            },
+                            {
+                              "label": "Bottom aligned"
+                            }
+                          ]
+                        },
+                        {
+                          "label": "Display Label",
+                          "description": "If hidden - labels will show only on mouse over",
+                          "options": [
+                            {
+                              "label": "Use behavioral setting"
+                            },
+                            {
+                              "label": "Show"
+                            },
+                            {
+                              "label": "Hide"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {},
+                    {}
+                  ]
+                }
+              },
+              {
+                "label": "Knopstijl",
+                "description": "Bepaal hoe knoppen die naar deze scène verwijzen eruit moeten zien. Voor scènes die statisch zijn en niet naar nieuwe scènes leiden, bevelen we de \"Meer informatie\" knop aan.",
+                "options": [
+                  {
+                    "label": "Nieuwe scène (pijl)"
+                  },
+                  {
+                    "label": "Meer informatie (plus)"
+                  }
+                ]
+              },
+              {
+                "label": "Geluidsbestand",
+                "description": "Voeg een geluidsbestand toe dat specifiek is voor deze scène."
+              }
+            ]
+          }
+        },
+        {},
+        {
+          "label": "Audiobestand"
+        }
+      ]
+    },
+    {
+      "label": "Gedragsinstellingen",
+      "description": "Met deze opties kun je bepalen hoe de interactie zich gedraagt.",
+      "fields": [
+        {
+          "label": "Algemene audio",
+          "description": "Voeg een audiobestand toe dat standaard beschikbaar is voor alle scènes."
+        },
+        {
+          "label": "Weergavekwaliteit van de scène",
+          "description": "Kies het aantal breedte- en hoogtesegmenten dat wordt gebruikt om een scène te renderen. Dit heeft direct invloed op het kwaliteitsniveau van de scène. Probeer de kwaliteit te verhogen als een scène er \"blokkerig\" uitziet of dat er \"golven\" te zien zijn tussen de scènes. Let op dat bij het laden van een hogere kwaliteit het renderen meer tijd in beslag neemt.",
+          "options": [
+            {
+              "label": "Hoge kwaliteit (128x128)"
+            },
+            {
+              "label": "Gemiddelde kwaliteit Quality (64x64)"
+            },
+            {
+              "label": "Lage kwaliteit (16x16)"
+            }
+          ]
+        },
+        {
+          "label": "Label settings",
+          "fields": [
+            {
+              "label": "Label position",
+              "description": "The default label position. The position may be overriden per interaction",
+              "options": [
+                {
+                  "label": "Right aligned"
+                },
+                {
+                  "label": "Left aligned"
+                },
+                {
+                  "label": "Top aligned"
+                },
+                {
+                  "label": "Bottom aligned"
+                }
+              ]
+            },
+            {
+              "label": "Display Labels",
+              "description": "If unchecked - labels will show only on mouse over"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Aria label for content type",
+          "default": "Virtual Tour"
+        },
+        {
+          "label": "Label for to play audio",
+          "default": "Play Audio Track"
+        },
+        {
+          "label": "Label to pause audio",
+          "default": "Pause Audio Track"
+        },
+        {
+          "label": "Title to scene dialog",
+          "default": "Scene Description"
+        },
+        {
+          "label": "Label for button to reset camera",
+          "default": "Reset Camera"
+        },
+        {
+          "label": "Label for the submit dialog button",
+          "default": "Submit Dialog"
+        },
+        {
+          "label": "Label for the close dialog button",
+          "default": "Close Dialog"
+        },
+        {
+          "label": "Aria label for the expand label button",
+          "default": "Expand the visual label"
+        },
+        {
+          "label": "Label for when background image is loading in 360 scene",
+          "default": "Loading background image..."
+        },
+        {
+          "label": "Label for when there is no content",
+          "default": "No content"
+        }
+      ]
+    }
+  ]
+}

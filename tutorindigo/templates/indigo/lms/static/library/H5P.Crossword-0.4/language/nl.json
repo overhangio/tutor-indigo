@@ -1,0 +1,301 @@
+{
+  "semantics": [
+    {
+      "label": "Taakomschrijving",
+      "description": "Beschrijf hier je taak."
+    },
+    {
+      "label": "woorden",
+      "widgets": [
+        {
+          "label": "Standaard"
+        }
+      ],
+      "entity": "Woord",
+      "field": {
+        "label": "Woord",
+        "fields": [
+          {
+            "label": "Aanwijzing",
+            "description": "Aanwijzing die moet wijzen naar het antwoord."
+          },
+          {
+            "label": "Antwoord",
+            "description": "Antwoord op de aanwijzing."
+          },
+          {
+            "label": "Extra aanwijzing"
+          },
+          {
+            "label": "Leg het woord vast op het raster",
+            "description": "Controleer of je het woord op een bepaalde plaats op het raster wilt bevestigen."
+          },
+          {
+            "label": "Rij",
+            "description": "Rij-index waar het antwoord moet beginnen."
+          },
+          {
+            "label": "Kolom",
+            "description": "Kolomindex waar het antwoord moet beginnen."
+          },
+          {
+            "label": "Oriëntatie",
+            "description": "Oriëntatie voor het antwoord.",
+            "options": [
+              {
+                "label": "Horizontaal"
+              },
+              {
+                "label": "Verticaal"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Het woord voor de totaaloplossing",
+      "description": "Voeg eventueel een oplossingswoord toe dat kan worden afgeleid uit bepaalde tekens op het raster. It will only be visible if all its characters can be found in the crossword. Let op: Er is nog geen  toegankelijkheidsondersteuning voor deze functie."
+    },
+    {
+      "label": "Algehele feedback",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Standaard"
+            }
+          ],
+          "label": "Definieer aangepaste feedback voor elke scorereeks",
+          "description": "Druk op de knop \"Voeg scorereeks toe\" om zoveel reeksen toe te voegen als nodig is. Voorbeeld: 0-20% Onvoldoende score, 21-91% Gemiddelde score, 91-100% Uitstekende score!",
+          "entity": "reeks",
+          "field": {
+            "fields": [
+              {
+                "label": "Scorereeks"
+              },
+              {},
+              {
+                "label": "Feedback voor de gedefinieerde scorereeks",
+                "placeholder": "Vul de aangepaste feedback in"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Theme",
+      "fields": [
+        {
+          "label": "Achtergrondafbeelding",
+          "description": "Selecteer een optionele achtergrondafbeelding. Deze zal worden geschaald om bij de achtergrond te passen zonder deze uit te rekken."
+        },
+        {
+          "label": "Achtergrondkleur",
+          "description": "Choose a background color. It will either be used instead of a background image or as background for transparent areas.",
+          "default": "#173354"
+        },
+        {
+          "label": "Grid color",
+          "description": "Choose a color for the grid.",
+          "default": "#000000"
+        },
+        {
+          "label": "Cell background color",
+          "description": "Choose the background color for a table cell.",
+          "default": "#ffffff"
+        },
+        {
+          "label": "Cell text color",
+          "description": "Choose the text color for a table cell.",
+          "default": "#000000"
+        },
+        {
+          "label": "Clue id color",
+          "description": "Choose the color of the clue id inside a table cell.",
+          "default": "#606060"
+        },
+        {
+          "label": "Cell background color (highlighted)",
+          "description": "Choose the background color for a table cell that is highlighted.",
+          "default": "#3e8de8"
+        },
+        {
+          "label": "Cell text color (highlighted)",
+          "description": "Choose the text color for a table cell that is highlighted.",
+          "default": "#ffffff"
+        },
+        {
+          "label": "Cell id color (highlighted)",
+          "description": "Choose the color of the clue id inside a table cell that is highlighted.",
+          "default": "#e0e0e0"
+        }
+      ]
+    },
+    {
+      "label": "Gedragsinstellingen",
+      "description": "Met deze opties kun je controleren hoe de taak zich gedraagt.",
+      "fields": [
+        {
+          "label": "Aantal te tonen woorden",
+          "description": "Maak een willekeurige partij woorden uit de groep. De partij zal altijd minstens alle woorden bevatten die in het raster zijn vastgelegd, ongeacht deze instelling. Een lege waarde of 0 betekent dat alle woorden worden gebruikt."
+        },
+        {
+          "label": "Directe feedback mogelijk maken"
+        },
+        {
+          "label": "Score words",
+          "description": "If this option is enabled, words will be counted in order to determine the score. Otherwise, correct characters will be counted."
+        },
+        {
+          "label": "Apply penalties",
+          "description": "If this option is enabled, each wrong answer will be given a penalty score of -1."
+        },
+        {
+          "label": "Schakel \"Opnieuw\" in"
+        },
+        {
+          "label": "Schakel \"Oplossing\" in"
+        }
+      ]
+    },
+    {
+      "label": "Gebruikersinterface",
+      "fields": [
+        {
+          "label": "Label voor horizontaal",
+          "default": "Horizontaal"
+        },
+        {
+          "label": "Label voor verticaal",
+          "default": "Verticaal"
+        },
+        {
+          "label": "Tekst voor \"Controleer\" knop",
+          "default": "Controleer"
+        },
+        {
+          "label": "Text for \"Submit\" button",
+          "default": "Submit"
+        },
+        {
+          "label": "Tekst voor \"Opnieuw\" knop",
+          "default": "Opnieuw"
+        },
+        {
+          "label": "Tekst voor \"Toon oplossing\" knop",
+          "default": "Toon oplossing"
+        },
+        {
+          "label": "Cannot create crossword",
+          "default": "Er kan geen kruiswoordpuzzel met de gegeven woorden worden gemaakt. Probeer het nog eens. If you are using fixed words, please make sure that their position doesn't prevent other words from being placed."
+        },
+        {
+          "label": "Cannot create crossword (too few words)",
+          "default": "Could not generate a crossword. You need at least two words."
+        },
+        {
+          "label": "Probematic words",
+          "description": "List words that caused trouble while generating the crossword. @words is a placeholder that will be replaced by the actual problematic words.",
+          "default": "Problematic word(s): @words"
+        },
+        {
+          "label": "Extra aanwijzing",
+          "default": "Extra aanwijzing"
+        },
+        {
+          "label": "Scherm sluiten",
+          "default": "Scherm sluiten"
+        }
+      ]
+    },
+    {
+      "label": "Readspeaker",
+      "fields": [
+        {
+          "label": "Plaatsbeschrijving van de kruiswoordpuzzel",
+          "default": "De kruiswoordpuzzel. Gebruik de pijltjestoetsen om te navigeren en het toetsenbord om tekens in te voeren. Gebruik het tabblad om invoervelden te gebruiken."
+        },
+        {
+          "label": "Kolom",
+          "default": "Kolom"
+        },
+        {
+          "label": "Rij",
+          "default": "Rij"
+        },
+        {
+          "label": "Horizontaal",
+          "default": "Horizontaal"
+        },
+        {
+          "label": "Verticaal",
+          "default": "Verticaal"
+        },
+        {
+          "label": "Leeg",
+          "default": "Leeg"
+        },
+        {
+          "description": "Resultaatmelder. @clue is een variabele en zal worden vervangen door de respectievelijke aanwijzing.",
+          "label": "Resultaat voor",
+          "default": "Resultaat voor: @clue"
+        },
+        {
+          "label": "Juist",
+          "default": "Juist"
+        },
+        {
+          "label": "Onjuist",
+          "default": "Onjuist"
+        },
+        {
+          "label": "Punt",
+          "default": "punt"
+        },
+        {
+          "description": "Oplossingsmelder. @clue en @solution zijn variabelen en zullen worden vervangen door de respectievelijke waarden.",
+          "label": "Oplossing voor",
+          "default": "Voor @clue is de oplossing: @solution"
+        },
+        {
+          "description": "Extra aanwijzingsmelder. @clue is een variabele en wordt vervangen door de betreffende waarde.",
+          "label": "Extra aanwijzing voor",
+          "default": "Open extra aanwijzing voor @clue"
+        },
+        {
+          "label": "Lege cel",
+          "default": "Lege cel"
+        },
+        {
+          "description": "De huidige positie aankondigen. @position en @length zijn variabelen en zullen worden vervangen door hun respectievelijke waarden.",
+          "label": "Letter",
+          "default": "Letter @position van @length"
+        },
+        {
+          "description": "De woordlengte aankondigen. @length is een variabele en wordt vervangen door de respectievelijke waarde.",
+          "label": "Lengte van het woord",
+          "default": "@length woordletter"
+        },
+        {
+          "label": "Beschrijving van de ondersteunende technologie voor de \"Check\" knop",
+          "default": "Controleer de karakters. De antwoorden worden gemarkeerd als juist, onjuist of onbeantwoord."
+        },
+        {
+          "label": "Beschrijving van de ondersteunende technologie voor de \"Toon oplossing\" knop",
+          "default": "Laat de oplossing zien. De kruiswoordpuzzel wordt gevuld met de juiste oplossing."
+        },
+        {
+          "label": "Beschrijving van de ondersteunende technologie voor de \"Opnieuw\" knop",
+          "default": "Probeer de taak opnieuw. Reset alle reacties en begin de taak opnieuw."
+        },
+        {
+          "label": "Jouw resultaat",
+          "description": "@score en @total zijn variabelen en zullen worden vervangen door hun respectievelijke waarden.",
+          "default": "Je hebt @score van de @total punten"
+        }
+      ]
+    }
+  ]
+}

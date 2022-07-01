@@ -1,0 +1,80 @@
+{
+  "semantics": [
+    {
+      "label": "Image Hotspot Question Editor",
+      "fields": [
+        {
+          "label": "תמונת רקע",
+          "fields": [
+            {
+              "label": "תמונת רקע",
+              "description": "Select an image to use as background the image hotspot question."
+            }
+          ]
+        },
+        {
+          "label": "נקודות־חמות",
+          "description": "Drag and drop the desired figure from the toolbar to create a new hotspot. Double-click to edit an existing hotspot. Drag the hotspot to move it. Pull the resize handler in the lower right corner to resize.",
+          "fields": [
+            {
+              "label": "תיאור משימה",
+              "description": "Instructions to the user."
+            },
+            {
+              "label": "נקודה־חמה",
+              "entity": "נקודה־חמה",
+              "field": {
+                "label": "נקודה־חמה",
+                "fields": [
+                  {
+                    "label": "userSettings",
+                    "fields": [
+                      {
+                        "label": "נכון",
+                        "description": "There can be multiple correct hotspots. However, the user gets correct/incorrect feedback immediately after first click."
+                      },
+                      {
+                        "label": "משוב"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "computedSettings"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Feedback if the user selects an empty spot:",
+              "placeholder": "You didn't locate any hotspots, try again!"
+            },
+            {
+              "label": "Show feedback as a popup"
+            },
+            {
+              "label": "תרגום",
+              "fields": [
+                {
+                  "label": "תוית כפתור ניסיון חוזר",
+                  "default": "נסו שוב"
+                },
+                {
+                  "label": "תוית כפתור סגירה",
+                  "default": "סגירה"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "תצוגה חזותית של סרגל ניקוד למי שמשתמש בתוכנת הקראה",
+      "default": "התקבלו :num מתוך :total נקודות"
+    },
+    {
+      "label": "תיאור טכנולוגיה מסייעת עבור כפתור \"נסה שוב\"",
+      "default": "נסו את המשימה שוב. אפסו את כל ניסיונות המענה והתחילו את המשימה מחדש."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "semantics": [
+    {
+      "label": "Descrição da atividade",
+      "description": "Texto opcional para mostrar acima do gravador de áudio"
+    },
+    {
+      "label": "Localizar",
+      "fields": [
+        {
+          "label": "Texto do botão gravar",
+          "default": "Gravar"
+        },
+        {
+          "label": "Texto do botão pausa",
+          "default": "Pausa"
+        },
+        {
+          "label": "Texto do botão continuar",
+          "default": "Continuar"
+        },
+        {
+          "label": "Texto do botão descarregar",
+          "default": "Descarregar"
+        },
+        {
+          "label": "Texto do botão concluir",
+          "default": "Concluir"
+        },
+        {
+          "label": "Texto do botão repetir",
+          "default": "Repetir"
+        },
+        {
+          "label": "Mensagem de erro de microfone não suportado",
+          "default": "Microfone não suportado. Verifique se está a utilizar um browser que permita a captura de áudio."
+        },
+        {
+          "label": "Mensagem de microfone inacessível",
+          "default": "Não foi possível aceder ao microfone. Verifique o microfone se encontra ativado no seu browser."
+        },
+        {
+          "label": "Mensagem a mostrar quando o acesso inseguro está desabilitado",
+          "description": "Alguns browsers só permitem a utilização do microfone se a página tiver certificado de segurança. Esta mensagem será mostrada nesse caso.",
+          "default": "A utilização de microfone neste site só é permitida sobre HTTPS (certificado de segurança). Contacte o administrador do seu site."
+        },
+        {
+          "label": "Mensagem de pronto para gravar",
+          "default": "Carregue no botão para gravar a sua resposta."
+        },
+        {
+          "label": "Mensagem de gravação em curso",
+          "default": "A gravar..."
+        },
+        {
+          "label": "Mensagem de pausa",
+          "default": "Gravação em pausa. Carregue no botão para continuar a gravar."
+        },
+        {
+          "label": "Mensagem de gravação concluída",
+          "default": "Concluiu com sucesso a gravação da sua resposta. Agora pode ouvir o que gravou."
+        },
+        {
+          "label": "Mensagem de descarregar gravação",
+          "default": "Descarregue esta gravação ou repita a gravação."
+        },
+        {
+          "label": "Título da caixa de diálogo de repetir gravação",
+          "default": "Repetir gravação?"
+        },
+        {
+          "label": "Texto da caixa de diálogo de repetir gravação",
+          "default": "Ao pressionar \"Repetir\" para voltar a gravar vai perder a gravação anterior."
+        },
+        {
+          "label": "Texto de confirmação da caixa de diálogo da repetição",
+          "default": "Repetir"
+        },
+        {
+          "label": "Texto de cancelamento da caixa de diálogo da repetição",
+          "default": "Cancelar"
+        },
+        {
+          "label": "Mensagem de falha na criação de ficheiro áudio",
+          "default": "Não foi possível criar o ficheiro de áudio."
+        }
+      ]
+    }
+  ]
+}

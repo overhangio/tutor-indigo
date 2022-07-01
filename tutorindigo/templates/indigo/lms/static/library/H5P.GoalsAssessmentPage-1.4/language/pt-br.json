@@ -1,0 +1,38 @@
+{
+  "semantics": [
+    {
+      "label": "Descrição",
+      "description": "Descrição da página de avaliação de objetivos.",
+      "default": "Avalie os objetivos que você escolheu na página de objetivos."
+    },
+    {
+      "label": "Texto para classificação baixa",
+      "description": "Texto para a pior classificação.",
+      "default": "Aprendi pouco"
+    },
+    {
+      "label": "Texto para classificação mediana",
+      "description": "Texto para classificação mediana.",
+      "default": "Aprendi algumas coisas"
+    },
+    {
+      "label": "Texto para classificação alta",
+      "description": "Texto para ótima classificação.",
+      "default": "Aprendi muito"
+    },
+    {
+      "label": "Texto para nenhum objetivo",
+      "description": "Texto de feedback para quando nenhum objetivo tiver sido criado.",
+      "default": "Você ainda não escolheu nenhum objetivo."
+    },
+    {
+      "label": "Texto do rótulo de ajuda",
+      "description": "Rótulo para mostrar informações úteis adicionas ao usuário.",
+      "default": "Mias informações"
+    },
+    {
+      "label": "Preencha as informações adicionais de ajuda",
+      "description": "Aqui você pode inserir informações úteis adicionais para o usuário."
+    }
+  ]
+}

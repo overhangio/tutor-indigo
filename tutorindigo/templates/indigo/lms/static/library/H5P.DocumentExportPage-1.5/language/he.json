@@ -1,0 +1,47 @@
+{
+  "semantics": [
+    {
+      "label": "תיאור",
+      "description": "Description of the export page.",
+      "default": "בעמוד זה ביכולתכם לבחור את תוכן הייצור, המטרות והערכת המטרות."
+    },
+    {
+      "label": "Create document button label",
+      "description": "תוכן שיוצג על כפתור \"יצירת מסמך\".",
+      "default": "יצירת מסמך"
+    },
+    {
+      "label": "תוית כפתור שמירה",
+      "description": "Text that will be displayed on the \"Submit\"-button.",
+      "default": "שליחה"
+    },
+    {
+      "label": "Submit success label",
+      "default": "Your report was submitted successfully!"
+    },
+    {
+      "label": "Select all exportable text button label",
+      "description": "תוכן שיוצג על כפתור \"בחירה בהכול\".",
+      "default": "Select"
+    },
+    {
+      "label": "Export text button label",
+      "description": "תוכן שיוצג על כפתור \"ייצוא תוכן\".",
+      "default": "יצוא"
+    },
+    {
+      "label": "תווית למלל עזרה",
+      "description": "Label for showing additional helpful information to the user.",
+      "default": "More information"
+    },
+    {
+      "label": "Fill in additional help information",
+      "description": "Here you can fill in additional helpful information for the user."
+    },
+    {
+      "label": "Required input missing text",
+      "description": "An error message which will be displayed if one or more required input fields have not been filled. @pages will be replaced with the titles of affected pages.",
+      "default": "The following pages contain required fields that need to be filled in order to review or submit this document: @pages"
+    }
+  ]
+}

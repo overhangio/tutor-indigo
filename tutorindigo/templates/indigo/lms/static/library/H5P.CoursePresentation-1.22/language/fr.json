@@ -1,0 +1,395 @@
+{
+  "semantics": [
+    {
+      "fields": [
+        {
+          "field": {
+            "fields": [
+              {
+                "field": {
+                  "fields": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {
+                      "label": "Commentaires",
+                      "description": "Les commentaires sont affichés pour aider les utilisateurs lors de la présentation."
+                    },
+                    {
+                      "label": "Toujours afficher les commentaires"
+                    },
+                    {
+                      "label": "Opacité"
+                    },
+                    {
+                      "label": "Afficher sous forme de bouton"
+                    },
+                    {
+                      "label": "La taille de bouton",
+                      "options": [
+                        {
+                          "label": "Petite"
+                        },
+                        {
+                          "label": "Grande"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Titre"
+                    },
+                    {
+                      "label": "Aller vers",
+                      "options": [
+                        {
+                          "label": "Le numéro de diapositive spécifique"
+                        },
+                        {
+                          "label": "Diapositive suivante"
+                        },
+                        {
+                          "label": "Diapositive précédente"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Aller à la diapositive",
+                      "description": "N'est appliquable qu'avec le bouton 'Le numéro de diapositive spécifique' séléctionné"
+                    },
+                    {
+                      "label": "Invisible",
+                      "description": "Curseur par défaut, pas de titre, pas d'onglets. Attention : Les utilisateurs ayant des handicaps ou ceux qui n'utilisent que le clavier auront des difficultés à réaliser cette activité."
+                    }
+                  ]
+                }
+              },
+              {},
+              {
+                "fields": [
+                  {
+                    "label": "Image",
+                    "description": "Pour que l'image d'arrière-plan ne soit pas déformée, elle doit avoir un ratio largeur/hauteur de 2 pour 1. Les images en haute résolution offrent un meilleur rendu sur les grands écrans."
+                  },
+                  {
+                    "label": "Sélectionnez une couleur"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {},
+        {
+          "label": "Liste des mots-clés"
+        },
+        {
+          "label": "Toujours l'afficher"
+        },
+        {
+          "label": "La cacher automatiquement"
+        },
+        {
+          "label": "Opacité"
+        },
+        {
+          "fields": [
+            {
+              "label": "Image d'arrière-plan",
+              "description": "Pour que l'image d'arrière-plan ne soit pas déformée, elle doit avoir un ratio largeur/hauteur de 2 pour 1. Les images en haute résolution offrent un meilleur rendu sur les grands écrans."
+            },
+            {
+              "label": "Sélectionnez une couleur"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Options générales.",
+      "fields": [
+        {
+          "label": "Traduction pour \"Diapositive\"",
+          "default": "Diapositive"
+        },
+        {
+          "label": "Traduction pour \"Score\"",
+          "default": "Score"
+        },
+        {
+          "label": "Traduction pour \"Votre score\"",
+          "default": "Votre score"
+        },
+        {
+          "label": "Traduction pour \"Score maximum\"",
+          "default": "Score maximum"
+        },
+        {
+          "label": "Traduction pour \"Total\"",
+          "default": "Total"
+        },
+        {
+          "label": "Traduction pour \"Score total\"",
+          "default": "Score total"
+        },
+        {
+          "label": "Texte pour le bouton \"Voir la correction\"",
+          "default": "Voir la correction"
+        },
+        {
+          "label": "Texte pour le bouton \"Recommencer\"",
+          "default": "Recommencer"
+        },
+        {
+          "label": "Texte pour le bouton d'exportation",
+          "default": "Exporter"
+        },
+        {
+          "label": "Cacher le bouton d'affichage de la liste des mots-clés",
+          "default": "Cacher la liste des mots-clés"
+        },
+        {
+          "label": "Montrer le bouton d'affichage de la liste des mots-clés",
+          "default": "Afficher la liste des mots-clés"
+        },
+        {
+          "label": "Activer le bouton \"Recommencer\"",
+          "default": "Plein écran"
+        },
+        {
+          "label": "Obliger l'utilisateur à saisir une réponse avant de pouvoir afficher la correction.",
+          "default": "Quitter le plein écran"
+        },
+        {
+          "label": "Texte d'accès à la diapositive précédente",
+          "default": "Diapositive précédente"
+        },
+        {
+          "label": "Texte d'accès à la diapositive suivante",
+          "default": "Diapositive suivante"
+        },
+        {
+          "label": "Texte pour la diapositive courante",
+          "default": "Diapositive courante"
+        },
+        {
+          "label": "Texte de la dernière diapositive",
+          "default": "Dernière diapositive"
+        },
+        {
+          "label": "Texte de sortie du mode \"Correction\"",
+          "default": "Sortir du mode \"Correction\""
+        },
+        {
+          "label": "Intitulé du mode \"correction\"",
+          "default": "Passer en mode \"correction\""
+        },
+        {
+          "label": "Texte affiché dans le cas où une page contient plusieurs activités",
+          "default": "Activités multiples"
+        },
+        {
+          "label": "Texte d'affichage du score",
+          "default": "Votre score :"
+        },
+        {
+          "label": "Texte de partage sur Facebook",
+          "default": "Partager sur Facebook"
+        },
+        {
+          "label": "Texte de partage sur Twitter",
+          "default": "Partager sur Twitter"
+        },
+        {
+          "label": "Partager sur Google text",
+          "default": "Partager sur Google+"
+        },
+        {
+          "label": "Titre de la diapositive récapitulative",
+          "default": "Résumé"
+        },
+        {
+          "label": "Titre pour l'icône des commentaires",
+          "default": "Afficher les commentaires"
+        },
+        {
+          "label": "Titre du bouton \"Imprimer\"",
+          "default": "Imprimer"
+        },
+        {
+          "label": "Texte pour la boîte de dialogue d'impression",
+          "default": "Comment souhaitez-vous imprimer cette présentation ?"
+        },
+        {
+          "label": "Texte du bouton \"Imprimer toutes les diapositives\"",
+          "default": "Imprimer toutes les diapositives"
+        },
+        {
+          "label": "Texte du bouton \"Imprimer la diapositive courante\"",
+          "default": "Imprimer la diapositive courante"
+        },
+        {
+          "label": "Etiquette pour des diapositives sans intitulé",
+          "default": "Sans intitulé"
+        },
+        {
+          "label": "Explication de la navigation par diapositive pour les technologies d'assistance",
+          "default": "Utilisez les fleches gauche et droite pour pour naviguer entre les diapositives"
+        },
+        {
+          "label": "Etiquette de champs pour les technologies d'assistance",
+          "default": "Le champs de présentation. Utilisez les fleches gauche et droite pour naviguer entre les diapositives."
+        },
+        {
+          "label": "Etiquette pour des interactions incomplètes",
+          "default": "@slideName contient des interactions incomplètes"
+        },
+        {
+          "label": "Etiquette pour les interactions complètes",
+          "default": "@slideName ccontient des interactions complètes"
+        },
+        {
+          "label": "Etiquette pour le compteur de diapositive. Variables sont @index, @total",
+          "default": "Diapositive a @index de @total"
+        },
+        {
+          "label": "Etiquette pour les diapositives qui n'ont que de réponses correctes",
+          "default": "toutes les réponses sont bonnes sur @slideName"
+        },
+        {
+          "label": "Etiquette pour les diapositives qui ont des réponses incorrectes",
+          "default": "@slideName contient des réponses incorrectes"
+        },
+        {
+          "label": "Etiquette pour le panneau Partager sur les réseaux sociaux",
+          "default": "Partager le résultat"
+        },
+        {
+          "label": "Total score announcement for assistive technologies",
+          "default": "You got @score of @maxScore points in total",
+          "description": "Available variables are @score and @maxScore"
+        },
+        {
+          "label": "Entered fullscreen announcement for assistive technologies",
+          "default": "Entered fullscreen"
+        },
+        {
+          "label": "Exited fullscreen announcement for assistive technologies",
+          "default": "Exited fullscreen"
+        },
+        {
+          "label": "Header of submit result confirmation dialog",
+          "default": "Submit your answers"
+        },
+        {
+          "label": "Text of submit result confirmation dialog",
+          "default": "This will submit your results, do you want to continue?"
+        },
+        {
+          "label": "Confirmation button of submit result confirmation dialog",
+          "default": "Submit and see results"
+        }
+      ]
+    },
+    {
+      "label": "Réglages généraux",
+      "description": "Ces options vous permettent d'enlever certains réglages.",
+      "fields": [
+        {
+          "label": "Activer le mode \"Surface active\"",
+          "description": "Cela supprime les boutons de navigation entre diapositives pour l'utilisateur. Il faut utiliser les boutons \"Aller à la diapositive\" pour naviguer entre les diapositives."
+        },
+        {
+          "label": "Cacher le récapitulatif de fin",
+          "description": "Cela cache la diapositive finale qui liste les scores obtenus aux diverses activités."
+        },
+        {
+          "label": "Cacher le bouton \"Voir la solution\"",
+          "description": "Cette option détermine si le bouton \"Voir la solution\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
+          "options": [
+            {
+              "label": "Activé"
+            },
+            {
+              "label": "Désactivé"
+            }
+          ]
+        },
+        {
+          "label": "Cacher le bouton \"Recommencer\"",
+          "description": "Cette option détermine si le bouton \"Recommencer\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
+          "options": [
+            {
+              "label": "Activé"
+            },
+            {
+              "label": "Désactivé"
+            }
+          ]
+        },
+        {
+          "label": "Show \"Show solution\" button in the summary slide",
+          "description": "If enabled, the learner will be able to show the solutions for all question when they reach the summary slide"
+        },
+        {
+          "label": "Show \"Retry\" button in the summary slide",
+          "description": "If enabled, the learner will be able to retry all questions when they reach the summary slide. Be advised that by refreshing the page the learners will be able to retry even if this button isn't showing."
+        },
+        {
+          "label": "Activer le bouton \"Imprimer\"",
+          "description": "Cela active le bouton d'impression."
+        },
+        {
+          "label": "Paramètres sociaux",
+          "description": "Ces options permettent de contourner les paramètres sociaux de comportement. Les valeurs vides seront remplies automatiquement s'il y a un lien, sinon toutes les valeurs seront générées.",
+          "fields": [
+            {
+              "label": "Montrer l'icône Partager sur Facebook"
+            },
+            {
+              "label": "Les paramètres de partage sur Facebook",
+              "fields": [
+                {
+                  "label": "Le lien pour partager sur Facebook",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Citation Partager sur Facebook",
+                  "default": "J'ai un score de @score sur un total de @maxScore pour @currentpageurl."
+                }
+              ]
+            },
+            {
+              "label": "Montrer l'icône partager sur Twitter"
+            },
+            {
+              "label": "Les paramètres de partage sur Twitter",
+              "fields": [
+                {
+                  "label": "La citation pour partager sur Twitter",
+                  "default": "J'ai un score de @score sur un total de @maxScore pour @currentpageurl."
+                },
+                {
+                  "label": "Le lien pour partager sur Twitter",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Les hashtags pour partager sur Twitter",
+                  "default": "h5p, course"
+                }
+              ]
+            },
+            {
+              "label": "Montrer l'icône Partager sur Google+"
+            },
+            {
+              "label": "Lien Partager sur Google",
+              "default": "@currentpageurl"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "semantics": [
+    {
+      "label": "Editor de Imagen de Pregunta Hotspot",
+      "fields": [
+        {
+          "label": "Imagen de fondo",
+          "fields": [
+            {
+              "label": "Imagen de fondo",
+              "description": "Seleccione una imagen para usar como fondo del punto de acceso."
+            }
+          ]
+        },
+        {
+          "label": "Punto de acceso",
+          "description": "Arrastre y suelte la figura deseada desde la barra de herramientas para crear un nuevo punto de acceso. Haga doble clic para editar un punto de acceso existente. Arrastra el punto de acceso para moverlo. Tire del controlador de cambio de tamaño en la esquina inferior derecha para cambiar el tamaño.",
+          "fields": [
+            {
+              "label": "Descripción de la tarea",
+              "description": "Instrucciones para el usuario."
+            },
+            {
+              "label": "Punto de acceso",
+              "entity": "Punto de acceso",
+              "field": {
+                "label": "Punto de acceso",
+                "fields": [
+                  {
+                    "label": "Ajustes de usuario",
+                    "fields": [
+                      {
+                        "label": "Correcto",
+                        "description": "Puede haber múltiples puntos de acceso correctos. Sin embargo, el usuario recibe comentarios correctos/incorrectos inmediatamente después del primer clic."
+                      },
+                      {
+                        "label": "Retroalimentación"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "AjustesComputados"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Comentario si el usuario selecciona un lugar vacío:",
+              "placeholder": "No has encontrado ningún punto de acceso, intenta de nuevo!"
+            },
+            {
+              "label": "Mostrar comentarios en una ventana emergente"
+            },
+            {
+              "label": "Localización",
+              "fields": [
+                {
+                  "label": "Texto del botón reintentar",
+                  "default": "Reintentar"
+                },
+                {
+                  "label": "Texto del botón Cerrar",
+                  "default": "Cerrar"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Representación textual de la barra de puntaje para aquellos que usan un revisor lector en voz alta",
+      "default": "Tienes :num :puntos totales"
+    },
+    {
+      "label": "Etiqueta de tecnología asistiva para botón \"Reintentar\" ",
+      "default": "Reintentar el  trabajo. Reiniciar todas las respuestas e iniciar el trabajo de nuevo."
+    }
+  ]
+}

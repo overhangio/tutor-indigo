@@ -1,0 +1,74 @@
+{
+  "semantics": [
+    {
+      "label": "Heading",
+      "placeholder": "Here you can add an optional heading.",
+      "description": "The heading you'd like to show above the image"
+    },
+    {
+      "label": "Items",
+      "entity": "Item",
+      "widgets": [
+        {
+          "label": "Default"
+        }
+      ],
+      "field": {
+        "label": "Item",
+        "fields": [
+          {
+            "label": "Afbeelding"
+          },
+          {
+            "label": "Label",
+            "description": "Optionele beschrijving voor een afbeeldingspositie. Let op, maak deze niet te lang, want anders wordt deze niet getoond."
+          },
+          {
+            "label": "Beschrijving",
+            "placeholder": "Mijn afbeeldingsbeschrijving ...",
+            "description": "Optionele beschrijving van de afbeelding"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Gedragsinstellingen",
+      "description": "Deze opties bepalen hoe de taak op de input reageert.",
+      "fields": [
+        {
+          "label": "Start image",
+          "description": "Set the number of the image to start with."
+        },
+        {
+          "label": "Inschakelen schuifregelaar",
+          "description": "Als deze optie is geactiveerd, dan zal de schuifregelaar naar de dichtsbijzijnde afbeeldingspositie glijden."
+        },
+        {
+          "label": "Toon afbeeldingsposities",
+          "description": "Als deze optie is geactiveerd, dan zal de schuifregelaar voor elke afbeelding de positie tonen."
+        },
+        {
+          "label": "Toon labels",
+          "description": "Als deze optie is geactiveerd, dan zal de schuifregelaar de labels tonen in plaats van/ of als aanvulling op de afbeeldingposities."
+        },
+        {
+          "label": "Transparency Replacement Color",
+          "description": "Set the color that will replace transparent areas of the images."
+        }
+      ]
+    },
+    {
+      "label": "Readspeaker",
+      "fields": [
+        {
+          "label": "Image",
+          "default": "Image"
+        },
+        {
+          "label": "Image Slider",
+          "default": "Image Slider"
+        }
+      ]
+    }
+  ]
+}

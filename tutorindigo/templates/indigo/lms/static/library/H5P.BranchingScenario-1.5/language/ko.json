@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "label": "학습 가지 시나리오 편집기",
+      "fields": [
+        {
+          "label": "제목"
+        },
+        {
+          "label": "화면 시작",
+          "fields": [
+            {
+              "label": "화면 제목 시작",
+              "placeholder": "코스 제목"
+            },
+            {
+              "label": "화면 부제목 시작",
+              "placeholder": "코스 세부 내용"
+            },
+            {
+              "label": "스크린 이미지 시작"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "label": "마지막 화면 리스트",
+          "field": {
+            "label": "화면 끝내기",
+            "fields": [
+              {
+                "label": "제목"
+              },
+              {
+                "label": "텍스트"
+              },
+              {
+                "label": "이미지"
+              },
+              {
+                "label": "점수",
+                "description": "기본 종료 시나리오에 도달한 사용자를 위해 H5P로부터 점수를 받는 모든 LMS, LRS 또는 기타 연결된 서비스에 점수를 전송함."
+              },
+              {
+                "label": "콘텐츠 ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "학습 가지 시나리오 콘텐츠 리스트",
+          "entity": "콘텐츠",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "보기에 콘텐츠 제목 표시",
+                "description": "선택한 경우, 사용자는 이 내용 위의 상단 막대에 콘텐츠 제목을 볼 수 있다."
+              },
+              {
+                "label": "완료 필수",
+                "description": "사용자가 시나리오를 진행하기 전에 상호 작용을 완료해야 합니다. 이 설정은 완료할 수 있는 상호 작용에만 적용됩니다.",
+                "options": [
+                  {
+                    "label": "행동설정 사용"
+                  },
+                  {
+                    "label": "활성화"
+                  },
+                  {
+                    "label": "비활성화"
+                  }
+                ]
+              },
+              {
+                "label": "다음 콘텐츠 ID (끝 화면은 음수로 정의됨)"
+              },
+              {
+                "label": "피드백",
+                "fields": [
+                  {
+                    "label": "피드백 제목"
+                  },
+                  {
+                    "label": "피드백 텍스트"
+                  },
+                  {
+                    "label": "피드백 이미지"
+                  },
+                  {
+                    "label": "이 시나리오에 대한 점수",
+                    "description": "이 시나리오를 완성하는 모든 사용자에 대해 H5P로부터 점수를 받는 모든 LMS, LRS 또는 기타 연결된 서비스에 점수를 전송함."
+                  }
+                ]
+              },
+              {
+                "label": "뒤로 돌아가기",
+                "description": "이를 통해 사용자는 시나리오에서 이전 내용/질문을 다시 볼 수 있습니다.",
+                "options": [
+                  {
+                    "label": "행동설정 사용"
+                  },
+                  {
+                    "label": "활성화"
+                  },
+                  {
+                    "label": "비활성화"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "채점 기준",
+          "fields": [
+            {
+              "label": "채점 기준",
+              "description": "채점 유형 선택",
+              "options": [
+                {
+                  "label": "각 엔드 시나리오에 대해 정적으로 점수를 설정"
+                },
+                {
+                  "label": "사용자 답변에서 동적으로 점수 계산"
+                },
+                {
+                  "label": "점수 없음"
+                }
+              ]
+            },
+            {
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+            }
+          ]
+        },
+        {
+          "label": "행동설정",
+          "fields": [
+            {
+              "label": "콘텐츠 완료 필수 재정의",
+              "description": "\"Proceed\" (진행) 버튼 활성화 전에 콘텐츠 완료 필수에 대한 개별 설정을 다시 합니다. \"finished\" (완료)되었음을 표시하지 않는 콘텐츠(예&gt;이미지 혹은 한 장의 슬라이드만 있는 코스 프레젠테이션)이면 영향을 받지 않습니다."
+            },
+            {
+              "label": "시청 필수",
+              "description": "시나리오를 진행하기 전에 시청자에게 비디오, 상호작용형 비디오 및 코스 프레젠테이션을 완료하도록 요청합니다. 내용 수준에서 재정의할 수 있습니다."
+            }
+          ]
+        },
+        {
+          "label": "맞춤 설정",
+          "fields": [
+            {
+              "label": "시작 화면의 버튼에 대한 텍스트",
+              "default": "코스 시작"
+            },
+            {
+              "label": "끝 화면의 버튼에 대한 텍스트",
+              "default": "코스 재시작"
+            },
+            {
+              "label": "각 라이브러리 화면의 버튼에 대한 텍스트",
+              "default": "진행"
+            },
+            {
+              "label": "비디오 재시청 버튼에 대한 텍스트",
+              "default": "비디오 재시청"
+            },
+            {
+              "label": "끝 화면에 점수 표시 라벨",
+              "default": "점수:"
+            },
+            {
+              "label": "최종 스크린에서 점수에 대한 라벨",
+              "default": "점수:"
+            },
+            {
+              "label": "최종 스크린에서 점수에 대한 라벨",
+              "default": "점수:"
+            },
+            {
+              "label": "전체 화면 라벨",
+              "default": "전체화면"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

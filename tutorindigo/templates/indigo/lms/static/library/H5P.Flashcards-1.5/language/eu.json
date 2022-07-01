@@ -1,0 +1,115 @@
+{
+  "semantics": [
+    {
+      "label": "Zereginaren deskribapena"
+    },
+    {
+      "widgets": [
+        {
+          "label": "Lehenetsia"
+        }
+      ],
+      "label": "Txartelak",
+      "entity": "txartela",
+      "field": {
+        "label": "Txartela",
+        "fields": [
+          {
+            "label": "Galdera",
+            "description": "Aukerako testu-galdera (txartelak izango du bakarrik irudia, bakarrik testua edo biak)"
+          },
+          {
+            "label": "Erantzuna",
+            "description": "Aukerako erantzuna."
+          },
+          {
+            "label": "Irudia",
+            "description": "Aukerako irudia (txartelak izango du bakarrik irudia, bakarrik testua edo biak)"
+          },
+          {
+            "label": "Irudiaren ordezko testua"
+          },
+          {
+            "label": "Argibidea",
+            "fields": [
+              {
+                "label": "Argibidearen testua"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Aurrerapenaren testua",
+      "default": "@card / @total txartela",
+      "description": "Aurrerapenaren testua, erabiltzen diren aldagaiak: @card eta @total. Adibidea: '@card / @total txartela'"
+    },
+    {
+      "label": "Hurrengoa botoiaren testua",
+      "default": "Hurrengoa"
+    },
+    {
+      "label": "Aurrekoa botoiaren testua",
+      "default": "Aurrekoa"
+    },
+    {
+      "label": "Egiaztatu erantzuna botoiaren testua",
+      "default": "Egiaztatu"
+    },
+    {
+      "label": "Aldez aurretik erabiltzaileak sartu behar du erantzun bat"
+    },
+    {
+      "label": "Erantzuna sartzeko eremuaren testua",
+      "default": "Zure erantzuna"
+    },
+    {
+      "label": "Erantzun zuzenerako testua",
+      "default": "Erantzun zuzena"
+    },
+    {
+      "label": "Erantzun okerraren testua",
+      "default": "Erantzun okerra"
+    },
+    {
+      "label": "Erakutsi erantzun zuzena testua",
+      "default": "Erantzun zuzena"
+    },
+    {
+      "label": "Emaitzen tituluaren testua",
+      "default": "Emaitzak"
+    },
+    {
+      "label": "Erantzun zuzenen kopuruaren testua",
+      "default": "@score / @total zuzenak",
+      "description": "Erantzun zuzenen testua, erabiltzen dituen aldagaiak: @score eta @total. Adibidea: '@score / @total zuzenak'"
+    },
+    {
+      "label": "Bistaratu emaitzak testua",
+      "default": "Bistaratu emaitzak"
+    },
+    {
+      "label": "Erantzun laburraren etiketaren testua",
+      "default": "Erantzuna:"
+    },
+    {
+      "label": "\"Saiatu berriro\" botoiaren testua",
+      "default": "Saiatu berriro"
+    },
+    {
+      "label": "Bereizi maiuskulak eta minuskulak",
+      "description": "Ezartzen du erabiltzailearen sarrera izan behar duela erantzunaren berdina."
+    },
+    {
+      "label": "Erantzun okerrarentzako testua laguntzarako teknologientzat",
+      "default": "Erantzun okerra. Erantzun zuzena @answer zen",
+      "description": "Laguntzarako teknologietan erabiliko den testua. Erabili @answer aldagai gisa."
+    },
+    {
+      "label": "Txartel aldaketa laguntzarako teknologientzat",
+      "default": "@current. orria, @total guztira",
+      "description": "Laguntzarako teknologietan txartel artean nabigatzean erabiliko den testua. Erabili @current eta @total aldagai gisa."
+    }
+  ]
+}

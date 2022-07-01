@@ -1,0 +1,60 @@
+{
+  "semantics": [
+    {
+      "label": "Título",
+      "placeholder": "Aquí puedes agregar un título opcional.",
+      "description": "El título que te gustaría mostrar antes de la imagen antes/despúes"
+    },
+    {
+      "label": "Primera imagen",
+      "fields": [
+        {
+          "label": "Primera imagen",
+          "description": "Por favor, asegúrese de que la primera imagen tenga el mismo tamaño que la segunda imagen."
+        },
+        {
+          "label": "Texto para la primera imagen",
+          "description": "Texto para poner sobre la primera imagen"
+        }
+      ]
+    },
+    {
+      "label": "Segunda imagen",
+      "fields": [
+        {
+          "label": "Segunda imagen",
+          "description": "Por favor, asegúrese de que la segunda imagen tenga el mismo tamaño que la primera imagen."
+        },
+        {
+          "label": "Texto para la segunda imagen",
+          "description": "Texto para poner sobre la segunda imagen"
+        }
+      ]
+    },
+    {
+      "label": "Configuraciones de comportamiento",
+      "description": "Estas opciones te permitirán establecer algunos detalles",
+      "fields": [
+        {
+          "label": "Orientación del control deslizante",
+          "description": "Horizontal se moverá hacia la izquierda y hacia la derecha, la vertical se moverá hacia arriba y hacia abajo."
+        },
+        {
+          "label": "Slider orientation",
+          "description": "Horizontal will move left and right, vertical will move up and down.",
+          "options": [
+            {
+              "label": "Horizontal"
+            },
+            {
+              "label": "Vertical"
+            }
+          ]
+        },
+        {
+          "label": "Slider color"
+        }
+      ]
+    }
+  ]
+}
