@@ -6,9 +6,9 @@
 
 <main id="main" aria-label="Content" tabindex="-1">
     <section class="container about">
-        <h1>
+        <h2>
             <%block name="pageheader">${page_header or _("Contact")}</%block>
-        </h1>
+        </h2>
         <p>
             <%block name="pagecontent">For any question regarding the usage of {{ PLATFORM_NAME }}, please get in touch with <a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>.</%block>
         </p>

@@ -6,9 +6,9 @@
 
 <main id="main" aria-label="Content" tabindex="-1">
     <section class="container about">
-        <h1>
+        <h2>
             <%block name="pageheader">${page_header or _("Terms of Service")}</%block>
-        </h1>
+        </h2>
         <p>
             <%block name="pagecontent">The terms of service of {{ PLATFORM_NAME }} can be obtained by getting in touch with our support at <a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>.</%block>
         </p>

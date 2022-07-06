@@ -6,9 +6,9 @@
 
 <main id="main" aria-label="Content" tabindex="-1">
     <section class="container about">
-        <h1>
+        <h2>
             <%block name="pageheader">${page_header or _("About")}</%block>
-        </h1>
+        </h2>
         <p>
             <%block name="pagecontent">{{ PLATFORM_NAME }} is an online learning platform powered by <a href="https://open.edx.org">Open edX</a>. It runs with <a href="https://docs.tutor.overhang.io">Tutor</a>, with the customized <a href="https://github.com/overhangio/tutor-indigo">Indigo</a> theme.</%block>
         </p>
