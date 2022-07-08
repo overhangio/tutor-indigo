@@ -25,17 +25,17 @@ ABOUT = load_about()
 
 
 setup(
-    name="tutor-indigo",
+    name="tutor-ohstem-theme",
     version=ABOUT["__version__"],
-    url="https://github.com/overhangio/tutor-indigo",
+    url="https://github.com/AITT-VN/tutor-indigo",
     project_urls={
-        "Code": "https://github.com/overhangio/tutor-indigo",
-        "Issue tracker": "https://github.com/overhangio/tutor-indigo/issues",
+        "Code": "https://github.com/AITT-VN/tutor-indigo",
+        "Issue tracker": "https://github.com/AITT-VN/tutor-indigo/issues",
         "Community": "https://discuss.overhang.io",
     },
     license="AGPLv3",
-    author="Overhang.IO",
-    description="Indigo theme plugin for Tutor",
+    author="OhStem Education",
+    description="OhStem theme plugin for Tutor based on Indigo",
     long_description=load_readme(),
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,

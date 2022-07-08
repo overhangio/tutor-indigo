@@ -22,8 +22,8 @@ config = {
         "FOOTER_LEGAL_LINKS": [
             {"title": "Terms of service", "url": "/tos"},
             {
-                "title": "Indigo theme for Open edX",
-                "url": "https://github.com/overhangio/tutor-indigo",
+                "title": "OhStem theme for Open edX",
+                "url": "https://github.com/AITT-VN/tutor-indigo",
             },
         ],
     },
@@ -38,7 +38,7 @@ hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
 # This is where the theme is rendered in the openedx build directory
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     [
-        ("indigo", "build/openedx/themes"),
+        ("indigo-ohstem", "build/openedx/themes"),
     ],
 )
 
