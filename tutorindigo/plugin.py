@@ -16,8 +16,8 @@ config = {
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[] --set INDIGO_FOOTER_LEGAL_LINKS=[]
         "FOOTER_NAV_LINKS": [
-            {"title": "About", "url": "/about"},
-            {"title": "Contact", "url": "/contact"},
+            {"title": "Về chúng tôi", "url": "/about"},
+            {"title": "Liên hệ", "url": "/contact"},
         ],
         "FOOTER_LEGAL_LINKS": [
             {"title": "Terms of service", "url": "/tos"},
