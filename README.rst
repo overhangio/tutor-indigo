@@ -6,14 +6,14 @@ Indigo is an elegant, customizable theme for `Open edX <https://open.edx.org>`__
 .. image:: ./screenshots/01-landing-page.png
     :alt: Platform landing page
 
-**Note**: This version of the Indigo theme is compatible with the Maple release of Open edX.
+**Note**: This version of the Indigo theme is compatible with the Nutmeg release of Open edX.
 
 You can view the theme in action at https://demo.openedx.overhang.io.
 
 Installation
 ------------
 
-Indigo was specially developed to be used with `Tutor <https://docs.overhang.io>`__ (at least v12.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
+Indigo was specially developed to be used with `Tutor <https://docs.overhang.io>`__ (at least v14.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
 
 Since Tutor v13.2.0, Indigo can be installed as a Tutor plugin::
 
