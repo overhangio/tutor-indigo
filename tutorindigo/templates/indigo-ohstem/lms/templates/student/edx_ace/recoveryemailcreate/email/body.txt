@@ -1,3 +1,5 @@
+{% raw %}
+
 {% load i18n %}{% autoescape off %}
 {% blocktrans %}You've registered this recovery email address for {{ platform_name }}.{% endblocktrans %}
 
@@ -6,3 +8,5 @@
 {{ confirm_link }}
 
 {% endautoescape %}
+
+{% endraw %}

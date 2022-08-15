@@ -1,4 +1,8 @@
+{% raw %}
+
 {% load i18n %}
 {% autoescape off %}
 {% blocktrans trimmed %}Xác thực tài khoản {{ platform_name }} của bạn{% endblocktrans %}
 {% endautoescape %}
+
+{% endraw %}

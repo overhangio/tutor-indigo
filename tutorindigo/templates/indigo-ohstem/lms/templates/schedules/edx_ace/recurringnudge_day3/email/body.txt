@@ -1,3 +1,5 @@
+{% raw %}
+
 {% load i18n %}
 {% load ace %}
 
@@ -18,3 +20,5 @@ This is the RED theme!
 {% trans "Start learning now" %} <{% with_link_tracking course_url %}>
 {% endif %}
 {% include "ace_common/edx_ace/common/upsell_cta.txt"%}
+
+{% endraw %}
