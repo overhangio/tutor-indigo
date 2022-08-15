@@ -1,0 +1,9 @@
+{% load i18n %}{% autoescape off %}
+{% blocktrans %}Bạn vừa sử dụng email này để đăng ký tài khoản trên {{ platform_name }}. Vui lòng click vào nút bên dưới để kích hoạt tài khoản và tham gia vào các khóa học STEM đầy thú vị.{% endblocktrans %}
+
+{{ confirm_activation_link }}
+
+{% blocktrans %}Lưu ý: Bạn sẽ không thể login vào tài khoản cho đến khi bạn hoàn tất xác thực.{% endblocktrans %}
+
+{% blocktrans %}Email này được tự động gửi đến bạn từ trang web {{ lms_url }} do địa chỉ email này vừa được dùng để đăng ký tài khoản trên {{ platform_name }}.{% endblocktrans %}
+{% endautoescape %}
