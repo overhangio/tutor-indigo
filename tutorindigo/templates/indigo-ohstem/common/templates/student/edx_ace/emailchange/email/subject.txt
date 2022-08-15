@@ -1,0 +1,8 @@
+{% raw %}
+
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans trimmed %}Yêu cầu thay đổi email cho tài khoản {{ platform_name }} {% endblocktrans %}
+{% endautoescape %}
+
+{% endraw %}

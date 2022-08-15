@@ -173,11 +173,8 @@
                     <tr>
                         <!-- COPYRIGHT -->
                         <td>
-                            &copy; {% now "Y" %} {{ platform_name }}, {% trans "All rights reserved" as tmsg %}{{ tmsg | force_escape }}.<br/>
+                            &copy; {% now "Y" %} <a href="https://lms.ohstem.vn"><b>{{ platform_name }}</b></a>, nền tảng học trực tuyến của <a href="https://ohstem.vn"><b>OhStem Education</b></a>. {% trans "All rights reserved" as tmsg %}{{ tmsg | force_escape }}.<br/>
                             <br/>
-                            {% trans "OhStem website: " as tmsg %}{{ tmsg | force_escape }}:<br/>
-                            <a href="https://ohstem.vn"><b>www.ohstem.vn</b></a>
-                            
                         </td>
                     </tr>
                 </table>
