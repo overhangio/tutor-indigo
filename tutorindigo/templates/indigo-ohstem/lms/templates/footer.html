@@ -12,104 +12,20 @@
 
 % if uses_bootstrap:
   <div class="container-fluid wrapper-footer">
-    <footer role="contentinfo" className="footer border-top py-3 px-4">
-      <div className="container-fluid d-flex justify-content-between">
-        <div className="d-flex w-40">
-          <div className="w-50">
-            <a className="d-block mt-1" href="https://ohstem.vn/ve-ohstem-education/">
-              Về OhStem
-            </a>
-            <a className="d-block mt-1" href="https://ohstem.vn/tin-tuc/">
-              Tin tức
-            </a>
-            <a className="d-block mt-1" href="https://ohstem.vn/lien-he/">
-              Liên hệ
-            </a>
-          </div>
-          <div className="w-50">
-            <a className="d-block mt-1" href="#">
-              Các khóa học
-            </a>
-            <a className="d-block mt-1" href="#">
-              Các câu hỏi thường gặp
-            </a>
-            <a className="d-block mt-1" href="#">
-              Trung tâm trợ giúp
-            </a>
-          </div>
-        </div>
-        <div className="d-flex w-50">
-          <div className="w-50">
-            <p>Kết nối cùng OhStem</p>
-            <div className="d-flex">
-              <div className="mr-2">
-                <a
-                  href="https://www.facebook.com/ohstem.aitt/"
-                  target="_blank"
-                  rel="noopener nofollow"
-                  title="Facebook"
-                  aria-label="Facebook"
-                >
-                  <img src={FacebookImg} width="30px" height="30px"/>
-                </a>
-              </div>
-              <div className="mr-2">
-                <a
-                  href="https://www.youtube.com/channel/UCMPfFJjpAUEy5JiNlKKw-1A"
-                  target="_blank"
-                  rel="noopener nofollow"
-                  title="YouTube"
-                  aria-label="YouTube"
-                >
-                  <img src={YoutubeImg} width="30px" height="30px"/>
-                </a>
-              </div>
-              <div>
-                <a
-                  href="https://github.com/AITT-VN/"
-                  target="_blank"
-                  rel="noopener nofollow"
-                  title="GitHub"
-                  aria-label="GitHub"
-                >
-                  <img src={GithubImg} width="30px" height="30px"/>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="w-50">
-            <a className="d-block" href="https://ohstem.vn">
-              <img src="https://ohstem.vn/wp-content/uploads/2021/01/logo-ohstem.png" />
-            </a>
-            <p className="mt-2">
-              OhStem Education mong muốn góp phần khơi nguồn sáng tạo của thế hệ trẻ Việt Nam, giúp các em có sự chuẩn
-              bị tốt nhất cho tương lai trong kỷ nguyên số này.
-            </p>
-          </div>
-        </div>
-      </div>
-      <p>&copy; 2022: Bản quyền thuộc về OhStem Education và đã được bảo hộ</p>
-    </footer>
-  </div>
-  <div class="container-fluid wrapper-footer">
     <footer>
       <div class="row">
         <div class="col-md-9">
-          
+          {% if INDIGO_FOOTER_NAV_LINKS %}
           <nav class="navbar site-nav navbar-expand-sm" aria-label="${_('About')}">
             <ul class="navbar-nav">
-              
+              {% for link in INDIGO_FOOTER_NAV_LINKS %}
                 <li class="nav-item">
-                  <a class="nav-link" href="/about">About1</a>
+                  <a class="nav-link" href="{{ link['url'] }}">{{ link['title'] }}</a>
                 </li>
-              
-                <li class="nav-item">
-                  <a class="nav-link" href="/contact">Contact1</a>
-                </li>
-              
+              {% endfor %}
             </ul>
           </nav>
-          
+          {% endif %}
 
           ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
           <p class="copyright">${footer['copyright']}
@@ -121,21 +37,17 @@
               % endif
           </p>
 
-          
+          {% if INDIGO_FOOTER_LEGAL_LINKS %}
           <nav class="navbar legal-nav navbar-expand-sm" aria-label="${_('Legal')}">
             <ul class="navbar-nav">
-              
+              {% for link in INDIGO_FOOTER_LEGAL_LINKS %}
                 <li class="nav-item">
-                  <a class="nav-link" href="/tos">Terms of service</a>
+                  <a class="nav-link" href="{{ link['url'] }}">{{ link['title'] }}</a>
                 </li>
-              
-                <li class="nav-item">
-                  <a class="nav-link" href="https://github.com/overhangio/indigo">Anahuac theme for Open edX</a>
-                </li>
-              
+              {% endfor %}
             </ul>
           </nav>
-          
+          {% endif %}
         </div>
         <div class="col-md-3">
           ## Please leave this link and use one of the logos provided
@@ -146,7 +58,7 @@
             <div class="footer-about-openedx">
               <p>
                 <a href="https://docs.tutor.overhang.io" rel="noopener" target="_blank">
-                  <img src="${static.url('images/tutor-logo.png')}" width="140" />
+                  <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" width="140" />
                 </a>
                 <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
                   <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="140" />
@@ -169,21 +81,17 @@
       % endif
     >
       <div class="colophon">
-        
+        {% if INDIGO_FOOTER_NAV_LINKS %}
         <nav class="nav-colophon" aria-label="${_('About')}">
           <ol>
-              
+              {% for link in INDIGO_FOOTER_NAV_LINKS %}
               <li>
-                <a href="/about">About2</a>
+                <a href="{{ link['url'] }}">{{ link['title'] }}</a>
               </li>
-              
-              <li>
-                <a href="/contact">Contact2</a>
-              </li>
-              
+              {% endfor %}
           </ol>
         </nav>
-        
+        {% endif %}
         % if context.get('include_language_selector', footer_language_selector_is_enabled()):
             <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
         % endif
@@ -213,21 +121,17 @@
               % endif
           </p>
 
-        
+        {% if INDIGO_FOOTER_LEGAL_LINKS %}
         <nav class="nav-legal" aria-label="${_('Legal')}">
           <ul>
-            
+            {% for link in INDIGO_FOOTER_LEGAL_LINKS %}
               <li>
-                <a href="/tos">Terms of service</a>
+                <a href="{{ link['url'] }}">{{ link['title'] }}</a>
               </li>
-            
-              <li>
-                <a href="https://github.com/overhangio/indigo">Anahuac theme for Open edX</a>
-              </li>
-            
+            {% endfor %}
           </ul>
         </nav>
-        
+        {% endif %}
       </div>
 
       ## Please leave this link and use one of the logos provided
@@ -238,7 +142,7 @@
       <div class="footer-about-openedx">
         <p>
           <a href="https://docs.tutor.overhang.io" rel="noopener" target="_blank">
-            <img src="${static.url('images/tutor-logo.png')}" height="42" />
+            <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" height="42" />
           </a>
           <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
             <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="140" />
@@ -260,13 +164,3 @@
     <link rel="stylesheet" type="text/css" href="${url}"></link>
   % endfor
 % endif
-
-<style>
-.wrapper-footer footer#footer-openedx .colophon .nav-colophon li a {
- color:#fff;
-}
-
-.wrapper-footer {
-	background: black;
-}
-</style>
