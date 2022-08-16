@@ -26,9 +26,7 @@ h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
   font-family: $font-family-title;
 }
 
-// It is necessary to specify `:not(.courseware) >` in order to not affect the style
-// of `#content.content-wrapper` inside the unit iframe in the MFE
-:not(.courseware) > #content.content-wrapper {
+#content.content-wrapper {
   @include media-breakpoint-up(lg) {
     padding-top: $content-padding-top;
     padding-bottom: $content-padding-bottom;
@@ -99,19 +97,6 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
   padding-top: 0;
 }
 
-.home .courses-container .courses .courses-listing {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  .courses-listing-item {
-    margin: 0 20px 30px 20px;
-    // Fix right margin
-    &:nth-child(4n), &:last-child {
-      margin-right: 20px;
-    }
-  }
-}
-
 ////////////////// User dashboard /dashboard
 .dashboard .main-container {
   padding: initial;
@@ -163,6 +148,15 @@ nav.wrapper-preview-menu {
 /////////////////// Course search
 .find-courses, .university-profile {
   background-color: #fff;
+}
+
+.home .courses-container .courses .courses-listing {
+  text-align: center;
+}
+
+.home .courses-container .courses .courses-listing .courses-listing-item {
+  float: none;
+  display: inline-block;
 }
 
 /////////////////// User profile

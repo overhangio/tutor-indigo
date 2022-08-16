@@ -1,0 +1,492 @@
+<%page expression_filter="h"/>
+<%!
+  import json
+  from django.utils.translation import ugettext as _
+  from openedx.core.djangolib.js_utils import js_escaped_string, dump_js_escaped_json
+%>
+<%inherit file="../main.html" />
+<%
+  course_discovery_enabled = settings.FEATURES.get('ENABLE_COURSE_DISCOVERY')
+%>
+
+<%namespace name='static' file='../static_content.html'/>
+
+% if course_discovery_enabled:
+<%block name="header_extras">
+  % for template_name in ["course_card", "filter_bar", "filter", "facet", "facet_option"]:
+  <script type="text/template" id="${template_name}-tpl">
+      <%static:include path="discovery/${template_name}.underscore" />
+  </script>
+  % endfor
+  <%static:require_module module_name="js/discovery/discovery_factory" class_name="DiscoveryFactory">
+    DiscoveryFactory(
+      ${course_discovery_meanings | n, dump_js_escaped_json},
+      getParameterByName('search_query'),
+      "${user_language | n, js_escaped_string}",
+      "${user_timezone | n, js_escaped_string}"
+    );
+  </%static:require_module>
+</%block>
+% endif
+
+<%block name="pagetitle">${_("Courses")}</%block>
+
+<style type="text/css">
+  #content {
+    min-width: 100%;
+  }
+  .courses-header{
+    padding-left: 20%;
+    padding-right: 20%;
+    background: #ff5900;
+    padding-top: 35px;
+    padding-bottom: 40px;
+    text-align: center;
+    width: 60%;
+
+    background-image: linear-gradient(rgba(209, 74, 0, 0.35), rgba(209, 74, 0, 0.35)), url("https://drive.google.com/uc?export=view&id=1Z2dQY3rlkmWdqhXdQ6LTe-cEmkaZ5vPO");
+    height: 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  .courses-header .title{
+    color: #fff;
+    font-size: 30px;
+    font-weight: bolder;
+    text-transform: uppercase;
+  }
+
+  .courses-header .text{
+    color: #fff;
+  }
+
+  #content.content-wrapper {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 65px;
+  }
+  .content-wrapper {
+    padding: 0px;
+    margin-top: 0px;
+  }
+  .wrapper-search-input{
+    background: #ff5900;
+  }
+
+  .find-courses .courses-container, .university-profile .courses-container {
+    padding: 60px 80px 0 80px;
+  }
+
+  /*SEARCHBAR*/
+  .find-courses .discovery-submit:hover, .find-courses .discovery-submit:focus{
+    background: #333;
+  }
+
+  .find-courses .discovery-submit {
+    margin-left: -2px;
+    right: 0;
+    position: absolute;
+    top: 0;
+    border: 2px solid #c8c8c8;
+    border-radius: 2px;
+    height: 55px;
+    padding: 0 14px;
+    background: #fff;
+    box-shadow: none;
+    color: #fff;
+    text-shadow: none;
+    margin-top: 76px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .find-courses .discovery-input {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    padding-right: 55px;
+    border: 2px solid #c8c8c8;
+    width: 100%;
+    height: 55px;
+    color: #000;
+    font-style: normal;
+    margin: 30px 0;
+    /* padding: 0 30px; */
+    /* margin-left: 30px; */
+  }
+
+  .sb-label {
+    color: #fff;
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 10px;
+    font-style: italic;
+    font-weight: bolder;
+  }
+
+  .fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #c8c8c8;
+  }
+
+  .find-courses .wrapper-search-context .wrapper-search-input {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: calc(23.23176% + 30px);
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+  }
+  .find-courses .wrapper-search-context .search-status-label {
+   float:left;
+   display:block;
+   margin-right:2.35765%;
+   width:calc(74.41059% - 60px);
+   min-height:55px
+  }
+
+  @media screen and (min-width: 541px) and (max-width: 768px) {
+   .find-courses .wrapper-search-context .wrapper-search-input {
+    float:left;
+    display:block;
+    margin-right:3.57866%;
+    width:48.21067%
+   }
+   .find-courses .wrapper-search-context .wrapper-search-input:last-child {
+    margin-right:0;
+    margin-left: 20%;
+   }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 979px) {
+   .find-courses .wrapper-search-context .search-status-label {
+    float:left;
+    display:block;
+    margin-right:2.35765%;
+    width:calc(65.88078% - 60px);
+   }
+   .find-courses .wrapper-search-context .search-status-label:last-child {
+    margin-right:0
+   }
+  }
+
+  /*LABEL*/
+  @media screen and (min-width: 541px) and (max-width: 768px) {
+   .find-courses .wrapper-search-context .search-status-label {
+    float:left;
+    display:block;
+    margin-right:3.57866%;
+    width:60%;
+    margin-left: 20%;
+    margin-bottom: 30px;
+   }
+   .find-courses .wrapper-search-context .search-status-label:last-child {
+    margin-right:0
+   }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 979px) {
+   .find-courses .wrapper-search-context .wrapper-search-input {
+    float:left;
+    display:block;
+    margin-right:2.35765%;
+    width:31.76157%
+   }
+   .find-courses .wrapper-search-context .wrapper-search-input:last-child {
+    margin-right:0
+   }
+  }
+  .find-courses .discovery-input {
+   -webkit-border-radius:3px;
+   -moz-border-radius:3px;
+   -ms-border-radius:3px;
+   -o-border-radius:3px;
+   border-radius:3px;
+   padding-right:55px;
+   border:2px solid #c8c8c8;
+   width:100%;
+   height:55px;
+   color:#000;
+   font-style:normal;
+   margin: 30px 0;
+   /*! padding: 0 30px; *//*! margin-left: 30px; */
+  }
+
+
+  /*COURSES*/
+  @media screen and (min-width: 541px) and (max-width: 768px) {
+   .find-courses .courses-container .courses:not(.no-course-discovery),
+   .university-profile .courses-container .courses:not(.no-course-discovery) {
+    float:left;
+    display:block;
+    margin-right:3.57866%;
+    width:100%;
+    margin-left: 25%;
+   }
+   .find-courses .courses-container .courses:not(.no-course-discovery):last-child,
+   .university-profile .courses-container .courses:not(.no-course-discovery):last-child {
+    margin-right:0
+   }
+  }
+  @media screen and (min-width: 769px) and (max-width: 979px) {
+   .find-courses .courses-container .courses:not(.no-course-discovery),
+   .university-profile .courses-container .courses:not(.no-course-discovery) {
+    float:left;
+    display:block;
+    margin-right:2.35765%;
+    width:65.88078%
+   }
+   .find-courses .courses-container .courses:not(.no-course-discovery):last-child,
+   .university-profile .courses-container .courses:not(.no-course-discovery):last-child {
+    margin-right:0
+   }
+  }
+  @media screen and (min-width: 980px) {
+   .find-courses .courses-container .courses:not(.no-course-discovery),
+   .university-profile .courses-container .courses:not(.no-course-discovery) {
+    float:left;
+    display:block;
+    margin-right:2.35765%;
+    width:74.41059%
+   }
+   .find-courses .courses-container .courses:not(.no-course-discovery):last-child,
+   .university-profile .courses-container .courses:not(.no-course-discovery):last-child {
+    margin-right:0
+   }
+  }
+
+  /*DISCOVERY*/
+  .find-courses .search-facets .facet-option {
+    float: left;
+    transition: all 0.25s ease-out 0s;
+    opacity: 1;
+    border-radius: 0;
+    padding: 5px 10px;
+    width: 100%;
+    color: #ff5900;
+  }
+
+  .find-courses .search-facets.phone-menu{
+    padding: 25px;
+  }
+
+  .find-courses .search-facets .header-search-facets, .find-courses .search-facets .header-facet{
+    color: black;
+    margin-bottom: 10px;
+  }
+
+  .find-courses .search-facets .facet-option:hover, .find-courses .search-facets .facet-option:focus {
+    background: #ff5900;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    #content.content-wrapper {
+      margin-top: 0px;
+    }
+
+    .highlighted-courses .courses, .find-courses .courses {
+      width: 100%;
+    }
+
+    .highlighted-courses .courses .course, .find-courses .courses .course {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 541px) {
+    .find-courses .wrapper-search-context .search-status-label {
+      width: 100%;
+      text-align: center;
+    }
+    .find-courses .wrapper-search-context .wrapper-search-input {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 541px) and (max-width: 768px) {
+    .find-courses .courses-container .courses:not(.no-course-discovery), .university-profile .courses-container .courses:not(.no-course-discovery) {
+      margin-left: 20%;
+    }
+  }
+
+  @media screen and (min-width: 541px) and (max-width: 768px) {
+    .find-courses .wrapper-search-context .wrapper-search-input {
+      width: 100%;
+      margin-left: 0;
+    }
+    .find-courses .wrapper-search-context .wrapper-search-input:last-child {
+      margin-left: 0%;
+    }
+  }
+
+  @media screen and (min-width: 541px) and (max-width: 768px) {
+    .find-courses .wrapper-search-context .search-status-label {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 541px) and (max-width: 768px) {
+    .find-courses .courses-container .courses:not(.no-course-discovery) .courses-listing .courses-listing-item, .university-profile .courses-container .courses:not(.no-course-discovery) .courses-listing .courses-listing-item {
+      width: 60%;
+    }
+  }
+
+  @media screen and (min-width: 980px) {
+  .find-courses .courses-container .courses:not(.no-course-discovery), .university-profile .courses-container .courses:not(.no-course-discovery) {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 979px) {
+  .find-courses .courses-container .courses:not(.no-course-discovery), .university-profile .courses-container .courses:not(.no-course-discovery) {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (min-width: 769px){
+  .find-courses .wrapper-search-context .wrapper-search-input {
+    /* width: 31.76157%; */
+    width: 50%;
+  }
+
+  .find-courses .wrapper-search-context .search-status-label {
+    /* width: calc(65.88078% - 60px); */
+    width: 50%;
+  }
+}
+
+
+#content {
+  overflow: hidden;
+}
+
+
+@media screen and (max-width: 768px){
+  .find-courses .courses-container .courses:not(.no-course-discovery), .university-profile .courses-container .courses:not(.no-course-discovery) {
+    /* width: 74.41059%; */
+    width: 100%;
+    margin-left: 5%;
+  }
+}
+
+.courses-container .courses .course .course-info .course-title {
+color: #ff5900;
+text-transform: uppercase;
+}
+
+.courses-container .courses .course .course-image .cover-image .learn-more {
+border-color: #ff5900;
+background: #ff5900;
+}
+
+.courses-container .courses .course {
+border-bottom: 5px solid #ff5900;
+text-align: center;
+}
+
+@media screen and (min-width: 769px) {
+  .find-courses .wrapper-search-context .wrapper-search-input {
+    /* width: 50%; */
+    width: 31.76157%;
+  }
+}
+
+.find-courses .wrapper-search-context .wrapper-search-input {
+  /* float: left; */
+  float: right;
+}
+
+.global-header .nav-links .secondary a.register-btn {
+  color: #ff5900 !important;
+}
+
+
+.global-header .nav-links .secondary a.register-btn:hover {
+  color: white !important;
+}
+
+@media screen and (min-width: 321px) and (max-width: 540px) {
+.find-courses .wrapper-search-context .wrapper-search-input:last-child {
+float: left;
+width: 100%;
+}
+}
+
+@media screen and (min-width: 541px) and (max-width: 768px) {
+  .find-courses .courses-container .courses:not(.no-course-discovery), .university-profile .courses-container .courses:not(.no-course-discovery) {
+    width: 100%;
+    margin-left: 15%;
+  }
+}
+</style>
+
+<main id="main" aria-label="Content" tabindex="-1">
+  <section class="courses-header">
+    <h1 class="title">OUR COURSES</h1>
+    <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+  </section>
+    <section class="find-courses">
+      <section class="courses-container">
+        % if course_discovery_enabled:
+        <div id="discovery-form" role="search" aria-label="course" class="wrapper-search-context">
+          <div id="discovery-message" class="search-status-label"></div>
+          <!-- <span class="course-searchbar"> -->
+            <form class="wrapper-search-input">
+              <p class="sb-label">Quick search</p>
+              <label for="discovery-input" class="sr">${_('Search for a course')}</label>
+              <input id="discovery-input" class="discovery-input" placeholder="${_('Search for a course')}" type="text"/>
+              <button type="submit" class="button postfix discovery-submit" title="${_('Search')}">
+                <span class="icon fa fa-search" aria-hidden="true"></span>
+                <div aria-live="polite" aria-relevant="all">
+                  <div id="loading-indicator" class="loading-spinner hidden">
+                    <span class="icon fa fa-spinner fa-spin" aria-hidden="true"></span>
+                    <span class="sr">${_('Loading')}</span>
+                  </div>
+                </div>
+              </button>
+            </form>
+          <!-- </span> -->
+        </div>
+
+        <div id="filter-bar" class="filters hide-phone is-collapsed">
+        </div>
+        % endif
+
+        <div class="courses${'' if course_discovery_enabled else ' no-course-discovery'}" role="region" aria-label="${_('List of Courses')}">
+          <ul class="courses-listing courses-list">
+            %for course in courses:
+            <li class="courses-listing-item">
+              <%include file="../course.html" args="course=course" />
+            </li>
+            %endfor
+          </ul>
+        </div>
+
+
+        % if course_discovery_enabled:
+        <aside aria-label="${_('Refine Your Search')}" class="search-facets phone-menu">
+          <h2 class="header-search-facets">${_('Refine Your Search')}</h2>
+          <section class="search-facets-lists">
+          </section>
+        </aside>
+        % endif
+
+      </section>
+    </section>
+</main>

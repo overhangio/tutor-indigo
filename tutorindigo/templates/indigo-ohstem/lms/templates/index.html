@@ -1,0 +1,765 @@
+<%page expression_filter="h"/>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.urls import reverse
+
+from openedx.core.djangolib.markup import HTML, Text
+%>
+<style>
+
+	*{
+        padding: 0;
+        margin: 0;
+    }
+
+    html{
+    	scroll-behavior: smooth;
+    }
+
+    #content {
+		min-width: 100%;
+	}
+
+    .home .courses-container .courses .courses-listing {
+	    text-align: center;
+	    padding: 15px;
+	}
+    /* TODAS */
+    .section-inner{
+        padding-top: 20px;
+        padding: 0px;
+    }
+
+    .section-header{
+        text-align: center;
+        color: #fff;
+        padding: 1rem;
+        position: relative;
+    }
+
+    .section-header:after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 4px;
+        width: 100px;
+        background-color: #ff5900;
+        
+    }
+
+    /* RAZONES */
+    #razones{
+        padding: 50px;
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+        background-color: #333;
+
+        /* HERO IMAGE */
+        background-image:  linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("https://civileats.com/wp-content/uploads/2015/09/classroom_-Jirka_Matousek-e1442859209261.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    .razones-text{
+        text-align: center;
+        margin-top: 25px;
+        padding-left: 30%;
+        padding-right: 30%;
+        font-size: 18px;
+        color: #fff;
+    }
+
+    .razones-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        grid-gap: 1rem;
+        padding: 1rem 80px;
+        font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+		.razones-container{
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+
+    .razon-box{
+        padding: 1rem;
+        color: #ddd;
+        cursor: pointer;
+    }
+
+    .razon-title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .razon-img{
+        width: 90px;
+        height: 90px;
+        position: relative;
+        border-radius: 45px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .razon-title h3{
+        color: #ff5900;
+        margin: 0.5rem;
+    }
+
+    .razon-icon{
+        width: 50px;
+    }
+
+    #razones .section-header h1{
+        color: #ff5900;
+    }
+    /* TESTIMONIO */
+
+    #testimonios{
+        padding: 50px;
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+        background-color: peru;
+        
+        /* HERO IMAGE */
+        background-image:  url("https://drive.google.com/uc?export=view&id=1nomddAU4v7BJ_tafqPdL05oAJL1e-4M5");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    .slider-testimonio {
+        width: 350px;
+        overflow: hidden;
+        margin-top: 30px;
+        margin-right: 10%;
+        margin-left: 55%;
+
+        border-radius: 10px;
+        /*
+        -webkit-box-shadow: 26px 25px 61px -17px rgba(0,0,0,0.61);
+        -moz-box-shadow: 26px 25px 61px -17px rgba(0,0,0,0.61);
+        box-shadow: 26px 25px 61px -17px rgba(0,0,0,0.61);
+    */
+    }
+
+    @media (max-width: 545px) {
+		.slider-testimonio{
+			margin-left: 10%;
+			width: 250px;
+		}
+	}
+
+    @media (min-width: 546px) and (max-width: 768px) {
+		.slider-testimonio{
+			margin-left: 25%;
+		}
+	}
+
+    .slider-testimonio ul {
+        display: flex;
+        padding: 0;
+        width: 400%;            
+        animation: change 30s infinite alternate linear;
+    }
+
+    .slider-testimonio li {
+        width: 100%;
+        list-style: none;
+    }
+
+    .slider-testimonio img {
+        width: 100%;
+    }
+
+    @keyframes change {
+        0% {margin-left: 0;}
+        20% {margin-left: 0;}
+        
+        25% {margin-left: -100%;}
+        45% {margin-left: -100%;}
+        
+        50% {margin-left: -200%;}
+        70% {margin-left: -200%;}
+        
+        75% {margin-left: -300%;}
+        100% {margin-left: -300%;}
+    }
+
+    /* ABOUT */
+    #about{
+        padding: 50px;
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+        background-color: #000;
+    }
+
+    /* .about-header{
+    } */
+
+	#about .section-header h1{
+	    color: white;	
+	}
+
+    .about-container{
+        color: white;
+        margin-left: 22%;
+        margin-right: 22%;
+        margin-top: 30px;
+
+        text-align: center;
+    }
+
+    #about-table{
+        color: white;
+        width: 100%;
+    }
+
+    #about-table tr td{
+        padding: 10px;
+    }
+
+	#about-table tr td h4{
+	    color: white;
+	    font-size: 20px;
+	}
+
+    #div-about-table{
+        margin-top: 30px;
+    }
+
+    .img-about{
+        width: 50px;
+    }
+
+    .video-container{
+        margin-top: 30px;
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+	    position: absolute;
+	    top: 10%;
+	    left: 10%;
+	    width: 80%;
+	    height: 80%;
+    }
+
+    /* ALIADOS */
+    #aliados{
+        padding: 20px;
+        margin: 0;
+        width: 100%;
+        min-height: 30%;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+        background-color: #fff;
+    }
+
+    .aliados-header{
+        color: black;
+    }
+
+    .aliados-container{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        grid-gap: 1rem;
+        padding: 1rem 80px;
+
+        margin-top: 25px;
+    }
+
+    @media (max-width: 545px) {
+    		.aliados-container{
+                        grid-template-columns: repeat(2, 1fr);
+               }
+        }
+
+
+    @media (min-width: 546px) and (max-width: 768px) {
+		.aliados-container{
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+    .aliados-icon{
+        height: 60px;
+    }
+
+    /* CONTACT */
+
+    #contact{
+        padding: 50px;
+        margin: 0;
+        width: 100%;
+        min-height: 50%;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+        background-color: #333;
+    }
+
+    .contact-container{
+        padding-left: 30%;
+        color: white;
+
+    }
+
+    .contact-info{
+        width: 30%;
+        float: left;
+        /* margin: 5%; */
+    }
+
+    .contact-info h3{
+        margin-bottom: 10px;
+    }
+
+    .contact-form{
+        margin-left: 20px;
+        width: 30%;
+        float: left;
+    }
+
+    .form-in{
+        background-color: #000;
+        color: white;
+        padding: 5px;
+        border-bottom: 3px solid #ff5900;
+        width: 120%;
+    }
+
+    .contact-form input[type=submit]{
+        background-color: #ff5900;
+        padding: 7px;
+        width: 100px;
+        font-size: 15px;
+        color: white;
+    }
+
+	/* EXTRA */
+
+	#content {
+	    padding: 0;
+	    background: #ff5900;
+	    margin-top: 0;
+	}
+
+	.clearer {
+        height:0;
+ 	    clear:both;
+	}
+
+	.home header{
+	    background: none;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+	}
+
+	.home {
+
+	    background-image: linear-gradient(rgba(209, 74, 0, 0.35), rgba(209, 74, 0, 0.35)), url("https://drive.google.com/uc?export=view&id=1Z2dQY3rlkmWdqhXdQ6LTe-cEmkaZ5vPO");
+	    height: 40%;
+	    background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+	 }
+	
+	.home > header .title{
+	    margin-top: 120px;
+	    background: none;
+	}
+
+	header .heading-group h1{
+	    color: white;
+	}
+
+	.home > header .title > .heading-group p{
+	    color: white
+	}
+
+	.global-header{
+	    padding-bottom: 13px;
+	    border-bottom: 3px solid #ff5900;
+	    background: black;
+	}
+
+	.global-header .nav-links .nav-item a{
+	    color: white;
+	    font-size: 17px;
+	}
+
+	.global-header .nav-links .nav-item a:hover {
+	  font-weight: bold;
+	}
+
+
+	#content.content-wrapper{
+	    margin-top: 0px;
+	    padding-bottom: 5px;
+	}
+
+	.home > header .title .course-search .search-button:hover, .home > header .title .course-search .search-button:focus{
+	    background: #ff5900;
+	}
+
+	.home > header .title .course-search .search-button{
+	    background: #ff5900;
+	    border: 2px solid #ff5900;
+	}
+
+	.courses-container .courses .course{
+	    border-bottom: 5px solid #ff5900;
+	}
+
+	.courses-container .courses .course .course-info .course-title {
+		line-height: 23.68px;
+		 margin: 25px 0 5px 0; 
+		padding: 0 15px;
+		height: 85px;
+		color: #ff5900;
+		/*margin-top: 20px;*/
+		font-size: 20px;
+		text-transform: uppercase;
+	}
+
+	.courses-container .courses .course .course-info .course-date {
+	    font-weight: bold;
+	}
+	
+	.global-header .nav-links .secondary a.sign-in-btn, .global-header .nav-links .secondary .nav-item a.shopping-cart{
+     	background-color: #ff5900;
+	}
+
+	.global-header .nav-links .secondary a.sign-in-btn:hover, .global-header .nav-links .secondary .nav-item a.shopping-cart:hover {
+	    color: #ff5900;
+	    border-color: #ff5900;
+	}
+
+	.courses-container{
+	    padding-bottom: 50px;
+	    font-size: 0;
+	}
+
+	.global-header .nav-links .secondary a.register-btn:hover{
+	    background-color: #ff5900;
+	}
+
+	.global-header .nav-links .secondary a.register-btn{
+	    color: #ff5900;
+	}
+
+	.global-header .nav-links .secondary .btn{
+	    border: 1px solid #ff5900;
+	}
+
+	.courses-container .courses .course .course-image .cover-image .learn-more{
+	    border-color: #ff5900;
+	    background: #ff5900;
+	}
+
+	.wrapper-footer footer#footer-openedx .colophon .nav-colophon li a{
+	    color: white;
+	}
+
+	.wrapper-footer{
+	    background: black;
+	}
+
+	@media screen and (max-width: 750px) {
+	.razones-container {
+	  width: 80%;
+	  padding-left: 10%;
+	}
+
+	.razones-text {
+	  padding-left: 8%;
+	  padding-right: 8%;
+	  width: 80%;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	#about {
+	padding: 50px;
+	padding: 10px;
+	}
+	.about-container {
+	margin-left: 15%;
+	margin-right: 15%;
+	}
+	#about-table tr td h4 {
+	padding: 5px;
+	}
+	.img-about {
+	padding-top: 60%;
+	}
+}
+
+#about-table tr td h4 {
+	font-family: inherit;
+}
+
+	
+</style>
+<main id="main" aria-label="Content" tabindex="-1">
+    <section class="home">
+      <header>
+        <div class="outer-wrapper">
+          <div class="title">
+            <div class="heading-group">
+              % if homepage_overlay_html:
+                ${homepage_overlay_html | n, decode.utf8}
+              % else:
+                <%include file="index_overlay.html" />
+              % endif
+            </div>
+            % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
+              <div class="course-search">
+                <form method="get" action="/courses">
+                  <label><span class="sr">${_("Search for a course")}</span>
+                    <input class="search-input" name="search_query" type="text" placeholder="${_("Search for a course")}"></input>
+                  </label>
+                  <button class="search-button" type="submit">
+                    <span class="icon fa fa-search" aria-hidden="true"></span><span class="sr">${_("Search")}</span>
+                  </button>
+                </form>
+              </div>
+            % endif
+
+          </div>
+
+          <%include file="index_promo_video.html" />
+        </div>
+
+      </header>
+      <%include file="${courses_list}" />
+
+    </section>
+    <section id = "razones">
+        <div class = "section-inner">
+            <div class="section-header">
+                <h1>Nuestro Modelo de Enseñanza y Exito</h1>
+            </div>
+            <div class="razones-text">
+                <p>Modelo educativo de la Universidad Anáhuac Mayab
+La Universidad Anáhuac Mayab busca formar líderes profesionales y gran calidad humana que trabajen todos los días para generar cambios positivos en su entorno.</p>
+
+<p>Creemos en la formación integral de nuestros alumnos y por eso trabajamos con un modelo educativo que busca el desarrollo espiritual, humano, social, intelectual y profesional.</p>
+
+<p>La formación integral que la universidad ofrece se centra principalmente en el desarrollo de diez ejes importantes que fortalecen el desarrollo de los alumnos</p>
+            </div>
+            <div class="razones-container">
+                <div class="razon-box">
+                    <div class="razon-title">
+                        <div class="razon-img">
+                            <!-- <img src="https://drive.google.com/uc?export=view&id=0B6wwyazyzml-OGQ3VUo0Z2thdmc"> -->
+
+                            <img src="https://drive.google.com/uc?export=view&id=1-UJYRyHHiK7snwM7zXV2Xqsumm2VHPwx" class="razon-icon">
+                        </div>
+                        <h3>Puedes actualizarte constantemente</h3>
+                    </div>
+                    <p>En un mundo como en el que estamos viviendo, mantenerse actualizado en las nuevas tendencias es indispensable para obtener mejores empleos y adquirir nuevas competencias. Un diplomado te permite mantenerte al ritmo de las constantes innovaciones </p>
+                </div>
+                <div class="razon-box">
+                    <div class="razon-title">
+                        <div class="razon-img">
+                            <img src="https://drive.google.com/uc?export=view&id=1-UJYRyHHiK7snwM7zXV2Xqsumm2VHPwx" class="razon-icon">
+                        </div>
+                        <h3>Contar con una capacitación enfocada</h3>
+                    </div>
+                    <p>Se encuentran enfocados en la capacitación por medio de herramientas útiles para el desempeño laboral, ofreciéndote las técnicas más importantes para ser aplicadas en un escenario real. Esto te permitirá destacar en tu entorno profesional como un empleado competente y altamente capacitado. </p>
+                </div>
+                <div class="razon-box">
+                    <div class="razon-title">
+                        <div class="razon-img">
+                            <img src="https://drive.google.com/uc?export=view&id=1-UJYRyHHiK7snwM7zXV2Xqsumm2VHPwx" class="razon-icon">
+                        </div>
+                        <h3>Nutrir tu Currículum Vitae</h3>
+                    </div>
+                    <p>Es una realidad que mientras mayor sea tu formación académica, te conviertes en un mejor candidato para puesto de mayor nivel. Contar con estudios alternos a tu formación como licenciado, ayuda a destacar entre los candidatos a un puesto, convirtiendo tu currículum en el de un ganador.  </p>
+                </div>
+                <div class="razon-box">
+                    <div class="razon-title">
+                        <div class="razon-img">
+                            <img src="https://drive.google.com/uc?export=view&id=1-UJYRyHHiK7snwM7zXV2Xqsumm2VHPwx" class="razon-icon">
+                        </div>
+                        <h3>Corta duración</h3>
+                    </div>
+                    <p>Muchas personas que ya cuentan con un trabajo tiene como principal obstáculo, de continuar con su formación, la falta de tiempo para cursar un posgrado. Los diplomados son de menor duración, pueden durar meses o hasta un año, con horarios adecuados para tu situación laboral y existen diplomados que pueden tomarse con la modalidad en línea. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALIADOS -->
+    <section id = "aliados">
+        <div class = "aliados-inner">
+            <div class="section-header aliados-header">
+                <h1>Empresas Aliadas</h1>
+            </div>
+            <div class="aliados-container">
+                <div class="aliados-img">
+                    <img src="https://drive.google.com/uc?export=view&id=11ogKmNTiRKInnAT8eDI1smY14LFr_rp2" class="aliados-icon">
+                </div>
+                <div class="aliados-img">
+                    <img src="https://drive.google.com/uc?export=view&id=1qwxG-eZyohAMV4fyiWbLt1CZUGOUWJOu" class="aliados-icon">
+                </div>
+                <div class="aliados-img">
+                    <img src="https://drive.google.com/uc?export=view&id=1t4ONqjQsWADUQ6_azmQZM1-wO1vO8l5I" class="aliados-icon">
+                </div>
+                <div class="aliados-img">
+                    <img src="https://drive.google.com/uc?export=view&id=1IUio-hARwpFXKnbzO0UpGcQE_EBDWlQd" class="aliados-icon">
+                </div>
+                <div class="aliados-img">
+                    <img src="https://drive.google.com/uc?export=view&id=1YBRMsHUW1ClT7ir3NO1jPXrjexfZ-MRj" class="aliados-icon">
+                </div>
+                <div class="aliados-img">
+                    <img src="https://drive.google.com/uc?export=view&id=1nTuoBZdLNYrI5lNg0A62Pd_eN8SxPpUF" class="aliados-icon">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- ABOUT -->
+    <section id = "about">
+        <div class = "about-inner">
+            <div class="section-header about-header">
+                <h1>Acerca de Nosotros</h1>
+            </div>
+            <div class="about-container">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ea ducimus officiis vel sapiente enim quam voluptatem corporis vero aliquam. In, facilis! Ullam voluptas labore totam maxime commodi, tenetur laudantium.</p>
+
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/5wfIkCJCPcA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+
+                <div id="div-about-table">
+                    <table id="about-table">
+                        <tr>
+                            <td><img class="img-about" src="https://drive.google.com/uc?export=view&id=1-UJYRyHHiK7snwM7zXV2Xqsumm2VHPwx"></td>
+                            <td>
+                                <h4>Nuestra Mision</h4>
+                                <p>Contribuir a la formación integral de líderes de acción positiva y promover institucionalmente el desarrollo de la persona y de la sociedad, inspirados en los valores del humanismo cristiano. </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img class="img-about" src="https://drive.google.com/uc?export=view&id=1-UJYRyHHiK7snwM7zXV2Xqsumm2VHPwx"></td>
+                            <td>
+                                <h4>Nuestro Compromiso</h4>
+                                <p>Que nuestro modelo educativo de formación integral situe a las personas en el centro del proceso formativo para poder impulsar su potencial y desarrollo pleno atendiendo las diferentes dimensiones que los integran como personas: humana, intelectual, profesional, social y espiritual. </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+      <!-- TESTIMONIOS -->
+    <section id = "testimonios">
+        <div class = "testimonios-inner">
+	    <div class="section-header">
+                <h1>Testimonios</h1>
+            </div>
+	    <div class="testimonios-container">
+                <div class="slider-testimonio">
+                    <ul>
+                        <!-- <img src="https://drive.google.com/uc?export=view&id=0B6wwyazyzml-OGQ3VUo0Z2thdmc"> -->
+                        <!-- https://drive.google.com/uc?export=view&id=1u3HJ-IUW8KAmEHYD97uBC8o4FUSEQ-39 -->
+                        <li><img src="https://drive.google.com/uc?export=view&id=1u3HJ-IUW8KAmEHYD97uBC8o4FUSEQ-39" alt=""></li>
+                        <li><img src="https://drive.google.com/uc?export=view&id=1u3HJ-IUW8KAmEHYD97uBC8o4FUSEQ-39" alt=""></li>
+                        <li><img src="https://drive.google.com/uc?export=view&id=1u3HJ-IUW8KAmEHYD97uBC8o4FUSEQ-39" alt=""></li>
+                        <li><img src="https://drive.google.com/uc?export=view&id=1u3HJ-IUW8KAmEHYD97uBC8o4FUSEQ-39" alt=""></li>
+                    </ul>
+                 </div>
+            </div>
+        </div>
+    </section>  
+   
+</main>
+
+% if show_homepage_promo_video:
+  <section id="video-modal" class="modal home-page-video-modal video-modal">
+    <div class="inner-wrapper">
+      <iframe title="YouTube Video" width="640" height="360" src="//www.youtube.com/embed/${homepage_promo_video_youtube_id}?showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+% endif
+
+<script type="text/javascript">
+	var mainlinks = document.getElementsByClassName("main")[0].innerHTML;
+
+	mainlinks += `<div class="mobile-nav-item hidden-mobile nav-item nav-item-extra">
+			        <a href="#razones">Nuestro Modelo</a>
+			      </div>`;
+
+    mainlinks += `<div class="mobile-nav-item hidden-mobile nav-item nav-item-extra">
+			        <a href="#aliados">Aliados</a>
+			      </div>`;
+
+    mainlinks += `<div class="mobile-nav-item hidden-mobile nav-item nav-item-extra">
+			        <a href="#about">Sobre Nosotros</a>
+			      </div>`;
+
+  	mainlinks += `<div class="mobile-nav-item hidden-mobile nav-item nav-item-extra">
+			        <a href="#testimonios">Testimonios</a>
+			      </div>`;
+	document.getElementsByClassName("main")[0].innerHTML = mainlinks;			      
+</script>
+
+<%block name="js_extra">
+   <script type="text/javascript">
+      $(window).load(function() {
+         if(getParameterByName('next')) {
+              $('#login').trigger("click");
+         }
+      })
+   </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function() {$('#signup_action').trigger("click");});
+</script>
+% endif
