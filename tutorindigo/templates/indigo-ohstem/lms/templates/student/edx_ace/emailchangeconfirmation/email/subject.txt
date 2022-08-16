@@ -2,7 +2,7 @@
 
 {% load i18n %}
 {% autoescape off %}
-{% blocktrans trimmed %}Email Change Confirmation for {{ platform_name }}{% endblocktrans %}
+{% blocktrans trimmed %}Xác nhận thay đổi địa chỉ email cho tài khoản {{ platform_name }}{% endblocktrans %}
 {% endautoescape %}
 
 {% endraw %}
