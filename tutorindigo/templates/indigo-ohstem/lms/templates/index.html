@@ -1,0 +1,307 @@
+## mako
+<%page expression_filter="h"/>
+<%!
+  from django.urls import reverse
+  from django.utils.translation import ugettext as _
+  from lms.djangoapps.branding.api import get_footer
+  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
+%>
+<% footer = get_footer(is_secure=is_secure) %>
+<% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
+<%namespace name='static' file='static_content.html'/>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    % if not uses_bootstrap:
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+    % endif
+</head>
+
+<style>
+    .logo {
+        width: 190px !important;
+    }
+
+    .section-1 {
+        background-image: url("${static.url('images/home/s1/background.png')}");
+        height: 450px;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    .img-responsive {
+        width: 100%;
+    }
+
+    .hero-text {
+        color: #ffffff;
+    }
+
+    .hero-text h1,
+    .hero-text p {
+        margin-top: 20px;
+    }
+
+    .btn-primary,
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:visited {
+        background-color: #F2994A !important;
+        border-color: #F2994A;
+    }
+
+    .action-items button {
+        font-weight: bold;
+    }
+
+    .section-2 img {
+        max-width: 768px;
+    }
+
+    .section-3 .card {
+        border: 1px solid #2F80ED;
+        border-radius: 20px;
+    }
+
+    .section-3 .card img {
+        max-width: 150px;
+    }
+
+    .card-arrow {
+        position: absolute;
+        top: calc(50% - 16px);
+        right: -16px;
+    }
+
+    hr {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        border: 0;
+        border-top: 2px solid rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+    }
+
+    .section-4 {
+        background-image: url("${static.url('images/home/s4/background.jpg')}");
+        height: 450px;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        color: #ffffff;
+    }
+
+    .section-4>div {
+        padding-top: 120px;
+    }
+
+    @media only screen and (min-width: 992px) {
+        .navbar ul li {
+            margin-left: 40px;
+        }
+
+        .register-menu {
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+        }
+    }
+
+    @media only screen and (max-width: 991px) {
+        br {
+            display: none;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {}
+
+    @media only screen and (max-width: 767px) {
+        .section-1 {
+            height: 680px;
+        }
+
+        .action-items {
+            text-align: center;
+        }
+    }
+
+    @media only screen and (min-width: 576px) {}
+
+    @media only screen and (max-width: 575px) {}
+</style>
+
+<main id="main" aria-label="Content" tabindex="-1">
+    <div class="container-fluid section-1">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <img src="${static.url('images/home/s1/logo.png')}" class="img-responsive logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto"></ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Khám phá khóa học</a>
+                        </li>
+                        <li class="nav-item active register-menu">
+                            <a class="nav-link" href="#">Đăng ký</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Đăng nhập</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 order-sm-1">
+                    <div class="hero-text">
+                        <h1>Phát triển kỹ năng số <br />cần thiết cho <br />hôm nay và tương lai</h1>
+                        <p>Các khoá học trực tuyến do các chuyên gia công nghệ nhiều
+                            <br />kinh nghiệm thiết kế dành cho những nhà sáng chế tương lai.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 order-sm-2">
+                    <img src="${static.url('images/home/s1/concept.png')}" class="img-responsive"></a>
+                </div>
+            </div>
+            <div class="action-items"><button type="button" class="btn btn-primary">Tham gia miễn phí</button></div>
+        </div>
+    </div>
+
+    <div class="container section-2 text-center">
+        <h2>Nền tảng học lập trình và công nghệ lý tưởng <br />cho mọi lứa tuổi</h2>
+        <p>OhStem eLearning có nhiều khóa học được sắp xếp theo lộ trình bài bản, phù hợp với nhiều lứa tuổi, giúp
+            dễ dàng làm chủ công nghệ và phát triển các kỹ năng quan trọng của thời đại 4.0</p>
+        <img src="${static.url('images/home/s2/concept.png')}" class="img-responsive"></a>
+    </div>
+
+    <hr />
+
+    <div class="container section-3">
+        <div class="text-center">
+            <h2>Bắt đầu hành trình phá đảo tri thức <br />công nghệ đầy thú vị của bạn tại đây</h2>
+            <p>Hãy chọn lộ trình học tập mà bạn muốn và bắt đầu ngay hôm nay.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
+                    <div class="row no-gutters">
+                        <div class="col-4">
+                            <img src="${static.url('images/home/s3/icon1.png')}" class="img-responsive mx-2 my-4"></a>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Sáng tạo số <br />(Digital making)</h5>
+                                <p class="card-text">Tìm hiểu về tư duy lập trình, khoa học máy tính và các công cụ để
+                                    sáng tạo sản phẩm</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
+                    <div class="row no-gutters">
+                        <div class="col-4">
+                            <img src="${static.url('images/home/s3/icon2.png')}" class="img-responsive mx-2 my-4"></a>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Lập trình Robot <br />(Robotics)</h5>
+                                <p class="card-text">Khám phá thế giới robot, lắp ráp và lập trình sáng tạo robot theo ý
+                                    muốn
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
+                    <div class="row no-gutters">
+                        <div class="col-4">
+                            <img src="${static.url('images/home/s3/icon3.png')}" class="img-responsive mx-2 my-4"></a>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Công nghệ AI & IoT <br />(AIoT)</h5>
+                                <p class="card-text">Tìm hiểu các công nghệ mới của thời đại 4.0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
+                    <div class="row no-gutters">
+                        <div class="col-4">
+                            <img src="${static.url('images/home/s3/icon4.png')}" class="img-responsive mx-2 my-4"></a>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Lập trình game</h5>
+                                <p class="card-text">Học cách lên ý tưởng, thiết kế và lập trình các trò chơi kinh điển
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 mx-auto">
+                <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
+                    <div class="row no-gutters">
+                        <div class="col-4">
+                            <img src="${static.url('images/home/s3/icon5.png')}" class="img-responsive mx-2 my-4"></a>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Lập trình nâng cao</h5>
+                                <p class="card-text">Phát triển kỹ năng lập trình và hiện thực ứng dụng bằng các công cụ
+                                    cao cấp</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="container-fluid section-4">
+        <div class="text-center my-auto">
+            <h2 class="my-4">Phát triển kỹ năng số ngay từ hôm nay</h2>
+            <h6 class="my-4">Tìm hiểu kỹ hơn các khoá học trực tuyến của OhStem Education.</h6>
+            <div class="action-items my-4"><button type="button" class="btn btn-primary">Xem tất cả các khóa
+                    học</button></div>
+        </div>
+    </div>
+</main>
+
+% if not uses_bootstrap:
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+% endif
