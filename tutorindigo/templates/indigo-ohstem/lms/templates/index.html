@@ -84,18 +84,63 @@
         max-width: 500px;
     }
 
-    .section-4 {
+    .section-4 .call-to-action {
         background-image: url("${static.url('images/home/s4/background.jpg')}");
-        height: 450px;
+        height: 320px;
         background-position: center bottom;
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
         color: #ffffff;
+        border-radius: 10px;
     }
 
-    .section-4>div {
-        padding-top: 120px;
+    .section-4 .call-to-action {
+        padding-top: 60px;
+    }
+
+    .section-5 {
+        background-color: #333333;
+        color: #ffffff;
+        position: relative;
+    }
+
+    .section-5>.container {
+        padding-top: 40px;
+    }
+
+    .hr-footer {
+        position: absolute;
+        bottom: 50px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        left: 0;
+        border: 0;
+        border-top: 1px solid #ffffff;
+    }
+
+    .copy-right {
+        padding-bottom: 15px;
+        padding-top: 60px;
+        margin: 0;
+    }
+
+    .social-icon {
+        margin-right: 20px;
+    }
+
+    .social-icon img {
+        height: 40px;
+        margin-bottom: 20px;
+    }
+
+    .footer a {
+        color: #ffffff;
+    }
+
+    .credit img {
+        width: 120px;
     }
 
     @media only screen and (min-width: 992px) {
@@ -113,6 +158,10 @@
         br {
             display: none;
         }
+
+        .section-3 .card br {
+            display: block;
+        }
     }
 
     @media only screen and (min-width: 768px) {}
@@ -129,14 +178,18 @@
 
     @media only screen and (min-width: 576px) {}
 
-    @media only screen and (max-width: 575px) {}
+    @media only screen and (max-width: 575px) {
+        .hr-footer {
+            bottom: 100px;
+        }
+    }
 </style>
 
 <main id="main" aria-label="Content" tabindex="-1">
     <div class="container-fluid section-1">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark">
-                <img src="${static.url('images/home/s1/logo.png')}" class="img-responsive logo"></a>
+                <img src="${static.url('images/home/s1/logo.png')}" class="img-responsive logo">
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -168,7 +221,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 order-sm-2">
-                    <img src="${static.url('images/home/s1/concept.png')}" class="img-responsive"></a>
+                    <img src="${static.url('images/home/s1/concept.png')}" class="img-responsive">
                 </div>
             </div>
             <div class="action-items"><button type="button" class="btn btn-primary">Tham gia miễn phí</button></div>
@@ -176,17 +229,17 @@
     </div>
 
     <div class="container section-2 text-center">
-        <h2>Nền tảng học lập trình và công nghệ lý tưởng <br />cho mọi lứa tuổi</h2>
+        <h3>Nền tảng học lập trình và công nghệ lý tưởng <br />cho mọi lứa tuổi</h3>
         <p>OhStem eLearning có nhiều khóa học được sắp xếp theo lộ trình bài bản, phù hợp với nhiều lứa tuổi, giúp
             dễ dàng làm chủ công nghệ và phát triển các kỹ năng quan trọng của thời đại 4.0</p>
-        <img src="${static.url('images/home/s2/concept.png')}" class="img-responsive"></a>
+        <img src="${static.url('images/home/s2/concept.png')}" class="img-responsive">
     </div>
 
     <hr />
 
     <div class="container section-3">
         <div class="text-center">
-            <h2>Bắt đầu hành trình phá đảo tri thức <br />công nghệ đầy thú vị của bạn tại đây</h2>
+            <h3>Bắt đầu hành trình phá đảo tri thức <br />công nghệ đầy thú vị của bạn tại đây</h3>
             <p>Hãy chọn lộ trình học tập mà bạn muốn và bắt đầu ngay hôm nay.</p>
         </div>
 
@@ -195,7 +248,7 @@
                 <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
                     <div class="row no-gutters">
                         <div class="col-4">
-                            <img src="${static.url('images/home/s3/icon1.png')}" class="img-responsive mx-2 my-4"></a>
+                            <img src="${static.url('images/home/s3/icon1.png')}" class="img-responsive mx-2 my-4">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
@@ -205,14 +258,14 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a>
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
                     <div class="row no-gutters">
                         <div class="col-4">
-                            <img src="${static.url('images/home/s3/icon2.png')}" class="img-responsive mx-2 my-4"></a>
+                            <img src="${static.url('images/home/s3/icon2.png')}" class="img-responsive mx-2 my-4">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
@@ -223,7 +276,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a>
                 </div>
             </div>
         </div>
@@ -233,7 +286,7 @@
                 <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
                     <div class="row no-gutters">
                         <div class="col-4">
-                            <img src="${static.url('images/home/s3/icon3.png')}" class="img-responsive mx-2 my-4"></a>
+                            <img src="${static.url('images/home/s3/icon3.png')}" class="img-responsive mx-2 my-4">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
@@ -242,14 +295,14 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a>
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
                     <div class="row no-gutters">
                         <div class="col-4">
-                            <img src="${static.url('images/home/s3/icon4.png')}" class="img-responsive mx-2 my-4"></a>
+                            <img src="${static.url('images/home/s3/icon4.png')}" class="img-responsive mx-2 my-4">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
@@ -259,7 +312,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a>
                 </div>
             </div>
         </div>
@@ -269,7 +322,7 @@
                 <div class="card mb-3 my-3 mx-auto" style="max-width: 420px;">
                     <div class="row no-gutters">
                         <div class="col-4">
-                            <img src="${static.url('images/home/s3/icon5.png')}" class="img-responsive mx-2 my-4"></a>
+                            <img src="${static.url('images/home/s3/icon5.png')}" class="img-responsive mx-2 my-4">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
@@ -279,7 +332,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a></a>
+                    <a href="#" target="_blank" class="card-arrow"><img src="${static.url('images/home/s3/arrow.png')}"></a>
                 </div>
             </div>
         </div>
@@ -287,14 +340,55 @@
 
     <hr />
 
-    <div class="container-fluid section-4">
-        <div class="text-center my-auto">
-            <h2 class="my-4">Phát triển kỹ năng số ngay từ hôm nay</h2>
-            <h6 class="my-4">Tìm hiểu kỹ hơn các khoá học trực tuyến của OhStem Education.</h6>
-            <div class="action-items my-4"><button type="button" class="btn btn-primary">Xem tất cả các khóa
-                    học</button></div>
+    <div class="container section-4">
+        <div class="container call-to-action">
+            <div class="text-center my-auto">
+                <h3 class="my-4">Phát triển kỹ năng số ngay từ hôm nay</h3>
+                <h6 class="my-4">Tìm hiểu kỹ hơn các khoá học trực tuyến của OhStem Education.</h6>
+                <div class="action-items my-4"><button type="button" class="btn btn-primary">Xem tất cả các khóa
+                        học</button></div>
+            </div>
         </div>
     </div>
+
+    <div class="my-5"></div>
+
+    <div class="container-fluid section-5 footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-4">
+                    <img src="${static.url('images/home/s1/logo.png')}" class="img-responsive logo">
+                    <p class="my-3">Kết nối với chúng tôi:</p>
+                    <a href="#" target="_blank" class="social-icon"><img
+                            src="${static.url('images/home/footer/facebook.png')}"></a>
+                    <a href="#" target="_blank" class="social-icon"><img
+                            src="${static.url('images/home/footer/youtube.png')}"></a>
+                </div>
+                <div class="col-12 col-sm-8">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <p><a href="#">Các khóa học</a></p>
+                            <p><a href="#">Các câu hỏi thường gặp</a></p>
+                            <p><a href="#">Trung tâm trợ giúp</a></p>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <p><a href="#">Giới thiệu về OhStem</a></p>
+                            <p><a href="#">Quyền riêng tư</a></p>
+                            <p><a href="#">Điều khoản</a></p>
+                        </div>
+                        <div class="col-sm-12 col-md-4 credit">
+                            <p><img src="${static.url('images/home/footer/openedx.png')}"></p>
+                            <p><img src="${static.url('images/home/footer/tutor.png')}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="copy-right text-center">© 2022: Bản quyền thuộc về OhStem Education và đã được bảo hộ</p>
+        </div>
+        <hr class="hr-footer" />
+    </div>
+
 </main>
 
 % if not uses_bootstrap:
