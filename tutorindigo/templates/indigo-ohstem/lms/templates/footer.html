@@ -10,157 +10,133 @@
 <% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
 <%namespace name='static' file='static_content.html'/>
 
-% if uses_bootstrap:
-  <div class="container-fluid wrapper-footer">
-    <footer>
-      <div class="row">
-        <div class="col-md-9">
-          {% if INDIGO_FOOTER_NAV_LINKS %}
-          <nav class="navbar site-nav navbar-expand-sm" aria-label="${_('About')}">
-            <ul class="navbar-nav">
-              {% for link in INDIGO_FOOTER_NAV_LINKS %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ link['url'] }}">{{ link['title'] }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </nav>
-          {% endif %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    % if not uses_bootstrap:
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+    % endif
+</head>
 
-          ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
-          <p class="copyright">${footer['copyright']}
-               % if icp_license_info.get('icp_license'):
-                ${u" | {text}".format(text=icp_license_info.get('text'))}
-                <a href="${icp_license_info.get('icp_license_link', '#')}">
-                    ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}
-                </a>
-              % endif
-          </p>
+<style>
+    .footer {
+        background-color: #333333;
+        color: #ffffff;
+        position: relative;
+    }
 
-          {% if INDIGO_FOOTER_LEGAL_LINKS %}
-          <nav class="navbar legal-nav navbar-expand-sm" aria-label="${_('Legal')}">
-            <ul class="navbar-nav">
-              {% for link in INDIGO_FOOTER_LEGAL_LINKS %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ link['url'] }}">{{ link['title'] }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </nav>
-          {% endif %}
-        </div>
-        <div class="col-md-3">
-          ## Please leave this link and use one of the logos provided
-          ## The OpenEdX link may be hidden when this view is served
-          ## through an API to partner sites (such as marketing sites or blogs),
-          ## which are not technically powered by Open edX.
-          % if not hide_openedx_link:
-            <div class="footer-about-openedx">
-              <p>
-                <a href="https://docs.tutor.overhang.io" rel="noopener" target="_blank">
-                  <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" width="140" />
-                </a>
-                <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
-                  <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="140" />
-                </a>
-              </p>
+    .footer>.container {
+        padding-top: 40px;
+    }
+
+    .hr-footer {
+        position: absolute;
+        bottom: 50px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        left: 0;
+        border: 0;
+        border-top: 1px solid #ffffff;
+    }
+
+    .copy-right {
+        padding-bottom: 15px;
+        padding-top: 60px;
+        margin: 0;
+    }
+
+    .social-icon {
+        margin-right: 20px;
+    }
+
+    .social-icon img {
+        height: 40px;
+        margin-bottom: 20px;
+    }
+
+    .footer a {
+        color: #ffffff;
+    }
+
+    .credit img {
+        width: 120px;
+    }
+
+    @media only screen and (min-width: 992px) {
+        .navbar ul li {
+            margin-left: 40px;
+        }
+
+        .register-menu {
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+        }
+    }
+
+    @media only screen and (max-width: 991px) {
+        br {
+            display: none;
+        }
+
+        .section-3 .card br {
+            display: block;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {}
+
+    @media only screen and (max-width: 767px) {
+        .section-1 {
+            height: 680px;
+        }
+
+        .action-items {
+            text-align: center;
+        }
+    }
+
+    @media only screen and (min-width: 576px) {}
+
+    @media only screen and (max-width: 575px) {
+        .hr-footer {
+            bottom: 100px;
+        }
+    }
+</style>
+
+<div class="container-fluid footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <img src="${static.url('images/home/s1/logo.png')}" class="img-responsive logo">
+                <p class="my-3">Kết nối với chúng tôi:</p>
+                <a href="#" target="_blank" class="social-icon"><img
+                        src="${static.url('images/home/footer/facebook.png')}"></a>
+                <a href="#" target="_blank" class="social-icon"><img
+                        src="${static.url('images/home/footer/youtube.png')}"></a>
             </div>
-          % endif
-        </div>
-      </div>
-    </footer>
-  </div>
-% else:
-  <div class="wrapper wrapper-footer">
-    <footer id="footer-openedx" class="grid-container"
-      ## When rendering the footer through the branding API,
-      ## the direction may not be set on the parent element,
-      ## so we set it here.
-      % if bidi:
-        dir=${bidi}
-      % endif
-    >
-      <div class="colophon">
-        {% if INDIGO_FOOTER_NAV_LINKS %}
-        <nav class="nav-colophon" aria-label="${_('About')}">
-          <ol>
-              {% for link in INDIGO_FOOTER_NAV_LINKS %}
-              <li>
-                <a href="{{ link['url'] }}">{{ link['title'] }}</a>
-              </li>
-              {% endfor %}
-          </ol>
-        </nav>
-        {% endif %}
-        % if context.get('include_language_selector', footer_language_selector_is_enabled()):
-            <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
-        % endif
-
-        <div class="wrapper-logo">
-          <p>
-            <a href="/">
-              ## The default logo is a placeholder.
-              ## You can either replace this link entirely or update
-              ## the FOOTER_ORGANIZATION_IMAGE in Django settings.
-              ## If you customize FOOTER_ORGANIZATION_IMAGE, then the image
-              ## can be included in the footer on other sites
-              ## (e.g. a blog or marketing front-end) to provide a consistent
-              ## user experience.  See the branding app for details.
-              <img alt="${_('organization logo')}" src="${footer['logo_image']}">
-            </a>
-          </p>
+            <div class="col-12 col-sm-8">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <p><a href="#">Các khóa học</a></p>
+                        <p><a href="#">Các câu hỏi thường gặp</a></p>
+                        <p><a href="#">Trung tâm trợ giúp</a></p>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <p><a href="#">Giới thiệu về OhStem</a></p>
+                        <p><a href="#">Quyền riêng tư</a></p>
+                        <p><a href="#">Điều khoản</a></p>
+                    </div>
+                    <div class="col-sm-12 col-md-4 credit">
+                        <p><img src="${static.url('images/home/footer/openedx.png')}"></p>
+                        <p><img src="${static.url('images/home/footer/tutor.png')}"></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
-          <p class="copyright">${footer['copyright']}
-              % if icp_license_info.get('icp_license'):
-                ${u" | {text}".format(text=icp_license_info.get('text'))}
-                <a href="${icp_license_info.get('icp_license_link', '#')}">
-                    ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}
-                </a>
-              % endif
-          </p>
-
-        {% if INDIGO_FOOTER_LEGAL_LINKS %}
-        <nav class="nav-legal" aria-label="${_('Legal')}">
-          <ul>
-            {% for link in INDIGO_FOOTER_LEGAL_LINKS %}
-              <li>
-                <a href="{{ link['url'] }}">{{ link['title'] }}</a>
-              </li>
-            {% endfor %}
-          </ul>
-        </nav>
-        {% endif %}
-      </div>
-
-      ## Please leave this link and use one of the logos provided
-      ## The OpenEdX link may be hidden when this view is served
-      ## through an API to partner sites (such as marketing sites or blogs),
-      ## which are not technically powered by OpenEdX.
-      % if not hide_openedx_link:
-      <div class="footer-about-openedx">
-        <p>
-          <a href="https://docs.tutor.overhang.io" rel="noopener" target="_blank">
-            <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" height="42" />
-          </a>
-          <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
-            <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="140" />
-          </a>
-        </p>
-      </div>
-      % endif
-    </footer>
-  </div>
-% endif
-% if include_dependencies:
-  <%static:js group='base_vendor'/>
-  <%static:css group='style-vendor'/>
-  <%include file="widgets/segment-io.html" />
-  <%include file="widgets/segment-io-footer.html" />
-% endif
-% if footer_css_urls:
-  % for url in footer_css_urls:
-    <link rel="stylesheet" type="text/css" href="${url}"></link>
-  % endfor
-% endif
+        <p class="copy-right text-center">© 2022: Bản quyền thuộc về OhStem Education và đã được bảo hộ</p>
+    </div>
+    <hr class="hr-footer" />
+</div>
