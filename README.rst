@@ -13,7 +13,7 @@ You can view the theme in action at https://demo.openedx.overhang.io.
 Installation
 ------------
 
-Indigo was specially developed to be used with `Tutor <https://docs.overhang.io>`__ (at least v14.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
+Indigo was specially developed to be used with `Tutor <https://docs.tutor.overhang.io>`__ (at least v14.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
 
 Since Tutor v13.2.0, Indigo can be installed as a Tutor plugin::
 
