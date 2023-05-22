@@ -1,4 +1,4 @@
-i# Changelog
+# Changelog
 
 This file includes a history of past releases. Changes that were not yet added to a release are in the [changelog.d/](./changelog.d) folder.
 
