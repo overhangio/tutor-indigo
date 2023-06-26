@@ -45,6 +45,11 @@ The ``INDIGO_*`` settings listed above may be modified by running ``tutor config
 
     tutor config save --set "INDIGO_FOOTER_NAV_LINKS=[]" --set "INDIGO_FOOTER_LEGAL_LINKS=[]"
 
+Or, to set the primary color to forest green, run::
+
+    # Note: The nested quotes are needed in order to handle the hash (#) correctly.
+    tutor config save --set 'INDIGO_PRIMARY_COLOR="#225522"'
+
 Customization
 -------------
 
