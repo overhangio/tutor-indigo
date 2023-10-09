@@ -1,5 +1,4 @@
 import pkg_resources
-
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
 
