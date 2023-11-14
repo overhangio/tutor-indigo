@@ -8,7 +8,7 @@ Indigo is an elegant, customizable theme for `Open edX <https://open.edx.org>`__
 
 **Note**: This version of the Indigo theme is compatible with the Palm release of Open edX.
 
-You can view the theme in action at https://demo.openedx.overhang.io.
+You can view the theme in action at https://demo.openedx.edly.io.
 
 Installation
 ------------
