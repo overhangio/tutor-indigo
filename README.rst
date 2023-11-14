@@ -55,6 +55,23 @@ Customization
 
 This plugin can serve as a starting point to create your own themes. Just fork this repository and modify the files as you see fit.
 
+Changing the Styling in Sass files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Below are the pre-requisite steps for making styling changes in LMS and CMS
+
+1. Run `tutor local stop`
+2. git clone https://github.com/overhangio/tutor-indigo.git
+3. pip install -e ./tutor-indigo 
+4. tutor plugins enable indigo
+
+Make changes to the styling using Sass files in the `tutor-indigo/tutorindigo/templates` folder. Then follow the below steps:
+
+1. tutor config save
+2. tutor images build openedx
+3. tutor local start -d
+4. tutor local settheme indigo
+
 Changing the default logo and other images
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
