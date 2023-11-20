@@ -212,3 +212,39 @@ nav.wrapper-preview-menu {
       }
   }
 }
+.container, .main-container, .find-courses {
+  max-width: 1090px;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  margin: 0 auto;
+}
+.window-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+#lean_overlay {
+  z-index: 250;
+}
+.modal {
+  box-shadow: none;
+  padding: 0;
+  background: none;
+  .inner-wrapper {
+      padding: 15px;
+      border-radius: 8px;
+      border: none;
+      @include media-breakpoint-up(sm) {
+        padding: 24px;
+      }
+    }
+}
+
+@import '../../../extra/footer';
+@import '../../../extra/header';
+@import '../../../dashbord/dashbord';
+@import '../../../courseware/discover';
+@import '../../../courseware/about';
+
+
+

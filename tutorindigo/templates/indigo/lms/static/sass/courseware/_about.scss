@@ -1,0 +1,314 @@
+// Include custom about page
+.course-info.about {
+    &.container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        @include media-breakpoint-up(md) {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+    }
+    header.course-profile {
+        overflow: visible;
+        .intro-inner-wrapper {
+            padding: 0 0 60px;
+            @include media-breakpoint-up(md) {
+                padding: 0 0 20px;
+            }
+            @include media-breakpoint-up(lg) {
+                padding: 36px 0 60px;
+            }
+        }
+    }
+    .intro-inner-wrapper .profile-top {
+        &:after {
+            display: block;
+            content: "";
+            clear: both;
+        }
+        .info-profile {
+            overflow: hidden;
+            padding: 0 0 10px;
+            @include media-breakpoint-up(md) {
+                padding: 0 0 70px;
+            }
+            h1 {
+                font-size: 30px;
+                font-weight: 800;
+                margin: 0 0 10px;
+                line-height: 40px;
+                color: #111827;
+                text-align: left;
+                @include media-breakpoint-up(lg) {
+                    font-size: 36px;
+                    line-height: 45px;
+                }
+            }
+            .org {
+                display: block;
+                color: #6B7280;
+                font-size: 20px;
+                line-height: 28px;
+            }
+        }
+        .media {
+            margin: 0 auto 20px;
+            padding: 0;
+            display: block;
+            max-width: 400px;
+            width: 100%;
+            @include media-breakpoint-up(md) {
+                float: right;
+                width: 32%;
+                margin: 0 0 0 80px;
+            }
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+                position: relative;
+                z-index: 1;
+                border-radius: 8px;
+            }
+            .hero {
+                position: relative;
+                overflow: visible;
+                border: none;
+                &:after {
+                    position: absolute;
+                    left: -15px;
+                    top: -15px;
+                    width: 100%;
+                    height: 100%;
+                    content: "";
+                    border-radius: 8px;
+                    background: $primary-light;
+                    display: none;
+                    @include media-breakpoint-up(md) {
+                        display: block;
+                    }
+                    @include media-breakpoint-up(lg) {
+                        left: -57px;
+                        top: -44px;
+                    }
+                }
+            }
+        }
+    }
+    .main-cta {
+        @include media-breakpoint-up(md) {
+            margin: -50px 0 0;
+        }
+        a {
+            text-decoration: none !important;
+            span {
+                display: inline-block;
+                vertical-align: top;
+                padding: 8px 14px;
+                color: #374151;
+                border-radius: 6px;
+                background: #fff;
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: 500;
+                text-decoration: none !important;
+                border: 1px solid #D1D5DB;
+                margin-right: 20px;
+                @include media-breakpoint-up(md) {
+                    padding: 12px 24px;
+                }
+            }
+        }
+        a.register, a strong {
+            display: inline-block;
+            vertical-align: top;
+            padding: 8px 15px;
+            color: #fff;
+            border-radius: 6px;
+            background: $primary;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 500;
+            text-decoration: none !important;
+            @include media-breakpoint-up(md) {
+                padding: 13px 25px;
+            }
+            &:hover {
+                text-decoration: none;
+                opacity: .8;
+            }
+        }
+    }
+    .about-content {
+        overflow: hidden;
+        .details {
+            .wrap-instructor-info {
+                display: none;
+            }
+            .about, .prerequisites, .course-staff, .faq {
+                font: 16px/20px $font-family-title;
+                color: #6B7280;
+                border-radius: 8px;
+                border: 1px solid $primary-light;
+                border-left: 14px solid $primary-light;
+                padding: 24px 16px 10px 16px;
+                margin: 0 0 20px;
+                .responses {
+                    float: none;
+                    width: 100%;
+                }
+                p {
+                    margin: 0 0 14px;
+                }
+                h2 {
+                    margin: 0 0 14px;
+                    color: #111827;
+                    font-size: 18px;
+                    line-height: 24px;
+                    font-weight: 600;
+                }
+                h3 {
+                    margin: 0 0 5px;
+                    color: #4B5563;
+                    font-size: 14px;
+                    line-height: 20px;
+                    font-weight: 500;
+                }
+                .response {
+                    margin: 0 0 12px;
+                    &:last-child {
+                        margin: 0;
+                    }
+                }
+                .teacher {
+                    margin: 0 0 38px;
+                    &:last-child {
+                        margin: 0 0 14px;
+                    }
+                    &.update {
+                        position: relative;
+                        overflow: hidden;
+                        @include media-breakpoint-up(md) {
+                            &:after {
+                                position: absolute;
+                                width: 1px;
+                                height: 100%;
+                                content: "";
+                                top: 0;
+                                left: 145px;
+                                background: $primary-light;
+                            }
+                        }
+                        .teacher-info {
+                            overflow: hidden;
+                        }
+                        .teacher-image {
+                            text-align: left;
+                            border: none;
+                            height: auto;
+                            margin: 0 0 5px;
+                            float: none;
+                            width: auto;
+                            @include media-breakpoint-up(md) {
+                                margin: 0 30px 0 0;
+                                width: 130px;
+                                float: left;
+                                text-align: center;
+                            }
+                            img {
+                                width: 60px;
+                                border-radius: 50%;
+                                display: block;
+                                margin: 0 0 12px;
+                                float: none;
+                                @include media-breakpoint-up(md) {
+                                    margin: 0 auto 12px;
+                                }
+                            }
+                            h3 {
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .course-sidebar {
+        background: $primary-light;
+        padding: 24px;
+        border-radius: 8px;
+        header {
+            padding: 0;
+            margin: 0;
+            border: none;
+            text-align: left;
+            &:after {
+                display: none;
+            }
+            .social-sharing {
+                height: auto;
+                text-align: left;
+                .share {
+                    width: auto;
+                    height: auto;
+                    opacity: 1;
+                    margin-right: 10px;
+                    vertical-align: top;
+                }
+            }
+        }
+        .important-dates {
+            padding: 0;
+            li {
+                position: relative;
+                padding: 0 0 20px 36px;
+                overflow: hidden;
+                border: none;
+                margin: 0;
+                svg, .fa {
+                    position: absolute;
+                    line-height: 24px;
+                    font-size: 17px;
+                    left: 0;
+                    top: 0;
+                    margin: 0;
+                    color: #9CA3AF;
+                    opacity: 1;
+                }
+                p {
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 24px;
+                    float: none;
+                    color: #4B5563;
+                    margin: 0 0 5px;
+                    font-family: $font-family-title;
+                    float: left;
+                    @include media-breakpoint-up(md) {
+                        float: none;
+                    }
+                    @include media-breakpoint-up(lg) {
+                        float: left;
+                    }
+                }
+                .important-dates-item-text {
+                    float: none;
+                    font-size: 12px;
+                    line-height: 24px;
+                    color: #6B7280;
+                    display: block;
+                    font-weight: normal;
+                    font-family: $font-family-title;
+                    float: right;
+                    @include media-breakpoint-up(md) {
+                        float: none;
+                    }
+                    @include media-breakpoint-up(lg) {
+                        float: right;
+                    }
+                }
+            }
+        }
+    }
+}

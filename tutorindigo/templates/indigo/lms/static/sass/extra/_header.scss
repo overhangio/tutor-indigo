@@ -1,0 +1,133 @@
+// Include custom header
+header.global-header {
+    border: none;
+    padding: 0;
+    overflow: visible;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10);
+    &:after {
+        content: "";
+        clear: both;
+        display: block;
+    }
+    .main-header {
+        height: auto;
+    }
+    .header-logo {
+        margin: 0;
+        a {
+            margin: 15px 0 15px 35px;
+            height: auto;
+            @include media-breakpoint-up(lg) {
+                margin: 0;
+                margin: 20px 0 0;
+            }
+            .logo {
+                height: 21px;
+                margin: 0;
+            }
+        }
+        .course-header {
+            display: none;
+        }
+    }
+    .nav-links {
+        .main {
+            margin: 0 0 0 38px;
+            .nav-tab {
+                a {
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 22px;
+                    padding: 20px 0;
+                    color: $light-drak;
+                    margin: 0 16px 0 0;
+                    border-bottom: 2px solid transparent;
+                    &.active, &:hover {
+                        color: $drak;
+                        border-bottom: 2px solid $primary;
+                    }
+                }
+            }
+        }
+        .secondary {
+            margin: 0;
+            position: relative;
+            .toggle-user-dropdown {
+                padding: 9px;
+            }
+            .dropdown-user-menu {
+                position: absolute;
+                right: 0;
+                top: 60px;
+                width: 224px;
+                border-radius: 6px;
+                box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
+                border: none;
+                overflow: hidden;
+                .dropdown-item {
+                    border: none !important;
+                    &.hide-desktop {
+                        @include media-breakpoint-up(lg) {
+                            display: none;
+                        }
+                    }
+                    a {
+                        box-sizing: border-box;
+                        padding: 16px;
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: $light-drak;
+                        &:hover {
+                            background: $primary-light;
+                            color: $drak;                         ;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .hamburger-menu {
+        height: 12px;
+        width: 20px;
+        left: 15px;
+        top: 18px;
+        .line {
+            height: 2px;
+            &:nth-child(2), &:nth-child(3) {
+                top: 6px;
+            }
+            &:nth-child(4) {
+                top: 12px;
+            }
+        }
+    }
+}
+.mobile-menu {
+    position: absolute;
+    left: 0;
+    top: 54px;
+    z-index: 9999;
+    margin: 0;
+    border: none;
+    border-bottom: 2px solid $primary;
+    width: 100%;
+    .mobile-nav-link {
+        a {
+            font-weight: normal;
+            padding: 16px;
+            font-size: 14px;
+            line-height: 20px;
+            color: $light-drak;
+            border: none;
+            &:hover, &.active {
+                background: $primary-light;
+                color: $drak;
+            }
+        }
+    }
+}
+.header-container {
+    margin: 0 auto;
+    padding: 0 15px;
+    max-width: 1090px;
+}
