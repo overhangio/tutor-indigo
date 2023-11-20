@@ -1,0 +1,15 @@
+// Include custom dashborad
+#content.content-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100%;
+    @include media-breakpoint-up(lg) {
+        margin-top: 64px !important;
+    }
+}
+.dashboard {
+    display: block;
+    .main-container {
+        padding: 20px 0;
+    }
+}

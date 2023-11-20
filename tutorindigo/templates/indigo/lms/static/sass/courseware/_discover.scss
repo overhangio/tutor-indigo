@@ -1,0 +1,17 @@
+// Include custom discover
+.courses-container {
+    .courses {
+        .courses-listing {
+            letter-spacing: -.32em;
+            margin: 0 -2.5%;
+            li {
+                letter-spacing: normal;
+                float: none !important;
+                display: inline-block !important;
+                vertical-align: top;
+                width: 28.33% !important;
+                margin: 0 2.5% 25px !important;
+            }
+        }
+    }
+}
