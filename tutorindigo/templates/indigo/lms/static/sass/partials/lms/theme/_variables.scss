@@ -1,9 +1,13 @@
-$primary: {{ INDIGO_PRIMARY_COLOR }};
+$primary: #15376D;
+$primary-light: #F2F7F8;
 
 // Theme fonts
-$font-family-title: Plex;
+$font-family-title: 'Inter', sans-serif;;
 $serif: Crimson;
 $f-sans-serif: Crimson, 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 // Initialize the Open edX Bootstrap theme
 @import 'edx-bootstrap/sass/open-edx/theme';
+
+$drak: #111827;
+$light-drak: #374151;

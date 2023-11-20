@@ -25,8 +25,13 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[] --set INDIGO_FOOTER_LEGAL_LINKS=[]
         "FOOTER_NAV_LINKS": [
-            {"title": "About", "url": "/about"},
-            {"title": "Contact", "url": "/contact"},
+            {"title": "About Us", "url": "/about"},
+            {"title": "Blog", "url": "/blog"},
+            {"title": "Donate", "url": "/donate"},
+            {"title": "Terms of Sevice", "url": "/tos"},
+            {"title": "Privacy Policy", "url": "/privacy"},
+            {"title": "Help", "url": "/help"},
+            {"title": "Contact Us", "url": "/contact"},
         ],
         "FOOTER_LEGAL_LINKS": [
             {"title": "Terms of service", "url": "/tos"},
@@ -69,17 +74,22 @@ with open(
     hooks.Filters.CLI_DO_INIT_TASKS.add_item(("lms", task_file.read()))
 
 
-# Override openedx docker image name
-@hooks.Filters.CONFIG_DEFAULTS.add()
+# Override openedx & mfe docker image names
+@hooks.Filters.CONFIG_DEFAULTS.add(priority=hooks.priorities.LOW)
 def _override_openedx_docker_image(
     items: list[tuple[str, t.Any]]
 ) -> list[tuple[str, t.Any]]:
-    image = ""
+    openedx_image = ""
+    mfe_image = ""
     for k, v in items:
         if k == "DOCKER_IMAGE_OPENEDX":
-            image = v
-    if image:
-        items.append(("DOCKER_IMAGE_OPENEDX", f"{image}-indigo"))
+            openedx_image = v
+        elif k == "MFE_DOCKER_IMAGE":
+            mfe_image = v
+    if openedx_image:
+        items.append(("DOCKER_IMAGE_OPENEDX", f"{openedx_image}-indigo"))
+    if mfe_image:
+        items.append(("MFE_DOCKER_IMAGE", f"{mfe_image}-indigo"))
     return items
 
 
@@ -91,3 +101,23 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
     [(f"INDIGO_{key}", value) for key, value in config["unique"].items()]
 )
 hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
+
+
+hooks.Filters.ENV_PATCHES.add_items(
+    [
+        (
+            "mfe-dockerfile-post-npm-install-learning",
+            """
+RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
+RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^1.0.0'
+RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-component-footer@^1.0.0'
+""",
+        ),
+        (
+            "mfe-dockerfile-post-npm-install-authn",
+            """
+RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
+""",
+        ),
+    ]
+)
