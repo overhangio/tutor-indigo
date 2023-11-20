@@ -1,8 +1,13 @@
 import pkg_resources
 
 from tutor import hooks
+from tutor.__about__ import __version_suffix__
 
 from .__about__ import __version__
+
+# Handle version suffix in nightly mode, just like tutor core
+if __version_suffix__:
+    __version__ += "-" + __version_suffix__
 
 
 ################# Configuration
