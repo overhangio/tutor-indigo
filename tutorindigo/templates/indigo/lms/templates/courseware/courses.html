@@ -10,7 +10,9 @@
 %>
 
 <%namespace name='static' file='../static_content.html'/>
-
+<%block name="js_extra">
+  <script type="text/javascript" src="${static.url('common/js/vendor/bootstrap.bundle.js')}"></script>
+</%block>
 % if course_discovery_enabled:
 <%block name="header_extras">
   % for template_name in ["course_card", "filter_bar", "filter", "facet", "facet_option"]:
@@ -34,6 +36,24 @@
 <main id="main" aria-label="Content" tabindex="-1">
     <section class="find-courses">
       <section class="courses-container">
+        <div class="course-heading-area">
+          <h2>Unlock Your Potential: Discover New Courses Today!</h2>
+          <p>Explore a world of knowledge and enhance your skills with our diverse range of courses</p>
+        </div>
+        <div class="dropdown filter-block">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter
+          </a>
+          <div class="dropdown-menu search-facets-lists" aria-labelledby="dropdownMenuLink">
+            % if course_discovery_enabled:
+            <aside aria-label="${_('Refine Your Search')}" class="search-facets phone-menu">
+              <h2 class="header-search-facets">${_('Refine Your Search')}</h2>
+              <section class="search-facets-lists">
+              </section>
+            </aside>
+            % endif
+          </div>
+        </div>
         % if course_discovery_enabled:
         <div id="discovery-form" role="search" aria-label="course" class="wrapper-search-context">
           <div id="discovery-message" class="search-status-label"></div>

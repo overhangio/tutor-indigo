@@ -146,7 +146,41 @@ from common.djangoapps.student.models import CourseEnrollment
 
 <main id="main" aria-label="Content" tabindex="-1">
     <div class="dashboard" id="dashboard-main">
+      %if display_sidebar_account_activation_message:
+        <div class="sidebar-notification add">
+          <%include file="${static.get_template_path('registration/account_activation_sidebar_notice.html')}" />
+        </div>
+        %endif
       <div class="main-container">
+        <div class="course-heading-area">
+          <h2>Hi Jake, Good Afternoon !</h2>
+          <p>Lets learn something today</p>
+        </div>
+        <div class="search-area">
+          % if settings.FEATURES.get('ENABLE_DASHBOARD_SEARCH'):
+          % endif
+            <div id="dashboard-search-bar" class="search-bar dashboard-search-bar" role="search" aria-label="Dashboard">
+              <form class="search-form">
+                <div class="search-field-wrapper">
+                  <div class="button-holder">
+                    <button type="submit" class="search-button" title="${_('Search')}">
+                      Search Courses
+                    </button>
+                    <button type="button" class="cancel-button" title="${_('Clear search')}">
+                      Search Clear
+                    </button>
+                  </div>
+                  <div class="input-holder">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z" fill="#9CA3AF"/>
+                      </svg>
+                    <input id="dashboard-search-input" type="text" class="search-field" placeholder="What course would you like to explore today?"/>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div id="dashboard-search-results" class="search-results dashboard-search-results"></div>
+        </div>
         <div class="my-courses" id="my-courses">
           % if display_dashboard_courses:
           <%include file="learner_dashboard/_dashboard_navigation_courses.html"/>
@@ -235,20 +269,11 @@ from common.djangoapps.student.models import CourseEnrollment
             </ul>
           % else:
             <div class="empty-dashboard-message">
-              % if display_dashboard_courses:
-                <p>${_("You are not enrolled in any courses yet.")}</p>
-                % if empty_dashboard_message:
-                  <p class="custom-message">${empty_dashboard_message | n, decode.utf8}</p>
-                %endif
-                % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
-                  <a class="btn btn-primary" href="${marketing_link('COURSES')}">
-                    ${_("Explore courses")}
-                  </a>
-                %endif
-              % else:
-              <p>${_("Activate your account!")}</p>
-              <p class="custom-message">${ activate_account_message | n, decode.utf8 }</p>
-              % endif
+              <h2>It looks like you haven't enrolled in any courses yet. </h2>
+              <p>We've got a world of knowledge waiting for you! Click on discover courses. Happy learning! </p>
+              <div class="image-placeholder">
+                <img src="${static.url('images/emptystate.png')}" alt="Runs on Tutor" width="412" />
+              </div>
           </div>
           % endif
 
@@ -270,31 +295,8 @@ from common.djangoapps.student.models import CourseEnrollment
           % endif
         </div>
       </div>
+      
       <div class="side-container" role="complementary" aria-label="messages">
-        %if display_sidebar_account_activation_message:
-          <div class="sidebar-notification">
-            <%include file="${static.get_template_path('registration/account_activation_sidebar_notice.html')}" />
-          </div>
-        %endif
-
-        % if settings.FEATURES.get('ENABLE_DASHBOARD_SEARCH'):
-          <div id="dashboard-search-bar" class="search-bar dashboard-search-bar" role="search" aria-label="Dashboard">
-            <form class="search-form">
-              <label for="dashboard-search-input">${_('Search Your Courses')}</label>
-              <div class="search-field-wrapper">
-                <input id="dashboard-search-input" type="text" class="search-field"/>
-                <button type="submit" class="search-button" title="${_('Search')}">
-                  <span class="icon fa fa-search" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="cancel-button" title="${_('Clear search')}">
-                  <span class="icon fa fa-remove" aria-hidden="true"></span>
-                </button>
-              </div>
-            </form>
-          </div>
-          <div id="dashboard-search-results" class="search-results dashboard-search-results"></div>
-        % endif
-
         <%block name="skip_links">
           % if settings.FEATURES.get('ENABLE_ANNOUNCEMENTS'):
             <a id="announcements-skip" class="nav-skip sr-only sr-only-focusable" href="#announcements">${_("Skip to list of announcements")}</a>

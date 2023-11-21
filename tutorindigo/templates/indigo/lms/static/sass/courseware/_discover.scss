@@ -1,4 +1,10 @@
 // Include custom discover
+.find-courses {
+    padding-bottom: 0 !important;
+    .courses-container {
+        padding: 100px 0;
+    }
+}
 .courses-container {
     .courses {
         .courses-listing {
@@ -11,7 +17,29 @@
                 vertical-align: top;
                 width: 28.33% !important;
                 margin: 0 2.5% 25px !important;
+                max-height: unset !important;
+                .course {
+                    margin: 0;
+                    border: none;
+                    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 1px 3px rgba(0, 0, 0, 0.10);
+                    border-radius: 8px;
+                    overflow: hidden;
+                    background: #fff;
+                }
             }
         }
+    }
+}
+.filter-block {
+    display: none;
+    position: relative;
+    z-index: 9999;
+    &.open {
+        .dropdown-menu {
+            display: block;
+        }
+    }
+    .dropdown-menu {
+        display: none;
     }
 }
