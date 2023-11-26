@@ -19,3 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-17.0.0'></a>
+## v17.0.0 (2023-12-09)
+
+- 💥[Feature] Upgrade to Quince (by @hinakhadim)
+- [Improvement] Add a scriv-compliant changelog. (by @regisb)
+- [Improvement] Added Makefile and test action to repository and formatted code with Black and isort. (by @CodeWithEmad)
+
+

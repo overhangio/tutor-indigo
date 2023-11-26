@@ -6,8 +6,6 @@ Indigo is an elegant, customizable theme for `Open edX <https://open.edx.org>`__
 .. image:: ./screenshots/01-landing-page.png
     :alt: Platform landing page
 
-**Note**: This version of the Indigo theme is compatible with the Palm release of Open edX.
-
 You can view the theme in action at https://demo.openedx.edly.io.
 
 Installation
@@ -19,17 +17,9 @@ Install and enable Indigo plugin::
 
     tutor plugins install indigo
     tutor plugins enable indigo
-    tutor config save
+    tutor local launch
 
-Rebuild the Openedx docker image::
-
-    tutor images build openedx
-
-Restart your platform::
-
-    tutor local start -d
-
-You will then have to enable the "indigo" theme, as per the `Tutor documentation <https://docs.tutor.edly.io/local.html#setting-a-new-theme>`__::
+The Indigo theme will be automatically enabled if you have not previously defined a theme. To override an existing theme, use the `settheme command <https://docs.tutor.edly.io/local.html#setting-a-new-theme>`__::
 
     tutor local do settheme indigo
 
@@ -67,7 +57,6 @@ Any change you make to the theme can be viewed immediately in development mode (
 
 To deploy your changes to production, you will have to rebuild the "openedx" Docker image and restart your containers::
 
-    tutor config save
     tutor images build openedx
     tutor local start -d
 
@@ -87,11 +76,11 @@ Overriding the default "about", "contact", etc. static pages
 
 By default, the ``/about`` and ``/contact`` pages contain a simple line of text: "This page left intentionally blank. Feel free to add your own content". This is of course unusable in production. In the following, we detail how to override just any of the static templates used in Open edX.
 
-The static templates used by Open edX to render those pages are all stored in the `edx-platform/lms/templates/static_templates <https://github.com/edx/edx-platform/tree/open-release/palm.master/lms/templates/static_templates>`__ folder. To override those templates, you should add your own in the following folder::
+The static templates used by Open edX to render those pages are all stored in the `edx-platform/lms/templates/static_templates <https://github.com/edx/edx-platform/tree/open-release/quince.master/lms/templates/static_templates>`__ folder. To override those templates, you should add your own in the following folder::
 
     ls tutorindigo/templates/indigo/lms/templates/static_templates"
 
-For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/palm.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform::
+For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/quince.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform::
 
     <%page expression_filter="h"/>
     <%! from django.utils.translation import ugettext as _ %>
