@@ -153,33 +153,33 @@ from common.djangoapps.student.models import CourseEnrollment
         %endif
       <div class="main-container">
         <div class="course-heading-area">
-          <h2>Hi Jake, Good Afternoon !</h2>
-          <p>Lets learn something today</p>
+          <h2>Hello there!</h2>
+          <p>Let's learn something today</p>
         </div>
         <div class="search-area">
           % if settings.FEATURES.get('ENABLE_DASHBOARD_SEARCH'):
-          % endif
             <div id="dashboard-search-bar" class="search-bar dashboard-search-bar" role="search" aria-label="Dashboard">
               <form class="search-form">
                 <div class="search-field-wrapper">
                   <div class="button-holder">
                     <button type="submit" class="search-button" title="${_('Search')}">
-                      Search Courses
+                      Search
                     </button>
                     <button type="button" class="cancel-button" title="${_('Clear search')}">
-                      Search Clear
+                      Search
                     </button>
                   </div>
                   <div class="input-holder">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z" fill="#9CA3AF"/>
                       </svg>
-                    <input id="dashboard-search-input" type="text" class="search-field" placeholder="What course would you like to explore today?"/>
+                    <input id="dashboard-search-input" type="text" class="search-field" placeholder="Explore course"/>
                   </div>
                 </div>
               </form>
             </div>
             <div id="dashboard-search-results" class="search-results dashboard-search-results"></div>
+            % endif
         </div>
         <div class="my-courses" id="my-courses">
           % if display_dashboard_courses:
@@ -372,33 +372,29 @@ from common.djangoapps.student.models import CourseEnrollment
 
 <div id="unenroll-modal" class="modal unenroll-modal" aria-hidden="true">
   <div class="inner-wrapper" role="dialog" aria-labelledby="unenrollment-modal-title" aria-live="polite">
-    <button class="close-modal">
-      <span class="icon fa fa-remove" aria-hidden="true"></span>
-      <span class="sr">
-        ## Translators: this is a control to allow users to exit out of this modal interface (a menu or piece of UI that takes the full focus of the screen)
-        ${_("Close")}
-      </span>
-    </button>
-
-    <header class="unenroll-header">
-      <h2 id="unenrollment-modal-title">
-        <span id='track-info'></span>
-        <span id='refund-info'></span>
-        <span class="sr">,
-          ## Translators: this text gives status on if the modal interface (a menu or piece of UI that takes the full focus of the screen) is open or not
-          ${_("window open")}
-        </span>
-      </h2>
-      <hr/>
-    </header>
-    <div id="unenroll_error" class="modal-form-error"></div>
-    <form id="unenroll_form" method="post" data-remote="true" action="${reverse('change_enrollment')}">
-      <input name="course_id" id="unenroll_course_id" type="hidden" />
-      <input name="enrollment_action" type="hidden" value="unenroll" />
-      <div class="submit">
-        <input class="submit-button" name="submit" type="submit" value="${_("Unenroll")}" />
-      </div>
-    </form>
+    <img src="${static.url('images/unenroll.svg')}" alt="Runs on Tutor" width="48" />
+    <h2>Confirm Unenrollment</h2>
+    <p>Are you sure you want to withdraw from the 'Fashion Styling And Personal Image' course? We'll miss having you! </p>
+    <ul class="btn-list">
+      <li>
+        <button class="close-modal">
+          Cancel
+          <span class="sr">
+            ## Translators: this is a control to allow users to exit out of this modal interface (a menu or piece of UI that takes the full focus of the screen)
+            ${_("Close")}
+          </span>
+        </button>
+      </li>
+      <li>
+        <form id="unenroll_form" method="post" data-remote="true" action="${reverse('change_enrollment')}">
+          <input name="course_id" id="unenroll_course_id" type="hidden" />
+          <input name="enrollment_action" type="hidden" value="unenroll" />
+          <div class="submit">
+            <input class="submit-button" name="submit" type="submit" value="${_("Unenroll")}" />
+          </div>
+        </form>
+      </li>
+    </ul>
   </div>
 </div>
 
