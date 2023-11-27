@@ -55,7 +55,7 @@ Customization
 
 This plugin can serve as a starting point to create your own themes. Just fork this repository and modify the files as you see fit.
 
-You will have to start by installing indigo from source:
+You will have to start by installing indigo from source::
 
     git clone https://github.com/overhangio/tutor-indigo.git
     pip install -e ./tutor-indigo
