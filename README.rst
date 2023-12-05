@@ -6,8 +6,6 @@ Indigo is an elegant, customizable theme for `Open edX <https://open.edx.org>`__
 .. image:: ./screenshots/01-landing-page.png
     :alt: Platform landing page
 
-**Note**: This version of the Indigo theme is compatible with the Quince release of Open edX.
-
 You can view the theme in action at https://demo.openedx.edly.io.
 
 Installation
@@ -19,17 +17,9 @@ Since Tutor v13.2.0, Indigo can be installed as a Tutor plugin::
 
     tutor plugins install indigo
     tutor plugins enable indigo
-    tutor config save
+    tutor local launch
 
-Rebuild the Openedx docker image::
-
-    tutor images build openedx
-
-Restart your platform::
-
-    tutor local start -d
-
-You will then have to enable the "indigo" theme, as per the `Tutor documentation <https://docs.tutor.overhang.io/local.html#setting-a-new-theme>`__::
+The Indigo theme will be automatically enabled if you have not previously defined a theme. To override an existing theme, use the `settheme command <https://docs.tutor.overhang.io/local.html#setting-a-new-theme>`__::
 
     tutor local do settheme indigo
 

@@ -1,7 +1,7 @@
 variables:
     TUTOR_PLUGIN: indigo
     TUTOR_PYPI_PACKAGE: tutor-indigo
-    TUTOR_BUILD_IMAGE: openedx
+    TUTOR_IMAGES: openedx
     OPENEDX_RELEASE: quince
     GITHUB_REPO: overhangio/tutor-indigo
 
