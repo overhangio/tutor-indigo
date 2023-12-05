@@ -13,7 +13,7 @@ You can view the theme in action at https://demo.openedx.edly.io.
 Installation
 ------------
 
-Indigo was specially developed to be used with `Tutor <https://docs.tutor.overhang.io>`__ (at least v14.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
+Indigo was specially developed to be used with `Tutor <https://docs.tutor.edly.io>`__ (at least v14.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
 
 Since Tutor v13.2.0, Indigo can be installed as a Tutor plugin::
 
@@ -29,7 +29,7 @@ Restart your platform::
 
     tutor local start -d
 
-You will then have to enable the "indigo" theme, as per the `Tutor documentation <https://docs.tutor.overhang.io/local.html#setting-a-new-theme>`__::
+You will then have to enable the "indigo" theme, as per the `Tutor documentation <https://docs.tutor.edly.io/local.html#setting-a-new-theme>`__::
 
     tutor local do settheme indigo
 
@@ -115,7 +115,7 @@ This new template will then be used to render the /donate url.
 Troubleshooting
 ---------------
 
-This Tutor plugin is maintained by Hina Khadim from `Edly <https://edly.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.overhang.io/troubleshooting.html>`__ section from the Tutor documentation.
+This Tutor plugin is maintained by Hina Khadim from `Edly <https://edly.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
 
 
 License

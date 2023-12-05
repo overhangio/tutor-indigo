@@ -29,7 +29,7 @@ setup(
     version=ABOUT["__version__"],
     url="https://github.com/overhangio/tutor-indigo",
     project_urls={
-        "Documentation": "https://docs.tutor.overhang.io/",
+        "Documentation": "https://docs.tutor.edly.io/",
         "Code": "https://github.com/overhangio/tutor-indigo",
         "Issue tracker": "https://github.com/overhangio/tutor-indigo/issues",
         "Community": "https://discuss.openedx.org",
