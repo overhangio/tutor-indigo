@@ -1,5 +1,6 @@
-import pkg_resources
+import typing as t
 
+import pkg_resources
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
 
@@ -11,7 +12,7 @@ if __version_suffix__:
 
 
 ################# Configuration
-config = {
+config: t.Dict[str, t.Dict[str, t.Any]] = {
     # Add here your new settings
     "defaults": {
         "VERSION": __version__,
