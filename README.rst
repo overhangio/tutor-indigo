@@ -15,7 +15,7 @@ Installation
 
 Indigo was specially developed to be used with `Tutor <https://docs.tutor.edly.io>`__ (at least v14.0.0). If you have not installed Open edX with Tutor, then installation instructions will vary.
 
-Since Tutor v13.2.0, Indigo can be installed as a Tutor plugin::
+Install and enable Indigo plugin::
 
     tutor plugins install indigo
     tutor plugins enable indigo
