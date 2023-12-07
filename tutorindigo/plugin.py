@@ -96,3 +96,15 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
     [(f"INDIGO_{key}", value) for key, value in config["unique"].items()]
 )
 hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
+
+
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "mfe-dockerfile-post-npm-install-learning",
+        """
+RUN npm install '@edx/brand@git+https://github.com/edly-io/brand-openedx.git#indigo'
+RUN npm install '@edx/frontend-component-header@git+https://github.com/edly-io/frontend-component-header.git#indigo'
+RUN npm install '@edx/frontend-component-footer@git+https://github.com/edly-io/frontend-component-footer.git#indigo'
+"""
+    )
+)
