@@ -21,6 +21,7 @@ from openedx.core.djangoapps.user_authn.toggles import should_redirect_to_authn_
   allow_public_account_creation = static.get_value('ALLOW_PUBLIC_ACCOUNT_CREATION', settings.FEATURES.get('ALLOW_PUBLIC_ACCOUNT_CREATION')) and settings.FEATURES.get('SHOW_REGISTRATION_LINKS', True)
   should_redirect_to_authn_mfe = should_redirect_to_authn_microfrontend()
 %>
+<!-- update nav -->
 <nav class="nav-links" aria-label=${_("Supplemental Links")}>
   <div class="main">
   % if mktg_site_enabled:

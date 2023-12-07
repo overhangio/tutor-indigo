@@ -4,7 +4,7 @@
 import six
 from django.utils.translation import gettext as _
 %>
-
+<!-- update link text -->
 % if resume_button_url != '':
   <a href="${resume_button_url}"
       class="course-target-link enter-course ${'hidden' if is_unfulfilled_entitlement else ''}"

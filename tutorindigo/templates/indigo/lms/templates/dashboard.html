@@ -146,16 +146,19 @@ from common.djangoapps.student.models import CourseEnrollment
 
 <main id="main" aria-label="Content" tabindex="-1">
     <div class="dashboard" id="dashboard-main">
+      <!-- Activate your account prompt is improved as a banner -->
       %if display_sidebar_account_activation_message:
         <div class="sidebar-notification add">
           <%include file="${static.get_template_path('registration/account_activation_sidebar_notice.html')}" />
         </div>
         %endif
       <div class="main-container">
+        <!-- Heading was added. -->
         <div class="course-heading-area">
           <h2>Hello there!</h2>
           <p>Let's learn something today</p>
         </div>
+        <!-- add search area -->
         <div class="search-area">
           % if settings.FEATURES.get('ENABLE_DASHBOARD_SEARCH'):
             <div id="dashboard-search-bar" class="search-bar dashboard-search-bar" role="search" aria-label="Dashboard">

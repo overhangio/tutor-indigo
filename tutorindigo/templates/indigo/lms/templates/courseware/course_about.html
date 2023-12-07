@@ -57,6 +57,7 @@ from openedx.core.lib.courses import course_image_url
 <section class="course-info about container">
 
   <%block name="course_about_header">
+  <!-- Course profile header is updated inclusive of course heading and course image. -->
   <header class="course-profile">
     <div class="intro-inner-wrapper">
       <div class="profile-top">
@@ -147,11 +148,11 @@ from openedx.core.lib.courses import course_image_url
       </div>
     </div>
     </%block>
+    
+    <!-- sidebar is improved with better icons -->
 
     <div class="course-sidebar">
       <div class="course-summary">
-
-
         <%block name="course_about_important_dates">
         <ol class="important-dates">
           <li class="important-dates-item">
