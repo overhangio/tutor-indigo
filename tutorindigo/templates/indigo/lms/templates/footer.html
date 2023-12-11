@@ -9,7 +9,7 @@
 <% footer = get_footer(is_secure=is_secure) %>
 <% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
 <%namespace name='static' file='static_content.html'/>
-<!-- update footer -->
+<!-- NEW IN INDIGO update footer -->
 % if uses_bootstrap:
 <div class="wrapper wrapper-footer">
   <footer id="footer" class="tutor-container"
@@ -74,7 +74,7 @@
   </footer>
 </div>
 % else:
-<!-- update footer -->
+<!-- NEW IN INDIGO update footer -->
   <div class="wrapper wrapper-footer">
     <footer id="footer" class="tutor-container"
       ## When rendering the footer through the branding API,
