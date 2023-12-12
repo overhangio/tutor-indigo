@@ -102,9 +102,9 @@ hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-learning",
         """
-RUN npm install '@edx/brand@git+https://github.com/edly-io/brand-openedx.git#indigo'
-RUN npm install '@edx/frontend-component-header@git+https://github.com/edly-io/frontend-component-header.git#indigo'
-RUN npm install '@edx/frontend-component-footer@git+https://github.com/edly-io/frontend-component-footer.git#indigo'
+RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
+RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^1.0.0'
+RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-component-footer@^1.0.0'
 """
     )
 )
