@@ -98,13 +98,22 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
 hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
 
 
-hooks.Filters.ENV_PATCHES.add_item(
-    (
+hooks.Filters.ENV_PATCHES.add_items(
+    [
+        (
         "mfe-dockerfile-post-npm-install-learning",
         """
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
 RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^1.0.0'
 RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-component-footer@^1.0.0'
 """
-    )
+        ),
+        (
+        "mfe-dockerfile-post-npm-install-authn",
+        """
+RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
+"""
+        )
+    ]
+    
 )
