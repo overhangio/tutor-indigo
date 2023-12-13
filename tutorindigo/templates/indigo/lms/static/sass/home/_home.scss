@@ -1,0 +1,28 @@
+// Include custom home
+section.home {
+    max-width: 1090px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.home>header .title {
+    background: none !important;
+}
+.global-header .nav-links .secondary {
+    .btn-holder {
+        letter-spacing: -.32em;
+        margin: 0 -7px;
+        .nav-item {
+            letter-spacing: normal;
+            margin: 0 7px;
+            padding: 12px 0;
+            .btn {
+                line-height: 20px;
+                padding: 9px 17px;
+                font-size: 14px;
+                border-radius: 6px;
+                font-weight: 500;
+                display: block;
+            }
+        }
+    }
+}
