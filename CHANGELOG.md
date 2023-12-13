@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-17.1.0'></a>
+## v17.1.0 (2023-12-13)
+
+- 💥[Improvement] Complete overhaul and redesign: the Indigo theme now covers more pages, including the MFE footer and header, and they are more beautiful than ever! (by @hinakhadim and @TanveerAhmed)
+
 <a id='changelog-17.0.0'></a>
 ## v17.0.0 (2023-12-09)
 
