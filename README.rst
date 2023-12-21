@@ -6,7 +6,7 @@ Indigo is an elegant, customizable theme for `Open edX <https://open.edx.org>`__
 .. image:: ./screenshots/01-landing-page.png
     :alt: Platform landing page
 
-You can view the theme in action at https://demo.openedx.edly.io.
+You can view the theme in action at https://sandbox.openedx.edly.io.
 
 Installation
 ------------
