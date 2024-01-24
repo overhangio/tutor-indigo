@@ -119,5 +119,22 @@ RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-com
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
 """,
         ),
+        # Tutor-Indigo v2.1 targets the styling updations in discussions and learner-dashboard MFE
+        # brand-openedx is related to styling updates while others are for header and footer updates
+        (
+            "mfe-dockerfile-post-npm-install-discussions",
+            """
+RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
+RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^1.0.0'
+RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-component-footer@^1.0.0'
+""",
+        ),
+        (
+            "mfe-dockerfile-post-npm-install-learner-dashboard",
+            """
+RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
+RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-component-footer@^1.0.0'
+""",
+        ),
     ]
 )

@@ -26,3 +26,108 @@ section.home {
         }
     }
 }
+#main .home.style-logout  {
+    header {
+        .outer-wrapper {
+            .title {
+                width: 100%;
+                float: none;
+                margin: 0;
+                padding: 30px 0 0;
+                min-height: 20px;
+                @include media-breakpoint-up(sm) {
+                    padding: 50px 0 0;
+                }
+                .heading-group {
+                    margin: 0 0 25px;
+                    text-align: left;
+                    padding: 0;
+                    @include media-breakpoint-up(sm) {
+                        margin: 0 0 45px;
+                    }
+                    h1 {
+                        color: #111827;
+                        font-size: 20px;
+                        font-weight: 700;
+                        line-height: 30px;
+                        margin: 0 0 8px;
+                        text-align: left;
+                        @include media-breakpoint-up(md) {
+                            font-size: 24px;
+                            font-weight: 700;
+                            margin: 0 0 12px;
+                        }
+                    }
+                    p {
+                        font-size: 16px;
+                        line-height: 20px;
+                        color: #6B7280;
+                        font-style: normal;
+                        margin: 0;
+                    }
+                }
+                .course-search {
+                    padding: 0;
+                    .search-field-wrapper {
+                        &:after {
+                            clear: both;
+                            content: "";
+                            display: block;
+                        }
+                        .button-holder {
+                            float: right;
+                            button {
+                                position: static;
+                                margin: 0 0 0 16px;
+                                min-width: 90px;
+                                color: #fff;
+                                font-size: 16px;
+                                font-weight: 500;
+                                line-height: 26px;
+                                text-align: center;
+                                padding: 6px;
+                                height: 38px;
+                                border-radius: 6px;
+                                background: $primary;
+                                font-family: $font-family-title;
+                                border: none;
+                                @include media-breakpoint-up(sm) {
+                                    min-width: 100px;
+                                }
+                                &:hover {
+                                    background: $primary;
+                                    opacity: .8;
+                                }
+                            }
+                        }
+                        .input-holder {
+                            overflow: hidden;
+                            border-radius: 6px;
+                            background: $primary-light;
+                            padding: 0 0 0 33px;
+                            position: relative;
+                            display: block;
+                            svg {
+                                position: absolute;
+                                left: 12px;
+                                font-size: 20px;
+                                top: 10px;
+                            }
+                            input {
+                                border: none;
+                                box-shadow: none;
+                                height: 38px;
+                                width: 100%;
+                                background: none;
+                                outline: none;
+                                font-size: 14px;
+                                line-height: 20px;
+                                padding: 9px 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
