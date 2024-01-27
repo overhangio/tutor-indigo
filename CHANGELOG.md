@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-17.2.0'></a>
+## v17.2.0 (2024-01-27)
+
+- 💥[Bugfix] Fixes: Minor Bug fixes with styling updates for discussion and learner-dashboard MFEs (by @hinakhadim and @TanveerAhmed)
+
 <a id='changelog-17.1.0'></a>
 ## v17.1.0 (2023-12-13)
 
