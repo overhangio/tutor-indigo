@@ -1,7 +1,7 @@
 <article class="course" role="region" aria-label="<%- content.display_name %>">
         <header class="course-image">
             <div class="cover-image">
-                <img src="<%- image_url %>" alt="<%- content.display_name %> <%- content.number %>" />
+                <img src="<%- image_url %>" onerror="this.src='/static/indigo/images/no_course_image.png';" alt="<%- content.display_name %> <%- content.number %>" />
             </div>
         </header>
         <section class="course-info" aria-hidden="true">

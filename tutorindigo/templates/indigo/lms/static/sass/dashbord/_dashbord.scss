@@ -1,5 +1,5 @@
 // Include custom dashborad
-#content.content-wrapper {
+.window-wrap #content.content-wrapper {
     padding: 0 !important;
     margin: 0 !important;
     max-width: 100%;
@@ -60,7 +60,7 @@
     font-size: 14px;
     color: #6B7280;
     @include media-breakpoint-up(md) {
-        margin: 0 0 75px;
+        margin: 0 0 30px;
         font-size: 16px;
         line-height: 20px;
     }

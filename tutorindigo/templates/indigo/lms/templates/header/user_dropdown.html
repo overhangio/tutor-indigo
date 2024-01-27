@@ -30,7 +30,7 @@ should_show_order_history = should_redirect_to_order_history_microfrontend() and
 
 <div class="nav-item hidden-mobile nav-item-dropdown" tabindex="-1">
     <div class="toggle-user-dropdown" role="button" aria-label=${_("Options Menu")} aria-expanded="false" tabindex="0" aria-controls="user-menu">
-        <img src="${static.url('images/profile.svg')}" alt="profile icon" />
+        <span data-hj-suppress class="username">${displayname}</span>
     </div>
     <div class="dropdown-user-menu hidden" aria-label=${_("More Options")} role="menu" id="user-menu" tabindex="-1">
         % if not enterprise_customer_portal:

@@ -53,7 +53,27 @@ header.global-header {
             margin: 0;
             position: relative;
             .toggle-user-dropdown {
-                padding: 9px;
+                padding: 9px 15px;
+                background: $primary-light;
+                color: $primary;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 20px;
+                border-radius: 6px;
+                margin: 12px 0;
+                &:after {
+                    margin: 4px 0 0 4px;
+                    border: 2px solid #15376D;
+                    border-width: 2px 2px 0 0;
+                    transform: rotate(135deg);
+                    content: "";
+                    height: 5px;
+                    position: relative;
+                    top: 2px;
+                    width: 5px;
+                    display: inline-block;
+                    vertical-align: top;
+                }
             }
             .dropdown-user-menu {
                 position: absolute;
@@ -73,7 +93,7 @@ header.global-header {
                     }
                     a {
                         box-sizing: border-box;
-                        padding: 16px;
+                        padding: 10px;
                         font-size: 14px;
                         line-height: 20px;
                         color: $light-drak;
@@ -130,4 +150,10 @@ header.global-header {
     margin: 0 auto;
     padding: 0 15px;
     max-width: 1090px;
+    box-sizing: border-box;
+    &:after {
+        display: block;
+        clear: both;
+        content: "";
+    }
 }
