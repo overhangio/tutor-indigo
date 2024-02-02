@@ -8,6 +8,15 @@ $footer-height: 125.5px;
 body, body.view-profile {
   min-height: initial;
   background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+.page-content-container {
+  max-width: 1090px;
+  margin: 0 auto;
+  padding: 0 15px;
+  border: none;
 }
 
 %btn-pl-default-base {
@@ -239,12 +248,46 @@ nav.wrapper-preview-menu {
       }
     }
 }
+.container {
+  &.about{
+    padding: 30px 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #6B7280;
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 34px;
+      margin: 0 0 12px;
+      text-align: left;
+      color: $drak;
+    }
+    p {
+      margin: 0 0 20px;
+    }
+    a {
+      color: $primary;
+      text-decoration: underline;
+    }
+    .graphic-img {
+      margin: 0 auto;
+      max-width: 178px;
+      padding: 30px 0;
+      img {
+         width: 100%;
+         display: block;
+         height: auto;
+      }
+    }
+  }
+}
 
 @import '../../../extra/footer';
 @import '../../../extra/header';
 @import '../../../dashbord/dashbord';
 @import '../../../courseware/discover';
 @import '../../../courseware/about';
+@import '../../../courseware/bookmarks';
 @import '../../../home/home';
 
 
