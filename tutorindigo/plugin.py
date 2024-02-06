@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 import typing as t
 
-import pkg_resources
+import importlib_resources
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
 
@@ -40,7 +40,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
 
 # Theme templates
 hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
-    pkg_resources.resource_filename("tutorindigo", "templates")
+    str(importlib_resources.files("tutorindigo") / "templates")
 )
 # This is where the theme is rendered in the openedx build directory
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
@@ -57,7 +57,7 @@ hooks.Filters.ENV_PATTERNS_INCLUDE.add_item(
 # init script: set theme automatically
 with open(
     os.path.join(
-        pkg_resources.resource_filename("tutorindigo", "templates"),
+        str(importlib_resources.files("tutorindigo") / "templates"),
         "indigo",
         "tasks",
         "init.sh",
