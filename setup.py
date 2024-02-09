@@ -13,7 +13,7 @@ def load_readme():
 def load_about():
     about = {}
     with io.open(
-        os.path.join(HERE, "tutorindigo", "__about__.py"),
+        os.path.join(HERE, "nlatheme", "__about__.py"),
         "rt",
         encoding="utf-8",
     ) as f:
@@ -25,7 +25,7 @@ ABOUT = load_about()
 
 
 setup(
-    name="tutor-nla-theme",
+    name="nla-theme-tutor-plugin",
     version=ABOUT["__version__"],
     url="https://github.com/newliteraciesalliance/tutor-nla-theme",
     project_urls={
@@ -45,7 +45,7 @@ setup(
     python_requires=">=3.8",
     install_requires=["tutor>=17.0.0,<18.0.0", "tutor-mfe>=17.0.0,<18.0.0"],
     extras_require={"dev": "tutor[dev]>=17.0.0,<18.0.0"},
-    entry_points={"tutor.plugin.v1": ["nla-indigo = tutorindigo.plugin"]},
+    entry_points={"tutor.plugin.v1": ["nla-theme = nlatheme.plugin"]},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
