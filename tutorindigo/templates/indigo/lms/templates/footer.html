@@ -1,6 +1,7 @@
 ## mako
 <%page expression_filter="h"/>
 <%!
+  from datetime import datetime
   from django.urls import reverse
   from django.utils.translation import gettext as _
   from lms.djangoapps.branding.api import get_footer
@@ -52,7 +53,7 @@
       </ol>
     </nav>
   </div>
-  <span class="copyright-site">Copyrights ©2023. All Rights Reserved.</span>
+  <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
   % endif
     <div class="colophon">
      
@@ -116,7 +117,7 @@
         </ol>
       </nav>
     </div>
-    <span class="copyright-site">Copyrights ©2023. All Rights Reserved.</span>
+    <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
     % endif
       <div class="colophon">
        
