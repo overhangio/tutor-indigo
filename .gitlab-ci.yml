@@ -3,7 +3,6 @@ variables:
     TUTOR_EXTRA_ENABLED_PLUGINS: mfe
     TUTOR_PYPI_PACKAGE: tutor-indigo
     TUTOR_IMAGES: openedx mfe
-    OPENEDX_RELEASE: quince
     GITHUB_REPO: overhangio/tutor-indigo
 
 include:
