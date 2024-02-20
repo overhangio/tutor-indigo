@@ -29,11 +29,10 @@ Configuration
 - ``INDIGO_WELCOME_MESSAGE`` (default: "The place for all your online learning")
 - ``INDIGO_PRIMARY_COLOR`` (default: "#3b85ff")
 - ``INDIGO_FOOTER_NAV_LINKS`` (default: ``[{"title": "About", "url": "/about"}, {"title": "Contact", "url": "/contact"}]``)
-- ``INDIGO_FOOTER_LEGAL_LINKS`` (default: ``[{"title": "Terms of service", "url": "/tos"}, {"title": "Indigo theme for Open edX", "url": "https://github.com/overhangio/tutor-indigo"}]``)
 
 The ``INDIGO_*`` settings listed above may be modified by running ``tutor config save --set INDIGO_...=...``. For instance, to remove all links from the footer, run::
 
-    tutor config save --set "INDIGO_FOOTER_NAV_LINKS=[]" --set "INDIGO_FOOTER_LEGAL_LINKS=[]"
+    tutor config save --set "INDIGO_FOOTER_NAV_LINKS=[]"
 
 Or, to set the primary color to forest green, run::
 
