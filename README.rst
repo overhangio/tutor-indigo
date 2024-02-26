@@ -1,7 +1,7 @@
 Indigo, a cool blue theme for Open edX
 ======================================
 
-Indigo is an elegant, customizable theme for `Open edX <https://open.edx.org>`__.
+Indigo is an elegant, customizable theme for `Open edX <https://openedx.org>`__.
 
 .. image:: ./screenshots/01-landing-page.png
     :alt: Platform landing page
@@ -80,7 +80,9 @@ The static templates used by Open edX to render those pages are all stored in th
 
     ls tutorindigo/templates/indigo/lms/templates/static_templates"
 
-For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/quince.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform::
+For instance, edit the "donate.html" file in this directory. We can derive the content of this file from the contents of the `donate.html <https://github.com/edx/edx-platform/blob/open-release/quince.master/lms/templates/static_templates/donate.html>`__ static template in edx-platform:
+
+.. code-block:: mako
 
     <%page expression_filter="h"/>
     <%! from django.utils.translation import ugettext as _ %>
