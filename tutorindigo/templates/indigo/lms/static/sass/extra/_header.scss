@@ -1,4 +1,7 @@
 // Include custom header
+body {
+    font-family: $font-family-title;
+}
 header.global-header {
     border: none;
     padding: 0;

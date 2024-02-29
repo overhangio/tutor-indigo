@@ -11,6 +11,7 @@ footer.tutor-container {
     padding: 0 15px;
     max-width: 1090px;
     text-align: center;
+    box-sizing: border-box;
     @include media-breakpoint-up(lg) {
         text-align: left;
     }
