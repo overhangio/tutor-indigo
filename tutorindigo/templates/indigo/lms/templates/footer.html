@@ -52,12 +52,12 @@
           {% endfor %}
       </ol>
     </nav>
+    {% endif %}
   </div>
   <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
   % endif
     <div class="colophon">
      
-      {% endif %}
       % if context.get('include_language_selector', footer_language_selector_is_enabled()):
           <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
       % endif
@@ -116,12 +116,12 @@
             {% endfor %}
         </ol>
       </nav>
+      {% endif %}
     </div>
     <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
     % endif
       <div class="colophon">
        
-        {% endif %}
         % if context.get('include_language_selector', footer_language_selector_is_enabled()):
             <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
         % endif
