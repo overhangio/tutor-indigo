@@ -19,6 +19,15 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-17.3.0'></a>
+## v17.3.0 (2024-03-04)
+
+- 💥[Improvement] Allow the no_course_image.png image to pull from the current theme, not specifically named indigo (by @misilot)
+
+- [Improvement] Remove mentions of INDIGO_FOOTER_LEGAL_LINKS in docs since it is no longer used by the plugin. (by @misilot)
+
+- [Improvement] Style static pages of About, Contact, Privacy and bookmarks page (by @tanveer65)
+
 <a id='changelog-17.2.0'></a>
 ## v17.2.0 (2024-01-27)
 
