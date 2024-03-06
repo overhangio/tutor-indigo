@@ -50,9 +50,13 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
 )
 
 # Force the rendering of scss files, even though they are included in a "partials" directory
-hooks.Filters.ENV_PATTERNS_INCLUDE.add_item(
-    r"indigo/lms/static/sass/partials/lms/theme/"
+hooks.Filters.ENV_PATTERNS_INCLUDE.add_items(
+    [
+        r"indigo/lms/static/sass/partials/lms/theme/",
+        r"indigo/cms/static/sass/partials/cms/theme/",
+    ]
 )
+
 
 # init script: set theme automatically
 with open(
