@@ -1,0 +1,1 @@
+- [Bugfix] *.scss files in cms directory were not rendered in the tutor environment because they are stored in a "partials" subdirectory. (by @Talha-Rizwan)
