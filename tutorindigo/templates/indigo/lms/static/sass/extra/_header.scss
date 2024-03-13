@@ -43,11 +43,11 @@ header.global-header {
                     line-height: 22px;
                     padding: 20px 0;
                     color: $light-drak;
-                    margin: 0 16px 0 0;
+                    margin: 0 16px;
                     border-bottom: 2px solid transparent;
                     &.active, &:hover {
-                        color: $drak;
-                        border-bottom: 2px solid $primary;
+                        color: $primary;
+                        border-bottom: 2px solid transparent;
                     }
                 }
             }
@@ -58,7 +58,7 @@ header.global-header {
             .toggle-user-dropdown {
                 padding: 9px 15px;
                 background: $primary-light;
-                color: $primary;
+                color: $drak;
                 font-size: 14px;
                 font-weight: 500;
                 line-height: 20px;
