@@ -1,0 +1,20 @@
+$primary: {{ INDIGO_PRIMARY_COLOR }};
+$secondary: #F2F7F8;
+
+$blue: $primary !default;
+$m-blue-d1: mix(white, $primary, 5%) !default;
+$m-blue-d2: mix(white, $primary, 15%) !default;
+$m-blue-d3: $primary !default;
+$m-blue-d4: mix(rgb(74, 137, 245), $primary, 20%) !default;
+$m-blue-d5: mix(rgb(56, 148, 252), $primary, 30%) !default;
+$m-blue-d6: mix(rgb(42, 134, 226), $primary, 40%) !default;
+
+$uxpl-blue-hover-active: lighten($primary, 7%) !default;
+
+$serif: 'Inter';
+$f-sans-serif: 'Inter', 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-title: 'Inter';
+$font-family-sans-serif: 'Inter', 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Initialize the Open edX Bootstrap theme
+@import 'edx-bootstrap/sass/open-edx/theme';
