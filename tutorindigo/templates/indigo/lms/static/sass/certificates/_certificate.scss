@@ -1,0 +1,40 @@
+// Include custom cirtificate
+
+body.certificate {
+    .wrapper-header {
+        padding: 0;
+    }
+    .accomplishment-metadata {
+        .recipient-img {
+            display: none;
+        }
+        .recipient-name, .recipient-username {
+            margin: 0;
+        }
+    }
+    .layout-accomplishment {
+        .wrapper-introduction {
+            padding: 0;
+        }
+    }
+    .wrapper-about {
+        padding: 20px 0 0 !important;
+    }
+    .header-app, .banner-user, .introduction, .wrapper-accomplishment-metadata, .wrapper-accomplishment-rendering, .introduction, aside.about {
+        display: block;
+        max-width: 1090px !important;
+        margin: 0 auto;
+        padding: 0 15px !important;
+        box-sizing: border-box;
+        .header-app-title {
+            text-align: left;
+            a {
+                display: inline-block;
+                vertical-align: top;
+                width: 45px;
+                margin: 10px 0;
+            }
+        }
+    }
+}
+

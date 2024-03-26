@@ -105,7 +105,7 @@ from openedx.core.lib.courses import course_image_url
         ## because AnonymousUsers cause can_enroll for shib courses to be False, but we need them to be able to click
         ## so that they can register and become a real user that can enroll.
         % elif not is_shib_course and not can_enroll:
-          <span class="register disabled">${_("Enrollment is Closed")}</span>
+        <span class="register closed disabled"><i class="fa fa-lock" aria-hidden="true"></i> ${_("Enrollment is Closed")}</span>
         %elif allow_anonymous:
           %if show_courseware_link:
             <a href="${course_target}">

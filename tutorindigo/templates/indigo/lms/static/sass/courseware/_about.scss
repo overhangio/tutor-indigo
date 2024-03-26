@@ -42,7 +42,7 @@
             }
             .org {
                 display: block;
-                color: #6B7280;
+                color: #515661;
                 font-size: 16px;
                 line-height: 22px;
             }
@@ -136,6 +136,17 @@
                 opacity: .8;
             }
         }
+        span.closed {
+            background: $primary-light;
+            border-radius: 6px;
+            color: #9CA3AF;
+            font-size: 16px;
+            line-height: 24px;
+            padding: 16px;
+            font-weight: 500;
+            display: inline-block;
+            vertical-align: top;
+        }
     }
     .about-content {
         display: flex;
@@ -164,7 +175,7 @@
             }
             .about, .prerequisites, .course-staff, .faq {
                 font: 16px/20px $font-family-title;
-                color: #6B7280;
+                color: #515661;
                 border-radius: 8px;
                 border: 1px solid $primary-light;
                 border-left: 14px solid $primary-light;
@@ -335,7 +346,7 @@
                     float: none;
                     font-size: 12px;
                     line-height: 24px;
-                    color: #6B7280;
+                    color: #515661;
                     display: block;
                     font-weight: normal;
                     font-family: $font-family-title;
