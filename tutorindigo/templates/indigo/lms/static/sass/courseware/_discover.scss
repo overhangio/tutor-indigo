@@ -1,4 +1,37 @@
 // Include custom discover
+.window-wrap #content.content-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100%;
+    @include media-breakpoint-up(lg) {
+        margin-top: 64px !important;
+    }
+}
+.course-heading-area {
+    margin: 0 0 20px;
+    font-size: 14px;
+    color: #515661;
+    @include media-breakpoint-up(md) {
+        margin: 0 0 30px;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    h2 {
+        color: #111827;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 30px;
+        margin: 0 0 8px;
+        @include media-breakpoint-up(md) {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 12px;
+        }
+    }
+    p {
+        margin: 0;
+    }
+}
 .find-courses {
     padding-bottom: 0 !important;
     .courses-container {
@@ -193,6 +226,7 @@
                         background: $primary;
                         font-family: $font-family-title;
                         border: none;
+                        box-shadow: none !important;
                         @include media-breakpoint-up(sm) {
                             min-width: 100px;
                         }
@@ -349,6 +383,142 @@
                             background: #fff;
                             .count-number {
                                 display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.indigo-dark-theme {
+    .course-heading-area {
+        color: $text-color-primary;
+        h2 {
+            color: $text-color-d;
+        }
+    }
+    .saerch-bar-discover {
+        .filters {
+            .filters-inner {
+                ul {
+                    li {
+                        button {
+                            background: $primary-d !important;
+                            color: $btn-color-d;
+                        }
+                    }
+                }
+            }
+        }
+        .discover-search {
+            .wrapper-search-context {
+                .wrapper-search-input {
+                    .button-holder {
+                        button {
+                            background: $primary-d;
+                            color: $btn-color-d;
+                            &:hover {
+                                background: $primary-d;
+                                color: $btn-color-d;
+                            }
+                        }
+                    }
+                    .input-holder {
+                        background: $primary-light-d;
+                        svg {
+                           path {
+                                color: $text-color-d;
+                           } 
+                        }
+                        input {
+                            color: $text-color-d;
+                        }
+                    }
+                }
+            }
+            .search-status-label {
+                color: $text-color-primary;
+            }
+        }
+        .filter-block {
+           
+            >a {
+                background-color: $primary-light-d;
+                color: $text-color-d;
+                &:hover {
+                    color: $text-color-d;
+                }
+                svg {
+                    fill: transparent;
+                    stroke: $text-color-d;
+                    &.arrow {
+                        fill: $text-color-d;
+                        stroke: none;
+                    }
+                }
+            }
+            .dropdown-menu {
+                background: $primary-light-d;
+            }
+            .search-facets {
+                .search-facets-lists {
+                    h3 {
+                        color: $text-color-d;
+                    }
+                    ul.facet-list {
+                        li {
+                            button.facet-option {
+                                color: $text-color-d;
+                                &.selected {
+                                    .count {
+                                        background: $primary-d;
+                                        border-color: $primary-d;
+                                        &:before {
+                                            color: $btn-color-d;
+                                        }
+                                    }
+                                }
+                                .count {
+                                    border: 1px solid $text-color-d;
+                                    background: $text-color-d;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .courses-container {
+        .courses {
+            .courses-listing {
+                li {
+                    .course {
+                        box-shadow: none;
+                        border: 1px solid $border-color-d;
+                        background: $primary-light-d;
+                        .course-info {
+                            .course-title {
+                                color: $text-color-d;
+                            }
+                            .course-organization {
+                                color: $text-color-primary;
+                            }
+                            .learn-more {
+                                background: $primary-d;
+                                color: $btn-color-d;
+                            }
+                            .course-date {
+                                border-top: 1px solid $border-color-d;
+                                color: $text-color-primary;
+                                background: $light-overlay-d;
+                                svg {
+                                    path {
+                                        fill: $text-color-primary;
+                                    }
+                                }
                             }
                         }
                     }

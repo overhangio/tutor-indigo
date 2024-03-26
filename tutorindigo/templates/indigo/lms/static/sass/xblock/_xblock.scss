@@ -1,0 +1,274 @@
+// Include custom xblocks
+.wrap-instructor-info a.instructor-info-action {
+    background: $primary !important;
+    color: white !important;
+}
+.indigo-dark-theme { 
+    select {
+        background: transparent;
+        color: $text-color-d;
+    }
+    .xblock--drag-and-drop {
+        .keyboard-help-dialog {
+            .modal-window {
+                background: $primary-light-d;
+            }
+            .modal-content {
+                background: $primary-light-d;
+            }
+            .modal-dismiss-button {
+                color: $text-color-d;
+            }
+        }
+    }
+    .xmodule_display.xmodule_AboutBlock a:link, 
+    .xmodule_display.xmodule_AboutBlock a:visited, 
+    .xmodule_display.xmodule_AboutBlock a:hover, 
+    .xmodule_display.xmodule_AboutBlock a:active, 
+    .xmodule_display.xmodule_AboutBlock a:focus, 
+    .xmodule_display.xmodule_CourseInfoBlock a:link, 
+    .xmodule_display.xmodule_CourseInfoBlock a:visited, 
+    .xmodule_display.xmodule_CourseInfoBlock a:hover, 
+    .xmodule_display.xmodule_CourseInfoBlock a:active, 
+    .xmodule_display.xmodule_CourseInfoBlock a:focus, 
+    .xmodule_display.xmodule_HtmlBlock a:link, 
+    .xmodule_display.xmodule_HtmlBlock a:visited, 
+    .xmodule_display.xmodule_HtmlBlock a:hover, 
+    .xmodule_display.xmodule_HtmlBlock a:active, 
+    .xmodule_display.xmodule_HtmlBlock a:focus, 
+    .xmodule_display.xmodule_StaticTabBlock a:link, 
+    .xmodule_display.xmodule_StaticTabBlock a:visited, 
+    .xmodule_display.xmodule_StaticTabBlock a:hover, 
+    .xmodule_display.xmodule_StaticTabBlock a:active, 
+    .xmodule_display.xmodule_StaticTabBlock a:focus {
+        color: $primary-d;
+    }
+    .xmodule_display.xmodule_AboutBlock p, 
+    .xmodule_display.xmodule_CourseInfoBlock p, 
+    .xmodule_display.xmodule_HtmlBlock p, 
+    .xmodule_display.xmodule_StaticTabBlock p {
+        color: $text-color-d;
+    }
+    .xmodule_display.xmodule_AboutBlock ol, 
+    .xmodule_display.xmodule_AboutBlock ul, 
+    .xmodule_display.xmodule_CourseInfoBlock ol, 
+    .xmodule_display.xmodule_CourseInfoBlock ul, 
+    .xmodule_display.xmodule_HtmlBlock ol, 
+    .xmodule_display.xmodule_HtmlBlock ul, 
+    .xmodule_display.xmodule_StaticTabBlock ol, 
+    .xmodule_display.xmodule_StaticTabBlock ul {
+        color: $text-color-d;
+    }
+    .xmodule_display.xmodule_AboutBlock pre, 
+    .xmodule_display.xmodule_CourseInfoBlock pre, 
+    .xmodule_display.xmodule_HtmlBlock pre, 
+    .xmodule_display.xmodule_StaticTabBlock pre {
+        color: $text-color-d;
+    }
+    .hd-1, .hd-2, .hd-3, .hd-4, .hd-5, .hd-6, .hd-7, .hd-8 {
+        color: $text-color-d;
+    }
+    .xmodule_display.xmodule_AboutBlock img, 
+    .xmodule_display.xmodule_CourseInfoBlock img, 
+    .xmodule_display.xmodule_HtmlBlock img, 
+    .xmodule_display.xmodule_StaticTabBlock img {
+        background-color: $text-color-d
+    }
+    .wrap-instructor-info a.instructor-info-action {
+        background: $primary-d !important;
+        color: $btn-color-d !important;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem-progress {
+        color: $text-color-d;
+    }
+    .content-wrapper #main .xblock .btn-link {
+        color: $primary-d;
+        &:hover, &:focus {
+            color: $primary-d !important;
+        }
+    }
+    .xblock--drag-and-drop .problem-progress {
+        color: $text-color-d;
+    }
+    .xblock--drag-and-drop .title1 {
+        color: $text-color-d;
+    }
+    .xblock--drag-and-drop .drag-container {
+        background: $primary-light-d;
+    }
+    .xblock--drag-and-drop .drag-container .option {
+        background: $primary-d;
+        color: $btn-color-d;
+    }
+    .xblock--drag-and-drop .btn-default:hover, 
+    .xblock--drag-and-drop .btn-default.is-hovered, 
+    .xblock--drag-and-drop .btn-default:focus, 
+    .xblock--drag-and-drop .btn-default.is-focused {
+        border: 1px solid $primary-d;
+        color: $primary-d;
+    }
+    .xmodule_display.xmodule_VideoBlock .video {
+        background-color: $primary-light-d;
+    }
+    .wrapper--xblock .problem__header {
+        color: $text-color-d;
+    }
+    .wrapper--xblock .message .message__content {
+        color: $text-color-d;
+    }
+    .wrapper--openassessment .wrapper--staff-area .wrapper--staff-toolbar .ui-staff__button,
+    .openassessment .ui-slidable__container .ui-slidable:not([disabled]) {
+        color: $text-color-d;
+        &:hover {
+            background: $primary-light-d !important;
+        }
+    }
+    .openassessment .openassessment__steps__step.is--in-progress .step__status__value {
+        background: $primary-d;
+    }
+    .openassessment .is--in-progress.openassessment__steps__step {
+        border-color: $primary-d;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: $text-color-d;
+    }
+    .openassessment .openassessment__steps .openassessment__steps__step .step__header .step__title .step__counter:before {
+        color: $text-color-d;
+    }
+    .openassessment .openassessment__steps__step .step__instruction,
+    .openassessment .submission__answer__part__prompt__copy {
+        color: $text-color-d;
+    }
+    .openassessment .list--actions .action--submit, .openassessment .openassessment_student_info_form .action--submit-username {
+        border-color: $primary-d !important;
+        background: $primary-d !important;
+        color: $btn-color-d !important;
+    }
+    .openassessment .openassessment__steps__step.is--unavailable .step__counter:before, 
+    .openassessment .openassessment__steps__step.is--unavailable .step__label, 
+    .openassessment .openassessment__steps__step.is--unavailable .step__deadline {
+        color:$text-color-d;
+    }
+    .wrapper--xblock input[type=text], .wrapper--xblock input[type=email], .wrapper--xblock input[type=password], .wrapper--xblock textarea {
+        background: none !important;
+        border-color: $primary-d;
+        color: $text-color-d;
+    }
+    .openassessment .step--self-assessment .self-assessment__assessment .response__submission__label, .openassessment .step--peer-assessment .peer-assessment__assessment .response__submission__label, .openassessment .step--response .response__submission__actions .response__submission__label, .openassessment .step--response .response__submission__content .response__submission__label {
+        color: $text-color-d;
+    }
+    .openassessment .openassessment__steps__step {
+        background: none;
+    }
+    .openassessment .step--response .response__submission {
+        background: $primary-light-d;
+    }
+    .openassessment .submission__answer__part__prompt {
+        background: none;
+        border-color: $primary-d;
+    }
+
+
+    .xmodule_display.xmodule_ProblemBlock div.problem .question-description {
+        color: $text-color-primary;
+    }
+    label, .openassessment .step--grade .grade__value__description {
+        color: $text-color-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input:focus+label, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+label, .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input:hover+label, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+label {
+        border-color: $primary-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input+label.choicegroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input+label.choicegroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input+label.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input+label.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input+section.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input+section.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input:focus+label.choicegroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+label.choicegroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:focus+label.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+label.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:focus+section.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+section.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input:hover+label.choicegroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+label.choicegroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:hover+label.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+label.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:hover+section.choicetextgroup_incorrect, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+section.choicetextgroup_incorrect,
+    .xmodule_display.xmodule_ProblemBlock div.problem .notification.error {
+        border-color: $danger-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .indicator-container .status.incorrect .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .notification.error .icon {
+        color: $danger-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock .problem .capa_inputtype.textline > .incorrect input, .xmodule_display.xmodule_ProblemBlock .problem .inputtype.formulaequationinput > .incorrect input {
+        border-color: $danger-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock .problem .capa_inputtype.textline > .incorrect .status .status-icon:after, 
+    .xmodule_display.xmodule_ProblemBlock .problem .inputtype.formulaequationinput > .incorrect .status .status-icon:after {
+        color: $danger-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input+label.choicegroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input+label.choicegroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input+label.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input+label.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input+section.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input+section.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input:focus+label.choicegroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+label.choicegroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:focus+label.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+label.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:focus+section.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+section.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input:hover+label.choicegroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+label.choicegroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:hover+label.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+label.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:hover+section.choicetextgroup_correct, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+section.choicetextgroup_correct {
+        border-color: $success-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input+label.choicegroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input+label.choicegroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input+label.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input+label.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input+section.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input+section.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input:focus+label.choicegroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+label.choicegroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:focus+label.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+label.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:focus+section.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:focus+section.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup input:hover+label.choicegroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+label.choicegroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:hover+label.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+label.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup .choicegroup input:hover+section.choicetextgroup_correct .status-icon::after, .xmodule_display.xmodule_ProblemBlock div.problem .choicetextgroup input:hover+section.choicetextgroup_correct .status-icon::after {
+        color: $success-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .notification.general, .xmodule_display.xmodule_ProblemBlock div.problem .notification.general .icon {
+        border-color: $primary-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .action .submit-attempt-container .submit {
+        background: $primary-d;
+        border-color: $primary-d;
+        color: $btn-color-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .action .problem-action-btn:hover, 
+    .xmodule_display.xmodule_ProblemBlock div.problem .action .problem-action-btn:focus, 
+    .xmodule_display.xmodule_ProblemBlock div.problem .action .problem-action-btn:active,
+    .xmodule_display.xmodule_ProblemBlock div.problem .notification.general .icon {
+        color: $primary-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock .problem .capa_inputtype.textline>.unanswered input, .xmodule_display.xmodule_ProblemBlock .problem .capa_inputtype.textline>.unsubmitted input, .xmodule_display.xmodule_ProblemBlock .problem .inputtype.formulaequationinput>.unanswered input, .xmodule_display.xmodule_ProblemBlock .problem .inputtype.formulaequationinput>.unsubmitted input {
+        color: $text-color-d;
+        background: none;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem div div.equation span.MathJax_CHTML, .xmodule_display.xmodule_ProblemBlock div.problem div div.equation span.MathJax, .xmodule_display.xmodule_ProblemBlock div.problem div div.equation span.MathJax_SVG {
+        background: $primary-light-d;
+    }
+    .step--student-training .student-training__assessment 
+    .assessment__rubric__question--feedback textarea, 
+    .step--student-training .student-training__display__response, 
+    .openassessment .submission__feedback__fields textarea, .openassessment 
+    .step--self-assessment .self-assessment__assessment .assessment__rubric__question--feedback textarea, 
+    .openassessment .step--self-assessment .self-assessment__display__response, 
+    .openassessment .step--peer-assessment .peer-assessment__assessment .assessment__rubric__question--feedback textarea, 
+    .openassessment .step--peer-assessment .peer-assessment__display__response, 
+    .openassessment .step--response .response__submission__content .submission__file__description textarea, 
+    .openassessment .step--response .response__submission__content .submission__answer__part__text textarea, 
+    .openassessment .staff-assessment__assessment .assessment__rubric__question--feedback textarea, .openassessment 
+    .staff-assessment__display__response, .step--response .step__rubric .question__answers .answer--feedback .answer__value, 
+    .step--student-training .student-training__assessment .question__answers .answer--feedback .answer__value, .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer--feedback .answer__value, 
+    .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer--feedback .answer__value, .openassessment .staff-assessment__assessment .question__answers .answer--feedback .answer__value {
+        overflow-y: auto;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .notification.warning {
+        border-color: $danger-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .notification.warning .icon {
+        color: $danger-d;
+    }
+    .xmodule_display.xmodule_ProblemBlock div.problem .notification.problem-hint {
+        background: $primary-light-d;
+        border-color: $primary-light-d;
+        .icon {
+            color: $text-color-d;
+        }
+        .notification-message {
+            ol {
+                li {
+                    color: $text-color-d;
+                    strong {
+                        color: $text-color-d;
+                    }
+                }
+            }
+        }
+        .notification-btn-wrapper {
+            button {
+                border-color: $primary-d !important;
+                background: none !important;
+                color: $primary-d;
+            }
+        }
+    }
+}
+.wrapper-problem-response {
+    select {
+        background: transparent;
+        color: $text-color-d;
+    }
+}
