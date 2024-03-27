@@ -27,6 +27,7 @@ course_mode_class = course_mode if course_mode else ''
     <title>${document_title}</title>
 
     <%static:css group='style-certificates'/>
+    <!-- NEW IN INDIGO: add main project style sheet -->
     <%static:css group='style-main-v1'/>
 
     <% ga_4_id = static.get_value("GOOGLE_ANALYTICS_4_ID", settings.GOOGLE_ANALYTICS_4_ID) %>
