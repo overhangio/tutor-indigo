@@ -105,6 +105,21 @@ This new template will then be used to render the /donate url.
 Troubleshooting
 ---------------
 
+Can't override styles using Indigo Theme for MFEs
+-------------------------------------------------
+
+The indigo theme can’t override styles for MFEs directly. It overrides the styles for edx-platform. In case of MFEs, `@edx/brand <https://github.com/openedx/brand-openedx>`_ is used to override the styles. Customize the ``@edx/brand`` package to your preferences and include this customized package in `tutor-indigo` plugin. In this way, styles can be overidden::
+
+
+    hooks.Filters.ENV_PATCHES.add_item((
+                "mfe-dockerfile-post-npm-install",
+                """
+    RUN npm install '@edx/brand@npm:custom-brand-package'
+    RUN npm install '@edx/brand@git+https://github.com/username/brand-openedx.git#custom-branch'
+    """,
+            ))
+
+
 This Tutor plugin is maintained by Hina Khadim from `Edly <https://edly.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
 
 
