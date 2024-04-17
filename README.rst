@@ -29,6 +29,7 @@ Configuration
 - ``INDIGO_WELCOME_MESSAGE`` (default: "The place for all your online learning")
 - ``INDIGO_PRIMARY_COLOR`` (default: "#3b85ff")
 - ``INDIGO_FOOTER_NAV_LINKS`` (default: ``[{"title": "About", "url": "/about"}, {"title": "Contact", "url": "/contact"}]``)
+- ``INDIGO_ENABLE_DARK_THEME`` (default: False)
 
 The ``INDIGO_*`` settings listed above may be modified by running ``tutor config save --set INDIGO_...=...``. For instance, to remove all links from the footer, run::
 
@@ -38,6 +39,20 @@ Or, to set the primary color to forest green, run::
 
     # Note: The nested quotes are needed in order to handle the hash (#) correctly.
     tutor config save --set 'INDIGO_PRIMARY_COLOR="#225522"'
+
+Enabling Dark Theme
+-------------------
+
+To enable the dark theme for the whole platform, run::
+
+    tutor config save --set INDIGO_ENABLE_DARK_THEME=True
+    tutor images build openedx
+    tutor images build mfe
+    tutor local start -d
+
+.. warning:: 
+    The dark theme can't be changed dynamically through any toggle button in platform. Using the above config variable, the platform will start with either Light theme or Dark theme.
+
 
 Customization
 -------------
