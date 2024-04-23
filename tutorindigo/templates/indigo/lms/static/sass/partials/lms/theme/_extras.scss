@@ -281,10 +281,14 @@ nav.wrapper-preview-menu {
     }
   }
 }
-
+body.indigo-dark-theme {
+  .find-courses, .university-profile {
+    background-color: $body-bg-d;
+  }
+  
+}
 @import '../../../extra/footer';
 @import '../../../extra/header';
-@import '../../../dashbord/dashbord';
 @import '../../../courseware/discover';
 @import '../../../courseware/about';
 @import '../../../courseware/bookmarks';

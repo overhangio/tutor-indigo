@@ -10,7 +10,9 @@
     }
     header.course-profile {
         overflow: visible;
+        background: none;
         .intro-inner-wrapper {
+            background: none;
             padding: 0 0 60px;
             @include media-breakpoint-up(md) {
                 padding: 0 0 20px;
@@ -356,6 +358,98 @@
                     }
                     @include media-breakpoint-up(lg) {
                         float: right;
+                    }
+                }
+            }
+        }
+    }
+}
+body.indigo-dark-theme {
+    .course-info.about {
+        .intro-inner-wrapper .profile-top {
+            .info-profile {
+                h1 {
+                    color: $text-color-d;
+                }
+                .org {
+                    color: $text-color-primary;
+                }
+            }
+            .media {
+                .hero {
+                    &:after {
+                        background: $primary-light-d;
+                    }
+                }
+            }
+        }
+        .main-cta {
+            a {
+                span {
+                    color: $text-color-d;
+                    background: none;
+                    border: 1px solid $text-color-d;
+                }
+            }
+            a.register, a strong {
+                color: $btn-color-d;
+                background: $primary-d;
+            }
+            span.closed {
+                background: $primary-light-d;
+            }
+        }
+        .about-content {
+            .details {
+                .about, .prerequisites, .course-staff, .faq {
+                    color: $text-color-d;
+                    border: 1px solid $primary-light-d;
+                    border-left: 14px solid $primary-light-d;
+                    h2 {
+                        color: $text-color-d;
+                    }
+                    h3 {
+                        color: $text-color-d;
+                    }
+                    .teacher {
+                        &.update {
+                            @include media-breakpoint-up(md) {
+                                &:after {
+                                    background: $primary-light-d;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .course-sidebar {
+            background: $primary-light-d;
+            h2 {
+                color: $text-color-d;
+            }
+            header {
+                .social-sharing {
+                    .sharing-message {
+                        background: $primary-light-d;
+                        border-top: 4px solid $primary-d;
+                        color: $text-color-d;
+                    }
+                }
+            }
+            .important-dates {
+                li {
+                    svg, .fa {
+                        color: $text-color-primary;
+                        path {
+                            fill: $text-color-primary;
+                        }
+                    }
+                    p {
+                        color: $text-color-primary;
+                    }
+                    .important-dates-item-text {
+                        color: $text-color-primary;
                     }
                 }
             }

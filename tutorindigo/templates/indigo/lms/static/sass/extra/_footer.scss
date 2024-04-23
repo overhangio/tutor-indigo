@@ -98,3 +98,37 @@ footer.tutor-container {
         color: $light-drak;
     }
 }
+
+body.indigo-dark-theme {
+    .wrapper-footer {
+        border-top: 1px solid $border-color-d;
+        background: $body-bg-d;
+    }
+    footer.tutor-container {
+        .logo-list {
+            li {
+                color: $text-color-primary;
+                &:last-child {
+                    &:after {
+                        background: $text-color-primary;
+                    }
+                }
+            }
+        }
+        .nav-colophon {
+            ol {
+                li {
+                    a {
+                        color:$text-color-primary;
+                        &:hover {
+                            color: $text-color-d;
+                        }
+                    }
+                }
+            }
+        }
+        .copyright-site {
+            color: $text-color-primary;
+        }
+    }
+}
