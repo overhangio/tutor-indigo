@@ -277,6 +277,9 @@ nav.wrapper-preview-menu {
          width: 100%;
          display: block;
          height: auto;
+         &.dark {
+          display: none;
+         }
       }
     }
   }
