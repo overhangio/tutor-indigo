@@ -285,7 +285,23 @@ body.indigo-dark-theme {
   .find-courses, .university-profile {
     background-color: $body-bg-d;
   }
-  
+  .container.about {
+    color: $text-color-primary;
+    h1 {
+      color: $primary-d;
+    }
+    a {
+      color: $primary-d;
+    }
+    .graphic-img {
+      img {
+        display: none;
+        &.dark {
+          display: block;
+        }
+      }
+    }
+  } 
 }
 @import '../../../extra/footer';
 @import '../../../extra/header';
