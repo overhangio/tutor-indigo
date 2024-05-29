@@ -167,8 +167,8 @@ header.global-header {
 
 
 body.indigo-dark-theme {
-    background: $body-bg-d;
-    color: $text-color-d;
+    background: $body-bg-d !important;
+    color: $text-color-d !important;
     .window-wrap {
         background: $body-bg-d;
     }

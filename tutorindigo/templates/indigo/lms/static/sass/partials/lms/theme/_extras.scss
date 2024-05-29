@@ -284,9 +284,73 @@ nav.wrapper-preview-menu {
     }
   }
 }
+body.view-statictab {
+  .wrapper-course-material {
+    margin: 0 auto;
+    max-width: 1090px;
+    padding: 20px 15px !important;
+    .tabs.course-tabs {
+      margin: 0 0 10px;
+      border-bottom: 1px solid $primary-light-d;
+      li {
+        margin: 0 32px 0 0;
+        a {
+          border-width: 2px;
+          font-size: 14px;
+          font-weight: 500;
+          color: $light-drak;
+          &:hover, &:visited {
+            color: $drak;
+            border-color: transparent;
+          }
+          &.active {
+            color: $drak;
+            border-color: $primary;
+          }
+        }
+      }
+    }
+  }
+  #main {
+    .container {
+      padding: 0;
+    }
+    .static_tab_wrapper {
+        border: none;
+        max-width: 1090px;
+        padding: 0 15px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        background: no-repeat;
+    }
+  }
+}
 body.indigo-dark-theme {
+  * {
+    accent-color: $primary-d
+  }
   .find-courses, .university-profile {
     background-color: $body-bg-d;
+  }
+  &.view-statictab {
+    .wrapper-course-material {
+      .tabs.course-tabs {
+        border-bottom: 1px solid $primary-light-d;
+        li {
+          a {
+            color: $text-color-d;
+            &:hover, &:visited {
+              color: $text-color-primary;
+              border-color: transparent;
+            }
+            &.active {
+              color: $text-color-d;
+              border-color: $text-color-d;
+            }
+          }
+        }
+      }
+    }
   }
   .container.about {
     color: $text-color-primary;
@@ -314,6 +378,6 @@ body.indigo-dark-theme {
 @import '../../../home/home';
 @import '../../../programs/programs';
 @import '../../../certificates/certificate';
-
+@import '../../../xblock/xblock';
 
 
