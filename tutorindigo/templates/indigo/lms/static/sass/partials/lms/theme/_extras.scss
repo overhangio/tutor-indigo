@@ -284,7 +284,7 @@ nav.wrapper-preview-menu {
     }
   }
 }
-body.view-statictab {
+body.view-statictab, body.view-instructordash, body.view-teams {
   .wrapper-course-material {
     margin: 0 auto;
     max-width: 1090px;
@@ -325,14 +325,50 @@ body.view-statictab {
     }
   }
 }
+body.view-teams {
+  .container {
+    max-width: 1092px !important;
+    padding: 0 15px !important;
+    margin: 0 auto;
+    >div {
+      border: none;
+      background: none;
+    }
+  }
+}
+body.view-instructordash {
+  .container {
+    max-width: 1092px !important;
+    padding: 0 15px !important;
+    margin: 0 auto;
+    >div {
+      border: none;
+      background: none;
+    }
+  }
+  .instructor-dashboard-content-2 {
+    padding: 0;
+  }
+}
 body.indigo-dark-theme {
+  input::placeholder {
+      opacity: .9;
+      color: $text-color-d;
+    }
   * {
-    accent-color: $primary-d
+    accent-color: $primary-d;
+    scrollbar-color: $text-color-d $body-bg-d;
   }
   .find-courses, .university-profile {
     background-color: $body-bg-d;
   }
-  &.view-statictab {
+  .idash-section .no-pending-tasks-message p {
+    color: $text-color-d;
+  }
+  &.view-statictab, &.view-instructordash, &.view-teams {
+    .window-wrap {
+      background: none;
+    }
     .wrapper-course-material {
       .tabs.course-tabs {
         border-bottom: 1px solid $primary-light-d;
