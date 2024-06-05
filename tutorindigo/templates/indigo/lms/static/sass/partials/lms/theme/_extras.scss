@@ -14,6 +14,15 @@ body, body.view-profile {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: $drak;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: none;
+}
 .page-content-container {
   max-width: 1090px;
   margin: 0 auto;
@@ -617,6 +626,12 @@ body.view-wiki{
   }
 }
 body.indigo-dark-theme {
+  input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-text-fill-color: $text-color-d;
+}
   input::placeholder {
       opacity: .9;
       color: $text-color-d;
