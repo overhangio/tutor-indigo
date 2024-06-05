@@ -4,7 +4,9 @@ $content_padding_top: 24px;
 $content-padding-bottom: 10px;
 $header-height: 75px;
 $footer-height: 125.5px;
-
+body, h1, h2, h3, h4, h5, h6, p, label, button {
+  font-family: $font-family-title !important;
+}
 body, body.view-profile {
   min-height: initial;
   background-color: #fff;
@@ -284,14 +286,14 @@ nav.wrapper-preview-menu {
     }
   }
 }
-body.view-statictab, body.view-instructordash, body.view-teams {
+body.view-statictab, body.view-instructordash, body.view-teams, body.view-wiki {
   .wrapper-course-material {
     margin: 0 auto;
     max-width: 1090px;
     padding: 20px 15px !important;
     .tabs.course-tabs {
       margin: 0 0 10px;
-      border-bottom: 1px solid $primary-light-d;
+      border-bottom: 1px solid #E5E7EB;
       li {
         margin: 0 32px 0 0;
         a {
@@ -348,12 +350,280 @@ body.view-instructordash {
   }
   .instructor-dashboard-content-2 {
     padding: 0;
+    h2.instructor-dashboard-title {
+      font-size: 24px;
+      line-height: 30px;
+    }
+    a.instructor-info-action {
+      background: $primary;
+      color: white;
+      margin: 0 0 10px;
+    }
+    .instructor-nav {
+      overflow: hidden;
+      width: 100%;
+      white-space: nowrap;
+      overflow-x: auto;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      padding: 0 !important;
+      letter-spacing: -.32em;
+      li {
+        letter-spacing: normal;
+        &:first-child {
+          button {
+            border: none;
+          }
+        }
+        button {
+          border: none !important;
+          border-radius: 0 !important;
+          border-left: 1px solid #E5E7EB !important;
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 500;
+          padding: 9px 17px;
+          color: #374151;
+          text-decoration: none !important;
+          &.active-section {
+            background: $primary !important;
+            color: white !important;
+          }
+          &:hover {
+            color: $drak;
+          }
+        }
+      }
+    }
+    .enrollment-wrapper {
+      margin: 0;
+      table {
+        width: 100%;
+        th, td {
+          padding: 10px;
+          width: 50%;
+          font-size: 16px;
+          line-height: 28px;
+          font-weight: 400;
+          color: #111827;
+        }
+        .total {
+          border-top: 1px solid #E5E7EB;
+          th, td {
+            color: $primary;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+    .info-holder, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
+      background: $primary-light;
+      padding: 15px;
+      margin: 0 0 30px;
+      h4 {
+        font-size: 18px;
+        color: $drak;
+        font-weight: 600;
+        span  {
+          font-size: 14px;
+          font-weight: normal;
+          color: $light-drak;
+        }
+      }
+    }
+    .list-input {
+      list-style: none;
+      padding: 0;
+      li {
+        display: flex;
+        font-size: 16px;
+        line-height: 28px;
+        label, b {
+          font-weight: normal;
+          font-style: normal;
+          font-size: 16px;
+          padding: 10px;
+          line-height: 28px;
+          margin: 0;
+          width: 50%;
+          color:#111827;
+        }
+      }
+    }
+  }
+  .enrollment-button, input[type=button], button.btn {
+    background: $primary;
+    border-color: $primary;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: none;
+  }
+}
+body.view-wiki{
+   .container{
+    max-width: 1090px !important;
+    margin: 0 auto !important;
+    padding: 0 15px !important;
+    >div {
+      background: none;
+      box-shadow: none;
+      border: none;
+    }
+    .wiki {
+      .breadcrumbs-header {
+        padding: 15px;
+        background: $primary-light;
+        border-radius: 8px;
+        border: none;
+        height: auto;
+        overflow: hidden;
+        margin: 0 0 30px;
+        .global-functions {
+          margin: 0 0 0 10px;
+          a.add-article-btn {
+            margin: 0;
+            background: $primary;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: none;
+            border: none;
+            padding: 5px 15px !important;
+            line-height: 28px;
+            text-shadow: none;
+          }
+        }
+        .breadcrumb {
+          margin: 0;
+          li {
+            &:after {
+              color: #6B7280;
+            }
+            a {
+              font-size: 14px;
+              font-weight: 500;
+              color: #6B7280;
+            }
+          }
+        }
+      }
+      .new-article {
+        padding: 10px 0;
+      }
+    }
+    .page-header, h1 {
+      border-bottom: none;
+      font-size: 20px;
+      padding: 0;
+      margin: 0 0 10px;
+    }
+    .article-wrapper {
+      border: 1px solid #F2F7F8;
+      border-radius: 8px;
+      padding: 15px;
+      &:after {
+        display: block;
+        clear: both;
+        content: "";
+      }
+      .main-article {
+        padding: 0;
+        width: calc(100% - 240px - 40px);
+        margin: 0 40px 0 0;
+        font-size: 14px;
+        line-height: 28px;
+        p {
+          margin: 0 0 15px;
+        }
+        h3.entry-title {
+          margin: 0 0 15px;
+          font-size: 18px;
+          line-height: 28px;
+          font-weight: 600;
+          border: none;
+          padding: 0;
+        }
+      }
+      .article-functions {
+        padding: 0;
+        width: 240px;
+        .nav-tabs {
+          li {
+            margin: 0 0 1px;
+            a {
+              font-size: 14px;
+              line-height: 28px;
+              font-weight: 500;
+              color: $primary;
+              padding: 6px 10px;
+              &:hover {
+                text-decoration: none;
+                font-weight: 500;
+                border: none;
+                background: $primary-light;
+              }
+              .icon {
+                font-size: 18px;
+                line-height: 28px;
+                color: #82919B;
+                margin: 0;
+              }
+            }
+            &.active {
+              a {
+                border: none;
+                color: $primary;
+                background: $primary-light;
+              }
+            }
+          }
+        }
+        .timestamp {
+          border: 1px solid #E5E7EB;
+          border-radius: 8px;
+          border-left: 6px solid $primary-light;
+          padding: 15px;
+          .label {
+            font-weight: 500;
+            font-size: 12px;
+            color: #4B5563;
+          }
+          .date {
+            font-weight: 500;
+            font-size: 14px;
+            color: #4B5563;
+          }
+        }
+        .see-children {
+          border: none;
+          a {
+            background: $primary;
+            padding: 6px 15px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px;
+            &:hover, &:focus {
+              font-weight: 500;
+              color: white;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
   }
 }
 body.indigo-dark-theme {
   input::placeholder {
       opacity: .9;
       color: $text-color-d;
+    }
+    textarea, form#wiki_revision .CodeMirror, input[type="text"], input[type="email"], input[type="password"] {
+      background: transparent;
+      color: white;
     }
   * {
     accent-color: $primary-d;
@@ -365,9 +635,12 @@ body.indigo-dark-theme {
   .idash-section .no-pending-tasks-message p {
     color: $text-color-d;
   }
-  &.view-statictab, &.view-instructordash, &.view-teams {
+  &.view-statictab, &.view-instructordash, &.view-teams, &.view-wiki {
     .window-wrap {
       background: none;
+    }
+    #email-students-beta-tip {
+      color: #111827;
     }
     .wrapper-course-material {
       .tabs.course-tabs {
@@ -387,7 +660,223 @@ body.indigo-dark-theme {
         }
       }
     }
+    .instructor-dashboard-content-2 {
+      a.instructor-info-action {
+        background: $primary-d;
+        color: $btn-color-d;
+      }
+      .ui-widget-content {
+        background: none;
+        color: $text-color-d;
+        border: 1px solid $primary-light-d;
+      }
+      .ui-accordion-header {
+        background: $primary-d;
+        color: $btn-color-d;
+        font-size: 14px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .ecommerce-wrapper span.tip,
+      .proctoring-wrapper span.tip {
+        background: $primary-light-d;
+        color: $text-color-d;
+        border: none;
+        a.blue-button {
+          background: $primary-d;
+          border-color: $primary-d;
+          color: $btn-color-d !important;
+          text-shadow: none;
+          box-shadow: none;
+          font-weight: 500;
+        }
+      }
+      .enrollment-button, input[type=button], button.btn {
+        background: $primary-d;
+        border-color: $primary-d;
+        color: $btn-color-d !important;
+        text-shadow: none;
+      }
+      .instructor-nav {
+        border: 1px solid #E5E7EB;
+        li {
+          &:first-child {
+            button {
+              border: none;
+            }
+          }
+          button {
+            border: none !important;
+            border-radius: 0 !important;
+            border-left: 1px solid #E5E7EB !important;
+            color: $text-color-primary;
+            &.active-section {
+              background: $primary-d !important;
+              color: $btn-color-d !important;
+            }
+            &:hover {
+              color: $text-color-d;
+            }
+          }
+        }
+      }
+      .enrollment-wrapper {
+        table {
+          th, td {
+            color: $text-color-d;
+          }
+          .total {
+            border-top: 1px solid #E5E7EB;
+            th, td {
+              color: $primary-d;
+            }
+          }
+        }
+      }
+      .info-holder, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
+        background: $primary-light-d;
+        h4 {
+          color: $text-color-d;
+          span  {
+            color: $text-color-primary;
+          }
+        }
+      }
+      .list-input {
+        li {
+          label, b {
+            color: $text-color-d;
+          }
+        }
+      }
+      .open-response-assessment-block .open-response-assessment-main-table {
+        th {
+          background: $primary-light-d;
+          color: $text-color-d !important;
+          button {
+            text-shadow: none !important;
+            color: $text-color-d !important;
+          }
+        }
+        tbody tr:nth-child(odd) {
+          background: $primary-light-d;
+          color: $text-color-d !important;
+        }
+      }
+    }
   }
+  &.view-wiki{
+    .CodeMirror-scroll {
+      background: $body-bg-d;
+      * {
+        color: $text-color-d !important;
+      }
+    }
+    .wiki-wrapper label {
+      color: $text-color-d !important;
+      section.wiki .main-article {
+        color: $text-color-d;
+      }
+    }
+    .wiki-wrapper section.wiki .btn {
+      background: none;
+      color: $text-color-d !important;
+      border-color: $text-color-d !important;
+      text-shadow: none !important;
+    }
+    .wiki-wrapper section.wiki .btn.btn-primary, .wiki-wrapper section.wiki .btn.btn-brand {
+      background: $primary-d !important;
+      border-color: $primary-d !important;
+      color: $btn-color-d !important;
+      box-shadow: none;
+    }
+    .wiki-wrapper section.wiki.history .accordion {
+      background: $primary-light-d;
+      border: none;
+      small {
+        color: $text-color-d;
+      }
+    } 
+    .container{
+     .wiki {
+       .breadcrumbs-header {
+         background: $primary-light-d;
+         .global-functions {
+           a.add-article-btn {
+             background: $primary-d;
+             color: $btn-color-d !important;
+           }
+         }
+         .breadcrumb {
+           li {
+             &:after {
+               color: $text-color-primary;
+             }
+             a {
+               color: $text-color-primary;
+             }
+           }
+         }
+       }
+       .main-article {
+        color: $text-color-d
+       }
+     }
+     .article-wrapper {
+       border: 1px solid $primary-light-d;
+       .main-article {
+          color: $text-color-d !important;
+         p {
+           color: $text-color-d;
+         }
+         h3.entry-title {
+          color: $text-color-d;
+         }
+       }
+       .article-functions {
+         .nav-tabs {
+           li {
+             a {
+               color: $primary-d;
+               &:hover {
+                 background: $primary-light-d;
+                 color: $text-color-d;
+               }
+               .icon {
+                 color: $text-color-primary;
+               }
+             }
+             &.active {
+               a {
+                 background: $primary-light-d;
+                 color: $text-color-d;
+               }
+             }
+           }
+         }
+         .timestamp {
+           border: 1px solid $primary-light-d;
+           border-left: 6px solid $primary-light-d;
+           .label {
+             color: $text-color-d;
+           }
+           .date {
+             color: $text-color-d;
+           }
+         }
+         .see-children {
+           a {
+             background: $primary-d;
+             color: $btn-color-d;
+             &:hover, &:focus {
+               color: $btn-color-d;
+             }
+           }
+         }
+       }
+     }
+   }
+ }
   .container.about {
     color: $text-color-primary;
     h1 {
@@ -403,6 +892,51 @@ body.indigo-dark-theme {
           display: block;
         }
       }
+    }
+  }
+  .modal {
+    background: $primary-light-d !important;
+    .modal-header {
+      color: $text-color-d !important
+    }
+    select, textarea {
+      background: transparent;
+      color: white;
+    }
+    input[type=submit] {
+      background: $primary-d;
+      border-color: $primary-d;
+      color: $btn-color-d !important;
+      text-shadow: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+  .wrapper-member-select {
+    background: $primary-light-d !important;
+    select {
+      background: none;
+      color: $text-color-d;
+    }
+  }
+  .auth-list-container .info {
+    color: $text-color-d !important
+  }
+  .member-list {
+    .label {
+      color: $text-color-d !important;
+      background: $primary-light-d !important;
+    }
+  }
+  .bottom-bar {
+    background: $primary-light-d !important;
+    input[type="button"] {
+      background: $primary-d !important;
+      border-color: $primary-d !important;
+      color: $btn-color-d !important;
+      text-shadow: none !important;
+      font-size: 14px;
+      font-weight: 500;
     }
   } 
 }
