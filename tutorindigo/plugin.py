@@ -14,7 +14,7 @@ if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
 
-FILES_NOT_TO_RENDER = ['indigo/lms/templates/logout.html']
+FILES_NOT_TO_RENDER = ['indigo/lms/templates/main_django.html']
 
 ################# Configuration
 config: t.Dict[str, t.Dict[str, t.Any]] = {
