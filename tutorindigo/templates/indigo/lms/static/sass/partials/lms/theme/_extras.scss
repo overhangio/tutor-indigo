@@ -7,6 +7,9 @@ $footer-height: 125.5px;
 body, h1, h2, h3, h4, h5, h6, p, label, button {
   font-family: $font-family-title !important;
 }
+html {
+  background: transparent !important;
+}
 body, body.view-profile {
   min-height: initial;
   background-color: #fff;
