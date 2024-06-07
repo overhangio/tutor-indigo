@@ -20,6 +20,9 @@
             width: calc(100% - 28% - 40px);
             margin: 0 40px 0 0;
         }
+        @media only screen and (min-width: $big-screen) {
+            width: calc(100% - 24% - 40px);
+        }
         .js-program-list-header {
             h2 {
                 font-size: 24px;
@@ -41,6 +44,11 @@
                 letter-spacing: normal;
                 box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.05);
                 display: inline-block;
+                @media only screen and (min-width: $big-screen) {
+                    width: calc(33.33% - 10px);
+                    flex: 0 0 calc(33% - 10px);
+                    max-width: calc(33% - 10px);
+                }
                 .text-section {
                     position: static;
                     padding: 15px;
@@ -78,21 +86,21 @@
                     }
                 }
                 .status-text {
+                    text-align: center;
                     display: block;
                     padding: 0 15px 10px;
                     .number-status, .number-circle {
                         display: inline-block;
                         vertical-align: top;
+                        float: none;
                         width: auto;
                         background: $primary-light;
-                        margin: 0 10px 10px 0;
+                        margin: 0 5px 10px 0;
                         border-radius: 5px;
                         color: #15376D;
-                        padding: 17px 0;
+                        padding: 10px 0;
                         font: 10px/18px $font-family-title;
                         text-align: center;
-                        display: block;
-                        min-width: 80px;
                     }
                     .number-circle {
                         height: auto;
@@ -134,6 +142,9 @@
             width: 28%;
             float: left;
             padding-top: 58px;
+        }
+        @media only screen and (min-width: $big-screen) {
+            width: 24%;
         }
         .program-advertise {
             border-radius: 5px;
@@ -193,7 +204,7 @@
     }
 }
 .program-details-wrapper {
-    max-width: 1090px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 30px 15px 10px;
     @include media-breakpoint-up(md) {
@@ -231,6 +242,9 @@
                 @include media-breakpoint-up(md) {
                     width: calc(100% - 32% - 40px);
                 }
+                @media only screen and (min-width: $big-screen) { 
+                    max-width: calc(100% - 24% - 40px);
+                }
             }
         }
     }
@@ -245,6 +259,9 @@
             max-width: 100%;
             @include media-breakpoint-up(md) {
                 max-width: calc(100% - 32% - 40px);
+            }
+            @media only screen and (min-width: $big-screen) { 
+                max-width: calc(100% - 24% - 40px);
             }
             .program-heading {
                 background: $primary-light;

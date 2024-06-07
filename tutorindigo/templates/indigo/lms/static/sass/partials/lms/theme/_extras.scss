@@ -27,7 +27,7 @@ input:-webkit-autofill:active{
     box-shadow: none;
 }
 .page-content-container {
-  max-width: 1090px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 15px;
   border: none;
@@ -236,7 +236,7 @@ nav.wrapper-preview-menu {
   }
 }
 .container, .main-container, .find-courses {
-  max-width: 1090px;
+  max-width: 1600px;
   padding-left: 15px !important;
   padding-right: 15px !important;
   margin: 0 auto;
@@ -301,7 +301,7 @@ nav.wrapper-preview-menu {
 body.view-statictab, body.view-instructordash, body.view-teams, body.view-wiki {
   .wrapper-course-material {
     margin: 0 auto;
-    max-width: 1090px;
+    max-width: 1600px;
     padding: 20px 15px !important;
     .tabs.course-tabs {
       margin: 0 0 10px;
@@ -331,7 +331,7 @@ body.view-statictab, body.view-instructordash, body.view-teams, body.view-wiki {
     }
     .static_tab_wrapper {
         border: none;
-        max-width: 1090px;
+        max-width: 1600px;
         padding: 0 15px;
         margin: 0 auto;
         box-sizing: border-box;
@@ -341,7 +341,7 @@ body.view-statictab, body.view-instructordash, body.view-teams, body.view-wiki {
 }
 body.view-teams {
   .container {
-    max-width: 1092px !important;
+    max-width: 1600px !important;
     padding: 0 15px !important;
     margin: 0 auto;
     >div {
@@ -352,7 +352,7 @@ body.view-teams {
 }
 body.view-instructordash {
   .container {
-    max-width: 1092px !important;
+    max-width: 1600px !important;
     padding: 0 15px !important;
     margin: 0 auto;
     >div {
@@ -472,9 +472,15 @@ body.view-instructordash {
     box-shadow: none;
   }
 }
+.course-wrapper .course-content .xblock.xblock-student_view-vertical, 
+.course-wrapper .course-content .xblock.xblock-public_view-vertical, 
+.course-wrapper .courseware-results-wrapper .xblock.xblock-student_view-vertical, 
+.course-wrapper .courseware-results-wrapper .xblock.xblock-public_view-vertical {
+  max-width: 100% !important;
+}
 body.view-wiki{
    .container{
-    max-width: 1090px !important;
+    max-width: 1600px !important;
     margin: 0 auto !important;
     padding: 0 15px !important;
     >div {
