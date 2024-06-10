@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-17.4.1'></a>
+## v17.4.1 (2024-06-10)
+
+- [BugFix] Remove undefined variables of dark-theme. (by @hinakhadim)
+
 <a id='changelog-17.4.0'></a>
 ## v17.4.0 (2024-06-10)
 
