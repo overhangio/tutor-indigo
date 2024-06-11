@@ -260,7 +260,7 @@ nav.wrapper-preview-menu {
       line-height: 34px;
       margin: 0 0 12px;
       text-align: left;
-      color: $drak;
+      color: $dark;
     }
     p {
       margin: 0 0 20px;
@@ -295,13 +295,13 @@ body.view-statictab, body.view-instructordash, body.view-teams, body.view-wiki {
           border-width: 2px;
           font-size: 14px;
           font-weight: 500;
-          color: $light-drak;
+          color: $light-dark;
           &:hover, &:visited {
-            color: $drak;
+            color: $dark;
             border-color: transparent;
           }
           &.active {
-            color: $drak;
+            color: $dark;
             border-color: $primary;
           }
         }
@@ -385,7 +385,7 @@ body.view-instructordash {
             color: white !important;
           }
           &:hover {
-            color: $drak;
+            color: $dark;
           }
         }
       }
@@ -417,12 +417,12 @@ body.view-instructordash {
       margin: 0 0 30px;
       h4 {
         font-size: 18px;
-        color: $drak;
+        color: $dark;
         font-weight: 600;
         span  {
           font-size: 14px;
           font-weight: normal;
-          color: $light-drak;
+          color: $light-dark;
         }
       }
     }
@@ -620,7 +620,7 @@ body.view-wiki{
 
 @import '../../../extra/footer';
 @import '../../../extra/header';
-@import '../../../dashbord/dashbord';
+@import '../../../dashboard/dashboard';
 @import '../../../courseware/discover';
 @import '../../../courseware/about';
 @import '../../../courseware/bookmarks';
