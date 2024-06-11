@@ -81,10 +81,10 @@ footer.tutor-container {
                     line-height: 24px;
                 }
                 a {
-                    color: $light-drak;
+                    color: $light-dark;
                     text-decoration: none;
                     &:hover {
-                        color: $drak;
+                        color: $dark;
                         text-decoration: none;
                     }
                 }
@@ -95,6 +95,6 @@ footer.tutor-container {
         display: block;
         font-size: 12px;
         line-height: 16px;
-        color: $light-drak;
+        color: $light-dark;
     }
 }
