@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-17.4.2'></a>
+## v17.4.2 (2024-06-11)
+
+- [BugFix] Add big screen variable of screen responsiveness (by @tanveer65)
+
 <a id='changelog-17.4.1'></a>
 ## v17.4.1 (2024-06-10)
 
