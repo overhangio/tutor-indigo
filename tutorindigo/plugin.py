@@ -72,7 +72,7 @@ with open(
 
 
 # Override openedx & mfe docker image names
-@hooks.Filters.CONFIG_DEFAULTS.add(priority=hooks.priorities.LOW)
+@hooks.Filters.CONFIG_DEFAULTS.add(priority=hooks.priorities.LOW)     # type: ignore
 def _override_openedx_docker_image(
     items: list[tuple[str, t.Any]]
 ) -> list[tuple[str, t.Any]]:
@@ -135,16 +135,12 @@ RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
             "mfe-dockerfile-post-npm-install-profile",
             """
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^1.0.0'
-RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-component-footer@^1.0.0'
 """,
         ),
         (
             "mfe-dockerfile-post-npm-install-account",
             """
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^1.0.0'
-RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-component-footer@^1.0.0'
 """,
         ),
     ]
