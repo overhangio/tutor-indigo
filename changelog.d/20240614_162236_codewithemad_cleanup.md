@@ -1,0 +1,1 @@
+- [Improvement] Instead of forcing users to use Authentication MFe, the platform decides how users should log in. (by @CodeWithEmad)
