@@ -28,7 +28,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
             {"title": "About Us", "url": "/about"},
             {"title": "Blog", "url": "/blog"},
             {"title": "Donate", "url": "/donate"},
-            {"title": "Terms of Sevice", "url": "/tos"},
+            {"title": "Terms of Service", "url": "/tos"},
             {"title": "Privacy Policy", "url": "/privacy"},
             {"title": "Help", "url": "/help"},
             {"title": "Contact Us", "url": "/contact"},
@@ -115,7 +115,7 @@ RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^1.0.0'
 """,
         ),
-        # Tutor-Indigo v2.1 targets the styling updations in discussions and learner-dashboard MFE
+        # Tutor-Indigo v2.1 targets the styling updates in discussions and learner-dashboard MFE
         # brand-openedx is related to styling updates while others are for header and footer updates
         (
             "mfe-dockerfile-post-npm-install-discussions",

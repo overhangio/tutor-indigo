@@ -187,9 +187,9 @@ from lms.djangoapps.experiments.utils import UPSELL_TRACKING_FLAG
                   % endif
                   % if show_email_settings:
                     <li class="actions-item" id="actions-item-email-settings-${dashboard_index}" role="menuitem">
-                      
+
                           <a href="#email-settings-modal" class="action action-email-settings" rel="leanModal" data-course-id="${course_overview.id}" data-course-number="${course_overview.number}" data-dashboard-index="${dashboard_index}" data-optout="${course_overview.id in course_optouts}">${_('Email Settings')}</a>
-                     
+
                     </li>
                     % endif
                   </ul>
@@ -200,18 +200,18 @@ from lms.djangoapps.experiments.utils import UPSELL_TRACKING_FLAG
       </div>
       % if show_courseware_link and not is_unfulfilled_entitlement:
         % if not is_course_expired:
-            
+
               <img src="${course_overview.image_urls['small']}" class="course-image" alt="${_('{course_number} {course_name} Home Page').format(course_number=course_overview.number, course_name=course_overview.display_name_with_default)}" />
-            
+
         % else:
-            
+
               <img src="${course_overview.image_urls['small']}" class="course-image" alt="${_('{course_number} {course_name} Cover Image').format(course_number=course_overview.number, course_name=course_overview.display_name_with_default)}" />
-           
+
         % endif
       % else:
-        
+
           <img src="${course_overview.image_urls['small']}" class="course-image" alt="${_('{course_number} {course_name} Cover Image').format(course_number=course_overview.number, course_name=course_overview.display_name_with_default)}" />
-        
+
       % endif
       % if display_course_modes_on_dashboard and course_verified_certs.get('display_mode') != 'audit':
         <span class="sts-enrollment" title="${course_verified_certs.get('enrollment_title')}">
@@ -329,7 +329,7 @@ from lms.djangoapps.experiments.utils import UPSELL_TRACKING_FLAG
             </div>
           </div>
 
-          
+
         </div>
       </div>
   </section>

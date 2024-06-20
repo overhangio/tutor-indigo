@@ -242,7 +242,7 @@
                 @include media-breakpoint-up(md) {
                     width: calc(100% - 32% - 40px);
                 }
-                @media only screen and (min-width: $big-screen) { 
+                @media only screen and (min-width: $big-screen) {
                     max-width: calc(100% - 24% - 40px);
                 }
             }
@@ -260,7 +260,7 @@
             @include media-breakpoint-up(md) {
                 max-width: calc(100% - 32% - 40px);
             }
-            @media only screen and (min-width: $big-screen) { 
+            @media only screen and (min-width: $big-screen) {
                 max-width: calc(100% - 24% - 40px);
             }
             .program-heading {
@@ -334,7 +334,7 @@
                             .run-period {
                                 font-size: 12px;
                                 line-height: 16px;
-                                color: #0F8B8D; 
+                                color: #0F8B8D;
                             }
                         }
                     }
