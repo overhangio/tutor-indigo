@@ -84,7 +84,7 @@ For instance, edit the "donate.html" file in this directory. We can derive the c
 .. code-block:: mako
 
     <%page expression_filter="h"/>
-    <%! from django.utils.translation import ugettext as _ %>
+    <%! from django.utils.translation import gettext as _ %>
     <%inherit file="../main.html" />
 
     <%block name="pagetitle">${_("Donate")}</%block>
