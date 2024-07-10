@@ -14,8 +14,6 @@ if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
 
-FILES_NOT_TO_RENDER = ["indigo/lms/templates/main_django.html"]
-
 ################# Configuration
 config: t.Dict[str, t.Dict[str, t.Any]] = {
     # Add here your new settings
@@ -156,9 +154,15 @@ RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-com
     ]
 )
 
-
-@hooks.Filters.IS_FILE_RENDERED.add(priority=hooks.priorities.LOW)
-def _override_files_not_to_render(result: bool, path: str) -> bool:
-    if path in FILES_NOT_TO_RENDER:
-        return False
-    return result
+# Include js file in lms main.html, main_django.html, and certificate.html
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "openedx-lms-development-settings",
+        """
+dark_theme_filepath = ['js/dark-theme.js']
+PIPELINE['JAVASCRIPT']['base_application']['source_filenames'] += dark_theme_filepath
+PIPELINE['JAVASCRIPT']['application']['source_filenames'] += dark_theme_filepath
+PIPELINE['JAVASCRIPT']['certificates_wv']['source_filenames'] += dark_theme_filepath
+"""
+    )
+)
