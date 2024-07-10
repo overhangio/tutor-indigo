@@ -14,7 +14,7 @@ if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
 
-FILES_NOT_TO_RENDER = ['indigo/lms/templates/main_django.html']
+FILES_NOT_TO_RENDER = ["indigo/lms/templates/main_django.html"]
 
 ################# Configuration
 config: t.Dict[str, t.Dict[str, t.Any]] = {
@@ -22,7 +22,6 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
     "defaults": {
         "VERSION": __version__,
         "WELCOME_MESSAGE": "The place for all your online learning",
-
         "ENABLE_DARK_THEME": False,
         "PRIMARY_COLOR": "#15376D",  # Indigo
         # Footer links are dictionaries with a "title" and "url"
@@ -163,4 +162,3 @@ def _override_files_not_to_render(result: bool, path: str) -> bool:
     if path in FILES_NOT_TO_RENDER:
         return False
     return result
-
