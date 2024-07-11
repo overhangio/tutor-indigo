@@ -155,14 +155,18 @@ RUN npm install '@edx/frontend-component-footer@npm:@edly-io/indigo-frontend-com
 )
 
 # Include js file in lms main.html, main_django.html, and certificate.html
+
 hooks.Filters.ENV_PATCHES.add_item(
     (
-        "openedx-lms-development-settings",
+        "openedx-common-assets-settings",
         """
-dark_theme_filepath = ['js/dark-theme.js']
-PIPELINE['JAVASCRIPT']['base_application']['source_filenames'] += dark_theme_filepath
-PIPELINE['JAVASCRIPT']['application']['source_filenames'] += dark_theme_filepath
-PIPELINE['JAVASCRIPT']['certificates_wv']['source_filenames'] += dark_theme_filepath
+javascript_files = ['base_application', 'application', 'certificates_wv']
+dark_theme_filepath = ['indigo/js/dark-theme.js']
+
+for filename in javascript_files:
+    if filename in PIPELINE['JAVASCRIPT']:
+        PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
+  
 """
     )
 )
