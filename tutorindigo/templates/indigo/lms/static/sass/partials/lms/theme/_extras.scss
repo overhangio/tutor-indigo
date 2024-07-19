@@ -470,7 +470,25 @@ body.view-instructordash {
         }
       }
     }
-    .info-holder, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
+    #course_info > h4 {
+      background: $primary-light;
+      padding: 15px 0 0 15px;
+      font-size: 18px;
+      color: $dark;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+    #course_info > .enrollment-wrapper {
+      padding-top: 0 !important;
+      .tip {
+        text-align: left;
+        font-size: 14px;
+        font-weight: normal;
+        color: $light-dark;
+        margin-bottom: 10px;
+      }
+    }
+    #course_info  .enrollment-wrapper, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
       background: $primary-light;
       padding: 15px;
       margin: 0 0 30px;
@@ -881,7 +899,17 @@ body.indigo-dark-theme {
           }
         }
       }
-      .info-holder, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
+      #course_info > h4 {
+        background: $primary-light-d;
+        color: $text-color-d;
+      }
+      #course_info  .enrollment-wrapper { 
+        padding-top: 0;
+        .tip {
+          color: $text-color-primary;
+        }
+      }
+      #course_info  .enrollment-wrapper, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
         background: $primary-light-d;
         h4 {
           color: $text-color-d;
@@ -1308,5 +1336,3 @@ body.indigo-dark-theme {
 @import '../../../programs/programs';
 @import '../../../certificates/certificate';
 @import '../../../xblock/xblock';
-
-
