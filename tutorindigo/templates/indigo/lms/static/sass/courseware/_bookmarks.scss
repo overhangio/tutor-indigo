@@ -90,6 +90,7 @@
                 left: 5px;
                 font-size: 17px;
                 line-height: 17px;
+                color: $primary-d;
             }
             &:hover {
                 text-decoration: none;
@@ -164,5 +165,84 @@
     .page-divider {
         font-weight: bold;
         color: #515661;
+    }
+}
+body.indigo-dark-theme {
+    .page-content-container {
+        background: none;
+    }
+    .navbar.course-tabs {
+        ul.navbar-nav {
+            border-bottom: 1px solid $primary-light-d;
+            .nav-item {
+                &.active {
+                    a {
+                        color: $text-color-d;
+                        border-color: $text-color-d;
+                    }
+                }
+                a {
+                    color: $text-color-d;
+                    border-color: transparent;
+                }
+            }
+        }
+    }
+    .page-content-container {
+        .page-header.has-secondary {
+            background: $primary-light-d;
+            .breadcrumbs {
+                color: $text-color-primary;
+            }
+        }
+        .bookmarks-empty {
+            background: none;
+            box-shadow: 0px 0px 0px 1px rgba(#fff, .08);
+            color: $text-color-d;
+            h3 {
+                color: $text-color-d !important;
+                .bookmarks-empty-header-icon {
+                    color: $primary-d;
+                }
+            }
+        }
+        .search-results {
+            .search-count {
+                color: $text-color-primary;
+            }
+        }
+    }
+    .course-bookmarks {
+        .bookmarks-results-list {
+            a.bookmarks-results-list-item {
+                border: 1px solid $primary-light-d;
+                border-left: 8px solid $primary-light-d;
+                h3 {
+                    color: $text-color-d !important;
+                    .icon {
+                        border: 2px solid $border-color-d;
+                    }
+                }
+                .list-item-date {
+                    color: $text-color-d;
+                }
+                .list-item-right-section {
+                    color: $btn-color-d;
+                    background: $primary-d;
+                }
+            }
+        }
+    }
+    .pagination {
+        .nav-link {
+            color: $text-color-d !important;
+        }
+        .current-page, .page-number-input, .total-pages {
+            color: $text-color-d;
+            background: none !important;
+        }
+        .page-divider {
+            color: $text-color-d;
+        }
     }
 }

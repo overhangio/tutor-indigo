@@ -4,13 +4,27 @@ $content_padding_top: 24px;
 $content-padding-bottom: 10px;
 $header-height: 75px;
 $footer-height: 125.5px;
-
+body, h1, h2, h3, h4, h5, h6, p, label, button {
+  font-family: $font-family-title !important;
+}
+html {
+  background: transparent !important;
+}
 body, body.view-profile {
   min-height: initial;
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: $dark;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: none;
 }
 .page-content-container {
   max-width: 1600px;
@@ -277,6 +291,9 @@ nav.wrapper-preview-menu {
          width: 100%;
          display: block;
          height: auto;
+         &.dark {
+          display: none;
+         }
       }
     }
   }
@@ -321,6 +338,48 @@ body.view-statictab, body.view-instructordash, body.view-teams, body.view-wiki {
         background: no-repeat;
     }
   }
+  .container.about {
+    color: $text-color-primary;
+    h1 {
+      color: $primary-d;
+    }
+    a {
+      color: $primary-d;
+    }
+    .graphic-img {
+      img {
+        display: none;
+        &.dark {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .wrapper-member-select {
+    background: $primary-light !important;
+    select {
+      background: none;
+      color: dark;
+    }
+  }
+  .member-list {
+    .label {
+      color: dark !important;
+      background: $primary-light !important;
+    }
+  }
+  .bottom-bar {
+    background: $primary-light !important;
+    input[type="button"] {
+      background: $primary !important;
+      border-color: $primary !important;
+      color: white !important;
+      text-shadow: none !important;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  } 
 }
 body.view-teams {
   .container {
@@ -411,7 +470,25 @@ body.view-instructordash {
         }
       }
     }
-    .info-holder, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
+    #course_info > h4 {
+      background: $primary-light;
+      padding: 15px 0 0 15px;
+      font-size: 18px;
+      color: $dark;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+    #course_info > .enrollment-wrapper {
+      padding-top: 0 !important;
+      .tip {
+        text-align: left;
+        font-size: 14px;
+        font-weight: normal;
+        color: $light-dark;
+        margin-bottom: 10px;
+      }
+    }
+    #course_info  .enrollment-wrapper, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
       background: $primary-light;
       padding: 15px;
       margin: 0 0 30px;
@@ -470,6 +547,76 @@ body.view-wiki{
       background: none;
       box-shadow: none;
       border: none;
+    }
+    #alert_stat_bar {
+      .paragon__alert-warning {
+        color: $dark;
+        background: $primary-light;
+        border: none;
+        button.paragon__close {
+          background: none !important;
+          box-shadow: none !important;
+          color: $dark !important;
+          opacity: 1 !important;
+          font-size: 1.2rem;
+          border: none !important;
+        }
+      }
+    }
+    section.wiki {
+      .diff-container table {
+        tr.insert td {
+          background: $success-d;
+          color: $text-color-d;
+        }
+        tr.delete td {
+          background: $danger-d;
+          color: $text-color-d;
+        }
+      }
+      .table.table-striped {
+        tr:nth-child(2n) {
+          background: $primary-light;
+        }
+        td {
+          a {
+            color: $primary !important;
+          }
+        }
+      }
+      .directory-toolbar {
+        background: $primary-light;
+        a.btn {
+          background: $primary !important;
+          border-color: $primary !important;
+          box-shadow: none !important;
+          color: white !important;
+          text-shadow: none;
+        }
+      }
+    }
+    .wiki-wrapper section.wiki .btn.btn-large, .wiki-wrapper section.wiki .btn.btn-danger {
+      background: none;
+      color: $dark !important;
+      border-color: $dark !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      &:hover {
+        background: none !important;
+        color: $dark !important;
+        border-color: $dark !important;
+      }
+    }
+    .wiki-wrapper section.wiki .btn.btn-primary, .wiki-wrapper section.wiki .btn.btn-brand {
+      background: $primary!important;
+      border-color: $primary !important;
+      color: white !important;
+      box-shadow: none;
+      &:hover {
+        background: $primary!important;
+        border-color: $primary !important;
+        color: white !important;
+      }
     }
     .wiki {
       .breadcrumbs-header {
@@ -617,7 +764,568 @@ body.view-wiki{
     }
   }
 }
-
+body.indigo-dark-theme {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active{
+      -webkit-text-fill-color: $text-color-d;
+  }
+  input::placeholder {
+      opacity: .9;
+      color: $text-color-d;
+    }
+    textarea, form#wiki_revision .CodeMirror, input[type="text"], input[type="email"], input[type="password"] {
+      background: transparent;
+      color: white;
+    }
+  * {
+    accent-color: $primary-d;
+    scrollbar-color: $text-color-d $body-bg-d;
+  }
+  .find-courses, .university-profile {
+    background-color: $body-bg-d;
+  }
+  .ui-state-default,
+  .ui-widget-content
+  .ui-state-default,
+  .ui-widget-header
+  .ui-state-default {
+    background: $primary-light-d;
+    color: $text-color-d;
+  }
+  .idash-section .no-pending-tasks-message p {
+    color: $text-color-d;
+  }
+  &.view-statictab, &.view-instructordash, &.view-teams, &.view-wiki {
+    .window-wrap {
+      background: none;
+    }
+    #email-students-beta-tip {
+      color: #111827;
+    }
+    .wrapper-course-material {
+      .tabs.course-tabs {
+        border-bottom: 1px solid $primary-light-d;
+        li {
+          a {
+            color: $text-color-d;
+            &:hover, &:visited {
+              color: $text-color-primary;
+              border-color: transparent;
+            }
+            &.active {
+              color: $text-color-d;
+              border-color: $text-color-d;
+            }
+          }
+        }
+      }
+    }
+    .instructor-dashboard-content-2 {
+      a.instructor-info-action {
+        background: $primary-d;
+        color: $btn-color-d;
+      }
+      .request-response-error {
+        color: $danger-d;
+      }
+      .ui-widget-content {
+        background: none;
+        color: $text-color-d;
+        border: 1px solid $primary-light-d;
+      }
+      .ui-accordion-header {
+        background: $primary-d;
+        color: $btn-color-d;
+        font-size: 14px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .ecommerce-wrapper span.tip,
+      .proctoring-wrapper span.tip {
+        background: $primary-light-d;
+        color: $text-color-d;
+        border: none;
+        a.blue-button {
+          background: $primary-d;
+          border-color: $primary-d;
+          color: $btn-color-d !important;
+          text-shadow: none;
+          box-shadow: none;
+          font-weight: 500;
+        }
+      }
+      .enrollment-button, input[type=button], button.btn {
+        background: $primary-d;
+        border-color: $primary-d;
+        color: $btn-color-d !important;
+        text-shadow: none;
+        box-shadow: none !important;
+      }
+      .instructor-nav {
+        border: 1px solid #E5E7EB;
+        li {
+          &:first-child {
+            button {
+              border: none;
+            }
+          }
+          button {
+            border: none !important;
+            border-radius: 0 !important;
+            border-left: 1px solid #E5E7EB !important;
+            color: $text-color-primary;
+            &.active-section {
+              background: $primary-d !important;
+              color: $btn-color-d !important;
+            }
+            &:hover {
+              color: $text-color-d;
+            }
+          }
+        }
+      }
+      .enrollment-wrapper {
+        table {
+          th, td {
+            color: $text-color-d;
+          }
+          .total {
+            border-top: 1px solid #E5E7EB;
+            th, td {
+              color: $primary-d;
+            }
+          }
+        }
+      }
+      #course_info > h4 {
+        background: $primary-light-d;
+        color: $text-color-d;
+      }
+      #course_info  .enrollment-wrapper { 
+        padding-top: 0;
+        .tip {
+          color: $text-color-primary;
+        }
+      }
+      #course_info  .enrollment-wrapper, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
+        background: $primary-light-d;
+        h4 {
+          color: $text-color-d;
+          span  {
+            color: $text-color-primary;
+          }
+        }
+      }
+      .list-input {
+        li {
+          label, b {
+            color: $text-color-d;
+          }
+        }
+      }
+      .open-response-assessment-block .open-response-assessment-main-table {
+        th {
+          background: $primary-light-d;
+          color: $text-color-d !important;
+          button {
+            text-shadow: none !important;
+            color: $text-color-d !important;
+          }
+        }
+        tbody tr:nth-child(odd) {
+          background: $primary-light-d;
+          color: $text-color-d !important;
+        }
+      }
+    }
+  }
+  &.view-wiki{
+    .CodeMirror-scroll {
+      background: $body-bg-d;
+      * {
+        color: $text-color-d !important;
+      }
+    }
+    #previewModal {
+      .inner-wrapper {
+        background: $primary-light-d;
+        iframe {
+          background: #fafafa;
+        }
+        .close-modal {
+          color: $text-color-d;
+        }
+        h1 {
+          color: $text-color-d;
+        }
+        header h2 {
+          color: $text-color-d;
+          text-shadow: none;
+        }
+      }
+    }
+    .wiki-wrapper {
+      .alert.denied, .alert.alert-error {
+        color: $text-color-d;
+        background: $primary-light-d;
+        border: none;
+      }
+      section.wiki .main-article .alert {
+        color: $text-color-d;
+        background: $primary-light-d;
+        border: none;
+      }
+      label {
+        color: $text-color-d !important;
+          section.wiki .main-article {
+            color: $text-color-d;
+          }
+      }
+      #alert_stat_bar {
+        .paragon__alert-warning {
+          color: $text-color-d;
+          background: $primary-light-d;
+          border: none;
+          button.paragon__close {
+            background: none !important;
+            box-shadow: none !important;
+            color: $text-color-d !important;
+            opacity: 1 !important;
+            font-size: 1.2rem;
+          }
+        }
+      }
+      section.wiki {
+        .diff-container table {
+          tr.insert td {
+            background: $success-d;
+            color: $text-color-d;
+          }
+          tr.delete td {
+            background: $danger-d;
+            color: $text-color-d;
+          }
+        }
+        .table.table-striped {
+          tr:nth-child(2n) {
+            background: $primary-light-d;
+          }
+          td {
+            a {
+              color: $primary-d !important;
+            }
+          }
+        }
+        .directory-toolbar {
+          background: $primary-light-d;
+          a.btn {
+            background: $primary-d !important;
+            border-color: $primary-d !important;
+            box-shadow: none !important;
+            color: $btn-color-d !important;
+            text-shadow: none;
+          }
+          .filter-clear {
+            a {
+              color: $primary-d !important;
+            }
+          }
+        }
+      }
+      #cheatsheet-body {
+        background: $primary-light-d;
+        color: $text-color-d;
+        pre {
+          background: $body-bg-d;
+          color: $text-color-d;
+        }
+      }
+      #cheatsheetModal {
+        .inner-wrapper {
+          background: $primary-light-d;
+          box-shadow: none;
+          button.close-modal {
+            color: $text-color-d !important;
+          }
+        }
+      }
+    }
+    .wiki-wrapper section.wiki .btn.btn-large, .wiki-wrapper section.wiki .btn.btn-danger {
+      background: none;
+      color: $text-color-d !important;
+      border-color: $text-color-d !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      &:hover {
+        background: none !important;
+        color: $text-color-d !important;
+        border-color: $text-color-d !important;
+      }
+    }
+    .wiki-wrapper section.wiki .btn.btn-primary, .wiki-wrapper section.wiki .btn.btn-brand {
+      background: $primary-d !important;
+      border-color: $primary-d !important;
+      color: $btn-color-d !important;
+      text-shadow: none !important;
+      box-shadow: none;
+      &:hover {
+        background: $primary-d !important;
+        border-color: $primary-d !important;
+        color: $btn-color-d !important;
+      }
+    }
+    .wiki-wrapper section.wiki.history .accordion {
+      background: $primary-light-d;
+      border: none;
+      small {
+        color: $text-color-d;
+      }
+    } 
+    .container{
+     .wiki {
+       .breadcrumbs-header {
+         background: $primary-light-d;
+         .global-functions {
+           a.add-article-btn {
+             background: $primary-d !important;
+             color: $btn-color-d !important;
+           }
+         }
+         .breadcrumb {
+           li {
+             &:after {
+               color: $text-color-primary;
+             }
+             a {
+               color: $text-color-primary;
+             }
+           }
+         }
+       }
+       .main-article {
+        color: $text-color-d
+       }
+     }
+     .article-wrapper {
+       border: 1px solid $primary-light-d;
+       .main-article {
+          color: $text-color-d !important;
+         p {
+           color: $text-color-d;
+         }
+         h3.entry-title {
+          color: $text-color-d;
+         }
+       }
+       .article-functions {
+         .nav-tabs {
+           li {
+             a {
+               color: $primary-d;
+               &:hover {
+                 background: $primary-light-d;
+                 color: $text-color-d;
+               }
+               .icon {
+                 color: $text-color-primary;
+               }
+             }
+             &.active {
+               a {
+                 background: $primary-light-d;
+                 color: $text-color-d;
+               }
+             }
+           }
+         }
+         .timestamp {
+           border: 1px solid $primary-light-d;
+           border-left: 6px solid $primary-light-d;
+           .label {
+             color: $text-color-d;
+           }
+           .date {
+             color: $text-color-d;
+           }
+         }
+         .see-children {
+           a {
+             background: $primary-d;
+             color: $btn-color-d;
+             &:hover, &:focus {
+               color: $btn-color-d;
+             }
+           }
+         }
+       }
+     }
+   }
+ }
+  .container.about {
+    color: $text-color-primary;
+    h1 {
+      color: $primary-d;
+    }
+    a {
+      color: $primary-d;
+    }
+    .graphic-img {
+      img {
+        display: none;
+        &.dark {
+          display: block;
+        }
+      }
+    }
+  }
+  .modal {
+    background: $primary-light-d !important;
+    .modal-header {
+      color: $text-color-d !important
+    }
+    select, textarea {
+      background: transparent;
+      color: white;
+    }
+    input[type=submit] {
+      background: $primary-d;
+      border-color: $primary-d;
+      color: $btn-color-d !important;
+      text-shadow: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+  .wrapper-member-select {
+    background: $primary-light-d !important;
+    select {
+      background: none;
+      color: $text-color-d;
+    }
+  }
+  .auth-list-container .info {
+    color: $text-color-d !important
+  }
+  .instructor-dashboard-wrapper-2 {
+    section.idash-section#membership .batch-beta-testers .request-res-section h3 {
+      color: $text-color-d;
+    }
+    .msg-error {
+      background: $primary-light-d !important;
+      border-color: $danger-d !important;
+      color: $danger-d  !important;
+    }
+    .msg-confirm {
+      background: $primary-light-d;
+      border-top: 2px solid $success-d;
+      color: $success-d;
+    }
+    .copy-error {
+      color: $danger-d;
+    }
+    .message-error{
+        background: $primary-light-d;
+        border-color: $danger-d;
+        .message-title {
+          color: $danger-d;
+        }
+      .message-copy {
+        color: $text-color-d;
+      }
+    }
+    .idash-section .message-confirmation {
+      background: $body-bg-d;
+      border-color: $success-d;
+      .message-title { 
+        color: $success-d;
+      }
+    }
+    section.idash-section#cohort_management .cohort-management-settings .cohort-management-details .cohort-management-settings {
+      background: transparent;
+    }
+    section.idash-section#cohort_management .cohort-management-group-header {
+      background: $primary-light-d;
+    }
+    section.idash-section#cohort_management .cohort-management-group-setup  {
+      color: $text-color-d;
+    }
+    section.idash-section#cohort_management .cohort-management-settings .cohort-management-details,
+    section.idash-section#cohort_management .cohort-management-settings .cohort-management-group-add {
+      background: $primary-light-d;
+    }
+    section.idash-section#cohort_management .wrapper-tabs .tab .toggle-button {
+      text-shadow: none;
+      color: $text-color-d;
+    }
+    section.idash-section#cohort_management .wrapper-tabs .tab.is-selected .toggle-button {
+      background: $primary-d;
+      border-color: $primary-d;
+      color: $btn-color-d;
+      text-decoration: none;
+    }
+    section.idash-section#cohort_management .cohort-management-settings .form-submit,
+    section.idash-section#cohort_management .cohort-management-nav .action-create,
+    section.idash-section#cohort_management .file-upload-form .action-submit {
+      background: $primary-d !important;
+      border-color: $primary-d !important;
+      color: $btn-color-d !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+    }
+    section.idash-section#cohort_management .cohort-management-supplemental {
+      background: $primary-light-d;
+      button {
+        color: $text-color-d;
+        text-decoration: underline;
+      }
+    }
+    section.idash-section#cohort_management .file-upload-form .form-fields .input-file {
+      color: $text-color-d;
+    }
+    section.idash-section#cohort_management .toggle-cohort-management-secondary,
+    section.idash-section#cohort_management .toggle-cohort-management-discussions {
+      color: $primary-d;
+    }
+    section.idash-section#cohort_management .cohort-management-settings, section.idash-section#cohort_management .cohort-management-settings .form-title {
+      background: $primary-light-d;
+    }
+    section.idash-section#data_download .problem-browser .block-browser {
+      background: $primary-light-d;
+    }
+    section.idash-section#membership .batch-enrollment .request-res-section h3 {
+      color: $danger-d;
+    }
+    section.idash-section#membership .enroll-option .hint, section.idash-section#membership .enroll-option .hint {
+      background: $primary-light-d;
+      p {
+        color: inherit !important;
+      }
+      .hint-caret {
+        border-right: 8px solid $primary-light-d;
+        border-top: 8px solid $primary-light-d;
+      }
+    }
+  }
+  .member-list {
+    .label {
+      color: $text-color-d !important;
+      background: $primary-light-d !important;
+    }
+  }
+  .bottom-bar {
+    background: $primary-light-d !important;
+    input[type="button"] {
+      background: $primary-d !important;
+      border-color: $primary-d !important;
+      color: $btn-color-d !important;
+      text-shadow: none !important;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  } 
+}
 @import '../../../extra/footer';
 @import '../../../extra/header';
 @import '../../../dashboard/dashboard';
@@ -627,6 +1335,4 @@ body.view-wiki{
 @import '../../../home/home';
 @import '../../../programs/programs';
 @import '../../../certificates/certificate';
-
-
-
+@import '../../../xblock/xblock';

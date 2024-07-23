@@ -31,6 +31,7 @@ section.home {
 }
 #main .home.style-logout  {
     header {
+        background: none;
         .outer-wrapper {
             .title {
                 width: 100%;
@@ -126,6 +127,78 @@ section.home {
                                 font-size: 14px;
                                 line-height: 20px;
                                 padding: 9px 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+body.indigo-dark-theme {
+    h1 {
+        color: $text-color-d;
+    }
+    p a:not(.btn), a:not(.btn) {
+        color: $primary-d;
+        &:hover, &:focus, &:active, a:visited:not(.btn):focus {
+            color: $primary-d;
+        }
+    }
+    .global-header .nav-links .secondary {
+        .btn-holder {
+            .nav-item {
+                .btn {
+                    &.sign-in-btn {
+                        background: $primary-d;
+                        color: $btn-color-d;
+                        border-color: $primary-d;
+                    }
+                    &.register-btn {
+                        color: $text-color-d;
+                        border-color: $text-color-d;
+                        background: none;
+                    }
+                }
+            }
+        }
+    }
+    #main .home.style-logout  {
+        header {
+            background: none;
+            .outer-wrapper {
+                .title {
+                    .heading-group {
+                        h1 {
+                            color: $text-color-d;
+                        }
+                        p {
+                            color: $text-color-primary;
+                        }
+                    }
+                    .course-search {
+                        .search-field-wrapper {
+                            .button-holder {
+                                button {
+                                    color: $btn-color-d;
+                                    background: $primary-d;
+                                    border: none;
+                                    &:hover {
+                                        color: $btn-color-d;
+                                        background: $primary-d;
+                                    }
+                                }
+                            }
+                            .input-holder {
+                                background: $primary-light-d;
+                                svg {
+                                    path {
+                                        fill: $text-color-primary;
+                                    }
+                                }
+                                input {
+                                    color: $text-color-d;
+                                }
                             }
                         }
                     }

@@ -322,6 +322,8 @@
                             font-weight: 500;
                             line-height: 20px;
                             margin: 10px 0 0;
+                            min-width: 115px;
+                            width: auto;
                         }
                         .motivating-message {
                             margin: 0;
@@ -428,6 +430,177 @@
                         font-weight: 600;
                         color: #111827;
                         margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+.indigo-dark-theme {
+    .program-list-wrapper {
+        color: $text-color-d;
+        .program-list-container {
+            .js-program-list-header {
+                h2 {
+                    color: $text-color-d;
+                }
+            }
+            .program-cards-container {
+                .program-card {
+                    box-shadow: 0px 0px 0px 1px rgba(#777792,0.9);
+                    background: #292A2C;
+                    .text-section {
+                        h3 {
+                            color: $text-color-d;
+                        }
+                        .meta-info {
+                            background: #36383B;
+                            color: $text-color-d;
+                        }
+                    }
+                    .status-text {
+                        display: block;
+                        padding: 0 15px 10px;
+                        .number-status, .number-circle {
+                            background: #36383B;
+                            color: $text-color-d;
+                        }
+                    }
+                    .card-link {
+                        opacity: 1;
+                        .banner-image-container {
+                            background: $primary-d;
+                        }
+                    }
+                }
+            }
+        }
+        .sidebar {
+            .program-advertise {
+                background: $primary-light-d;
+                p {
+                    color: $text-color-d;
+                }
+                a.btn {
+                    background: $primary-d;
+                    color: $btn-color-d;
+                }
+            }
+        }
+        .empty-programs-message {
+            box-shadow: 0px 0px 0px 1px rgba(#fff,0.9);
+            background: $primary-light-d;
+            h2 {
+                color: $text-color-d;
+            }
+            a.btn {
+                background: $primary-d;
+                color: $btn-color-d;
+            }
+        }
+    }
+    .program-details-wrapper {
+        .program-details-header {
+            color: $text-color-d;
+            .meta-info.grid-container {
+                .xseries {
+                    svg {
+                        path {
+                            fill: $text-color-d;
+                        }
+                    }
+                }
+            }
+        }
+        .col-12.flex-column {
+            .program-details-content {
+                color: $text-color-d;
+                .program-heading {
+                    background: $primary-light-d;
+                    h3 {
+                        color: $text-color-d !important;
+                    }
+                    .program-heading-message {
+                        color: $text-color-d;
+                    }
+                }
+                .course-list-headings {
+                    .remaining-group, .in-progress-group, .completed-group {
+                        h4, h5 {
+                            color: $text-color-d;
+                            a {
+                                color: $text-color-d;
+                            }
+                        }
+                        .program-course-card, .motivating-section {
+                            border: 1px solid $primary-light-d;
+                            border-left: 8px solid $primary-light-d;
+                            color: $text-color-d;
+                            a.btn-brand, button.btn-brand {
+                                background: $primary-d;
+                                border-color: $primary-d;
+                                color: $btn-color-d;
+                            }
+                            .motivating-message {
+                                color: $text-color-d;
+                            }
+                            .certificate-status {
+                                .certificate-status-msg, .card-msg {
+                                    color: $text-color-d;
+                                }
+                            }
+                            .course-text {
+                                color: $text-color-d;
+                                .enrolled {
+                                    color: $text-color-d;
+                                }
+                                .run-period {
+                                    color: $success-d; 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .program-sidebar {
+            .aside {
+                background: $primary-light-d;
+                color: $text-color-d;
+                h2 {
+                    color: $text-color-d;
+                }
+                p.motivating-message {
+                    color: $text-color-d;
+                }
+                .progress-circle-wrapper {
+                    svg {
+                        width: 200px;
+                        height: 200px;
+                    }
+                    .progress-circle {
+                        .complete {
+                            stroke: $primary-d;
+                        }
+                    }
+                }
+                .progress-label {
+                    color: $text-color-d;
+                    .label {
+                        color: $text-color-d;
+                    }
+                }
+                .numbers {
+                    color: $text-color-d;
+                    .complete {
+                        color: $text-color-d;
+                    }
+                }
+                .certificate-list {
+                    li {
+                        .certificate-link {
+                            color: $text-color-d;
+                        }
                     }
                 }
             }
