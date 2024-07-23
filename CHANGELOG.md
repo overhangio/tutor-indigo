@@ -19,6 +19,13 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-18.1.0'></a>
+## v18.1.0 (2024-07-23)
+
+- [Improvement] Instead of forcing users to use Authentication MFe, the platform decides how users should log in. (by @CodeWithEmad)
+
+- [Feature] Dark theme: the Indigo theme now covers dark theme for LMS pages, including the MFEs, and they are more beautiful!  (by @tanveer65 and @hinakhadim)
+
 <a id='changelog-18.0.0'></a>
 ## v18.0.0 (2024-06-20)
 
