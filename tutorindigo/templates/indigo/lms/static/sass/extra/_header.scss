@@ -161,6 +161,90 @@ header.global-header {
     }
 }
 
+// theme toggle button styling. it shows moon icon
+.theme-toggle-button{
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+#toggle-theme {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1.5);
+}
+
+.darkmode_icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: $warning-400;
+  transform-origin: center center;
+  transition: transform 0.75s ease-in-out, $page-color-transition;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 16px;
+    height: 16px;
+    left: 6px;
+    bottom: 4px;
+    border-radius: 10px;
+    background: white;
+    transform-origin: center center;
+    transition: transform 0.2s ease, left 0.25s ease, bottom 0.25s ease, $page-color-transition;
+  }
+
+  .ray {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    background: transparent;
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out, $page-color-transition;
+
+    &:nth-child(1) {
+        transform: rotate(45deg) translateX(0);
+    }
+    &:nth-child(2) {
+        transform: rotate(90deg) translateX(0);
+    }
+    &:nth-child(3) {
+        transform: rotate(135deg) translateX(0);
+    }
+    &:nth-child(4) {
+        transform: rotate(180deg) translateX(0);
+    }
+    &:nth-child(5) {
+        transform: rotate(225deg) translateX(0);
+    }
+    &:nth-child(6) {
+        transform: rotate(270deg) translateX(0);
+    }
+    &:nth-child(7) {
+        transform: rotate(315deg) translateX(0);
+    }
+    &:nth-child(8) {
+        transform: rotate(360deg) translateX(0);
+    }
+  }
+}
+
+
 
 
 body.indigo-dark-theme {
@@ -234,4 +318,47 @@ body.indigo-dark-theme {
             }
         }
     }
+
+// theme toggle button for dark-theme. it shows sun icon
+.darkmode_icon {
+    transform: scale(0.6);
+    background: $warning-400;
+  
+    &::after {
+      left: 15px;
+      bottom: 8px;
+      transform: scale(0);
+      transition: transform 1s ease, left 0.25s ease, bottom 0.25s ease, $page-color-transition;
+    }
+    
+    .ray {
+      background: $warning-400;
+  
+      &:nth-child(1) {
+        transform: rotate(45deg) translateX(-16px);
+      }
+      &:nth-child(2) {
+        transform: rotate(90deg) translateX(-16px);
+      }
+      &:nth-child(3) {
+        transform: rotate(135deg) translateX(-16px);
+      }
+      &:nth-child(4) {
+        transform: rotate(180deg) translateX(-16px);
+      }
+      &:nth-child(5) {
+        transform: rotate(225deg) translateX(-16px);
+      }
+      &:nth-child(6) {
+        transform: rotate(270deg) translateX(-16px);
+      }
+      &:nth-child(7) {
+        transform: rotate(315deg) translateX(-16px);
+      }
+      &:nth-child(8) {
+        transform: rotate(360deg) translateX(-16px);
+      }    
+    }
+  }
+  
 }

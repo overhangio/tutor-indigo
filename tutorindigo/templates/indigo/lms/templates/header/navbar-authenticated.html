@@ -53,7 +53,21 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
       </div>
     % endif
   </div>
-  <div class="secondary">
+  <div class="secondary d-flex align-items-center">
+    <div class="theme-toggle-button mr-4">
+      <span id="toggle-theme" role="button" tabindex="0">
+        <div class="darkmode_icon">
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+        </div>
+      </span>
+    </div>
     <%include file="user_dropdown.html"/>
   </div>
 </div>

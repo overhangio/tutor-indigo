@@ -1,15 +1,22 @@
 $(document).ready(function() {
     'use strict';
 
-    function checkIndigoTheme(){
-        if($.cookie('indigo-theme-type') === 'dark'){
-          $.cookie('indigo-theme-type', 'light', { domain: 'local.edly.io', expires: 7, path: '/' });
-          $('body').removeClass("indigo-dark-theme");
-        }else{
-          $.cookie('indigo-theme-type', 'dark', { domain: 'local.edly.io', expires: 7, path: '/' });
-          $('body').addClass("indigo-dark-theme");
-        }
+    function loadTheme(){
+      if($.cookie("{{ INDIGO_THEME_COOKIE_NAME }}") === 'dark'){
+        $('body').addClass("indigo-dark-theme");
+      }
+    }
+    
+    function toggleTheme(){
+      if($.cookie("{{ INDIGO_THEME_COOKIE_NAME }}") === 'dark'){
+        $.cookie("{{ INDIGO_THEME_COOKIE_NAME }}", 'light', { domain: window.location.hostname, expires: 7, path: '/' });
+        $('body').removeClass("indigo-dark-theme");
+      } else {
+        $.cookie("{{ INDIGO_THEME_COOKIE_NAME }}", 'dark', { domain: window.location.hostname, expires: 7, path: '/' });
+        $('body').addClass("indigo-dark-theme");
+      }
     }
 
-    $('#toggle-theme').click(checkIndigoTheme);
+    loadTheme();
+    $('#toggle-theme').click(toggleTheme);
 });

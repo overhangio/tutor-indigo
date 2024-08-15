@@ -42,7 +42,21 @@ from django.utils.translation import gettext as _
     %endif
   % endif
   </div>
-  <div class="secondary">
+  <div class="secondary d-flex align-items-center">
+    <div class="theme-toggle-button mr-4">
+      <span id="toggle-theme" role="button" tabindex="0">
+        <div class="darkmode_icon">
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+          <span class="ray"></span>
+        </div>
+      </span>
+    </div>
     <div class="btn-holder">
       % if allows_login:
         % if allow_public_account_creation and not disable_register_button:
