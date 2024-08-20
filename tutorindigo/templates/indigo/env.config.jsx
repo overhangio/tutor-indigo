@@ -8,7 +8,8 @@ import Cookies from 'universal-cookie';
 const AddDarkTheme = () => {
   useEffect(() => {
     const cookies = new Cookies();
-    if (cookies.get(getConfig().THEME_COOKIE_NAME) === 'dark') {
+    const themeCookieName = getConfig().THEME_COOKIE_NAME;
+    if (themeCookieName && cookies.get(themeCookieName) === 'dark') {
       document.body.classList.add('indigo-dark-theme');
     }
 
