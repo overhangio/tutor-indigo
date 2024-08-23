@@ -199,13 +199,17 @@ for filename in javascript_files:
     if filename in PIPELINE['JAVASCRIPT']:
         PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
 
+{% if INDIGO_THEME_COOKIE_NAME %}
 MFE_CONFIG['THEME_COOKIE_NAME'] = '{{ INDIGO_THEME_COOKIE_NAME }}'
+{% endif %}
 """,
         ),
         (
             "openedx-lms-production-settings",
             """
+{% if INDIGO_THEME_COOKIE_NAME %}
 MFE_CONFIG['THEME_COOKIE_NAME'] = '{{ INDIGO_THEME_COOKIE_NAME }}'
+{% endif %}
 """,
         ),
     ]
