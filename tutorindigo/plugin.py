@@ -20,7 +20,6 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
     "defaults": {
         "VERSION": __version__,
         "WELCOME_MESSAGE": "The place for all your online learning",
-        "ENABLE_DARK_THEME": False,
         "PRIMARY_COLOR": "#15376D",  # Indigo
         "THEME_COOKIE_NAME": "indigo-theme-cookie",
         # Footer links are dictionaries with a "title" and "url"
