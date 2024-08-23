@@ -53,8 +53,8 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
       </div>
     % endif
   </div>
-  {% if INDIGO_THEME_COOKIE_NAME %}
-    <div class="secondary d-flex align-items-center">
+  <div class="secondary d-flex align-items-center">
+    {% if INDIGO_THEME_COOKIE_NAME %}
       <div class="theme-toggle-button mr-4">
         <span id="toggle-theme" role="button" tabindex="0">
           <div class="darkmode_icon">
@@ -69,7 +69,6 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
           </div>
         </span>
       </div>
-    </div>
     {% endif %}
     <%include file="user_dropdown.html"/>
   </div>
