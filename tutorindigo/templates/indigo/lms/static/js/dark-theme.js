@@ -1,6 +1,7 @@
 $(document).ready(function() {
     'use strict';
 
+    {% if INDIGO_THEME_COOKIE_NAME %}
     function loadTheme(){
       if($.cookie("{{ INDIGO_THEME_COOKIE_NAME }}") === 'dark'){
         $('body').addClass("indigo-dark-theme");
@@ -19,4 +20,5 @@ $(document).ready(function() {
 
     loadTheme();
     $('#toggle-theme').click(toggleTheme);
+    {% endif %}
 });
