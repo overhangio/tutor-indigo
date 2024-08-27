@@ -104,6 +104,8 @@ hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
 
 hooks.Filters.ENV_PATCHES.add_items(
     [
+        # MFE will install header version 3.0.x and will include indigo-footer as a
+        # separate package for use in env.config.jsx
         (
             "mfe-dockerfile-post-npm-install-learning",
             """
