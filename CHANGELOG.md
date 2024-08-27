@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-18.1.1'></a>
+## v18.1.1 (2024-08-27)
+
+- [BugFix] Add the Indigo footer in MFEs via env.config.jsx to resolve display issues on the /account/ page after upgrading to Redwood. (by @hinakhadim)
+
 <a id='changelog-18.1.0'></a>
 ## v18.1.0 (2024-07-23)
 
