@@ -2,23 +2,33 @@ $(document).ready(function() {
     'use strict';
 
     {% if INDIGO_THEME_COOKIE_NAME %}
-    function loadTheme(){
-      if($.cookie("{{ INDIGO_THEME_COOKIE_NAME }}") === 'dark'){
-        $('body').addClass("indigo-dark-theme");
-      }
+    function applyThemeOnPage(){
+      const theme = $.cookie("{{ INDIGO_THEME_COOKIE_NAME }}");
+      $('body').toggleClass("indigo-dark-theme", theme === 'dark');
+    }
+
+    function setThemeToggleBtnState(){
+      const theme = $.cookie("{{ INDIGO_THEME_COOKIE_NAME }}");
+      $("#toggle-switch-input").prop("checked", theme === 'dark');
     }
     
     function toggleTheme(){
-      if($.cookie("{{ INDIGO_THEME_COOKIE_NAME }}") === 'dark'){
-        $.cookie("{{ INDIGO_THEME_COOKIE_NAME }}", 'light', { domain: window.location.hostname, expires: 7, path: '/' });
-        $('body').removeClass("indigo-dark-theme");
-      } else {
-        $.cookie("{{ INDIGO_THEME_COOKIE_NAME }}", 'dark', { domain: window.location.hostname, expires: 7, path: '/' });
-        $('body').addClass("indigo-dark-theme");
-      }
+      const themeValue = $.cookie("{{ INDIGO_THEME_COOKIE_NAME }}") === 'dark' ? 'light' : 'dark';
+      $.cookie("{{ INDIGO_THEME_COOKIE_NAME }}", themeValue, { domain: window.location.hostname, expires: 7, path: '/' });
+        
+      applyThemeOnPage();
     }
 
-    loadTheme();
-    $('#toggle-theme').click(toggleTheme);
+    // // Listener for updating the theme inside an iframe
+    window.addEventListener("message", (e) => {
+      if (e.data && e.data["indigo-toggle-dark"]){
+        applyThemeOnPage();
+      }
+    });
+
+    applyThemeOnPage();  // loading theme on page load
+    setThemeToggleBtnState(); // check/uncheck toggle btn based on theme
+
+    $('#toggle-switch').on('change', toggleTheme);
     {% endif %}
 });
