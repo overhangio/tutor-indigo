@@ -210,10 +210,6 @@ header.global-header {
                 opacity: 0;
                 width: 0;
                 height: 0;
-
-                &:checked + .slider:before{
-                    transform: translateX(19px);
-                }
             }
 
             /* The slider */
@@ -334,6 +330,7 @@ body.indigo-dark-theme {
                 .slider {
                     background-color: #ccc;
                     &::before{
+                        transform: translateX(19px);
                         box-shadow: 0 0 1px $primary-d;
                     }
                 }
