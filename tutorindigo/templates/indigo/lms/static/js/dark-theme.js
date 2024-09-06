@@ -21,8 +21,7 @@ $(document).ready(function() {
 
     // Listener for updating the theme inside an iframe
     window.addEventListener("message", function(e){
-      console.log("receiived --", e)
-      if (e.originalEvent.data && e.originalEvent.data["indigo-toggle-dark"]){
+      if (e.data && e.data["indigo-toggle-dark"]){
         applyThemeOnPage();
       }
     });
