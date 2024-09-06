@@ -12,7 +12,7 @@ header.global-header {
     .main-header {
         height: auto;
 
-        @include media-breakpoint-up(lg) {
+        @include media-breakpoint-down(lg) {
             display: flex;
             align-items: center;
             height: 50px !important;
