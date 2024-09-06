@@ -10,12 +10,13 @@ header.global-header {
         display: block;
     }
     .main-header {
-        height: auto;
+        display: flex;
+        align-items: center;
+        height: 50px;
 
-        @include media-breakpoint-down(lg) {
-            display: flex;
-            align-items: center;
-            height: 50px !important;
+        @include media-breakpoint-up(lg) {
+            display: unset;
+            height: auto;
         }
     }
     .header-logo {
