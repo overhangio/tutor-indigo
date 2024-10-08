@@ -21,7 +21,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         "VERSION": __version__,
         "WELCOME_MESSAGE": "The place for all your online learning",
         "PRIMARY_COLOR": "#15376D",  # Indigo
-        "THEME_COOKIE_NAME": "indigo-theme-cookie",
+        "ENABLE_DARK_TOGGLE": True,
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[]
@@ -193,16 +193,16 @@ for filename in javascript_files:
     if filename in PIPELINE['JAVASCRIPT']:
         PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
 
-{% if INDIGO_THEME_COOKIE_NAME %}
-MFE_CONFIG['THEME_COOKIE_NAME'] = '{{ INDIGO_THEME_COOKIE_NAME }}'
+{% if INDIGO_ENABLE_DARK_TOGGLE %}
+MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = True
 {% endif %}
 """,
         ),
         (
             "openedx-lms-production-settings",
             """
-{% if INDIGO_THEME_COOKIE_NAME %}
-MFE_CONFIG['THEME_COOKIE_NAME'] = '{{ INDIGO_THEME_COOKIE_NAME }}'
+{% if INDIGO_ENABLE_DARK_TOGGLE %}
+MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = True
 {% endif %}
 """,
         ),

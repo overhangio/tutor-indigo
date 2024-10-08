@@ -172,7 +172,7 @@ header.global-header {
 
 .theme-toggle-button{
     position: relative;
-    display: flex;
+    display: {% if INDIGO_ENABLE_DARK_TOGGLE %}flex{% else %}none{% endif %};
     align-items: center;
     margin-right: 0 !important;
 

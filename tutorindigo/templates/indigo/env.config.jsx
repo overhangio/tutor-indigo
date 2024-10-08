@@ -5,14 +5,29 @@ import Footer from '@edly-io/indigo-frontend-component-footer';
 import { getConfig } from '@edx/frontend-platform';
 import { DIRECT_PLUGIN, PLUGIN_OPERATIONS } from '@openedx/frontend-plugin-framework';
 
+let themeCookie = 'indigo-toggle-dark';
+let themeCookieExpiry = 90; // days
 
 const AddDarkTheme = () => {
   const cookies = new Cookies();
-  const themeCookieName = getConfig().THEME_COOKIE_NAME;
+  const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
+
+  const getCookieExpiry = () => {
+    const today = new Date();
+    return new Date(today.getFullYear(), today.getMonth(), today.getDate() + themeCookieExpiry);
+  };
+
+  const getCookieOptions = () => {
+    const serverURL = new URL(getConfig().LMS_BASE_URL);
+    const options = { domain: serverURL.hostname, path: '/', expires: getCookieExpiry() };
+    return options;
+  };
 
   useEffect(() => {
-    if (themeCookieName && cookies.get(themeCookieName) === 'dark') {
+    const theme =  cookies.get(themeCookie);
+    if (isThemeToggleEnabled && theme === 'dark') {
       document.body.classList.add('indigo-dark-theme');
+      cookies.set(themeCookie, theme, getCookieOptions());      //  on page load, update expiry
     }
   }, []);
 
