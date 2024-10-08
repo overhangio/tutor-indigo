@@ -193,17 +193,13 @@ for filename in javascript_files:
     if filename in PIPELINE['JAVASCRIPT']:
         PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
 
-{% if INDIGO_ENABLE_DARK_TOGGLE %}
-MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = True
-{% endif %}
+MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
 """,
         ),
         (
             "openedx-lms-production-settings",
             """
-{% if INDIGO_ENABLE_DARK_TOGGLE %}
-MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = True
-{% endif %}
+MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
 """,
         ),
     ]
