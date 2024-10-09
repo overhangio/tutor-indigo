@@ -1,7 +1,7 @@
 $(document).ready(function() {
     'use strict';
 
-    let themeCookie = 'indigo-toggle-dark';
+    const themeCookie = 'indigo-toggle-dark';
 
     function applyThemeOnPage(){
       const theme = $.cookie(themeCookie);

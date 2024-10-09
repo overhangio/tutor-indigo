@@ -29,7 +29,7 @@ Configuration
 - ``INDIGO_WELCOME_MESSAGE`` (default: "The place for all your online learning")
 - ``INDIGO_PRIMARY_COLOR`` (default: "#3b85ff")
 - ``INDIGO_FOOTER_NAV_LINKS`` (default: ``[{"title": "About", "url": "/about"}, {"title": "Contact", "url": "/contact"}]``)
-- ``INDIGO_THEME_COOKIE_NAME`` (default: "indigo-theme-cookie")
+- ``INDIGO_ENABLE_DARK_TOGGLE`` (default: True)
 
 The ``INDIGO_*`` settings listed above may be modified by running ``tutor config save --set INDIGO_...=...``. For instance, to remove all links from the footer, run::
 
@@ -45,7 +45,7 @@ Theme Toggle Button
 
 The theme toggle button is enabled by default when Tutor Indigo is installed. The theme can be switched from light to dark and vice versa. To disable it, run::
 
-    tutor config save --set INDIGO_THEME_COOKIE_NAME=null
+    tutor config save --set INDIGO_ENABLE_DARK_TOGGLE=false
     tutor images build openedx
     tutor local start -d
 
