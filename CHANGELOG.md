@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-18.2.1'></a>
+## v18.2.1 (2024-10-11)
+
+- [Feature] Introduced theme toggle feature with enable/disable option and runtime switch between light and dark modes. (by @hinakhadim)
+
 <a id='changelog-18.1.1'></a>
 ## v18.1.1 (2024-08-27)
 
