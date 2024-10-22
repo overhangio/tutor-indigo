@@ -45,8 +45,8 @@ setup(
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
     python_requires=">=3.9",
-    install_requires=["tutor>=18.0.0,<19.0.0", "tutor-mfe>=18.0.0,<19.0.0"],
-    extras_require={"dev": "tutor[dev]>=18.0.0,<19.0.0"},
+    install_requires=["tutor>=19.0.0,<20.0.0", "tutor-mfe>=19.0.0,<20.0.0"],
+    extras_require={"dev": "tutor[dev]>=19.0.0,<20.0.0"},
     entry_points={"tutor.plugin.v1": ["indigo = tutorindigo.plugin"]},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
