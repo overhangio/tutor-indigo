@@ -110,7 +110,7 @@ hooks.Filters.ENV_PATCHES.add_items(
             "mfe-dockerfile-post-npm-install-learning",
             """
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
+RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.4'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
 COPY indigo/env.config.jsx /openedx/app/
@@ -128,7 +128,7 @@ RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
             "mfe-dockerfile-post-npm-install-discussions",
             """
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
+RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.4'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
 COPY indigo/env.config.jsx /openedx/app/
@@ -138,6 +138,7 @@ COPY indigo/env.config.jsx /openedx/app/
             "mfe-dockerfile-post-npm-install-learner-dashboard",
             """
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
+RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.4'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
 COPY indigo/env.config.jsx /openedx/app/
@@ -147,7 +148,7 @@ COPY indigo/env.config.jsx /openedx/app/
             "mfe-dockerfile-post-npm-install-profile",
             """
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
+RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.4'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
 COPY indigo/env.config.jsx /openedx/app/
@@ -157,7 +158,7 @@ COPY indigo/env.config.jsx /openedx/app/
             "mfe-dockerfile-post-npm-install-account",
             """
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
+RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.4'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
 COPY indigo/env.config.jsx /openedx/app/
