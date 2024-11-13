@@ -101,7 +101,6 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
 )
 hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
 
-
 hooks.Filters.ENV_PATCHES.add_items(
     [
         # MFE will install header version 3.0.x and will include indigo-footer as a
@@ -119,7 +118,7 @@ COPY indigo/env.config.jsx /openedx/app/
         (
             "mfe-dockerfile-post-npm-install-authn",
             """
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
+RUN npm install '@edx/brand@https://github.com/allenluna/VXI_Brand-OpenEdx'
 """,
         ),
         # Tutor-Indigo v2.1 targets the styling updates in discussions and learner-dashboard MFE
@@ -201,6 +200,13 @@ MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
             """
 MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
 """,
+        ),
+        (
+            "mfe-lms-common-settings",
+            """
+MFE_CONFIG["FAVICON_URL"] = LMS_ROOT_URL+"/theming/asset/images/favicon.ico"
+MFE_CONFIG["LOGO_URL"] = LMS_ROOT_URL+"/theming/asset/images/logo.png"
+"""
         ),
     ]
 )
