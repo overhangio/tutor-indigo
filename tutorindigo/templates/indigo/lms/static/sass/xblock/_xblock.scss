@@ -464,6 +464,20 @@
 
     }
 
+    #feedback-container{
+        background: $body-bg-d;
+        border: 1px solid $text-color-d;
+        p{
+            color: $text-color-d;
+        }
+    }
+
+    .emoji-button{
+        background-color: $body-bg-d;
+    }
+    .xblock.xmodule_display.xmodule_HtmlBlock .blue-text{color: $primary;}
+
+
     .edx-notes-wrapper{
         .annotator-hl{
             background: orange;
