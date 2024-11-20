@@ -289,18 +289,18 @@
         }
     }
 
-    .ui-dialog.ui-widget.ui-widget-content, 
+    .ui-dialog.ui-widget.ui-widget-content,
     .ui-dialog-titlebar.ui-widget-header,
     .ui-dialog-buttonpane.ui-widget-content,
     .dialog-confirm.ui-dialog-content.ui-widget-content{
         background: $body-bg-d;
         color: $text-color-d;
-        & .ui-button.ui-state-default:active, 
+        & .ui-button.ui-state-default:active,
         & .ui-button.ui-state-default:focus
         {box-shadow: none;}
     }
 
-    .openassessment .submission__answer__part__prompt__copy a, 
+    .openassessment .submission__answer__part__prompt__copy a,
     .wrapper--xblock .message .message__content a{
         color: $primary-d;
         &:hover{
@@ -313,20 +313,20 @@
         .self-assessment__display__title,.step--self-assessment .self-assessment__display__title,
         .peer-assessment__display__title,.step--self-assessment .peer-assessment__display__title,,
         .staff-assessment__display__title, .step--self-assessment .staff-assessment__display__title,{
-            color: $text-color-d !important; // open-assessment scss file used !important 
+            color: $text-color-d !important; // open-assessment scss file used !important
         }
     }
 
     div.wrapper--xblock {
-        
+
         .openassessment__student-training--instructions.step__message > .message__content{
             color: $primary-light-d;
         }
         .openassessment .openassessment__steps__step .step__message.message--waiting{
             background: $primary-light-d;
         }
-        .message--complete, 
-        .step--student-training .message--correct, 
+        .message--complete,
+        .step--student-training .message--correct,
         .step--student-training .message--correct{
             background: #ecfaec;
             & .message__content{
@@ -337,8 +337,8 @@
             }
         }
 
-        .message--incomplete, 
-        .step--student-training .message--incorrect, 
+        .message--incomplete,
+        .step--student-training .message--incorrect,
         .step--student-training .wrapper--xblock .message--incorrect{
             background: #fff9eb;
             & .message__content{
@@ -351,7 +351,7 @@
 
         .openassessment .openassessment__steps__step.is--in-progress .step__status__value .copy{
             color: $primary-light-d;
-        }  
+        }
 
         .openassessment .openassessment__steps .openassessment__steps__step .step__header .step__deadline{
             color: $border-color-d;
@@ -362,33 +362,33 @@
         }
 
         .step--response .step__rubric .question__answers .wrapper--input .answer__label,
-        .step--student-training .student-training__assessment .question__answers .wrapper--input .answer__label, 
-        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .wrapper--input .answer__label, 
-        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .wrapper--input .answer__label, 
+        .step--student-training .student-training__assessment .question__answers .wrapper--input .answer__label,
+        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .wrapper--input .answer__label,
+        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .wrapper--input .answer__label,
         .openassessment .staff-assessment__assessment .question__answers .wrapper--input .answer__label{
             color: $text-color-d;
         }
 
-        .step--response .step__rubric .question__answers .answer__tip, 
-        .step--student-training .student-training__assessment .question__answers .answer__tip, 
-        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer__tip, 
-        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer__tip, 
+        .step--response .step__rubric .question__answers .answer__tip,
+        .step--student-training .student-training__assessment .question__answers .answer__tip,
+        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer__tip,
+        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer__tip,
         .openassessment .staff-assessment__assessment .question__answers .answer__tip,
-        .step--response .step__rubric .question__answers .answer__points, 
-        .step--student-training .student-training__assessment .question__answers .answer__points, 
-        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer__points, 
-        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer__points, 
+        .step--response .step__rubric .question__answers .answer__points,
+        .step--student-training .student-training__assessment .question__answers .answer__points,
+        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer__points,
+        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer__points,
         .openassessment .staff-assessment__assessment .question__answers .answer__points
-        .step--response .step__rubric .question__answers .answer__points__label, 
-        .step--student-training .student-training__assessment .question__answers .answer__points__label, 
-        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer__points__label, 
-        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer__points__label, 
+        .step--response .step__rubric .question__answers .answer__points__label,
+        .step--student-training .student-training__assessment .question__answers .answer__points__label,
+        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer__points__label,
+        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer__points__label,
         .openassessment .staff-assessment__assessment .question__answers .answer__points__label
         {
             color: $text-color-primary;
         }
 
-        .tox .tox-toolbar, .tox .tox-toolbar__overflow, 
+        .tox .tox-toolbar, .tox .tox-toolbar__overflow,
         .tox .tox-toolbar__primary{
             background-color: $body-bg-d;
             color: $text-color-d;
@@ -415,7 +415,7 @@
             .label,
             .question__score__potential
             { color: $text-color-d; }
-        } 
+        }
         .openassessment .answer{
             .answer__source__value-with-points,
             .answer__value__value,
@@ -429,7 +429,7 @@
         }
 
 
-        // for staff 
+        // for staff
         .ui-staff{
             .wrapper--content{
                 background: $body-bg-d;
@@ -442,7 +442,7 @@
             .message--complete,
             .message--incomplete{
                 color: $primary-light-d;
-                & .message__content{ 
+                & .message__content{
                     color: $primary-light-d;
                     a {
                         color: $btn-color-d;
@@ -463,4 +463,16 @@
         }
 
     }
+    #feedback-container{
+        background: $body-bg-d;
+        border: 1px solid $text-color-d;
+        p{
+            color: $text-color-d;
+        }
+    }
+
+    .emoji-button{
+        background-color: $body-bg-d;
+    }
+    .xblock.xmodule_display.xmodule_HtmlBlock .blue-text{color: $primary;}
 }
