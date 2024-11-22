@@ -1,4 +1,4 @@
-$primary: {{ INDIGO_PRIMARY_COLOR }};
+$primary: #002FA7;
 $primary-light: #F2F7F8;
 
 // Theme fonts
@@ -16,6 +16,17 @@ $dark: #111827;
 $light-dark: #374151;
 $big-screen: 1200px;
 
+$background-color-light: #B0B7C3;
+$background-color-lighter: #F0F4f8;
+$background-color-dark: #162838;
+
+$text-color-light: #E5E7EB;
+$text-color-dark: #001B4D;
+
+$secondary: #032F5F;
+$header-color: $secondary;
+$link-color: #0B2032;
+$icon-color: #0B2032;
 
 
 // Introducing dark-theme variables

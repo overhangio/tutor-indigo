@@ -1,7 +1,8 @@
 // Include custom Footer
 .wrapper-footer {
+    background: #fff;
     padding: 25px 0;
-    border-top: 1px solid #E5E7EB;
+    border-top: 1px solid $text-color-light;
     @include media-breakpoint-up(md) {
         padding: 45px 0;
     }
@@ -45,7 +46,7 @@ footer.tutor-container {
             position: relative;
             font-size: 12px;
             line-height: 18px;
-            color: #515661;
+            color: $text-color-dark;
             &:first-child {
                 padding-left: 0;
             }
@@ -81,10 +82,9 @@ footer.tutor-container {
                     line-height: 24px;
                 }
                 a {
-                    color: $light-dark;
+                    color: $icon-color;
                     text-decoration: none;
                     &:hover {
-                        color: $dark;
                         text-decoration: none;
                     }
                 }
@@ -95,22 +95,22 @@ footer.tutor-container {
         display: block;
         font-size: 12px;
         line-height: 16px;
-        color: $light-dark;
+        color: $text-color-dark;
     }
 }
 
 body.indigo-dark-theme {
     .wrapper-footer {
         border-top: 1px solid $border-color-d;
-        background: $body-bg-d;
+        background: $background-color-dark;
     }
     footer.tutor-container {
         .logo-list {
             li {
-                color: $text-color-primary;
+                color: $text-color-light;
                 &:last-child {
                     &:after {
-                        background: $text-color-primary;
+                        background: $text-color-light;
                     }
                 }
             }
@@ -119,7 +119,7 @@ body.indigo-dark-theme {
             ol {
                 li {
                     a {
-                        color:$text-color-primary;
+                        color:$text-color-light;
                         &:hover {
                             color: $text-color-d;
                         }
@@ -128,7 +128,7 @@ body.indigo-dark-theme {
             }
         }
         .copyright-site {
-            color: $text-color-primary;
+            color: $text-color-light;
         }
 
     }

@@ -1,0 +1,3658 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700");
+/* line 3, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_align.scss */
+.align-baseline {
+  vertical-align: baseline !important; }
+
+/* line 4, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_align.scss */
+.align-top {
+  vertical-align: top !important; }
+
+/* line 5, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_align.scss */
+.align-middle {
+  vertical-align: middle !important; }
+
+/* line 6, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_align.scss */
+.align-bottom {
+  vertical-align: bottom !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_align.scss */
+.align-text-bottom {
+  vertical-align: text-bottom !important; }
+
+/* line 8, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_align.scss */
+.align-text-top {
+  vertical-align: text-top !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-primary {
+  background-color: #002FA7 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-primary:hover, a.bg-primary:focus,
+button.bg-primary:hover,
+button.bg-primary:focus {
+  background-color: #002174 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-secondary {
+  background-color: #313131 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-secondary:hover, a.bg-secondary:focus,
+button.bg-secondary:hover,
+button.bg-secondary:focus {
+  background-color: #181818 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-success {
+  background-color: #008100 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-success:hover, a.bg-success:focus,
+button.bg-success:hover,
+button.bg-success:focus {
+  background-color: #004e00 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-info {
+  background-color: #17a2b8 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-info:hover, a.bg-info:focus,
+button.bg-info:hover,
+button.bg-info:focus {
+  background-color: #117a8b !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-warning {
+  background-color: #e2c01f !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-warning:hover, a.bg-warning:focus,
+button.bg-warning:hover,
+button.bg-warning:focus {
+  background-color: #b69b18 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-danger {
+  background-color: #b20610 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-danger:hover, a.bg-danger:focus,
+button.bg-danger:hover,
+button.bg-danger:focus {
+  background-color: #81040c !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-light {
+  background-color: #e7e7e7 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-light:hover, a.bg-light:focus,
+button.bg-light:hover,
+button.bg-light:focus {
+  background-color: #cecece !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-dark {
+  background-color: #313131 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-dark:hover, a.bg-dark:focus,
+button.bg-dark:hover,
+button.bg-dark:focus {
+  background-color: #181818 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-inverse {
+  background-color: #fff !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-inverse:hover, a.bg-inverse:focus,
+button.bg-inverse:hover,
+button.bg-inverse:focus {
+  background-color: #e6e6e6 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-disabled {
+  background-color: #767676 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-disabled:hover, a.bg-disabled:focus,
+button.bg-disabled:hover,
+button.bg-disabled:focus {
+  background-color: #5d5d5d !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-purchase {
+  background-color: #008100 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-purchase:hover, a.bg-purchase:focus,
+button.bg-purchase:hover,
+button.bg-purchase:focus {
+  background-color: #004e00 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-lightest {
+  background-color: #f5f5f5 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-lightest:hover, a.bg-lightest:focus,
+button.bg-lightest:hover,
+button.bg-lightest:focus {
+  background-color: gainsboro !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-darker {
+  background-color: #111 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-darker:hover, a.bg-darker:focus,
+button.bg-darker:hover,
+button.bg-darker:focus {
+  background-color: black !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_background-variant.scss */
+.bg-darkest {
+  background-color: #000 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.bg-darkest:hover, a.bg-darkest:focus,
+button.bg-darkest:hover,
+button.bg-darkest:focus {
+  background-color: black !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_background.scss */
+.bg-white {
+  background-color: #fff !important; }
+
+/* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_background.scss */
+.bg-transparent {
+  background-color: transparent !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border {
+  border: 1px solid #e7e7e7 !important; }
+
+/* line 8, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-top {
+  border-top: 1px solid #e7e7e7 !important; }
+
+/* line 9, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-right {
+  border-right: 1px solid #e7e7e7 !important; }
+
+/* line 10, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-bottom {
+  border-bottom: 1px solid #e7e7e7 !important; }
+
+/* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-left {
+  border-left: 1px solid #e7e7e7 !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-0 {
+  border: 0 !important; }
+
+/* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-top-0 {
+  border-top: 0 !important; }
+
+/* line 15, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-right-0 {
+  border-right: 0 !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-bottom-0 {
+  border-bottom: 0 !important; }
+
+/* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-left-0 {
+  border-left: 0 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-primary {
+  border-color: #002FA7 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-secondary {
+  border-color: #313131 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-success {
+  border-color: #008100 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-info {
+  border-color: #17a2b8 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-warning {
+  border-color: #e2c01f !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-danger {
+  border-color: #b20610 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-light {
+  border-color: #e7e7e7 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-dark {
+  border-color: #313131 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-inverse {
+  border-color: #fff !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-disabled {
+  border-color: #767676 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-purchase {
+  border-color: #008100 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-lightest {
+  border-color: #f5f5f5 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-darker {
+  border-color: #111 !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-darkest {
+  border-color: #000 !important; }
+
+/* line 25, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.border-white {
+  border-color: #fff !important; }
+
+/* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.rounded {
+  border-radius: 0.1875rem !important; }
+
+/* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.rounded-top {
+  border-top-left-radius: 0.1875rem !important;
+  border-top-right-radius: 0.1875rem !important; }
+
+/* line 40, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.rounded-right {
+  border-top-right-radius: 0.1875rem !important;
+  border-bottom-right-radius: 0.1875rem !important; }
+
+/* line 44, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.rounded-bottom {
+  border-bottom-right-radius: 0.1875rem !important;
+  border-bottom-left-radius: 0.1875rem !important; }
+
+/* line 48, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.rounded-left {
+  border-top-left-radius: 0.1875rem !important;
+  border-bottom-left-radius: 0.1875rem !important; }
+
+/* line 53, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.rounded-circle {
+  border-radius: 50% !important; }
+
+/* line 57, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_borders.scss */
+.rounded-0 {
+  border-radius: 0 !important; }
+
+/* line 15, /openedx/edx-platform/common/static/sass/bourbon/addons/_clearfix.scss */
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+/* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+.d-none {
+  display: none !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+.d-inline {
+  display: inline !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+.d-inline-block {
+  display: inline-block !important; }
+
+/* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+.d-block {
+  display: block !important; }
+
+/* line 15, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+.d-table {
+  display: table !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+.d-table-row {
+  display: table-row !important; }
+
+/* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+.d-table-cell {
+  display: table-cell !important; }
+
+/* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+.d-flex {
+  display: flex !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+.d-inline-flex {
+  display: inline-flex !important; }
+
+@media (min-width: 576px) {
+  /* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-sm-none {
+    display: none !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-sm-inline {
+    display: inline !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-sm-inline-block {
+    display: inline-block !important; }
+  /* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-sm-block {
+    display: block !important; }
+  /* line 15, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-sm-table {
+    display: table !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-sm-table-row {
+    display: table-row !important; }
+  /* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-sm-table-cell {
+    display: table-cell !important; }
+  /* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-sm-flex {
+    display: flex !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-sm-inline-flex {
+    display: inline-flex !important; } }
+
+@media (min-width: 768px) {
+  /* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-md-none {
+    display: none !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-md-inline {
+    display: inline !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-md-inline-block {
+    display: inline-block !important; }
+  /* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-md-block {
+    display: block !important; }
+  /* line 15, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-md-table {
+    display: table !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-md-table-row {
+    display: table-row !important; }
+  /* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-md-table-cell {
+    display: table-cell !important; }
+  /* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-md-flex {
+    display: flex !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-md-inline-flex {
+    display: inline-flex !important; } }
+
+@media (min-width: 992px) {
+  /* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-lg-none {
+    display: none !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-lg-inline {
+    display: inline !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-lg-inline-block {
+    display: inline-block !important; }
+  /* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-lg-block {
+    display: block !important; }
+  /* line 15, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-lg-table {
+    display: table !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-lg-table-row {
+    display: table-row !important; }
+  /* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-lg-table-cell {
+    display: table-cell !important; }
+  /* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-lg-flex {
+    display: flex !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-lg-inline-flex {
+    display: inline-flex !important; } }
+
+@media (min-width: 1200px) {
+  /* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-xl-none {
+    display: none !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-xl-inline {
+    display: inline !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-xl-inline-block {
+    display: inline-block !important; }
+  /* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-xl-block {
+    display: block !important; }
+  /* line 15, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-xl-table {
+    display: table !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-xl-table-row {
+    display: table-row !important; }
+  /* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-xl-table-cell {
+    display: table-cell !important; }
+  /* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-xl-flex {
+    display: flex !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-xl-inline-flex {
+    display: inline-flex !important; } }
+
+@media print {
+  /* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-print-none {
+    display: none !important; }
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-print-inline {
+    display: inline !important; }
+  /* line 31, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-print-inline-block {
+    display: inline-block !important; }
+  /* line 32, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-print-block {
+    display: block !important; }
+  /* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-print-table {
+    display: table !important; }
+  /* line 34, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-print-table-row {
+    display: table-row !important; }
+  /* line 35, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-print-table-cell {
+    display: table-cell !important; }
+  /* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-print-flex {
+    display: flex !important; }
+  /* line 37, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_display.scss */
+  .d-print-inline-flex {
+    display: inline-flex !important; } }
+
+/* line 3, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_embed.scss */
+.embed-responsive {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden; }
+  /* line 10, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_embed.scss */
+  .embed-responsive::before {
+    display: block;
+    content: ""; }
+  /* line 15, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_embed.scss */
+  .embed-responsive .embed-responsive-item,
+  .embed-responsive iframe,
+  .embed-responsive embed,
+  .embed-responsive object,
+  .embed-responsive video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0; }
+
+/* line 31, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_embed.scss */
+.embed-responsive-21by9::before {
+  padding-top: 42.85714%; }
+
+/* line 37, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_embed.scss */
+.embed-responsive-16by9::before {
+  padding-top: 56.25%; }
+
+/* line 43, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_embed.scss */
+.embed-responsive-4by3::before {
+  padding-top: 75%; }
+
+/* line 49, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_embed.scss */
+.embed-responsive-1by1::before {
+  padding-top: 100%; }
+
+/* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.flex-row {
+  flex-direction: row !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.flex-column {
+  flex-direction: column !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.flex-row-reverse {
+  flex-direction: row-reverse !important; }
+
+/* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.flex-column-reverse {
+  flex-direction: column-reverse !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.flex-wrap {
+  flex-wrap: wrap !important; }
+
+/* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.flex-nowrap {
+  flex-wrap: nowrap !important; }
+
+/* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.justify-content-start {
+  justify-content: flex-start !important; }
+
+/* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.justify-content-end {
+  justify-content: flex-end !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.justify-content-center {
+  justify-content: center !important; }
+
+/* line 23, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.justify-content-between {
+  justify-content: space-between !important; }
+
+/* line 24, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.justify-content-around {
+  justify-content: space-around !important; }
+
+/* line 26, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-items-start {
+  align-items: flex-start !important; }
+
+/* line 27, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-items-end {
+  align-items: flex-end !important; }
+
+/* line 28, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-items-center {
+  align-items: center !important; }
+
+/* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-items-baseline {
+  align-items: baseline !important; }
+
+/* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-items-stretch {
+  align-items: stretch !important; }
+
+/* line 32, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-content-start {
+  align-content: flex-start !important; }
+
+/* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-content-end {
+  align-content: flex-end !important; }
+
+/* line 34, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-content-center {
+  align-content: center !important; }
+
+/* line 35, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-content-between {
+  align-content: space-between !important; }
+
+/* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-content-around {
+  align-content: space-around !important; }
+
+/* line 37, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-content-stretch {
+  align-content: stretch !important; }
+
+/* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-self-auto {
+  align-self: auto !important; }
+
+/* line 40, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-self-start {
+  align-self: flex-start !important; }
+
+/* line 41, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-self-end {
+  align-self: flex-end !important; }
+
+/* line 42, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-self-center {
+  align-self: center !important; }
+
+/* line 43, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-self-baseline {
+  align-self: baseline !important; }
+
+/* line 44, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+.align-self-stretch {
+  align-self: stretch !important; }
+
+@media (min-width: 576px) {
+  /* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-sm-row {
+    flex-direction: row !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-sm-column {
+    flex-direction: column !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-sm-row-reverse {
+    flex-direction: row-reverse !important; }
+  /* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-sm-column-reverse {
+    flex-direction: column-reverse !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-sm-wrap {
+    flex-wrap: wrap !important; }
+  /* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-sm-nowrap {
+    flex-wrap: nowrap !important; }
+  /* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-sm-wrap-reverse {
+    flex-wrap: wrap-reverse !important; }
+  /* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-sm-start {
+    justify-content: flex-start !important; }
+  /* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-sm-end {
+    justify-content: flex-end !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-sm-center {
+    justify-content: center !important; }
+  /* line 23, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-sm-between {
+    justify-content: space-between !important; }
+  /* line 24, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-sm-around {
+    justify-content: space-around !important; }
+  /* line 26, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-sm-start {
+    align-items: flex-start !important; }
+  /* line 27, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-sm-end {
+    align-items: flex-end !important; }
+  /* line 28, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-sm-center {
+    align-items: center !important; }
+  /* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-sm-baseline {
+    align-items: baseline !important; }
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-sm-stretch {
+    align-items: stretch !important; }
+  /* line 32, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-sm-start {
+    align-content: flex-start !important; }
+  /* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-sm-end {
+    align-content: flex-end !important; }
+  /* line 34, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-sm-center {
+    align-content: center !important; }
+  /* line 35, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-sm-between {
+    align-content: space-between !important; }
+  /* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-sm-around {
+    align-content: space-around !important; }
+  /* line 37, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-sm-stretch {
+    align-content: stretch !important; }
+  /* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-sm-auto {
+    align-self: auto !important; }
+  /* line 40, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-sm-start {
+    align-self: flex-start !important; }
+  /* line 41, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-sm-end {
+    align-self: flex-end !important; }
+  /* line 42, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-sm-center {
+    align-self: center !important; }
+  /* line 43, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-sm-baseline {
+    align-self: baseline !important; }
+  /* line 44, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-sm-stretch {
+    align-self: stretch !important; } }
+
+@media (min-width: 768px) {
+  /* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-md-row {
+    flex-direction: row !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-md-column {
+    flex-direction: column !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-md-row-reverse {
+    flex-direction: row-reverse !important; }
+  /* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-md-column-reverse {
+    flex-direction: column-reverse !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-md-wrap {
+    flex-wrap: wrap !important; }
+  /* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-md-nowrap {
+    flex-wrap: nowrap !important; }
+  /* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-md-wrap-reverse {
+    flex-wrap: wrap-reverse !important; }
+  /* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-md-start {
+    justify-content: flex-start !important; }
+  /* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-md-end {
+    justify-content: flex-end !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-md-center {
+    justify-content: center !important; }
+  /* line 23, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-md-between {
+    justify-content: space-between !important; }
+  /* line 24, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-md-around {
+    justify-content: space-around !important; }
+  /* line 26, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-md-start {
+    align-items: flex-start !important; }
+  /* line 27, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-md-end {
+    align-items: flex-end !important; }
+  /* line 28, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-md-center {
+    align-items: center !important; }
+  /* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-md-baseline {
+    align-items: baseline !important; }
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-md-stretch {
+    align-items: stretch !important; }
+  /* line 32, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-md-start {
+    align-content: flex-start !important; }
+  /* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-md-end {
+    align-content: flex-end !important; }
+  /* line 34, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-md-center {
+    align-content: center !important; }
+  /* line 35, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-md-between {
+    align-content: space-between !important; }
+  /* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-md-around {
+    align-content: space-around !important; }
+  /* line 37, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-md-stretch {
+    align-content: stretch !important; }
+  /* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-md-auto {
+    align-self: auto !important; }
+  /* line 40, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-md-start {
+    align-self: flex-start !important; }
+  /* line 41, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-md-end {
+    align-self: flex-end !important; }
+  /* line 42, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-md-center {
+    align-self: center !important; }
+  /* line 43, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-md-baseline {
+    align-self: baseline !important; }
+  /* line 44, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-md-stretch {
+    align-self: stretch !important; } }
+
+@media (min-width: 992px) {
+  /* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-lg-row {
+    flex-direction: row !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-lg-column {
+    flex-direction: column !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-lg-row-reverse {
+    flex-direction: row-reverse !important; }
+  /* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-lg-column-reverse {
+    flex-direction: column-reverse !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-lg-wrap {
+    flex-wrap: wrap !important; }
+  /* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-lg-nowrap {
+    flex-wrap: nowrap !important; }
+  /* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-lg-wrap-reverse {
+    flex-wrap: wrap-reverse !important; }
+  /* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-lg-start {
+    justify-content: flex-start !important; }
+  /* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-lg-end {
+    justify-content: flex-end !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-lg-center {
+    justify-content: center !important; }
+  /* line 23, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-lg-between {
+    justify-content: space-between !important; }
+  /* line 24, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-lg-around {
+    justify-content: space-around !important; }
+  /* line 26, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-lg-start {
+    align-items: flex-start !important; }
+  /* line 27, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-lg-end {
+    align-items: flex-end !important; }
+  /* line 28, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-lg-center {
+    align-items: center !important; }
+  /* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-lg-baseline {
+    align-items: baseline !important; }
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-lg-stretch {
+    align-items: stretch !important; }
+  /* line 32, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-lg-start {
+    align-content: flex-start !important; }
+  /* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-lg-end {
+    align-content: flex-end !important; }
+  /* line 34, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-lg-center {
+    align-content: center !important; }
+  /* line 35, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-lg-between {
+    align-content: space-between !important; }
+  /* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-lg-around {
+    align-content: space-around !important; }
+  /* line 37, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-lg-stretch {
+    align-content: stretch !important; }
+  /* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-lg-auto {
+    align-self: auto !important; }
+  /* line 40, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-lg-start {
+    align-self: flex-start !important; }
+  /* line 41, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-lg-end {
+    align-self: flex-end !important; }
+  /* line 42, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-lg-center {
+    align-self: center !important; }
+  /* line 43, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-lg-baseline {
+    align-self: baseline !important; }
+  /* line 44, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-lg-stretch {
+    align-self: stretch !important; } }
+
+@media (min-width: 1200px) {
+  /* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-xl-row {
+    flex-direction: row !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-xl-column {
+    flex-direction: column !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-xl-row-reverse {
+    flex-direction: row-reverse !important; }
+  /* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-xl-column-reverse {
+    flex-direction: column-reverse !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-xl-wrap {
+    flex-wrap: wrap !important; }
+  /* line 17, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-xl-nowrap {
+    flex-wrap: nowrap !important; }
+  /* line 18, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .flex-xl-wrap-reverse {
+    flex-wrap: wrap-reverse !important; }
+  /* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-xl-start {
+    justify-content: flex-start !important; }
+  /* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-xl-end {
+    justify-content: flex-end !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-xl-center {
+    justify-content: center !important; }
+  /* line 23, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-xl-between {
+    justify-content: space-between !important; }
+  /* line 24, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .justify-content-xl-around {
+    justify-content: space-around !important; }
+  /* line 26, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-xl-start {
+    align-items: flex-start !important; }
+  /* line 27, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-xl-end {
+    align-items: flex-end !important; }
+  /* line 28, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-xl-center {
+    align-items: center !important; }
+  /* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-xl-baseline {
+    align-items: baseline !important; }
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-items-xl-stretch {
+    align-items: stretch !important; }
+  /* line 32, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-xl-start {
+    align-content: flex-start !important; }
+  /* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-xl-end {
+    align-content: flex-end !important; }
+  /* line 34, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-xl-center {
+    align-content: center !important; }
+  /* line 35, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-xl-between {
+    align-content: space-between !important; }
+  /* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-xl-around {
+    align-content: space-around !important; }
+  /* line 37, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-content-xl-stretch {
+    align-content: stretch !important; }
+  /* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-xl-auto {
+    align-self: auto !important; }
+  /* line 40, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-xl-start {
+    align-self: flex-start !important; }
+  /* line 41, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-xl-end {
+    align-self: flex-end !important; }
+  /* line 42, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-xl-center {
+    align-self: center !important; }
+  /* line 43, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-xl-baseline {
+    align-self: baseline !important; }
+  /* line 44, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_flex.scss */
+  .align-self-xl-stretch {
+    align-self: stretch !important; } }
+
+/* line 5, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+.float-left {
+  float: left !important; }
+
+/* line 6, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+.float-right {
+  float: right !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+.float-none {
+  float: none !important; }
+
+@media (min-width: 576px) {
+  /* line 5, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-sm-left {
+    float: left !important; }
+  /* line 6, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-sm-right {
+    float: right !important; }
+  /* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-sm-none {
+    float: none !important; } }
+
+@media (min-width: 768px) {
+  /* line 5, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-md-left {
+    float: left !important; }
+  /* line 6, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-md-right {
+    float: right !important; }
+  /* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-md-none {
+    float: none !important; } }
+
+@media (min-width: 992px) {
+  /* line 5, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-lg-left {
+    float: left !important; }
+  /* line 6, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-lg-right {
+    float: right !important; }
+  /* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-lg-none {
+    float: none !important; } }
+
+@media (min-width: 1200px) {
+  /* line 5, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-xl-left {
+    float: left !important; }
+  /* line 6, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-xl-right {
+    float: right !important; }
+  /* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_float.scss */
+  .float-xl-none {
+    float: none !important; } }
+
+/* line 9, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_position.scss */
+.position-static {
+  position: static !important; }
+
+/* line 9, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_position.scss */
+.position-relative {
+  position: relative !important; }
+
+/* line 9, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_position.scss */
+.position-absolute {
+  position: absolute !important; }
+
+/* line 9, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_position.scss */
+.position-fixed {
+  position: fixed !important; }
+
+/* line 9, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_position.scss */
+.position-sticky {
+  position: sticky !important; }
+
+/* line 14, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_position.scss */
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_position.scss */
+.fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030; }
+
+@supports (position: sticky) {
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_position.scss */
+  .sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020; } }
+
+/* line 5, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_screenreaders.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0; }
+
+/* line 25, node_modules/bootstrap/scss/mixins/_screen-reader.scss */
+.sr-only-focusable:active, .sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  clip-path: none; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.w-25 {
+  width: 25% !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.w-50 {
+  width: 50% !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.w-75 {
+  width: 75% !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.w-100 {
+  width: 100% !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.h-25 {
+  height: 25% !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.h-50 {
+  height: 50% !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.h-75 {
+  height: 75% !important; }
+
+/* line 7, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.h-100 {
+  height: 100% !important; }
+
+/* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.mw-100 {
+  max-width: 100% !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_sizing.scss */
+.mh-100 {
+  max-height: 100% !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.m-0 {
+  margin: 0 !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mt-0,
+.my-0 {
+  margin-top: 0 !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mr-0,
+.mx-0 {
+  margin-right: 0 !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mb-0,
+.my-0 {
+  margin-bottom: 0 !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.ml-0,
+.mx-0 {
+  margin-left: 0 !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.m-1 {
+  margin: 0.25rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mt-1,
+.my-1 {
+  margin-top: 0.25rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mr-1,
+.mx-1 {
+  margin-right: 0.25rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mb-1,
+.my-1 {
+  margin-bottom: 0.25rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.ml-1,
+.mx-1 {
+  margin-left: 0.25rem !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.m-2 {
+  margin: 0.5rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mt-2,
+.my-2 {
+  margin-top: 0.5rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mr-2,
+.mx-2 {
+  margin-right: 0.5rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mb-2,
+.my-2 {
+  margin-bottom: 0.5rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.ml-2,
+.mx-2 {
+  margin-left: 0.5rem !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.m-3 {
+  margin: 1rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mt-3,
+.my-3 {
+  margin-top: 1rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mr-3,
+.mx-3 {
+  margin-right: 1rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mb-3,
+.my-3 {
+  margin-bottom: 1rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.ml-3,
+.mx-3 {
+  margin-left: 1rem !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.m-4 {
+  margin: 1.5rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mt-4,
+.my-4 {
+  margin-top: 1.5rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mr-4,
+.mx-4 {
+  margin-right: 1.5rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mb-4,
+.my-4 {
+  margin-bottom: 1.5rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.ml-4,
+.mx-4 {
+  margin-left: 1.5rem !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.m-5 {
+  margin: 3rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mt-5,
+.my-5 {
+  margin-top: 3rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mr-5,
+.mx-5 {
+  margin-right: 3rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mb-5,
+.my-5 {
+  margin-bottom: 3rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.ml-5,
+.mx-5 {
+  margin-left: 3rem !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.p-0 {
+  padding: 0 !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pt-0,
+.py-0 {
+  padding-top: 0 !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pr-0,
+.px-0 {
+  padding-right: 0 !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pb-0,
+.py-0 {
+  padding-bottom: 0 !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pl-0,
+.px-0 {
+  padding-left: 0 !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.p-1 {
+  padding: 0.25rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pt-1,
+.py-1 {
+  padding-top: 0.25rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pr-1,
+.px-1 {
+  padding-right: 0.25rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pb-1,
+.py-1 {
+  padding-bottom: 0.25rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pl-1,
+.px-1 {
+  padding-left: 0.25rem !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.p-2 {
+  padding: 0.5rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pt-2,
+.py-2 {
+  padding-top: 0.5rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pr-2,
+.px-2 {
+  padding-right: 0.5rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pb-2,
+.py-2 {
+  padding-bottom: 0.5rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pl-2,
+.px-2 {
+  padding-left: 0.5rem !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.p-3 {
+  padding: 1rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pt-3,
+.py-3 {
+  padding-top: 1rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pr-3,
+.px-3 {
+  padding-right: 1rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pb-3,
+.py-3 {
+  padding-bottom: 1rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pl-3,
+.px-3 {
+  padding-left: 1rem !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.p-4 {
+  padding: 1.5rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pt-4,
+.py-4 {
+  padding-top: 1.5rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pr-4,
+.px-4 {
+  padding-right: 1.5rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pb-4,
+.py-4 {
+  padding-bottom: 1.5rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pl-4,
+.px-4 {
+  padding-left: 1.5rem !important; }
+
+/* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.p-5 {
+  padding: 3rem !important; }
+
+/* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pt-5,
+.py-5 {
+  padding-top: 3rem !important; }
+
+/* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pr-5,
+.px-5 {
+  padding-right: 3rem !important; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pb-5,
+.py-5 {
+  padding-bottom: 3rem !important; }
+
+/* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.pl-5,
+.px-5 {
+  padding-left: 3rem !important; }
+
+/* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.m-auto {
+  margin: auto !important; }
+
+/* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mt-auto,
+.my-auto {
+  margin-top: auto !important; }
+
+/* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mr-auto,
+.mx-auto {
+  margin-right: auto !important; }
+
+/* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.mb-auto,
+.my-auto {
+  margin-bottom: auto !important; }
+
+/* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+.ml-auto,
+.mx-auto {
+  margin-left: auto !important; }
+
+@media (min-width: 576px) {
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-sm-0 {
+    margin: 0 !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-sm-0,
+  .my-sm-0 {
+    margin-top: 0 !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-sm-0,
+  .mx-sm-0 {
+    margin-right: 0 !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-sm-0,
+  .my-sm-0 {
+    margin-bottom: 0 !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-sm-0,
+  .mx-sm-0 {
+    margin-left: 0 !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-sm-1 {
+    margin: 0.25rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-sm-1,
+  .my-sm-1 {
+    margin-top: 0.25rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-sm-1,
+  .mx-sm-1 {
+    margin-right: 0.25rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-sm-1,
+  .my-sm-1 {
+    margin-bottom: 0.25rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-sm-1,
+  .mx-sm-1 {
+    margin-left: 0.25rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-sm-2 {
+    margin: 0.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-sm-2,
+  .my-sm-2 {
+    margin-top: 0.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-sm-2,
+  .mx-sm-2 {
+    margin-right: 0.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-sm-2,
+  .my-sm-2 {
+    margin-bottom: 0.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-sm-2,
+  .mx-sm-2 {
+    margin-left: 0.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-sm-3 {
+    margin: 1rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-sm-3,
+  .my-sm-3 {
+    margin-top: 1rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-sm-3,
+  .mx-sm-3 {
+    margin-right: 1rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-sm-3,
+  .my-sm-3 {
+    margin-bottom: 1rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-sm-3,
+  .mx-sm-3 {
+    margin-left: 1rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-sm-4 {
+    margin: 1.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-sm-4,
+  .my-sm-4 {
+    margin-top: 1.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-sm-4,
+  .mx-sm-4 {
+    margin-right: 1.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-sm-4,
+  .my-sm-4 {
+    margin-bottom: 1.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-sm-4,
+  .mx-sm-4 {
+    margin-left: 1.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-sm-5 {
+    margin: 3rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-sm-5,
+  .my-sm-5 {
+    margin-top: 3rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-sm-5,
+  .mx-sm-5 {
+    margin-right: 3rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-sm-5,
+  .my-sm-5 {
+    margin-bottom: 3rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-sm-5,
+  .mx-sm-5 {
+    margin-left: 3rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-sm-0 {
+    padding: 0 !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-sm-0,
+  .py-sm-0 {
+    padding-top: 0 !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-sm-0,
+  .px-sm-0 {
+    padding-right: 0 !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-sm-0,
+  .py-sm-0 {
+    padding-bottom: 0 !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-sm-0,
+  .px-sm-0 {
+    padding-left: 0 !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-sm-1 {
+    padding: 0.25rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-sm-1,
+  .py-sm-1 {
+    padding-top: 0.25rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-sm-1,
+  .px-sm-1 {
+    padding-right: 0.25rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-sm-1,
+  .py-sm-1 {
+    padding-bottom: 0.25rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-sm-1,
+  .px-sm-1 {
+    padding-left: 0.25rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-sm-2 {
+    padding: 0.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-sm-2,
+  .py-sm-2 {
+    padding-top: 0.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-sm-2,
+  .px-sm-2 {
+    padding-right: 0.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-sm-2,
+  .py-sm-2 {
+    padding-bottom: 0.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-sm-2,
+  .px-sm-2 {
+    padding-left: 0.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-sm-3 {
+    padding: 1rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-sm-3,
+  .py-sm-3 {
+    padding-top: 1rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-sm-3,
+  .px-sm-3 {
+    padding-right: 1rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-sm-3,
+  .py-sm-3 {
+    padding-bottom: 1rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-sm-3,
+  .px-sm-3 {
+    padding-left: 1rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-sm-4 {
+    padding: 1.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-sm-4,
+  .py-sm-4 {
+    padding-top: 1.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-sm-4,
+  .px-sm-4 {
+    padding-right: 1.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-sm-4,
+  .py-sm-4 {
+    padding-bottom: 1.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-sm-4,
+  .px-sm-4 {
+    padding-left: 1.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-sm-5 {
+    padding: 3rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-sm-5,
+  .py-sm-5 {
+    padding-top: 3rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-sm-5,
+  .px-sm-5 {
+    padding-right: 3rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-sm-5,
+  .py-sm-5 {
+    padding-bottom: 3rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-sm-5,
+  .px-sm-5 {
+    padding-left: 3rem !important; }
+  /* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-sm-auto {
+    margin: auto !important; }
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-sm-auto,
+  .my-sm-auto {
+    margin-top: auto !important; }
+  /* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-sm-auto,
+  .mx-sm-auto {
+    margin-right: auto !important; }
+  /* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-sm-auto,
+  .my-sm-auto {
+    margin-bottom: auto !important; }
+  /* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-sm-auto,
+  .mx-sm-auto {
+    margin-left: auto !important; } }
+
+@media (min-width: 768px) {
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-md-0 {
+    margin: 0 !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-md-0,
+  .my-md-0 {
+    margin-top: 0 !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-md-0,
+  .mx-md-0 {
+    margin-right: 0 !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-md-0,
+  .my-md-0 {
+    margin-bottom: 0 !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-md-0,
+  .mx-md-0 {
+    margin-left: 0 !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-md-1 {
+    margin: 0.25rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-md-1,
+  .my-md-1 {
+    margin-top: 0.25rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-md-1,
+  .mx-md-1 {
+    margin-right: 0.25rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-md-1,
+  .my-md-1 {
+    margin-bottom: 0.25rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-md-1,
+  .mx-md-1 {
+    margin-left: 0.25rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-md-2 {
+    margin: 0.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-md-2,
+  .my-md-2 {
+    margin-top: 0.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-md-2,
+  .mx-md-2 {
+    margin-right: 0.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-md-2,
+  .my-md-2 {
+    margin-bottom: 0.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-md-2,
+  .mx-md-2 {
+    margin-left: 0.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-md-3 {
+    margin: 1rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-md-3,
+  .my-md-3 {
+    margin-top: 1rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-md-3,
+  .mx-md-3 {
+    margin-right: 1rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-md-3,
+  .my-md-3 {
+    margin-bottom: 1rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-md-3,
+  .mx-md-3 {
+    margin-left: 1rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-md-4 {
+    margin: 1.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-md-4,
+  .my-md-4 {
+    margin-top: 1.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-md-4,
+  .mx-md-4 {
+    margin-right: 1.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-md-4,
+  .my-md-4 {
+    margin-bottom: 1.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-md-4,
+  .mx-md-4 {
+    margin-left: 1.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-md-5 {
+    margin: 3rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-md-5,
+  .my-md-5 {
+    margin-top: 3rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-md-5,
+  .mx-md-5 {
+    margin-right: 3rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-md-5,
+  .my-md-5 {
+    margin-bottom: 3rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-md-5,
+  .mx-md-5 {
+    margin-left: 3rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-md-0 {
+    padding: 0 !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-md-0,
+  .py-md-0 {
+    padding-top: 0 !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-md-0,
+  .px-md-0 {
+    padding-right: 0 !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-md-0,
+  .py-md-0 {
+    padding-bottom: 0 !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-md-0,
+  .px-md-0 {
+    padding-left: 0 !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-md-1 {
+    padding: 0.25rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-md-1,
+  .py-md-1 {
+    padding-top: 0.25rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-md-1,
+  .px-md-1 {
+    padding-right: 0.25rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-md-1,
+  .py-md-1 {
+    padding-bottom: 0.25rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-md-1,
+  .px-md-1 {
+    padding-left: 0.25rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-md-2 {
+    padding: 0.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-md-2,
+  .py-md-2 {
+    padding-top: 0.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-md-2,
+  .px-md-2 {
+    padding-right: 0.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-md-2,
+  .py-md-2 {
+    padding-bottom: 0.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-md-2,
+  .px-md-2 {
+    padding-left: 0.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-md-3 {
+    padding: 1rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-md-3,
+  .py-md-3 {
+    padding-top: 1rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-md-3,
+  .px-md-3 {
+    padding-right: 1rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-md-3,
+  .py-md-3 {
+    padding-bottom: 1rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-md-3,
+  .px-md-3 {
+    padding-left: 1rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-md-4 {
+    padding: 1.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-md-4,
+  .py-md-4 {
+    padding-top: 1.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-md-4,
+  .px-md-4 {
+    padding-right: 1.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-md-4,
+  .py-md-4 {
+    padding-bottom: 1.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-md-4,
+  .px-md-4 {
+    padding-left: 1.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-md-5 {
+    padding: 3rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-md-5,
+  .py-md-5 {
+    padding-top: 3rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-md-5,
+  .px-md-5 {
+    padding-right: 3rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-md-5,
+  .py-md-5 {
+    padding-bottom: 3rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-md-5,
+  .px-md-5 {
+    padding-left: 3rem !important; }
+  /* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-md-auto {
+    margin: auto !important; }
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-md-auto,
+  .my-md-auto {
+    margin-top: auto !important; }
+  /* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-md-auto,
+  .mx-md-auto {
+    margin-right: auto !important; }
+  /* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-md-auto,
+  .my-md-auto {
+    margin-bottom: auto !important; }
+  /* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-md-auto,
+  .mx-md-auto {
+    margin-left: auto !important; } }
+
+@media (min-width: 992px) {
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-lg-0 {
+    margin: 0 !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-lg-0,
+  .my-lg-0 {
+    margin-top: 0 !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-lg-0,
+  .mx-lg-0 {
+    margin-right: 0 !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-lg-0,
+  .my-lg-0 {
+    margin-bottom: 0 !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-lg-0,
+  .mx-lg-0 {
+    margin-left: 0 !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-lg-1 {
+    margin: 0.25rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-lg-1,
+  .my-lg-1 {
+    margin-top: 0.25rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-lg-1,
+  .mx-lg-1 {
+    margin-right: 0.25rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-lg-1,
+  .my-lg-1 {
+    margin-bottom: 0.25rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-lg-1,
+  .mx-lg-1 {
+    margin-left: 0.25rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-lg-2 {
+    margin: 0.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-lg-2,
+  .my-lg-2 {
+    margin-top: 0.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-lg-2,
+  .mx-lg-2 {
+    margin-right: 0.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-lg-2,
+  .my-lg-2 {
+    margin-bottom: 0.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-lg-2,
+  .mx-lg-2 {
+    margin-left: 0.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-lg-3 {
+    margin: 1rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-lg-3,
+  .my-lg-3 {
+    margin-top: 1rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-lg-3,
+  .mx-lg-3 {
+    margin-right: 1rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-lg-3,
+  .my-lg-3 {
+    margin-bottom: 1rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-lg-3,
+  .mx-lg-3 {
+    margin-left: 1rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-lg-4 {
+    margin: 1.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-lg-4,
+  .my-lg-4 {
+    margin-top: 1.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-lg-4,
+  .mx-lg-4 {
+    margin-right: 1.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-lg-4,
+  .my-lg-4 {
+    margin-bottom: 1.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-lg-4,
+  .mx-lg-4 {
+    margin-left: 1.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-lg-5 {
+    margin: 3rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-lg-5,
+  .my-lg-5 {
+    margin-top: 3rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-lg-5,
+  .mx-lg-5 {
+    margin-right: 3rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-lg-5,
+  .my-lg-5 {
+    margin-bottom: 3rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-lg-5,
+  .mx-lg-5 {
+    margin-left: 3rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-lg-0 {
+    padding: 0 !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-lg-0,
+  .py-lg-0 {
+    padding-top: 0 !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-lg-0,
+  .px-lg-0 {
+    padding-right: 0 !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-lg-0,
+  .py-lg-0 {
+    padding-bottom: 0 !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-lg-0,
+  .px-lg-0 {
+    padding-left: 0 !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-lg-1 {
+    padding: 0.25rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-lg-1,
+  .py-lg-1 {
+    padding-top: 0.25rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-lg-1,
+  .px-lg-1 {
+    padding-right: 0.25rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-lg-1,
+  .py-lg-1 {
+    padding-bottom: 0.25rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-lg-1,
+  .px-lg-1 {
+    padding-left: 0.25rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-lg-2 {
+    padding: 0.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-lg-2,
+  .py-lg-2 {
+    padding-top: 0.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-lg-2,
+  .px-lg-2 {
+    padding-right: 0.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-lg-2,
+  .py-lg-2 {
+    padding-bottom: 0.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-lg-2,
+  .px-lg-2 {
+    padding-left: 0.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-lg-3 {
+    padding: 1rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-lg-3,
+  .py-lg-3 {
+    padding-top: 1rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-lg-3,
+  .px-lg-3 {
+    padding-right: 1rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-lg-3,
+  .py-lg-3 {
+    padding-bottom: 1rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-lg-3,
+  .px-lg-3 {
+    padding-left: 1rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-lg-4 {
+    padding: 1.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-lg-4,
+  .py-lg-4 {
+    padding-top: 1.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-lg-4,
+  .px-lg-4 {
+    padding-right: 1.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-lg-4,
+  .py-lg-4 {
+    padding-bottom: 1.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-lg-4,
+  .px-lg-4 {
+    padding-left: 1.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-lg-5 {
+    padding: 3rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-lg-5,
+  .py-lg-5 {
+    padding-top: 3rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-lg-5,
+  .px-lg-5 {
+    padding-right: 3rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-lg-5,
+  .py-lg-5 {
+    padding-bottom: 3rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-lg-5,
+  .px-lg-5 {
+    padding-left: 3rem !important; }
+  /* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-lg-auto {
+    margin: auto !important; }
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-lg-auto,
+  .my-lg-auto {
+    margin-top: auto !important; }
+  /* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-lg-auto,
+  .mx-lg-auto {
+    margin-right: auto !important; }
+  /* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-lg-auto,
+  .my-lg-auto {
+    margin-bottom: auto !important; }
+  /* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-lg-auto,
+  .mx-lg-auto {
+    margin-left: auto !important; } }
+
+@media (min-width: 1200px) {
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-xl-0 {
+    margin: 0 !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-xl-0,
+  .my-xl-0 {
+    margin-top: 0 !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-xl-0,
+  .mx-xl-0 {
+    margin-right: 0 !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-xl-0,
+  .my-xl-0 {
+    margin-bottom: 0 !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-xl-0,
+  .mx-xl-0 {
+    margin-left: 0 !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-xl-1 {
+    margin: 0.25rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-xl-1,
+  .my-xl-1 {
+    margin-top: 0.25rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-xl-1,
+  .mx-xl-1 {
+    margin-right: 0.25rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-xl-1,
+  .my-xl-1 {
+    margin-bottom: 0.25rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-xl-1,
+  .mx-xl-1 {
+    margin-left: 0.25rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-xl-2 {
+    margin: 0.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-xl-2,
+  .my-xl-2 {
+    margin-top: 0.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-xl-2,
+  .mx-xl-2 {
+    margin-right: 0.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-xl-2,
+  .my-xl-2 {
+    margin-bottom: 0.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-xl-2,
+  .mx-xl-2 {
+    margin-left: 0.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-xl-3 {
+    margin: 1rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-xl-3,
+  .my-xl-3 {
+    margin-top: 1rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-xl-3,
+  .mx-xl-3 {
+    margin-right: 1rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-xl-3,
+  .my-xl-3 {
+    margin-bottom: 1rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-xl-3,
+  .mx-xl-3 {
+    margin-left: 1rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-xl-4 {
+    margin: 1.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-xl-4,
+  .my-xl-4 {
+    margin-top: 1.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-xl-4,
+  .mx-xl-4 {
+    margin-right: 1.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-xl-4,
+  .my-xl-4 {
+    margin-bottom: 1.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-xl-4,
+  .mx-xl-4 {
+    margin-left: 1.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-xl-5 {
+    margin: 3rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-xl-5,
+  .my-xl-5 {
+    margin-top: 3rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-xl-5,
+  .mx-xl-5 {
+    margin-right: 3rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-xl-5,
+  .my-xl-5 {
+    margin-bottom: 3rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-xl-5,
+  .mx-xl-5 {
+    margin-left: 3rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-xl-0 {
+    padding: 0 !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-xl-0,
+  .py-xl-0 {
+    padding-top: 0 !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-xl-0,
+  .px-xl-0 {
+    padding-right: 0 !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-xl-0,
+  .py-xl-0 {
+    padding-bottom: 0 !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-xl-0,
+  .px-xl-0 {
+    padding-left: 0 !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-xl-1 {
+    padding: 0.25rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-xl-1,
+  .py-xl-1 {
+    padding-top: 0.25rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-xl-1,
+  .px-xl-1 {
+    padding-right: 0.25rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-xl-1,
+  .py-xl-1 {
+    padding-bottom: 0.25rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-xl-1,
+  .px-xl-1 {
+    padding-left: 0.25rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-xl-2 {
+    padding: 0.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-xl-2,
+  .py-xl-2 {
+    padding-top: 0.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-xl-2,
+  .px-xl-2 {
+    padding-right: 0.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-xl-2,
+  .py-xl-2 {
+    padding-bottom: 0.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-xl-2,
+  .px-xl-2 {
+    padding-left: 0.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-xl-3 {
+    padding: 1rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-xl-3,
+  .py-xl-3 {
+    padding-top: 1rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-xl-3,
+  .px-xl-3 {
+    padding-right: 1rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-xl-3,
+  .py-xl-3 {
+    padding-bottom: 1rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-xl-3,
+  .px-xl-3 {
+    padding-left: 1rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-xl-4 {
+    padding: 1.5rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-xl-4,
+  .py-xl-4 {
+    padding-top: 1.5rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-xl-4,
+  .px-xl-4 {
+    padding-right: 1.5rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-xl-4,
+  .py-xl-4 {
+    padding-bottom: 1.5rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-xl-4,
+  .px-xl-4 {
+    padding-left: 1.5rem !important; }
+  /* line 12, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .p-xl-5 {
+    padding: 3rem !important; }
+  /* line 13, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pt-xl-5,
+  .py-xl-5 {
+    padding-top: 3rem !important; }
+  /* line 16, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pr-xl-5,
+  .px-xl-5 {
+    padding-right: 3rem !important; }
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pb-xl-5,
+  .py-xl-5 {
+    padding-bottom: 3rem !important; }
+  /* line 22, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .pl-xl-5,
+  .px-xl-5 {
+    padding-left: 3rem !important; }
+  /* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .m-xl-auto {
+    margin: auto !important; }
+  /* line 30, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mt-xl-auto,
+  .my-xl-auto {
+    margin-top: auto !important; }
+  /* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mr-xl-auto,
+  .mx-xl-auto {
+    margin-right: auto !important; }
+  /* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .mb-xl-auto,
+  .my-xl-auto {
+    margin-bottom: auto !important; }
+  /* line 39, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_spacing.scss */
+  .ml-xl-auto,
+  .mx-xl-auto {
+    margin-left: auto !important; } }
+
+/* line 9, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-justify {
+  text-align: justify !important; }
+
+/* line 10, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-nowrap {
+  white-space: nowrap !important; }
+
+/* line 11, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
+/* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-left {
+  text-align: left !important; }
+
+/* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-right {
+  text-align: right !important; }
+
+/* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-center {
+  text-align: center !important; }
+
+@media (min-width: 576px) {
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-sm-left {
+    text-align: left !important; }
+  /* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-sm-right {
+    text-align: right !important; }
+  /* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-sm-center {
+    text-align: center !important; } }
+
+@media (min-width: 768px) {
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-md-left {
+    text-align: left !important; }
+  /* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-md-right {
+    text-align: right !important; }
+  /* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-md-center {
+    text-align: center !important; } }
+
+@media (min-width: 992px) {
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-lg-left {
+    text-align: left !important; }
+  /* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-lg-right {
+    text-align: right !important; }
+  /* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-lg-center {
+    text-align: center !important; } }
+
+@media (min-width: 1200px) {
+  /* line 19, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-xl-left {
+    text-align: left !important; }
+  /* line 20, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-xl-right {
+    text-align: right !important; }
+  /* line 21, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+  .text-xl-center {
+    text-align: center !important; } }
+
+/* line 27, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-lowercase {
+  text-transform: lowercase !important; }
+
+/* line 28, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-uppercase {
+  text-transform: uppercase !important; }
+
+/* line 29, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-capitalize {
+  text-transform: capitalize !important; }
+
+/* line 33, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.font-weight-light {
+  font-weight: 300 !important; }
+
+/* line 34, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.font-weight-normal {
+  font-weight: 400 !important; }
+
+/* line 35, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.font-weight-bold {
+  font-weight: 700 !important; }
+
+/* line 36, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.font-italic {
+  font-style: italic !important; }
+
+/* line 40, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-white {
+  color: #fff !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-primary {
+  color: #002FA7 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-primary:hover, a.text-primary:focus {
+  color: #002174 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-secondary {
+  color: #313131 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-secondary:hover, a.text-secondary:focus {
+  color: #181818 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-success {
+  color: #008100 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-success:hover, a.text-success:focus {
+  color: #004e00 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-info {
+  color: #17a2b8 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-info:hover, a.text-info:focus {
+  color: #117a8b !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-warning {
+  color: #e2c01f !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-warning:hover, a.text-warning:focus {
+  color: #b69b18 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-danger {
+  color: #b20610 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-danger:hover, a.text-danger:focus {
+  color: #81040c !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-light {
+  color: #e7e7e7 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-light:hover, a.text-light:focus {
+  color: #cecece !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-dark {
+  color: #313131 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-dark:hover, a.text-dark:focus {
+  color: #181818 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-inverse {
+  color: #fff !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-inverse:hover, a.text-inverse:focus {
+  color: #e6e6e6 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-disabled {
+  color: #767676 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-disabled:hover, a.text-disabled:focus {
+  color: #5d5d5d !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-purchase {
+  color: #008100 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-purchase:hover, a.text-purchase:focus {
+  color: #004e00 !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-lightest {
+  color: #f5f5f5 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-lightest:hover, a.text-lightest:focus {
+  color: gainsboro !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-darker {
+  color: #111 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-darker:hover, a.text-darker:focus {
+  color: black !important; }
+
+/* line 6, node_modules/bootstrap/scss/mixins/_text-emphasis.scss */
+.text-darkest {
+  color: #000 !important; }
+
+/* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+a.text-darkest:hover, a.text-darkest:focus {
+  color: black !important; }
+
+/* line 46, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-muted {
+  color: #767676 !important; }
+
+/* line 50, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_text.scss */
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0; }
+
+/* line 5, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_visibility.scss */
+.visible {
+  visibility: visible !important; }
+
+/* line 9, /openedx/edx-platform/node_modules/bootstrap/scss/utilities/_visibility.scss */
+.invisible {
+  visibility: hidden !important; }
+
+/* line 6, node_modules/bootstrap/scss/_badge.scss */
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  -ms-border-radius: 0.1875rem;
+  -o-border-radius: 0.1875rem;
+  border-radius: 0.1875rem; }
+  /* line 18, node_modules/bootstrap/scss/_badge.scss */
+  .badge:empty {
+    display: none; }
+
+/* line 24, node_modules/bootstrap/scss/_badge.scss */
+.btn .badge {
+  position: relative;
+  top: -1px; }
+
+/* line 33, node_modules/bootstrap/scss/_badge.scss */
+.badge-pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  -webkit-border-radius: 10rem;
+  -moz-border-radius: 10rem;
+  -ms-border-radius: 10rem;
+  -o-border-radius: 10rem;
+  border-radius: 10rem; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-primary {
+  color: #fff;
+  background-color: #002FA7; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-primary[href]:hover, .badge-primary[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #002174; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-secondary {
+  color: #fff;
+  background-color: #313131; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-secondary[href]:hover, .badge-secondary[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #181818; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-success {
+  color: #fff;
+  background-color: #008100; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-success[href]:hover, .badge-success[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #004e00; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-info {
+  color: #fff;
+  background-color: #17a2b8; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-info[href]:hover, .badge-info[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #117a8b; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-warning {
+  color: #111;
+  background-color: #e2c01f; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-warning[href]:hover, .badge-warning[href]:focus {
+    color: #111;
+    text-decoration: none;
+    background-color: #b69b18; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-danger {
+  color: #fff;
+  background-color: #b20610; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-danger[href]:hover, .badge-danger[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #81040c; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-light {
+  color: #111;
+  background-color: #e7e7e7; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-light[href]:hover, .badge-light[href]:focus {
+    color: #111;
+    text-decoration: none;
+    background-color: #cecece; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-dark {
+  color: #fff;
+  background-color: #313131; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-dark[href]:hover, .badge-dark[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #181818; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-inverse {
+  color: #111;
+  background-color: #fff; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-inverse[href]:hover, .badge-inverse[href]:focus {
+    color: #111;
+    text-decoration: none;
+    background-color: #e6e6e6; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-disabled {
+  color: #fff;
+  background-color: #767676; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-disabled[href]:hover, .badge-disabled[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #5d5d5d; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-purchase {
+  color: #fff;
+  background-color: #008100; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-purchase[href]:hover, .badge-purchase[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #004e00; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-lightest {
+  color: #111;
+  background-color: #f5f5f5; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-lightest[href]:hover, .badge-lightest[href]:focus {
+    color: #111;
+    text-decoration: none;
+    background-color: gainsboro; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-darker {
+  color: #fff;
+  background-color: #111; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-darker[href]:hover, .badge-darker[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: black; }
+
+/* line 44, node_modules/bootstrap/scss/_badge.scss */
+.badge-darkest {
+  color: #fff;
+  background-color: #000; }
+  /* line 19, node_modules/bootstrap/scss/mixins/_hover.scss */
+  .badge-darkest[href]:hover, .badge-darkest[href]:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: black; }
+
+/* line 1, node_modules/bootstrap/scss/_popover.scss */
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1060;
+  display: block;
+  max-width: 276px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+  line-break: auto;
+  font-size: 0.875rem;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  -ms-border-radius: 0.1875rem;
+  -o-border-radius: 0.1875rem;
+  border-radius: 0.1875rem; }
+  /* line 20, node_modules/bootstrap/scss/_popover.scss */
+  .popover .arrow {
+    position: absolute;
+    display: block;
+    width: 1rem;
+    height: 0.5rem;
+    margin: 0 0.1875rem; }
+    /* line 27, node_modules/bootstrap/scss/_popover.scss */
+    .popover .arrow::before, .popover .arrow::after {
+      position: absolute;
+      display: block;
+      content: "";
+      border-color: transparent;
+      border-style: solid; }
+
+/* line 38, node_modules/bootstrap/scss/_popover.scss */
+.bs-popover-top, .bs-popover-auto[x-placement^="top"] {
+  margin-bottom: 0.5rem; }
+  /* line 41, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-top .arrow, .bs-popover-auto[x-placement^="top"] .arrow {
+    bottom: calc((0.5rem + 1px) * -1); }
+  /* line 45, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-top .arrow::before, .bs-popover-auto[x-placement^="top"] .arrow::before,
+  .bs-popover-top .arrow::after, .bs-popover-auto[x-placement^="top"] .arrow::after {
+    border-width: 0.5rem 0.5rem 0; }
+  /* line 50, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-top .arrow::before, .bs-popover-auto[x-placement^="top"] .arrow::before {
+    bottom: 0;
+    border-top-color: rgba(0, 0, 0, 0.25); }
+  /* line 55, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-top .arrow::after, .bs-popover-auto[x-placement^="top"] .arrow::after {
+    bottom: 1px;
+    border-top-color: #fff; }
+
+/* line 61, node_modules/bootstrap/scss/_popover.scss */
+.bs-popover-right, .bs-popover-auto[x-placement^="right"] {
+  margin-left: 0.5rem; }
+  /* line 64, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-right .arrow, .bs-popover-auto[x-placement^="right"] .arrow {
+    left: calc((0.5rem + 1px) * -1);
+    width: 0.5rem;
+    height: 1rem;
+    margin: 0.1875rem 0; }
+  /* line 71, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-right .arrow::before, .bs-popover-auto[x-placement^="right"] .arrow::before,
+  .bs-popover-right .arrow::after, .bs-popover-auto[x-placement^="right"] .arrow::after {
+    border-width: 0.5rem 0.5rem 0.5rem 0; }
+  /* line 76, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-right .arrow::before, .bs-popover-auto[x-placement^="right"] .arrow::before {
+    left: 0;
+    border-right-color: rgba(0, 0, 0, 0.25); }
+  /* line 81, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-right .arrow::after, .bs-popover-auto[x-placement^="right"] .arrow::after {
+    left: 1px;
+    border-right-color: #fff; }
+
+/* line 87, node_modules/bootstrap/scss/_popover.scss */
+.bs-popover-bottom, .bs-popover-auto[x-placement^="bottom"] {
+  margin-top: 0.5rem; }
+  /* line 90, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-bottom .arrow, .bs-popover-auto[x-placement^="bottom"] .arrow {
+    top: calc((0.5rem + 1px) * -1); }
+  /* line 94, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-bottom .arrow::before, .bs-popover-auto[x-placement^="bottom"] .arrow::before,
+  .bs-popover-bottom .arrow::after, .bs-popover-auto[x-placement^="bottom"] .arrow::after {
+    border-width: 0 0.5rem 0.5rem 0.5rem; }
+  /* line 99, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-bottom .arrow::before, .bs-popover-auto[x-placement^="bottom"] .arrow::before {
+    top: 0;
+    border-bottom-color: rgba(0, 0, 0, 0.25); }
+  /* line 104, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-bottom .arrow::after, .bs-popover-auto[x-placement^="bottom"] .arrow::after {
+    top: 1px;
+    border-bottom-color: #fff; }
+  /* line 110, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-bottom .popover-header::before, .bs-popover-auto[x-placement^="bottom"] .popover-header::before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    width: 1rem;
+    margin-left: -0.5rem;
+    content: "";
+    border-bottom: 1px solid #f7f7f7; }
+
+/* line 122, node_modules/bootstrap/scss/_popover.scss */
+.bs-popover-left, .bs-popover-auto[x-placement^="left"] {
+  margin-right: 0.5rem; }
+  /* line 125, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-left .arrow, .bs-popover-auto[x-placement^="left"] .arrow {
+    right: calc((0.5rem + 1px) * -1);
+    width: 0.5rem;
+    height: 1rem;
+    margin: 0.1875rem 0; }
+  /* line 132, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-left .arrow::before, .bs-popover-auto[x-placement^="left"] .arrow::before,
+  .bs-popover-left .arrow::after, .bs-popover-auto[x-placement^="left"] .arrow::after {
+    border-width: 0.5rem 0 0.5rem 0.5rem; }
+  /* line 137, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-left .arrow::before, .bs-popover-auto[x-placement^="left"] .arrow::before {
+    right: 0;
+    border-left-color: rgba(0, 0, 0, 0.25); }
+  /* line 142, node_modules/bootstrap/scss/_popover.scss */
+  .bs-popover-left .arrow::after, .bs-popover-auto[x-placement^="left"] .arrow::after {
+    right: 1px;
+    border-left-color: #fff; }
+
+/* line 165, node_modules/bootstrap/scss/_popover.scss */
+.popover-header {
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: inherit;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+  -webkit-border-top-right-radius: calc(0.1875rem - 1px);
+  -moz-border-topright-radius: calc(0.1875rem - 1px);
+  border-top-right-radius: calc(0.1875rem - 1px);
+  -webkit-border-top-left-radius: calc(0.1875rem - 1px);
+  -moz-border-topleft-radius: calc(0.1875rem - 1px);
+  border-top-left-radius: calc(0.1875rem - 1px); }
+  /* line 175, node_modules/bootstrap/scss/_popover.scss */
+  .popover-header:empty {
+    display: none; }
+
+/* line 180, node_modules/bootstrap/scss/_popover.scss */
+.popover-body {
+  padding: 0.5rem 0.75rem;
+  color: #313131; }
+
+/* stylelint-disable-line */
+/* stylelint-disable-line */
+/* HTML5 Boilerplate  */
+/* line 3, lms/static/sass/base/_reset.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+nav,
+section {
+  display: block; }
+
+/* line 15, lms/static/sass/base/_reset.scss */
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1; }
+
+/* line 23, lms/static/sass/base/_reset.scss */
+audio:not([controls]) {
+  display: none; }
+
+/* line 24, lms/static/sass/base/_reset.scss */
+[hidden] {
+  display: none; }
+
+/* line 26, lms/static/sass/base/_reset.scss */
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+/* line 32, lms/static/sass/base/_reset.scss */
+html,
+button,
+input,
+select,
+textarea {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222; }
+
+/* line 41, lms/static/sass/base/_reset.scss */
+body {
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.4; }
+
+/* line 47, lms/static/sass/base/_reset.scss */
+a:not(.btn) {
+  color: #0B2032; }
+
+/* line 51, lms/static/sass/base/_reset.scss */
+a:visited:not(.btn) {
+  color: #003655; }
+
+/* line 55, lms/static/sass/base/_reset.scss */
+a:hover:not(.btn),
+a:focus:not(.btn) {
+  color: #0079bc; }
+
+/* line 60, lms/static/sass/base/_reset.scss */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/* line 62, lms/static/sass/base/_reset.scss */
+b,
+strong {
+  font-weight: bold; }
+
+/* line 67, lms/static/sass/base/_reset.scss */
+blockquote {
+  margin: 1em 40px; }
+
+/* line 68, lms/static/sass/base/_reset.scss */
+dfn {
+  font-style: italic; }
+
+/* line 70, lms/static/sass/base/_reset.scss */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+/* line 79, lms/static/sass/base/_reset.scss */
+ins {
+  background: #ff9;
+  color: #000;
+  text-decoration: none; }
+
+/* line 85, lms/static/sass/base/_reset.scss */
+mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold; }
+
+/* line 92, lms/static/sass/base/_reset.scss */
+pre,
+code,
+kbd,
+samp {
+  font-family: monospace, serif;
+  _font-family: 'courier new', monospace;
+  font-size: 1em; }
+
+/* line 101, lms/static/sass/base/_reset.scss */
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+/* line 107, lms/static/sass/base/_reset.scss */
+q {
+  quotes: none; }
+
+/* line 109, lms/static/sass/base/_reset.scss */
+q::before,
+q::after {
+  content: "";
+  content: none; }
+
+/* line 115, lms/static/sass/base/_reset.scss */
+small {
+  font-size: 85%; }
+
+/* line 117, lms/static/sass/base/_reset.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+/* line 125, lms/static/sass/base/_reset.scss */
+sup {
+  top: -0.5em; }
+
+/* line 126, lms/static/sass/base/_reset.scss */
+sub {
+  bottom: -0.25em; }
+
+/* line 128, lms/static/sass/base/_reset.scss */
+ul,
+ol {
+  padding: 0 40px 0 0;
+  margin: 1em 0; }
+
+/* line 135, lms/static/sass/base/_reset.scss */
+dd {
+  margin: 0 0 0 40px; }
+
+/* line 137, lms/static/sass/base/_reset.scss */
+nav ul,
+nav ol {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+/* line 144, lms/static/sass/base/_reset.scss */
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle; }
+
+/* line 150, lms/static/sass/base/_reset.scss */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* line 151, lms/static/sass/base/_reset.scss */
+figure {
+  margin: 0; }
+
+/* line 153, lms/static/sass/base/_reset.scss */
+form {
+  margin: 0; }
+
+/* line 155, lms/static/sass/base/_reset.scss */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+/* line 161, lms/static/sass/base/_reset.scss */
+label {
+  cursor: pointer; }
+
+/* line 163, lms/static/sass/base/_reset.scss */
+legend {
+  border: 0;
+  *margin-left: -7px;
+  padding: 0;
+  white-space: normal; }
+
+/* line 170, lms/static/sass/base/_reset.scss */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  *vertical-align: middle; }
+
+/* line 180, lms/static/sass/base/_reset.scss */
+button,
+input {
+  line-height: normal; }
+
+/* line 185, lms/static/sass/base/_reset.scss */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+  *overflow: visible; }
+
+/* line 194, lms/static/sass/base/_reset.scss */
+button[disabled],
+input[disabled] {
+  cursor: default; }
+
+/* line 199, lms/static/sass/base/_reset.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+  *width: 13px;
+  *height: 13px; }
+
+/* line 207, lms/static/sass/base/_reset.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box; }
+
+/* line 214, lms/static/sass/base/_reset.scss */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none; }
+
+/* line 219, lms/static/sass/base/_reset.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/* line 225, lms/static/sass/base/_reset.scss */
+button:-moz-focusring {
+  outline: 1px dotted black; }
+
+/* line 227, lms/static/sass/base/_reset.scss */
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  resize: vertical; }
+
+/* line 233, lms/static/sass/base/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* line 238, lms/static/sass/base/_reset.scss */
+td {
+  vertical-align: top; }
+
+/* line 240, lms/static/sass/base/_reset.scss */
+.chromeframe {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: black;
+  padding: 0.2em 0; }
+
+/* line 247, lms/static/sass/base/_reset.scss */
+.ir {
+  display: block;
+  border: 0;
+  text-indent: -999em;
+  overflow: hidden;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+  *line-height: 0; }
+
+/* line 259, lms/static/sass/base/_reset.scss */
+.ir br {
+  display: none; }
+
+/* line 261, lms/static/sass/base/_reset.scss */
+.hidden {
+  display: none !important;
+  visibility: hidden; }
+
+/* line 266, lms/static/sass/base/_reset.scss */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+/* line 277, lms/static/sass/base/_reset.scss */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto; }
+
+/* line 287, lms/static/sass/base/_reset.scss */
+.invisible {
+  visibility: hidden; }
+
+/* line 289, lms/static/sass/base/_reset.scss */
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table; }
+
+/* line 295, lms/static/sass/base/_reset.scss */
+.clearfix::after {
+  clear: both; }
+
+/* line 296, lms/static/sass/base/_reset.scss */
+.clearfix {
+  *zoom: 1; }
+
+@media print {
+  /* line 299, lms/static/sass/base/_reset.scss */
+  * {
+    background: transparent;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -ms-filter: none !important; }
+  /* line 308, lms/static/sass/base/_reset.scss */
+  html,
+  body {
+    background: transparent !important; }
+  /* line 313, lms/static/sass/base/_reset.scss */
+  a,
+  a:visited {
+    text-decoration: underline; }
+  /* line 318, lms/static/sass/base/_reset.scss */
+  abbr[title]::after {
+    content: " (" attr(title) ")"; }
+  /* line 319, lms/static/sass/base/_reset.scss */
+  .ir a::after {
+    content: ""; }
+  /* line 321, lms/static/sass/base/_reset.scss */
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid; }
+  /* line 327, lms/static/sass/base/_reset.scss */
+  thead {
+    display: table-header-group; }
+  /* line 329, lms/static/sass/base/_reset.scss */
+  tr,
+  img {
+    page-break-inside: avoid; }
+  /* line 334, lms/static/sass/base/_reset.scss */
+  img {
+    max-width: 100% !important; }
+  @page {
+    margin: 1cm 1.2cm 2cm; }
+  /* line 338, lms/static/sass/base/_reset.scss */
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3; }
+  /* line 345, lms/static/sass/base/_reset.scss */
+  h2,
+  h3 {
+    page-break-after: avoid; } }
+
+/* stylelint-disable-line */
+/* stylelint-disable-line */
+/* line 126, common/static/sass/edx-pattern-library-shims/base/_variables.scss */
+.btn-default:disabled, .btn-primary:disabled, .btn-brand:disabled, .btn-upgrade:disabled, .is-disabled.btn-default, .is-disabled.btn-primary, .is-disabled.btn-brand, .is-disabled.btn-upgrade {
+  pointer-events: none;
+  outline: none;
+  cursor: not-allowed; }
+
+/* line 227, common/static/sass/edx-pattern-library-shims/base/_variables.scss */
+.btn-small.btn-default, .btn-small.btn-primary, .btn-small.btn-brand, .btn-small.btn-upgrade {
+  padding: 0.625rem;
+  font-size: 14px; }
+
+/* line 6, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+.breadcrumbs {
+  font-size: 0.875rem;
+  line-height: line-height(small); }
+  /* line 10, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+  .breadcrumbs .nav-item {
+    margin-right: 5px;
+    display: inline-block; }
+    @media (max-width: 1199.98px) {
+      /* line 10, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+      .breadcrumbs .nav-item {
+        max-width: 240px; } }
+    @media (max-width: 767.98px) {
+      /* line 10, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+      .breadcrumbs .nav-item {
+        max-width: 140px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden; } }
+    @media (max-width: 575.98px) {
+      /* line 27, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+      .breadcrumbs .nav-item:not(:first-child) {
+        max-width: 60px; } }
+    /* line 32, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+    .breadcrumbs .nav-item.nav-item-course {
+      max-width: none; }
+    /* line 36, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+    .breadcrumbs .nav-item a,
+    .breadcrumbs .nav-item a:visited {
+      color: #002FA7; }
+    /* line 41, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+    .breadcrumbs .nav-item a:hover {
+      color: #065683; }
+  /* line 46, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+  .breadcrumbs .fa-angle-right {
+    margin-right: 5px;
+    display: inline-block;
+    color: #313131;
+    transform: rotateY(180deg); }
+    @media (max-width: 767.98px) {
+      /* line 46, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+      .breadcrumbs .fa-angle-right {
+        position: relative;
+        top: -5px; } }
+    /* line 62, common/static/sass/edx-pattern-library-shims/_breadcrumbs.scss */
+    .breadcrumbs .fa-angle-right:last-child {
+      display: none; }
+
+/* line 11, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+.btn-default, .btn-primary, .btn-brand, .btn-upgrade {
+  display: inline-block;
+  background-color: transparent;
+  background-image: none;
+  border-style: solid;
+  border-radius: 0.1875rem;
+  border-width: 1px;
+  box-shadow: none;
+  padding: 0.625rem 1.25rem;
+  font-size: 16px;
+  font-weight: normal;
+  text-shadow: none;
+  text-transform: capitalize; }
+  /* line 26, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .block.btn-default, .block.btn-primary, .block.btn-brand, .block.btn-upgrade {
+    display: block;
+    width: 100%; }
+  /* line 37, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .btn-default .icon, .btn-primary .icon, .btn-brand .icon, .btn-upgrade .icon {
+    display: inline-block;
+    vertical-align: baseline; }
+    /* line 41, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+    .btn-default .icon:only-child, .btn-primary .icon:only-child, .btn-brand .icon:only-child, .btn-upgrade .icon:only-child,
+    .sr-only + .btn-default .icon,
+    .sr-only + .btn-primary .icon,
+    .sr-only + .btn-brand .icon,
+    .sr-only + .btn-upgrade .icon {
+      margin-left: 0; }
+
+/* line 55, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+.btn-default {
+  border-color: transparent;
+  background: transparent;
+  color: #002FA7; }
+  /* line 63, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .btn-default:hover, .btn-default.is-hovered, .btn-default:focus, .btn-default.is-focused {
+    border-color: #002FA7;
+    background-color: transparent;
+    color: #002FA7; }
+  /* line 73, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .btn-default:active, .btn-default.is-pressed, .btn-default.is-active {
+    border-color: #002FA7;
+    color: #002FA7; }
+  /* line 81, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .btn-default:disabled, .btn-default.is-disabled {
+    border-color: #d2d0d0;
+    color: #6b6969; }
+
+/* line 91, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+.btn-primary, .btn-brand {
+  border-color: #002FA7;
+  background: #002FA7;
+  color: #fcfcfc; }
+  /* line 99, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .btn-primary:hover, .btn-brand:hover, .btn-primary.is-hovered, .is-hovered.btn-brand, .btn-primary:focus, .btn-brand:focus, .btn-primary.is-focused, .is-focused.btn-brand {
+    border-color: #065683;
+    background-color: #065683;
+    color: #fcfcfc; }
+  /* line 109, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .btn-primary:active, .btn-brand:active, .btn-primary.is-pressed, .is-pressed.btn-brand, .btn-primary.is-active, .is-active.btn-brand {
+    border-color: #002FA7;
+    background: #002FA7; }
+  /* line 117, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .btn-primary:disabled, .btn-brand:disabled, .btn-primary.is-disabled, .is-disabled.btn-brand {
+    border-color: #d2d0d0;
+    background: #f2f3f3;
+    color: #676666; }
+
+/* line 128, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+.btn-upgrade {
+  border-color: #008100;
+  background: #008100;
+  color: #fcfcfc; }
+  /* line 136, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .btn-upgrade:hover, .btn-upgrade.is-hovered, .btn-upgrade:focus, .btn-upgrade.is-focused {
+    border-color: #009b00;
+    background-color: #009b00;
+    color: #fcfcfc; }
+  /* line 146, common/static/sass/edx-pattern-library-shims/_buttons.scss */
+  .btn-upgrade:disabled, .btn-upgrade.is-disabled {
+    border-color: #d2d0d0;
+    background: #f2f3f3;
+    color: #fcfcfc; }
+
+/* line 9, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+.edx-cookie-banner-wrapper {
+  background: #f2f8fd;
+  box-sizing: border-box;
+  /** Base Styles - start **/
+  text-align: left;
+  line-height: 1.5;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  /** Base Styles - end **/ }
+  /* line 22, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+  .edx-cookie-banner-wrapper .alert {
+    position: relative;
+    padding: 8px 20px; }
+  /* line 28, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+  .edx-cookie-banner-wrapper .alert-dismissible .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    border: 0;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.5;
+    float: right;
+    line-height: 1;
+    font-size: 1.5rem;
+    font-weight: 500; }
+  /* line 45, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+  .edx-cookie-banner-wrapper .alert-dismissible .btn {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle; }
+  /* line 55, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+  .edx-cookie-banner-wrapper .edx-cookie-banner {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    background: inherit;
+    border: none; }
+    /* line 63, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+    .edx-cookie-banner-wrapper .edx-cookie-banner .policy-link {
+      color: #19291F;
+      text-decoration: underline; }
+      /* line 67, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+      .edx-cookie-banner-wrapper .edx-cookie-banner .policy-link:focus, .edx-cookie-banner-wrapper .edx-cookie-banner .policy-link:hover {
+        color: #075683;
+        border: none; }
+    /* line 74, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+    .edx-cookie-banner-wrapper .edx-cookie-banner .alert-dialog {
+      margin: auto;
+      color: #4e4e4e;
+      text-align: center;
+      max-width: 800px;
+      font-size: 14px; }
+    /* line 82, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+    .edx-cookie-banner-wrapper .edx-cookie-banner .btn.close {
+      padding: 4px;
+      color: #19291F; }
+      /* line 86, node_modules/@edx/frontend-component-cookie-policy-banner/build/_cookie-policy-banner.scss */
+      .edx-cookie-banner-wrapper .edx-cookie-banner .btn.close:focus, .edx-cookie-banner-wrapper .edx-cookie-banner .btn.close:hover {
+        color: #075683;
+        cursor: pointer; }
+
+/* line 1, /openedx/edx-platform/lms/static/sass/mobile/_main.scss */
+body {
+  padding-right: 20px;
+  padding-left: 20px;
+  background: #fff; }

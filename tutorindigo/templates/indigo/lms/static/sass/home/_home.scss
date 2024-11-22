@@ -25,6 +25,16 @@ section.home {
                 border-radius: 6px;
                 font-weight: 500;
                 display: block;
+                // &.sign-in-btn {
+                //     background: $primary;
+                //     color: $text-color-light;
+                //     border-color: $primary;
+                // }
+                // &.register-btn {
+                //     color: $text-color-light;
+                //     border-color: $secondary;
+                //     background: $secondary;
+                // }
             }
         }
     }
@@ -50,7 +60,7 @@ section.home {
                         margin: 0 0 45px;
                     }
                     h1 {
-                        color: #111827;
+                        color: $secondary;
                         font-size: 20px;
                         font-weight: 700;
                         line-height: 30px;
@@ -65,7 +75,7 @@ section.home {
                     p {
                         font-size: 16px;
                         line-height: 20px;
-                        color: #515661;
+                        color: $text-color-dark;
                         font-style: normal;
                         margin: 0;
                     }
@@ -136,6 +146,9 @@ section.home {
     }
 }
 body.indigo-dark-theme {
+    .window-wrap #content.content-wrapper {
+        background: $background-color-dark;
+    }
     h1 {
         color: $text-color-d;
     }
@@ -150,30 +163,31 @@ body.indigo-dark-theme {
             .nav-item {
                 .btn {
                     &.sign-in-btn {
-                        background: $primary-d;
-                        color: $btn-color-d;
-                        border-color: $primary-d;
+                        background: $primary;
+                        color: $text-color-light;
+                        border-color: $primary;
                     }
                     &.register-btn {
-                        color: $text-color-d;
-                        border-color: $text-color-d;
-                        background: none;
+                        background: $background-color-lighter;
+                        color: $primary;
+                        border-color: $background-color-lighter;
                     }
                 }
             }
         }
     }
     #main .home.style-logout  {
+        background-color: $background-color-dark;
         header {
             background: none;
             .outer-wrapper {
                 .title {
                     .heading-group {
                         h1 {
-                            color: $text-color-d;
+                            color: $text-color-light;
                         }
                         p {
-                            color: $text-color-primary;
+                            color: $text-color-light;
                         }
                     }
                     .course-search {

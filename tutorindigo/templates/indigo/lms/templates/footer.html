@@ -42,17 +42,41 @@
         </li>
       </ul>
     </div>
-    {% if INDIGO_FOOTER_NAV_LINKS %}
+    
     <nav class="nav-colophon" aria-label="${_('About')}">
       <ol>
-          {% for link in INDIGO_FOOTER_NAV_LINKS %}
+          
           <li>
-            <a href="{{ link['url'] }}">{{ link['title'] }}</a>
+            <a href="/about">About Us</a>
           </li>
-          {% endfor %}
+          
+          <li>
+            <a href="/blog">Blog</a>
+          </li>
+          
+          <li>
+            <a href="/donate">Donate</a>
+          </li>
+          
+          <li>
+            <a href="/tos">Terms of Service</a>
+          </li>
+          
+          <li>
+            <a href="/privacy">Privacy Policy</a>
+          </li>
+          
+          <li>
+            <a href="/help">Help</a>
+          </li>
+          
+          <li>
+            <a href="/contact">Contact Us</a>
+          </li>
+          
       </ol>
     </nav>
-    {% endif %}
+    
   </div>
   <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
   % endif
@@ -106,17 +130,41 @@
           </li>
         </ul>
       </div>
-      {% if INDIGO_FOOTER_NAV_LINKS %}
+      
       <nav class="nav-colophon" aria-label="${_('About')}">
         <ol>
-            {% for link in INDIGO_FOOTER_NAV_LINKS %}
+            
             <li>
-              <a href="{{ link['url'] }}">{{ link['title'] }}</a>
+              <a href="/about">About Us</a>
             </li>
-            {% endfor %}
+            
+            <li>
+              <a href="/blog">Blog</a>
+            </li>
+            
+            <li>
+              <a href="/donate">Donate</a>
+            </li>
+            
+            <li>
+              <a href="/tos">Terms of Service</a>
+            </li>
+            
+            <li>
+              <a href="/privacy">Privacy Policy</a>
+            </li>
+            
+            <li>
+              <a href="/help">Help</a>
+            </li>
+            
+            <li>
+              <a href="/contact">Contact Us</a>
+            </li>
+            
         </ol>
       </nav>
-      {% endif %}
+      
     </div>
     <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
     % endif
