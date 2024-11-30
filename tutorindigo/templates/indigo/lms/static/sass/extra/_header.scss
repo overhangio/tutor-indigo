@@ -66,8 +66,8 @@ header.global-header {
 			justify-content: end;
 			.toggle-user-dropdown {
 				padding: 9px 15px;
-				background: $background-color-light;
-				color: $text-color-dark;
+				background: $background-color-lighter;
+				color: $primary;
 				font-size: 14px;
 				font-weight: 500;
 				line-height: 20px;
@@ -304,7 +304,7 @@ body.indigo-dark-theme {
 			.secondary {
 				.toggle-user-dropdown {
 					background: $background-color-lighter;
-					color: $text-color-dark;
+					color: $primary;
 					&:after {
 						border-color: $btn-color-d;
 					}
