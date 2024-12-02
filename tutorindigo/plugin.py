@@ -1,17 +1,14 @@
 from __future__ import annotations
 
 import os
+from glob import glob
 import typing as t
 
 import importlib_resources
+from glob import glob
 from tutor import hooks
 from tutormfe.hooks import PLUGIN_SLOTS
 from tutor.__about__ import __version_suffix__
-
-from glob import glob
-
-import importlib_resources
-from tutor import hooks as tutor_hooks
 
 from .__about__ import __version__
 
@@ -179,7 +176,7 @@ for path in glob(
     )
 ):
     with open(path, encoding="utf-8") as patch_file:
-        tutor_hooks.Filters.ENV_PATCHES.add_item(
+        hooks.Filters.ENV_PATCHES.add_item(
             (os.path.basename(path), patch_file.read())
         )
 
