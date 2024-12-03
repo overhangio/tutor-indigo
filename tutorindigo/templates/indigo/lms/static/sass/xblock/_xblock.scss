@@ -132,8 +132,10 @@
     h1, h2, h3, h4, h5, h6 {
         color: $text-color-d;
     }
-    .openassessment .openassessment__steps .openassessment__steps__step .step__header .step__title .step__counter:before {
+    .openassessment .openassessment__steps .openassessment__steps__step .step__header .step__title {
+        .step__counter:before, .step__label {
         color: $text-color-d;
+        }
     }
     .openassessment .openassessment__steps__step .step__instruction,
     .openassessment .submission__answer__part__prompt__copy {
@@ -145,7 +147,7 @@
         color: $btn-color-d !important;
     }
     .openassessment .openassessment__steps__step.is--unavailable .step__counter:before, 
-    .openassessment .openassessment__steps__step.is--unavailable .step__label, 
+    .openassessment .openassessment__steps__step.is--unavailable .step, 
     .openassessment .openassessment__steps__step.is--unavailable .step__deadline {
         color:$text-color-d;
     }
@@ -157,6 +159,14 @@
     .openassessment .step--self-assessment .self-assessment__assessment .response__submission__label, .openassessment .step--peer-assessment .peer-assessment__assessment .response__submission__label, .openassessment .step--response .response__submission__actions .response__submission__label, .openassessment .step--response .response__submission__content .response__submission__label {
         color: $text-color-d;
     }
+
+    .openassessment .step--student-training .student-training__assessment .question__answers,
+    .openassessment .step--self-assessment .self-assessment__assessment .question__answers {
+        .wrapper--input .answer__label, .answer__tip, .answer__points, .answer__points__label {
+            color: $text-color-d;
+        }
+    }
+
     .openassessment .openassessment__steps__step {
         background: none;
     }
@@ -167,7 +177,12 @@
         background: none;
         border-color: $primary-d;
     }
-
+    .openassessment .submission__answer__part__text__value {
+        color: $text-color-d;
+    }
+    .openassessment .submission__answer__part__text__value:not(textarea){
+        background: none;
+    }
 
     .xmodule_display.xmodule_ProblemBlock div.problem .question-description {
         color: $text-color-primary;
