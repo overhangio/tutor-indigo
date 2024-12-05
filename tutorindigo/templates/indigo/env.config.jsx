@@ -44,20 +44,25 @@ const AddDarkTheme = () => {
 
   useEffect(() => {
     const theme = cookies.get(themeCookie);
+
+    // When page load, Footer load before than MFE content which says that there is no iframe on page
+    // hence, not append any class. MutationObserver observes changes in DOM and hence appended dark
+    // attributes when iframe added. After 10 sec, we destroy this observer. 
+    // Adding outside dark-theme condition so that we can remove it on Component Unmount
+    const observer = new MutationObserver(() => {
+      addDarkThemeToIframes();
+    });
+
     if (isThemeToggleEnabled && theme === 'dark') {
       document.body.classList.add('indigo-dark-theme');
       
-      // When page load, Footer load before than MFE content which says that there is no iframe on page
-      // hence, not append any class. MutationObserver observes changes in DOM and hence appended dark
-      // attributes when iframe added. After 10 sec, we destroy this observer.
-      const observer = new MutationObserver(() => {
-        addDarkThemeToIframes();
-      });
       observer.observe(document.body, { childList: true, subtree: true });
-      setTimeout(() => observer.disconnect(), 10000); // clear after 10 sec to avoid resource usage
+      setTimeout(() => observer?.disconnect(), 15000); // clear after 10 sec to avoid resource usage
 
       cookies.set(themeCookie, theme, getCookieOptions());      //  on page load, update expiry
     }
+
+    return () => observer?.disconnect();
   }, []);
 
   return (<div />);
