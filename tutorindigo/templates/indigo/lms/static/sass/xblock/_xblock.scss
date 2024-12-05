@@ -8,6 +8,10 @@
         background: transparent;
         color: $text-color-d;
     }
+    .modal .inner-wrapper{
+        background: $body-bg-d;
+        color: $text-color-d;
+    }
     .xblock--drag-and-drop {
         .keyboard-help-dialog {
             .modal-window {
@@ -289,13 +293,28 @@
     .ui-dialog-titlebar.ui-widget-header,
     .ui-dialog-buttonpane.ui-widget-content,
     .dialog-confirm.ui-dialog-content.ui-widget-content{
-        background-color: $body-bg-d;
+        background: $body-bg-d;
         color: $text-color-d;
+        & .ui-button.ui-state-default:active, 
+        & .ui-button.ui-state-default:focus
+        {box-shadow: none;}
     }
 
     .openassessment .submission__answer__part__prompt__copy a, 
     .wrapper--xblock .message .message__content a{
-        color: $primary;
+        color: $primary-d;
+        &:hover{
+            color: #77a0ee;
+        }
+    }
+
+    .openassessment {
+        .submission__peer-evaluations__title,
+        .self-assessment__display__title,.step--self-assessment .self-assessment__display__title,
+        .peer-assessment__display__title,.step--self-assessment .peer-assessment__display__title,,
+        .staff-assessment__display__title, .step--self-assessment .staff-assessment__display__title,{
+            color: $text-color-d !important; // open-assessment scss file used !important 
+        }
     }
 
     div.wrapper--xblock {
@@ -312,6 +331,9 @@
             background: #ecfaec;
             & .message__content{
                 color: $primary-light-d;
+                a {
+                    color: $btn-color-d;
+                }
             }
         }
 
@@ -321,6 +343,9 @@
             background: #fff9eb;
             & .message__content{
                 color: $primary-light-d;
+                a {
+                    color: $btn-color-d;
+                }
             }
         }
 
@@ -394,14 +419,46 @@
         .openassessment .answer{
             .answer__source__value-with-points,
             .answer__value__value,
-            .answer__source
+            .answer__source,
+            .answer__points__label,
+            .answer__points
             { color: $text-color-d; }
         }
         .openassessment .question__score__value:after{
             color: $text-color-d;
         }
 
-        .submission__peer-evaluations__title{
+
+        // for staff 
+        .ui-staff{
+            .wrapper--content{
+                background: $body-bg-d;
+                color: $text-color-d;
+            }
+
+            .step__message.message.message--warning,
+            .step__message.message.message--correct,
+            .message--incorrect,
+            .message--complete,
+            .message--incomplete{
+                color: $primary-light-d;
+                & .message__content{ 
+                    color: $primary-light-d;
+                    a {
+                        color: $btn-color-d;
+                    }
+                }
+            }
+        }
+
+        .openassessment .ui-staff__content__section{
+            .wrapper--input{
+                background: $body-bg-d;
+                color: $text-color-d;
+            }
+        }
+
+        .openassessment .staff-info__workflow-cancellation .staff-info__cancel-submission__content .comments__label{
             color: $text-color-d;
         }
 
