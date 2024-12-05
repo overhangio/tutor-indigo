@@ -120,7 +120,11 @@
     .openassessment .ui-slidable__container .ui-slidable:not([disabled]) {
         color: $text-color-d;
         &:hover {
+            color: $primary-d;
             background: $primary-light-d !important;
+        }
+        &:focus{
+            color: $primary-d;
         }
     }
     .openassessment .openassessment__steps__step.is--in-progress .step__status__value {
@@ -147,7 +151,7 @@
         color: $btn-color-d !important;
     }
     .openassessment .openassessment__steps__step.is--unavailable .step__counter:before, 
-    .openassessment .openassessment__steps__step.is--unavailable .step, 
+    .openassessment .openassessment__steps__step.is--unavailable .step__label, 
     .openassessment .openassessment__steps__step.is--unavailable .step__deadline {
         color:$text-color-d;
     }
@@ -279,5 +283,127 @@
                 color: $primary-d;
             }
         }
+    }
+
+    .ui-dialog.ui-widget.ui-widget-content, 
+    .ui-dialog-titlebar.ui-widget-header,
+    .ui-dialog-buttonpane.ui-widget-content,
+    .dialog-confirm.ui-dialog-content.ui-widget-content{
+        background-color: $body-bg-d;
+        color: $text-color-d;
+    }
+
+    .openassessment .submission__answer__part__prompt__copy a, 
+    .wrapper--xblock .message .message__content a{
+        color: $primary;
+    }
+
+    div.wrapper--xblock {
+        
+        .openassessment__student-training--instructions.step__message > .message__content{
+            color: $primary-light-d;
+        }
+        .openassessment .openassessment__steps__step .step__message.message--waiting{
+            background: $primary-light-d;
+        }
+        .message--complete, 
+        .step--student-training .message--correct, 
+        .step--student-training .message--correct{
+            background: #ecfaec;
+            & .message__content{
+                color: $primary-light-d;
+            }
+        }
+
+        .message--incomplete, 
+        .step--student-training .message--incorrect, 
+        .step--student-training .wrapper--xblock .message--incorrect{
+            background: #fff9eb;
+            & .message__content{
+                color: $primary-light-d;
+            }
+        }
+
+        .openassessment .openassessment__steps__step.is--in-progress .step__status__value .copy{
+            color: $primary-light-d;
+        }  
+
+        .openassessment .openassessment__steps .openassessment__steps__step .step__header .step__deadline{
+            color: $border-color-d;
+        }
+
+        .step--response .step__rubric{
+            background: $primary-light-d;
+        }
+
+        .step--response .step__rubric .question__answers .wrapper--input .answer__label,
+        .step--student-training .student-training__assessment .question__answers .wrapper--input .answer__label, 
+        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .wrapper--input .answer__label, 
+        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .wrapper--input .answer__label, 
+        .openassessment .staff-assessment__assessment .question__answers .wrapper--input .answer__label{
+            color: $text-color-d;
+        }
+
+        .step--response .step__rubric .question__answers .answer__tip, 
+        .step--student-training .student-training__assessment .question__answers .answer__tip, 
+        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer__tip, 
+        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer__tip, 
+        .openassessment .staff-assessment__assessment .question__answers .answer__tip,
+        .step--response .step__rubric .question__answers .answer__points, 
+        .step--student-training .student-training__assessment .question__answers .answer__points, 
+        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer__points, 
+        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer__points, 
+        .openassessment .staff-assessment__assessment .question__answers .answer__points
+        .step--response .step__rubric .question__answers .answer__points__label, 
+        .step--student-training .student-training__assessment .question__answers .answer__points__label, 
+        .openassessment .step--self-assessment .self-assessment__assessment .question__answers .answer__points__label, 
+        .openassessment .step--peer-assessment .peer-assessment__assessment .question__answers .answer__points__label, 
+        .openassessment .staff-assessment__assessment .question__answers .answer__points__label
+        {
+            color: $text-color-primary;
+        }
+
+        .tox .tox-toolbar, .tox .tox-toolbar__overflow, 
+        .tox .tox-toolbar__primary{
+            background-color: $body-bg-d;
+            color: $text-color-d;
+        }
+
+        .tox .tox-tbtn{
+            color: $text-color-d;
+        }
+
+        .tox .tox-tbtn__select-chevron svg{
+            fill: $text-color-d;
+        }
+
+        .tox .tox-edit-area__iframe{
+            background-color: $body-bg-d;
+        }
+
+        .openassessment .submission__answer__display__title{
+            color: $text-color-primary;
+        }
+
+        .openassessment .question__score{
+            .question__score__value,
+            .label,
+            .question__score__potential
+            { color: $text-color-d; }
+        } 
+        .openassessment .answer{
+            .answer__source__value-with-points,
+            .answer__value__value,
+            .answer__source
+            { color: $text-color-d; }
+        }
+        .openassessment .question__score__value:after{
+            color: $text-color-d;
+        }
+
+        .submission__peer-evaluations__title{
+            color: $text-color-d;
+        }
+
     }
 }
