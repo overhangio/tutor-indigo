@@ -57,7 +57,7 @@ const AddDarkTheme = () => {
       document.body.classList.add('indigo-dark-theme');
       
       observer.observe(document.body, { childList: true, subtree: true });
-      setTimeout(() => observer?.disconnect(), 15000); // clear after 10 sec to avoid resource usage
+      setTimeout(() => observer?.disconnect(), 15000); // clear after 15 sec to avoid resource usage
 
       cookies.set(themeCookie, theme, getCookieOptions());      //  on page load, update expiry
     }
