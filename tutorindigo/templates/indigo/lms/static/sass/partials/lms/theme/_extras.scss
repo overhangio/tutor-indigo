@@ -1325,6 +1325,47 @@ body.indigo-dark-theme {
       font-weight: 500;
     }
   } 
+  &.view-teams {
+    .page-header {
+      .page-title {
+        color: $text-color-primary;
+      }
+      .page-description {
+        color: $text-color-d;
+      }
+    }
+    .page-content-nav .nav-item {
+      color: $text-color-d;
+    }
+    .page-content-main {
+      span.listing-count, span.listing-sort .field-label {
+        color: $text-color-d;
+      }
+    }
+
+    ul.topics-list li.topic-card{
+      background-color: $body-bg-d;
+
+      div.wrapper-card-meta {
+        background-color: $body-bg-d;
+      }
+
+    }
+
+    ul.cards-list li.list-card {
+      background-color: $body-bg-d;
+
+      div.wrapper-card-meta {
+        background-color: $body-bg-d;
+      }
+    }
+
+    .teams-content .teams-main .team-edit-fields {
+      .team-required-fields .u-field-title, .team-optional-fields .u-field-title{
+        color: $text-color-d;
+      }
+    }
+  }
 }
 @import '../../../extra/footer';
 @import '../../../extra/header';
