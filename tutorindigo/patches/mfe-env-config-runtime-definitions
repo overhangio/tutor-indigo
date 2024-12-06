@@ -1,4 +1,2 @@
 
-
-const Footer = await import(/* webpackIgnore: true */`@edly-io/indigo-frontend-component-footer`).catch(() => null); // Fallback to null if not available
-
+const { default: IndigoFooter } = await import('@edly-io/indigo-frontend-component-footer');

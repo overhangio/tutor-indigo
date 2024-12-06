@@ -57,7 +57,7 @@
     .xmodule_display.xmodule_HtmlBlock ul, 
     .xmodule_display.xmodule_StaticTabBlock ol, 
     .xmodule_display.xmodule_StaticTabBlock ul {
-        color: $text-color-d !important;
+        color: $text-color-d;
     }
     .xmodule_display.xmodule_AboutBlock pre, 
     .xmodule_display.xmodule_CourseInfoBlock pre, 
@@ -66,7 +66,7 @@
         color: $text-color-d;
     }
     .hd-1, .hd-2, .hd-3, .hd-4, .hd-5, .hd-6, .hd-7, .hd-8 {
-        color: $text-color-d !important;
+        color: $text-color-d;
     }
     .xmodule_display.xmodule_AboutBlock img, 
     .xmodule_display.xmodule_CourseInfoBlock img, 
@@ -130,7 +130,7 @@
         border-color: $primary-d;
     }
     h1, h2, h3, h4, h5, h6 {
-        color: $text-color-d !important;
+        color: $text-color-d;
     }
     .openassessment .openassessment__steps .openassessment__steps__step .step__header .step__title .step__counter:before {
         color: $text-color-d;
@@ -265,20 +265,6 @@
             }
         }
     }
-
-    #feedback-container{
-        background: $body-bg-d;
-        border: 1px solid $text-color-d;
-        p{
-            color: $text-color-d;
-        }
-    }
-
-    .emoji-button{
-        background-color: $body-bg-d;
-    }
-    .xblock.xmodule_display.xmodule_HtmlBlock .blue-text{color: $primary-d;}
-
 }
 .wrapper-problem-response {
     select {

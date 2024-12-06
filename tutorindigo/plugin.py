@@ -5,7 +5,6 @@ from glob import glob
 import typing as t
 
 import importlib_resources
-from glob import glob
 from tutor import hooks
 from tutormfe.hooks import PLUGIN_SLOTS
 from tutor.__about__ import __version_suffix__
@@ -197,7 +196,7 @@ for mfe in indigo_styled_mfes:
                     id: 'default_contents',
                     type: DIRECT_PLUGIN,
                     priority: 1,
-                    RenderWidget: Footer.default,
+                    RenderWidget: <IndigoFooter />,
                 },
             },
             {
