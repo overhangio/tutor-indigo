@@ -1336,6 +1336,7 @@ body.indigo-dark-theme {
     }
     .page-content-nav .nav-item {
       color: $text-color-d;
+      &.is-active{ border-color: $primary-d; }
     }
     .page-content-main {
       span.listing-count, span.listing-sort .field-label {
@@ -1364,6 +1365,53 @@ body.indigo-dark-theme {
       .team-required-fields .u-field-title, .team-optional-fields .u-field-title{
         color: $text-color-d;
       }
+    }
+
+    .listing-tools{ color: $text-color-d; }
+    .u-field-message {
+      .u-field-message-help, .u-field-message-notification{
+        color: grey;
+      }
+    }
+    .team-profile{
+      .page-content-secondary{
+        color: grey;
+      }
+    } 
+
+    .card {
+      .card-type, .card-description{
+        color: grey;
+      }
+
+      .wrapper-card-meta{
+        background: $primary-light-d;
+        .meta-detail{ color: $text-color-primary; }
+      } 
+      
+      .card-actions .action-view{
+        border-color: $primary-d;
+        color: $primary-d;
+        &:hover{
+          background-color: $primary-d;
+          color: $primary-light-d;
+        }
+      }
+    }
+
+    .btn-secondary,.btn-link,
+    .edit-members .action-remove-member {
+      color: $primary-d;
+    }
+
+    .action-primary{
+      background: $primary-d;
+      color: $primary-light-d;
+    }
+
+    .teams-content #teams-message.wrapper-msg{
+      background: $primary-light-d;
+      div.msg{ color: $text-color-d; }
     }
   }
 }
