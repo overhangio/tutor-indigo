@@ -27,7 +27,7 @@ const AddDarkTheme = () => {
     const iframes = document.getElementsByTagName('iframe');
     const iframesLength = iframes.length;
     if (iframesLength > 0) {
-      Array.from({ length: iframesLength }).forEach((_, ind) => {
+      Array.from({ length: iframesLength }).forEach((_, index) => {
         const style = document.createElement('style');
         style.textContent = `
           body{
@@ -37,7 +37,7 @@ const AddDarkTheme = () => {
           a {color: #ccc;}
           a:hover{color: #d3d3d3;}
           `;
-        if (iframes[ind].contentDocument) { iframes[ind].contentDocument.head.appendChild(style); }
+        if (iframes[index].contentDocument) { iframes[index].contentDocument.head.appendChild(style); }
       });
     }
   };
@@ -45,10 +45,13 @@ const AddDarkTheme = () => {
   useEffect(() => {
     const theme = cookies.get(themeCookie);
 
-    // When page load, Footer load before than MFE content which says that there is no iframe on page
-    // hence, not append any class. MutationObserver observes changes in DOM and hence appended dark
-    // attributes when iframe added. After 10 sec, we destroy this observer. 
-    // Adding outside dark-theme condition so that we can remove it on Component Unmount
+    // - When page loads, Footer loads before MFE content. Since there is no iframe on page,
+    // it does not append any class. MutationObserver observes changes in DOM and hence appends dark
+    // attributes when iframe is added. After 15 sec, this observer is destroyed to conserve resources. 
+    // - It has been added outside dark-theme condition so that it can be removed on Component Unmount.
+    // - Observer can be passed to `addDarkThemeToIframes` function and disconnected after observing Iframe.
+    // This approach has a limitation: the observer first detects the iframe and then detects the docSrc. 
+    // We need to wait for docSrc to fully load before appending the style tag.
     const observer = new MutationObserver(() => {
       addDarkThemeToIframes();
     });
