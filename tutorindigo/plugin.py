@@ -181,7 +181,7 @@ for path in glob(
 
 
 for mfe in indigo_styled_mfes:
-    PLUGIN_SLOTS.add_items([
+    PLUGIN_SLOTS.add_item(
         (
             mfe,
             "footer_slot",
@@ -200,7 +200,7 @@ for mfe in indigo_styled_mfes:
                 },
             },
             {
-            op: PLUGIN_OPERATIONS.Insert,
+                op: PLUGIN_OPERATIONS.Insert,
                 widget: {
                     id: 'read_theme_cookie',
                     type: DIRECT_PLUGIN,
@@ -210,4 +210,4 @@ for mfe in indigo_styled_mfes:
             },
   """
         ),
-    ])
+    )
