@@ -298,33 +298,35 @@ nav.wrapper-preview-menu {
     }
   }
 }
-body.view-statictab, body.view-instructordash, body.view-teams, body.view-wiki {
-  .wrapper-course-material {
-    margin: 0 auto;
-    max-width: 1600px;
-    padding: 20px 15px !important;
-    .tabs.course-tabs {
-      margin: 0 0 10px;
-      border-bottom: 1px solid #E5E7EB;
-      li {
-        margin: 0 32px 0 0;
-        a {
-          border-width: 2px;
-          font-size: 14px;
-          font-weight: 500;
-          color: $light-dark;
-          &:hover, &:visited {
-            color: $dark;
-            border-color: transparent;
-          }
-          &.active {
-            color: $dark;
-            border-color: $primary;
-          }
+.wrapper-course-material[aria-label="Course Material"] {
+  margin: 0 auto;
+  max-width: 1600px;
+  padding: 20px 15px !important;
+  .tabs.course-tabs {
+    margin: 0 0 10px;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 0;
+    li {
+      margin: 0 32px 0 0;
+      a {
+        border-width: 2px;
+        font-size: 14px;
+        font-weight: 500;
+        color: $light-dark;
+        &:hover, &:visited {
+          color: $dark;
+          border-color: transparent;
+        }
+        &.active {
+          color: $dark;
+          border-color: $primary;
         }
       }
     }
   }
+}
+body.view-statictab, body.view-instructordash, body.view-teams, body.view-wiki,
+body.view-student-notes {
   #main {
     .container {
       padding: 0;
@@ -764,6 +766,12 @@ body.view-wiki{
     }
   }
 }
+// Textbook Page
+body div.book-wrapper{
+  margin: 0 auto;
+  max-width: 1600px;
+}
+
 body.indigo-dark-theme {
   input:-webkit-autofill,
   input:-webkit-autofill:hover, 
@@ -797,31 +805,33 @@ body.indigo-dark-theme {
   .idash-section .no-pending-tasks-message p {
     color: $text-color-d;
   }
-  &.view-statictab, &.view-instructordash, &.view-teams, &.view-wiki {
+  .wrapper-course-material {
+    .tabs.course-tabs {
+      border-bottom: 1px solid $primary-light-d;
+      li {
+        a {
+          color: $text-color-d;
+          &:hover, &:visited {
+            color: $text-color-primary;
+            border-color: transparent;
+          }
+          &.active {
+            color: $text-color-d;
+            border-color: $text-color-d;
+          }
+        }
+      }
+    }
+  }
+  &.view-statictab, &.view-instructordash, &.view-teams, &.view-wiki,
+  &.view-student-notes {
     .window-wrap {
       background: none;
     }
     #email-students-beta-tip {
       color: #111827;
     }
-    .wrapper-course-material {
-      .tabs.course-tabs {
-        border-bottom: 1px solid $primary-light-d;
-        li {
-          a {
-            color: $text-color-d;
-            &:hover, &:visited {
-              color: $text-color-primary;
-              border-color: transparent;
-            }
-            &.active {
-              color: $text-color-d;
-              border-color: $text-color-d;
-            }
-          }
-        }
-      }
-    }
+
     .instructor-dashboard-content-2 {
       a.instructor-info-action {
         background: $primary-d;
@@ -1414,6 +1424,49 @@ body.indigo-dark-theme {
       div.msg{ color: $text-color-d; }
     }
   }
+
+  // Textbook Page
+  .book-wrapper{
+      .book-sidebar{
+          background: $primary-light-d;
+          #booknav a{
+              color: $text-color-d;
+              &:hover{
+                  color: $text-color-primary;
+              }
+          }
+      }
+  }
+
+  // Notes Page
+  &.view-student-notes{
+    .wrapper-student-notes{
+      background: $body-bg-d;
+    }
+
+    .wrapper-title .page-title .page-subtitle{
+      color: $text-color-d;
+    }
+
+    .wrapper-tabs .tab-list{
+      .tabs-label{
+        color: grey;
+      }
+
+      .tab.is-active .tab-label{
+        color: $text-color-d;
+        border-bottom-color: $text-color-primary;
+      }
+    } 
+
+    .placeholder{ 
+      border-color: $primary-d; 
+      background: $primary-light-d;
+
+      .placeholder-title{ color: $text-color-d; }
+    }
+  } 
+
 }
 @import '../../../extra/footer';
 @import '../../../extra/header';
