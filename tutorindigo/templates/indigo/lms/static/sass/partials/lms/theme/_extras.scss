@@ -1449,21 +1449,78 @@ body.indigo-dark-theme {
     }
 
     .wrapper-tabs .tab-list{
-      .tabs-label{
-        color: grey;
+      .tab .tab-label{
+        color: lightgrey;
       }
 
-      .tab.is-active .tab-label{
-        color: $text-color-d;
-        border-bottom-color: $text-color-primary;
+      .tab.is-active{ 
+        .tab-label{
+          color: $text-color-d;
+          border-bottom-color: $text-color-primary;
+        }
+      }
+
+      #view-search-results .action-close{
+        color: $primary-d;
+        background: $body-bg-d;
+        border-color: transparent;
+        box-shadow: none;
       }
     } 
+
+    .listing-tools{ color: lightgrey; }
 
     .placeholder{ 
       border-color: $primary-d; 
       background: $primary-light-d;
 
       .placeholder-title{ color: $text-color-d; }
+    }
+
+    .wrapper-notes-search{
+      .search-notes-input{
+        background: $primary-light-d;
+        color: $text-color-d;
+        border: 1px solid grey;
+      }
+      .search-notes-submit{
+        background: $primary-d;
+        border-color: $primary-d;
+      }
+    }
+
+    .ui-loading{
+      border-color: $primary-d;
+      background: $body-bg-d;
+    }
+
+    .tab-panel.note-group{
+      .note{
+        .wrapper-note-excerpts{
+          border-color: orange;
+          .note-excerpt{
+            background: orange;
+            color: $body-bg-d;
+          }
+
+          .note-comments .note-comment-p{ color: $text-color-d; }
+        }
+        &:hover{ 
+          .note-excerpt{
+            background: $danger-d;
+          }
+        }
+
+        footer.reference .wrapper-reference-content{
+          a.reference-meta{
+            color: $primary-d; 
+          }
+          .reference-meta{ 
+            color: $text-color-d; 
+            &::after{ color: $text-color-primary; }
+          }
+        }
+      }
     }
   } 
 

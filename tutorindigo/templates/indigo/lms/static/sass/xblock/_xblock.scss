@@ -463,4 +463,87 @@
         }
 
     }
+
+    .edx-notes-wrapper{
+        .annotator-hl{
+            background: orange;
+            color: $primary-light-d;
+        }
+
+        .annotator-outer.annotator-viewer{
+            div:first-of-type{
+                color: $text-color-d;
+            }
+
+            .annotator-annotation.annotator-item{
+                background: $body-bg-d;
+
+                .annotator-note{
+                    color: $text-color-d !important;
+                }
+
+                .annotator-tags{
+                    border-color: $primary-light-d;
+                    .annotator-tag{
+                        background: lightgrey;
+                        color: $primary-light-d;
+                        
+                    }
+                } 
+            }
+
+            .annotator-controls {
+                .annotator-close::before,
+                .annotator-edit::before,
+                .annotator-delete::before{
+                    color: $primary-d;
+                }
+            }
+        }
+
+        .annotator-adder{
+            button{
+                background: $primary-light-d !important;
+                &::after{ 
+                    color: $primary-d;
+                    text-shadow: none;
+                }
+                &::before{ background: $primary-light-d;}
+            }
+        }
+
+        .annotator-outer.annotator-editor{
+            .annotator-widget{
+                background: $body-bg-d !important;
+            }
+            .annotator-listing{
+                background: $body-bg-d;
+                .annotator-item{
+                    border-top: 1px solid grey;
+                    &:first-child textarea{
+                        background: $light-overlay-d !important;
+                        color: $text-color-d !important;
+                    }
+                    input{
+                        background: $light-overlay-d;
+                        color: $text-color-d;
+                    }
+                }
+            }
+            .annotator-controls{
+                background: $primary-light-d !important;
+                box-shadow: none;
+                .annotator-save{
+                    background: $primary-d;
+                    color: $primary-light-d;
+                    &:hover{
+                        color: $primary-light-d;
+                    }
+                }
+                .annotator-cancel{
+                    color: $primary-d;
+                }
+            }
+        }  
+    }
 }
