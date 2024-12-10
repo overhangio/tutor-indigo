@@ -20,5 +20,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install .[dev]
+          pip install git+https://github.com/overhangio/tutor-mfe.git@main
       - name: Test lint, types, and format
         run: make test
