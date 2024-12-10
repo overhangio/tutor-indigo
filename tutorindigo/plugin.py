@@ -105,11 +105,18 @@ hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
 
 
 #  MFEs that are styled using Indigo
-indigo_styled_mfes = ['learning', 'learner-dashboard', 'profile', 'account', 'discussions']
+indigo_styled_mfes = [
+    "learning",
+    "learner-dashboard",
+    "profile",
+    "account",
+    "discussions",
+]
 
 hooks.Filters.ENV_PATCHES.add_items(
-    [(
-        f"mfe-dockerfile-post-npm-install-{mfe}",
+    [
+        (
+            f"mfe-dockerfile-post-npm-install-{mfe}",
             """
             
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
@@ -117,7 +124,9 @@ RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-com
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
 
 """,
-    ) for  mfe in indigo_styled_mfes]
+        )
+        for mfe in indigo_styled_mfes
+    ]
 )
 
 hooks.Filters.ENV_PATCHES.add_item(
@@ -175,9 +184,7 @@ for path in glob(
     )
 ):
     with open(path, encoding="utf-8") as patch_file:
-        hooks.Filters.ENV_PATCHES.add_item(
-            (os.path.basename(path), patch_file.read())
-        )
+        hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
 
 
 for mfe in indigo_styled_mfes:
@@ -208,6 +215,6 @@ for mfe in indigo_styled_mfes:
                     RenderWidget: AddDarkTheme,
                 },
             },
-  """
+  """,
         ),
     )
