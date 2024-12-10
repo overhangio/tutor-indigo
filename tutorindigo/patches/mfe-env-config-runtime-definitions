@@ -1,0 +1,2 @@
+
+const { default: IndigoFooter } = await import('@edly-io/indigo-frontend-component-footer');
