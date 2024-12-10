@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import os
+from glob import glob
 import typing as t
 
 import importlib_resources
 from tutor import hooks
+from tutormfe.hooks import PLUGIN_SLOTS
 from tutor.__about__ import __version_suffix__
 
 from .__about__ import __version__
@@ -102,68 +104,36 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
 hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
 
 
+#  MFEs that are styled using Indigo
+indigo_styled_mfes = [
+    "learning",
+    "learner-dashboard",
+    "profile",
+    "account",
+    "discussions",
+]
+
 hooks.Filters.ENV_PATCHES.add_items(
     [
-        # MFE will install header version 3.0.x and will include indigo-footer as a
-        # separate package for use in env.config.jsx
         (
-            "mfe-dockerfile-post-npm-install-learning",
+            f"mfe-dockerfile-post-npm-install-{mfe}",
             """
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
+            
+RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
-RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
-
-COPY indigo/env.config.jsx /openedx/app/
-""",
-        ),
-        (
-            "mfe-dockerfile-post-npm-install-authn",
-            """
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
-""",
-        ),
-        # Tutor-Indigo v2.1 targets the styling updates in discussions and learner-dashboard MFE
-        # brand-openedx is related to styling updates while others are for header and footer updates
-        (
-            "mfe-dockerfile-post-npm-install-discussions",
-            """
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
-RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
-COPY indigo/env.config.jsx /openedx/app/
 """,
-        ),
-        (
-            "mfe-dockerfile-post-npm-install-learner-dashboard",
-            """
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
-RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
-
-COPY indigo/env.config.jsx /openedx/app/
-""",
-        ),
-        (
-            "mfe-dockerfile-post-npm-install-profile",
-            """
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
-RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
-
-COPY indigo/env.config.jsx /openedx/app/
-""",
-        ),
-        (
-            "mfe-dockerfile-post-npm-install-account",
-            """
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
-RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
-
-COPY indigo/env.config.jsx /openedx/app/
-""",
-        ),
+        )
+        for mfe in indigo_styled_mfes
     ]
+)
+
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "mfe-dockerfile-post-npm-install-authn",
+        "RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.1.1'",
+    )
 )
 
 # Include js file in lms main.html, main_django.html, and certificate.html
@@ -204,3 +174,47 @@ MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
         ),
     ]
 )
+
+
+# Apply patches from tutor-indigo
+for path in glob(
+    os.path.join(
+        str(importlib_resources.files("tutorindigo") / "patches"),
+        "*",
+    )
+):
+    with open(path, encoding="utf-8") as patch_file:
+        hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
+
+
+for mfe in indigo_styled_mfes:
+    PLUGIN_SLOTS.add_item(
+        (
+            mfe,
+            "footer_slot",
+            """ 
+            {
+                op: PLUGIN_OPERATIONS.Hide,
+                widgetId: 'default_contents',
+            },
+            {
+                op: PLUGIN_OPERATIONS.Insert,
+                widget: {
+                    id: 'default_contents',
+                    type: DIRECT_PLUGIN,
+                    priority: 1,
+                    RenderWidget: <IndigoFooter />,
+                },
+            },
+            {
+                op: PLUGIN_OPERATIONS.Insert,
+                widget: {
+                    id: 'read_theme_cookie',
+                    type: DIRECT_PLUGIN,
+                    priority: 2,
+                    RenderWidget: AddDarkTheme,
+                },
+            },
+  """,
+        ),
+    )
