@@ -1,0 +1,4 @@
+import React, { useEffect } from 'react';
+import Cookies from 'universal-cookie';
+
+import { getConfig } from '@edx/frontend-platform';
