@@ -1,0 +1,30 @@
+
+@import 'cms/static/sass/partials/cms/theme/variables-v1';
+
+// +Grid
+// ====================
+$gw-column: ($baseline*3);
+$gw-gutter: $baseline;
+$fg-column: $gw-column;
+$fg-gutter: $gw-gutter;
+$fg-max-columns: 12;
+$fg-max-width: 1280px;
+$fg-min-width: 900px;
+
+// +Fonts
+// ====================
+$f-sans-serif: 'Inter', 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+$f-monospace: 'Bitstream Vera Sans Mono', Consolas, Courier, monospace;
+
+// +Colors - Utility
+// ====================
+$transparent: rgba(0, 0, 0, 0) !default; // used when color value is needed for UI width/transitions but element is transparent
+
+// +Colors - UXPL new pattern library colors
+// ====================
+$uxpl-blue-hover-active: #065683 !default; // wcag2a compliant
+$uxpl-light-blue-base: rgb(242, 248, 251) !default;
+
+$uxpl-green-base: rgb(21, 55, 109) !default; // wcag2a compliant
+$uxpl-green-hover-active: lighten($uxpl-green-base, 8%) !default; // wcag2a compliant
+$uxpl-green-dark-hover-active:  lighten($uxpl-green-base, 8%) !default;

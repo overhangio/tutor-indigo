@@ -1,0 +1,69 @@
+<%page expression_filter="h"/>
+<%namespace name='static' file='../static_content.html'/>
+<%!
+import six
+
+from django.utils.translation import gettext as _
+from django.urls import reverse
+from django.conf import settings
+%>
+
+<header>
+  % if static.get_value('course_about_show_social_links', True):
+  <div class="social-sharing">
+    <div class="sharing-message">${_("Share with friends and family!")}</div>
+    ## TODO: this should probably be an overrideable block,
+    ##       or something allowing themes to do whatever they
+    ##       want here (and on this whole page, really).
+      <%
+        site_domain = static.get_value('site_domain', settings.SITE_NAME)
+        site_protocol = 'https' if settings.HTTPS == 'on' else 'http'
+        platform_name = static.get_platform_name()
+        course_path = reverse('about_course', args=[str(course.id)])
+        course_url = f"{site_protocol}://{site_domain}{course_path}"
+
+        ## Translators: This text will be automatically posted to the student's
+        ## Twitter account. {url} should appear at the end of the text.
+        tweet_text = _("I just enrolled in {number} {title} through {account} {url}").format(
+            number=course.number,
+            title=course.display_name_with_default,
+            account=static.get_value('course_about_twitter_account', settings.PLATFORM_TWITTER_ACCOUNT),
+            url=course_url
+        )
+
+        tweet_action = u"https://twitter.com/intent/tweet?text={tweet_text}".format(tweet_text=six.moves.urllib.parse.quote(tweet_text))
+
+        facebook_link = f"https://www.facebook.com/sharer/sharer.php?u={six.moves.urllib.parse.quote(course_url)}"
+
+        email_body = _("I just enrolled in {number} {title} through {platform} {url}").format(
+                number=course.number,
+                title=course.display_name_with_default,
+                platform=platform_name,
+                url=course_url
+        )
+
+        email_subject = _("Take a course with {platform} online").format(platform=platform_name)
+        email_link = u"mailto:?subject={subject}&body={body}".format(
+            subject=six.moves.urllib.parse.quote(email_subject.encode('UTF-8')),
+            body=six.moves.urllib.parse.quote(email_body.encode('UTF-8'))
+        )
+      %>
+      <!-- NEW IN INDIGO socialnetworks is improved with better SVGs icons -->
+      <a href="${tweet_action}" class="share">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M13.682 1.6875H16.1641L10.743 7.88203L17.1203 16.3125H12.1281L8.21523 11.2008L3.74336 16.3125H1.25781L7.05508 9.68555L0.941406 1.6875H6.06016L9.59336 6.35977L13.682 1.6875ZM12.8102 14.8289H14.1848L5.31133 3.09375H3.83477L12.8102 14.8289Z" fill="#9CA3AF"/>
+          </svg><span class="sr">${_("Tweet that you've enrolled in this course")}</span>
+      </a>
+      <a href="${facebook_link}" class="share">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M18 9.05524C18 4.05403 13.9707 6.29184e-07 9 4.05324e-07C4.0293 1.81463e-07 2.31733e-07 4.05403 5.17607e-07 9.05524C7.75944e-07 13.5747 3.2913 17.3209 7.5942 18L7.5942 11.6731L5.3082 11.6731L5.3082 9.05524L7.5942 9.05524L7.5942 7.06037C7.5942 4.79113 8.937 3.53788 10.9935 3.53788C11.9781 3.53788 13.0077 3.71446 13.0077 3.71446L13.0077 5.94205L11.8737 5.94205C10.755 5.94205 10.4067 6.6402 10.4067 7.35647L10.4067 9.05524L12.9024 9.05524L12.5037 11.6722L10.4067 11.6722L10.4067 18C14.7087 17.3209 18 13.5747 18 9.05524Z" fill="#9CA3AF"/>
+          </svg><span class="sr">${_("Post a Facebook message to say you've enrolled in this course")}</span>
+      </a>
+      <a href="${email_link}" class="share">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17" fill="none">
+          <path d="M21 2.85763C21 1.83593 20.1 1 19 1H3C1.9 1 1 1.83593 1 2.85763M21 2.85763V14.0034C21 15.0251 20.1 15.861 19 15.861H3C1.9 15.861 1 15.0251 1 14.0034V2.85763M21 2.85763L11 9.35932L1 2.85763" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg><span class="sr">${_("Email someone to say you've enrolled in this course")}</span>
+      </a>
+  </div>
+  % endif
+</header>

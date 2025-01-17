@@ -1,0 +1,78 @@
+// Include custom cirtificate
+
+body.certificate {
+    .wrapper-header {
+        padding: 0;
+    }
+    .accomplishment-metadata {
+        .recipient-img {
+            display: none;
+        }
+        .recipient-name, .recipient-username {
+            margin: 0;
+        }
+    }
+    .layout-accomplishment {
+        .wrapper-introduction {
+            padding: 0;
+        }
+    }
+    .wrapper-about {
+        padding: 20px 0 0 !important;
+    }
+    .header-app, .banner-user, .introduction, .wrapper-accomplishment-metadata, .wrapper-accomplishment-rendering, .introduction, aside.about {
+        display: block;
+        max-width: 1600px !important;
+        margin: 0 auto;
+        padding: 0 15px !important;
+        box-sizing: border-box;
+        .header-app-title {
+            text-align: left;
+            a {
+                display: inline-block;
+                vertical-align: top;
+                width: 45px;
+                margin: 10px 0;
+            }
+        }
+    }
+    &.indigo-dark-theme {
+        background: $body-bg-d;
+        color: $text-color-d;
+        .banner-user .message-actions .action {
+            background: none !important;
+            text-shadow: none;
+            color: $text-color-d !important;
+        }
+        .wrapper-header {
+            background: $body-bg-d;
+            border-bottom: 1px solid $border-color;
+        }
+        &.layout-accomplishment.certificate-honor .accomplishment-main {
+            background: $primary-light-d;
+        }
+        .depth-card, .accomplishment-brief, .accomplishment-rendering {
+            background: $body-bg-d;
+        }
+        .accomplishment-rendering .accomplishment-type-label,
+        .accomplishment-metadata .metadata .value {
+            color: $text-color-d;
+        }
+    }
+}
+@media print {
+    body.indigo-dark-theme.certificate {
+        background: white;
+        color: black;
+        &.layout-accomplishment.certificate-honor .accomplishment-main {
+            background: white;
+        }
+        .depth-card, .accomplishment-brief, .accomplishment-rendering {
+            background: white;
+        }
+        .accomplishment-rendering .accomplishment-type-label,
+        .accomplishment-metadata .metadata .value {
+            color: black;
+        }
+    }
+}

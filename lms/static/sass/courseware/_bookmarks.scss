@@ -1,0 +1,248 @@
+// Include custom bookmarks
+.navbar.course-tabs {
+    display: block;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px 15px !important;
+    border: none;
+    overflow-x: auto;
+    ul.navbar-nav {
+        border-bottom: 1px solid $primary-light;
+        .nav-item {
+            margin-right: 10px;
+            @include media-breakpoint-up(md) {
+                margin-right: 32px;
+            }
+            a {
+                border-width: 0 0 2px;
+                padding: 0.5rem 1rem;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+}
+.page-content-container {
+    .page-content {
+        padding: 20px 0;
+    }
+    .page-header.has-secondary {
+        padding: 8px 10px;
+        border: none;
+        background: #F2F7F8;
+        border-radius: 6px;
+        .breadcrumbs {
+            font-weight: 500;
+            font-size: 14px;
+            color: #515661;
+        }
+    }
+    .courseware-results.search-result {
+        max-width: 100%;
+    }
+    .bookmarks-empty {
+        box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.05);
+        border: none;
+        border-radius: 8px;
+        padding: 20px;
+        color: #515661;
+        font-size: 14px;
+        max-width: 540px;
+        margin: 0 auto;
+        text-align: center;
+        h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 10px;
+            .bookmarks-empty-header-icon {
+                display: block;
+                margin: 0 0 10px;
+                font-size: 30px;
+                color: $primary;
+            }
+        }
+    }
+    .search-results {
+        max-width: 100%;
+        margin: 0;
+        .search-count {
+            font-size: 14px;
+        }
+        .paging-header, .bookmarks-results-list, .paging-footer {
+            margin-left: 0;
+            max-width: 856px;
+        }
+    }
+}
+.course-bookmarks {
+    .bookmarks-results-list {
+        a.bookmarks-results-list-item {
+            border: 1px solid #E5E7EB;
+            border-left: 8px solid $primary-light;
+            padding: 20px 30px;
+            border-radius: 8px;
+            position: relative;
+            &:before {
+                position: absolute;
+                top: -1px;
+                left: 5px;
+                font-size: 17px;
+                line-height: 17px;
+                color: $primary-d;
+            }
+            &:hover {
+                text-decoration: none;
+            }
+            h3 {
+                font-size: 18px;
+                font-weight: 600;
+                color: $dark;
+                .icon {
+                    width: 12px;
+                    height: 12px;
+                    border: 2px solid #9CA3AF;
+                    border-width: 2px 2px 0 0;
+                    margin: 0 12px 0 10px;
+                    transform: rotate(45deg);
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+            .list-item-date {
+                font-size: 14px;
+                font-weight: 500;
+                color: #4B5563;
+            }
+            p {
+                margin: 0;
+            }
+            .list-item-left-section {
+                width: 100%;
+                margin: 0 0 10px;
+                @include media-breakpoint-up(md) {
+                    width: calc(100% - 82px);
+                    margin: 0;
+                }
+            }
+            .list-item-right-section {
+                display: inline-block;
+                font-size: 14px;
+                line-height: 16px;
+                font-weight: 500;
+                color: #fff;
+                background: $primary;
+                padding: 9px 13px;
+                border-radius: 6px;
+                bottom: 0;
+                position: static;
+                @include media-breakpoint-up(md) {
+                    position: absolute;
+                }
+                .icon {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.pagination {
+    .nav-link {
+        font-size: 30px;
+        padding: 0;
+        background: none !important;
+        color: #515661 !important;
+        line-height: 30px;
+    }
+    .current-page, .page-number-input, .total-pages {
+        color: #313131;
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0 4px;
+    }
+    .page-divider {
+        font-weight: bold;
+        color: #515661;
+    }
+}
+body.indigo-dark-theme {
+    .page-content-container {
+        background: none;
+    }
+    .navbar.course-tabs {
+        ul.navbar-nav {
+            border-bottom: 1px solid $primary-light-d;
+            .nav-item {
+                &.active {
+                    a {
+                        color: $text-color-d;
+                        border-color: $text-color-d;
+                    }
+                }
+                a {
+                    color: $text-color-d;
+                    border-color: transparent;
+                }
+            }
+        }
+    }
+    .page-content-container {
+        .page-header.has-secondary {
+            background: $primary-light-d;
+            .breadcrumbs {
+                color: $text-color-primary;
+            }
+        }
+        .bookmarks-empty {
+            background: none;
+            box-shadow: 0px 0px 0px 1px rgba(#fff, .08);
+            color: $text-color-d;
+            h3 {
+                color: $text-color-d !important;
+                .bookmarks-empty-header-icon {
+                    color: $primary-d;
+                }
+            }
+        }
+        .search-results {
+            .search-count {
+                color: $text-color-primary;
+            }
+        }
+    }
+    .course-bookmarks {
+        .bookmarks-results-list {
+            a.bookmarks-results-list-item {
+                border: 1px solid $primary-light-d;
+                border-left: 8px solid $primary-light-d;
+                h3 {
+                    color: $text-color-d !important;
+                    .icon {
+                        border: 2px solid $border-color-d;
+                    }
+                }
+                .list-item-date {
+                    color: $text-color-d;
+                }
+                .list-item-right-section {
+                    color: $btn-color-d;
+                    background: $primary-d;
+                }
+            }
+        }
+    }
+    .pagination {
+        .nav-link {
+            color: $text-color-d !important;
+        }
+        .current-page, .page-number-input, .total-pages {
+            color: $text-color-d;
+            background: none !important;
+        }
+        .page-divider {
+            color: $text-color-d;
+        }
+    }
+}

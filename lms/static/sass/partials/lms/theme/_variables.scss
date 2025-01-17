@@ -1,0 +1,36 @@
+$primary: #FF0000;
+$primary-light: #F2F7F8;
+
+// Theme fonts
+$font-family-title: 'Inter', sans-serif;;
+$serif: Crimson;
+$f-sans-serif: Crimson, 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+// Initialize the Open edX Bootstrap theme
+@import 'edx-bootstrap/sass/open-edx/theme';
+
+
+// Introducing new variables
+
+$dark: #111827;
+$light-dark: #374151;
+$big-screen: 1200px;
+
+
+
+// Introducing dark-theme variables
+
+$primary-d: #AEC7F6;
+$primary-light-d: #292A2C;
+$light-drak-d: #374151;
+$text-color-d: #F8F8F8;
+$text-color-primary: #DDDFE2;
+$border-color-d: #777792;
+$light-overlay-d: #36383B;
+$danger-d: #FFA07A;
+$success-d: #54CF5E;
+$btn-color-d: #112F6B;
+$body-bg-d:#0D0D0E;
+
+$warning-400: #ffe340;
+$page-color-transition: transparent .2s ease, color .2s ease;

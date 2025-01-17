@@ -1,0 +1,32 @@
+<article class="course" role="region" aria-label="<%- content.display_name %>">
+        <header class="course-image">
+            <div class="cover-image">
+                <!-- NEW IN INDIGO: Add fallback image in case of no course-image using onerror -->
+                <img src="<%- image_url %>" onerror="this.src='/theming/asset/images/no_course_image.png';" alt="<%- content.display_name %> <%- content.number %>" />
+            </div>
+        </header>
+        <section class="course-info" aria-hidden="true">
+            <h2 class="course-name">
+                <span class="course-code"><%- content.number %></span>
+                <span class="course-title"><%- content.display_name %></span>
+                <span class="course-organization"><%- org %></span>
+            </h2>
+            <a href="/courses/<%- course %>/about" class="learn-more"><%- gettext("Learn More") %></a>
+            <div class="course-date" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 3.83332H15.8333C16.75 3.83332 17.5 4.58332 17.5 5.49999V17.1667C17.5 18.0833 16.75 18.8333 15.8333 18.8333H4.16667C3.24167 18.8333 2.5 18.0833 2.5 17.1667L2.50833 5.49999C2.50833 4.58332 3.24167 3.83332 4.16667 3.83332H5V2.16666H6.66667V3.83332H13.3333V2.16666H15V3.83332ZM4.16667 8.83332V17.1667H15.8333V8.83332H4.16667ZM15.8333 7.16666H4.16667V5.49999H15.8333V7.16666ZM14.1667 11.3333H10V15.5H14.1667V11.3333Z" fill="#9CA3AF"/>
+          </svg>
+                <%- interpolate(
+                      gettext("Starts: %(start_date)s"),
+                      { start_date: start }, true
+                    ) %>
+            </div>
+        </section>
+        <div class="sr">
+            <ul>
+                <li><%- org %></li>
+                <li><%- content.number %></li>
+                <li><%- gettext("Starts") %><time itemprop="startDate" datetime="<%- start %>"><%- start %></time></li>
+            </ul>
+        </div>
+</article>
