@@ -1,0 +1,609 @@
+// Include custom programs page
+
+.program-list-wrapper {
+    color: #111827;
+    padding: 20px 15px;
+    @include media-breakpoint-up(md) {
+        padding: 40px 15px;
+    }
+    &:after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+    .program-list-container {
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        @include media-breakpoint-up(lg) {
+            float: left;
+            width: calc(100% - 28% - 40px);
+            margin: 0 40px 0 0;
+        }
+        @media only screen and (min-width: $big-screen) {
+            width: calc(100% - 24% - 40px);
+        }
+        .js-program-list-header {
+            h2 {
+                font-size: 24px;
+                font-weight: 700;
+                margin: 0 0 30px;
+                color: #111827;
+                text-transform: capitalize;
+            }
+        }
+        .program-cards-container {
+            margin: 0 -5px;
+            letter-spacing: -.32em;
+            .program-card {
+                border: none;
+                border-radius: 8px;
+                margin: 0 5px 10px;
+                overflow: hidden;
+                width: calc(50% - 10px);
+                letter-spacing: normal;
+                box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.05);
+                display: inline-block;
+                @media only screen and (min-width: $big-screen) {
+                    width: calc(33.33% - 10px);
+                    flex: 0 0 calc(33% - 10px);
+                    max-width: calc(33% - 10px);
+                }
+                .text-section {
+                    position: static;
+                    padding: 15px;
+                    h3 {
+                        font-size: 14px;
+                        line-height: 20px;
+                        font-weight: 500;
+                        color: #292C2E;
+                        margin: 0 0 5px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        min-height: 10px;
+                    }
+                    .meta-info {
+                        z-index: 3;
+                        background: #ffff;
+                        display: block;
+                        padding: 2px 12px;
+                        border-radius: 6px;
+                        font-size: 14px;
+                        line-height: 20px;
+                        font-weight: 500;
+                        color: #292C2E;
+                        width: auto;
+                        top: 15px;
+                        left: 15px;
+                        .col {
+                            display: inline-block;
+                            vertical-align: top;
+                            width: auto;
+                            padding: 0 !important;
+                            max-width: 100%;
+                        }
+                    }
+                }
+                .status-text {
+                    text-align: center;
+                    display: block;
+                    padding: 0 15px 10px;
+                    .number-status, .number-circle {
+                        display: inline-block;
+                        vertical-align: top;
+                        float: none;
+                        width: auto;
+                        background: $primary-light;
+                        margin: 0 5px 10px 0;
+                        border-radius: 5px;
+                        color: #15376D;
+                        padding: 10px 0;
+                        font: 10px/18px $font-family-title;
+                        text-align: center;
+                    }
+                    .number-circle {
+                        height: auto;
+                        width: 100%;
+                        margin: 0 0 5px;
+                        font-weight: 600;
+                        background: none !important;
+                        padding: 0;
+                        font-size: 14px;
+                    }
+                }
+                .card-link {
+                    opacity: 1;
+                    .banner-image-container {
+                        background: $primary;
+                        picture {
+                            display: block;
+                        }
+                        .banner-image {
+                            position: static;
+                            transform: none;
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+            .progress-container {
+                display: none;
+            }
+        }
+    }
+    .sidebar {
+        max-width: 100%;
+        float: none;
+        width: 100%;
+        padding: 20px 0 0;
+        @include media-breakpoint-up(lg) {
+            width: 28%;
+            float: left;
+            padding-top: 58px;
+        }
+        @media only screen and (min-width: $big-screen) {
+            width: 24%;
+        }
+        .program-advertise {
+            border-radius: 5px;
+            background: $primary-light;
+            padding: 15px;
+            border: none;
+            display: block;
+            text-align: center;
+            p {
+                margin: 0 0 10px;
+                text-align: left;
+                font-size: 14px;
+                font-weight: 500;
+            }
+            a.btn {
+                background: $primary;
+                border-radius: 6px;
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: 500;
+                padding: 9px 11px;
+            }
+        }
+    }
+    .program-cards-container {
+        margin: 0;
+        padding: 0;
+    }
+    .empty-programs-message {
+        box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.05);
+        border: none;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        background: white;
+        letter-spacing: normal;
+        h2 {
+            color: #111827;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+            margin: 0 0 12px;
+            @include media-breakpoint-up(md) {
+                font-size: 18px;
+                line-height: 30px;
+                margin: 0 0 20px;
+            }
+        }
+        a.btn {
+            background: $primary;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 500;
+            padding: 9px 11px;
+        }
+    }
+}
+.program-details-wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 30px 15px 10px;
+    @include media-breakpoint-up(md) {
+        padding: 40px 15px;
+    }
+    .program-details-header {
+        padding: 0 0 20px;
+        background: none;
+        .authoring-organizations {
+            display: none;
+        }
+        .meta-info.grid-container {
+            width: 100%;
+            overflow: hidden;
+            .xseries {
+                float: right;
+                width: 100%;
+                @include media-breakpoint-up(md) {
+                    width: 32%;
+                }
+                @include media-breakpoint-up(lg) {
+                    width: 24%;
+                }
+                svg {
+                    width: 150px;
+                }
+            }
+            h2.program-title {
+                float: left;
+                width: 100%;
+                font-size: 24px;
+                font-weight: 700;
+                margin: 0;
+                text-transform: capitalize;
+                @include media-breakpoint-up(md) {
+                    width: calc(100% - 32% - 40px);
+                }
+                @media only screen and (min-width: $big-screen) {
+                    max-width: calc(100% - 24% - 40px);
+                }
+            }
+        }
+    }
+    .col-12.flex-column {
+        padding: 0 !important;
+        display: block !important;
+        overflow: hidden;
+        .program-details-content {
+            padding: 0;
+            width: 100%;
+            float: left;
+            max-width: 100%;
+            @include media-breakpoint-up(md) {
+                max-width: calc(100% - 32% - 40px);
+            }
+            @media only screen and (min-width: $big-screen) {
+                max-width: calc(100% - 24% - 40px);
+            }
+            .program-heading {
+                background: $primary-light;
+                border-radius: 16px;
+                padding: 15px 20px;
+                margin: 0 0 30px;
+                h3 {
+                    color: #292C2E !important;
+                    font: 600 16px/20px $font-family-title;
+                    margin: 0 0 10px;
+                }
+                .program-heading-message {
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: #70787E;
+                }
+            }
+            .course-list-headings {
+                .remaining-group, .in-progress-group, .completed-group {
+                    margin: 0 0 15px;
+                    h4, h5 {
+                        text-align: left;
+                        font-size: 16px;
+                        color: #111827;
+                        font-weight: 600;
+                        font: 600 16px/22px $font-family-title;
+                        margin: 0 0 10px;
+                        padding: 0;
+                        border: none;
+                        a {
+                            color: #111827;
+                        }
+                    }
+                    .course-list {
+                        margin: 0;
+                    }
+                    .program-course-card, .motivating-section {
+                        border: 1px solid #F2F7F8;
+                        border-left: 8px solid #F2F7F8;
+                        border-radius: 8px;
+                        padding: 15px;
+                        margin: 0 0 15px;
+                        font-size: 12px;
+                        line-height: 16px;
+                        color: #70787E;
+                        background: none !important;
+                        .section:empty {
+                            display: none;
+                        }
+                        a.btn-brand, button.btn-brand {
+                            background: $primary;
+                            border-color: $primary;
+                            height: auto;
+                            display: inline-block;
+                            padding: 5px 10px;
+                            border-radius: 6px;
+                            font-size: 14px;
+                            font-weight: 500;
+                            line-height: 20px;
+                            margin: 10px 0 0;
+                            min-width: 115px;
+                            width: auto;
+                        }
+                        .motivating-message {
+                            margin: 0;
+                        }
+                        .certificate-status {
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .course-text {
+                            .run-period {
+                                font-size: 12px;
+                                line-height: 16px;
+                                color: #0F8B8D;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .program-sidebar {
+            float: right;
+            margin: 0 !important;
+            max-width: 100%;
+            width: 100%;
+            padding: 0;
+            @include media-breakpoint-up(md) {
+                max-width: 32%;
+                margin: 0 0 0 40px !important;
+            }
+            @include media-breakpoint-up(lg) {
+                max-width: 24%;
+            }
+        }
+    }
+    .program-sidebar {
+        .aside {
+            background: $primary-light;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 0 0 20px;
+            text-align: left;
+            width: 100%;
+            font-size: 12px;
+            color: #515661;
+            p.motivating-message {
+                margin: 0;
+            }
+            &:empty {
+                display: none;
+            }
+            h2 {
+                text-align: left;
+                font-size: 16px;
+                color: #111827;
+                font-weight: 600;
+                font: 600 16px/22px $font-family-title;
+                margin: 0 0 10px;
+                padding: 0;
+                border: none;
+            }
+            .progress-circle-wrapper {
+                width: 200px;
+                height: 200px;
+                margin: -20px auto -11px;
+                svg {
+                    width: 200px;
+                    height: 200px;
+                }
+                .progress-circle {
+                    .complete {
+                        stroke: $primary;
+                    }
+                }
+            }
+            .progress-label {
+                top: 82px;
+                font-size: 12px;
+                font-weight: 600;
+                color: #111827;
+            }
+            .numbers {
+                font-size: 12px;
+                color: #111827;
+                .complete {
+                    color: #111827;
+                }
+            }
+            .certificate-list {
+                list-style: none;
+                margin: 0 0 -15px;
+                padding: 0;
+                li {
+                    padding: 0 0 15px;
+                    display: block;
+                    text-align: center;
+                    .image-link {
+                        display: block;
+                        width: 120px;
+                        margin: 0 auto 10px;
+                    }
+                    .certificate-link {
+                        font-size: 12px;
+                        line-height: 18px;
+                        font-weight: 600;
+                        color: #111827;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+.indigo-dark-theme {
+    .program-list-wrapper {
+        color: $text-color-d;
+        .program-list-container {
+            .js-program-list-header {
+                h2 {
+                    color: $text-color-d;
+                }
+            }
+            .program-cards-container {
+                .program-card {
+                    box-shadow: 0px 0px 0px 1px rgba(#777792,0.9);
+                    background: #292A2C;
+                    .text-section {
+                        h3 {
+                            color: $text-color-d;
+                        }
+                        .meta-info {
+                            background: #36383B;
+                            color: $text-color-d;
+                        }
+                    }
+                    .status-text {
+                        display: block;
+                        padding: 0 15px 10px;
+                        .number-status, .number-circle {
+                            background: #36383B;
+                            color: $text-color-d;
+                        }
+                    }
+                    .card-link {
+                        opacity: 1;
+                        .banner-image-container {
+                            background: $primary-d;
+                        }
+                    }
+                }
+            }
+        }
+        .sidebar {
+            .program-advertise {
+                background: $primary-light-d;
+                p {
+                    color: $text-color-d;
+                }
+                a.btn {
+                    background: $primary-d;
+                    color: $btn-color-d;
+                }
+            }
+        }
+        .empty-programs-message {
+            box-shadow: 0px 0px 0px 1px rgba(#fff,0.9);
+            background: $primary-light-d;
+            h2 {
+                color: $text-color-d;
+            }
+            a.btn {
+                background: $primary-d;
+                color: $btn-color-d;
+            }
+        }
+    }
+    .program-details-wrapper {
+        .program-details-header {
+            color: $text-color-d;
+            .meta-info.grid-container {
+                .xseries {
+                    svg {
+                        path {
+                            fill: $text-color-d;
+                        }
+                    }
+                }
+            }
+        }
+        .col-12.flex-column {
+            .program-details-content {
+                color: $text-color-d;
+                .program-heading {
+                    background: $primary-light-d;
+                    h3 {
+                        color: $text-color-d !important;
+                    }
+                    .program-heading-message {
+                        color: $text-color-d;
+                    }
+                }
+                .course-list-headings {
+                    .remaining-group, .in-progress-group, .completed-group {
+                        h4, h5 {
+                            color: $text-color-d;
+                            a {
+                                color: $text-color-d;
+                            }
+                        }
+                        .program-course-card, .motivating-section {
+                            border: 1px solid $primary-light-d;
+                            border-left: 8px solid $primary-light-d;
+                            color: $text-color-d;
+                            a.btn-brand, button.btn-brand {
+                                background: $primary-d;
+                                border-color: $primary-d;
+                                color: $btn-color-d;
+                            }
+                            .motivating-message {
+                                color: $text-color-d;
+                            }
+                            .certificate-status {
+                                .certificate-status-msg, .card-msg {
+                                    color: $text-color-d;
+                                }
+                            }
+                            .course-text {
+                                color: $text-color-d;
+                                .enrolled {
+                                    color: $text-color-d;
+                                }
+                                .run-period {
+                                    color: $success-d; 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .program-sidebar {
+            .aside {
+                background: $primary-light-d;
+                color: $text-color-d;
+                h2 {
+                    color: $text-color-d;
+                }
+                p.motivating-message {
+                    color: $text-color-d;
+                }
+                .progress-circle-wrapper {
+                    svg {
+                        width: 200px;
+                        height: 200px;
+                    }
+                    .progress-circle {
+                        .complete {
+                            stroke: $primary-d;
+                        }
+                    }
+                }
+                .progress-label {
+                    color: $text-color-d;
+                    .label {
+                        color: $text-color-d;
+                    }
+                }
+                .numbers {
+                    color: $text-color-d;
+                    .complete {
+                        color: $text-color-d;
+                    }
+                }
+                .certificate-list {
+                    li {
+                        .certificate-link {
+                            color: $text-color-d;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
