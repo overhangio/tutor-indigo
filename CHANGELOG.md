@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-19.0.1'></a>
+## v19.0.1 (2025-01-26)
+
+- [BugFix] Fix env.config.jsx for dark theme and Indigo footer by including the patches folder in MANIFEST.in for python pypi package. (by @hinakhadim)
+
 <a id='changelog-19.0.0'></a>
 ## v19.0.0 (2024-12-11)
 
