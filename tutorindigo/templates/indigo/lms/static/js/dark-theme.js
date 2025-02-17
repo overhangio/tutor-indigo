@@ -1,3 +1,11 @@
+(function() {
+  if (window.INDIGO_DARK_THEME_INITIALIZED) {
+    console.log("dark-theme.js: script already initialized, skipping second run.");
+    return;
+  }
+  window.INDIGO_DARK_THEME_INITIALIZED = true;
+  // ========== END GUARD CHECK ===============
+
 $(document).ready(function() {
     'use strict';
 
@@ -36,3 +44,4 @@ $(document).ready(function() {
 
     $('#toggle-switch').on('change', toggleTheme);
 });
+})();
