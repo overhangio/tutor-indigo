@@ -1,0 +1,87 @@
+## mako
+<%page expression_filter="h"/>
+<%!
+  from django.urls import reverse
+  from django.utils.translation import gettext as _
+  from openedx.core.djangolib.markup import HTML, Text
+  from wiki.core.permissions import can_change_permissions
+%>
+
+<li class="${"active" if selected_tab == "view" else ""}">
+  <a href="${reverse('wiki:get', kwargs={'article_id' : article.id, 'path' : urlpath.path})}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.998 19C15.703 19 19.092 16.3746 21 12C19.092 7.62537 15.703 5 11.998 5C8.297 5 4.908 7.62537 3 12C4.908 16.3766 8.297 19 12.002 19H11.998Z" stroke="#4600C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0788 12.0051C15.0788 13.6784 13.7008 15.0365 12.0028 15.0365C10.3038 15.0365 8.92578 13.6784 8.92578 12.0051C8.92578 10.3307 10.3038 8.97266 12.0028 8.97266C13.7008 8.97266 15.0788 10.3307 15.0788 12.0051Z" stroke="#4600C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      
+    ${_("View")}
+    ${Text(_("{span_start}(active){span_end}")).format(span_start=HTML("<span class='sr'>"), span_end=HTML("</span>")) if selected_tab == "view" else ""}
+  </a>
+</li>
+
+%if article.can_write(user):
+  <li class="${"active" if selected_tab == "edit" else ""}">
+    <a href="${reverse('wiki:edit', kwargs={'article_id' : article.id, 'path' : urlpath.path})}">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13.7476 20.4429H21.0002" stroke="#4600C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.78 3.79479C13.5557 2.86779 14.95 2.73186 15.8962 3.49173C15.9485 3.53296 17.6295 4.83879 17.6295 4.83879C18.669 5.46719 18.992 6.80311 18.3494 7.82259C18.3153 7.87718 8.81195 19.7645 8.81195 19.7645C8.49578 20.1589 8.01583 20.3918 7.50291 20.3973L3.86353 20.443L3.04353 16.9723C2.92866 16.4843 3.04353 15.9718 3.3597 15.5773L12.78 3.79479Z" stroke="#4600C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M11.021 6.00098L16.4732 10.1881" stroke="#4600C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        
+      ${_("Edit")}
+      ${Text(_("{span_start}(active){span_end}")).format(span_start=HTML("<span class='sr'>"), span_end=HTML("</span>")) if selected_tab == "edit" else ""}
+    </a>
+  </li>
+%endif
+
+<li class="${"active" if selected_tab == "history" else ""}">
+  <a href="${reverse('wiki:history', kwargs={'article_id' : article.id, 'path' : urlpath.path})}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.35929 18.8033L4.35742 16.6595L6.48903 16.6577" stroke="#4600C7" stroke-width="1.44" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19.0345 5.1958L19.0364 7.33956L16.9048 7.34143" stroke="#4600C7" stroke-width="1.44" stroke-linecap="round" stroke-linejoin="round"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.307 10.5693L13.1823 9.44469C12.3622 8.62456 11.0321 8.62456 10.211 9.44469L9.08629 10.5693C8.26616 11.3904 8.26616 12.7206 9.08629 13.5417L10.211 14.6654C11.0321 15.4865 12.3622 15.4865 13.1823 14.6654L14.307 13.5417C15.128 12.7206 15.128 11.3904 14.307 10.5693Z" stroke="#4600C7" stroke-width="1.44" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4.61084 16.7086C7.14132 20.6038 12.334 21.777 16.3002 19.3165C18.784 17.7762 20.2047 15.1711 20.3383 12.4575" stroke="#4600C7" stroke-width="1.44" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M18.7855 7.29086C16.2551 3.39566 11.0624 2.22244 7.09621 4.68285C4.61244 6.22318 3.19168 8.82839 3.05811 11.542" stroke="#4600C7" stroke-width="1.44" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      
+    ${_("Changes")}
+    ${Text(_("{span_start}(active){span_end}")).format(span_start=HTML("<span class='sr'>"), span_end=HTML("</span>")) if selected_tab == "history" else ""}
+  </a>
+</li>
+
+%for plugin in article_tabs:
+  %if hasattr(plugin, "article_tab"):
+    <li class="${"active" if selected_tab == plugin.slug else ""}">
+      <a href="${reverse('wiki:plugin', kwargs={'slug' : plugin.slug, 'article_id' : article.id, 'path' : urlpath.path}) }">
+        <svg class="${plugin.article_tab[1]}" width="24"  height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.8842 7.54924V5.15277C16.8842 4.07275 15.8654 3.28365 14.8195 3.55317L6.08492 5.80759C5.4515 5.97105 5.00879 6.5422 5.00879 7.19605V19.3555C5.00879 20.5397 5.96913 21.5 7.15326 21.5H16.8462C18.0313 21.5 18.9907 20.5397 18.9907 19.3555V9.93307C18.9907 8.74797 18.0313 7.78763 16.8462 7.78763H5.00879" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.52539 12.5723H12.3101M9.52539 16.3778H14.4731" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          
+        ${plugin.article_tab[0]}
+        ${Text(_("{span_start}(active){span_end}")).format(span_start=HTML("<span class='sr'>"), span_end=HTML("</span>")) if selected_tab == plugin.slug else ""}
+      </a>
+    </li>
+  %endif
+%endfor
+
+
+<%doc>
+${_("This should be enabled for all non-anonymous users once the notifications app has been integrated and styled.")}
+</%doc>
+
+%if can_change_permissions(article,user):
+<li class="${"active" if selected_tab == "settings" else ""}">
+  <a href="${reverse('wiki:settings', kwargs={'article_id' : article.id, 'path' : urlpath.path})}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.7949 8.64868C17.7932 8.64509 17.7913 8.64239 17.7896 8.6388C17.6279 8.35858 17.5282 8.04604 17.5336 7.72182L17.5515 6.66473C17.5606 6.11957 17.3073 5.59955 16.8663 5.27982C16.3956 4.93763 15.8891 4.64575 15.3575 4.40954C14.8599 4.1886 14.2833 4.22992 13.8171 4.51013L12.9119 5.05259C12.6335 5.22055 12.311 5.2906 11.9859 5.2897H11.9751C11.6508 5.2897 11.3303 5.21964 11.0528 5.0535L10.1465 4.50923C9.67859 4.22901 9.10111 4.18771 8.60355 4.41044C8.07186 4.64664 7.56712 4.93943 7.0965 5.28251C6.65642 5.60314 6.40405 6.12226 6.41303 6.66652L6.43099 7.72092C6.43638 8.04693 6.33669 8.36038 6.17323 8.64239C6.17143 8.64509 6.16963 8.64868 6.16695 8.65227C6.00528 8.93249 5.78434 9.17408 5.50144 9.33125L4.57817 9.84408C4.09049 10.1144 3.77165 10.6111 3.71597 11.1652C3.66029 11.7212 3.66029 12.2816 3.71686 12.8376C3.77345 13.3917 4.09228 13.8875 4.57906 14.1568L5.50053 14.6679C5.78524 14.826 6.00708 15.0702 6.16963 15.3523C6.17143 15.355 6.17323 15.3577 6.17413 15.3603C6.33669 15.6423 6.43638 15.9549 6.43099 16.2792L6.41303 17.3353C6.40405 17.8805 6.65732 18.4005 7.09829 18.7212C7.56892 19.0624 8.07546 19.3543 8.60715 19.5905C9.1047 19.8114 9.68044 19.7701 10.1474 19.4908L11.0528 18.9474C11.3312 18.7804 11.6527 18.7104 11.9778 18.7104H11.9886C12.3128 18.7104 12.6335 18.7804 12.9119 18.9474L13.818 19.4908C14.2851 19.7719 14.8626 19.8123 15.3601 19.5905C15.8927 19.3534 16.3975 19.0615 16.8681 18.7184C17.3082 18.3978 17.5606 17.8787 17.5515 17.3344L17.5336 16.2782C17.5282 15.954 17.6279 15.6406 17.7904 15.3594C17.7932 15.3559 17.7949 15.3523 17.7968 15.3495C17.9584 15.0685 18.1802 14.826 18.4631 14.6688L19.3855 14.1568C19.8732 13.8865 20.1921 13.3898 20.2477 12.8348C20.3043 12.2789 20.3034 11.7184 20.2468 11.1625C20.1902 10.6084 19.8714 10.1135 19.3847 9.84318L18.4631 9.33125C18.1793 9.17408 17.9575 8.93069 17.7949 8.64868Z" stroke="#4600C7" stroke-width="1.38462" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.1736 11.4903C15.5068 13.6728 13.6558 15.5246 11.4742 15.1915C10.1145 14.984 9.00262 13.8739 8.79246 12.5141C8.45656 10.3309 10.3103 8.47529 12.4936 8.8103C13.8543 9.01866 14.9652 10.1305 15.1736 11.4903Z" stroke="#4600C7" stroke-width="1.38462" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    ${_("Settings")}
+    ${Text(_("{span_start}active{span_end}")).format(span_start=HTML("<span class='sr'>"), span_end=HTML("</span>")) if selected_tab == "settings" else ""}
+  </a>
+</li>
+%endif
+
+
+

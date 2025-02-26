@@ -4,27 +4,37 @@ $content_padding_top: 24px;
 $content-padding-bottom: 10px;
 $header-height: 75px;
 $footer-height: 125.5px;
-body, h1, h2, h3, h4, h5, h6, p, label, button {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+button {
   font-family: $font-family-title !important;
 }
 html {
   background: transparent !important;
 }
-body, body.view-profile {
+body,
+body.view-profile {
   min-height: initial;
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: $dark;
-    transition: background-color 5000s ease-in-out 0s;
-    box-shadow: none;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: $dark;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: none;
 }
 .page-content-container {
   max-width: 1600px;
@@ -37,7 +47,8 @@ input:-webkit-autofill:active{
   border-radius: 0;
 }
 
-.btn, .global-header .nav-links .secondary .btn {
+.btn,
+.global-header .nav-links .secondary .btn {
   border-radius: 0;
 }
 
@@ -45,7 +56,13 @@ input:-webkit-autofill:active{
   font-family: $font-family-title;
 }
 
-h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
+h1,
+h2,
+h3,
+h1 span,
+h2 span,
+h3 span,
+.nav-item {
   font-family: $font-family-title;
 }
 
@@ -57,7 +74,10 @@ h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
     padding-bottom: $content-padding-bottom;
     margin-top: $header-height;
   }
-  min-height: calc(100vh - #{$header-height + $content-padding-top + $content-padding-bottom + $footer-height}); // sticky footer
+  min-height: calc(
+    100vh - #{$header-height + $content-padding-top + $content-padding-bottom +
+      $footer-height}
+  ); // sticky footer
 }
 
 ////////////////// Fonts
@@ -69,7 +89,7 @@ header.global-header {
     position: fixed;
     top: 0;
     z-index: 200; // necessary to keep the header on top of other elements
-    overflow: visible;  // fix for Safari
+    overflow: visible; // fix for Safari
   }
   //background-color: #4c61bf;
   box-shadow: none;
@@ -86,10 +106,10 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
 /////////////////// Sign in form
 
 .login-register .form-field {
-    // Hide "Sign in with your company or school link"
-    button.enterprise-login {
-        display: none;
-    }
+  // Hide "Sign in with your company or school link"
+  button.enterprise-login {
+    display: none;
+  }
 }
 
 /////////////////// Home page
@@ -114,11 +134,13 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
   text-align: center;
 }
 
-.animation-home-header-pop-up, .home > header .outer-wrapper {
+.animation-home-header-pop-up,
+.home > header .outer-wrapper {
   animation: none;
 }
 
-.highlighted-courses .courses, .find-courses .courses {
+.highlighted-courses .courses,
+.find-courses .courses {
   padding-top: 0;
 }
 
@@ -129,7 +151,8 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
   .courses-listing-item {
     margin: 0 20px 30px 20px;
     // Fix right margin
-    &:nth-child(4n), &:last-child {
+    &:nth-child(4n),
+    &:last-child {
       margin-right: 20px;
     }
   }
@@ -142,10 +165,10 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
 
 ////////////////// "View this course as staff/learner/..."
 nav.wrapper-preview-menu {
-    // It is necessary to specify `nav` in order to override the common higher priority rule
-    @include media-breakpoint-up(lg) {
-      margin-top: $header-height;
-    }
+  // It is necessary to specify `nav` in order to override the common higher priority rule
+  @include media-breakpoint-up(lg) {
+    margin-top: $header-height;
+  }
 }
 
 ////////////////// Course about page
@@ -182,9 +205,9 @@ nav.wrapper-preview-menu {
   }
 }
 
-
 /////////////////// Course search
-.find-courses, .university-profile {
+.find-courses,
+.university-profile {
   background-color: #fff;
 }
 
@@ -196,7 +219,9 @@ nav.wrapper-preview-menu {
   background-color: #fff;
 }
 
-.view-profile .wrapper-profile-section-container-one .wrapper-profile-section-one {
+.view-profile
+  .wrapper-profile-section-container-one
+  .wrapper-profile-section-one {
   border: solid $primary;
   border-width: 5px 1px 1px 1px;
 }
@@ -218,24 +243,26 @@ nav.wrapper-preview-menu {
   padding: 25px 40px;
 
   .wrapper-logo {
-      display: none;
+    display: none;
   }
   .copyright {
-      display: none;
+    display: none;
   }
   .nav-legal ul {
-      display: inline-block;
+    display: inline-block;
   }
   footer#footer-openedx .footer-about-openedx {
-      a {
-          float: none;
-      }
-      p {
-          text-align: right;
-      }
+    a {
+      float: none;
+    }
+    p {
+      text-align: right;
+    }
   }
 }
-.container, .main-container, .find-courses {
+.container,
+.main-container,
+.find-courses {
   max-width: 1600px;
   padding-left: 15px !important;
   padding-right: 15px !important;
@@ -254,16 +281,16 @@ nav.wrapper-preview-menu {
   padding: 0;
   background: none;
   .inner-wrapper {
-      padding: 15px;
-      border-radius: 8px;
-      border: none;
-      @include media-breakpoint-up(sm) {
-        padding: 24px;
-      }
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    @include media-breakpoint-up(sm) {
+      padding: 24px;
     }
+  }
 }
 .container {
-  &.about{
+  &.about {
     padding: 30px 0;
     font-size: 16px;
     line-height: 24px;
@@ -288,56 +315,64 @@ nav.wrapper-preview-menu {
       max-width: 178px;
       padding: 30px 0;
       img {
-         width: 100%;
-         display: block;
-         height: auto;
-         &.dark {
+        width: 100%;
+        display: block;
+        height: auto;
+        &.dark {
           display: none;
-         }
-      }
-    }
-  }
-}
-.wrapper-course-material[aria-label="Course Material"] {
-  margin: 0 auto;
-  max-width: 1600px;
-  padding: 20px 15px !important;
-  .tabs.course-tabs {
-    margin: 0 0 10px;
-    border-bottom: 1px solid #E5E7EB;
-    padding: 0;
-    li {
-      margin: 0 32px 0 0;
-      a {
-        border-width: 2px;
-        font-size: 14px;
-        font-weight: 500;
-        color: $light-dark;
-        &:hover, &:visited {
-          color: $dark;
-          border-color: transparent;
-        }
-        &.active {
-          color: $dark;
-          border-color: $primary;
         }
       }
     }
   }
 }
-body.view-statictab, body.view-instructordash, body.view-teams, body.view-wiki,
+body.view-statictab,
+body.view-instructordash,
+body.view-teams,
+body.view-wiki {
+  .wrapper-course-material {
+    margin: 0 auto;
+    max-width: 1600px;
+    padding: 20px 15px !important;
+    .tabs.course-tabs {
+      margin: 0 0 10px;
+      border-bottom: 1px solid $border-color;
+      li {
+        margin: 0 32px 0 0;
+        a {
+          border-width: 2px;
+          font-size: 14px;
+          font-weight: 500;
+          color: $light-dark;
+          &:hover,
+          &:visited {
+            color: $dark;
+            border-color: transparent;
+          }
+          &.active {
+            color: $dark;
+            border-color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+body.view-statictab,
+body.view-instructordash,
+body.view-teams,
+body.view-wiki,
 body.view-student-notes {
   #main {
     .container {
       padding: 0;
     }
     .static_tab_wrapper {
-        border: none;
-        max-width: 1600px;
-        padding: 0 15px;
-        margin: 0 auto;
-        box-sizing: border-box;
-        background: no-repeat;
+      border: none;
+      max-width: 1600px;
+      padding: 0 15px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      background: no-repeat;
     }
   }
   .container.about {
@@ -381,14 +416,14 @@ body.view-student-notes {
       font-size: 14px;
       font-weight: 500;
     }
-  } 
+  }
 }
 body.view-teams {
   .container {
     max-width: 1600px !important;
     padding: 0 15px !important;
     margin: 0 auto;
-    >div {
+    > div {
       border: none;
       background: none;
     }
@@ -399,7 +434,7 @@ body.view-instructordash {
     max-width: 1600px !important;
     padding: 0 15px !important;
     margin: 0 auto;
-    >div {
+    > div {
       border: none;
       background: none;
     }
@@ -420,10 +455,10 @@ body.view-instructordash {
       width: 100%;
       white-space: nowrap;
       overflow-x: auto;
-      border: 1px solid #E5E7EB;
+      border: 1px solid $border-color;
       border-radius: 6px;
       padding: 0 !important;
-      letter-spacing: -.32em;
+      letter-spacing: -0.32em;
       li {
         letter-spacing: normal;
         &:first-child {
@@ -434,7 +469,7 @@ body.view-instructordash {
         button {
           border: none !important;
           border-radius: 0 !important;
-          border-left: 1px solid #E5E7EB !important;
+          border-left: 1px solid $border-color !important;
           font-size: 14px;
           line-height: 20px;
           font-weight: 500;
@@ -455,17 +490,19 @@ body.view-instructordash {
       margin: 0;
       table {
         width: 100%;
-        th, td {
+        th,
+        td {
           padding: 10px;
           width: 50%;
           font-size: 16px;
           line-height: 28px;
           font-weight: 400;
-          color: #111827;
+          color: $dark;
         }
         .total {
-          border-top: 1px solid #E5E7EB;
-          th, td {
+          border-top: 1px solid $border-color;
+          th,
+          td {
             color: $primary;
             font-weight: 700;
           }
@@ -490,7 +527,10 @@ body.view-instructordash {
         margin-bottom: 10px;
       }
     }
-    #course_info  .enrollment-wrapper, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
+    #course_info .enrollment-wrapper,
+    .basic-wrapper,
+    .course-errors-wrapper,
+    .running-tasks-container {
       background: $primary-light;
       padding: 15px;
       margin: 0 0 30px;
@@ -498,7 +538,7 @@ body.view-instructordash {
         font-size: 18px;
         color: $dark;
         font-weight: 600;
-        span  {
+        span {
           font-size: 14px;
           font-weight: normal;
           color: $light-dark;
@@ -512,7 +552,8 @@ body.view-instructordash {
         display: flex;
         font-size: 16px;
         line-height: 28px;
-        label, b {
+        label,
+        b {
           font-weight: normal;
           font-style: normal;
           font-size: 16px;
@@ -520,12 +561,14 @@ body.view-instructordash {
           line-height: 28px;
           margin: 0;
           width: 50%;
-          color:#111827;
+          color: $dark;
         }
       }
     }
   }
-  .enrollment-button, input[type=button], button.btn {
+  .enrollment-button,
+  input[type="button"],
+  button.btn {
     background: $primary;
     border-color: $primary;
     color: white;
@@ -536,16 +579,20 @@ body.view-instructordash {
 }
 .course-wrapper .course-content .xblock.xblock-student_view-vertical,
 .course-wrapper .course-content .xblock.xblock-public_view-vertical,
-.course-wrapper .courseware-results-wrapper .xblock.xblock-student_view-vertical,
-.course-wrapper .courseware-results-wrapper .xblock.xblock-public_view-vertical {
+.course-wrapper
+  .courseware-results-wrapper
+  .xblock.xblock-student_view-vertical,
+.course-wrapper
+  .courseware-results-wrapper
+  .xblock.xblock-public_view-vertical {
   max-width: 100% !important;
 }
-body.view-wiki{
-   .container{
+body.view-wiki {
+  .container {
     max-width: 1600px !important;
     margin: 0 auto !important;
     padding: 0 15px !important;
-    >div {
+    > div {
       background: none;
       box-shadow: none;
       border: none;
@@ -597,7 +644,8 @@ body.view-wiki{
         }
       }
     }
-    .wiki-wrapper section.wiki .btn.btn-large, .wiki-wrapper section.wiki .btn.btn-danger {
+    .wiki-wrapper section.wiki .btn.btn-large,
+    .wiki-wrapper section.wiki .btn.btn-danger {
       background: none;
       color: $dark !important;
       border-color: $dark !important;
@@ -609,13 +657,14 @@ body.view-wiki{
         border-color: $dark !important;
       }
     }
-    .wiki-wrapper section.wiki .btn.btn-primary, .wiki-wrapper section.wiki .btn.btn-brand {
-      background: $primary!important;
+    .wiki-wrapper section.wiki .btn.btn-primary,
+    .wiki-wrapper section.wiki .btn.btn-brand {
+      background: $primary !important;
       border-color: $primary !important;
       color: white !important;
       box-shadow: none;
       &:hover {
-        background: $primary!important;
+        background: $primary !important;
         border-color: $primary !important;
         color: white !important;
       }
@@ -648,12 +697,12 @@ body.view-wiki{
           margin: 0;
           li {
             &:after {
-              color: #6B7280;
+              color: #6b7280;
             }
             a {
               font-size: 14px;
               font-weight: 500;
-              color: #6B7280;
+              color: #6b7280;
             }
           }
         }
@@ -662,14 +711,15 @@ body.view-wiki{
         padding: 10px 0;
       }
     }
-    .page-header, h1 {
+    .page-header,
+    h1 {
       border-bottom: none;
       font-size: 20px;
       padding: 0;
       margin: 0 0 10px;
     }
     .article-wrapper {
-      border: 1px solid #F2F7F8;
+      border: 1px solid #f2f7f8;
       border-radius: 8px;
       padding: 15px;
       &:after {
@@ -716,7 +766,7 @@ body.view-wiki{
               .icon {
                 font-size: 18px;
                 line-height: 28px;
-                color: #82919B;
+                color: #82919b;
                 margin: 0;
               }
             }
@@ -730,19 +780,19 @@ body.view-wiki{
           }
         }
         .timestamp {
-          border: 1px solid #E5E7EB;
+          border: 1px solid $border-color;
           border-radius: 8px;
           border-left: 6px solid $primary-light;
           padding: 15px;
           .label {
             font-weight: 500;
             font-size: 12px;
-            color: #4B5563;
+            color: #4b5563;
           }
           .date {
             font-weight: 500;
             font-size: 14px;
-            color: #4B5563;
+            color: #4b5563;
           }
         }
         .see-children {
@@ -755,7 +805,8 @@ body.view-wiki{
             font-size: 14px;
             font-weight: 500;
             border-radius: 6px;
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
               font-weight: 500;
               color: white;
               text-decoration: none;
@@ -767,71 +818,76 @@ body.view-wiki{
   }
 }
 // Textbook Page
-body div.book-wrapper{
+body div.book-wrapper {
   margin: 0 auto;
   max-width: 1600px;
 }
 
 body.indigo-dark-theme {
   input:-webkit-autofill,
-  input:-webkit-autofill:hover, 
-  input:-webkit-autofill:focus, 
-  input:-webkit-autofill:active{
-      -webkit-text-fill-color: $text-color-d;
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: $text-color-d;
   }
   input::placeholder {
-      opacity: .9;
-      color: $text-color-d;
-    }
-    textarea, form#wiki_revision .CodeMirror, input[type="text"], input[type="email"], input[type="password"] {
-      background: transparent;
-      color: white;
-    }
+    opacity: 0.9;
+    color: $text-color-d;
+  }
+  textarea,
+  form#wiki_revision .CodeMirror,
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    background: transparent;
+    color: white;
+  }
   * {
     accent-color: $primary-d;
     scrollbar-color: $text-color-d $body-bg-d;
   }
-  .find-courses, .university-profile {
+  .find-courses,
+  .university-profile {
     background-color: $body-bg-d;
   }
   .ui-state-default,
-  .ui-widget-content
-  .ui-state-default,
-  .ui-widget-header
-  .ui-state-default {
+  .ui-widget-content .ui-state-default,
+  .ui-widget-header .ui-state-default {
     background: $primary-light-d;
     color: $text-color-d;
   }
   .idash-section .no-pending-tasks-message p {
     color: $text-color-d;
   }
-  .wrapper-course-material {
-    .tabs.course-tabs {
-      border-bottom: 1px solid $primary-light-d;
-      li {
-        a {
-          color: $text-color-d;
-          &:hover, &:visited {
-            color: $text-color-primary;
-            border-color: transparent;
-          }
-          &.active {
-            color: $text-color-d;
-            border-color: $text-color-d;
-          }
-        }
-      }
-    }
-  }
-  &.view-statictab, &.view-instructordash, &.view-teams, &.view-wiki,
-  &.view-student-notes {
+  &.view-statictab,
+  &.view-instructordash,
+  &.view-teams,
+  &.view-wiki {
     .window-wrap {
       background: none;
     }
     #email-students-beta-tip {
-      color: #111827;
+      color: $dark;
     }
-
+    .wrapper-course-material {
+      .tabs.course-tabs {
+        border-bottom: 1px solid $primary-light-d;
+        li {
+          a {
+            color: $text-color-d;
+            &:hover,
+            &:visited {
+              color: $text-color-primary;
+              border-color: transparent;
+            }
+            &.active {
+              color: $text-color-d;
+              border-color: $text-color-d;
+            }
+          }
+        }
+      }
+    }
     .instructor-dashboard-content-2 {
       a.instructor-info-action {
         background: $primary-d;
@@ -866,7 +922,9 @@ body.indigo-dark-theme {
           font-weight: 500;
         }
       }
-      .enrollment-button, input[type=button], button.btn {
+      .enrollment-button,
+      input[type="button"],
+      button.btn {
         background: $primary-d;
         border-color: $primary-d;
         color: $btn-color-d !important;
@@ -874,7 +932,7 @@ body.indigo-dark-theme {
         box-shadow: none !important;
       }
       .instructor-nav {
-        border: 1px solid #E5E7EB;
+        border: 1px solid $border-color;
         li {
           &:first-child {
             button {
@@ -884,7 +942,7 @@ body.indigo-dark-theme {
           button {
             border: none !important;
             border-radius: 0 !important;
-            border-left: 1px solid #E5E7EB !important;
+            border-left: 1px solid $border-color !important;
             color: $text-color-primary;
             &.active-section {
               background: $primary-d !important;
@@ -898,12 +956,14 @@ body.indigo-dark-theme {
       }
       .enrollment-wrapper {
         table {
-          th, td {
+          th,
+          td {
             color: $text-color-d;
           }
           .total {
-            border-top: 1px solid #E5E7EB;
-            th, td {
+            border-top: 1px solid $border-color;
+            th,
+            td {
               color: $primary-d;
             }
           }
@@ -913,24 +973,28 @@ body.indigo-dark-theme {
         background: $primary-light-d;
         color: $text-color-d;
       }
-      #course_info  .enrollment-wrapper { 
+      #course_info .enrollment-wrapper {
         padding-top: 0;
         .tip {
           color: $text-color-primary;
         }
       }
-      #course_info  .enrollment-wrapper, .basic-wrapper, .course-errors-wrapper, .running-tasks-container {
+      #course_info .enrollment-wrapper,
+      .basic-wrapper,
+      .course-errors-wrapper,
+      .running-tasks-container {
         background: $primary-light-d;
         h4 {
           color: $text-color-d;
-          span  {
+          span {
             color: $text-color-primary;
           }
         }
       }
       .list-input {
         li {
-          label, b {
+          label,
+          b {
             color: $text-color-d;
           }
         }
@@ -951,7 +1015,7 @@ body.indigo-dark-theme {
       }
     }
   }
-  &.view-wiki{
+  &.view-wiki {
     .CodeMirror-scroll {
       background: $body-bg-d;
       * {
@@ -977,7 +1041,8 @@ body.indigo-dark-theme {
       }
     }
     .wiki-wrapper {
-      .alert.denied, .alert.alert-error {
+      .alert.denied,
+      .alert.alert-error {
         color: $text-color-d;
         background: $primary-light-d;
         border: none;
@@ -989,9 +1054,9 @@ body.indigo-dark-theme {
       }
       label {
         color: $text-color-d !important;
-          section.wiki .main-article {
-            color: $text-color-d;
-          }
+        section.wiki .main-article {
+          color: $text-color-d;
+        }
       }
       #alert_stat_bar {
         .paragon__alert-warning {
@@ -1062,7 +1127,8 @@ body.indigo-dark-theme {
         }
       }
     }
-    .wiki-wrapper section.wiki .btn.btn-large, .wiki-wrapper section.wiki .btn.btn-danger {
+    .wiki-wrapper section.wiki .btn.btn-large,
+    .wiki-wrapper section.wiki .btn.btn-danger {
       background: none;
       color: $text-color-d !important;
       border-color: $text-color-d !important;
@@ -1074,7 +1140,8 @@ body.indigo-dark-theme {
         border-color: $text-color-d !important;
       }
     }
-    .wiki-wrapper section.wiki .btn.btn-primary, .wiki-wrapper section.wiki .btn.btn-brand {
+    .wiki-wrapper section.wiki .btn.btn-primary,
+    .wiki-wrapper section.wiki .btn.btn-brand {
       background: $primary-d !important;
       border-color: $primary-d !important;
       color: $btn-color-d !important;
@@ -1092,87 +1159,88 @@ body.indigo-dark-theme {
       small {
         color: $text-color-d;
       }
-    } 
-    .container{
-     .wiki {
-       .breadcrumbs-header {
-         background: $primary-light-d;
-         .global-functions {
-           a.add-article-btn {
-             background: $primary-d !important;
-             color: $btn-color-d !important;
-           }
-         }
-         .breadcrumb {
-           li {
-             &:after {
-               color: $text-color-primary;
-             }
-             a {
-               color: $text-color-primary;
-             }
-           }
-         }
-       }
-       .main-article {
-        color: $text-color-d
-       }
-     }
-     .article-wrapper {
-       border: 1px solid $primary-light-d;
-       .main-article {
-          color: $text-color-d !important;
-         p {
-           color: $text-color-d;
-         }
-         h3.entry-title {
+    }
+    .container {
+      .wiki {
+        .breadcrumbs-header {
+          background: $primary-light-d;
+          .global-functions {
+            a.add-article-btn {
+              background: $primary-d !important;
+              color: $btn-color-d !important;
+            }
+          }
+          .breadcrumb {
+            li {
+              &:after {
+                color: $text-color-primary;
+              }
+              a {
+                color: $text-color-primary;
+              }
+            }
+          }
+        }
+        .main-article {
           color: $text-color-d;
-         }
-       }
-       .article-functions {
-         .nav-tabs {
-           li {
-             a {
-               color: $primary-d;
-               &:hover {
-                 background: $primary-light-d;
-                 color: $text-color-d;
-               }
-               .icon {
-                 color: $text-color-primary;
-               }
-             }
-             &.active {
-               a {
-                 background: $primary-light-d;
-                 color: $text-color-d;
-               }
-             }
-           }
-         }
-         .timestamp {
-           border: 1px solid $primary-light-d;
-           border-left: 6px solid $primary-light-d;
-           .label {
-             color: $text-color-d;
-           }
-           .date {
-             color: $text-color-d;
-           }
-         }
-         .see-children {
-           a {
-             background: $primary-d;
-             color: $btn-color-d;
-             &:hover, &:focus {
-               color: $btn-color-d;
-             }
-           }
-         }
-       }
-     }
-   }
- }
+        }
+      }
+      .article-wrapper {
+        border: 1px solid $primary-light-d;
+        .main-article {
+          color: $text-color-d !important;
+          p {
+            color: $text-color-d;
+          }
+          h3.entry-title {
+            color: $text-color-d;
+          }
+        }
+        .article-functions {
+          .nav-tabs {
+            li {
+              a {
+                color: $primary-d;
+                &:hover {
+                  background: $primary-light-d;
+                  color: $text-color-d;
+                }
+                .icon {
+                  color: $text-color-primary;
+                }
+              }
+              &.active {
+                a {
+                  background: $primary-light-d;
+                  color: $text-color-d;
+                }
+              }
+            }
+          }
+          .timestamp {
+            border: 1px solid $primary-light-d;
+            border-left: 6px solid $primary-light-d;
+            .label {
+              color: $text-color-d;
+            }
+            .date {
+              color: $text-color-d;
+            }
+          }
+          .see-children {
+            a {
+              background: $primary-d;
+              color: $btn-color-d;
+              &:hover,
+              &:focus {
+                color: $btn-color-d;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   .container.about {
     color: $text-color-primary;
     h1 {
@@ -1193,13 +1261,14 @@ body.indigo-dark-theme {
   .modal {
     background: $primary-light-d !important;
     .modal-header {
-      color: $text-color-d !important
+      color: $text-color-d !important;
     }
-    select, textarea {
+    select,
+    textarea {
       background: transparent;
       color: white;
     }
-    input[type=submit] {
+    input[type="submit"] {
       background: $primary-d;
       border-color: $primary-d;
       color: $btn-color-d !important;
@@ -1216,16 +1285,19 @@ body.indigo-dark-theme {
     }
   }
   .auth-list-container .info {
-    color: $text-color-d !important
+    color: $text-color-d !important;
   }
   .instructor-dashboard-wrapper-2 {
-    section.idash-section#membership .batch-beta-testers .request-res-section h3 {
+    section.idash-section#membership
+      .batch-beta-testers
+      .request-res-section
+      h3 {
       color: $text-color-d;
     }
     .msg-error {
       background: $primary-light-d !important;
       border-color: $danger-d !important;
-      color: $danger-d  !important;
+      color: $danger-d !important;
     }
     .msg-confirm {
       background: $primary-light-d;
@@ -1235,12 +1307,12 @@ body.indigo-dark-theme {
     .copy-error {
       color: $danger-d;
     }
-    .message-error{
-        background: $primary-light-d;
-        border-color: $danger-d;
-        .message-title {
-          color: $danger-d;
-        }
+    .message-error {
+      background: $primary-light-d;
+      border-color: $danger-d;
+      .message-title {
+        color: $danger-d;
+      }
       .message-copy {
         color: $text-color-d;
       }
@@ -1248,35 +1320,49 @@ body.indigo-dark-theme {
     .idash-section .message-confirmation {
       background: $body-bg-d;
       border-color: $success-d;
-      .message-title { 
+      .message-title {
         color: $success-d;
       }
     }
-    section.idash-section#cohort_management .cohort-management-settings .cohort-management-details .cohort-management-settings {
+    section.idash-section#cohort_management
+      .cohort-management-settings
+      .cohort-management-details
+      .cohort-management-settings {
       background: transparent;
     }
     section.idash-section#cohort_management .cohort-management-group-header {
       background: $primary-light-d;
     }
-    section.idash-section#cohort_management .cohort-management-group-setup  {
+    section.idash-section#cohort_management .cohort-management-group-setup {
       color: $text-color-d;
     }
-    section.idash-section#cohort_management .cohort-management-settings .cohort-management-details,
-    section.idash-section#cohort_management .cohort-management-settings .cohort-management-group-add {
+    section.idash-section#cohort_management
+      .cohort-management-settings
+      .cohort-management-details,
+    section.idash-section#cohort_management
+      .cohort-management-settings
+      .cohort-management-group-add {
       background: $primary-light-d;
     }
     section.idash-section#cohort_management .wrapper-tabs .tab .toggle-button {
       text-shadow: none;
       color: $text-color-d;
     }
-    section.idash-section#cohort_management .wrapper-tabs .tab.is-selected .toggle-button {
+    section.idash-section#cohort_management
+      .wrapper-tabs
+      .tab.is-selected
+      .toggle-button {
       background: $primary-d;
       border-color: $primary-d;
       color: $btn-color-d;
       text-decoration: none;
     }
-    section.idash-section#cohort_management .cohort-management-settings .form-submit,
-    section.idash-section#cohort_management .cohort-management-nav .action-create,
+    section.idash-section#cohort_management
+      .cohort-management-settings
+      .form-submit,
+    section.idash-section#cohort_management
+      .cohort-management-nav
+      .action-create,
     section.idash-section#cohort_management .file-upload-form .action-submit {
       background: $primary-d !important;
       border-color: $primary-d !important;
@@ -1291,14 +1377,21 @@ body.indigo-dark-theme {
         text-decoration: underline;
       }
     }
-    section.idash-section#cohort_management .file-upload-form .form-fields .input-file {
+    section.idash-section#cohort_management
+      .file-upload-form
+      .form-fields
+      .input-file {
       color: $text-color-d;
     }
     section.idash-section#cohort_management .toggle-cohort-management-secondary,
-    section.idash-section#cohort_management .toggle-cohort-management-discussions {
+    section.idash-section#cohort_management
+      .toggle-cohort-management-discussions {
       color: $primary-d;
     }
-    section.idash-section#cohort_management .cohort-management-settings, section.idash-section#cohort_management .cohort-management-settings .form-title {
+    section.idash-section#cohort_management .cohort-management-settings,
+    section.idash-section#cohort_management
+      .cohort-management-settings
+      .form-title {
       background: $primary-light-d;
     }
     section.idash-section#data_download .problem-browser .block-browser {
@@ -1307,7 +1400,8 @@ body.indigo-dark-theme {
     section.idash-section#membership .batch-enrollment .request-res-section h3 {
       color: $danger-d;
     }
-    section.idash-section#membership .enroll-option .hint, section.idash-section#membership .enroll-option .hint {
+    section.idash-section#membership .enroll-option .hint,
+    section.idash-section#membership .enroll-option .hint {
       background: $primary-light-d;
       p {
         color: inherit !important;
@@ -1334,204 +1428,43 @@ body.indigo-dark-theme {
       font-size: 14px;
       font-weight: 500;
     }
-  } 
-  &.view-teams {
-    .page-header {
-      .page-title {
-        color: $text-color-primary;
-      }
-      .page-description {
-        color: $text-color-d;
-      }
-    }
-    .page-content-nav .nav-item {
-      color: $text-color-d;
-      &.is-active{ border-color: $primary-d; }
-    }
-    .page-content-main {
-      span.listing-count, span.listing-sort .field-label {
-        color: $text-color-d;
-      }
-    }
-
-    ul.topics-list li.topic-card{
-      background-color: $body-bg-d;
-
-      div.wrapper-card-meta {
-        background-color: $body-bg-d;
-      }
-
-    }
-
-    ul.cards-list li.list-card {
-      background-color: $body-bg-d;
-
-      div.wrapper-card-meta {
-        background-color: $body-bg-d;
-      }
-    }
-
-    .teams-content .teams-main .team-edit-fields {
-      .team-required-fields .u-field-title, .team-optional-fields .u-field-title{
-        color: $text-color-d;
-      }
-    }
-
-    .listing-tools{ color: $text-color-d; }
-    .u-field-message {
-      .u-field-message-help, .u-field-message-notification{
-        color: grey;
-      }
-    }
-    .team-profile{
-      .page-content-secondary{
-        color: grey;
-      }
-    } 
-
-    .card {
-      .card-type, .card-description{
-        color: grey;
-      }
-
-      .wrapper-card-meta{
-        background: $primary-light-d;
-        .meta-detail{ color: $text-color-primary; }
-      } 
-      
-      .card-actions .action-view{
-        border-color: $primary-d;
-        color: $primary-d;
-        &:hover{
-          background-color: $primary-d;
-          color: $primary-light-d;
-        }
-      }
-    }
-
-    .btn-secondary,.btn-link,
-    .edit-members .action-remove-member {
-      color: $primary-d;
-    }
-
-    .action-primary{
-      background: $primary-d;
-      color: $primary-light-d;
-    }
-
-    .teams-content #teams-message.wrapper-msg{
-      background: $primary-light-d;
-      div.msg{ color: $text-color-d; }
-    }
   }
-
-  // Textbook Page
-  .book-wrapper{
-      .book-sidebar{
-          background: $primary-light-d;
-          #booknav a{
-              color: $text-color-d;
-              &:hover{
-                  color: $text-color-primary;
-              }
-          }
-      }
-  }
-
-  // Notes Page
-  &.view-student-notes{
-    .wrapper-student-notes{
-      background: $body-bg-d;
-    }
-
-    .wrapper-title .page-title .page-subtitle{
-      color: $text-color-d;
-    }
-
-    .wrapper-tabs .tab-list{
-      .tab .tab-label{
-        color: lightgrey;
-      }
-
-      .tab.is-active{ 
-        .tab-label{
-          color: $text-color-d;
-          border-bottom-color: $text-color-primary;
-        }
-      }
-
-      #view-search-results .action-close{
-        color: $primary-d;
-        background: $body-bg-d;
-        border-color: transparent;
-        box-shadow: none;
-      }
-    } 
-
-    .listing-tools{ color: lightgrey; }
-
-    .placeholder{ 
-      border-color: $primary-d; 
-      background: $primary-light-d;
-
-      .placeholder-title{ color: $text-color-d; }
-    }
-
-    .wrapper-notes-search{
-      .search-notes-input{
-        background: $primary-light-d;
-        color: $text-color-d;
-        border: 1px solid grey;
-      }
-      .search-notes-submit{
-        background: $primary-d;
-        border-color: $primary-d;
-      }
-    }
-
-    .ui-loading{
-      border-color: $primary-d;
-      background: $body-bg-d;
-    }
-
-    .tab-panel.note-group{
-      .note{
-        .wrapper-note-excerpts{
-          border-color: orange;
-          .note-excerpt{
-            background: orange;
-            color: $body-bg-d;
-          }
-
-          .note-comments .note-comment-p{ color: $text-color-d; }
-        }
-        &:hover{ 
-          .note-excerpt{
-            background: $danger-d;
-          }
-        }
-
-        footer.reference .wrapper-reference-content{
-          a.reference-meta{
-            color: $primary-d; 
-          }
-          .reference-meta{ 
-            color: $text-color-d; 
-            &::after{ color: $text-color-primary; }
-          }
-        }
-      }
-    }
-  } 
-
 }
-@import '../../../extra/footer';
-@import '../../../extra/header';
-@import '../../../dashboard/dashboard';
-@import '../../../courseware/discover';
-@import '../../../courseware/about';
-@import '../../../courseware/bookmarks';
-@import '../../../home/home';
-@import '../../../programs/programs';
-@import '../../../certificates/certificate';
-@import '../../../xblock/xblock';
+
+.courseWrapper {
+  .courses-listing-item {
+    .course-info {
+      .learn-more {
+        background-color: $primary !important;
+      }
+      .course-date {
+        .localized_datetime {
+          color: $dark;
+        }
+      }
+    }
+  }
+}
+
+body.view-instructordash {
+  .member-list {
+    .label {
+      background-color: #f3f3f3 !important;
+    }
+  }
+}
+
+@import "../../../instructor/instructor";
+@import "../../../wiki/wiki";
+@import "../../../extra/footer";
+@import "../../../teams/teams";
+@import "../../../course/new-home";
+@import "../../../extra/header";
+@import "../../../dashboard/dashboard";
+@import "../../../courseware/discover";
+@import "../../../courseware/about";
+@import "../../../courseware/bookmarks";
+@import "../../../home/home";
+@import "../../../programs/programs";
+@import "../../../certificates/certificate";
+@import "../../../xblock/xblock";

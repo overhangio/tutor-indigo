@@ -48,21 +48,28 @@ from django.conf import settings
             body=six.moves.urllib.parse.quote(email_body.encode('UTF-8'))
         )
       %>
-      <!-- NEW IN INDIGO socialnetworks is improved with better SVGs icons -->
       <a href="${tweet_action}" class="share">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M13.682 1.6875H16.1641L10.743 7.88203L17.1203 16.3125H12.1281L8.21523 11.2008L3.74336 16.3125H1.25781L7.05508 9.68555L0.941406 1.6875H6.06016L9.59336 6.35977L13.682 1.6875ZM12.8102 14.8289H14.1848L5.31133 3.09375H3.83477L12.8102 14.8289Z" fill="#9CA3AF"/>
-          </svg><span class="sr">${_("Tweet that you've enrolled in this course")}</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.59954 4.802C9.41841 4.53493 9.11668 4.375 8.79398 4.375H5.14783C4.83544 4.375 4.65025 4.72438 4.8256 4.9829L14.4897 19.2312C14.6708 19.4983 14.9725 19.6582 15.2952 19.6582H18.9414C19.2538 19.6582 19.439 19.3088 19.2636 19.0503L9.59954 4.802Z" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10.4499 13.4331L4.66895 19.9998" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18.7571 4L13.3203 10.1756" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="sr">${_("Tweet that you've enrolled in this course")}</span>
       </a>
       <a href="${facebook_link}" class="share">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M18 9.05524C18 4.05403 13.9707 6.29184e-07 9 4.05324e-07C4.0293 1.81463e-07 2.31733e-07 4.05403 5.17607e-07 9.05524C7.75944e-07 13.5747 3.2913 17.3209 7.5942 18L7.5942 11.6731L5.3082 11.6731L5.3082 9.05524L7.5942 9.05524L7.5942 7.06037C7.5942 4.79113 8.937 3.53788 10.9935 3.53788C11.9781 3.53788 13.0077 3.71446 13.0077 3.71446L13.0077 5.94205L11.8737 5.94205C10.755 5.94205 10.4067 6.6402 10.4067 7.35647L10.4067 9.05524L12.9024 9.05524L12.5037 11.6722L10.4067 11.6722L10.4067 18C14.7087 17.3209 18 13.5747 18 9.05524Z" fill="#9CA3AF"/>
-          </svg><span class="sr">${_("Post a Facebook message to say you've enrolled in this course")}</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 21C16.9709 21 21 16.9709 21 12C21 7.02908 16.9709 3 12 3C7.02908 3 3 7.02908 3 12C3 16.9709 7.02908 21 12 21Z" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14.0835 7.91016H13.3538C12.2222 7.91016 11.3047 8.82767 11.3047 9.95924V16.0919" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.91602 11.3828H14.0842" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="sr">${_("Post a Facebook message to say you've enrolled in this course")}</span>
       </a>
       <a href="${email_link}" class="share">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17" fill="none">
-          <path d="M21 2.85763C21 1.83593 20.1 1 19 1H3C1.9 1 1 1.83593 1 2.85763M21 2.85763V14.0034C21 15.0251 20.1 15.861 19 15.861H3C1.9 15.861 1 15.0251 1 14.0034V2.85763M21 2.85763L11 9.35932L1 2.85763" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg><span class="sr">${_("Email someone to say you've enrolled in this course")}</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="sr">${_("Email someone to say you've enrolled in this course")}</span>
       </a>
   </div>
   % endif

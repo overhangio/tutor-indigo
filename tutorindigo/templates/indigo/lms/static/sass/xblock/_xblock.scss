@@ -2,6 +2,12 @@
 .wrap-instructor-info a.instructor-info-action {
     background: $primary !important;
     color: white !important;
+    cursor: pointer;
+    &:hover {
+        background-color: $primary-hover !important;
+        text-decoration: none !important;
+    }
+    
 }
 .indigo-dark-theme { 
     select {

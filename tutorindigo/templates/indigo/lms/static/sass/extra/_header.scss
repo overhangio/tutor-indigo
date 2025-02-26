@@ -338,3 +338,31 @@ body.indigo-dark-theme {
         }
     }
 }
+
+.globalMainHeader {
+    box-shadow: unset !important;
+    &:after {
+      box-shadow: unset !important;
+    }
+    .header-container{
+        border-bottom: 1px solid #f3f3f3 !important;
+
+    }
+    .toggle-user-dropdown {
+      background-color: #f3f3f3 !important;
+      color: $dark !important;
+      &:after {
+        border-color: $dark !important;
+      }
+    }
+    .header-logo {
+        a {
+            margin: 16px 0 0 !important;
+            .logo{
+                height: 30px !important;
+            }
+        }
+    }
+  }
+
+
