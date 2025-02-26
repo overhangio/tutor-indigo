@@ -321,8 +321,7 @@
     background: $primary-light;
     padding: 10px 10px 0;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05),
-      0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
   .search-facets {
     float: none;
@@ -532,10 +531,10 @@ body.indigo-dark-theme {
 
 .discoverFilterwrapper {
   .input-holder {
-    background-color: #f3f3f3 !important;
+    background-color: $bg-color !important;
 
     input {
-      background-color: #f3f3f3 !important;
+      background-color: $bg-color !important;
       color: $dark !important;
       &::placeholder {
         color: $dark !important;
@@ -543,7 +542,7 @@ body.indigo-dark-theme {
     }
   }
   .dropdown-toggle {
-    background-color: #f3f3f3 !important;
+    background-color: $bg-color !important;
     &:after {
       content: unset !important;
     }
@@ -554,10 +553,26 @@ body.indigo-dark-theme {
     font-weight: 500;
   }
   .filter-block .dropdown-menu {
-    background-color: #f3f3f3 !important;
+    background-color: $bg-color !important;
     box-shadow: unset !important;
   }
   .search-facets-lists h3 {
     color: $dark !important;
+  }
+  &:dir(rtl) {
+    .wrapper-search-input {
+      .button-holder {
+        float: left !important;
+        button {
+          margin: 0 16px 0 0 !important;
+        }
+      }
+    }
+    .filter-block {
+      float: right !important;
+      a {
+        margin: 0 0 0 16px !important;
+      }
+    }
   }
 }

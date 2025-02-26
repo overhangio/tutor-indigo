@@ -32,7 +32,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-background-clip: text;
-  -webkit-text-fill-color: $dark;
+  -webkit-text-fill-color:  #111827;
   transition: background-color 5000s ease-in-out 0s;
   box-shadow: none;
 }
@@ -301,7 +301,7 @@ nav.wrapper-preview-menu {
       line-height: 34px;
       margin: 0 0 12px;
       text-align: left;
-      color: $dark;
+      color:  #111827;
     }
     p {
       margin: 0 0 20px;
@@ -345,11 +345,11 @@ body.view-wiki {
           color: $light-dark;
           &:hover,
           &:visited {
-            color: $dark;
+            color:  #111827;
             border-color: transparent;
           }
           &.active {
-            color: $dark;
+            color:  #111827;
             border-color: $primary;
           }
         }
@@ -481,7 +481,7 @@ body.view-instructordash {
             color: white !important;
           }
           &:hover {
-            color: $dark;
+            color:  #111827;
           }
         }
       }
@@ -497,7 +497,7 @@ body.view-instructordash {
           font-size: 16px;
           line-height: 28px;
           font-weight: 400;
-          color: $dark;
+          color:  #111827;
         }
         .total {
           border-top: 1px solid $border-color;
@@ -513,7 +513,7 @@ body.view-instructordash {
       background: $primary-light;
       padding: 15px 0 0 15px;
       font-size: 18px;
-      color: $dark;
+      color:  #111827;
       font-weight: 600;
       margin-bottom: 0;
     }
@@ -536,7 +536,7 @@ body.view-instructordash {
       margin: 0 0 30px;
       h4 {
         font-size: 18px;
-        color: $dark;
+        color:  #111827;
         font-weight: 600;
         span {
           font-size: 14px;
@@ -561,7 +561,7 @@ body.view-instructordash {
           line-height: 28px;
           margin: 0;
           width: 50%;
-          color: $dark;
+          color:  #111827;;
         }
       }
     }
@@ -599,13 +599,13 @@ body.view-wiki {
     }
     #alert_stat_bar {
       .paragon__alert-warning {
-        color: $dark;
+        color:  #111827;
         background: $primary-light;
         border: none;
         button.paragon__close {
           background: none !important;
           box-shadow: none !important;
-          color: $dark !important;
+          color:  #111827 !important;
           opacity: 1 !important;
           font-size: 1.2rem;
           border: none !important;
@@ -647,14 +647,14 @@ body.view-wiki {
     .wiki-wrapper section.wiki .btn.btn-large,
     .wiki-wrapper section.wiki .btn.btn-danger {
       background: none;
-      color: $dark !important;
-      border-color: $dark !important;
+      color:  #111827 !important;
+      border-color:  #111827 !important;
       text-shadow: none !important;
       box-shadow: none !important;
       &:hover {
         background: none !important;
-        color: $dark !important;
-        border-color: $dark !important;
+        color:  #111827 !important;
+        border-color:  #111827 !important;
       }
     }
     .wiki-wrapper section.wiki .btn.btn-primary,
@@ -867,7 +867,7 @@ body.indigo-dark-theme {
       background: none;
     }
     #email-students-beta-tip {
-      color: $dark;
+      color:  #111827;
     }
     .wrapper-course-material {
       .tabs.course-tabs {
@@ -1439,7 +1439,7 @@ body.indigo-dark-theme {
       }
       .course-date {
         .localized_datetime {
-          color: $dark;
+          color:  $dark !important;
         }
       }
     }
