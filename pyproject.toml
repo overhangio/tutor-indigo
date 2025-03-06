@@ -7,7 +7,10 @@ readme = { file = "README.rst", content-type = "text/x-rst" }
 license = { text = "AGPLv3" }
 requires-python = ">=3.9"
 authors = [{ name = "Edly" }, { email = "hello@edly.io" }]
-maintainers = [{ name = "Edly" }, { email = "hina.khadim@arbisoft.com" }]
+maintainers = [
+    { name = "Ahmed Khalid" }, { email = "ahmed.khalid@arbisoft.com" },
+    { name = "Hammad Yousaf" }, { email = "hammad.yousaf@arbisoft.com" }
+]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
