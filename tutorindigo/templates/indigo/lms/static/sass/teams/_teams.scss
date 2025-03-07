@@ -1,0 +1,203 @@
+.teamMainWrapper {
+  .page-header {
+    padding: 37px 20px 16px 20px;
+    .page-header-main {
+      display: flex !important;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .page-description {
+      color: #6b7280;
+      margin-bottom: 0 !important;
+      text-align: left;
+      &:dir(rtl) {
+        text-align: right;
+      }
+    }
+  }
+  .topics-paging-header {
+    display: flex;
+    align-items: flex-start;
+  }
+  .page-content-nav {
+    display: flex;
+    .nav-item {
+      border-bottom: 4px solid transparent !important;
+      color: $dark !important;
+
+      &.is-active {
+        border-bottom: 4px solid $primary !important;
+        color: $dark !important;
+      }
+      &:hover {
+        color: $dark !important;
+        border-bottom: 4px solid $primary !important;
+      }
+    }
+  }
+  .listing-tools {
+    margin: 2px 0;
+  }
+  .cards-list {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    &.teams-list {
+      grid-template-columns: 1fr;
+      .wrapper-card-meta {
+        .card-meta {
+          width: 100% !important;
+        }
+      }
+      .action-view {
+        &:dir(rtl) {
+          float: left !important;
+        }
+      }
+    }
+  }
+  .card {
+    border: 1px solid $border-color-l !important;
+    border-bottom: 2px solid $border-color-l !important;
+    width: auto !important;
+    margin: 20px 3.2% !important;
+    &:hover {
+      box-shadow: unset !important;
+    }
+    .wrapper-card-core {
+      display: flex !important;
+      text-align: left;
+      &:dir(rtl) {
+        text-align: right;
+      }
+      .card-title {
+        text-align: left;
+        &:dir(rtl) {
+          text-align: right;
+        }
+      }
+      .card-description {
+        text-align: left;
+
+        &:dir(rtl) {
+          text-align: right;
+        }
+      }
+    }
+    .card-type {
+      color: #6b7280 !important;
+    }
+    .card-title {
+      color: #313131 !important;
+    }
+    &:hover {
+      box-shadow: unset !important;
+    }
+    .wrapper-card-meta {
+      background-color: #f8f8f8 !important;
+      color: #5e5e5e !important;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &:after {
+        display: none !important;
+      }
+      .card-actions,
+      .card-meta {
+        width: auto !important;
+      }
+      .card-actions {
+        .action-view {
+          &:dir(rtl) {
+            transform: scaleX(-1);
+          }
+        }
+      }
+      .team-members {
+        margin: 0 5px !important;
+      }
+    }
+    .card-actions {
+      .action-view {
+        border: 1px solid $dark !important;
+        color: $dark !important;
+        &:hover {
+          border: 1px solid $primary !important;
+          background-color: $primary !important;
+          color: #fff !important;
+        }
+      }
+    }
+    &.team-card {
+      .card-meta {
+        text-align: left;
+        &:dir(rtl) {
+          text-align: right;
+        }
+      }
+      .team-location {
+        margin: 0 5px;
+      }
+      .team-activity {
+        &:dir(rtl) {
+          float: left !important;
+        }
+      }
+    }
+  }
+  .card-description {
+    color: #6b7280 !important;
+  }
+  .browse-teams,
+  .search-teams,
+  .create-team {
+    color: $primary !important;
+  }
+  .breadcrumbs {
+    .nav-item {
+      &:hover {
+        color: $primary !important;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .page-header {
+      padding: 0 0 20px 0 !important;
+    }
+    .page-content {
+      padding: 20px 0 !important;
+    }
+    .cards-list {
+      margin-top: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      &.teams-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      margin: 20px 2.2%;
+      .wrapper-card-core {
+        flex-direction: column;
+      }
+      .card-actions {
+        width: auto !important;
+        .action-view {
+          padding: 4px 15px;
+        }
+      }
+    }
+    .page-header-main {
+      width: 100% !important;
+    }
+  }
+  @media only screen and (max-width: 580px) {
+    .cards-list {
+      grid-template-columns: 1fr;
+    }
+    .card {
+      margin: 0 !important;
+      margin-bottom: 20px !important;
+    }
+  }
+}

@@ -1,0 +1,755 @@
+<%! from django.utils.translation import gettext as _ %>
+<%!from openedx.core.djangolib.markup import HTML, Text %>
+<%namespace name='static' file='static_content.html'/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container homeStaticPage">
+  <div class="mainBanner">
+    <h1 class="mainBanner__heading">
+      ${_("“Learn from the experts, anytime, anywhere”")}
+    </h1>
+    <p class="mainBanner__subTitle">
+      ${_("Get access to many diverse training courses and achieve your educational and professional goals")}
+    </p>
+  </div>
+  <div class="platformMainWrap px-0">
+    <h2 class="sectionWrapper__sectionHeading">
+      ${_("Secure platform secure data")}
+    </h2>
+    <p class="sectionWrapper__description">
+      ${_("We aim to enable individuals to achieve their full potential")}<br />
+      ${_("through high-quality education that is accessible to all.")}
+    </p>
+    <div class="row platformMainWrap px-0">
+      <div class="col-12 col-sm-6">
+        <div class="platformProfile">
+          <i class="fa fa-check icon" aria-hidden="true"></i>
+          <h4 class="platformProfile__heading">${_("Our vision")}</h4>
+          <p class="platformProfile__desc">
+            ${_("To be the leading educational platform that enables individuals to achieve their full potential by providing high-quality education available to all, thus contributing to building a knowledge society characterized by innovation and excellence in all fields.")}
+          </p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="platformProfile">
+          <i class="fa fa-check icon" aria-hidden="true"></i>
+          <h4 class="platformProfile__heading">${_("Our vision")}</h4>
+          <p class="platformProfile__desc">
+            ${_("To be the leading educational platform that enables individuals to achieve their full potential by providing high-quality education available to all, thus contributing to building a knowledge society characterized by innovation and excellence in all fields")}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row platformMainWrap">
+    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
+      <h2 class="sectionWrapper__sectionHeading text-start">
+        ${_("Move beyond ")}
+      </h2>
+      <p class="platformProfile__desc">
+        ${_("We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need.")}
+      </p>
+      <p class="platformProfile__desc">
+        ${_("We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.")}
+      </p>
+    </div>
+    <div class="col-12 col-sm-6">
+      <img src="${static.url('images/move-beyond.png')}" class="optimizeImg" alt="${_('move beyond')}">
+    </div>
+  </div>
+  <div class="row platformMainWrap">
+    <div class="col-12 col-sm-6">
+      <img src="${static.url('images/team-design.png')}" class="optimizeImg" alt="${_('team design')}">
+    </div>
+    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
+      <h2 class="sectionWrapper__sectionHeading text-start">
+        ${_("The Book ")}
+      </h2>
+      <p class="platformProfile__desc">
+        ${_(" <strong> Designing Interfaces: A User-Centered Approach</strong> is a valuable resource for anyone interested in learning about the principles and techniques of design.")}
+      </p>
+      <p class="platformProfile__desc">
+        ${_("The book covers a wide range of topics, from the basics of design principles such as balance, contrast, and hierarchy, to more advanced topics such as user experience design, typography, and color theory. ")}
+      </p>
+      <p class="platformProfile__desc">
+        ${_("It also delves into specific areas of design such as web design, branding, and design thinking. With clear explanations, practical examples, and helpful illustrations, this book is an essential guide for aspiring. ")}
+      </p>
+    </div>
+  </div>
+  <div class="platformMainWrap courseMainWrapper">
+    <div class="middleHeading">
+      <h2 class="sectionWrapper__sectionHeading text-center">
+        ${_("Training courses")}
+      </h2>
+      <p class="sectionWrapper__description">
+        ${_("We aim to enable individuals to achieve their full potential <br /> through high-quality education that is accessible to all.")}
+      </p>
+    </div>
+    <div class="row platformMainWrap pt-0 px-0">
+      <div class="col-sm-4 mb-4">
+        <div class="newCard">
+          <div class="newCard__detailWrap">
+            <div class="newCard__detail">
+              <img src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}" />
+              <div class="newCard__courseName">
+                ${_("Name of the course")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/building-office.svg')}" class="shortIcon" alt="${_('officeBuilding')}" />
+              <div class="newCard__courseBody">
+                ${_("Name of the body")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/book-cloud.svg')}" class="shortIcon" alt="${_('book')}" />
+              <div class="newCard__courseDate">
+                ${_("Start: January 1, 2022")}
+              </div>
+            </div>
+          </div>
+          <div class="newCard__actionBtn">
+            <a href="#" class="newCard__link">${_("More ")}<i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <div class="newCard"> 
+          <div class="newCard__detailWrap">
+            <div class="newCard__detail">
+               <img src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}" />
+              <div class="newCard__courseName">
+                ${_("Name of the course")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/building-office.svg')}" class="shortIcon" alt="${_('officeBuilding')}" />
+              <div class="newCard__courseBody">
+                ${_("Name of the body")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/book-cloud.svg')}" class="shortIcon" alt="${_('book')}" />
+              <div class="newCard__courseDate">
+                ${_("Start: January 1, 2022")}
+              </div>
+            </div>
+          </div>
+          <div class="newCard__actionBtn">
+            <a href="#" class="newCard__link">${_("More ")}<i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <div class="newCard">
+          <div class="newCard__detailWrap">
+            <div class="newCard__detail">
+               <img src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}" />
+              <div class="newCard__courseName">
+                ${_("Name of the course")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/building-office.svg')}" class="shortIcon" alt="${_('officeBuilding')}" />
+              <div class="newCard__courseBody">
+                ${_("Name of the body")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/book-cloud.svg')}" class="shortIcon" alt="${_('book')}" />
+              <div class="newCard__courseDate">
+                ${_("Start: January 1, 2022")}
+              </div>
+            </div>
+          </div>
+          <div class="newCard__actionBtn">
+            <a href="#" class="newCard__link">${_("More ")}<i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <div class="newCard">
+          <div class="newCard__detailWrap">
+            <div class="newCard__detail">
+               <img src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}" />
+              <div class="newCard__courseName">
+                ${_("Name of the course")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/building-office.svg')}" class="shortIcon" alt="${_('officeBuilding')}" />
+              <div class="newCard__courseBody">
+                ${_("Name of the body")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/book-cloud.svg')}" class="shortIcon" alt="${_('book')}" />
+              <div class="newCard__courseDate">
+                ${_("Start: January 1, 2022")}
+              </div>
+            </div>
+          </div>
+          <div class="newCard__actionBtn">
+            <a href="#" class="newCard__link">${_("More ")}<i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <div class="newCard">
+          <div class="newCard__detailWrap">
+            <div class="newCard__detail">
+               <img src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}" />
+              <div class="newCard__courseName">
+                ${_("Name of the course")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/building-office.svg')}" class="shortIcon" alt="${_('officeBuilding')}" />
+              <div class="newCard__courseBody">
+                ${_("Name of the body")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/book-cloud.svg')}" class="shortIcon" alt="${_('book')}" />
+              <div class="newCard__courseDate">
+                ${_("Start: January 1, 2022")}
+              </div>
+            </div>
+          </div>
+          <div class="newCard__actionBtn">
+            <a href="#" class="newCard__link">${_("More ")}<i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <div class="newCard">
+          <div class="newCard__detailWrap">
+            <div class="newCard__detail">
+               <img src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}" />
+              <div class="newCard__courseName">
+                ${_("Name of the course")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/building-office.svg')}" class="shortIcon" alt="${_('officeBuilding')}" />
+              <div class="newCard__courseBody">
+                ${_("Name of the body")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/book-cloud.svg')}" class="shortIcon" alt="${_('book')}" />
+              <div class="newCard__courseDate">
+                ${_("Start: January 1, 2022")}
+              </div>
+            </div>
+          </div>
+          <div class="newCard__actionBtn">
+            <a href="#" class="newCard__link">${_("More ")}<i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <div class="newCard">
+          <div class="newCard__detailWrap">
+            <div class="newCard__detail">
+               <img src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}" />
+              <div class="newCard__courseName">
+                ${_("Name of the course")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/building-office.svg')}" class="shortIcon" alt="${_('officeBuilding')}" />
+              <div class="newCard__courseBody">
+                ${_("Name of the body")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/book-cloud.svg')}" class="shortIcon" alt="${_('book')}" />
+              <div class="newCard__courseDate">
+                ${_("Start: January 1, 2022")}
+              </div>
+            </div>
+          </div>
+          <div class="newCard__actionBtn">
+            <a href="#" class="newCard__link">${_("More ")}<i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <div class="newCard">
+          <div class="newCard__detailWrap">
+            <div class="newCard__detail">
+               <img src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}" />
+              <div class="newCard__courseName">
+                ${_("Name of the course")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/building-office.svg')}" class="shortIcon" alt="${_('officeBuilding')}" />
+              <div class="newCard__courseBody">
+                ${_("Name of the body")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/book-cloud.svg')}" class="shortIcon" alt="${_('book')}" />
+              <div class="newCard__courseDate">
+                ${_("Start: January 1, 2022")}
+              </div>
+            </div>
+          </div>
+          <div class="newCard__actionBtn">
+            <a href="#" class="newCard__link">${_("More ")}<i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <div class="newCard">
+          <div class="newCard__detailWrap">
+            <div class="newCard__detail">
+              <img  src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}"/>
+              <div class="newCard__courseName">
+                ${_("Name of the course")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/building-office.svg')}" class="shortIcon" alt="${_('officeBuilding')}"/>
+              <div class="newCard__courseBody">
+                ${_("Name of the body")}
+              </div>
+            </div>
+            <div class="newCard__detail">
+              <img  src="${static.url('images/book-cloud.svg')}" class="shortIcon" alt="${_('book')}"/>
+              <div class="newCard__courseDate">
+                ${_("Start: January 1, 2022")}
+              </div>
+            </div>
+          </div>
+          <div class="newCard__actionBtn">
+            <a href="#" class="newCard__link">${_("More ")}<i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btnWtapper">
+      <a href="#" class="btnWtapper__action">${_("Browse all courses")}</a>
+    </div>
+  </div>
+  <div class="platformMainWrap">
+    <div class="middleHeading">
+      <h2 class="sectionWrapper__sectionHeading text-center">
+        ${_("The Most Trusted Cryptocurrency Platform ")}
+      </h2>
+      <p class="sectionWrapper__description">
+        ${_("Here are some reasons why you should choose Flowbite ")}
+      </p>
+    </div>
+    <div class="row platformMainWrap p-0">
+      <div class="col-sm-4">
+        <div class="trustedPlatform">
+          <img src="${static.url('images/fingerprint.svg')}" alt="${_('fingerprint')}">
+          <h4 class="trustedPlatform__heading">${_("Secure storage ")}</h4>
+          <p class="trustedPlatform__desc">
+            ${_("We store the vast majority of digital assets in secure offline storage.")}
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="trustedPlatform">
+          <img src="${static.url('images/insurance.svg')}" alt="${_('insurance')}">
+          <h4 class="trustedPlatform__heading">${_("Insurance ")}</h4>
+          <p class="trustedPlatform__desc">
+            ${_("Flowbite keeps cryptocurrencies secure and covers all cash balances in USD ")}
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="trustedPlatform">
+          <img src="${static.url('images/best-practise.svg')}" alt="${_('bestPractise')}">
+          <h4 class="trustedPlatform__heading">${_("Best practices ")}</h4>
+          <p class="trustedPlatform__desc">
+            ${_("The Flowbite Market supports a variety of the most popular cryptocurrencies.")}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="platformMainWrap">
+    <div class="middleHeading">
+      <h2 class="sectionWrapper__sectionHeading text-center">
+        ${_("Our partners ")}
+      </h2>
+      <p class="sectionWrapper__description">
+        ${_("We use a flexible approach to test assumptions and communicate your <br> audience's needs early and often. ")}
+      </p>
+    </div>
+    <div class="platformMainWrap p-0">
+      <div class="partnerWrapper">
+        <div class="partnerWrapper__imgWrap">
+          <img src="${static.url('images/google.svg')}" class="partnerWrapper__img" alt="Google">
+        </div>
+        <div class="partnerWrapper__imgWrap">
+          <img src="${static.url('images/microsoft.svg')}" class="partnerWrapper__img" alt="microsoft">
+        </div>
+        <div class="partnerWrapper__imgWrap">
+          <img src="${static.url('images/spotify.svg')}" class="partnerWrapper__img" alt="spotify">
+        </div>
+        <div class="partnerWrapper__imgWrap">
+          <img src="${static.url('images/mailchamp.svg')}" class="partnerWrapper__img" alt="mailchamp">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="platformMainWrap">
+    <div class="middleHeading">
+      <h2 class="sectionWrapper__sectionHeading text-center">
+        ${_("Frequently Asked Questions")}
+      </h2>
+    </div>
+    <div class="platformMainWrap p-0">
+      <div class="faqWrapper platformMainWrap p-0">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                ${_("Can I use FlowBite in open source projects?")}
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                ${_("In general, it is acceptable to use FlowBite in open source projects, as long as it is not a UI library, theme, template, or page builder that could be considered a replacement for FlowBite itself.")}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                ${_(" Where can I access my download files?")}
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                ${_(" Where can I access my download files?")}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                ${_(" Can I use FlowBite for commercial purposes?")}
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                ${_(" Can I use FlowBite for commercial purposes?")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="platformMainWrap">
+    <div class="middleHeading">
+      <h2 class="sectionWrapper__sectionHeading text-center">
+        ${_("Why us? ")}
+      </h2>
+      <p class="sectionWrapper__description">
+        ${_("Meet your developers where they already are. GitHub is home to over 40 million <br> developers and the world’s largest open source community.")}
+      </p>
+    </div>
+    <div class="row platformMainWrap p-0">
+      <div class="col-sm-4">
+        <div class="whyUsWrapper">
+          <h4 class="whyUsWrapper__heading">${_("73M+ ")}</h4>
+          <p class="whyUsWrapper__desc">${_("developers")}</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="whyUsWrapper">
+          <h4 class="whyUsWrapper__heading">${_("1B+")}</h4>
+          <p class="whyUsWrapper__desc">${_("contributors")}</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="whyUsWrapper">
+          <h4 class="whyUsWrapper__heading">${_("4M+")}</h4>
+          <p class="whyUsWrapper__desc">${_("organizations")}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="platformMainWrap">
+    <div class="middleHeading">
+      <h2 class="sectionWrapper__sectionHeading text-center">
+        ${_("Contact Us")}
+      </h2>
+      <p class="sectionWrapper__description">
+        ${_("Stay up to date with the roadmap progress, announcements and <br /> exclusive discounts feel free to sign up with your email.")}
+      </p>
+    </div>
+    <div class="row platformMainWrap p-0">
+      <div class="col-sm-4">
+        <div class="trustedPlatform">
+          <div class="trustedPlatform__imgWrapper">
+            <img class="mb-0" src="${static.url('images/house-icon.svg')}" alt="${_('company information')}" />
+          </div>
+          <h4 class="trustedPlatform__heading">
+            ${_("company information")}
+          </h4>
+          <p class="trustedPlatform__desc">
+            ${_("Themesberg LLC <br /> Tax id: USXXXXXX")}
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="trustedPlatform">
+          <div class="trustedPlatform__imgWrapper">
+            <img src="${static.url('images/location-icon.svg')}" class="mb-0" alt="${_('Address')}">
+          </div>
+          <h4 class="trustedPlatform__heading">${_("Address ")}</h4>
+          <p class="trustedPlatform__desc">
+            ${_("SILVER LAKE, United States <br /> 1941 Late Avenue <br /> Zip Code/Postal code: 03875 ")}
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="trustedPlatform">
+          <div class="trustedPlatform__imgWrapper">
+            <img src="${static.url('images/cell-icon.svg')}" class="mb-0" alt="${_('Contact us')}">
+          </div>
+          <h4 class="trustedPlatform__heading">${_("Contact us: ")}</h4>
+          <p class="trustedPlatform__desc">
+            ${_("Email us for general queries including marketing and partnership opportunities")}<br />  <a href="mailto:hello@company.com" class="trustedPlatform__action"> ${_("hello@company.com")}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="platformMainWrap pt-0">
+      <form class="contactFormWrapper">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="yourname">${_("Your name")}</label> 
+              <input type="text" class="form-control" id="yourname" aria-describedby="emailHelp" placeholder="Your Name" />
+              <small class="form-text validation-error">${_("Enter Your Name")}</small>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="lastname">${_("Last name")}</label>
+              <input type="text" class="form-control" id="lastname" aria-describedby="lastname" placeholder="name@example.com" />
+              <small class="form-text validation-error">${_("Enter Your Name")}</small>
+            </div>  
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="email">${_("Email")}</label>
+              <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="example@domain.com" />
+              <small class="form-text validation-error">${_("Enter Your Name")}</small>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="phonenumber">${_("Phone number")}</label>
+              <input type="number" class="form-control" id="phonenumber" aria-describedby="emailHelp" placeholder="+(12) 345 6789" />
+              <small class="form-text validation-error">${_("Enter Your Name")}</small>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="message">${_("Your message")}</label>
+              <textarea name="message" id="message" class="form-control" rows="8"></textarea>
+              <small class="form-text validation-error">${_("Enter Your Name")}</small>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="terms-and-service" value="option1">
+              <label class="form-check-label" for="inlineCheckbox1">${_("By submitting this form, you confirm that you have read and agree to <a href='http://'>Flowbite\'s Terms of Service</a> and <a href='http://'>Privacy Statement</a>")}</label>
+            </div>
+          </div>
+        </div>
+        <button class="contactFormWrapper__action">${_("Send message")}</button>
+      </form>
+    </div>
+  </div>
+  <div class="platformMainWrap">
+    <div class="middleHeading">
+      <h2 class="sectionWrapper__sectionHeading text-center">
+        ${_("Sign up for our newsletter ")}
+      </h2>
+      <p class="sectionWrapper__description">
+        ${_("Stay up to date with the roadmap progress, announcements and <br /> exclusive discounts feel free to sign up with your email.")}
+      </p>
+    </div>
+    <div class="newsletterInputWrapper">
+      <div class="newsletterInputWrapper__inputWrapper">
+        <div class="newsletterInputWrapper__input">
+          <img src="${static.url('images/person.svg')}" alt="${_('person')}">
+          <input type="text" class="" placeholder="Enter Your Email" />
+        </div>
+        <button class="newsletterInputWrapper__action">
+          ${_("Subscribe")}
+        </button>
+      </div>
+      <p class="newsletterInputWrapper__para">
+        ${_("We care about the protection of your data. Read our  <a href='#'> Privacy Policy</a>.")}
+      </p>
+    </div>
+  </div>
+  <div class="platformMainWrap">
+    <div class="notFoundWrap">
+      <h1 class="notFoundWrap__heading">${_("404")}</h1>
+    </div>
+    <div class="middleHeading">
+      <h2 class="sectionWrapper__sectionHeading text-center">
+        ${_("Something's missing.")}
+      </h2>
+      <p class="sectionWrapper__description">
+        ${_("Sorry, we can't find that page. You'll find lots to explore on the home page.")}
+      </p>
+    </div>
+    <div class="btnWtapper mt-4">
+      <a href='#' class="btnWtapper__action">${_("Back to Homepage")}</a>
+    </div>
+  </div>
+  <div class="platformMainWrap">
+    <div class="middleHeading">
+      <h2 class="sectionWrapper__sectionHeading text-center">
+        ${_("Testimonials")}
+      </h2>
+      <p class="sectionWrapper__description">
+        ${_("Explore the whole collection of open-source web components and <br /> elements built with the utility classes from Tailwind")}
+      </p>
+    </div>
+    <div class="row testimonialWrapper p-0">
+      <div class="col-sm-6">
+        <div class="testimonialWrapper__card">
+          <h4 class="testimonialWrapper__title">
+            ${_("Solid foundation for any project")}
+          </h4>
+          <p class="testimonialWrapper__desc">
+            ${_("This is a very complex and beautiful set of elements. Under the hood it comes with the best things from 2 different worlds: Figma and Tailwind.")}
+          </p>
+          <div class="testimonialWrapper__imgWrapper">
+            <img src="${static.url('images/avatar.jpg')}" class="mb-0" alt="testimonial">
+            <div class="testimonialWrapper__authorWrap">
+              <div class="testimonialWrapper__authorName">
+                ${_("Bonnie Green")}
+              </div>
+              <div class="testimonialWrapper__authoPost">
+                ${_("Web developer @themesberg")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="testimonialWrapper__card">
+          <h4 class="testimonialWrapper__title">
+            ${_("Advanced features for designers")}
+          </h4>
+          <p class="testimonialWrapper__desc">${_("FlowBite provides a robust set of design tokens and components based on the popular Tailwind CSS framework. From the most used UI components like forms and navigation bars to the whole app screens designed both for desktop and mobile, this UI kit provides a solid foundation for any project.")}</p>
+          <div class="testimonialWrapper__imgWrapper">
+            <img src="${static.url('images/avatar.jpg')}" class="mb-0" alt="testimonial">
+            <div class="testimonialWrapper__authorWrap">
+              <div class="testimonialWrapper__authorName">
+                ${_("Micheal Gough")}
+              </div>
+              <div class="testimonialWrapper__authoPost">
+                ${_("Web developer @themesberg")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="testimonialWrapper__card">
+          <h4 class="testimonialWrapper__title">
+            ${_("Best tool for designers")}
+          </h4>
+          <p class="testimonialWrapper__desc">${_("I recently got my hands on Flowbite Pro, and holy crap, I'm speechless with how easy this was to integrate within my application. Most templates are a pain, code is scattered, and near impossible to theme.")}</p>
+          <div class="testimonialWrapper__imgWrapper">
+            <img src="${static.url('images/avatar.jpg')}" class="mb-0" alt="testimonial">
+            <div class="testimonialWrapper__authorWrap">
+              <div class="testimonialWrapper__authorName">
+                ${_("Roberta Casas")}
+              </div>
+              <div class="testimonialWrapper__authoPost">
+                ${_("Web developer @themesberg")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="testimonialWrapper__card">
+          <h4 class="testimonialWrapper__title">
+            ${_("Efficient Collaborating")}
+          </h4>
+          <p class="testimonialWrapper__desc">${_("This is a very complex and beautiful set of elements that are super easy to use and customize. I've been using it for a while now and I have to say that it's one of the best UI kits I've ever used.")}</p>
+          <div class="testimonialWrapper__imgWrapper">
+            <img src="${static.url('images/avatar.jpg')}" class="mb-0" alt="testimonial">
+            <div class="testimonialWrapper__authorWrap">
+              <div class="testimonialWrapper__authorName">
+                ${_("Thomas Lean")}
+              </div>
+              <div class="testimonialWrapper__authoPost">
+                ${_("Web developer @themesberg")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="testimonialWrapper__card">
+          <h4 class="testimonialWrapper__title">${_("Thomas Lean")}</h4>
+          <p class="testimonialWrapper__desc">
+            ${_("Using FlowBite has been fantastic for my workflow. It made it really easy to create a very good looking project in no time. Every designer should have this in their toolbox!")}
+          </p>
+          <div class="testimonialWrapper__imgWrapper">
+            <img src="${static.url('images/avatar.jpg')}" class="mb-0" alt="testimonial">
+            <div class="testimonialWrapper__authorWrap">
+              <div class="testimonialWrapper__authorName">
+                ${_("Neil Sims")}
+              </div>
+              <div class="testimonialWrapper__authoPost">
+                ${_("Web developer @themesberg")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="testimonialWrapper__card">
+          <h4 class="testimonialWrapper__title">
+            ${_("Perfect choice for a SaaS application")}
+          </h4>
+          <p class="testimonialWrapper__desc">
+            ${_("Flowbite is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard. Perfect choice for your next SaaS application.")}
+          </p>
+          <div class="testimonialWrapper__imgWrapper">
+            <img src="${static.url('images/avatar.jpg')}" class="mb-0" alt="testimonial">
+            <div class="testimonialWrapper__authorWrap">
+              <div class="testimonialWrapper__authorName">
+                ${_("Robert Brown")}
+              </div>
+              <div class="testimonialWrapper__authoPost">
+                ${_("Web developer @themesberg")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
