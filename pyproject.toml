@@ -28,7 +28,11 @@ dependencies = ["tutor-mfe>=19.0.0,<20.0.0", "tutor>=19.0.0,<20.0.0"]
 dynamic = ["version"]
 
 [project.optional-dependencies]
-dev = ["tutor[dev]>=19.0.0,<20.0.0"]
+dev = [
+  "tutor[dev]>=19.0.0,<20.0.0",
+  "pylint",
+  "black"
+]
 
 [project.entry-points."tutor.plugin.v1"]
 indigo = "tutorindigo.plugin"
@@ -49,7 +53,7 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.sdist]
 # Disable strict naming, otherwise twine is not able to detect name/version
 strict-naming = false
-include = ["/tutorindigo"]
+include = ["/tutorindigo", ".hatch_build.py"]
 exclude = ["tests*"]
 
 # we need this becuase our project escapes default hatch file selection.
