@@ -3,12 +3,6 @@ header.global-header {
     border: none;
     padding: 0;
     overflow: visible;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10);
-    &:after {
-        content: "";
-        clear: both;
-        display: block;
-    }
     .main-header {
         display: flex;
         align-items: center;
@@ -22,20 +16,27 @@ header.global-header {
     .header-logo {
         margin: 0;
         a {
-            margin: 15px 0 15px 35px;
+            margin: 16px 0 0 !important;
+
             height: auto;
-            @include media-breakpoint-up(lg) {
-                margin: 0;
-                margin: 20px 0 0;
-            }
+    
             .logo {
-                height: 21px;
+                height: 30px !important;
                 margin: 0;
             }
         }
         .course-header {
             display: none;
         }
+        @media only screen and (max-width: 992px) {
+            a{
+                margin: 0 !important;
+            .logo{
+            height: 20px !important;
+
+            }
+        }
+    }
     }
     .nav-links {
         width: 100%;
@@ -61,18 +62,25 @@ header.global-header {
             margin: 0;
             position: relative;
             justify-content: end;
+            @media only screen and (max-width: 992px) {
+                margin-right: 60px !important;
+                &:dir(rtl){
+                    margin-right: unset;
+                    margin-left: 60px !important;
+        }
+}
             .toggle-user-dropdown {
                 padding: 9px 15px;
-                background: $primary-light;
-                color: $primary;
                 font-size: 14px;
                 font-weight: 500;
                 line-height: 20px;
                 border-radius: 6px;
                 margin: 12px 0;
+                background-color: #f3f3f3 !important;
+                color: $dark !important;
                 &:after {
                     margin: 4px 0 0 4px;
-                    border: 2px solid #15376D;
+                    border: 2px solid  $dark;
                     border-width: 2px 2px 0 0;
                     transform: rotate(135deg);
                     content: "";
@@ -110,8 +118,8 @@ header.global-header {
                         line-height: 20px;
                         color: $light-dark;
                         &:hover {
-                            background: $primary-light;
-                            color: $dark;                         ;
+                            background: $primary;
+                            color: #fff;                       ;
                         }
                     }
                 }
@@ -121,8 +129,14 @@ header.global-header {
     .hamburger-menu {
         height: 12px;
         width: 20px;
-        left: 15px;
         top: 18px;
+        right: 20px !important;
+        left: unset !important;
+        &:dir(rtl){
+        right: unset !important;
+        left: 20px !important;
+        }
+
         .line {
             height: 2px;
             &:nth-child(2), &:nth-child(3) {
@@ -163,6 +177,8 @@ header.global-header {
     padding: 0 15px;
     max-width: 1600px;
     box-sizing: border-box;
+    border-bottom: 1px solid #f3f3f3 !important;
+    width: 100%;
     &:after {
         display: block;
         clear: both;
@@ -339,30 +355,83 @@ body.indigo-dark-theme {
     }
 }
 
+// outer header before login
 .globalMainHeader {
-    box-shadow: unset !important;
-    &:after {
-      box-shadow: unset !important;
-    }
-    .header-container{
-        border-bottom: 1px solid #f3f3f3 !important;
-
-    }
-    .toggle-user-dropdown {
-      background-color: #f3f3f3 !important;
-      color: $dark !important;
-      &:after {
-        border-color: $dark !important;
-      }
-    }
-    .header-logo {
-        a {
-            margin: 16px 0 0 !important;
-            .logo{
-                height: 30px !important;
+    .nav-links{
+        .secondary{
+            .btn-holder{
+                .nav-item{
+                    .sign-in-btn{
+                        font-family: $poppins-font-family;
+                        font-size: 16px;
+                        &:hover{
+                            background-color: $purple-heart !important;
+                            color: $white-color !important;
+                            border-color: $purple-heart;
+                        }
+                        &:focus{
+                            box-shadow: none !important;
+                        }
+                    }
+                    .register-btn{
+                        font-family: $poppins-font-family;
+                        font-size: 16px;
+                        color: $dark-color;
+                        border-color: $dark-color;
+                        &:hover{
+                            background-color: $primary !important;
+                            color: $white-color !important;
+                            border-color: $primary;
+                        }
+                        &:focus{
+                            box-shadow: none !important;
+                        }
+                    }
+                    &.nav-tab{
+                        a{
+                            font-size: 16px;
+                            color: $cod-gray;
+                            font-family: $poppins-font-family;
+                        }
+                
+                    }
+                }
             }
         }
     }
   }
+
+
+
+  .menuMainWrapper {
+    .course-tabs {
+        border-bottom: 1px solid $primary-light;
+        .tab {
+            margin-right: 25px;
+            &:dir(rtl){
+              margin-right: unset;
+              margin-left: 25px;
+            }
+            a {
+                border-top: 0;
+                padding: 10px 16px !important;
+                border-bottom: 2px solid transparent;
+                font-size: 16px !important;
+                font-weight: 500 !important;
+                color: #111827 !important;
+                margin-right: 25px;
+                &:dir(rtl){
+                  margin-right: unset;
+                  margin-left: 25px;
+                }
+                &:hover,
+                &.active {
+                  border-bottom: 2px solid #4600c7 !important;
+                  background-color: #f3f3f3 !important;
+                }
+            }
+        }
+    }
+}
 
 

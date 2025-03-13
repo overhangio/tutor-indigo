@@ -172,6 +172,12 @@ body.indigo-dark-theme {
         gap: 10px;
         flex-direction: column;
       }
+      &__social {
+        justify-content: center;
+      }
+      &__copyRight {
+        font-size: 14px;
+      }
     }
   }
 }
