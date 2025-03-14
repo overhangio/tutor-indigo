@@ -158,6 +158,13 @@
               }
             }
           }
+          @media only screen and (max-width: 992px) {
+            .course-image {
+              .cover-image {
+                height: 200px;
+              }
+            }
+          }
         }
       }
     }
@@ -441,7 +448,7 @@ body.indigo-dark-theme {
         }
       }
       .search-status-label {
-        color: $text-color-primary;
+        color: $text-color-primary !important;
       }
     }
     .filter-block {
@@ -548,7 +555,7 @@ body.indigo-dark-theme {
     }
   }
   .search-status-label {
-    color: $dark !important;
+    color: $dark;
     padding: 10px 0 !important;
     font-weight: 500;
   }
@@ -573,6 +580,15 @@ body.indigo-dark-theme {
       a {
         margin: 0 0 0 16px !important;
       }
+    }
+  }
+  @media only screen and (max-width: 556px) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    .discover-search {
+      width: 100%;
     }
   }
 }

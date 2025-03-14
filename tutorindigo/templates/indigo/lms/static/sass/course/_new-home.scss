@@ -1,11 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
 $poppins-font-family: "Poppins", serif;
 $inter-font-family: "Inter", serif;
+$ibm-plex-font-family: "IBM Plex Sans Arabic", sans-serif;
 $white-color: #fff;
 $concrete-color: #f3f3f3;
-$purple-color: #4600C7;
+$purple-color: #4600c7;
 $alabaster-color: #fbfbfb;
 $cod-gray: #141414;
 $scorpion-color: #5e5e5e;
@@ -14,8 +15,9 @@ $light-gray: #f7f7f7;
 $border-color: #e5e7eb;
 $green-color: #00a487;
 $prussian-blue: #002f56;
-$purple-heart:#6a32d1; 
+$purple-heart: #6a32d1;
 $blue-dianne: #072544;
+$black: #000;
 
 .navbarWrapper {
   width: 100%;
@@ -71,12 +73,16 @@ $blue-dianne: #072544;
   margin-top: 69px;
   width: 100%;
   max-width: 1170px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
-
+section.home {
+  padding: 0 !important;
+}
 .mainBanner {
   background: url("#{$static-path}/images/main-banner.jpg") no-repeat;
   background-size: cover;
-  border-radius: 10px;
+  border-radius: 20px;
   font-family: "Poppins", serif;
   height: 600px;
   display: flex;
@@ -232,7 +238,7 @@ $blue-dianne: #072544;
     border-radius: 10px;
     padding: 15px 30px;
     border: 0;
-    &:hover{
+    &:hover {
       background-color: var(--hover-button-bg);
     }
   }
@@ -324,7 +330,8 @@ $blue-dianne: #072544;
     box-shadow: none;
     background-image: none;
     padding: 20px 0;
-    &:hover{
+    text-align: start;
+    &:hover {
       box-shadow: none;
       background-image: none;
       background-color: transparent;
@@ -350,6 +357,7 @@ $blue-dianne: #072544;
     font-weight: 400;
     line-height: 24px;
     padding: 20px 0;
+    text-align: start;
   }
 }
 
@@ -399,9 +407,10 @@ $blue-dianne: #072544;
     font-style: normal;
     font-family: $inter-font-family;
     height: 42px;
-    textarea{
-      height: auto;
-    }
+    box-shadow: none !important;
+  }
+  textarea.form-control {
+    height: 160px !important;
   }
 
   .form-check-inline {
@@ -409,6 +418,12 @@ $blue-dianne: #072544;
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+    .form-check-input {
+      &:checked {
+        background-color: $primary;
+        border-color: $primary;
+      }
+    }
   }
   .form-check-label {
     color: $scorpion-color;
@@ -428,7 +443,7 @@ $blue-dianne: #072544;
   }
   &__action {
     padding: 10px 20px;
-    background-color: var(--green-button-bg);
+    background-color: var(--green-button-bg) !important;
     font-size: 14px;
     line-height: 21px;
     font-family: $inter-font-family;
@@ -439,8 +454,9 @@ $blue-dianne: #072544;
     font-weight: 500;
     margin-top: 24px;
     box-shadow: none;
-    background-image: none;
+    background-image: none !important;
     &:hover {
+      background-color: var(--hover-button-bg) !important;
     }
   }
 }
@@ -482,7 +498,7 @@ $blue-dianne: #072544;
     }
   }
   &__action {
-    background-color: var(--green-button-bg);
+    background-color: var(--green-button-bg) !important;
     color: $white-color;
     font-size: 16px;
     font-weight: 500;
@@ -490,7 +506,10 @@ $blue-dianne: #072544;
     border-radius: 0 8px 8px 0;
     border: 0;
     box-shadow: none;
-    background-image: none;
+    background-image: none !important;
+    &:hover {
+      background-color: var(--hover-button-bg) !important;
+    }
   }
   &__para {
     color: $scorpion-color;
@@ -538,7 +557,7 @@ $blue-dianne: #072544;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-bottom: 32px;
+    height: 100%;
   }
   &__title {
     color: $cod-gray;
@@ -572,7 +591,7 @@ $blue-dianne: #072544;
     gap: 4px;
   }
   &__authorName {
-    color: #141414;
+    color: $cod-gray;
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
@@ -620,16 +639,17 @@ $blue-dianne: #072544;
     a {
       text-decoration: none;
     }
-    &-icon{
+    &-icon {
       fill: var(--footer-icon-color);
     }
   }
-  
 }
 
 @media only screen and (max-width: 992px) {
   .homeStaticPage {
     margin-top: 20px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
   }
   .mainBanner {
     height: 300px;
@@ -694,7 +714,7 @@ $blue-dianne: #072544;
       padding: 20px;
       flex-direction: column-reverse;
     }
-    &__links{
+    &__links {
       flex-direction: column;
       gap: 10px;
     }
@@ -738,9 +758,61 @@ html {
 
 .green {
   --main-primary-color: #{$green-color};
-  --footer-bg: #000;
+  --footer-bg: $black;
   --footer-text-color: #{$white-color};
   --green-button-bg: #{$prussian-blue};
   --footer-icon-color: #{$white-color};
-  --hover-button-bg: #{$blue-dianne};
+  --hover-button-bg: #{$green-color};
+  a,
+  .whyUsWrapper {
+    font-family: $ibm-plex-font-family !important;
+    &__heading,
+    &__desc {
+      font-family: $ibm-plex-font-family !important;
+    }
+  }
+
+  .mainBanner {
+    &__heading,
+    &__subTitle {
+      font-family: $ibm-plex-font-family !important;
+    }
+  }
+  .sectionWrapper {
+    &__sectionHeading,
+    &__description {
+      font-family: $ibm-plex-font-family !important;
+    }
+  }
+  .platformProfile {
+    &__heading,
+    &__desc {
+      font-family: $ibm-plex-font-family !important;
+    }
+  }
+  .sectionWrapper {
+    &__sectionHeading {
+      font-family: $ibm-plex-font-family !important;
+    }
+  }
+  .newCard {
+    font-family: $ibm-plex-font-family !important;
+    &__actionBtn {
+      a {
+        font-family: $ibm-plex-font-family !important;
+        i {
+          transform: scale(-1);
+        }
+      }
+    }
+  }
+  .faqWrapper {
+    .accordion-button {
+      font-family: $ibm-plex-font-family !important;
+      &::after {
+        margin-left: unset;
+        margin-right: auto !important;
+      }
+    }
+  }
 }
