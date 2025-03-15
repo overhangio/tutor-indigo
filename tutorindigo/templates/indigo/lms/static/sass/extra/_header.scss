@@ -67,7 +67,9 @@ header.global-header {
                 &:dir(rtl){
                     margin-right: unset;
                     margin-left: 60px !important;
+
         }
+           
 }
             .toggle-user-dropdown {
                 padding: 9px 15px;
@@ -78,6 +80,7 @@ header.global-header {
                 margin: 12px 0;
                 background-color: #f3f3f3 !important;
                 color: $dark !important;
+            
                 &:after {
                     margin: 4px 0 0 4px;
                     border: 2px solid  $dark;
@@ -403,7 +406,7 @@ body.indigo-dark-theme {
 
 
 
-  .menuMainWrapper {
+  .wrapper-course-material {
     .course-tabs {
         border-bottom: 1px solid $primary-light;
         .tab {
@@ -419,19 +422,13 @@ body.indigo-dark-theme {
                 font-size: 16px !important;
                 font-weight: 500 !important;
                 color: #111827 !important;
-                margin-right: 25px;
-                &:dir(rtl){
-                  margin-right: unset;
-                  margin-left: 25px;
-                }
                 &:hover,
                 &.active {
-                  border-bottom: 2px solid #4600c7 !important;
+                  border-bottom: 2px solid $primary !important;
                   background-color: #f3f3f3 !important;
                 }
             }
         }
     }
 }
-
 

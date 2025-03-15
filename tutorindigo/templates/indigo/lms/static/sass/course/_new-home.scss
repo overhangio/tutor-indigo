@@ -1,23 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
+@import "./_variables.scss";
 $poppins-font-family: "Poppins", serif;
 $inter-font-family: "Inter", serif;
 $ibm-plex-font-family: "IBM Plex Sans Arabic", sans-serif;
-$white-color: #fff;
-$concrete-color: #f3f3f3;
-$purple-color: #4600c7;
-$alabaster-color: #fbfbfb;
-$cod-gray: #141414;
-$scorpion-color: #5e5e5e;
-$dark-color: #111928;
-$light-gray: #f7f7f7;
-$border-color: #e5e7eb;
-$green-color: #00a487;
-$prussian-blue: #002f56;
-$purple-heart: #6a32d1;
-$blue-dianne: #072544;
-$black: #000;
+
+:root {
+  // home page variables
+  --fx-2025-indigo-white-color: #fff;
+  --fx-2025-indigo-concrete-color: #f3f3f3;
+  --fx-2025-indigo-purple-color: #4600c7;
+  --fx-2025-indigo-alabaster-color: #fbfbfb;
+  --fx-2025-indigo-cod-gray: #141414;
+  --fx-2025-indigo-scorpion-color: #5e5e5e;
+  --fx-2025-indigo-dark-color: #111928;
+  --fx-2025-indigo-light-gray: #f7f7f7;
+  --fx-2025-indigo-border-color: #e5e7eb;
+  --fx-2025-indigo-green-color: #00a487;
+  --fx-2025-indigo-prussian-blue: #002f56;
+  --fx-2025-indigo-purple-heart: #6a32d1;
+  --fx-2025-indigo-blue-dianne: #072544;
+  --fx-2025-indigo-black: #000;
+}
+
+$white-color: var(--fx-2025-indigo-white-color);
+$concrete-color: var(--fx-2025-indigo-concrete-color);
+$purple-color: var(--fx-2025-indigo-purple-color);
+$alabaster-color: var(--fx-2025-indigo-alabaster-color);
+$cod-gray: var(--fx-2025-indigo-cod-gray);
+$scorpion-color: var(--fx-2025-indigo-scorpion-color);
+$dark-color: var(--fx-2025-indigo-dark-color);
+$light-gray: var(--fx-2025-indigo-light-gray);
+$border-color: var(--fx-2025-indigo-border-color);
+$green-color: var(--fx-2025-indigo-green-color);
+$prussian-blue: var(--fx-2025-indigo-prussian-blue);
+$purple-heart: var(--fx-2025-indigo-purple-heart);
+$blue-dianne: var(--fx-2025-indigo-blue-dianne);
+$black: var(--fx-2025-indigo-black);
 
 .navbarWrapper {
   width: 100%;
@@ -412,7 +432,6 @@ section.home {
   textarea.form-control {
     height: 160px !important;
   }
-
   .form-check-inline {
     display: flex;
     align-items: center;
@@ -747,6 +766,7 @@ section.home {
     overflow-x: scroll;
   }
 }
+
 html {
   --main-primary-color: #{$purple-color};
   --footer-bg: #{$alabaster-color};
@@ -763,55 +783,65 @@ html {
   --green-button-bg: #{$prussian-blue};
   --footer-icon-color: #{$white-color};
   --hover-button-bg: #{$green-color};
-  a,
-  .whyUsWrapper {
-    font-family: $ibm-plex-font-family !important;
-    &__heading,
-    &__desc {
+  &:dir(rtl) {
+    a,
+    .whyUsWrapper {
       font-family: $ibm-plex-font-family !important;
-    }
-  }
-
-  .mainBanner {
-    &__heading,
-    &__subTitle {
-      font-family: $ibm-plex-font-family !important;
-    }
-  }
-  .sectionWrapper {
-    &__sectionHeading,
-    &__description {
-      font-family: $ibm-plex-font-family !important;
-    }
-  }
-  .platformProfile {
-    &__heading,
-    &__desc {
-      font-family: $ibm-plex-font-family !important;
-    }
-  }
-  .sectionWrapper {
-    &__sectionHeading {
-      font-family: $ibm-plex-font-family !important;
-    }
-  }
-  .newCard {
-    font-family: $ibm-plex-font-family !important;
-    &__actionBtn {
-      a {
+      &__heading,
+      &__desc {
         font-family: $ibm-plex-font-family !important;
-        i {
-          transform: scale(-1);
+        text-align: right !important;
+      }
+    }
+
+    .mainBanner {
+      &__heading,
+      &__subTitle {
+        font-family: $ibm-plex-font-family !important;
+        text-align: right !important;
+      }
+    }
+    .sectionWrapper {
+      &__sectionHeading,
+      &__description {
+        font-family: $ibm-plex-font-family !important;
+        text-align: right !important;
+      }
+    }
+    h2.sectionWrapper__sectionHeading.text-center, p.sectionWrapper__description {
+      text-align: center !important;
+    }
+    .platformProfile {
+      &__heading,
+      &__desc {
+        font-family: $ibm-plex-font-family !important;
+        text-align: right !important;
+      }
+    }
+    .sectionWrapper {
+      &__sectionHeading {
+        font-family: $ibm-plex-font-family !important;
+        text-align: right !important;
+      }
+    }
+    .newCard {
+      font-family: $ibm-plex-font-family !important;
+      &__actionBtn {
+        a {
+          font-family: $ibm-plex-font-family !important;
+          i {
+            transform: scale(-1);
+          }
         }
       }
     }
-  }
-  .faqWrapper {
-    .accordion-button {
-      font-family: $ibm-plex-font-family !important;
-      &::after {
-        margin-left: unset;
-        margin-right: auto !important;
+    .faqWrapper {
+      .accordion-button {
+        font-family: $ibm-plex-font-family !important;
+        &::after {
+          margin-left: unset;
+          margin-right: auto !important;
+        }
       }
     }
   }
