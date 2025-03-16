@@ -110,7 +110,7 @@ hooks.Filters.ENV_PATCHES.add_items(
         (
             "mfe-dockerfile-post-npm-install-learning",
             """
-RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.1'
+RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.2'
 RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
@@ -120,7 +120,7 @@ COPY indigo/env.config.jsx /openedx/app/
         (
             "mfe-dockerfile-post-npm-install-authn",
             """
-RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.1'
+RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.2'
 """,
         ),
         # Tutor-Indigo v2.1 targets the styling updates in discussions and learner-dashboard MFE
@@ -128,7 +128,7 @@ RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-opene
         (
             "mfe-dockerfile-post-npm-install-discussions",
             """
-RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.1'
+RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.2'
 RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
@@ -138,7 +138,7 @@ COPY indigo/env.config.jsx /openedx/app/
         (
             "mfe-dockerfile-post-npm-install-learner-dashboard",
             """
-RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.1'
+RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.2'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
 COPY indigo/env.config.jsx /openedx/app/
@@ -147,7 +147,7 @@ COPY indigo/env.config.jsx /openedx/app/
         (
             "mfe-dockerfile-post-npm-install-profile",
             """
-RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.1'
+RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.2'
 RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
@@ -157,7 +157,7 @@ COPY indigo/env.config.jsx /openedx/app/
         (
             "mfe-dockerfile-post-npm-install-account",
             """
-RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.1'
+RUN npm install '@edx/brand@https://github.com/MubeenFayyaz-Arbisoft/brand-openedx.git#v1.0.2'
 RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.1.3'
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 
@@ -211,16 +211,21 @@ def _add_my_mfe(mfes):
     mfes["authn"] = {
         "repository": "https://github.com/edly-io/frontend-app-authn.git",
         "port": 1999,
-        "version": "nelc-v1.0.0", # optional, will default to the Open edX current tag.
+        "version": "nelc-v1.0.1", # optional, will default to the Open edX current tag.
     }
     mfes["learning"] = {
         "repository": "https://github.com/edly-io/frontend-app-learning.git",
         "port": 2000,
-        "version": "nelc-v1.0.0", # optional, will default to the Open edX current tag.
+        "version": "nelc-v1.0.1", # optional, will default to the Open edX current tag.
     }    
     mfes["discussions"] = {
         "repository": "https://github.com/edly-io/frontend-app-discussions.git",
         "port": 2002,
-        "version": "nelc-v1.0.0", # optional, will default to the Open edX current tag.
+        "version": "nelc-v1.0.1", # optional, will default to the Open edX current tag.
+    }
+    mfes["learner-dashboard"] = {
+        "repository": "https://github.com/edly-io/frontend-app-learner-dashboard.git",
+        "port": 1996,
+        "version": "nelc-v1.0.1", # optional, will default to the Open edX current tag.
     }
     return mfes
