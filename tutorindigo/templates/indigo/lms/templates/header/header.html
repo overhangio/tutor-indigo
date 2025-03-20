@@ -43,7 +43,10 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
 % endif
 
 <header class="global-header globalMainHeader ${'slim' if course else ''}">
-    <div class="header-container">
+    % if request.COOKIES.get('theme-preview') == 'yes':
+        <%include file="_preview_banner.html"/>
+    % endif
+    <div class="header-container" style="${'margin-top: 27px;' if request.COOKIES.get('theme-preview') == 'yes' else ''}">
     % if settings.FEATURES.get('ENABLE_COOKIE_POLICY_BANNER', use_cookie_banner):
         ${static.renderReact(
             component="CookiePolicyBanner",
