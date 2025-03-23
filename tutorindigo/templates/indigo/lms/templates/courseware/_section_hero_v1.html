@@ -1,0 +1,26 @@
+<%page args="page_contents"/>
+
+<%!
+from django.utils.translation import gettext as _
+%>
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
+<%
+fx_title = fx_static._(page_contents.get('title'))
+fx_description = fx_static._(page_contents.get('description'))
+image_url = page_contents.get('image')
+if image_url:
+    style = f"background-image: url({image_url}); background-repeat: no-repeat;"
+else:
+    style = "background-color: black;"
+%>
+
+<div class="mainBanner" style="${style}">
+
+  <h1 class="mainBanner__heading">
+    ${fx_title | fx_static.br}
+  </h1>
+  <p class="mainBanner__subTitle">
+    ${fx_description | fx_static.br}
+  </p>
+</div>

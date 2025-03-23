@@ -1,6 +1,8 @@
 <%! from django.utils.translation import gettext as _ %>
 <%!from openedx.core.djangolib.markup import HTML, Text %>
 <%namespace name='static' file='static_content.html'/>
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -15,45 +17,26 @@
 });
 
 </script>
+
+<%
+  pages_home = fx_static.get_fx_config_value('pages_home')
+%>
+
 <div class="">
   <div class="container  homeStaticPage">
-    <div class="mainBanner">
-      <h1 class="mainBanner__heading">
-        ${_("“Learn from the experts, anytime, anywhere”")}
-      </h1>
-      <p class="mainBanner__subTitle">
-        ${_("Get access to many diverse training courses and achieve your educational and professional goals")}
-      </p>
-    </div>
-    <div class="platformMainWrap px-0">
-      <h2 class="sectionWrapper__sectionHeading">
-        ${_("Secure platform secure data")}
-      </h2>
-      <p class="sectionWrapper__description">
-        ${_("We aim to enable individuals to achieve their full potential")}<br />
-        ${_("through high-quality education that is accessible to all.")}
-      </p>
-      <div class="row platformMainWrap px-0">
-        <div class="col-12 col-sm-6">
-          <div class="platformProfile">
-            <i class="fa fa-check icon" aria-hidden="true"></i>
-            <h4 class="platformProfile__heading">${_("Our vision")}</h4>
-            <p class="platformProfile__desc">
-              ${_("To be the leading educational platform that enables individuals to achieve their full potential by providing high-quality education available to all, thus contributing to building a knowledge society characterized by innovation and excellence in all fields.")}
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6">
-          <div class="platformProfile">
-            <i class="fa fa-check icon" aria-hidden="true"></i>
-            <h4 class="platformProfile__heading">${_("Our mission")}</h4>
-            <p class="platformProfile__desc">
-              ${_("Creating an interactive and flexible learning environment that supports personal and professional development, with a focus on providing continuous support and enhancing the spirit of cooperation and innovation among learners.")}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    % if pages_home and pages_home.get('sections'):
+        % for section in pages_home.get('sections'):
+            % if section.get('visible') is True:
+
+                % if section.get('type') == 'hero_v1':
+                    <%include file="_section_hero_v1.html" args="page_contents=section"/>
+                % endif
+
+            % endif
+        % endfor
+    % endif
+
     <div class="row platformMainWrap">
       <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
         <h2 class="sectionWrapper__sectionHeading text-start">
