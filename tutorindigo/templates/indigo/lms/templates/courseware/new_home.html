@@ -34,47 +34,15 @@
 
                 % elif section.get('type') == 'two_columns_v1':
                     <%include file="_section_two_columns_v1.html" args="page_contents=section"/>
+
+                % elif section.get('type') == 'side_image_v1':
+                    <%include file="_section_side_image_v1.html" args="page_contents=section"/>
                 % endif
 
             % endif
         % endfor
     % endif
 
-    <div class="row platformMainWrap">
-      <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
-        <h2 class="sectionWrapper__sectionHeading text-start">
-          ${_("Move beyond ")}
-        </h2>
-        <p class="platformProfile__desc">
-          ${_("We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need.")}
-        </p>
-        <p class="platformProfile__desc">
-          ${_("We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.")}
-        </p>
-      </div>
-      <div class="col-12 col-sm-6">
-        <img src="${static.url('images/move-beyond.png')}" class="optimizeImg" alt="${_('move beyond')}">
-      </div>
-    </div>
-    <div class="row platformMainWrap">
-      <div class="col-12 col-sm-6">
-        <img src="${static.url('images/team-design.png')}" class="optimizeImg" alt="${_('team design')}">
-      </div>
-      <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
-        <h2 class="sectionWrapper__sectionHeading text-start">
-          ${_("The Book ")}
-        </h2>
-        <p class="platformProfile__desc">
-          ${_(" <strong> Designing Interfaces: A User-Centered Approach</strong> is a valuable resource for anyone interested in learning about the principles and techniques of design.")}
-        </p>
-        <p class="platformProfile__desc">
-          ${_("The book covers a wide range of topics, from the basics of design principles such as balance, contrast, and hierarchy, to more advanced topics such as user experience design, typography, and color theory. ")}
-        </p>
-        <p class="platformProfile__desc">
-          ${_("It also delves into specific areas of design such as web design, branding, and design thinking. With clear explanations, practical examples, and helpful illustrations, this book is an essential guide for aspiring. ")}
-        </p>
-      </div>
-    </div>
     <div class="platformMainWrap courseMainWrapper">
       <div class="middleHeading">
         <h2 class="sectionWrapper__sectionHeading text-center">
@@ -114,7 +82,7 @@
           </div>
         </div>
         <div class="col-sm-4 mb-4">
-          <div class="newCard"> 
+          <div class="newCard">
             <div class="newCard__detailWrap">
               <div class="newCard__detail">
                  <img src="${static.url('images/traning-course-icon.png')}" class="newCard__courseImg" alt="${_('course')}" />

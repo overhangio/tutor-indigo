@@ -1,0 +1,28 @@
+<%page args="page_contents"/>
+
+<%!
+from django.utils.translation import gettext as _
+%>
+<%namespace name='static' file='static_content.html'/>
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
+<%
+fx_title = fx_static._(page_contents.get('title'))
+fx_description = fx_static._(page_contents.get('description'))
+fx_image_url = page_contents.get('image')
+fx_style = f"flex-direction: row-reverse" if page_contents.get('reversed') else ""
+%>
+
+<div class="row platformMainWrap" style="${fx_style}">
+    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
+        <h2 class="sectionWrapper__sectionHeading text-start">
+            ${fx_title | fx_static.br}
+        </h2>
+        <p class="platformProfile__desc">
+            ${fx_description | fx_static.br}
+        </p>
+    </div>
+    <div class="col-12 col-sm-6">
+        <img src="${fx_image_url}" class="optimizeImg" alt="${_('move beyond')}">
+    </div>
+</div>
