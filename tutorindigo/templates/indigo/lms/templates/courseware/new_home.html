@@ -31,6 +31,9 @@
 
                 % if section.get('type') == 'hero_v1':
                     <%include file="_section_hero_v1.html" args="page_contents=section"/>
+
+                % elif section.get('type') == 'two_columns_v1':
+                    <%include file="_section_two_columns_v1.html" args="page_contents=section"/>
                 % endif
 
             % endif
