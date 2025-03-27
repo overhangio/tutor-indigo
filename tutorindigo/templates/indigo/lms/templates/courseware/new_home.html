@@ -40,6 +40,9 @@
 
                 % elif section.get('type') == 'featured_courses_v1':
                     <%include file="_section_featured_courses_v1.html" args="page_contents=section"/>
+
+                % elif section.get('type') == 'static_metrics_section_v1':
+                    <%include file="_section_static_metrics_section_v1.html" args="page_contents=section"/>
                 % endif
 
             % endif
@@ -156,36 +159,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="platformMainWrap">
-      <div class="middleHeading">
-        <h2 class="sectionWrapper__sectionHeading text-center">
-          ${_("Why us? ")}
-        </h2>
-        <p class="sectionWrapper__description">
-          ${_("Meet your developers where they already are. GitHub is home to over 40 million <br> developers and the world’s largest open source community.")}
-        </p>
-      </div>
-      <div class="row platformMainWrap p-0">
-        <div class="col-sm-4">
-          <div class="whyUsWrapper">
-            <h4 class="whyUsWrapper__heading">${_("73M+ ")}</h4>
-            <p class="whyUsWrapper__desc">${_("developers")}</p>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="whyUsWrapper">
-            <h4 class="whyUsWrapper__heading">${_("1B+")}</h4>
-            <p class="whyUsWrapper__desc">${_("contributors")}</p>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="whyUsWrapper">
-            <h4 class="whyUsWrapper__heading">${_("4M+")}</h4>
-            <p class="whyUsWrapper__desc">${_("organizations")}</p>
           </div>
         </div>
       </div>
