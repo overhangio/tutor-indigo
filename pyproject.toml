@@ -22,14 +22,17 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-dependencies = ["tutor-mfe>=19.0.0,<20.0.0", "tutor>=19.0.0,<20.0.0"]
+dependencies = [
+  "tutor-mfe>=20.0.0,<21.0.0", 
+  "tutor>=20.0.0,<21.0.0"
+]
 
 # hatch_build.py will set it later
 dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
-  "tutor[dev]>=19.0.0,<20.0.0",
+  "tutor[dev]>=20.0.0,<21.0.0",
   "pylint",
   "black"
 ]
