@@ -188,13 +188,18 @@ for path in glob(
         hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
 
 # Apply patch from edx platform related to instructor dashboard
-hooks.Filters.ENV_PATCHES.add_items([
-    ("openedx-dockerfile-post-git-checkout", """
+hooks.Filters.ENV_PATCHES.add_items(
+    [
+        (
+            "openedx-dockerfile-post-git-checkout",
+            """
         {%- if not TUTOR_BRANCH_IS_MAIN %}
             RUN curl -fsSL https://github.com/openedx/edx-platform/commit/385ea8382e187ca52e7075f5103e7a9aa1236660.patch | git am
         {%- endif %}
-    """)
-])
+    """,
+        )
+    ]
+)
 
 for mfe in indigo_styled_mfes:
     PLUGIN_SLOTS.add_item(
