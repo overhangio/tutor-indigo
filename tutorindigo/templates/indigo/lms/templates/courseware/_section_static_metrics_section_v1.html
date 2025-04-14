@@ -1,0 +1,42 @@
+<%page args="page_contents"/>
+
+<%!
+from django.utils.translation import gettext as _
+%>
+<%namespace name='static' file='static_content.html'/>
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
+<%
+fx_title = fx_static._(page_contents.get('title'))
+fx_description = fx_static._(page_contents.get('description'))
+fx_list_of_static_metrics = page_contents.get('list_of_static_metrics')
+%>
+
+<div class="platformMainWrap">
+    % if fx_title or fx_description:
+    <div class="middleHeading">
+        % if fx_title:
+        <h2 class="sectionWrapper__sectionHeading text-center">
+            ${fx_title | fx_static.br}
+        </h2>
+        % endif
+        % if fx_description:
+        <p class="sectionWrapper__description">
+            ${fx_description | fx_static.br}
+        </p>
+        % endif
+    </div>
+    % endif
+    % if fx_list_of_static_metrics:
+    <div class="row platformMainWrap p-0">
+        % for static_metric in fx_list_of_static_metrics:
+            <div class="col-sm-4">
+                <div class="whyUsWrapper">
+                    <h4 class="whyUsWrapper__heading">${fx_static._(static_metric.get('title')) | fx_static.br}</h4>
+                    <p class="whyUsWrapper__desc">${fx_static._(static_metric.get('description')) | fx_static.br}</p>
+                </div>
+            </div>
+        % endfor
+    </div>
+    % endif
+</div>

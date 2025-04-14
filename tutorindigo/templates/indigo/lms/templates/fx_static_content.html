@@ -1,0 +1,26 @@
+<%page expression_filter="h"/>
+<%!
+from futurex_openedx_extensions.helpers.tenants import get_config_current_request
+from django.utils.translation import get_language
+%>
+
+<%def name="br(text)" buffered="True"><%
+    # Escape angle brackets for HTML except for <br> tags
+    return text.replace('<', '&lt;').replace('>', '&gt;').replace('&lt;br&gt;', '<br>').replace('&lt;strong&gt;', '<strong>').replace('&lt;/strong&gt;', '</strong>')
+%></%def>
+
+<%def name="get_fx_config_value(key, default_value='')" buffered="True"><%
+    config_value = get_config_current_request([key])
+    return config_value['values'].get(key) if config_value else default_value
+%></%def>
+
+<%def name="_(config_dict_by_lang)" buffered="True"><%
+    if not config_dict_by_lang or not isinstance(config_dict_by_lang, dict):
+        return ''
+
+    language_code = get_language()
+    for lang_code in [language_code, 'en', 'ar', 'fr']:
+        if lang_code in config_dict_by_lang:
+            return config_dict_by_lang.get(lang_code)
+    return ''
+%></%def>

@@ -4,7 +4,7 @@
   margin: 0 !important;
   max-width: 100%;
   @include media-breakpoint-up(lg) {
-    margin-top: 64px !important;
+    margin-top: var(--fx-2025-indigo-header-margin-top) !important;
   }
 }
 .course-heading-area {

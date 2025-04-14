@@ -1,0 +1,25 @@
+<%page args="fx_grid_type" expression_filter="h"/>
+<%namespace name='static' file='static_content.html'/>
+<%! from django.utils.translation import gettext as _ %>
+
+<%
+if fx_grid_type == 'categorised':
+    homepage_course_max = 9999
+elif fx_grid_type in ['max-3', 'max-6', 'max-9']:
+    homepage_course_max = int(fx_grid_type[-1])
+else:
+    homepage_course_max = 9999
+%>
+
+<div class="row platformMainWrap pt-0 px-0">
+% if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+    %for course in courses[:homepage_course_max]:
+        <%include file="course.html" args="course=course" />
+    %endfor
+    % if homepage_course_max and len(courses) > homepage_course_max:
+    <div class="btnWtapper">
+        <a href="${marketing_link('COURSES')}" class="btnWtapper__action">${_("Browse all courses")}</a>
+    </div>
+    % endif
+% endif
+</div>

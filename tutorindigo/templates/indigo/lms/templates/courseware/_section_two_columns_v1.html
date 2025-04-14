@@ -1,0 +1,62 @@
+<%page args="page_contents"/>
+
+<%!
+from django.utils.translation import gettext as _
+%>
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
+<%
+fx_title = fx_static._(page_contents.get('title'))
+fx_description = fx_static._(page_contents.get('description'))
+columns_section = page_contents.get('columns_section')
+
+first_column = None
+second_column = None
+for column in columns_section or []:
+    key = column.get('key')
+    if key == 'first_column':
+        first_column = column
+    elif key == 'second_column':
+        second_column = column
+%>
+
+<div class="platformMainWrap px-0">
+    % if fx_title:
+        <h2 class="sectionWrapper__sectionHeading">
+        ${fx_title | fx_static.br}
+        </h2>
+    % endif
+    % if fx_description:
+        <p class="sectionWrapper__description">
+            ${fx_description | fx_static.br}
+        </p>
+    % endif
+    <div class="row platformMainWrap px-0">
+    % if first_column:
+        <div class="col-12 col-sm-6">
+            <div class="platformProfile" style="text-align: ${first_column.get('content_alignment', 'start') | fx_static.br}">
+                <div style="display: flex; justify-content: ${first_column.get('content_alignment', 'start') | fx_static.br};">
+                    <i class="fa ${second_column.get('icon') | fx_static.br} icon" aria-hidden="true"></i>
+                </div>
+                <h4 class="platformProfile__heading">${fx_static._(first_column.get('title')) | fx_static.br}</h4>
+                <p class="platformProfile__desc">
+                    ${fx_static._(first_column.get('description')) | fx_static.br}
+                </p>
+            </div>
+        </div>
+    % endif
+    % if second_column:
+        <div class="col-12 col-sm-6">
+            <div class="platformProfile" style="text-align: ${second_column.get('content_alignment', 'start') | fx_static.br}">
+                <div style="display: flex; justify-content: ${second_column.get('content_alignment', 'start') | fx_static.br};">
+                    <i class="fa ${second_column.get('icon') | fx_static.br} icon" aria-hidden="true"></i>
+                </div>
+                <h4 class="platformProfile__heading">${fx_static._(second_column.get('title')) | fx_static.br}</h4>
+                <p class="platformProfile__desc">
+                    ${fx_static._(second_column.get('description')) | fx_static.br}
+                </p>
+            </div>
+        </div>
+    % endif
+    </div>
+</div>
