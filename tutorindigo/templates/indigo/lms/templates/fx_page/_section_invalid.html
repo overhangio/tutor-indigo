@@ -1,0 +1,12 @@
+<%page args="page_contents"/>
+
+<%!
+from django.utils.translation import gettext as _
+%>
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
+<%
+fx_type = page_contents.get('type')
+%>
+
+<!-- "invalid section type provided: < ${fx_type} ${_(">. the administrator should be able to fix this error from the theme designer")} -->

@@ -1,0 +1,7 @@
+<%namespace name='fx_static' file='fx_static_content.html'/>
+
+<%
+allowed_sections = fx_static.get_all_fx_section_names()
+%>
+
+<%include file="fx_page/page.html" args="page_name='pages_home', allowed_sections=allowed_sections"/>
