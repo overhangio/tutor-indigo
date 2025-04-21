@@ -1,0 +1,24 @@
+<%namespace name='fx_static' file='fx_static_content.html'/>
+
+<%
+declared_footer_sections = fx_static.get_fx_config_value('footer_sections') or []
+valid_pages = fx_static.get_all_fx_page_names()
+footer_sections = []
+
+for f_section in declared_footer_sections:
+    if f_section.get('page') in valid_pages:
+        footer_sections.append(f_section)
+%>
+
+% if footer_sections:
+<nav class="nav-colophon">
+    <ol>
+        % for f_section in footer_sections:
+        <li>
+            <a href="/${valid_pages[f_section['page']]}">${fx_static._(f_section.get('link_title'))}</a>
+        </li>
+        % endfor
+
+    </ol>
+</nav>
+% endif
