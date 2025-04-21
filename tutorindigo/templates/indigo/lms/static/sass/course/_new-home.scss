@@ -40,6 +40,15 @@ $purple-heart: var(--fx-2025-indigo-purple-heart);
 $blue-dianne: var(--fx-2025-indigo-blue-dianne);
 $black: var(--fx-2025-indigo-black);
 
+.fx-icon-color {
+  color: var(--footer-icon-color);
+}
+
+.fx-select {
+  border: none;
+  font: -webkit-control;
+}
+
 .navbarWrapper {
   width: 100%;
   max-width: 1170px;

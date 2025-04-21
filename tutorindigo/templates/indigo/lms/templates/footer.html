@@ -22,7 +22,7 @@
     % endif
   >
 
-<div class="${'footer-top' if uses_bootstrap else 'footerWrap__content'}">
+<div class="${'footer-top' if uses_bootstrap else 'footerWrap__content'}" style="padding: 20px">
   <span class="${'copyright-site' if uses_bootstrap else 'footerWrap__copyRight'}">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
 
     <div class="powered-area" style="display: none">
@@ -53,9 +53,6 @@
   % endif
     <div class="colophon">
 
-      % if context.get('include_language_selector', footer_language_selector_is_enabled()):
-          <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
-      % endif
 
       ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
         <p class="copyright">${footer['copyright']}
