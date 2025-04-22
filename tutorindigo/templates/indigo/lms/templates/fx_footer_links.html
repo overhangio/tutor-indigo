@@ -7,6 +7,7 @@ footer_sections = []
 
 for f_section in declared_footer_sections:
     if f_section.get('page') in valid_pages:
+        f_section['new_tab'] = 'target="_blank" rel="noopener"' if f_section.get('new_tab') else ''
         footer_sections.append(f_section)
 %>
 
@@ -15,7 +16,7 @@ for f_section in declared_footer_sections:
     <ol>
         % for f_section in footer_sections:
         <li>
-            <a href="/${valid_pages[f_section['page']]}">${fx_static._(f_section.get('link_title'))}</a>
+            <a href="/${valid_pages[f_section['page']]}" ${f_section['new_tab']}>${fx_static._(f_section.get('link_title'))}</a>
         </li>
         % endfor
 

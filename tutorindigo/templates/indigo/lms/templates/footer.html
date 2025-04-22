@@ -5,7 +5,6 @@
   from django.urls import reverse
   from django.utils.translation import gettext as _
   from lms.djangoapps.branding.api import get_footer
-  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
 %>
 <% footer = get_footer(is_secure=is_secure) %>
 <% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
@@ -22,7 +21,7 @@
     % endif
   >
 
-<div class="${'footer-top' if uses_bootstrap else 'footerWrap__content'}" style="padding: 20px">
+<div class="${'footer-top' if uses_bootstrap else 'footerWrap__content'}" style="padding: 30px">
   <span class="${'copyright-site' if uses_bootstrap else 'footerWrap__copyRight'}">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
 
     <div class="powered-area" style="display: none">

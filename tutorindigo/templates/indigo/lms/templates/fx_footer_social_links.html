@@ -1,6 +1,10 @@
 <%namespace name='static' file='static_content.html'/>
 <%namespace name='fx_static' file='fx_static_content.html'/>
 
+<%!
+  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
+%>
+
 <%
 declared_social_media_links = fx_static.get_fx_config_value('footer_social_media_links') or []
 social_media_links = []
@@ -8,6 +12,7 @@ social_media_links = []
 for f_link in declared_social_media_links:
     if f_link.get('value') and f_link.get('provider'):
         social_media_links.append(f_link)
+
 %>
 
 <div class="footerWrap__social d-flex flex-column gap-0">
@@ -48,7 +53,7 @@ for f_link in declared_social_media_links:
     % endfor
     </div>
     <!--% if context.get('include_language_selector', footer_language_selector_is_enabled()): -->
-        <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
+    <!--    <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/> -->
     <!--% endif -->
 
 </div>
