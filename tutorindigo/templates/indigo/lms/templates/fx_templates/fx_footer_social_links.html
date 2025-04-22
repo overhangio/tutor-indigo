@@ -1,4 +1,4 @@
-<%namespace name='static' file='static_content.html'/>
+<%namespace name='static' file='../static_content.html'/>
 <%namespace name='fx_static' file='fx_static_content.html'/>
 
 <%!
@@ -53,7 +53,7 @@ for f_link in declared_social_media_links:
     % endfor
     </div>
     <!--% if context.get('include_language_selector', footer_language_selector_is_enabled()): -->
-    <!--    <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/> -->
+    <!--    <%include file="${static.get_template_path('../widgets/footer-language-selector.html')}"/> -->
     <!--% endif -->
 
 </div>

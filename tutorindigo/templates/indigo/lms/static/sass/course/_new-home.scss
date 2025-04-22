@@ -20,6 +20,7 @@ $ibm-plex-font-family: "IBM Plex Sans Arabic", sans-serif;
   --fx-2025-indigo-green-color: #00a487;
   --fx-2025-indigo-prussian-blue: #002f56;
   --fx-2025-indigo-purple-heart: #6a32d1;
+  --fx-2025-indigo-btn-primary: #3b85ff;
   --fx-2025-indigo-blue-dianne: #072544;
   --fx-2025-indigo-black: #000;
   --fx-2025-indigo-header-margin-top: 82px;
@@ -41,7 +42,7 @@ $blue-dianne: var(--fx-2025-indigo-blue-dianne);
 $black: var(--fx-2025-indigo-black);
 
 .fx-icon-color {
-  color: var(--footer-icon-color);
+  color: var(--green-button-bg);
 }
 
 .fx-select {

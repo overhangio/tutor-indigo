@@ -11,7 +11,18 @@ from django.utils.translation import get_language
 
 <%def name="get_fx_config_value(key, default_value='')" buffered="True"><%
     config_value = get_config_current_request([key])
-    return config_value['values'].get(key) if config_value else default_value
+    result = config_value['values'].get(key, default_value)
+    if result is None:
+        result = default_value
+    return result
+%></%def>
+
+<%def name="fx_supported_languages()" buffered="True"><%
+    return {
+        'ar': 'العربية',
+        'en': 'English',
+        'fr': 'Français',
+    }
 %></%def>
 
 <%def name="_(config_dict_by_lang)" buffered="True"><%
