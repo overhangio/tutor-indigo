@@ -6,26 +6,6 @@ $poppins-font-family: "Poppins", serif;
 $inter-font-family: "Inter", serif;
 $ibm-plex-font-family: "IBM Plex Sans Arabic", sans-serif;
 
-:root {
-  // home page variables
-  --fx-2025-indigo-white-color: #fff;
-  --fx-2025-indigo-concrete-color: #f3f3f3;
-  --fx-2025-indigo-purple-color: #4600c7;
-  --fx-2025-indigo-alabaster-color: #fbfbfb;
-  --fx-2025-indigo-cod-gray: #141414;
-  --fx-2025-indigo-scorpion-color: #5e5e5e;
-  --fx-2025-indigo-dark-color: #111928;
-  --fx-2025-indigo-light-gray: #f7f7f7;
-  --fx-2025-indigo-border-color: #e5e7eb;
-  --fx-2025-indigo-green-color: #00a487;
-  --fx-2025-indigo-prussian-blue: #002f56;
-  --fx-2025-indigo-purple-heart: #6a32d1;
-  --fx-2025-indigo-btn-primary: #3b85ff;
-  --fx-2025-indigo-blue-dianne: #072544;
-  --fx-2025-indigo-black: #000;
-  --fx-2025-indigo-header-margin-top: 82px;
-}
-
 $white-color: var(--fx-2025-indigo-white-color);
 $concrete-color: var(--fx-2025-indigo-concrete-color);
 $purple-color: var(--fx-2025-indigo-purple-color);
@@ -130,7 +110,7 @@ section.home {
     margin-bottom: 24px;
   }
   &__subTitle {
-    color: #fbfbfb;
+    color: $white-color;
     font-size: 20px;
     font-weight: 400;
     line-height: 30px;
