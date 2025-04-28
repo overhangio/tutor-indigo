@@ -58,3 +58,39 @@ from django.utils.translation import get_language
         'media_kit': 'media-kit',
     }
 %></%def>
+
+<%def name="get_fx_header_footer_sections(header_sections=True)" buffered="True"><%
+    section_name = 'footer_sections' if header_sections else 'footer_sections'
+    declared_hf_sections = get_fx_config_value(section_name, default_value=[])
+    valid_pages = get_all_fx_page_names()
+    valid_custom_pages = get_fx_config_value('custom_pages', default_value={})
+    hf_sections = []
+
+    for f_section in declared_hf_sections:
+        page = f_section.get('page', '')
+        if page in valid_pages:
+            page_type = 'page'
+        elif page.startswith('http://') or page.startswith('https://') or page.startswith('mailto:'):
+            page_type = 'url'
+        elif page in valid_custom_pages:
+            page_type = 'custom'
+        else:
+            page_type = 'invalid'
+
+        if page_type == 'page':
+            f_section['link'] = f'/{valid_pages[page]}'
+        elif page_type == 'url':
+            f_section['link'] = page
+        elif page_type == 'custom':
+            page_name = valid_custom_pages[page]
+            if page_name:
+                f_section['link'] = f'/p/{page_name}'
+            else:
+                page_type = 'invalid'
+
+        if page_type != 'invalid':
+            f_section['new_tab'] = 'target="_blank" rel="noopener"' if f_section.get('new_tab') else ''
+            hf_sections.append(f_section)
+
+    return hf_sections
+%></%def>

@@ -1,36 +1,7 @@
 <%namespace name='fx_static' file='fx_static_content.html'/>
 
 <%
-declared_footer_sections = fx_static.get_fx_config_value('footer_sections', default_value=[])
-valid_pages = fx_static.get_all_fx_page_names()
-valid_custom_pages = fx_static.get_fx_config_value('custom_pages', default_value={})
-footer_sections = []
-
-for f_section in declared_footer_sections:
-    page = f_section.get('page', '')
-    if page in valid_pages:
-        page_type = 'page'
-    elif page.startswith('http://') or page.startswith('https://') or page.startswith('mailto:'):
-        page_type = 'url'
-    elif page in valid_custom_pages:
-        page_type = 'custom'
-    else:
-        page_type = 'invalid'
-
-    if page_type == 'page':
-        f_section['link'] = f'/{valid_pages[page]}'
-    elif page_type == 'url':
-        f_section['link'] = page
-    elif page_type == 'custom':
-        page_name = valid_custom_pages[page]
-        if page_name:
-            f_section['link'] = f'/fx_pages/{page_name}'
-        else:
-            page_type = 'invalid'
-
-    if page_type != 'invalid':
-        f_section['new_tab'] = 'target="_blank" rel="noopener"' if f_section.get('new_tab') else ''
-        footer_sections.append(f_section)
+footer_sections = fx_static.get_fx_header_footer_sections(header_sections=False)
 %>
 
 % if footer_sections:
