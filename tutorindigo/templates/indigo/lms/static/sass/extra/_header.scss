@@ -119,10 +119,15 @@ header.global-header {
         }
     }
     .hamburger-menu {
-        height: 12px;
+        height: 17px;
         width: 20px;
         left: 15px;
         top: 18px;
+        background: none;
+        border: 0;
+        padding: 0;
+        box-shadow: none;
+
         .line {
             height: 2px;
             &:nth-child(2), &:nth-child(3) {
