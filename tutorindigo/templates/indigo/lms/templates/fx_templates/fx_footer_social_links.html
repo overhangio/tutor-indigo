@@ -6,13 +6,7 @@
 %>
 
 <%
-declared_social_media_links = fx_static.get_fx_config_value('footer_social_media_links') or []
-social_media_links = []
-
-for f_link in declared_social_media_links:
-    if f_link.get('value') and f_link.get('provider'):
-        social_media_links.append(f_link)
-
+social_media_links = fx_static.get_fx_social_media_links()
 %>
 
 <div class="footerWrap__social d-flex flex-column gap-0">

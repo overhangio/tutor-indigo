@@ -94,3 +94,15 @@ from django.utils.translation import get_language
 
     return hf_sections
 %></%def>
+
+
+<%def name="get_fx_social_media_links()" buffered="True"><%
+    declared_social_media_links = get_fx_config_value('footer_social_media_links') or []
+    social_media_links = []
+
+    for f_link in declared_social_media_links:
+        if f_link.get('value') and f_link.get('provider'):
+            social_media_links.append(f_link)
+
+    return social_media_links
+%></%def>
