@@ -1,0 +1,54 @@
+<%page args="page_contents"/>
+
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
+<%
+from crum import get_current_request
+from futurex_openedx_extensions.helpers.tenants import get_all_tenants_info
+from futurex_openedx_extensions.dashboard.statistics.live import get_live_statistics
+fx_title = fx_static._(page_contents.get('title'))
+fx_description = fx_static._(page_contents.get('description'))
+
+declared_list_of_live_metrics = page_contents.get('options')
+fx_list_of_live_metrics = []
+live_statistics = {}
+
+for declared_live_metric in declared_list_of_live_metrics:
+    if declared_live_metric.get('key') in ['courses', 'learners', 'certificates', 'enrollments', 'learning_hours']:
+        if declared_live_metric.get('is_checked'):
+            declared_live_metric['key'] = declared_live_metric['key'] + '_count'
+            fx_list_of_live_metrics.append(declared_live_metric)
+
+if fx_list_of_live_metrics:
+    tenant_id = get_all_tenants_info()['tenant_by_site'].get(get_current_request().site.domain)
+    live_statistics = get_live_statistics(tenant_id)
+%>
+
+<div class="platformMainWrap">
+    % if fx_title or fx_description:
+    <div class="middleHeading">
+        % if fx_title:
+        <h2 class="sectionWrapper__sectionHeading text-center">
+            ${fx_title | fx_static.br}
+        </h2>
+        % endif
+        % if fx_description:
+        <p class="sectionWrapper__description">
+            ${fx_description | fx_static.br}
+        </p>
+        % endif
+    </div>
+    % endif
+    % if fx_list_of_live_metrics:
+    <div class="row platformMainWrap p-0 justify-content-center align-items-center">
+        % for live_metric in fx_list_of_live_metrics:
+            <div class="col-sm-2">
+                <div class="whyUsWrapper">
+                    <h4 class="whyUsWrapper__heading">${live_statistics[live_metric['key']]}</h4>
+                    <p class="whyUsWrapper__desc">${fx_static._(live_metric.get('description')) | fx_static.br}</p>
+                </div>
+            </div>
+        % endfor
+    </div>
+    % endif
+</div>
