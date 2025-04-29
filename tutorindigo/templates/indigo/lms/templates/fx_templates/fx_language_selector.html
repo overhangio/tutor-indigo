@@ -1,0 +1,133 @@
+<%page args="user, current_lang"/>
+
+<%namespace name='fx_static' file='fx_static_content.html'/>
+
+<%!
+from django.utils.translation import gettext as _
+from django.urls import reverse
+%>
+
+
+<%
+available_languages = fx_static.get_fx_config_value('platform_settings_language', default_value={}).get('languages', ['en'])
+languages = []
+supported_languages = fx_static.fx_supported_languages()
+for language in available_languages:
+    if language in supported_languages:
+        languages.append((language, supported_languages[language]))
+%>
+
+% if len(languages) > 1:
+<form action="/i18n/setlang/" method="post" class="settings-language-form" id="language-settings-form" style="display: none;">
+    <input type="hidden" id="csrf_token" name="csrfmiddlewaretoken" value="${csrf_token}">
+    % if user.is_authenticated:
+    <input title="preference api" type="hidden" class="url-endpoint" value="${reverse('preferences_api', kwargs={'username': user.username})}" data-user-is-authenticated="false">
+    % else:
+    <input title="session update url" type="hidden" class="url-endpoint" value="${reverse('update_language')}" data-user-is-authenticated="false">
+    % endif
+    <label><span class="sr">${_("Choose Language")}</span>
+        <select class="input select language-selector" id="settings-language-value" name="language">
+            % for language in languages:
+            % if language[0] == current_lang:
+            <option value="${language[0]}" selected="selected">${language[1]}</option>
+            % else:
+            <option value="${language[0]}">${language[1]}</option>
+            % endif
+            % endfor
+        </select>
+    </label>
+</form>
+
+<%
+icon_text = {
+    'ar': {
+        'text': 'ع',
+        'padding-bottom': 15,
+    },
+    'en': {
+        'text': 'en',
+        'padding-bottom': 5,
+    },
+    'fr': {
+        'text': 'fr',
+        'padding-bottom': 5,
+    },
+}
+%>
+
+<style>
+    .fx-language-btn:not(.mobile-nav-link) {
+        margin-top: 12px;
+        margin-left: 10px;
+        height: 38px;
+        width: 38px;
+    }
+
+    .fx-language-btn {
+        padding: 0;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+    }
+
+    .fx-btn-signed-in {
+        background-color: var(--fx-2025-indigo-concrete-color);
+        &.fx-hover {
+            filter: brightness(0.9);
+        }
+    }
+
+    .fx-btn {
+        background-color: var(--fx-2025-indigo-btn-primary);
+        &.fx-hover {
+            background-color: var(--fx-2025-indigo-purple-heart);
+        }
+    }
+
+    div:not(.mobile-nav-link).fx-btn span {
+        color: var(--fx-2025-indigo-white-color);
+    }
+
+    div.mobile-nav-link > a.tab-nav-link > span.fx-language-span-short {
+        display: none;
+    }
+    div:not(.mobile-nav-link) > a.tab-nav-link > span.fx-language-span-long {
+        display: none;
+    }
+</style>
+
+
+<div class="settings-language-form" style="display: flex; padding: 0 10px;">
+% for language in languages:
+    % if language[0] != current_lang and language[0] in icon_text:
+    <div class="mobile-nav-item hidden-mobile nav-item nav-tab fx-language-btn fx-btn${'-signed-in' if user.is_authenticated else ''}"
+        onmouseover="this.classList.add('fx-hover')"
+        onmouseout="this.classList.remove('fx-hover')"
+        onclick="handleLanguageChange('${language[0]}')"
+        title="${language[1]}"
+    >
+        <a class="btn tab-nav-link" style="padding-bottom: ${icon_text[language[0]]['padding-bottom']}px">
+            <span class="fx-language-span-short">${icon_text[language[0]]['text']}</span>
+            <span class="fx-language-span-long">${language[1]}</span>
+        </a>
+    </div>
+    % endif
+% endfor
+</div>
+
+
+<script>
+    function handleLanguageChange(lang) {
+        const languageSelector = document.getElementById('settings-language-value')
+        languageSelector.value = lang
+        const event = new Event('change', {bubbles: true})
+        languageSelector.dispatchEvent(event)
+        languageSelector.closest('form').submit()
+    }
+</script>
+
+
+% endif

@@ -1,0 +1,26 @@
+<%page args="page_name, allowed_sections"/>
+
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<%
+the_page = fx_static.get_fx_config_value(page_name)
+%>
+
+<div class="">
+  <div class="container homeStaticPage">
+
+    % if the_page and the_page.get('sections'):
+        % for section in the_page.get('sections'):
+            % if section.get('type') and section.get('visible') is True:
+                % if section.get('type') in allowed_sections:
+                    <%include file="_section_${section.get('type')}.html" args="page_contents=section"/>
+                % else:
+                    <%include file="_section_invalid.html" args="page_contents=section"/>
+                % endif
+            % endif
+        % endfor
+    % endif
+</div>
+</div>

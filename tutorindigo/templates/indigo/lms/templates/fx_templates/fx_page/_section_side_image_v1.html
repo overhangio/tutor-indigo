@@ -3,7 +3,6 @@
 <%!
 from django.utils.translation import gettext as _
 %>
-<%namespace name='static' file='static_content.html'/>
 <%namespace name='fx_static' file='../fx_static_content.html'/>
 
 <%
@@ -15,7 +14,7 @@ fx_style = f"flex-direction: row-reverse" if page_contents.get('reversed') else 
 
 <div class="row platformMainWrap" style="${fx_style}">
     <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
-        <h2 class="sectionWrapper__sectionHeading text-start">
+        <h2 class="sectionWrapper__sectionHeading" style="text-align:start !important;">
             ${fx_title | fx_static.br}
         </h2>
         <p class="platformProfile__desc">

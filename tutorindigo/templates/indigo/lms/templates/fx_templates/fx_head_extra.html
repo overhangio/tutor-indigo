@@ -1,0 +1,64 @@
+<%namespace name='fx_static' file='fx_static_content.html'/>
+
+<%
+import re
+visual_identity = fx_static.get_fx_config_value('visual_identity', default_value={})
+project_settings = fx_static.get_fx_config_value('project_settings', default_value={})
+fx_colors = [
+    '',  # Primary color
+    '',  # Heading color
+    '',  # Text color
+    '',  # Secondary color
+    '',  # Dark section color
+    '',  # Light section color
+]
+
+for i, color in enumerate(visual_identity.get('colors', [])):
+    if color and color.get('hex') and re.match(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$', color['hex']):
+        fx_colors[i] = color['hex']
+    if i + 1 == len(fx_colors):
+        break
+
+meta_description = fx_static._(project_settings.get('meta_description'))
+social_media_image = project_settings.get('social_media_image')
+if social_media_image:
+    social_media_links = fx_static.get_fx_social_media_links()
+    if not social_media_links:
+        social_media_image = ''
+%>
+
+<style>
+:root {
+    --fx-2025-indigo-alabaster-color: #fbfbfb;
+    --fx-2025-indigo-black: #000000;
+    --fx-2025-indigo-blue-dianne: #072544;
+    --fx-2025-indigo-border-color: #e5e7eb;
+    --fx-2025-indigo-btn-primary: #3b85ff;
+    --fx-2025-indigo-concrete-color: #f3f3f3;
+    --fx-2025-indigo-cod-gray: #141414;
+    --fx-2025-indigo-dark-color: #111928;
+    --fx-2025-indigo-green-color: #00a487;
+    --fx-2025-indigo-header-margin-top: 82px;
+    --fx-2025-indigo-light-gray: #f7f7f7;
+    --fx-2025-indigo-prussian-blue: #002f56;
+    --fx-2025-indigo-purple-color: #4600c7;
+    --fx-2025-indigo-purple-heart: #6a32d1;
+    --fx-2025-indigo-scorpion-color: #5e5e5e;
+    --fx-2025-indigo-white-color: #ffffff;
+}
+</style>
+
+<link rel="icon" type="image/x-icon" href="https://love.shadinaif.com/heart.png"/>
+% if meta_description:
+<meta name="description" content="${meta_description}">
+% endif
+
+% if social_media_image:
+    % for social_link in social_media_links:
+        % if social_link.get('provider') in ['facebook', 'linkedin', 'instagram']:
+            <meta property="og:image" content="${social_link.get('value')}">
+        % elif social_link.get('provider') == 'twitter':
+            <meta name="twitter:image" content="${social_link.get('value')}">
+        % endif
+    % endfor
+% endif

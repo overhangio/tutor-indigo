@@ -27,34 +27,8 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
 %>
 
 <div class="nav-links">
-  <div class="main">
-    % if show_dashboard_tabs:
-      <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-        <a class="${'active ' if reverse('dashboard') == request.path else ''}tab-nav-link" href="${reverse('dashboard')}"
-             aria-current="${'page' if reverse('dashboard') == request.path else 'false'}">
-             ${_("My Courses")}
-        </a>
-      </div>
-      % if show_program_listing:
-        <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-          <a class="${'active ' if reverse('program_listing_view') in request.path else ''}tab-nav-link" href="${reverse('program_listing_view')}"
-             aria-current="${'page' if reverse('program_listing_view') == request.path else 'false'}">
-             ${_("Programs")}
-          </a>
-        </div>
-      % endif
-    % endif
-    % if show_explore_courses:
-      <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-          <a class="${'active ' if reverse('courses') == request.path else ''}tab-nav-link discover-new-link" href="${marketing_link('COURSES')}"
-             aria-current="${'page' if '/courses' in request.path else 'false'}">
-             ${_('Discover')}
-          </a>
-      </div>
-    % endif
-  </div>
+    <%include file="../fx_templates/fx_navbar_authenticated.html"/>
   <div class="secondary d-flex align-items-center">
-    <%include file="./theme-toggle-button.html" />
     <%include file="user_dropdown.html"/>
   </div>
 </div>

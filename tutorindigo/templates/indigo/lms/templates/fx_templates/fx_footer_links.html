@@ -1,0 +1,18 @@
+<%namespace name='fx_static' file='fx_static_content.html'/>
+
+<%
+footer_sections = fx_static.get_fx_header_footer_sections(header_sections=False)
+%>
+
+% if footer_sections:
+<nav class="nav-colophon">
+    <ol>
+        % for f_section in footer_sections:
+        <li>
+            <a href="${f_section['link']}" ${f_section['new_tab']}>${fx_static._(f_section.get('link_title'))}</a>
+        </li>
+        % endfor
+
+    </ol>
+</nav>
+% endif

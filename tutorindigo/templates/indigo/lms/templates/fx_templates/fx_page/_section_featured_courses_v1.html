@@ -1,9 +1,5 @@
 <%page args="page_contents"/>
 
-<%!
-from django.utils.translation import gettext as _
-%>
-<%namespace name='static' file='static_content.html'/>
 <%namespace name='fx_static' file='../fx_static_content.html'/>
 
 <%
@@ -24,6 +20,6 @@ if fx_grid_type not in ['max-3', 'max-6', 'max-9', 'all', 'categorised']:
             ${fx_description | fx_static.br}
         </p>
     </div>
-    <%include file="../courses_list.html" args="fx_grid_type=fx_grid_type"/>
+    <%include file="../../courses_list.html" args="fx_grid_type=fx_grid_type"/>
 
 </div>

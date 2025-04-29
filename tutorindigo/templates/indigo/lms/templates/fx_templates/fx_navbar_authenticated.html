@@ -1,0 +1,16 @@
+<%namespace name='fx_static' file='fx_static_content.html'/>
+
+<%
+header_sections = fx_static.get_fx_header_footer_sections(header_sections=True)
+%>
+
+<div class="main">
+% for h_section in header_sections:
+    <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
+        <a class="${'active ' if h_section['link'] == request.path else ''}tab-nav-link" href="${h_section['link']}"
+            aria-current="${'page' if h_section['link'] == request.path else 'false'}">
+            ${fx_static._(h_section.get('link_title'))}
+        </a>
+    </div>
+% endfor
+</div>

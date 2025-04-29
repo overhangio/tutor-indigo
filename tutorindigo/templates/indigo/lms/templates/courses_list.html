@@ -1,5 +1,4 @@
 <%page args="fx_grid_type" expression_filter="h"/>
-<%namespace name='static' file='static_content.html'/>
 <%! from django.utils.translation import gettext as _ %>
 
 <%
@@ -11,7 +10,7 @@ else:
     homepage_course_max = 9999
 %>
 
-<div class="row platformMainWrap pt-0 px-0">
+<div class="row platformMainWrap pt-0 px-0 pb-0 justify-content-center align-items-center">
 % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
     %for course in courses[:homepage_course_max]:
         <%include file="course.html" args="course=course" />

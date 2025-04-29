@@ -1,0 +1,27 @@
+<%inherit file="../main.html" />
+<%namespace name='fx_static' file='fx_static_content.html'/>
+
+
+<%
+import re
+from django.http import Http404
+
+match = re.match(r'^/p/(?P<page_name>[\w-]+)/?$', request.path)
+if not match:
+    raise Http404()
+
+page_name = match.group('page_name')
+valid_custom_pages = fx_static.get_fx_config_value('custom_pages', default_value={})
+page_key = None
+for _page_key, page_custom_name in valid_custom_pages.items():
+    if page_custom_name == page_name:
+        page_key = _page_key
+        break
+
+if not page_key:
+    raise Http404()
+
+allowed_sections = fx_static.get_all_fx_section_names()
+%>
+
+<%include file="fx_page/page.html" args="page_name=page_key, allowed_sections=allowed_sections"/>
