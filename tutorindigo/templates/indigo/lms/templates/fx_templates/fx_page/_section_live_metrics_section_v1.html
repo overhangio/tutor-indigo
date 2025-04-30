@@ -24,29 +24,29 @@ if fx_list_of_live_metrics:
     live_statistics = get_live_statistics(tenant_id)
 
 alignment = page_contents.get('alignment')
-fx_style = f"text-align: {alignment if alignment in ['start', 'end'] else 'center'};"
+alignment = alignment if alignment in ['start', 'end'] else 'center'
 %>
 
 <div class="platformMainWrap">
     % if fx_title or fx_description:
     <div class="middleHeading">
         % if fx_title:
-        <h2 class="sectionWrapper__sectionHeading" style="${fx_style}">
+        <h2 class="sectionWrapper__sectionHeading" style="text-align: ${alignment} !important;">
             ${fx_title | fx_static.br}
         </h2>
         % endif
         % if fx_description:
-        <p class="sectionWrapper__description" style="${fx_style}">
+        <p class="sectionWrapper__description" style="text-align: ${alignment} !important;">
             ${fx_description | fx_static.br}
         </p>
         % endif
     </div>
     % endif
     % if fx_list_of_live_metrics:
-    <div class="row platformMainWrap p-0">
+    <div class="row platformMainWrap p-0" style="justify-content: ${alignment} !important;">
         % for live_metric in fx_list_of_live_metrics:
             <div class="col-sm-2">
-                <div class="whyUsWrapper" style="${fx_style}">
+                <div class="whyUsWrapper" style="text-align: ${alignment} !important;">
                     <h4 class="whyUsWrapper__heading">${live_statistics[live_metric['key']]}</h4>
                     <p class="whyUsWrapper__desc">${fx_static._(live_metric.get('description')) | fx_static.br}</p>
                 </div>
