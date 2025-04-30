@@ -94,25 +94,34 @@
         @include media-breakpoint-up(md) {
             margin: -50px 0 0;
         }
+        span {
+          &.register {
+            &.disabled {
+              display: inline-block;
+              vertical-align: top;
+              padding: 7px 14px;
+              color: #374151;
+              border-radius: 6px;
+              background: #fff;
+              font-size: 16px;
+              line-height: 24px;
+              font-weight: 500;
+              text-decoration: none !important;
+              border: 1px solid #D1D5DB;
+              margin-right: 20px;
+              @include media-breakpoint-up(md) {
+                  padding: 12px 24px;
+              }
+
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
         a {
             text-decoration: none !important;
-            span {
-                display: inline-block;
-                vertical-align: top;
-                padding: 7px 14px;
-                color: #374151;
-                border-radius: 6px;
-                background: #fff;
-                font-size: 16px;
-                line-height: 24px;
-                font-weight: 500;
-                text-decoration: none !important;
-                border: 1px solid #D1D5DB;
-                margin-right: 20px;
-                @include media-breakpoint-up(md) {
-                    padding: 12px 24px;
-                }
-            }
         }
         a.register, a strong, >span.register, a.add-to-cart {
             display: inline-block;
