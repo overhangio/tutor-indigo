@@ -60,7 +60,7 @@ from django.utils.translation import get_language
 %></%def>
 
 <%def name="get_fx_header_footer_sections(header_sections=True)" buffered="True"><%
-    section_name = 'footer_sections' if header_sections else 'footer_sections'
+    section_name = 'header_sections' if header_sections else 'footer_sections'
     declared_hf_sections = get_fx_config_value(section_name, default_value=[])
     valid_pages = get_all_fx_page_names()
     valid_custom_pages = get_fx_config_value('custom_pages', default_value={})
