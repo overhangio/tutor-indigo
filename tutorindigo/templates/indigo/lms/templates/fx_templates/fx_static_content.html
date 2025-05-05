@@ -44,8 +44,8 @@ from django.utils.translation import get_language
     return {
         'home': '',
         'courses': 'courses',
-        'about_us': 'about',
-        'contact_us': 'contact',
+        'about-us': 'about',
+        'contact-us': 'contact',
         'blog': 'blog',
         'donate': 'donate',
         'terms': 'tos',
@@ -55,7 +55,7 @@ from django.utils.translation import get_language
         'jobs': 'jobs',
         'news': 'news',
         'press': 'press',
-        'media_kit': 'media-kit',
+        'media-kit': 'media-kit',
     }
 %></%def>
 
@@ -66,8 +66,8 @@ from django.utils.translation import get_language
     valid_custom_pages = get_fx_config_value('custom_pages', default_value={})
     hf_sections = []
 
-    for f_section in declared_hf_sections:
-        page = f_section.get('page', '')
+    for hf_section in declared_hf_sections:
+        page = hf_section.get('page', '')
         if page in valid_pages:
             page_type = 'page'
         elif page.startswith('http://') or page.startswith('https://') or page.startswith('mailto:'):
@@ -78,19 +78,19 @@ from django.utils.translation import get_language
             page_type = 'invalid'
 
         if page_type == 'page':
-            f_section['link'] = f'/{valid_pages[page]}'
+            hf_section['link'] = f'/{valid_pages[page]}'
         elif page_type == 'url':
-            f_section['link'] = page
+            hf_section['link'] = page
         elif page_type == 'custom':
             page_name = valid_custom_pages[page]
             if page_name:
-                f_section['link'] = f'/p/{page_name}'
+                hf_section['link'] = f'/p/{page_name}'
             else:
                 page_type = 'invalid'
 
         if page_type != 'invalid':
-            f_section['new_tab'] = 'target="_blank" rel="noopener"' if f_section.get('new_tab') else ''
-            hf_sections.append(f_section)
+            hf_section['new_tab'] = 'target="_blank" rel="noopener"' if hf_section.get('new_tab') else ''
+            hf_sections.append(hf_section)
 
     return hf_sections
 %></%def>
