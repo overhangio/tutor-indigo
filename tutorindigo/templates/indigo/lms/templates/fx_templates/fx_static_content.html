@@ -70,7 +70,7 @@ from django.utils.translation import get_language
         page = hf_section.get('page', '')
         if page in valid_pages:
             page_type = 'page'
-        elif page == 'external_link':
+        elif page.startswith('http://') or page.startswith('https://') or page.startswith('mailto:'):
             page_type = 'url'
         elif page in valid_custom_pages:
             page_type = 'custom'
@@ -80,7 +80,7 @@ from django.utils.translation import get_language
         if page_type == 'page':
             hf_section['link'] = f'/{valid_pages[page]}'
         elif page_type == 'url':
-            hf_section['custom_url'] = page
+            hf_section['link'] = page
         elif page_type == 'custom':
             page_name = valid_custom_pages[page]
             if page_name:
