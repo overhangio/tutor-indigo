@@ -164,6 +164,7 @@
 }
 .saerch-bar-discover {
     margin:  0 0 25px;
+    display: flex;
     @include media-breakpoint-up(md) {
         margin:  0 0 30px;
     }
@@ -196,12 +197,11 @@
         }
     }
     .discover-search {
-        overflow: hidden;
+        width: 100%;
         .wrapper-search-context {
-            overflow: hidden;
             .wrapper-search-input {
                 float: none;
-                display: block;
+                display: flex;
                 margin: 0;
                 width: auto;
                 &:after {
@@ -237,7 +237,7 @@
                     }
                 }
                 .input-holder {
-                    overflow: hidden;
+                    flex-grow: 1;
                     border-radius: 6px;
                     background: $primary-light;
                     padding: 0 0 0 33px;
@@ -275,9 +275,12 @@
     }
 }
 .filter-block {
-    float: left;
+    flex: 0 0 80px;
     position: relative;
     z-index: 9;
+    @include media-breakpoint-up(sm) {
+      flex: 0 0 130px;
+    }
     &.show {
         .dropdown-menu {
             display: block;
@@ -430,7 +433,7 @@ body.indigo-dark-theme {
                         svg {
                            path {
                                 color: $text-color-d;
-                           } 
+                           }
                         }
                         input {
                             color: $text-color-d;
@@ -443,7 +446,7 @@ body.indigo-dark-theme {
             }
         }
         .filter-block {
-           
+
             >a {
                 background-color: $primary-light-d;
                 color: $text-color-d;
