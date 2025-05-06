@@ -114,9 +114,8 @@ indigo_styled_mfes = [
 ]
 
 
-mfe_patch_items = []
 for mfe in indigo_styled_mfes:
-    mfe_patch_items.append(
+    hooks.Filters.ENV_PATCHES.add_items([(
         (
             f"mfe-dockerfile-post-npm-install-{mfe}",
             """
@@ -126,17 +125,14 @@ RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'
 
 """,
         )
-    )
-    mfe_patch_items.append(
+    ),(
         (
             f"mfe-env-config-runtime-definitions-{mfe}",
             """
 const { default: IndigoFooter } = await import('@edly-io/indigo-frontend-component-footer');
 """,
         )
-    )
-
-hooks.Filters.ENV_PATCHES.add_items(mfe_patch_items)
+    )])
 
 
 hooks.Filters.ENV_PATCHES.add_item(
