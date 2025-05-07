@@ -3,6 +3,7 @@
 <%page expression_filter="h" args="online_help_token"/>
 
 <%namespace name='static' file='../static_content.html'/>
+<%namespace name='fx_static' file='../fx_templates/fx_static_content.html'/>
 <%!
 from django.urls import reverse
 from django.utils.translation import gettext as _
@@ -29,7 +30,7 @@ enterprise_customer_link = get_enterprise_learner_portal(request)
   % else:
     <a href="${branding_api.get_home_url()}">
       <%block name="navigation_logo">
-        <img  class="logo" src="${branding_api.get_logo_url(is_secure)}" alt="${_("{platform_name} Home Page").format(platform_name=static.get_platform_name())}"/>
+        <img  class="logo" src="${fx_static.fx_get_logo_image_url()}" alt="${_("{platform_name} Home Page").format(platform_name=static.get_platform_name())}"/>
       </%block>
         % if settings.LOGO_IMAGE_EXTRA_TEXT == 'edge':
             <span class="font-italic"> | EDGE</span>
