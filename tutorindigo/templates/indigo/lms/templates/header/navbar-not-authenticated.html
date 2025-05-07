@@ -14,6 +14,7 @@ from django.utils.translation import gettext as _
 
 <%
   mktg_site_enabled = static.get_value('ENABLE_MKTG_SITE', settings.FEATURES.get('ENABLE_MKTG_SITE', False))
+  mktg_site_enabled = False  # disable it for now until we figure out a design for it
   courses_are_browsable = settings.FEATURES.get('COURSES_ARE_BROWSABLE')
   allows_login = not settings.FEATURES['DISABLE_LOGIN_BUTTON'] and not combined_login_and_register
   can_discover_courses = settings.FEATURES.get('ENABLE_COURSE_DISCOVERY')
@@ -51,7 +52,7 @@ from django.utils.translation import gettext as _
       % if allows_login:
         % if allow_public_account_creation and not combined_login:
             <div class="mobile-nav-item hidden-mobile nav-item">
-                <a class="register-btn btn" href="/register${login_query()}">${_("Registesr for free")}</a>
+                <a class="register-btn btn" href="/register${login_query()}">${_("Register for free")}</a>
             </div>
         % endif
         <div class="mobile-nav-item hidden-mobile nav-item">
