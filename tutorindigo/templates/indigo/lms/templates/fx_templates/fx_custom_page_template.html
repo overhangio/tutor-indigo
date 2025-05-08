@@ -11,17 +11,26 @@ if not match:
     raise Http404()
 
 page_name = match.group('page_name')
-valid_custom_pages = fx_static.get_fx_config_value('custom_pages', default_value={})
+valid_custom_pages = fx_static.get_fx_config_value('custom_pages', default_value=[])
 page_key = None
-for _page_key, page_custom_name in valid_custom_pages.items():
-    if page_custom_name == page_name:
-        page_key = _page_key
+for custom_page in valid_custom_pages:
+    custom_page_key = custom_page.get('key')
+    if not custom_page_key:
+        continue
+    else:
+        custom_page_key = f'pages_{custom_page_key}'
+
+    declared_custom_page = fx_static.get_fx_config_value(custom_page_key, default_value={})
+    url_slug = declared_custom_page.get('url_slug', '')
+    if url_slug == page_name:
+        page_key = custom_page_key
         break
 
 if not page_key:
     raise Http404()
 
 allowed_sections = fx_static.get_all_fx_section_names()
+allowed_sections.remove('featured_courses_v1')
 %>
 
 <%include file="fx_page/page.html" args="page_name=page_key, allowed_sections=allowed_sections"/>

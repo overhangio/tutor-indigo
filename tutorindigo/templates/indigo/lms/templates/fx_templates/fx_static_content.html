@@ -2,6 +2,7 @@
 <%!
 from futurex_openedx_extensions.helpers.tenants import get_config_current_request
 from django.utils.translation import get_language
+from lms.djangoapps.branding import api as branding_api
 %>
 
 <%def name="br(text)" buffered="True"><%
@@ -107,4 +108,13 @@ from django.utils.translation import get_language
             social_media_links.append(f_link)
 
     return social_media_links
+%></%def>
+
+
+<%def name="fx_get_logo_image_url()" buffered="True"><%
+    logo_image_url = get_fx_config_value('logo_image_url', default_value='')
+    if not logo_image_url:
+        logo_image_url = branding_api.get_logo_url(is_secure)
+
+    return logo_image_url
 %></%def>

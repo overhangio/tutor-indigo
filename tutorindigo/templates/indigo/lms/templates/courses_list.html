@@ -8,10 +8,18 @@ elif fx_grid_type in ['max-3', 'max-6', 'max-9']:
     homepage_course_max = int(fx_grid_type[-1])
 else:
     homepage_course_max = 9999
+
+no_courses = not courses
 %>
 
 <div class="row platformMainWrap pt-0 px-0 pb-0 justify-content-center align-items-center">
-% if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+% if no_courses:
+    <div class="col-12">
+        <div class="noCourses">
+            <h2 class="noCourses__heading" style="text-align: center">${_("There are no courses available at this time!")}</h2>
+        </div>
+    </div>
+% elif settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
     %for course in courses[:homepage_course_max]:
         <%include file="course.html" args="course=course" />
     %endfor

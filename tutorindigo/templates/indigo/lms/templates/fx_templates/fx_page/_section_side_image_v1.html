@@ -9,7 +9,10 @@ from django.utils.translation import gettext as _
 fx_title = fx_static._(page_contents.get('title'))
 fx_description = fx_static._(page_contents.get('description'))
 fx_image_url = page_contents.get('side_image')
-fx_style = f"flex-direction: row-reverse" if page_contents.get('reversed') else ""
+is_reversed = page_contents.get('reversed', False)
+if isinstance(is_reversed, str):
+    is_reversed = is_reversed.lower() == 'yes'
+fx_style = f'flex-direction: row-reverse' if is_reversed else ''
 %>
 
 <div class="row platformMainWrap" style="${fx_style}">
