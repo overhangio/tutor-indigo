@@ -1525,6 +1525,17 @@ body.indigo-dark-theme {
   } 
 
 }
+.open-response-assessment-block {
+  .open-response-assessment-main-table {
+    th {
+      button {
+        &:focus {
+          outline: revert
+        }
+      }
+    }
+  }
+}
 @import '../../../extra/footer';
 @import '../../../extra/header';
 @import '../../../dashboard/dashboard';
