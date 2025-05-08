@@ -2,35 +2,38 @@
 <%namespace name='fx_static' file='fx_static_content.html'/>
 
 
+<%def name="fx_get_page_key()" buffered="True"><%
+    import re
+    from django.http import Http404
+
+    match = re.match(r'^/p/(?P<page_name>[\w-]+)/?$', request.path)
+    if not match:
+        raise Http404()
+
+    page_name = match.group('page_name')
+    valid_custom_pages = fx_static.get_fx_config_value('custom_pages', default_value=[])
+    page_key = None
+    for custom_page_key in valid_custom_pages:
+        custom_page_content = fx_static.get_fx_config_value(custom_page_key, default_value={})
+        url_slug = custom_page_content.get('url_slug', '')
+        if url_slug == page_name:
+            page_key = custom_page_key
+            break
+
+    if not page_key:
+        raise Http404()
+
+    return page_key
+%></%def>
+
+
 <%
-import re
-from django.http import Http404
-
-match = re.match(r'^/p/(?P<page_name>[\w-]+)/?$', request.path)
-if not match:
-    raise Http404()
-
-page_name = match.group('page_name')
-valid_custom_pages = fx_static.get_fx_config_value('custom_pages', default_value=[])
-page_key = None
-for custom_page in valid_custom_pages:
-    custom_page_key = custom_page.get('key')
-    if not custom_page_key:
-        continue
-    else:
-        custom_page_key = f'pages_{custom_page_key}'
-
-    declared_custom_page = fx_static.get_fx_config_value(custom_page_key, default_value={})
-    url_slug = declared_custom_page.get('url_slug', '')
-    if url_slug == page_name:
-        page_key = custom_page_key
-        break
-
-if not page_key:
-    raise Http404()
-
 allowed_sections = fx_static.get_all_fx_section_names()
 allowed_sections.remove('featured_courses_v1')
 %>
 
-<%include file="fx_page/page.html" args="page_name=page_key, allowed_sections=allowed_sections"/>
+<%def name="pagetitle()">
+    ${fx_static._(fx_static.get_fx_config_value(fx_get_page_key(), default_value={}).get('title', {}))}
+</%def>
+
+<%include file="fx_page/page.html" args="page_name=fx_get_page_key(), allowed_sections=allowed_sections"/>

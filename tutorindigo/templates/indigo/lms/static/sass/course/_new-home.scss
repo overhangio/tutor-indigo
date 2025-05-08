@@ -30,6 +30,22 @@ $black: var(--fx-2025-indigo-black);
   font: -webkit-control;
 }
 
+.fx-preview-banner {
+  background-color: #c26464;
+  color: white;
+  text-align: center;
+  position: fixed;
+  padding: 6px;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.fx-hyperlink {
+  color: #004de0 !important;
+  text-decoration: underline !important;
+}
+
 .navbarWrapper {
   width: 100%;
   max-width: 1170px;

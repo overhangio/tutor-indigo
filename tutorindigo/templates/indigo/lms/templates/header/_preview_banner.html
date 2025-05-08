@@ -3,10 +3,9 @@
         document.documentElement.style.setProperty('--fx-2025-indigo-header-margin-top', (82 + 27) + 'px');
 
         var banner = document.createElement('div');
-        banner.className = 'preview-banner';
-        banner.style.cssText = 'background-color: #c26464; color: white; text-align: center; position: fixed; width: 100%; top: 0; z-index: 1000;';
+        banner.className = 'fx-preview-banner';
 
-        banner.innerHTML = 'this is Preview of the draft theme. Click <a href="#" onclick="document.cookie = \'theme-preview=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;\'; location.reload();">here</a> to dismiss the preview and go back to the live theme.';
+        banner.innerHTML = 'This is a preview of the draft theme. Click <a class="fx-hyperlink" href="#" onclick="document.cookie = \'theme-preview=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;\'; location.reload();">here</a> to dismiss the preview and go back to the live theme.';
 
         document.body.insertBefore(banner, document.body.firstChild);
     }
