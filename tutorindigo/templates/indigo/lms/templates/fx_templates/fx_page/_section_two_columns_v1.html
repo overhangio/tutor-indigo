@@ -28,7 +28,7 @@ for i in range(min(3, len(declared_columns_section))):
         <div class="col-12 col-sm-6">
             <div class="platformProfile" style="text-align: ${columns_section.get('content_alignment', 'start') | fx_static.br}">
                 <div style="display: flex; justify-content: ${columns_section.get('content_alignment', 'start') | fx_static.br};">
-                    <i class="fa ${columns_section.get('icon') | fx_static.br} icon" aria-hidden="true"></i>
+                    <i class="fa fa-${columns_section.get('icon') | fx_static.br} icon" aria-hidden="true"></i>
                 </div>
                 <h4 class="platformProfile__heading">${fx_static._(columns_section.get('title')) | fx_static.br}</h4>
                 <p class="platformProfile__desc">
