@@ -5,10 +5,10 @@ import re
 visual_identity = fx_static.get_fx_config_value('visual_identity', default_value={})
 project_settings = fx_static.get_fx_config_value('project_settings', default_value={})
 fx_colors = [
-    '',  # Primary color
-    '',  # Heading color
-    '',  # Text color
-    '',  # Secondary color
+    '#4600c7',  # Primary color
+    '#6a32d1',  # Secondary color
+    '',  # Footer background color
+    '',  # Footer text color
     '',  # Dark section color
     '',  # Light section color
 ]
@@ -28,6 +28,31 @@ if social_media_image:
 %>
 
 <style>
+@font-face {
+  font-family: 'FutureXDefaultFont';
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap') format('woff2');
+  unicode-range:
+    U+0000-00FF,
+    U+0100-024F,
+    U+0250-02AF,
+    U+1E00-1EFF,
+    U+2000-206F,
+    U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'FutureXDefaultFont';
+  src: url('IBMPlexArabic.woff2') format('woff2');
+  unicode-range:
+    U+0600-06FF,
+    U+0750-077F,
+    U+08A0-08FF,
+    U+FB50-FDFF,
+    U+FE70-FEFF,
+    U+0660-0669;
+}
+
 :root {
     --fx-2025-indigo-alabaster-color: #fbfbfb;
     --fx-2025-indigo-black: #000000;
@@ -41,11 +66,21 @@ if social_media_image:
     --fx-2025-indigo-header-margin-top: 82px;
     --fx-2025-indigo-light-gray: #f7f7f7;
     --fx-2025-indigo-prussian-blue: #002f56;
-    --fx-2025-indigo-purple-color: #4600c7;
-    --fx-2025-indigo-purple-heart: #6a32d1;
+    --fx-2025-indigo-purple-color: ${fx_colors[0]};
+    --fx-2025-indigo-purple-heart: ${fx_colors[1]};
     --fx-2025-indigo-scorpion-color: #5e5e5e;
     --fx-2025-indigo-white-color: #ffffff;
 }
+
+html {
+  --main-primary-color: var(--fx-2025-indigo-purple-color);
+  --footer-bg: var(--fx-2025-indigo-alabaster-color);
+  --footer-text-color: var(--fx-2025-indigo-cod-gray);
+  --green-button-bg: var(--fx-2025-indigo-purple-color);
+  --hover-button-bg: var(--fx-2025-indigo-purple-heart);
+  --footer-icon-color: var(--fx-2025-indigo-purple-color);
+}
+
 </style>
 
 % if meta_description:
