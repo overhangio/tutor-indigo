@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
 import Cookies from 'universal-cookie';
 
+import { PluginSlot } from '@openedx/frontend-plugin-framework';
+import { useIntl, defineMessages } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform';

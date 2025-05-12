@@ -65,3 +65,64 @@ const AddDarkTheme = () => {
 
   return (<div />);
 };
+
+const messages = defineMessages({
+  'footer.poweredby.text': {
+      id: 'footer.poweredby.text',
+      defaultMessage: 'Powered by',
+      description: 'text for the footer',
+  },
+  'footer.logo.altText': {
+      id: 'footer.logo.altText',
+      defaultMessage: 'Powered by Open edX',
+      description: 'alt text for the footer logo.',
+  },
+  'footer.tutorlogo.altText': {
+      id: 'footer.tutorlogo.altText',
+      defaultMessage: 'Runs on Tutor',
+      description: 'alt text for the footer tutor logo',
+  },
+  'footer.logo.ariaLabel': {
+      id: 'footer.logo.ariaLabel',
+      defaultMessage: 'edX Home',
+      description: 'aria-label for the footer logo.',
+  },
+  'footer.copyright.text': {
+      id: 'footer.copyright.text',
+      defaultMessage: `Copyrights ©${new Date().getFullYear()}. All Rights Reserved.`,
+      description: 'copyright text for the footer',
+  },
+});
+
+const IndigoFooter = () => {
+  const { formatMessage } = useIntl();
+  const config = getConfig();
+
+  return (
+    <div className="wrapper wrapper-footer">
+      <footer id="footer" className="tutor-container">
+          <div className="footer-top">
+              <div className="powered-area">
+                  <ul className="logo-list">
+                      <li>{formatMessage(messages['footer.poweredby.text'])}</li>
+                      <li>
+                          <a href="https://edly.io/tutor/" rel="noreferrer" target="_blank">
+                              <img src={`${config.LMS_BASE_URL}/theming/asset/images/tutor-logo.png`}
+                                  alt={formatMessage(messages['footer.tutorlogo.altText'])} width="57" />
+                          </a>
+                      </li>
+                      <li>
+                          <a href="https://open.edx.org" rel="noreferrer" target="_blank">
+                              <img src={`${config.LMS_BASE_URL}/theming/asset/images/openedx-logo.png`}
+                                  alt={formatMessage(messages['footer.logo.altText'])} width="79" />
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <span className="copyright-site">{formatMessage(messages['footer.copyright.text'])}</span>
+          <PluginSlot id='footer_language_selector' />
+      </footer>
+    </div>
+  );
+};
