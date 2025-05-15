@@ -33,6 +33,11 @@ input:-webkit-autofill:active{
   border: none;
 }
 
+:focus,
+:focus-visible {
+    outline-width: 2px;
+}
+
 %btn-pl-default-base {
   border-radius: 0;
 }
