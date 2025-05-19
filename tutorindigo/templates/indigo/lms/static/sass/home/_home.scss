@@ -32,6 +32,7 @@ section.home {
 #main .home.style-logout  {
     header {
         background: none;
+        overflow: visible;
         .outer-wrapper {
             .title {
                 width: 100%;
@@ -73,13 +74,9 @@ section.home {
                 .course-search {
                     padding: 0;
                     .search-field-wrapper {
-                        &:after {
-                            clear: both;
-                            content: "";
-                            display: block;
-                        }
-                        .button-holder {
-                            float: right;
+                      display: flex;
+
+                      .button-holder {
                             button {
                                 position: static;
                                 margin: 0 0 0 16px;
@@ -105,7 +102,7 @@ section.home {
                             }
                         }
                         .input-holder {
-                            overflow: hidden;
+                            flex-grow: 1;
                             border-radius: 6px;
                             background: $primary-light;
                             padding: 0 0 0 33px;
@@ -127,6 +124,12 @@ section.home {
                                 font-size: 14px;
                                 line-height: 20px;
                                 padding: 9px 10px;
+
+                                &:focus,
+                                &:focus-visible {
+                                    outline: revert;
+                                    outline-width: 2px;
+                                }
                             }
                         }
                     }
