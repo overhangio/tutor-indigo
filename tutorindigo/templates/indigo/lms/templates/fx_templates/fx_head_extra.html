@@ -4,13 +4,14 @@
 import re
 visual_identity = fx_static.get_fx_config_value('visual_identity', default_value={})
 project_settings = fx_static.get_fx_config_value('project_settings', default_value={})
+
+footer_template = fx_static.get_fx_config_value('footer', default_value={}).get('footer_template')
+if footer_template not in ['dark_footer', 'light_footer']:
+    footer_template = 'light_footer'
+
 fx_colors = [
     '#4600c7',  # Primary color
     '#6a32d1',  # Secondary color
-    '',  # Footer background color
-    '',  # Footer text color
-    '',  # Dark section color
-    '',  # Light section color
 ]
 
 for i, color in enumerate(visual_identity.get('colors', [])):
@@ -55,7 +56,7 @@ if social_media_image:
 
 :root {
     --fx-2025-indigo-alabaster-color: #fbfbfb;
-    --fx-2025-indigo-black: #000000;
+    --fx-2025-indigo-black: #000;
     --fx-2025-indigo-blue-dianne: #072544;
     --fx-2025-indigo-border-color: #e5e7eb;
     --fx-2025-indigo-btn-primary: #3b85ff;
@@ -69,16 +70,16 @@ if social_media_image:
     --fx-2025-indigo-purple-color: ${fx_colors[0]};
     --fx-2025-indigo-purple-heart: ${fx_colors[1]};
     --fx-2025-indigo-scorpion-color: #5e5e5e;
-    --fx-2025-indigo-white-color: #ffffff;
+    --fx-2025-indigo-white-color: #fff;
 }
 
 html {
-  --main-primary-color: var(--fx-2025-indigo-purple-color);
-  --footer-bg: var(--fx-2025-indigo-alabaster-color);
-  --footer-text-color: var(--fx-2025-indigo-cod-gray);
-  --green-button-bg: var(--fx-2025-indigo-purple-color);
-  --hover-button-bg: var(--fx-2025-indigo-purple-heart);
-  --footer-icon-color: var(--fx-2025-indigo-purple-color);
+    --main-primary-color: var(--fx-2025-indigo-purple-color);
+    --footer-bg: ${('#fbfbfb' if footer_template == 'light_footer' else '#000')};
+    --footer-text-color: ${('#141414' if footer_template == 'light_footer' else '#fff')};
+    --footer-icon-color: ${('#4600c7' if footer_template == 'light_footer' else '#fff')};;
+    --green-button-bg: var(--fx-2025-indigo-purple-color);
+    --hover-button-bg: var(--fx-2025-indigo-purple-heart);
 }
 
 </style>

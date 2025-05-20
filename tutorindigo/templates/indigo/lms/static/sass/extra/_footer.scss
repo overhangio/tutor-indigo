@@ -5,6 +5,7 @@
   @include media-breakpoint-up(md) {
     padding: 45px 0;
   }
+ background-color: var(--footer-bg);
 }
 footer.tutor-container {
   margin: 0 auto;
