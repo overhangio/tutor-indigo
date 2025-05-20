@@ -440,7 +440,7 @@ body.view-instructordash {
       overflow-x: auto;
       display: flex;
       border: 0;
-      padding: 3px;
+      padding: 5px;
 
       li {
         margin-right: -1px;
@@ -905,7 +905,7 @@ body.indigo-dark-theme {
         box-shadow: none !important;
       }
       .instructor-nav {
-        border: 1px solid #E5E7EB;
+
         li {
           &:first-child {
             button {
@@ -913,9 +913,6 @@ body.indigo-dark-theme {
             }
           }
           button {
-            border: none !important;
-            border-radius: 0 !important;
-            border-left: 1px solid #E5E7EB !important;
             color: $text-color-primary;
             &.active-section {
               background: $primary-d !important;
