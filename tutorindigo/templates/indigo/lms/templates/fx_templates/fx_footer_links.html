@@ -9,7 +9,11 @@ footer_sections = fx_static.get_fx_header_footer_sections(header_sections=False)
     <ol>
         % for f_section in footer_sections:
         <li>
-            <a href="${f_section['link']}" ${f_section['new_tab']}>${fx_static._(f_section.get('link_title'))}</a>
+            <a
+                href="${f_section['link']}" ${f_section['new_tab']} style="color: var(--footer-text-color);"
+            >
+            ${fx_static._(f_section.get('link_title'))}
+            </a>
         </li>
         % endfor
 
