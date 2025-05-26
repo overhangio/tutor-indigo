@@ -1,0 +1,36 @@
+.view-teams {
+
+  .topics-paging-header {
+
+    .listing-tools {
+      margin: 2px 0 $baseline * 1.5;
+    }
+  }
+
+  .cards-list {
+    box-sizing: border-box;
+    padding-bottom: $baseline;
+
+    @include media-breakpoint-up(sm) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $baseline * 2;
+    }
+
+    .card {
+      margin: 0 0 $baseline * 2;
+      box-sizing: border-box;
+      width: 100%;
+      display: block;
+
+      @include media-breakpoint-up(sm) {
+        margin: 0;
+        width: calc(50% - #{$baseline});
+      }
+
+      @include media-breakpoint-up(md) {
+        width: calc(33% - 25px);
+      }
+    }
+  }
+}
