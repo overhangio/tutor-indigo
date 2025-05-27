@@ -491,6 +491,13 @@
         }
     }
     .xblock.xmodule_display.xmodule_HtmlBlock .blue-text{color: $primary;}
+    .xblock.xmodule_display.xmodule_HtmlBlock ul li::marker,
+    .xblock.xmodule_display.xmodule_HtmlBlock ul li strong{
+        color: $text-color-d;
+    }
+    .xblock.xmodule_display.xmodule_HtmlBlock .course-structure h3{
+        color: $text-color-d;
+    }
 
 
     .edx-notes-wrapper{
