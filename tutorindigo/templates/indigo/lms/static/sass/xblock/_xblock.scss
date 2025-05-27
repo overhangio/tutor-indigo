@@ -474,8 +474,30 @@
 
     .emoji-button{
         background-color: $body-bg-d;
+        border: 1px solid $light-overlay-d;
+
+        &:hover,
+        &:hover:not(:disabled){
+            background-color: $light-dark-d;
+        }
+    }
+      
+    .emoji-button-highlighted{
+        background-color: $text-color-d;
+      
+        &:hover,
+        &:hover:not(:disabled){
+            background-color: $text-color-d;
+        }
     }
     .xblock.xmodule_display.xmodule_HtmlBlock .blue-text{color: $primary;}
+    .xblock.xmodule_display.xmodule_HtmlBlock ul li::marker,
+    .xblock.xmodule_display.xmodule_HtmlBlock ul li strong{
+        color: $text-color-d;
+    }
+    .xblock.xmodule_display.xmodule_HtmlBlock .course-structure h3{
+        color: $text-color-d;
+    }
 
 
     .edx-notes-wrapper{

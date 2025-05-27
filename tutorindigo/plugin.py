@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import os
-from glob import glob
 import typing as t
+from glob import glob
 
 import importlib_resources
 from tutor import hooks
-from tutormfe.hooks import PLUGIN_SLOTS
 from tutor.__about__ import __version_suffix__
+from tutormfe.hooks import PLUGIN_SLOTS
 
 from .__about__ import __version__
 
@@ -78,7 +78,7 @@ with open(
 # Override openedx & mfe docker image names
 @hooks.Filters.CONFIG_DEFAULTS.add(priority=hooks.priorities.LOW)
 def _override_openedx_docker_image(
-    items: list[tuple[str, t.Any]]
+    items: list[tuple[str, t.Any]],
 ) -> list[tuple[str, t.Any]]:
     openedx_image = ""
     mfe_image = ""
