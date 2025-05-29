@@ -35,4 +35,9 @@ $(document).ready(function() {
     setThemeToggleBtnState(); // check/uncheck toggle btn based on theme
 
     $('#toggle-switch').on('change', toggleTheme);
+    $('#toggle-switch-input').on('keydown', function (event) {
+      if (event.key === "Enter") {
+          toggleTheme();
+      }
+    });
 });
