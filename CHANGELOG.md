@@ -19,6 +19,19 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-19.0.2'></a>
+## v19.0.2 (2025-05-27)
+
+- [Improvement] Migrate from `setup.py` (setuptools) to `pyproject.toml` (hatch). (by @ahmed-arb)
+
+- [Improvement] Add hatch_build.py in sdist target to fix the installation issues (by @dawoudsheraz)
+
+- [BugFix] Fix runtime footer import error in env.config.jsx for unsupported MFEs. (by @ahmed-arb)
+
+ - [BugFix] Maintain selected emoji color in survey xblock. (by @mlabeeb03)
+
+- [Improvement] Change color of headings and list items in dark mode to improve readability. (by @mlabeeb03)
+
 <a id='changelog-19.0.1'></a>
 ## v19.0.1 (2025-01-26)
 
