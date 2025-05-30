@@ -1,4 +1,9 @@
 // Include custom header
+.nav-skip {
+    &:focus {
+        z-index: 9999;
+    }
+}
 header.global-header {
     border: none;
     padding: 0;
