@@ -28,9 +28,14 @@ from django.utils.translation import gettext as _
   <% format_string="MM/DD/YYYY HH:MM" %>
   <p>
     ## Translators: "format_string" is the string MM/DD/YYYY HH:MM, as that is the format the system requires.
-    ${_("Specify the extension due date and time (in UTC; please specify {format_string}).").format(format_string=format_string)}*</p>
-  <p><input type="text" name="due_datetime" 
-           placeholder="${format_string}"/> <input type="text" name="reason" placeholder="${_('Reason for extension')}" size=40 />
+    ${_("Specify the extension due date and time (in UTC; please specify {format_string}).").format(format_string=format_string)}*
+    <input type="text" name="due_datetime" placeholder="${format_string}"/>
+  </p>
+  <p>
+    <label for="due_datetime">
+        ${_('Reason for extension:')}
+    </label>
+    <input type="text" name="reason" placeholder="${_('Reason for extension')}" size=40 />
   </p>
   <p class="request-response"></p>
   <p class="request-response-error"></p>
@@ -108,6 +113,9 @@ from django.utils.translation import gettext as _
       <option value="${url}">${title}</option>
       %endfor
     </select>
+  </p>
+  <p>
+    <label for="reason">${_('Reason for reset:')}</label>
     <input type="text" name="reason" placeholder="${_('Reason for reset')}" size=40 />
   </p>
   <p class="request-response"></p>
