@@ -1,0 +1,23 @@
+.view-wiki {
+
+  .wiki-wrapper {
+
+    section.wiki {
+      line-height: 1.5;
+
+      #hint_id_content {
+        position: static;
+      }
+    }
+  }
+}
+
+.open-response-assessment {
+  line-height: 1.3;
+}
+
+.open-response-assessment-summary,
+.open-response-assessment-main-table {
+  max-width: 100%;
+  overflow-x: auto;
+}

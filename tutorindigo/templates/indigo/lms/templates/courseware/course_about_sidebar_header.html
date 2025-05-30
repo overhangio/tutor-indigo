@@ -50,19 +50,22 @@ from django.conf import settings
       %>
       <!-- NEW IN INDIGO socialnetworks is improved with better SVGs icons -->
       <a href="${tweet_action}" class="share">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M13.682 1.6875H16.1641L10.743 7.88203L17.1203 16.3125H12.1281L8.21523 11.2008L3.74336 16.3125H1.25781L7.05508 9.68555L0.941406 1.6875H6.06016L9.59336 6.35977L13.682 1.6875ZM12.8102 14.8289H14.1848L5.31133 3.09375H3.83477L12.8102 14.8289Z" fill="#9CA3AF"/>
-          </svg><span class="sr">${_("Tweet that you've enrolled in this course")}</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.8996 1H22.5816L14.5398 10.3183L24 23H16.5945L10.7901 15.3106L4.15646 23H0.469358L9.06911 13.0313L0 1H7.59323L12.8344 8.02837L18.8996 1ZM17.6063 20.7683H19.6454L6.48241 3.11538H4.29206L17.6063 20.7683Z" fill="#9CA3AF"/>
+        </svg>
+        <span class="sr">${_("Tweet that you've enrolled in this course")}</span>
       </a>
       <a href="${facebook_link}" class="share">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M18 9.05524C18 4.05403 13.9707 6.29184e-07 9 4.05324e-07C4.0293 1.81463e-07 2.31733e-07 4.05403 5.17607e-07 9.05524C7.75944e-07 13.5747 3.2913 17.3209 7.5942 18L7.5942 11.6731L5.3082 11.6731L5.3082 9.05524L7.5942 9.05524L7.5942 7.06037C7.5942 4.79113 8.937 3.53788 10.9935 3.53788C11.9781 3.53788 13.0077 3.71446 13.0077 3.71446L13.0077 5.94205L11.8737 5.94205C10.755 5.94205 10.4067 6.6402 10.4067 7.35647L10.4067 9.05524L12.9024 9.05524L12.5037 11.6722L10.4067 11.6722L10.4067 18C14.7087 17.3209 18 13.5747 18 9.05524Z" fill="#9CA3AF"/>
-          </svg><span class="sr">${_("Post a Facebook message to say you've enrolled in this course")}</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M24 12.0737C24 5.40537 18.6276 2.9848e-07 12 0C5.3724 -2.98481e-07 -3.81165e-07 5.40537 0 12.0737C3.44449e-07 18.0996 4.3884 23.0945 10.1256 24V15.5641H7.0776V12.0737H10.1256V9.41383C10.1256 6.38817 11.916 4.71717 14.658 4.71717C15.9708 4.71717 17.3436 4.95261 17.3436 4.95261V7.92273H15.8316C14.34 7.92273 13.8756 8.8536 13.8756 9.80863V12.0737H17.2032L16.6716 15.5629H13.8756V24C19.6116 23.0945 24 18.0996 24 12.0737Z" fill="#9CA3AF"/>
+        </svg>
+        <span class="sr">${_("Post a Facebook message to say you've enrolled in this course")}</span>
       </a>
       <a href="${email_link}" class="share">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17" fill="none">
-          <path d="M21 2.85763C21 1.83593 20.1 1 19 1H3C1.9 1 1 1.83593 1 2.85763M21 2.85763V14.0034C21 15.0251 20.1 15.861 19 15.861H3C1.9 15.861 1 15.0251 1 14.0034V2.85763M21 2.85763L11 9.35932L1 2.85763" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg><span class="sr">${_("Email someone to say you've enrolled in this course")}</span>
+        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M31 3.75001C31 2.2375 29.65 1 28 1H4C2.35 1 1 2.2375 1 3.75001M31 3.75001V20.25C31 21.7625 29.65 23 28 23H4C2.35 23 1 21.7625 1 20.25V3.75001M31 3.75001L16 13.375L1 3.75001" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="sr">${_("Email someone to say you've enrolled in this course")}</span>
       </a>
   </div>
   % endif
