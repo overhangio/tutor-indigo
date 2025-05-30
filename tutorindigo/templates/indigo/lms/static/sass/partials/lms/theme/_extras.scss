@@ -302,13 +302,29 @@ nav.wrapper-preview-menu {
   margin: 0 auto;
   max-width: 1600px;
   padding: 20px 15px !important;
+
+  .course-material {
+    overflow: visible;
+  }
+
   .tabs.course-tabs {
     margin: 0 0 10px;
-    border-bottom: 1px solid #E5E7EB;
+    border-bottom: 1px solid $gray-light;
     padding: 0;
     li {
       margin: 0 32px 0 0;
-      a {
+
+      &.more {
+        margin-right: 0;
+      }
+
+      button {
+        border: 0;
+        background: none;
+      }
+
+      a,
+      button {
         border-width: 2px;
         font-size: 14px;
         font-weight: 500;
@@ -406,6 +422,14 @@ body.view-instructordash {
   }
   .instructor-dashboard-content-2 {
     padding: 0;
+
+    .wrap-instructor-info {
+      @include media-breakpoint-down(xs) {
+        display: block;
+        text-align: right;
+      }
+    }
+
     h2.instructor-dashboard-title {
       font-size: 24px;
       line-height: 30px;
@@ -414,13 +438,16 @@ body.view-instructordash {
       background: $primary;
       color: white;
       margin: 0 0 10px;
+      @include media-breakpoint-down(xs) {
+        display: inline-block;
+        float: none;
+      }
     }
     .instructor-nav {
-      overflow: hidden;
+      overflow: visible;
       width: 100%;
       white-space: nowrap;
-      overflow-x: auto;
-      border: 1px solid #E5E7EB;
+      border: 1px solid $gray-light;
       border-radius: 6px;
       padding: 0 !important;
       letter-spacing: -.32em;
@@ -434,7 +461,7 @@ body.view-instructordash {
         button {
           border: none !important;
           border-radius: 0 !important;
-          border-left: 1px solid #E5E7EB !important;
+          border-left: 1px solid $gray-light !important;
           font-size: 14px;
           line-height: 20px;
           font-weight: 500;
@@ -453,6 +480,13 @@ body.view-instructordash {
           }
         }
       }
+
+      .more-responsive-menu {
+        button {
+          display: block;
+          width: 100%;
+        }
+      }
     }
     .enrollment-wrapper {
       margin: 0;
@@ -467,7 +501,7 @@ body.view-instructordash {
           color: #111827;
         }
         .total {
-          border-top: 1px solid #E5E7EB;
+          border-top: 1px solid $gray-light;
           th, td {
             color: $primary;
             font-weight: 700;
@@ -733,7 +767,7 @@ body.view-wiki{
           }
         }
         .timestamp {
-          border: 1px solid #E5E7EB;
+          border: 1px solid $gray-light;
           border-radius: 8px;
           border-left: 6px solid $primary-light;
           padding: 15px;
@@ -769,6 +803,61 @@ body.view-wiki{
     }
   }
 }
+
+body {
+  .slick-header-column.ui-state-default {
+    height: auto;
+  }
+  .instructor-dashboard-wrapper-2 {
+    section.idash-section {
+      line-height: 1.3;
+
+      &#membership .batch-beta-testers .request-res-section h3 {
+        color: $text-color-d;
+      }
+      &#student_admin input[type="text"] {
+        width: 100%;
+        max-width: 650px;
+      }
+      &#extensions {
+        select {
+          height: 35px;
+          border-color: $instructor-input-border-color;
+
+          @include media-breakpoint-down(xs) {
+            display: block;
+            width: 100%;
+          }
+
+          @include media-breakpoint-down(md) {
+            margin-bottom: 10px;
+          }
+        }
+
+        input[type="text"] {
+          width: 100%;
+
+          + input {
+            @include media-breakpoint-down(xs) {
+              margin-top: 10px;
+            }
+          }
+
+          @include media-breakpoint-up(sm) {
+            max-width: 235px;
+          }
+          @include media-breakpoint-up(md) {
+            max-width: 300px;
+          }
+        }
+      }
+    }
+    .location-example {
+      word-wrap: break-word;
+    }
+  }
+}
+
 // Textbook Page
 body div.book-wrapper{
   margin: 0 auto;
@@ -877,7 +966,7 @@ body.indigo-dark-theme {
         box-shadow: none !important;
       }
       .instructor-nav {
-        border: 1px solid #E5E7EB;
+        border: 1px solid $gray-light;
         li {
           &:first-child {
             button {
@@ -887,7 +976,7 @@ body.indigo-dark-theme {
           button {
             border: none !important;
             border-radius: 0 !important;
-            border-left: 1px solid #E5E7EB !important;
+            border-left: 1px solid $gray-light !important;
             color: $text-color-primary;
             &.active-section {
               background: $primary-d !important;
@@ -908,7 +997,7 @@ body.indigo-dark-theme {
             color: $text-color-d;
           }
           .total {
-            border-top: 1px solid #E5E7EB;
+            border-top: 1px solid $gray-light;
             th, td {
               color: $primary-d;
             }
@@ -1543,3 +1632,4 @@ body.indigo-dark-theme {
 @import '../../../xblock/xblock';
 @import '../../../views/teams';
 @import '../../../views/wiki';
+@import '../../../courseware/responsive-nav';
