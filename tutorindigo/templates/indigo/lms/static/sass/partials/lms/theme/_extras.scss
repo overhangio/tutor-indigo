@@ -448,6 +448,9 @@ body.view-instructordash {
           &:hover {
             color: $dark;
           }
+          &:focus {
+            box-shadow: inset 0 0 0 2px $primary !important;
+          }
         }
       }
     }
@@ -892,6 +895,9 @@ body.indigo-dark-theme {
             }
             &:hover {
               color: $text-color-d;
+            }
+            &:focus {
+              box-shadow: inset 0 0 0 2px #E5E7EB !important;
             }
           }
         }
