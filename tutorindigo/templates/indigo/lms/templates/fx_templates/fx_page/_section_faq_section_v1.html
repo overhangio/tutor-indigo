@@ -1,0 +1,49 @@
+<%page args="page_contents"/>
+
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
+<%
+fx_title = fx_static._(page_contents.get('title'))
+declared_faq_items = page_contents.get('faq_items', [])
+
+fx_faq_items = []
+for faq_item in declared_faq_items:
+    question = fx_static._(faq_item.get('question'))
+    answer = fx_static._(faq_item.get('answer'))
+    if not question or not answer:
+        continue
+    fx_faq_items.append({
+        'question': question,
+        'answer': answer
+    })
+%>
+
+<div class="platformMainWrap">
+    <div class="middleHeading">
+        <h2 class="sectionWrapper__sectionHeading text-center">
+            ${fx_title | fx_static.br}
+        </h2>
+    </div>
+    <div class="platformMainWrap p-0">
+        <div class="faqWrapper platformMainWrap p-0">
+            <div class="accordion" id="accordionExample">
+            % for faq_item in fx_faq_items:
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            ${faq_item['question'] | fx_static.br}
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                         data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            ${faq_item['answer'] | fx_static.br}
+                        </div>
+                    </div>
+                </div>
+            % endfor
+            </div>
+        </div>
+    </div>
+</div>

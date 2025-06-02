@@ -44,7 +44,15 @@ from lms.djangoapps.branding import api as branding_api
 %></%def>
 
 <%def name="get_all_fx_section_names()" buffered="True"><%
-    return ['hero_v1', 'two_columns_v1', 'side_image_v1', 'featured_courses_v1', 'static_metrics_section_v1', 'live_metrics_section_v1']
+    return [
+        'hero_v1',
+        'two_columns_v1',
+        'side_image_v1',
+        'featured_courses_v1',
+        'static_metrics_section_v1',
+        'live_metrics_section_v1',
+        'faq_section_v1',
+    ]
 %></%def>
 
 <%def name="get_all_fx_page_names()" buffered="True"><%
