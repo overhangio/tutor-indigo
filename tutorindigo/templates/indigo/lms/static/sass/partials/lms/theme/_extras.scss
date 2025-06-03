@@ -1663,6 +1663,10 @@ body.indigo-dark-theme {
 
     &.active {
       box-shadow: inset 0 0 0 2px $primary;
+
+      .indigo-dark-theme & {
+        box-shadow: inset 0 0 0 2px $primary-d;
+      }
     }
 
     a {
