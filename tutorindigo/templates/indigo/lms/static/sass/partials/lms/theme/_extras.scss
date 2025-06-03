@@ -26,11 +26,28 @@ input:-webkit-autofill:active{
     transition: background-color 5000s ease-in-out 0s;
     box-shadow: none;
 }
+
+.register-btn,
+.sign-in-btn,
+.search-button,
+.learn-more {
+  &:focus,
+  &:focus-visible {
+    outline-offset: 3px;
+  }
+}
+
+
 .page-content-container {
   max-width: 1600px;
   margin: 0 auto;
   padding: 0 15px;
   border: none;
+}
+
+:focus,
+:focus-visible {
+    outline-width: 2px;
 }
 
 %btn-pl-default-base {
@@ -438,6 +455,7 @@ body.view-instructordash {
       background: $primary;
       color: white;
       margin: 0 0 10px;
+      outline-offset: 3px;
       @include media-breakpoint-down(xs) {
         display: inline-block;
         float: none;
@@ -448,16 +466,12 @@ body.view-instructordash {
       width: 100%;
       white-space: nowrap;
       border: 1px solid $gray-light;
-      border-radius: 6px;
+      border-radius: 0;
       padding: 0 !important;
-      letter-spacing: -.32em;
+
       li {
-        letter-spacing: normal;
-        &:first-child {
-          button {
-            border: none;
-          }
-        }
+        margin-right: -1px;
+
         button {
           border: none !important;
           border-radius: 0 !important;
@@ -468,6 +482,7 @@ body.view-instructordash {
           padding: 9px 17px;
           color: #374151;
           text-decoration: none !important;
+          outline-offset: 3px;
           &.active-section {
             background: $primary !important;
             color: white !important;
@@ -476,7 +491,21 @@ body.view-instructordash {
             color: $dark;
           }
           &:focus {
-            box-shadow: inset 0 0 0 2px $primary !important;
+            position: relative;
+            z-index: 1;
+          }
+        }
+
+        &:first-of-type {
+          button {
+            border: none;
+            border-radius: 6px 0 0 6px;
+          }
+        }
+
+        &:last-of-type {
+          button {
+            border-radius: 0 6px 6px 0;
           }
         }
       }
