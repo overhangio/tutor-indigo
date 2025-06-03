@@ -18,7 +18,7 @@ from lms.djangoapps.branding import api as branding_api
 enterprise_customer_link = get_enterprise_learner_portal(request)
 %>
 
-<strong class="header-logo">
+<div class="header-logo">
   % if enterprise_customer_link:
     <a href="${settings.ENTERPRISE_LEARNER_PORTAL_BASE_URL}/${enterprise_customer_link.get('slug')}">
       <img class="logo" src="${enterprise_customer_link.get('logo')}" alt="${_('{name} Dashboard').format(name=enterprise_customer_link.get('name'))}"/>
@@ -50,7 +50,7 @@ enterprise_customer_link = get_enterprise_learner_portal(request)
       <span class="course-name">${display_name}</span>
     </div>
   % endif
-</strong>
+</div>
 % if enable_enterprise_sidebar:
   <div class="enterprise-tagline">
     <% tagline = configuration_helpers.get_value('ENTERPRISE_TAGLINE', settings.ENTERPRISE_TAGLINE) %>
