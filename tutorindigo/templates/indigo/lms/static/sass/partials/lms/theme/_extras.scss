@@ -30,13 +30,17 @@ input:-webkit-autofill:active{
 .register-btn,
 .sign-in-btn,
 .search-button,
-.learn-more {
+.learn-more,
+.see-children a,
+.add-article-btn,
+.member-list-widget .add,
+section.wiki .btn.btn-primary {
+
   &:focus,
   &:focus-visible {
     outline-offset: 3px;
   }
 }
-
 
 .page-content-container {
   max-width: 1600px;
@@ -462,7 +466,7 @@ body.view-instructordash {
       }
     }
     .instructor-nav {
-      overflow: visible;
+      display: flex;
       width: 100%;
       white-space: nowrap;
       border: 1px solid $gray-light;
@@ -470,7 +474,6 @@ body.view-instructordash {
       padding: 0 !important;
 
       li {
-        margin-right: -1px;
 
         button {
           border: none !important;
@@ -1646,9 +1649,29 @@ body.indigo-dark-theme {
         }
       }
     }
-  } 
-
+  }
 }
+#data_download {
+
+  .profile-data-display-table {
+    overflow-x: auto;
+  }
+
+  .slick-cell {
+    padding: 3px;
+    height: 30px;
+
+    &.active {
+      box-shadow: inset 0 0 0 2px $primary;
+    }
+
+    a {
+      display: inline-block;
+      padding: 0 5px;
+    }
+  }
+}
+
 @import '../../../extra/footer';
 @import '../../../extra/header';
 @import '../../../dashboard/dashboard';
