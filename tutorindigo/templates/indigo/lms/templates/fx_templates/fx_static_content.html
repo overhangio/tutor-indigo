@@ -33,7 +33,11 @@ from lms.djangoapps.branding import api as branding_api
         return ''
 
     language_code = get_language()
-    for lang_code in [language_code, 'en', 'ar', 'fr']:
+    if language_code in ['ar', 'en', 'fr']:
+        selected_language = [language_code, 'ar', 'en', 'fr']
+    else:
+        selected_language = ['ar', 'en', 'fr']
+    for lang_code in selected_language:
         if lang_code in config_dict_by_lang:
             return config_dict_by_lang.get(lang_code)
     return ''
