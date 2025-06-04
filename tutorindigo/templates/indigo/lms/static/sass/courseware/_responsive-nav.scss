@@ -1,0 +1,45 @@
+/**
+ * Temporary fix for a legacy issue specific to the Tutor Indigo theme.
+ * This can be removed once the upstream fix is included in Open edX.
+ */
+
+.responsive-nav {
+  white-space: nowrap;
+  position: relative;
+
+  > li {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .open {
+
+    .more-responsive-menu {
+      display: block;
+    }
+  }
+}
+
+.more-responsive-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  border: 1px solid $gray-light;
+  z-index: 999;
+  background: $body-bg;
+  display: none;
+
+  li {
+    display: block !important;
+    width: 100%;
+    margin: 0;
+
+    a,
+    button {
+      display: block;
+    }
+  }
+}
