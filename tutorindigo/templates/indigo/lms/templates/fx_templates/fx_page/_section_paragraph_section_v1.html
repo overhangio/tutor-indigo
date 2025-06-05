@@ -1,0 +1,13 @@
+<%page args="page_contents"/>
+
+<%namespace name='fx_static' file='../fx_static_content.html'/>
+
+<%
+fx_html_content = fx_static._(page_contents.get('paragraph'))
+%>
+
+<div class="fx-raw-html-paragraph-container">
+
+    ${fx_html_content | n}
+
+</div>
