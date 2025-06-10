@@ -131,3 +131,10 @@ from lms.djangoapps.branding import api as branding_api
 
     return logo_image_url
 %></%def>
+
+
+<%def name="fx_random_string(length=8)" buffered="True"><%
+    import random
+    import string
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
+%></%def>

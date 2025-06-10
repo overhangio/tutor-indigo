@@ -12,9 +12,11 @@ for faq_item in declared_faq_items:
     answer = fx_static._(faq_item.get('answer'))
     if not question or not answer:
         continue
+
     fx_faq_items.append({
         'question': question,
-        'answer': answer
+        'answer': answer,
+        'item_id': fx_static.fx_random_string(),
     })
 %>
 
@@ -26,24 +28,24 @@ for faq_item in declared_faq_items:
     </div>
     <div class="platformMainWrap p-0">
         <div class="faqWrapper platformMainWrap p-0">
-            <div class="accordion" id="accordionExample">
             % for faq_item in fx_faq_items:
+            <div class="accordion" id="faq-item-${faq_item['item_id']}">
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
+                    <h2 class="accordion-header" id="faq-heading-${faq_item['item_id']}">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                data-bs-target="#collapse-${faq_item['item_id']}" aria-expanded="true" aria-controls="collapse-${faq_item['item_id']}">
                             ${faq_item['question'] | fx_static.br}
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                         data-bs-parent="#accordionExample">
+                    <div id="collapse-${faq_item['item_id']}" class="accordion-collapse collapse show" aria-labelledby="faq-heading-${faq_item['item_id']}"
+                         data-bs-parent="#faq-item-${faq_item['item_id']}">
                         <div class="accordion-body">
                             ${faq_item['answer'] | fx_static.br}
                         </div>
                     </div>
                 </div>
-            % endfor
             </div>
+            % endfor
         </div>
     </div>
 </div>
