@@ -76,11 +76,15 @@ from lms.djangoapps.branding import api as branding_api
 %></%def>
 
 <%def name="get_fx_header_footer_sections(header_sections=True)" buffered="True"><%
+    hf_sections = []
+
     section_name = 'header' if header_sections else 'footer'
     declared_hf_sections = get_fx_config_value(section_name, default_value={}).get('sections', [])
     valid_pages = get_all_fx_page_names()
-    valid_custom_pages = get_fx_config_value('custom_pages', default_value={})
-    hf_sections = []
+    declared_valid_custom_pages = get_fx_config_value('custom_pages', default_value=[])
+    valid_custom_pages = {
+        _page['key']: _page['url_slug'] for _page in declared_valid_custom_pages if _page.get('key') and _page.get('url_slug')
+    }
 
     for hf_section in declared_hf_sections:
         page = hf_section.get('page', '')
@@ -88,7 +92,7 @@ from lms.djangoapps.branding import api as branding_api
             page_type = 'page'
         elif page == 'external_link' and hf_section.get('custom_url'):
             page_type = 'url'
-        elif page in valid_custom_pages:
+        elif page.replace('-', '_') in valid_custom_pages:
             page_type = 'custom'
         else:
             page_type = 'invalid'
@@ -98,11 +102,10 @@ from lms.djangoapps.branding import api as branding_api
         elif page_type == 'url':
             hf_section['link'] = hf_section['custom_url']
         elif page_type == 'custom':
-            page_name = valid_custom_pages[page]
-            if page_name:
-                hf_section['link'] = f'/p/{page_name}'
-            else:
-                page_type = 'invalid'
+            url_slug = valid_custom_pages[page.replace('-', '_')]
+            hf_section['link'] = f'/p/{url_slug}'
+        else:
+            page_type = 'invalid'
 
         if page_type != 'invalid':
             hf_section['new_tab'] = 'target="_blank" rel="noopener"' if hf_section.get('new_tab') else ''
