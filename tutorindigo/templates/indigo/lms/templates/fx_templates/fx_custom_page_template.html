@@ -12,11 +12,17 @@
 
     page_name = match.group('page_name')
     valid_custom_pages = fx_static.get_fx_config_value('custom_pages', default_value=[])
+
     page_key = None
-    for custom_page_key in valid_custom_pages:
-        custom_page_content = fx_static.get_fx_config_value(custom_page_key, default_value={})
-        url_slug = custom_page_content.get('url_slug', '')
-        if url_slug == page_name:
+    for page_info in valid_custom_pages:
+        if not isinstance(page_info, dict):
+            continue
+        custom_page_key = page_info.get('key', '')
+        custom_page_url_slug = page_info.get('url_slug', '')
+        if not custom_page_key or not custom_page_url_slug:
+            continue
+
+        if page_name == custom_page_url_slug:
             page_key = custom_page_key
             break
 
