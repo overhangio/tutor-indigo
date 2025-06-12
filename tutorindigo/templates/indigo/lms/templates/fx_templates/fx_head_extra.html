@@ -11,6 +11,8 @@ if footer_template not in ['dark_footer', 'light_footer']:
 
 fx_color_primary = '#4600c7'
 fx_color_heading = '#6a32d1'
+## fx_color_button should go into --> --fx-2025-indigo-btn-primary:
+## 
 
 for color in visual_identity.get('colors', []):
     if color and color.get('hex') and re.match(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$', color['hex']):
