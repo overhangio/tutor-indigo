@@ -100,7 +100,7 @@ icon_text = {
 </style>
 
 
-<div class="settings-language-form" style="display: flex; padding: 0 10px;">
+<div class="settings-language-form" style="display: flex; padding: 1px 10px;">
 % for language in languages:
     % if language[0] != current_lang and language[0] in icon_text:
     <div class="mobile-nav-item hidden-mobile nav-item nav-tab fx-language-btn fx-btn${'-signed-in' if user.is_authenticated else ''}"
