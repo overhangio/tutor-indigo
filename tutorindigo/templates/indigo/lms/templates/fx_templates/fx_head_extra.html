@@ -11,8 +11,7 @@ if footer_template not in ['dark_footer', 'light_footer']:
 
 fx_color_primary = '#4600c7'
 fx_color_heading = '#6a32d1'
-## fx_color_button should go into --> --fx-2025-indigo-btn-primary:
-## 
+fx_color_button = '#3b85ff'
 
 for color in visual_identity.get('colors', []):
     if color and color.get('hex') and re.match(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$', color['hex']):
@@ -20,6 +19,9 @@ for color in visual_identity.get('colors', []):
             fx_color_primary = color['hex']
         elif color.get('color_type') == 'heading_color':
             fx_color_heading = color['hex']
+        elif color.get('color_type') == 'button_color':
+            fx_color_button = color['hex']
+
 
 meta_description = fx_static._(project_settings.get('meta_description'))
 social_media_image = project_settings.get('social_media_image')
@@ -60,7 +62,7 @@ if social_media_image:
     --fx-2025-indigo-black: #000;
     --fx-2025-indigo-blue-dianne: #072544;
     --fx-2025-indigo-border-color: #e5e7eb;
-    --fx-2025-indigo-btn-primary: #3b85ff;
+    --fx-2025-indigo-btn-primary: ${fx_color_button};
     --fx-2025-indigo-concrete-color: #f3f3f3;
     --fx-2025-indigo-cod-gray: #141414;
     --fx-2025-indigo-dark-color: #111928;
@@ -81,8 +83,6 @@ html {
     --footer-icon-color: ${('#4600c7' if footer_template == 'light_footer' else '#fff')};;
     --green-button-bg: var(--fx-2025-indigo-purple-color);
     --hover-button-bg: var(--fx-2025-indigo-purple-heart);
-}
-
 </style>
 
 % if meta_description:
