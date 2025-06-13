@@ -117,7 +117,7 @@
                             -webkit-box-orient: vertical;
                         }
                         .course-organization {
-                            color: #70787E;
+                            color: #6c7885;
                             font-size: 14px;
                             line-height: 20px;
                             height: auto;
@@ -247,6 +247,10 @@
                         left: 12px;
                         font-size: 20px;
                         top: 10px;
+
+                        path {
+                          fill: #4a5564;
+                        }
                     }
                     input {
                         border: none;
@@ -258,6 +262,10 @@
                         font-size: 14px;
                         line-height: 20px;
                         padding: 9px 10px;
+
+                        &::placeholder {
+                            color: #4a5564;
+                        }
                     }
                 }
             }
