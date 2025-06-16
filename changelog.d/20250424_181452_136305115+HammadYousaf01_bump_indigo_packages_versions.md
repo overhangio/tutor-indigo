@@ -1,1 +1,0 @@
-- [BugFix] Bump Indigo Header and Footer versions to fix image build failure due to React 18 upgrades in upstream MFEs (by @HammadYousaf01)

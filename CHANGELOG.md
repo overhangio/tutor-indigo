@@ -21,7 +21,7 @@ instructions, because git commits are used to generate release notes:
 
 <a id='changelog-20.0.0'></a>
 
-## v20.0.0 (2025-03-28)
+## v20.0.0 (2025-06-16)
 
 - 💥[Feature] Upgrade to teak. (by @HammadYousaf01)
 
@@ -30,6 +30,8 @@ instructions, because git commits are used to generate release notes:
 - [Improvement] Migrate from `setup.py` (setuptools) to `pyproject.toml` (hatch). (by @ahmed-arb)
 
 - [Improvement] Add hatch_build.py in sdist target to fix the installation issues (by @dawoudsheraz)
+
+- [BugFix] Bump Indigo Header and Footer versions to fix image build failure due to React 18 upgrades in upstream MFEs (by @HammadYousaf01)
 
 <a id='changelog-19.0.3'></a>
 
