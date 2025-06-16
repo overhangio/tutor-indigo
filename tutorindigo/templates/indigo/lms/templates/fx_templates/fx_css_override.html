@@ -1,0 +1,38 @@
+<%!
+from futurex_openedx_extensions.helpers.tenants import get_fx_theme_css_override
+%>
+
+<%
+fx_css_override = get_fx_theme_css_override()
+fx_dev_css_enabled = fx_css_override.get('dev_css_enabled', '') if fx_css_override else False
+fx_css_override_file = fx_css_override.get('css_override_file', '') if fx_css_override else None
+%>
+
+% if fx_css_override_file or fx_dev_css_enabled:
+<script>
+(function() {
+  const devCssCookie = document.cookie.split('; ').find(row => row.startsWith('fx-dev-css='));
+
+  % if fx_css_override_file:
+  if (!devCssCookie) {
+    const linkElement = document.createElement('link');
+    linkElement.rel = 'stylesheet';
+    linkElement.type = 'text/css';
+    linkElement.href = '${fx_css_override_file}';
+    document.head.appendChild(linkElement);
+  }
+  % endif
+
+  % if fx_dev_css_enabled:
+  if (devCssCookie) {
+    const devCssValue = devCssCookie.split('=')[1];
+    const linkElement = document.createElement('link');
+    linkElement.rel = 'stylesheet';
+    linkElement.type = 'text/css';
+    linkElement.href = devCssValue;
+    document.head.appendChild(linkElement);
+  }
+  % endif
+})();
+</script>
+% endif
