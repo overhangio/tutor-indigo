@@ -40,11 +40,7 @@ from django.utils.translation import gettext as _
     </div>
   % endif
   % if allows_login:
-    % if can_discover_courses:
-      <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-        <a href="/courses">${_('Discover courses')}</a>
-      </div>
-    %endif
+    <%include file="../fx_templates/fx_header_navbar_links.html"/>
   % endif
   </div>
   <div class="secondary d-flex align-items-center">
