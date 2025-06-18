@@ -237,7 +237,7 @@ header.global-header {
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background-color: $primary-d;
+                background-color: $light-theme-switch-bg-color;
                 transition: .4s;
 
                 &::before{
@@ -352,7 +352,7 @@ body.indigo-dark-theme {
                 }
                 /* The slider */
                 .slider {
-                    background-color: #ccc;
+                    background-color: $dark-theme-switch-bg-color;
                     &::before{
                         transform: translateX(19px);
                         box-shadow: 0 0 1px $primary-d;
