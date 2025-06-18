@@ -9,6 +9,15 @@
 <% footer = get_footer(is_secure=is_secure) %>
 <% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
 <%namespace name='static' file='static_content.html'/>
+<%namespace name='fx_static' file='fx_templates/fx_static_content.html'/>
+
+<%
+fx_footer = fx_static.get_fx_config_value('footer', default_value={})
+declared_footer_sections = fx_footer.get('sections', [])
+declared_social_media_links = fx_footer.get('social_media_links', [])
+fx_copyrights_text = fx_static._(fx_footer.get('copyrights_text', '')) or ''
+%>
+
 <!-- NEW IN INDIGO update footer -->
 
 <div class="wrapper wrapper-footer p-0">
@@ -22,8 +31,7 @@
   >
 
 <div class="${'footer-top' if uses_bootstrap else 'footerWrap__content'}" style="padding: 30px">
-  <span class="${'copyright-site' if uses_bootstrap else 'footerWrap__copyRight'}">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
-
+    <span class="${'copyright-site' if uses_bootstrap else 'footerWrap__copyRight'}">${fx_copyrights_text}</span>
     <div class="powered-area" style="display: none">
       ## Please leave this link and use one of the logos provided
       ## The OpenEdX link may be hidden when this view is served
@@ -45,8 +53,8 @@
       </ul>
     </div>
 
-    <%include file="fx_templates/fx_footer_links.html"/>
-    <%include file="fx_templates/fx_footer_social_links.html"/>
+    <%include file="fx_templates/fx_footer_links.html" args="declared_footer_sections=declared_footer_sections"/>
+    <%include file="fx_templates/fx_footer_social_links.html" args="declared_social_media_links=declared_social_media_links"/>
 
   </div>
   % endif

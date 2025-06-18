@@ -1,7 +1,8 @@
+<%page args="declared_footer_sections"/>
 <%namespace name='fx_static' file='fx_static_content.html'/>
 
 <%
-footer_sections = fx_static.get_fx_header_footer_sections(header_sections=False)
+footer_sections = fx_static.get_fx_link_sections(declared_footer_sections)
 %>
 
 % if footer_sections:

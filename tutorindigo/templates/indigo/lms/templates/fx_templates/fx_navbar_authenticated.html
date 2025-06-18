@@ -1,7 +1,8 @@
 <%namespace name='fx_static' file='fx_static_content.html'/>
 
 <%
-header_sections = fx_static.get_fx_header_footer_sections(header_sections=True)
+header = fx_static.get_fx_config_value('header')
+header_sections = fx_static.get_fx_link_sections(header.get('sections', []))
 %>
 
 <div class="main">

@@ -26,7 +26,9 @@ for color in visual_identity.get('colors', []):
 meta_description = fx_static._(project_settings.get('meta_description'))
 social_media_image = project_settings.get('social_media_image')
 if social_media_image:
-    social_media_links = fx_static.get_fx_social_media_links()
+    fx_footer = fx_static.get_fx_config_value('footer', default_value={})
+    declared_social_media_links = fx_footer.get('social_media_links', [])
+    social_media_links = fx_static.get_fx_social_media_links(declared_social_media_links)
     if not social_media_links:
         social_media_image = ''
 %>
