@@ -19,6 +19,33 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-19.0.3'></a>
+## v19.0.3 (2025-06-05)
+
+- [Improvement] Fix multiple accessibility issues across the platform including screen reader compatibility, keyboard navigation, focus visibility, and WCAG compliance improvements. (by @arbirali and @zubairshakoorarbisoft)
+  - Add visible titles to image-based links for better screen reader support (#150)
+  - Make "Learn More" links accessible to screen readers (#151)
+  - Improve "Open Responses" table headers for keyboard accessibility (#152)
+  - Add accessible names to social media icons (#155)
+  - Enhance theme toggle with descriptive labels (#156)
+  - Increase focus visible thickness for better visibility (#158)
+  - Fix "Skip to main content" link display (#159)
+  - Resolve accessibility and reflow issues in Wiki, Teams, and Instructor Dashboard (#163)
+  - General accessibility fixes reported during review (#147)
+
+<a id='changelog-19.0.2'></a>
+## v19.0.2 (2025-05-27)
+
+- [Improvement] Migrate from `setup.py` (setuptools) to `pyproject.toml` (hatch). (by @ahmed-arb)
+
+- [Improvement] Add hatch_build.py in sdist target to fix the installation issues (by @dawoudsheraz)
+
+- [BugFix] Fix runtime footer import error in env.config.jsx for unsupported MFEs. (by @ahmed-arb)
+
+ - [BugFix] Maintain selected emoji color in survey xblock. (by @mlabeeb03)
+
+- [Improvement] Change color of headings and list items in dark mode to improve readability. (by @mlabeeb03)
+
 <a id='changelog-19.0.1'></a>
 ## v19.0.1 (2025-01-26)
 

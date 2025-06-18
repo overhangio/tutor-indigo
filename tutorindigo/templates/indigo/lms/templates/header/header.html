@@ -42,6 +42,11 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
   </script>
 % endif
 
+
+<%block name="js_extra">
+  <script src="${static.url('js/responsive-nav.js')}"></script>
+</%block>
+
 <header class="global-header ${'slim' if course else ''}">
     <div class="header-container">
     % if settings.FEATURES.get('ENABLE_COOKIE_POLICY_BANNER', use_cookie_banner):
@@ -52,13 +57,13 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
         )}
     % endif
     <div class="main-header">
-        <%include file="navbar-logo-header.html" args="online_help_token=online_help_token"/>
-        <div class="hamburger-menu" role="button" aria-label=${_("Options Menu")} aria-expanded="false" aria-controls="mobile-menu" tabindex="0">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-        </div>
+      <button class="hamburger-menu" role="button" aria-label=${_("Options Menu")} aria-expanded="false" aria-controls="mobile-menu" tabindex="0">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+      <%include file="navbar-logo-header.html" args="online_help_token=online_help_token"/>
         % if user.is_authenticated:
             <%include file="navbar-authenticated.html" args="online_help_token=online_help_token"/>
         % else:
@@ -92,7 +97,7 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
             % if user.is_authenticated:
                 <input title="preference api" type="hidden" class="url-endpoint" value="${reverse('preferences_api', kwargs={'username': user.username})}" data-user-is-authenticated="true">
             % else:
-                <input title="session update url" type="hidden" class="url-endpoint" value="${reverse('session_language')}" data-user-is-authenticated="false">
+                <input title="session update url" type="hidden" class="url-endpoint" value="${reverse('update_language')}" data-user-is-authenticated="false">
             % endif
             <label><span class="sr">${_("Choose Language")}</span>
             <select class="input select language-selector" id="settings-language-value" name="language">
