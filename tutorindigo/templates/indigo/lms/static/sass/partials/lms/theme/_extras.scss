@@ -888,6 +888,16 @@ body {
       word-wrap: break-word;
     }
   }
+  section.idash-section {
+    .message-warning {
+      background: $warning-accent-700;
+      border-color: $warning-700;
+
+      .message-title {
+        color: $warning-700;
+      }
+    }
+  }
 }
 
 // Textbook Page
@@ -1361,6 +1371,16 @@ body.indigo-dark-theme {
     }
     .copy-error {
       color: $danger-d;
+    }
+    .message-warning {
+        background: $primary-light-d;
+        border-color: $danger-d;
+        .message-title {
+          color: $danger-d;
+        }
+      .message-copy {
+        color: $text-color-d;
+      }
     }
     .message-error{
         background: $primary-light-d;
