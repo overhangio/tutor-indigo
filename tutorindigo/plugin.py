@@ -119,9 +119,9 @@ hooks.Filters.ENV_PATCHES.add_items(
             f"mfe-dockerfile-post-npm-install-{mfe}",
             """
            
-RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.2.2'
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'
+RUN npm install "https://github.com/edly-io/frontend-component-footer.git#teak/indigo"
+RUN npm install "https://github.com/edly-io/frontend-component-header.git#sumac/indigo"
+RUN npm install "https://github.com/edly-io/brand-openedx.git#sumac/indigo"
 
 """,
         )
@@ -165,14 +165,12 @@ for filename in javascript_files:
         PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
 
 MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
-MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
 """,
         ),
         (
             "openedx-lms-production-settings",
             """
 MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
-MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
 """,
         ),
     ]
