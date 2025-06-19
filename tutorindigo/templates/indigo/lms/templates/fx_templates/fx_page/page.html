@@ -24,3 +24,16 @@ the_page = fx_static.get_fx_config_value(page_name)
     % endif
 </div>
 </div>
+
+
+<script>
+window.addEventListener('message', function (event) {
+    const { type, previewId } = event.data || {};
+    if (type === 'scroll-to-preview' && previewId) {
+        const el = document.getElementById(previewId);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+});
+</script>

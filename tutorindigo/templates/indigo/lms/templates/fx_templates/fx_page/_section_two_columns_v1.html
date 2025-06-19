@@ -3,6 +3,10 @@
 <%namespace name='fx_static' file='../fx_static_content.html'/>
 
 <%
+id_tag = page_contents.get('key')
+if id_tag:
+    id_tag = f'id="{id_tag}"'
+
 fx_title = fx_static._(page_contents.get('title'))
 fx_description = fx_static._(page_contents.get('description'))
 declared_columns_section = page_contents.get('columns_section', [])
@@ -12,7 +16,7 @@ for i in range(min(3, len(declared_columns_section))):
     columns_sections.append(declared_columns_section[i])
 %>
 
-<div class="platformMainWrap px-0">
+<div ${id_tag} class="platformMainWrap px-0">
     % if fx_title:
         <h2 class="sectionWrapper__sectionHeading">
         ${fx_title | fx_static.br}

@@ -3,10 +3,14 @@
 <%namespace name='fx_static' file='../fx_static_content.html'/>
 
 <%
+id_tag = page_contents.get('key')
+if id_tag:
+    id_tag = f'id="{id_tag}"'
+
 fx_html_content = fx_static._(page_contents.get('paragraph'))
 %>
 
-<div class="fx-raw-html-paragraph-container">
+<div ${id_tag} class="fx-raw-html-paragraph-container">
 
     ${fx_html_content | n}
 

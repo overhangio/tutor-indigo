@@ -3,6 +3,10 @@
 <%namespace name='fx_static' file='../fx_static_content.html'/>
 
 <%
+id_tag = page_contents.get('key')
+if id_tag:
+    id_tag = f'id="{id_tag}"'
+
 fx_title = fx_static._(page_contents.get('title'))
 fx_description = fx_static._(page_contents.get('description'))
 fx_grid_type = page_contents.get('grid_type', '')
@@ -11,7 +15,7 @@ if fx_grid_type not in ['max-3', 'max-6', 'max-9', 'all', 'categorised']:
 %>
 
 
-<div class="platformMainWrap courseMainWrapper">
+<div ${id_tag} class="platformMainWrap courseMainWrapper">
     <div class="middleHeading">
         <h2 class="sectionWrapper__sectionHeading text-center">
             ${fx_title | fx_static.br}
