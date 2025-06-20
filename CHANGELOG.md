@@ -33,6 +33,8 @@ instructions, because git commits are used to generate release notes:
 
 - [BugFix] Bump Indigo Header and Footer versions to fix image build failure due to React 18 upgrades in upstream MFEs (by @HammadYousaf01)
 
+- 💥[Improvement] Do not assign theme to preview site during initialization as the preview page has been migrated to the learning MFE. (by @Danyal-Faheem)
+
 <a id='changelog-19.0.3'></a>
 
 ## v19.0.3 (2025-06-05)
