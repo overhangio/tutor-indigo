@@ -119,7 +119,7 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install "https://github.com/edly-io/frontend-component-footer.git#teak/indigo"
+RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 RUN npm install "https://github.com/edly-io/frontend-component-header.git#sumac/indigo"
 RUN npm install "https://github.com/edly-io/brand-openedx.git#sumac/indigo"
 
