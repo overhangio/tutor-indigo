@@ -6,6 +6,10 @@ from django.utils.translation import gettext as _
 <%namespace name='fx_static' file='../fx_static_content.html'/>
 
 <%
+id_tag = page_contents.get('key')
+if id_tag:
+    id_tag = f'id="{id_tag}"'
+
 fx_title = fx_static._(page_contents.get('title'))
 fx_description = fx_static._(page_contents.get('description'))
 fx_image_url = page_contents.get('side_image')
@@ -15,7 +19,7 @@ if isinstance(is_reversed, str):
 fx_style = f'flex-direction: row-reverse' if is_reversed else ''
 %>
 
-<div class="row platformMainWrap" style="${fx_style}">
+<div ${id_tag} class="row platformMainWrap" style="${fx_style}">
     <div class="col-12 col-sm-6 d-flex flex-column justify-content-center">
         <h2 class="sectionWrapper__sectionHeading" style="text-align:start !important;">
             ${fx_title | fx_static.br}

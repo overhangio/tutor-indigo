@@ -3,6 +3,10 @@
 <%namespace name='fx_static' file='../fx_static_content.html'/>
 
 <%
+id_tag = page_contents.get('key')
+if id_tag:
+    id_tag = f'id="{id_tag}"'
+
 fx_title = fx_static._(page_contents.get('title'))
 declared_faq_items = page_contents.get('faq_items', [])
 
@@ -20,7 +24,7 @@ for faq_item in declared_faq_items:
     })
 %>
 
-<div class="platformMainWrap">
+<div ${id_tag} class="platformMainWrap">
     <div class="middleHeading">
         <h2 class="sectionWrapper__sectionHeading text-center">
             ${fx_title | fx_static.br}

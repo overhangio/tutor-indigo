@@ -5,7 +5,7 @@ header = fx_static.get_fx_config_value('header')
 header_sections = fx_static.get_fx_link_sections(header.get('sections', []))
 %>
 
-<div class="main">
+<div id="fx-header" class="main">
 % for h_section in header_sections:
     <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
         <a class="${'active ' if h_section['link'] == request.path else ''}tab-nav-link" href="${h_section['link']}"

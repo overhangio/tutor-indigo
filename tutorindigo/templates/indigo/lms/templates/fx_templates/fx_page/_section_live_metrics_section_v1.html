@@ -3,6 +3,10 @@
 <%namespace name='fx_static' file='../fx_static_content.html'/>
 
 <%
+id_tag = page_contents.get('key')
+if id_tag:
+    id_tag = f'id="{id_tag}"'
+
 from crum import get_current_request
 from futurex_openedx_extensions.helpers.tenants import get_all_tenants_info
 from futurex_openedx_extensions.dashboard.statistics.live import get_live_statistics
@@ -56,7 +60,7 @@ alignment = page_contents.get('alignment')
 alignment = alignment if alignment in ['start', 'end'] else 'center'
 %>
 
-<div class="platformMainWrap">
+<div ${id_tag} class="platformMainWrap">
     % if fx_title or fx_description:
     <div class="middleHeading">
         % if fx_title:
