@@ -50,6 +50,10 @@ for declared_live_metric in declared_list_of_live_metrics:
     if allowed_check and declared_live_metric.get('is_checked'):
         declared_live_metric['key'] = declared_live_metric['key'].lower()
         declared_live_metric['api_key'] = declared_live_metric['key'] + '_count'
+        title = fx_static._(declared_live_metric['title'])
+        if not title:
+            title = fx_static._(allowed_statistics[declared_live_metric['key']])
+        declared_live_metric['title'] = title
         fx_list_of_live_metrics.append(declared_live_metric)
 
 if fx_list_of_live_metrics:
@@ -81,7 +85,7 @@ alignment = alignment if alignment in ['start', 'end'] else 'center'
             <div class="col-sm-2">
                 <div class="whyUsWrapper" style="text-align: ${alignment} !important;">
                     <h4 class="whyUsWrapper__heading">${live_statistics[live_metric['api_key']]}</h4>
-                    <p class="whyUsWrapper__desc">${fx_static._(allowed_statistics[live_metric['key']]) | fx_static.br}</p>
+                    <p class="whyUsWrapper__desc">${live_metric['title'] | fx_static.br}</p>
                 </div>
             </div>
         % endfor
