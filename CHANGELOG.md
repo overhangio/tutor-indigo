@@ -27,13 +27,7 @@ instructions, because git commits are used to generate release notes:
 
 - [Bugfix] Remove reference to old account toggles. (by @ahmed-arb)
 
-- [Improvement] Migrate from `setup.py` (setuptools) to `pyproject.toml` (hatch). (by @ahmed-arb)
-
-- [Improvement] Add hatch_build.py in sdist target to fix the installation issues (by @dawoudsheraz)
-
 - [BugFix] Bump Indigo Header and Footer versions to fix image build failure due to React 18 upgrades in upstream MFEs (by @HammadYousaf01)
-
-- 💥[Improvement] Do not assign theme to preview site during initialization as the preview page has been migrated to the learning MFE. (by @Danyal-Faheem)
 
 <a id='changelog-19.0.3'></a>
 
