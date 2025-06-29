@@ -13,13 +13,14 @@
 <%block name="js_extra">
   <script type="text/javascript" src="${static.url('common/js/vendor/bootstrap.bundle.js')}"></script>
 </%block>
-% if course_discovery_enabled:
+
 <%block name="header_extras">
   % for template_name in ["course_card", "filter_bar", "filter", "facet", "facet_option"]:
   <script type="text/template" id="${template_name}-tpl">
       <%static:include path="discovery/${template_name}.underscore" />
   </script>
   % endfor
+% if course_discovery_enabled:
   <%static:require_module module_name="js/discovery/discovery_factory" class_name="DiscoveryFactory">
     DiscoveryFactory(
       ${course_discovery_meanings | n, dump_js_escaped_json},
@@ -28,8 +29,8 @@
       "${user_timezone | n, js_escaped_string}"
     );
   </%static:require_module>
-</%block>
 % endif
+</%block>
 
 <%block name="pagetitle">${_("Courses")}</%block>
 
