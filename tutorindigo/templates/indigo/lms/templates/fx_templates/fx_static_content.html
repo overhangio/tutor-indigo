@@ -38,8 +38,9 @@ from lms.djangoapps.branding import api as branding_api
     else:
         selected_language = ['ar', 'en', 'fr']
     for lang_code in selected_language:
-        if lang_code in config_dict_by_lang:
-            return config_dict_by_lang.get(lang_code)
+        result = config_dict_by_lang.get(lang_code, '')
+        if result:
+            return result
     return ''
 %></%def>
 
