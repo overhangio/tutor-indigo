@@ -21,7 +21,7 @@ no_courses = not courses
     </div>
 % elif settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
     %for course in courses[:homepage_course_max]:
-        <%include file="course.html" args="course=course" />
+        <%include file="course.html" args="course=course, source_page='main_page'" />
     %endfor
     % if homepage_course_max and len(courses) > homepage_course_max:
     <div class="btnWtapper">
