@@ -9,15 +9,24 @@ from django.urls import reverse
 
 
 <%
-available_languages = fx_static.get_fx_config_value('platform_settings_language', default_value={}).get('languages', ['en'])
-languages = []
+platform_settings_language = fx_static.get_fx_config_value('platform_settings_language', default_value={})
 supported_languages = fx_static.fx_supported_languages()
-for language in available_languages:
-    if language in supported_languages:
-        languages.append((language, supported_languages[language]))
+available_languages = platform_settings_language.get('languages', ['en'])
+default_language = platform_settings_language.get('default_language', available_languages[0])
+if default_language not in available_languages:
+    default_language = available_languages[0]
+
+languages = [
+    (lang, supported_languages[lang])
+    for lang in available_languages if lang in supported_languages
+]
+_languages_set = {lang[0] for lang in languages}
+
+auto_switch_language = (
+    default_language if current_lang not in _languages_set and current_lang != default_language else None
+)
 %>
 
-% if len(languages) > 1:
 <form action="/i18n/setlang/" method="post" class="settings-language-form" id="language-settings-form" style="display: none;">
     <input type="hidden" id="csrf_token" name="csrfmiddlewaretoken" value="${csrf_token}">
     % if user.is_authenticated:
@@ -129,4 +138,15 @@ icon_text = {
 </script>
 
 
+% if auto_switch_language:
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const languageSelector = document.getElementById('settings-language-value');
+        if (languageSelector) {
+            languageSelector.value = '${auto_switch_language}';
+            const event = new Event('change', {bubbles: true});
+            languageSelector.dispatchEvent(event);
+        }
+    });
+</script>
 % endif
