@@ -6,7 +6,7 @@ from django.utils.translation import gettext as _
 <%namespace name='fx_static' file='../fx_static_content.html'/>
 
 <%
-id_tag = page_contents.get('key')
+id_tag = page_contents.get('div_id')
 if id_tag:
     id_tag = f'id="{id_tag}"'
 
