@@ -28,7 +28,7 @@ from lms.djangoapps.branding import api as branding_api
     }
 %></%def>
 
-<%def name="_(config_dict_by_lang)" buffered="True"><%
+<%def name="t(config_dict_by_lang)" buffered="True"><%
     if not config_dict_by_lang or not isinstance(config_dict_by_lang, dict):
         return ''
 

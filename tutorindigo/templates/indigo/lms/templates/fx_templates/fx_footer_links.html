@@ -13,7 +13,7 @@ footer_sections = fx_static.get_fx_link_sections(declared_footer_sections)
             <a
                 href="${f_section['link']}" ${f_section['new_tab']} style="color: var(--footer-text-color);"
             >
-            ${fx_static._(f_section.get('link_title'))}
+            ${fx_static.t(f_section.get('link_title'))}
             </a>
         </li>
         % endfor

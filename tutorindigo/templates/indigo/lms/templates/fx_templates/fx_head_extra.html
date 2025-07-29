@@ -23,7 +23,7 @@ for color in visual_identity.get('colors', []):
             fx_color_button = color['hex']
 
 
-meta_description = fx_static._(project_settings.get('meta_description'))
+meta_description = fx_static.t(project_settings.get('meta_description'))
 social_media_image = project_settings.get('social_media_image')
 if social_media_image:
     fx_footer = fx_static.get_fx_config_value('footer', default_value={})

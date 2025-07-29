@@ -15,7 +15,7 @@
 fx_footer = fx_static.get_fx_config_value('footer', default_value={})
 declared_footer_sections = fx_footer.get('sections', [])
 declared_social_media_links = fx_footer.get('social_media_links', [])
-fx_copyrights_text = fx_static._(fx_footer.get('copyrights_text', '')) or ''
+fx_copyrights_text = fx_static.t(fx_footer.get('copyrights_text', '')) or ''
 %>
 
 <!-- NEW IN INDIGO update footer -->
