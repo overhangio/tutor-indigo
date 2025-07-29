@@ -1,0 +1,681 @@
+# #-#-#-#-#  django.po (0.1a)  #-#-#-#-#
+# edX translation file.
+# Copyright (C) 2025 EdX
+# This file is distributed under the GNU AFFERO GENERAL PUBLIC LICENSE.
+# EdX Team <info@edx.org>, 2025.
+#
+# #-#-#-#-#  mako.po (PROJECT VERSION)  #-#-#-#-#
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+# #-#-#-#-#  underscore.po (PROJECT VERSION)  #-#-#-#-#
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  django.po (0.1a)  #-#-#-#-#\n"
+"Project-Id-Version: 0.1a\n"
+"Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
+"POT-Creation-Date: 2023-06-13 08:00+0000\n"
+"PO-Revision-Date: 2023-06-13 09:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: openedx-translation <openedx-translation@googlegroups.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"#-#-#-#-#  mako.po (PROJECT VERSION)  #-#-#-#-#\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-07-29 17:30+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+"#-#-#-#-#  underscore.po (PROJECT VERSION)  #-#-#-#-#\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-07-29 17:30+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: lms/templates/wiki/base.html:8
+msgid "Wiki"
+msgstr ""
+
+#: lms/templates/course.html:31
+msgid "LEARN MORE"
+msgstr ""
+
+#: lms/templates/course.html:37 lms/templates/course.html:39
+#: lms/templates/course.html:48 lms/templates/course.html:50
+#: lms/templates/course.html:72 lms/templates/course.html:74
+#: lms/templates/discovery/course_card.underscore:29
+msgid "Starts"
+msgstr ""
+
+#: lms/templates/course.html:66
+msgid "officeBuilding"
+msgstr ""
+
+#: lms/templates/course.html:70
+msgid "book"
+msgstr ""
+
+#: lms/templates/course.html:79
+msgid "More "
+msgstr ""
+
+#: lms/templates/courses_list.html:19
+msgid "There are no courses available at this time!"
+msgstr ""
+
+#: lms/templates/courses_list.html:28
+msgid "Browse all courses"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:44
+msgid "An error occurred. Please try again later."
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:94
+msgid "Already Enrolled"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:97
+#: lms/templates/courseware/course_about.html:115
+msgid "View Course"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:103
+msgid "Course is full"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:106
+msgid "Enrollment in this course is by invitation only"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:111
+msgid "Enrollment is Closed"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:130
+msgid "Enroll Now"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:145
+msgid "View About Page in studio"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:168
+msgid "Course Number"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:184
+msgid "Classes Start"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:212
+msgid "Classes End"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:225
+msgid "Estimated Effort"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:233
+msgid "Price"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:242
+msgid "Prerequisites"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:246
+#, python-brace-format
+msgid ""
+"You must successfully complete {link_start}{prc_display}{link_end} before "
+"you begin this course."
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:256
+msgid "Requirements"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:267
+msgid "Additional Resources"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:297
+msgctxt "self"
+msgid "Enroll"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:302
+msgctxt "self"
+msgid "enroll"
+msgstr ""
+
+#: lms/templates/courseware/course_about_sidebar_header.html:14
+msgid "Share with friends and family!"
+msgstr ""
+
+#: lms/templates/courseware/course_about_sidebar_header.html:27
+#, python-brace-format
+msgid "I just enrolled in {number} {title} through {account} {url}"
+msgstr ""
+
+#: lms/templates/courseware/course_about_sidebar_header.html:38
+#, python-brace-format
+msgid "I just enrolled in {number} {title} through {platform} {url}"
+msgstr ""
+
+#: lms/templates/courseware/course_about_sidebar_header.html:45
+#, python-brace-format
+msgid "Take a course with {platform} online"
+msgstr ""
+
+#: lms/templates/courseware/course_about_sidebar_header.html:57
+msgid "Tweet that you've enrolled in this course"
+msgstr ""
+
+#: lms/templates/courseware/course_about_sidebar_header.html:65
+msgid "Post a Facebook message to say you've enrolled in this course"
+msgstr ""
+
+#: lms/templates/courseware/course_about_sidebar_header.html:72
+msgid "Email someone to say you've enrolled in this course"
+msgstr ""
+
+#: lms/templates/courseware/courses.html:34
+#: lms/templates/header/navbar-not-authenticated.html:35
+msgid "Courses"
+msgstr ""
+
+#: lms/templates/courseware/courses.html:58
+#: lms/templates/courseware/courses.html:59
+msgid "Refine Your Search"
+msgstr ""
+
+#: lms/templates/courseware/courses.html:68
+msgid "Search for a course"
+msgstr ""
+
+#: lms/templates/courseware/courses.html:70
+#: lms/templates/courseware/courses.html:71
+msgid "Search"
+msgstr ""
+
+#: lms/templates/courseware/courses.html:78
+msgid "Explore course"
+msgstr ""
+
+#: lms/templates/courseware/courses.html:89
+msgid "List of Courses"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_language_selector.html:37
+#: lms/templates/widgets/footer-language-selector.html:24
+msgid "Choose Language"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:5
+msgid "The Most Trusted Cryptocurrency Platform "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:8
+msgid "Here are some reasons why you should choose Flowbite "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:14
+msgid "fingerprint"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:15
+msgid "Secure storage "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:17
+msgid "We store the vast majority of digital assets in secure offline storage."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:23
+msgid "insurance"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:24
+msgid "Insurance "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:26
+msgid ""
+"Flowbite keeps cryptocurrencies secure and covers all cash balances in USD "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:32
+msgid "bestPractise"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:33
+msgid "Best practices "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:35
+msgid ""
+"The Flowbite Market supports a variety of the most popular cryptocurrencies."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:44
+msgid "Our partners "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:47
+msgid ""
+"We use a flexible approach to test assumptions and communicate your <br> "
+"audience's needs early and often. "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:70
+msgid "Contact Us"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:73
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:168
+msgid ""
+"Stay up to date with the roadmap progress, announcements and <br /> "
+"exclusive discounts feel free to sign up with your email."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:80
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:83
+msgid "company information"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:86
+msgid "Themesberg LLC <br /> Tax id: USXXXXXX"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:93
+msgid "Address"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:95
+msgid "Address "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:97
+msgid ""
+"SILVER LAKE, United States <br /> 1941 Late Avenue <br /> Zip Code/Postal "
+"code: 03875 "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:104
+msgid "Contact us"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:106
+msgid "Contact us: "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:108
+msgid ""
+"Email us for general queries including marketing and partnership "
+"opportunities"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:108
+msgid "hello@company.com"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:118
+msgid "Your name"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:120
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:127
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:134
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:141
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:148
+msgid "Enter Your Name"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:125
+msgid "Last name"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:132
+msgid "Email"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:139
+msgid "Phone number"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:146
+msgid "Your message"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:154
+msgid ""
+"By submitting this form, you confirm that you have read and agree to <a "
+"href='http://'>Flowbite's Terms of Service</a> and <a href='http://'>Privacy "
+"Statement</a>"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:158
+msgid "Send message"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:165
+msgid "Sign up for our newsletter "
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:174
+msgid "person"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:178
+msgid "Subscribe"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:182
+msgid ""
+"We care about the protection of your data. Read our  <a href='#'> Privacy "
+"Policy</a>."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:188
+msgid "404"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:192
+msgid "Something's missing."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:195
+msgid ""
+"Sorry, we can't find that page. You'll find lots to explore on the home page."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:199
+msgid "Back to Homepage"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:205
+msgid "Testimonials"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:208
+msgid ""
+"Explore the whole collection of open-source web components and <br /> "
+"elements built with the utility classes from Tailwind"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:215
+msgid "Solid foundation for any project"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:218
+msgid ""
+"This is a very complex and beautiful set of elements. Under the hood it "
+"comes with the best things from 2 different worlds: Figma and Tailwind."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:224
+msgid "Bonnie Green"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:227
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:246
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:265
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:284
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:303
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:324
+msgid "Web developer @themesberg"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:236
+msgid "Advanced features for designers"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:238
+msgid ""
+"FlowBite provides a robust set of design tokens and components based on the "
+"popular Tailwind CSS framework. From the most used UI components like forms "
+"and navigation bars to the whole app screens designed both for desktop and "
+"mobile, this UI kit provides a solid foundation for any project."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:243
+msgid "Micheal Gough"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:255
+msgid "Best tool for designers"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:257
+msgid ""
+"I recently got my hands on Flowbite Pro, and holy crap, I'm speechless with "
+"how easy this was to integrate within my application. Most templates are a "
+"pain, code is scattered, and near impossible to theme."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:262
+msgid "Roberta Casas"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:274
+msgid "Efficient Collaborating"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:276
+msgid ""
+"This is a very complex and beautiful set of elements that are super easy to "
+"use and customize. I've been using it for a while now and I have to say that "
+"it's one of the best UI kits I've ever used."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:281
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:292
+msgid "Thomas Lean"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:294
+msgid ""
+"Using FlowBite has been fantastic for my workflow. It made it really easy to "
+"create a very good looking project in no time. Every designer should have "
+"this in their toolbox!"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:300
+msgid "Neil Sims"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:312
+msgid "Perfect choice for a SaaS application"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:315
+msgid ""
+"Flowbite is just awesome. It contains tons of predesigned components and "
+"pages starting from login screen to complex dashboard. Perfect choice for "
+"your next SaaS application."
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_remaining_unimplemented_sections.html:321
+msgid "Robert Brown"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_section_invalid.html:12
+msgid ""
+">. the administrator should be able to fix this error from the theme designer"
+msgstr ""
+
+#: lms/templates/fx_templates/fx_page/_section_side_image_v1.html:32
+msgid "move beyond"
+msgstr ""
+
+#: lms/templates/header/brand.html:19
+#: lms/templates/header/navbar-logo-header.html:33
+#, python-brace-format
+msgid "{platform_name} Home Page"
+msgstr ""
+
+#: lms/templates/header/header.html:59
+#: lms/templates/header/user_dropdown.html:32
+msgid "Options Menu"
+msgstr ""
+
+#: lms/templates/header/header.html:72
+#: lms/templates/header/user_dropdown.html:35
+msgid "More Options"
+msgstr ""
+
+#: lms/templates/header/header.html:80
+#, python-brace-format
+msgid ""
+"{begin_strong}Warning:{end_strong} Your browser is not fully supported. We "
+"strongly recommend using {chrome_link} or {ff_link}."
+msgstr ""
+
+#: lms/templates/header/navbar-logo-header.html:25
+#, python-brace-format
+msgid "{name} Dashboard"
+msgstr ""
+
+#: lms/templates/header/navbar-not-authenticated.html:27
+msgid "Supplemental Links"
+msgstr ""
+
+#: lms/templates/header/navbar-not-authenticated.html:31
+msgid "How it Works"
+msgstr ""
+
+#: lms/templates/header/navbar-not-authenticated.html:39
+msgid "Schools"
+msgstr ""
+
+#: lms/templates/header/navbar-not-authenticated.html:51
+msgid "Register for free"
+msgstr ""
+
+#: lms/templates/header/navbar-not-authenticated.html:55
+msgid "Sign in"
+msgstr ""
+
+#: lms/templates/header/user_dropdown.html:37
+#: lms/templates/header/user_dropdown.html:39
+msgid "Dashboard"
+msgstr ""
+
+#: lms/templates/header/user_dropdown.html:42
+msgid "Profile"
+msgstr ""
+
+#: lms/templates/header/user_dropdown.html:43
+msgid "Account"
+msgstr ""
+
+#: lms/templates/header/user_dropdown.html:45
+msgid "Order History"
+msgstr ""
+
+#: lms/templates/header/user_dropdown.html:47
+msgid "Sign Out"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/instructor_dashboard_2.html:29
+#: lms/templates/instructor/instructor_dashboard_2/instructor_dashboard_2.html:118
+msgid "Instructor Dashboard"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/instructor_dashboard_2.html:121
+msgid "View Course in Studio"
+msgstr ""
+
+#: lms/templates/teams/teams.html:16
+msgid "Teams"
+msgstr ""
+
+#: lms/templates/wiki/includes/article_menu.html:17
+msgid "View"
+msgstr ""
+
+#: lms/templates/wiki/includes/article_menu.html:18
+#: lms/templates/wiki/includes/article_menu.html:32
+#: lms/templates/wiki/includes/article_menu.html:48
+#: lms/templates/wiki/includes/article_menu.html:62
+#, python-brace-format
+msgid "{span_start}(active){span_end}"
+msgstr ""
+
+#: lms/templates/wiki/includes/article_menu.html:31
+msgid "Edit"
+msgstr ""
+
+#: lms/templates/wiki/includes/article_menu.html:47
+msgid "Changes"
+msgstr ""
+
+#: lms/templates/wiki/includes/article_menu.html:80
+msgid "Settings"
+msgstr ""
+
+#: lms/templates/wiki/includes/article_menu.html:81
+#, python-brace-format
+msgid "{span_start}active{span_end}"
+msgstr ""
+
+#: lms/templates/discovery/course_card.underscore:14
+msgid "Learn More"
+msgstr ""
+
+#: lms/templates/discovery/course_card.underscore:20
+#, python-format
+msgid "Starts: %(start_date)s"
+msgstr ""
+
+#: lms/templates/learner_dashboard/program_card.underscore:16
+#: lms/templates/learner_dashboard/program_card.underscore:24
+#: lms/templates/learner_dashboard/program_card.underscore:32
+msgid "Course"
+msgid_plural "Courses"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lms/templates/learner_dashboard/program_card.underscore:18
+msgid "Completed"
+msgstr ""
+
+#: lms/templates/learner_dashboard/program_card.underscore:26
+msgid "In Progress"
+msgstr ""
+
+#: lms/templates/learner_dashboard/program_card.underscore:34
+msgid "Remaining"
+msgstr ""
+
+#: lms/templates/learner_dashboard/program_card.underscore:62
+#, python-format
+msgid "%(programName)s Home Page."
+msgstr ""
+
+#: lms/templates/learner_dashboard/program_card.underscore:68
+msgid "Subscribed"
+msgstr ""
