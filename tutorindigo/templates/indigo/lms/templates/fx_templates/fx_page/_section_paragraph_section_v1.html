@@ -7,7 +7,7 @@ id_tag = page_contents.get('div_id')
 if id_tag:
     id_tag = f'id="{id_tag}"'
 
-fx_html_content = fx_static._(page_contents.get('paragraph'))
+fx_html_content = fx_static.t(page_contents.get('paragraph'))
 %>
 
 <div ${id_tag} class="fx-raw-html-paragraph-container">

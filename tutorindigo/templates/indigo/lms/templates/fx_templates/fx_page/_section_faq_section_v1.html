@@ -7,13 +7,13 @@ id_tag = page_contents.get('div_id')
 if id_tag:
     id_tag = f'id="{id_tag}"'
 
-fx_title = fx_static._(page_contents.get('title'))
+fx_title = fx_static.t(page_contents.get('title'))
 declared_faq_items = page_contents.get('faq_items', [])
 
 fx_faq_items = []
 for faq_item in declared_faq_items:
-    question = fx_static._(faq_item.get('question'))
-    answer = fx_static._(faq_item.get('answer'))
+    question = fx_static.t(faq_item.get('question'))
+    answer = fx_static.t(faq_item.get('answer'))
     if not question or not answer:
         continue
 

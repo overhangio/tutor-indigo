@@ -39,7 +39,7 @@ allowed_sections.remove('featured_courses_v1')
 %>
 
 <%def name="pagetitle()">
-    ${fx_static._(fx_static.get_fx_config_value(fx_get_page_key(), default_value={}).get('title', {}))}
+    ${fx_static.t(fx_static.get_fx_config_value(fx_get_page_key(), default_value={}).get('title', {}))}
 </%def>
 
 <%include file="fx_page/page.html" args="page_name=fx_get_page_key(), allowed_sections=allowed_sections"/>
