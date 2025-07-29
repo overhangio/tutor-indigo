@@ -1,0 +1,7 @@
+locales:
+    - en
+    - ar
+    - fr
+
+dummy_locales:
+    - eo

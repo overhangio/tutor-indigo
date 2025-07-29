@@ -1,0 +1,6 @@
+setuptools
+django<5
+edx-i18n-tools
+Babel
+Mako
+enmerkar-underscore
