@@ -15,9 +15,10 @@ social_media_links = fx_static.get_fx_social_media_links(declared_social_media_l
     % for social_link in social_media_links:
         % if social_link.get('provider') == 'facebook':
             <a class="btn p-0" href="${social_link.get('value')}" target="_blank" rel="noopener">
-                <svg width="24" class="footerWrap__social-icon" aria-label="facebook" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8433 5.16823H16V2H13.4107C12.2632 2.0014 11.1631 2.46271 10.3518 3.28274C9.54037 4.10277 9.08393 5.21457 9.08255 6.37427V8.33647H7V11.5047H9.08986V22H12.2247V11.5047H15.3814L16 8.33647H12.2247V5.79238C12.2271 5.62743 12.2931 5.46994 12.4086 5.35339C12.5241 5.23684 12.68 5.17041 12.8433 5.16823Z"></path>
-                </svg>
+               <svg class="footerWrap__social-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" id="Facebook-Logo-2--Streamline-Logos-Block" height="24" width="24">
+                <desc> Facebook Logo 2 Streamline Icon: https://streamlinehq.com</desc>
+                <path  fill-rule="evenodd" d="M5 1a4 4 0 0 0 -4 4v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4 -4V5a4 4 0 0 0 -4 -4H5Zm4.682 6.273A3.273 3.273 0 0 1 12.954 4h2.91c0.2 0 0.363 0.163 0.363 0.364v2.909c0 0.2 -0.163 0.363 -0.363 0.363h-1.455a1.09 1.09 0 0 0 -1.09 1.091v1.091h2.545a0.364 0.364 0 0 1 0.352 0.452l-0.727 2.91a0.363 0.363 0 0 1 -0.353 0.274h-1.818v6.182a0.364 0.364 0 0 1 -0.364 0.364h-2.909a0.364 0.364 0 0 1 -0.363 -0.364v-6.181H7.864a0.364 0.364 0 0 1 -0.364 -0.364v-2.91c0 -0.2 0.163 -0.363 0.364 -0.363h1.818V7.273Z" clip-rule="evenodd" stroke-width="1"></path>
+            </svg>
             </a>
 
         % elif social_link.get('provider') == 'instagram':
