@@ -122,6 +122,10 @@ msgstr ""
 msgid "View About Page in studio"
 msgstr ""
 
+#: lms/templates/courseware/course_about.html:159
+msgid "Course Summary"
+msgstr "ملخص المقرر"
+
 #: lms/templates/courseware/course_about.html:168
 msgid "Course Number"
 msgstr ""
