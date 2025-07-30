@@ -8,22 +8,15 @@ fx_dev_css_enabled = fx_css_override.get('dev_css_enabled', '') if fx_css_overri
 fx_css_override_file = fx_css_override.get('css_override_file', '') if fx_css_override else None
 %>
 
-% if fx_css_override_file or fx_dev_css_enabled:
+% if fx_css_override_file:
+<link rel="stylesheet" href="${fx_css_override_file}" type="text/css">
+% endif
+
+% if fx_dev_css_enabled:
 <script>
 (function() {
   const devCssCookie = document.cookie.split('; ').find(row => row.startsWith('fx-dev-css='));
 
-  % if fx_css_override_file:
-  if (!devCssCookie) {
-    const linkElement = document.createElement('link');
-    linkElement.rel = 'stylesheet';
-    linkElement.type = 'text/css';
-    linkElement.href = '${fx_css_override_file}';
-    document.head.appendChild(linkElement);
-  }
-  % endif
-
-  % if fx_dev_css_enabled:
   if (devCssCookie) {
     const devCssValue = devCssCookie.split('=')[1];
     const linkElement = document.createElement('link');
@@ -32,7 +25,6 @@ fx_css_override_file = fx_css_override.get('css_override_file', '') if fx_css_ov
     linkElement.href = devCssValue;
     document.head.appendChild(linkElement);
   }
-  % endif
 })();
 </script>
 % endif
