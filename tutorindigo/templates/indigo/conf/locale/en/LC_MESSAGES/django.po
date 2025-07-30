@@ -34,7 +34,7 @@ msgstr ""
 "#-#-#-#-#  mako.po (PROJECT VERSION)  #-#-#-#-#\n"
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-29 17:30+0300\n"
+"POT-Creation-Date: 2025-07-30 15:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 "#-#-#-#-#  underscore.po (PROJECT VERSION)  #-#-#-#-#\n"
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-29 17:30+0300\n"
+"POT-Creation-Date: 2025-07-30 15:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,6 +120,10 @@ msgstr ""
 
 #: lms/templates/courseware/course_about.html:145
 msgid "View About Page in studio"
+msgstr ""
+
+#: lms/templates/courseware/course_about.html:159
+msgid "Course Summary"
 msgstr ""
 
 #: lms/templates/courseware/course_about.html:168
