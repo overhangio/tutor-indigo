@@ -54,6 +54,7 @@ for declared_live_metric in declared_list_of_live_metrics:
         if not title:
             title = fx_static.t(allowed_statistics[declared_live_metric['key']])
         declared_live_metric['title'] = title
+        declared_live_metric['hint'] = fx_static.t(declared_live_metric.get('hint', {}))
         fx_list_of_live_metrics.append(declared_live_metric)
 
 if fx_list_of_live_metrics:
@@ -84,7 +85,7 @@ alignment = alignment if alignment in ['start', 'end'] else 'center'
         % for live_metric in fx_list_of_live_metrics:
             <div class="col-sm-2">
                 <div class="whyUsWrapper" style="text-align: ${alignment} !important;">
-                    <h4 class="whyUsWrapper__heading">${live_statistics[live_metric['api_key']]}</h4>
+                    <h4 class="whyUsWrapper__heading" title="${live_metric['hint']}">${live_statistics[live_metric['api_key']]}</h4>
                     <p class="whyUsWrapper__desc">${live_metric['title'] | fx_static.br}</p>
                 </div>
             </div>
