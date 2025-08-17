@@ -48,20 +48,19 @@ auto_switch_language = (
 </form>
 
 <%
+allowed_languages = fx_static.fx_supported_languages()
 icon_text = {
     'ar': {
         'text': 'ع',
         'padding-bottom': 15,
     },
-    'en': {
-        'text': 'en',
-        'padding-bottom': 5,
-    },
-    'fr': {
-        'text': 'fr',
-        'padding-bottom': 5,
-    },
 }
+for lang_code in allowed_languages:
+    if lang_code not in icon_text:
+        icon_text[lang_code] = {
+            'text': lang_code,
+            'padding-bottom': 5,
+        }
 %>
 
 <style>
