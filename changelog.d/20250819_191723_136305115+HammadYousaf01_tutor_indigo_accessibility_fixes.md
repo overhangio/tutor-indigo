@@ -1,0 +1,1 @@
+- [Improvement] Sync footer in both MFE pages and templates (by @zubairshakoorarbisoft)
