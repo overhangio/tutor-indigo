@@ -144,6 +144,10 @@ from common.djangoapps.student.models import CourseEnrollment
 
 </div>
 
+% if getattr(settings, 'ENABLE_PAYMENT_NOTIFICATIONS', False):
+  <%include file="payment_notifications.html"/>
+% endif
+
 <main id="main" aria-label="Content" tabindex="-1">
     <div class="dashboard" id="dashboard-main">
       <div class="main-container">
