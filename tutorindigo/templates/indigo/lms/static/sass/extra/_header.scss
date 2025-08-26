@@ -1,9 +1,30 @@
 // Include custom header
-.nav-skip {
+body {
+  .nav-skip {
+
     &:focus {
-        z-index: 9999;
+      left: 50%;
+      position: absolute;
+      top: 5px;
+      height: auto;
+      background-color: $black;
+      margin: 0;
+      opacity: 0.8;
+      color: white;
+      text-decoration: none;
+      outline: none;
+      text-align: center;
+      width: auto;
+      font-size: 1rem;
+      line-height: 1.45;
+      padding: 0 5px;
+      transform: translateX(-50%);
+      z-index: 9999;
+      clip: auto;
     }
+  }
 }
+
 header.global-header {
     border: none;
     padding: 0;
