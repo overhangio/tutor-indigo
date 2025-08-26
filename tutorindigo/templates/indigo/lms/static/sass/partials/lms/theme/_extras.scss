@@ -1723,6 +1723,11 @@ body.indigo-dark-theme {
 @import '../../../courseware/responsive-nav';
 
 /* Hide ONLY the Register for free button in header */
-header.global .nav-links .register {
+header.global .nav-links .register-btn {
+  display: none !important;
+}
+
+/* Hide Register tab completely */
+#controlled-tab-tab-\/register {
   display: none !important;
 }
