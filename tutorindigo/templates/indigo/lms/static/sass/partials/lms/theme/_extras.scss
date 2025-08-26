@@ -1721,3 +1721,8 @@ body.indigo-dark-theme {
 @import '../../../views/teams';
 @import '../../../views/wiki';
 @import '../../../courseware/responsive-nav';
+
+/* Hide Register for free button in header */
+.nav-links .register-btn {
+  display: none !important;
+}
