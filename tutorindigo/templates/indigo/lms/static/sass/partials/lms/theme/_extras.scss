@@ -1722,7 +1722,7 @@ body.indigo-dark-theme {
 @import '../../../views/wiki';
 @import '../../../courseware/responsive-nav';
 
-/* Hide Register for free button in header */
-.nav-links .register-btn {
+/* Hide ONLY the Register for free button in header */
+header.global .nav-links .register {
   display: none !important;
 }
