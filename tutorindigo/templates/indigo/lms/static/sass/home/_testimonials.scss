@@ -1,0 +1,134 @@
+// Testimonials Section Styles - Clean & Professional Design
+#testimonials-section {
+  padding: 80px 0;
+  background: #ffffff;
+  position: relative;
+
+  .testimonials-container {
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .testimonials-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1a202c;
+
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+  }
+
+  .testimonials-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      margin-bottom: 40px;
+    }
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+    margin-bottom: 50px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  .testimonial-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 24px;
+    transition: all 0.2s ease;
+    text-align: left;
+    position: relative;
+
+    &:hover {
+      border-color: #d1d5db;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 12px;
+
+      .student-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+        flex-shrink: 0;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .student-info {
+        flex: 1;
+
+        .student-name {
+          font-size: 1rem;
+          font-weight: 600;
+          margin: 0 0 2px 0;
+          color: #1f2937;
+        }
+
+        .student-job {
+          font-size: 0.875rem;
+          color: #6b7280;
+          margin: 0;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .testimonial-content {
+      .testimonial-text {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #374151;
+        margin: 0;
+        font-style: normal;
+        position: relative;
+
+        &::before {
+          content: '"';
+          font-size: 1.5rem;
+          color: #9ca3af;
+          position: absolute;
+          top: -8px;
+          left: -12px;
+          font-family: serif;
+          line-height: 1;
+        }
+
+        &::after {
+          content: '"';
+          font-size: 1.5rem;
+          color: #9ca3af;
+          font-family: serif;
+        }
+      }
+    }
+  }
+}

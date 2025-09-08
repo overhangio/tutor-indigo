@@ -1,212 +1,401 @@
+// Import hero styles
+@import "hero";
+
+// Import partner styles
+@import "partner";
+
+// Import platform info styles
+@import "platform_info";
+
+// Import testimonials styles
+@import "testimonials";
+
 // Include custom home
 section.home {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 15px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
-.home>header .title {
-    background: none !important;
+.home > header .title {
+  background: none !important;
 }
-.home>header .outer-wrapper {
-    max-width: 100%;
+.home > header .outer-wrapper {
+  max-width: 100%;
 }
 .global-header .nav-links .secondary {
-    .btn-holder {
-        letter-spacing: -.32em;
-        margin: 0 -7px;
-        .nav-item {
-            letter-spacing: normal;
-            margin: 0 7px;
-            padding: 12px 0;
-            .btn {
-                line-height: 20px;
-                padding: 9px 17px;
-                font-size: 14px;
-                border-radius: 6px;
-                font-weight: 500;
-                display: block;
-            }
-        }
+  .btn-holder {
+    letter-spacing: -0.32em;
+    margin: 0 -7px;
+    .nav-item {
+      letter-spacing: normal;
+      margin: 0 7px;
+      padding: 12px 0;
+      .btn {
+        line-height: 20px;
+        padding: 9px 17px;
+        font-size: 14px;
+        border-radius: 6px;
+        font-weight: 500;
+        display: block;
+      }
     }
+  }
 }
-#main .home.style-logout  {
-    header {
-        background: none;
-        overflow: visible;
-        .outer-wrapper {
-            .title {
-                width: 100%;
-                float: none;
-                margin: 0;
-                padding: 30px 0 0;
-                min-height: 20px;
-                @include media-breakpoint-up(sm) {
-                    padding: 50px 0 0;
-                }
-                .heading-group {
-                    margin: 0 0 25px;
-                    text-align: left;
-                    padding: 0;
-                    @include media-breakpoint-up(sm) {
-                        margin: 0 0 45px;
-                    }
-                    h1 {
-                        color: #111827;
-                        font-size: 20px;
-                        font-weight: 700;
-                        line-height: 30px;
-                        margin: 0 0 8px;
-                        text-align: left;
-                        @include media-breakpoint-up(md) {
-                            font-size: 24px;
-                            font-weight: 700;
-                            margin: 0 0 12px;
-                        }
-                    }
-                    p {
-                        font-size: 16px;
-                        line-height: 20px;
-                        color: #515661;
-                        font-style: normal;
-                        margin: 0;
-                    }
-                }
-                .course-search {
-                    padding: 0;
-                    .search-field-wrapper {
-                      display: flex;
-
-                      .button-holder {
-                            button {
-                                position: static;
-                                margin: 0 0 0 16px;
-                                min-width: 90px;
-                                color: #fff;
-                                font-size: 16px;
-                                font-weight: 500;
-                                line-height: 26px;
-                                text-align: center;
-                                padding: 6px;
-                                height: 38px;
-                                border-radius: 6px;
-                                background: $primary;
-                                font-family: $font-family-title;
-                                border: none;
-                                @include media-breakpoint-up(sm) {
-                                    min-width: 100px;
-                                }
-                                &:hover {
-                                    background: $primary;
-                                    opacity: .8;
-                                }
-                            }
-                        }
-                        .input-holder {
-                            flex-grow: 1;
-                            border-radius: 6px;
-                            background: $primary-light;
-                            padding: 0 0 0 33px;
-                            position: relative;
-                            display: block;
-                            svg {
-                                position: absolute;
-                                left: 12px;
-                                font-size: 20px;
-                                top: 10px;
-                            }
-                            input {
-                                border: none;
-                                box-shadow: none;
-                                height: 38px;
-                                width: 100%;
-                                background: none;
-                                outline: none;
-                                font-size: 14px;
-                                line-height: 20px;
-                                padding: 9px 10px;
-
-                                &:focus,
-                                &:focus-visible {
-                                    outline: revert;
-                                    outline-width: 2px;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+#main .home.style-logout {
+  header {
+    background: none;
+    overflow: visible;
+    .outer-wrapper {
+      .title {
+        width: 100%;
+        float: none;
+        margin: 0;
+        padding: 30px 0 0;
+        min-height: 20px;
+        @include media-breakpoint-up(sm) {
+          padding: 50px 0 0;
         }
+        .heading-group {
+          margin: 0 0 25px;
+          text-align: left;
+          padding: 0;
+          @include media-breakpoint-up(sm) {
+            margin: 0 0 45px;
+          }
+          h1 {
+            color: #111827;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 30px;
+            margin: 0 0 8px;
+            text-align: left;
+            @include media-breakpoint-up(md) {
+              font-size: 24px;
+              font-weight: 700;
+              margin: 0 0 12px;
+            }
+          }
+          p {
+            font-size: 16px;
+            line-height: 20px;
+            color: #515661;
+            font-style: normal;
+            margin: 0;
+          }
+        }
+        .course-search {
+          padding: 0;
+          .search-field-wrapper {
+            display: flex;
+
+            .button-holder {
+              button {
+                position: static;
+                margin: 0 0 0 16px;
+                min-width: 90px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 26px;
+                text-align: center;
+                padding: 6px;
+                height: 38px;
+                border-radius: 6px;
+                background: $primary;
+                font-family: $font-family-title;
+                border: none;
+                @include media-breakpoint-up(sm) {
+                  min-width: 100px;
+                }
+                &:hover {
+                  background: $primary;
+                  opacity: 0.8;
+                }
+              }
+            }
+            .input-holder {
+              flex-grow: 1;
+              border-radius: 6px;
+              background: $primary-light;
+              padding: 0 0 0 33px;
+              position: relative;
+              display: block;
+              svg {
+                position: absolute;
+                left: 12px;
+                font-size: 20px;
+                top: 10px;
+              }
+              input {
+                border: none;
+                box-shadow: none;
+                height: 38px;
+                width: 100%;
+                background: none;
+                outline: none;
+                font-size: 14px;
+                line-height: 20px;
+                padding: 9px 10px;
+
+                &:focus,
+                &:focus-visible {
+                  outline: revert;
+                  outline-width: 2px;
+                }
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
 body.indigo-dark-theme {
-    h1 {
-        color: $text-color-d;
+  h1 {
+    color: $text-color-d;
+  }
+  p a:not(.btn),
+  a:not(.btn) {
+    color: $primary-d;
+    &:hover,
+    &:focus,
+    &:active,
+    a:visited:not(.btn):focus {
+      color: $primary-d;
     }
-    p a:not(.btn), a:not(.btn) {
-        color: $primary-d;
-        &:hover, &:focus, &:active, a:visited:not(.btn):focus {
-            color: $primary-d;
-        }
-    }
-    .global-header .nav-links .secondary {
-        .btn-holder {
-            .nav-item {
-                .btn {
-                    &.sign-in-btn {
-                        background: $primary-d;
-                        color: $btn-color-d;
-                        border-color: $primary-d;
-                    }
-                    &.register-btn {
-                        color: $text-color-d;
-                        border-color: $text-color-d;
-                        background: none;
-                    }
-                }
-            }
-        }
-    }
-    #main .home.style-logout  {
-        header {
+  }
+  .global-header .nav-links .secondary {
+    .btn-holder {
+      .nav-item {
+        .btn {
+          &.sign-in-btn {
+            background: $primary-d;
+            color: $btn-color-d;
+            border-color: $primary-d;
+            height: 48px;
+          }
+          &.register-btn {
+            color: $text-color-d;
+            border-color: $text-color-d;
             background: none;
-            .outer-wrapper {
-                .title {
-                    .heading-group {
-                        h1 {
-                            color: $text-color-d;
-                        }
-                        p {
-                            color: $text-color-primary;
-                        }
-                    }
-                    .course-search {
-                        .search-field-wrapper {
-                            .button-holder {
-                                button {
-                                    color: $btn-color-d;
-                                    background: $primary-d;
-                                    border: none;
-                                    &:hover {
-                                        color: $btn-color-d;
-                                        background: $primary-d;
-                                    }
-                                }
-                            }
-                            .input-holder {
-                                background: $primary-light-d;
-                                svg {
-                                    path {
-                                        fill: $text-color-primary;
-                                    }
-                                }
-                                input {
-                                    color: $text-color-d;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            height: 48px;
+          }
         }
+      }
     }
+  }
+  #main .home.style-logout {
+    header {
+      background: none;
+      .outer-wrapper {
+        .title {
+          .heading-group {
+            h1 {
+              color: $text-color-d;
+            }
+            p {
+              color: $text-color-primary;
+            }
+          }
+          .course-search {
+            .search-field-wrapper {
+              .button-holder {
+                button {
+                  color: $btn-color-d;
+                  background: $primary-d;
+                  border: none;
+                  &:hover {
+                    color: $btn-color-d;
+                    background: $primary-d;
+                  }
+                }
+              }
+              .input-holder {
+                background: $primary-light-d;
+                svg {
+                  path {
+                    fill: $text-color-primary;
+                  }
+                }
+                input {
+                  color: $text-color-d;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Career Path Card Styles - Clean & Professional
+.career-path-card {
+  margin: 50px auto;
+
+  @media (max-width: 768px) {
+    margin: 50px auto;
+    padding: 0 15px;
+  }
+
+  .career-path-container {
+    background: linear-gradient(135deg, #ffced2 0%, #ead9cc 100%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+    @media (max-width: 768px) {
+      padding: 30px 20px;
+      border-radius: 8px;
+    }
+
+    .career-path-title {
+      color: #1f2937;
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 32px;
+      line-height: 1.4;
+
+      @media (max-width: 768px) {
+        font-size: 22px;
+        margin: 0 0 24px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 20px;
+        margin: 0 0 20px;
+      }
+    }
+
+    .career-path-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .career-option {
+        background: white;
+        color: black;
+        text-shadow: none;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 8px;
+        padding: 20px 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        @media (max-width: 768px) {
+          padding: 18px 14px;
+        }
+
+        @media (max-width: 480px) {
+          padding: 16px;
+          flex-direction: row;
+          text-align: left;
+        }
+
+        &:hover {
+          background: #b71c1c;
+          border-color: #b71c1c;
+          color: white;
+          transform: translateY(-1px);
+          //   box-shadow: 0 4px 12px rgba(183, 28, 28, 0.3);
+        }
+
+        &:active {
+          transform: translateY(0);
+          box-shadow: none !important;
+          background: #b71c1c;
+          border-color: #b71c1c;
+          color: white;
+        }
+
+        &.active {
+          background: #b71c1c;
+          border-color: #b71c1c;
+          color: white;
+          box-shadow: none !important;
+          //   box-shadow: 0 4px 12px rgba(183, 28, 28, 0.35);
+        }
+
+        .option-icon {
+          margin-bottom: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          background: rgba(183, 28, 28, 0.1);
+          border-radius: 50%;
+          transition: all 0.2s ease;
+
+          @media (max-width: 768px) {
+            width: 36px;
+            height: 36px;
+            margin-bottom: 6px;
+          }
+
+          @media (max-width: 480px) {
+            margin-bottom: 0;
+            margin-right: 12px;
+            width: 32px;
+            height: 32px;
+          }
+
+          svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+
+            @media (max-width: 768px) {
+              width: 18px;
+              height: 18px;
+            }
+
+            @media (max-width: 480px) {
+              width: 16px;
+              height: 16px;
+            }
+          }
+        }
+
+        .option-text {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.3;
+
+          @media (max-width: 768px) {
+            font-size: 13px;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 14px;
+            flex: 1;
+          }
+        }
+
+        &:hover .option-icon {
+          background: rgba(255, 255, 255, 0.2);
+        }
+
+        &.active .option-icon {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
 }

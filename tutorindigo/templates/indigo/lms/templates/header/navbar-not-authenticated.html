@@ -20,39 +20,63 @@ from django.utils.translation import gettext as _
 %>
 <!-- NEW IN INDIGO update nav -->
 <nav class="nav-links" aria-label=${_("Supplemental Links")}>
-  <div class="main">
-  % if mktg_site_enabled:
-    <div class="mobile-nav-item hidden-mobile nav-item">
-      <a href="${marketing_link('HOW_IT_WORKS')}">${_("How it Works")}</a>
-    </div>
-    % if courses_are_browsable:
-      <div class="mobile-nav-item hidden-mobile nav-item">
-        <a href="${marketing_link('COURSES')}">${_("Courses")}</a>
+  <div class="main" style="display: flex; align-items: center;">
+    <!-- Course search input - hidden on mobile -->
+    % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
+      <div class="course-search hidden-mobile" style="margin-left: 20px; margin-top:16px;">
+        <form method="get" action="/courses">
+          <div class="search-field-wrapper">
+            <label class="input-holder" style="position: relative; display: flex; align-items: center;">
+              <span class="sr">${_("Tìm kiếm khóa học")}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" style="position: absolute; left: 12px; z-index: 1; pointer-events: none;">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z" fill="#9CA3AF"></path>
+              </svg>
+              <input class="search-input" name="search_query" placeholder="${_("Tìm kiếm khóa học")}" style="padding: 10px 15px 10px 40px; border-radius: 25px; border: 1px solid #e5e7eb; outline: none; transition: all 0.2s; min-width: 300px; font-size: 16px;"></input>
+            </label>
+          </div>
+        </form>
       </div>
     % endif
-    <div class="mobile-nav-item hidden-mobile nav-item">
-      <a href="${marketing_link('SCHOOLS')}">${_("Schools")}</a>
-    </div>
-  % endif
-  % if allows_login:
-    % if can_discover_courses:
-      <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-        <a href="/courses">${_('Discover courses')}</a>
+    
+    % if mktg_site_enabled:
+      <div class="mobile-nav-item hidden-mobile nav-item">
+        <a href="${marketing_link('HOW_IT_WORKS')}">${_("How it Works")}</a>
       </div>
-    %endif
-  % endif
+      % if courses_are_browsable:
+        <div class="mobile-nav-item hidden-mobile nav-item">
+          <a href="${marketing_link('COURSES')}">${_("Courses")}</a>
+        </div>
+      % endif
+      <div class="mobile-nav-item hidden-mobile nav-item">
+        <a href="${marketing_link('SCHOOLS')}">${_("Schools")}</a>
+      </div>
+    % endif
   </div>
   <div class="secondary d-flex align-items-center">
-    <%include file="./theme-toggle-button.html" />
-    <div class="btn-holder">
+    <!-- <%include file="./theme-toggle-button.html" /> -->
+    <div class="btn-holder d-flex align-items-center" style="height:76px;">
       % if allows_login:
+        % if can_discover_courses:
+          <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
+            <a href="/">${_('Trang chủ')}</a>
+          </div>
+          <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
+            <a href="/courses">${_('Khóa học')}</a>
+          </div>
+        %endif
         % if allow_public_account_creation and not disable_register_button:
             <div class="mobile-nav-item hidden-mobile nav-item">
-                <a class="register-btn btn" href="/register${login_query()}">${_("Register for free")}</a>
+                <a class="register-btn btn" href="/register${login_query()}" style="border-radius: 40px; padding: 0 16px; transition: all 0.3s ease; height: 40px; font-size: 16px; display: flex; align-items: center; text-decoration: none;">${_("Đăng ký miễn phí")}</a>
             </div>
         % endif
         <div class="mobile-nav-item hidden-mobile nav-item">
-            <a class="sign-in-btn btn" href="/login${login_query()}">${_("Sign in")}</a>
+            <a class="sign-in-btn btn" href="/login${login_query()}" style="border-radius: 40px; padding: 0 16px; transition: all 0.3s ease; display: flex; align-items: center; height: 48px; font-size: 16px; text-decoration: none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              ${_("Đăng nhập")}
+            </a>
         </div>
       % endif
     </div>

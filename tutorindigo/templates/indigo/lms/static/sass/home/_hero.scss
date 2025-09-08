@@ -1,0 +1,300 @@
+// Hero Section Styles
+#hero-section {
+  background-image: url("/static/indigo/images/hero/HeroFrame.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 95vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  // padding: 80px 0 60px;
+
+  // Overlay for better text readability
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    z-index: 1;
+  }
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    gap: 60px;
+
+    .hero-content {
+      flex: 1;
+      max-width: 550px;
+
+      .hero-logo {
+        margin-bottom: 30px;
+        text-align: start;
+        img {
+          height: 60px;
+          width: auto;
+        }
+      }
+
+      .hero-title {
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #1a1a1a;
+        margin-bottom: 20px;
+        min-width: max-content;
+        text-align: start;
+        .highlight {
+          color: #e74c3c;
+        }
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #666;
+        margin-bottom: 40px;
+        max-width: 480px;
+        text-align: start;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+
+        .btn {
+          padding: 14px 28px;
+          border-radius: 30px;
+          font-size: 16px;
+          font-weight: 600;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+          min-width: 160px;
+
+          &.btn-primary {
+            background: #e74c3c;
+            color: white;
+
+            &:hover {
+              background: #c0392b;
+              transform: translateY(-2px);
+              box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+            }
+          }
+
+          &.btn-secondary {
+            background: transparent;
+            color: #e74c3c;
+            border-color: #e74c3c;
+
+            &:hover {
+              background: #e74c3c;
+              color: white;
+              transform: translateY(-2px);
+              box-shadow: 0 6px 20px rgba(231, 76, 60, 0.2);
+            }
+          }
+        }
+      }
+    }
+
+    .hero-visual {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 600px;
+
+      .hero-image {
+        position: relative;
+        z-index: 4;
+
+        img {
+          max-width: 100%;
+          height: auto;
+          // border-radius: 20px;
+          // box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      // Decorative elements
+      .hero-decoration {
+        position: absolute;
+
+        &.online-school {
+          bottom: -40px;
+          left: -30px;
+          z-index: 3;
+
+          img {
+            width: 120px;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+          }
+        }
+
+        &.text-overlay {
+          position: absolute;
+          top: 20%;
+          right: -10%;
+          z-index: 2;
+          font-size: 120px;
+          font-weight: 900;
+          color: rgba(231, 76, 60, 0.1);
+          line-height: 1;
+          pointer-events: none;
+          text-transform: uppercase;
+          letter-spacing: -2px;
+        }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  #hero-section {
+    padding: 60px 0 40px;
+
+    .hero-container {
+      gap: 40px;
+
+      .hero-content {
+        .hero-title {
+          font-size: 40px;
+          min-width: max-content;
+          text-align: start;
+        }
+
+        .hero-subtitle {
+          font-size: 16px;
+          text-align: start;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #hero-section {
+    min-height: auto;
+    padding: 40px 0 30px;
+
+    .hero-container {
+      flex-direction: column;
+      text-align: center;
+      gap: 30px;
+
+      .hero-content {
+        max-width: 100%;
+
+        .hero-title {
+          font-size: 32px;
+          min-width: max-content;
+          text-align: start;
+        }
+
+        .hero-subtitle {
+          font-size: 16px;
+          max-width: 100%;
+          text-align: start;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+
+          .btn {
+            min-width: 140px;
+            padding: 12px 24px;
+            font-size: 14px;
+          }
+        }
+      }
+
+      .hero-visual {
+        max-width: 400px;
+
+        .hero-decoration {
+          &.online-school {
+            top: -10px;
+            left: -15px;
+            display: none;
+            img {
+              width: 80px;
+            }
+          }
+
+          &.text-overlay {
+            font-size: 60px;
+            right: -5%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  #hero-section {
+    .hero-container {
+      padding: 0 15px;
+
+      .hero-content {
+        .hero-logo img {
+          height: 40px;
+          text-align: start;
+        }
+
+        .hero-title {
+          font-size: 30px;
+          min-width: max-content;
+          text-align: start;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+
+          .btn {
+            width: 100%;
+            max-width: 250px;
+          }
+        }
+      }
+
+      .hero-visual {
+        .hero-decoration.text-overlay {
+          display: none;
+        }
+      }
+    }
+  }
+}

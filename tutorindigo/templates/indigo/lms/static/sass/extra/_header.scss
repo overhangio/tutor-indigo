@@ -52,10 +52,10 @@ header.global-header {
             height: auto;
             @include media-breakpoint-up(lg) {
                 margin: 0;
-                margin: 20px 0 0;
+                margin: 20px 0 20px 0;
             }
             .logo {
-                height: 24px;
+                height: 36px;
                 margin: 0;
             }
         }
