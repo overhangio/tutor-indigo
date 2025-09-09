@@ -85,57 +85,67 @@
         dir=${bidi}
       % endif
     >
-    <div class="footer-top">
-      <div class="powered-area">
-        ## Please leave this link and use one of the logos provided
-        ## The OpenEdX link may be hidden when this view is served
-        ## through an API to partner sites (such as marketing sites or blogs),
-        ## which are not technically powered by OpenEdX.
-        % if not hide_openedx_link:
-        <ul class="logo-list">
-          <li>Powered by:</li>
-          <li>
-            <a href="https://docs.tutor.edly.io" rel="noopener" target="_blank">
-              <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" width="80" />
-            </a>
-          </li>
-          <li>
-            <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
-              <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="79" />
-            </a>
-          </li>
-        </ul>
-      </div>
-      {% if INDIGO_FOOTER_NAV_LINKS %}
-      <nav class="nav-colophon" aria-label="${_('About')}">
-        <ol>
+    <div class="footer-content">
+      <div class="footer-grid">
+        <!-- University Branding Section -->
+        <div class="university-info">
+          <a href="https://duytan.edu.vn/" rel="noopener" target="_blank" class="university-logo">
+            <img src="${static.url('images/logo.png')}" alt="Duy Tan University" width="160" />
+          </a>
+          <p class="university-description">
+            Đại học Duy Tân – Đại học tiên phong ứng dụng công nghệ số, mang đến môi trường học tập hiện đại, phòng lab – studio tiên tiến, cùng nhiều cơ hội nghiên cứu, khởi nghiệp và hợp tác quốc tế
+          </p>
+        </div>
+        
+        <!-- Navigation Links Section -->
+        {% if INDIGO_FOOTER_NAV_LINKS %}
+        <div class="footer-links">
+          <h3>Liên kết nhanh</h3>
+          <ul>
             {% for link in INDIGO_FOOTER_NAV_LINKS %}
             <li>
               <a href="{{ link['url'] }}">{{ link['title'] }}</a>
             </li>
             {% endfor %}
-        </ol>
-      </nav>
-      {% endif %}
-    </div>
-    <span class="copyright-site">Copyrights ©${datetime.now().year}. Duy Tan University.</span>
-    % endif
-      <div class="colophon">
-
-        % if context.get('include_language_selector', footer_language_selector_is_enabled()):
-            <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
-        % endif
-
-        ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
-          <p class="copyright">${footer['copyright']}
-              % if icp_license_info.get('icp_license'):
-                ${u" | {text}".format(text=icp_license_info.get('text'))}
-                <a href="${icp_license_info.get('icp_license_link', '#')}">
-                    ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}
-                </a>
-              % endif
-          </p>
+          </ul>
+        </div>
+        {% endif %}
+        
+        <!-- Contact Info Section -->
+        <div class="contact-info">
+          <h3>Thông tin liên hệ</h3>
+          <div class="contact-item">
+            <p>254 Nguyễn Văn Linh, P. Thanh Khê, Tp. Đà Nẵng, Việt Nam</p>
+          </div>
+          <div class="contact-item">
+            <p><a href="tel:+842363650403">(+84) 236.3650403</a></p>
+          </div>
+          <div class="contact-item">
+            <p><a href="http://tuyensinh.duytan.edu.vn" target="_blank" rel="noopener">tuyensinh.duytan.edu.vn</a></p>
+          </div>
+        </div>
       </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <span class="copyright-site">© ${datetime.now().year} Duy Tan University. All Rights Reserved.</span>
+    </div>
+    
+    <div class="colophon">
+      % if context.get('include_language_selector', footer_language_selector_is_enabled()):
+          <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
+      % endif
+
+      ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
+        <p class="copyright">${footer['copyright']}
+            % if icp_license_info.get('icp_license'):
+              ${u" | {text}".format(text=icp_license_info.get('text'))}
+              <a href="${icp_license_info.get('icp_license_link', '#')}">
+                  ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}
+              </a>
+            % endif
+        </p>
+    </div>
     </footer>
   </div>
 % endif
