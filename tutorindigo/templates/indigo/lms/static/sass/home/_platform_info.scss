@@ -2,7 +2,7 @@
 #platform-info-section {
   margin: 50px 0;
   padding: 80px 0;
-  background: linear-gradient(135deg, #feb6b6 0%, #ebe3cc 100%);
+  background: linear-gradient(135deg, #feb6b6 0%, #fff5d9 100%);
   position: relative;
   overflow: hidden;
   border-radius: 16px;
@@ -115,7 +115,7 @@
         width: 100%;
         height: auto;
         border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        // box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s ease;
 
         &:hover {

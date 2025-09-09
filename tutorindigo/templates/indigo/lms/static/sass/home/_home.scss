@@ -10,6 +10,9 @@
 // Import testimonials styles
 @import "testimonials";
 
+// Import skills development styles
+@import "skills_development";
+
 // Include custom home
 section.home {
   max-width: 1600px;
@@ -239,7 +242,7 @@ body.indigo-dark-theme {
   }
 
   .career-path-container {
-    background: linear-gradient(135deg, #ffced2 0%, #ead9cc 100%);
+    background: linear-gradient(135deg, #fff5d9 0%, #feb6b6 100%);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     padding: 40px;
