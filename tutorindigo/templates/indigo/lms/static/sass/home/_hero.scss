@@ -48,24 +48,24 @@
       }
 
       .hero-title {
-        font-size: 48px;
-        font-weight: 700;
+        font-size: 52px;
+        font-weight: 800;
         line-height: 1.2;
         color: #1a1a1a;
         margin-bottom: 20px;
         min-width: max-content;
         text-align: start;
         .highlight {
-          color: #e74c3c;
+          color: #d32f2f;
         }
       }
 
       .hero-subtitle {
-        font-size: 18px;
+        font-size: 20px;
         line-height: 1.6;
         color: #666;
         margin-bottom: 40px;
-        max-width: 480px;
+        max-width: 505px;
         text-align: start;
       }
 
@@ -88,7 +88,7 @@
           min-width: 160px;
 
           &.btn-primary {
-            background: #e74c3c;
+            background: #d32f2f;
             color: white;
 
             &:hover {
@@ -100,11 +100,11 @@
 
           &.btn-secondary {
             background: transparent;
-            color: #e74c3c;
-            border-color: #e74c3c;
+            color: #d32f2f;
+            border-color: #d32f2f;
 
             &:hover {
-              background: #e74c3c;
+              background: #d32f2f;
               color: white;
               transform: translateY(-2px);
               box-shadow: 0 6px 20px rgba(231, 76, 60, 0.2);
@@ -129,6 +129,7 @@
         img {
           max-width: 100%;
           height: auto;
+          max-height: 95vh;
           // border-radius: 20px;
           // box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
         }
@@ -188,6 +189,7 @@
       gap: 40px;
 
       .hero-content {
+        z-index: 5;
         .hero-title {
           font-size: 40px;
           min-width: max-content;
@@ -200,6 +202,9 @@
         }
       }
     }
+    .hero-visual {
+      display: none;
+    }
   }
 }
 
@@ -207,7 +212,7 @@
   #hero-section {
     min-height: auto;
     padding: 40px 0 30px;
-
+    height: 100vh;
     .hero-container {
       flex-direction: column;
       text-align: center;
@@ -241,7 +246,9 @@
 
       .hero-visual {
         max-width: 400px;
-
+        .hero-image {
+          display: none;
+        }
         .hero-decoration {
           &.online-school {
             top: -10px;
@@ -264,6 +271,9 @@
 
 @media (max-width: 480px) {
   #hero-section {
+    height: 100vh;
+    padding: 0 15px;
+
     .hero-container {
       padding: 0 15px;
 
@@ -281,7 +291,8 @@
 
         .hero-buttons {
           flex-direction: column;
-          align-items: center;
+          // align-items: center;
+          align-items: start;
 
           .btn {
             width: 100%;
@@ -291,8 +302,10 @@
       }
 
       .hero-visual {
+        display: none;
+
         .hero-decoration.text-overlay {
-          display: none;
+          // display: none;
         }
       }
     }

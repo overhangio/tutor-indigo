@@ -19,6 +19,12 @@ section.home {
   margin: 0 auto;
   padding: 0 15px;
 }
+@media (min-width: 1180px) {
+  .min-w-xl-400 {
+    min-width: 400px !important;
+  }
+}
+
 .home > header .title {
   background: none !important;
 }
@@ -260,7 +266,9 @@ body.indigo-dark-theme {
       text-align: center;
       margin: 0 0 32px;
       line-height: 1.4;
-
+      .highlight {
+        color: #b71c1c;
+      }
       @media (max-width: 768px) {
         font-size: 22px;
         margin: 0 0 24px;

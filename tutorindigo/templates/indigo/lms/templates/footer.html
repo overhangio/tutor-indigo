@@ -89,9 +89,14 @@
       <div class="footer-grid">
         <!-- University Branding Section -->
         <div class="university-info">
+          <div class="d-flex justify-content-start mb-3">
           <a href="https://duytan.edu.vn/" rel="noopener" target="_blank" class="university-logo">
             <img src="${static.url('images/logo.png')}" alt="Duy Tan University" width="160" />
           </a>
+          <a href="https://cvs.duytan.edu.vn/" rel="noopener" target="_blank" class="cvs-logo ml-3">
+            <img src="${static.url('images/cvs.png')}" alt="Duy Tan University" width="100" />
+          </a>
+          </div>
           <p class="university-description">
             Đại học Duy Tân – Đại học tiên phong ứng dụng công nghệ số, mang đến môi trường học tập hiện đại, phòng lab – studio tiên tiến, cùng nhiều cơ hội nghiên cứu, khởi nghiệp và hợp tác quốc tế
           </p>
@@ -100,7 +105,7 @@
         <!-- Navigation Links Section -->
         {% if INDIGO_FOOTER_NAV_LINKS %}
         <div class="footer-links">
-          <h3>Liên kết nhanh</h3>
+          <h3>Liên kết</h3>
           <ul>
             {% for link in INDIGO_FOOTER_NAV_LINKS %}
             <li>
@@ -113,7 +118,7 @@
         
         <!-- Contact Info Section -->
         <div class="contact-info">
-          <h3>Thông tin liên hệ</h3>
+          <h3>Liên hệ</h3>
           <div class="contact-item">
             <p>254 Nguyễn Văn Linh, P. Thanh Khê, Tp. Đà Nẵng, Việt Nam</p>
           </div>

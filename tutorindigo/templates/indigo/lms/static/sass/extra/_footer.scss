@@ -12,7 +12,7 @@
 footer.tutor-container {
   margin: 0 auto;
   padding: 0 20px;
-  max-width: 1400px;
+  max-width: 1600px;
 
   .footer-content {
     .footer-grid {
@@ -79,7 +79,7 @@ footer.tutor-container {
             transform: translateX(-50%);
             width: 40px;
             height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            background: linear-gradient(90deg, #d32f2f, #b71c1c);
             border-radius: 2px;
 
             @include media-breakpoint-up(lg) {
@@ -150,7 +150,7 @@ footer.tutor-container {
             transform: translateX(-50%);
             width: 40px;
             height: 3px;
-            background: linear-gradient(90deg, #10b981, #059669);
+            background: linear-gradient(90deg, #d32f2f, #b71c1c);
             border-radius: 2px;
 
             @include media-breakpoint-up(lg) {

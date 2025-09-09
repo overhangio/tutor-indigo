@@ -22,6 +22,14 @@
       text-align: center;
     }
   }
+  .skills-development-container.hero_section {
+    flex-direction: row;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 40px;
+      text-align: center;
+    }
+  }
 
   .skills-development-content {
     flex: 1;

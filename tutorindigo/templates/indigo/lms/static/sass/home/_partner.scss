@@ -29,6 +29,7 @@
       margin-bottom: 60px;
       max-width: 600px;
       margin-left: auto;
+      line-height: 1.2;
       margin-right: auto;
     }
   }
@@ -81,7 +82,7 @@
             width: auto;
             height: auto;
             object-fit: contain;
-            filter: grayscale(100%);
+            filter: grayscale(50%);
             transition: filter 0.3s ease;
           }
 
@@ -97,12 +98,12 @@
 
       // First row - moving left to right (slow, continuous)
       &.row-1 .logo-track {
-        animation: slideLeftToRight 60s linear infinite;
+        animation: slideLeftToRight 40s linear infinite;
       }
 
       // Second row - moving right to left (slow, continuous)
       &.row-2 .logo-track {
-        animation: slideRightToLeft 60s linear infinite;
+        animation: slideRightToLeft 40s linear infinite;
       }
     }
   }
@@ -204,11 +205,11 @@
 
         // Slower animation on mobile for better visibility
         &.row-1 .logo-track {
-          animation: slideLeftToRight 80s linear infinite;
+          animation: slideLeftToRight 30s linear infinite;
         }
 
         &.row-2 .logo-track {
-          animation: slideRightToLeft 80s linear infinite;
+          animation: slideRightToLeft 30s linear infinite;
         }
       }
     }
