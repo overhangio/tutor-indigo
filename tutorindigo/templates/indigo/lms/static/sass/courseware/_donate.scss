@@ -1,0 +1,341 @@
+// Donate Page Styles - Universe Learning Platform
+.donate-hero {
+  background: linear-gradient(200deg, #fff5d9 0%, #feb6b6 100%);
+  padding: 80px 0 100px;
+
+  @include media-breakpoint-up(md) {
+    padding: 120px 0 140px;
+  }
+
+  .donate-hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    align-items: center;
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: 1fr 1fr;
+      padding: 0 40px;
+    }
+  }
+
+  .donate-hero-badge {
+    display: inline-block;
+    margin-bottom: 20px;
+
+    .badge-text {
+      background: #d32f2f;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .donate-hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1e293b;
+    margin: 0 0 24px;
+    text-align: start;
+
+    @include media-breakpoint-up(md) {
+      font-size: 48px;
+      margin-bottom: 32px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: 56px;
+    }
+
+    .highlight {
+      color: #d32f2f;
+      position: relative;
+    }
+  }
+
+  .donate-hero-subtitle {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #64748b;
+    margin: 0;
+    text-align: start;
+
+    @include media-breakpoint-up(md) {
+      font-size: 20px;
+    }
+  }
+
+  .donate-hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include media-breakpoint-up(lg) {
+      justify-content: flex-end;
+    }
+  }
+
+  .donate-hero-image {
+    width: 280px;
+    height: 280px;
+    position: relative;
+
+    @include media-breakpoint-up(md) {
+      width: 350px;
+      height: 350px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: 400px;
+      height: 400px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      &.dark {
+        display: none;
+      }
+    }
+  }
+}
+
+// Common container for donate sections
+.donate-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 40px;
+  }
+}
+
+// Section titles
+.donate-mission,
+.donate-cta {
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1e293b;
+    margin-bottom: 32px;
+    text-align: start;
+
+    @include media-breakpoint-up(md) {
+      font-size: 40px;
+      margin-bottom: 40px;
+    }
+
+    .highlight {
+      color: #d32f2f;
+    }
+  }
+}
+
+// Donate Mission Section (now includes impact)
+.donate-mission {
+  padding: 80px 0;
+  background: #fff;
+
+  @include media-breakpoint-up(md) {
+    padding: 100px 0;
+  }
+
+  .mission-content {
+    text-align: start;
+  }
+
+  .mission-text {
+    margin-bottom: 60px;
+
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #475569;
+      margin: 0;
+
+      @include media-breakpoint-up(md) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 60px;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+  }
+
+  .impact-item {
+    background: #f8fafc;
+    padding: 40px 30px;
+    border-radius: 16px;
+    text-align: start;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .impact-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 0 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(211, 47, 47, 0.1);
+      border-radius: 50%;
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1e293b;
+      margin: 0 0 16px;
+      line-height: 1.3;
+      text-align: start;
+
+      @include media-breakpoint-up(md) {
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #64748b;
+      margin: 0;
+      text-align: start;
+
+      @include media-breakpoint-up(md) {
+        font-size: 17px;
+      }
+    }
+  }
+}
+
+// Donate CTA Section
+.donate-cta {
+  padding: 80px 0;
+  background: #f8fafc;
+
+  @include media-breakpoint-up(md) {
+    padding: 100px 0;
+  }
+
+  .cta-content {
+    text-align: start;
+  }
+
+  .cta-text {
+    p {
+      font-size: 20px;
+      line-height: 1.7;
+      color: #475569;
+      margin: 0;
+      font-weight: 500;
+      text-align: start;
+
+      @include media-breakpoint-up(md) {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .donate-hero {
+    .donate-hero-image {
+      img {
+        &:not(.dark) {
+          display: none;
+        }
+
+        &.dark {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include media-breakpoint-down(sm) {
+  .donate-hero {
+    padding: 60px 0 80px;
+
+    .donate-hero-container {
+      padding: 0 16px;
+      gap: 40px;
+    }
+
+    .donate-hero-title {
+      font-size: 28px;
+    }
+
+    .donate-hero-subtitle {
+      font-size: 16px;
+    }
+  }
+
+  .donate-mission,
+  .donate-cta {
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .donate-container {
+    padding: 0 16px;
+  }
+
+  .donate-mission {
+    padding: 60px 0;
+
+    .impact-grid {
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .impact-item {
+      padding: 30px 20px;
+    }
+  }
+
+  .donate-cta {
+    padding: 60px 0;
+  }
+}

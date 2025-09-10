@@ -1,0 +1,717 @@
+// Contact Page Styles - Universe Learning Platform
+.contact-hero {
+  background: linear-gradient(200deg, #fff5d9 0%, #feb6b6 100%);
+  padding: 80px 0 100px;
+
+  @include media-breakpoint-up(md) {
+    padding: 120px 0 140px;
+  }
+
+  .contact-hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    align-items: center;
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: 1fr 1fr;
+      padding: 0 40px;
+    }
+  }
+
+  .contact-hero-badge {
+    display: inline-block;
+    margin-bottom: 20px;
+
+    .badge-text {
+      background: #d32f2f;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .contact-hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1e293b;
+    margin: 0 0 24px;
+    text-align: start;
+
+    @include media-breakpoint-up(md) {
+      font-size: 48px;
+      margin-bottom: 32px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: 56px;
+    }
+
+    .highlight {
+      color: #d32f2f;
+      position: relative;
+    }
+  }
+
+  .contact-hero-subtitle {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #64748b;
+    margin: 0;
+    text-align: start;
+
+    @include media-breakpoint-up(md) {
+      font-size: 20px;
+    }
+  }
+
+  .contact-hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include media-breakpoint-up(lg) {
+      justify-content: flex-end;
+    }
+  }
+
+  .contact-hero-image {
+    width: 280px;
+    height: 280px;
+    position: relative;
+
+    @include media-breakpoint-up(md) {
+      width: 350px;
+      height: 350px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: 400px;
+      height: 400px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      &.dark {
+        display: none;
+      }
+    }
+  }
+}
+
+// Common container for contact sections
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 40px;
+  }
+}
+
+// Section titles
+.contact-info,
+.working-hours,
+.contact-social,
+.contact-footer {
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1e293b;
+    margin-bottom: 32px;
+    text-align: start;
+
+    @include media-breakpoint-up(md) {
+      font-size: 40px;
+      margin-bottom: 40px;
+    }
+
+    .highlight {
+      color: #d32f2f;
+    }
+  }
+}
+
+// Contact Information Section
+.contact-info {
+  padding: 80px 0;
+  background: #fff;
+
+  @include media-breakpoint-up(md) {
+    padding: 100px 0;
+  }
+
+  .info-content {
+    text-align: start;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+    }
+  }
+
+  .contact-item {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    @include media-breakpoint-up(md) {
+      padding: 40px;
+      gap: 24px;
+    }
+
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      @include media-breakpoint-up(md) {
+        width: 70px;
+        height: 70px;
+      }
+
+      svg {
+        width: 32px;
+        height: 32px;
+
+        @include media-breakpoint-up(md) {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+
+    .contact-details {
+      flex: 1;
+      text-align: start;
+
+      .contact-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0 0 8px;
+
+        @include media-breakpoint-up(md) {
+          font-size: 22px;
+          margin-bottom: 12px;
+        }
+      }
+
+      .contact-text {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #64748b;
+        margin: 0;
+
+        @include media-breakpoint-up(md) {
+          font-size: 17px;
+        }
+      }
+
+      .contact-link {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #d32f2f;
+        text-decoration: none;
+        font-weight: 500;
+
+        @include media-breakpoint-up(md) {
+          font-size: 17px;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Working Hours Section
+.working-hours {
+  padding: 80px 0;
+  background: #f8fafc;
+
+  @include media-breakpoint-up(md) {
+    padding: 100px 0;
+  }
+
+  .hours-content {
+    text-align: start;
+  }
+
+  .hours-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+  }
+
+  .hours-item {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    &.active {
+      border: 2px solid #d32f2f;
+      background: rgba(211, 47, 47, 0.02);
+    }
+
+    &.closed {
+      opacity: 0.7;
+
+      .hours-title,
+      .hours-time {
+        color: #94a3b8;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      padding: 35px;
+      flex-direction: column;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .hours-icon {
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include media-breakpoint-up(md) {
+        width: 60px;
+        height: 60px;
+      }
+
+      svg {
+        width: 30px;
+        height: 30px;
+
+        @include media-breakpoint-up(md) {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+
+    .hours-details {
+      flex: 1;
+      text-align: start;
+
+      @include media-breakpoint-up(md) {
+        text-align: center;
+      }
+
+      .hours-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0 0 4px;
+
+        @include media-breakpoint-up(md) {
+          font-size: 20px;
+          margin-bottom: 8px;
+        }
+      }
+
+      .hours-time {
+        font-size: 16px;
+        font-weight: 500;
+        color: #64748b;
+        margin: 0;
+
+        @include media-breakpoint-up(md) {
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}
+
+// Social Media Section
+.contact-social {
+  padding: 80px 0;
+  background: #fff;
+
+  @include media-breakpoint-up(md) {
+    padding: 100px 0;
+  }
+
+  .social-content {
+    text-align: start;
+  }
+
+  .social-intro {
+    margin-bottom: 40px;
+
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #475569;
+      margin: 0;
+
+      @include media-breakpoint-up(md) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .social-links {
+    margin-bottom: 60px;
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: #f8fafc;
+      padding: 20px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+        border-color: #d32f2f;
+      }
+
+      &.facebook:hover {
+        border-color: #1877f2;
+      }
+
+      @include media-breakpoint-up(md) {
+        padding: 24px 32px;
+        gap: 20px;
+      }
+
+      .social-icon {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include media-breakpoint-up(md) {
+          width: 56px;
+          height: 56px;
+        }
+
+        svg {
+          width: 32px;
+          height: 32px;
+
+          @include media-breakpoint-up(md) {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+
+      .social-details {
+        text-align: start;
+
+        h3 {
+          font-size: 18px;
+          font-weight: 600;
+          color: #1e293b;
+          margin: 0 0 4px;
+
+          @include media-breakpoint-up(md) {
+            font-size: 20px;
+          }
+        }
+
+        p {
+          font-size: 14px;
+          color: #64748b;
+          margin: 0;
+
+          @include media-breakpoint-up(md) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .additional-info {
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+
+      @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+    }
+
+    .info-card {
+      background: #f8fafc;
+      padding: 24px;
+      border-radius: 12px;
+      border-left: 4px solid #d32f2f;
+
+      h4 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0 0 8px;
+        text-align: start;
+
+        @include media-breakpoint-up(md) {
+          font-size: 20px;
+        }
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #64748b;
+        margin: 0;
+        text-align: start;
+
+        @include media-breakpoint-up(md) {
+          font-size: 17px;
+        }
+      }
+
+      .info-link {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #d32f2f;
+        text-decoration: none;
+        font-weight: 500;
+
+        @include media-breakpoint-up(md) {
+          font-size: 17px;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Contact Footer Section
+.contact-footer {
+  padding: 80px 0;
+  background: #f8fafc;
+
+  @include media-breakpoint-up(md) {
+    padding: 100px 0;
+  }
+
+  .footer-content {
+    text-align: start;
+  }
+
+  .footer-text {
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #475569;
+      margin: 0;
+      font-weight: 500;
+
+      @include media-breakpoint-up(md) {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .contact-hero {
+    .contact-hero-image {
+      img {
+        &:not(.dark) {
+          display: none;
+        }
+
+        &.dark {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include media-breakpoint-down(sm) {
+  .contact-hero {
+    padding: 60px 0 80px;
+
+    .contact-hero-container {
+      padding: 0 16px;
+      gap: 40px;
+    }
+
+    .contact-hero-title {
+      font-size: 28px;
+    }
+
+    .contact-hero-subtitle {
+      font-size: 16px;
+    }
+  }
+
+  .contact-info,
+  .working-hours,
+  .contact-social,
+  .contact-footer {
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .contact-container {
+    padding: 0 16px;
+  }
+
+  .contact-info {
+    padding: 60px 0;
+
+    .contact-grid {
+      gap: 24px;
+    }
+
+    .contact-item {
+      padding: 24px 20px;
+      gap: 16px;
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+
+        svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    }
+  }
+
+  .working-hours {
+    padding: 60px 0;
+
+    .hours-grid {
+      gap: 20px;
+    }
+
+    .hours-item {
+      padding: 24px 20px;
+      gap: 16px;
+
+      .hours-icon {
+        width: 40px;
+        height: 40px;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+
+  .contact-social {
+    padding: 60px 0;
+
+    .social-links {
+      margin-bottom: 40px;
+
+      .social-link {
+        padding: 16px 20px;
+        gap: 12px;
+
+        .social-icon {
+          width: 40px;
+          height: 40px;
+
+          svg {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+    }
+
+    .additional-info {
+      .info-grid {
+        gap: 20px;
+      }
+
+      .info-card {
+        padding: 20px;
+      }
+    }
+  }
+
+  .contact-footer {
+    padding: 60px 0;
+  }
+}

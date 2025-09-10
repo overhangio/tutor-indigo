@@ -3,20 +3,153 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("Terms of Service")}</%block>
+<%block name="pagetitle">${_("Điều khoản dịch vụ")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
-    <section class="container about">
-        <h1>
-            <%block name="pageheader">${page_header or _("Terms of Service")}</%block>
-        </h1>
-        <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
-        </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/tos.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/tos-dark.svg')}" alt="Runs on Tutor" />
+    <!-- Terms Hero Section -->
+    <section class="terms-hero">
+        <div class="terms-hero-container">
+            <div class="terms-hero-content">
+                <div class="terms-hero-badge">
+                    <span class="badge-text">Terms of Service</span>
+                </div>
+                <h1 class="terms-hero-title">
+                    Điều khoản
+                    <span class="highlight">Dịch vụ</span>
+                </h1>
+                <p class="terms-hero-subtitle">
+                    Quy định và điều khoản sử dụng nền tảng eLearning Universe của Đại học Duy Tân
+                </p>
+            </div>
+            <div class="terms-hero-visual">
+                <div class="terms-hero-image">
+                    <img src="${static.url('images/hero/tos.png')}" alt="Điều khoản dịch vụ" />
+                    <img class="dark" src="${static.url('images/hero/tos.png')}" alt="Điều khoản dịch vụ" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms Introduction -->
+    <section class="terms-intro">
+        <div class="terms-container">
+            <div class="intro-content">
+                <h2 class="section-title">
+                    Chào mừng đến với <span class="highlight">Universe</span>
+                </h2>
+                <div class="intro-text">
+                    <p>
+                        Chào mừng bạn đến với Universe – Nền tảng eLearning trực tuyến của Đại học Duy Tân. Khi truy cập và sử dụng dịch vụ tại <strong>https://universe.duytan.edu.vn</strong>, bạn đồng ý tuân thủ các điều khoản sau:
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms Content -->
+    <section class="terms-content">
+        <div class="terms-container">
+            <div class="terms-sections">
+                <!-- Section 1 -->
+                <div class="terms-section">
+                    <h3 class="terms-section-title">
+                        <span class="section-number">1.</span>
+                        Quyền sử dụng
+                    </h3>
+                    <div class="terms-section-content">
+                        <ul>
+                            <li>Người dùng được phép tạo tài khoản và tham gia các khóa học trực tuyến trên Universe.</li>
+                            <li>Nội dung khóa học, tài liệu và bài giảng thuộc bản quyền của Đại học Duy Tân và đối tác; chỉ được sử dụng cho mục đích học tập cá nhân, không sao chép hoặc phân phối trái phép.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="terms-section">
+                    <h3 class="terms-section-title">
+                        <span class="section-number">2.</span>
+                        Trách nhiệm người dùng
+                    </h3>
+                    <div class="terms-section-content">
+                        <ul>
+                            <li>Cung cấp thông tin chính xác khi đăng ký tài khoản.</li>
+                            <li>Giữ bí mật thông tin đăng nhập, không chia sẻ tài khoản cho bên thứ ba.</li>
+                            <li>Tuân thủ chuẩn mực ứng xử trong học tập và trao đổi trên nền tảng.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="terms-section">
+                    <h3 class="terms-section-title">
+                        <span class="section-number">3.</span>
+                        Thanh toán và hoàn phí
+                    </h3>
+                    <div class="terms-section-content">
+                        <ul>
+                            <li>Các khóa học trả phí được thanh toán theo hướng dẫn trên hệ thống.</li>
+                            <li>Chính sách hoàn phí (nếu có) sẽ được công bố cụ thể cho từng khóa học.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="terms-section">
+                    <h3 class="terms-section-title">
+                        <span class="section-number">4.</span>
+                        Quyền và nghĩa vụ của Universe
+                    </h3>
+                    <div class="terms-section-content">
+                        <ul>
+                            <li>Universe có quyền điều chỉnh, cập nhật nội dung khóa học để đảm bảo chất lượng.</li>
+                            <li>Có thể tạm ngừng hoặc chấm dứt tài khoản nếu phát hiện hành vi vi phạm.</li>
+                            <li>Cam kết bảo mật thông tin cá nhân theo quy định pháp luật.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 5 -->
+                <div class="terms-section">
+                    <h3 class="terms-section-title">
+                        <span class="section-number">5.</span>
+                        Giới hạn trách nhiệm
+                    </h3>
+                    <div class="terms-section-content">
+                        <p>
+                            Universe không chịu trách nhiệm đối với thiệt hại phát sinh từ việc sử dụng dịch vụ ngoài phạm vi cam kết, hoặc từ những sự cố khách quan ngoài tầm kiểm soát.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="terms-section">
+                    <h3 class="terms-section-title">
+                        <span class="section-number">6.</span>
+                        Thay đổi điều khoản
+                    </h3>
+                    <div class="terms-section-content">
+                        <p>
+                            Các điều khoản có thể được cập nhật theo thời gian. Người dùng tiếp tục sử dụng dịch vụ sau khi điều khoản thay đổi đồng nghĩa với việc chấp nhận nội dung mới.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms Footer -->
+    <section class="terms-footer">
+        <div class="terms-container">
+            <div class="footer-content">
+                <h2 class="section-title">
+                    Cảm ơn bạn đã <span class="highlight">tin tưởng Universe</span>
+                </h2>
+                <div class="footer-text">
+                    <p>
+                        Chúng tôi cam kết tạo ra môi trường học tập an toàn, hiệu quả và phù hợp cho mọi người dùng trên nền tảng Universe.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 </main>

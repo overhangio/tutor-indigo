@@ -3,20 +3,105 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("Donate")}</%block>
+<%block name="pagetitle">${_("Đóng góp")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
-    <section class="container about">
-        <h1>
-            <%block name="pageheader">${page_header or _("Donate")}</%block>
-        </h1>
-        <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
-        </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/donate.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/donate-dark.svg')}" alt="Runs on Tutor" />
+    <!-- Donate Hero Section -->
+    <section class="donate-hero">
+        <div class="donate-hero-container">
+            <div class="donate-hero-content">
+                <div class="donate-hero-badge">
+                    <span class="badge-text">Đóng góp</span>
+                </div>
+                <h1 class="donate-hero-title">
+                    Cùng xây dựng<br>
+                    <span class="highlight">Hệ sinh thái học tập</span>
+                </h1>
+                <p class="donate-hero-subtitle">
+                    Mọi sự đóng góp của bạn sẽ giúp Universe lan tỏa tri thức và chắp cánh tương lai cho cộng đồng học tập
+                </p>
+            </div>
+            <div class="donate-hero-visual">
+                <div class="donate-hero-image">
+                    <img src="${static.url('images/hero/donate.png')}" alt="Đóng góp cho Universe" />
+                    <img class="dark" src="${static.url('images/hero/donate.png')}" alt="Đóng góp cho Universe" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate Mission & Impact -->
+    <section class="donate-mission">
+        <div class="donate-container">
+            <div class="mission-content">
+                <h2 class="section-title">
+                    Sứ mệnh <span class="highlight">Universe</span>
+                </h2>
+                <div class="mission-text">
+                    <p>
+                        Universe hướng đến sứ mệnh xây dựng một hệ sinh thái học tập trực tuyến toàn diện, mang tri thức hiện đại đến với cộng đồng. Mọi sự đóng góp của bạn sẽ giúp chúng tôi:
+                    </p>
+                </div>
+                
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L13.09 8.26L19 9L13.09 9.74L12 16L10.91 9.74L5 9L10.91 8.26L12 2Z" fill="#D32F2F"/>
+                                <path d="M12 7C14.76 7 17 9.24 17 12S14.76 17 12 17S7 14.76 7 12S9.24 7 12 7Z" fill="#D32F2F" opacity="0.3"/>
+                            </svg>
+                        </div>
+                        <h3>Khóa học chất lượng cao</h3>
+                        <p>Phát triển thêm nhiều khóa học chất lượng cao với nội dung cập nhật và phương pháp giảng dạy hiện đại.</p>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 7V9C15 10.65 13.65 12 12 12S9 10.65 9 12V9H3V7H9C9 5.35 10.35 4 12 4S15 5.35 15 7H21V9ZM12 13C14.21 13 16 14.79 16 17C16 19.21 14.21 21 12 21S8 19.21 8 17C8 14.79 9.79 13 12 13Z" fill="#D32F2F"/>
+                            </svg>
+                        </div>
+                        <h3>Học bổng eLearning</h3>
+                        <p>Hỗ trợ học bổng eLearning cho sinh viên có hoàn cảnh khó khăn, tạo cơ hội học tập công bằng cho mọi người.</p>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M9 3V4H4V6H5V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V6H20V4H15V3H9ZM7 6H17V19H7V6ZM9 8V17H11V8H9ZM13 8V17H15V8H13Z" fill="#D32F2F"/>
+                                <rect x="2" y="2" width="20" height="2" fill="#D32F2F" opacity="0.3"/>
+                            </svg>
+                        </div>
+                        <h3>Nâng cấp hạ tầng</h3>
+                        <p>Nâng cấp hạ tầng công nghệ, mang đến trải nghiệm học tập linh hoạt và hiệu quả hơn cho người dùng.</p>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#D32F2F"/>
+                                <path d="M2 17L12 22L22 17" fill="#D32F2F" opacity="0.7"/>
+                                <path d="M2 12L12 17L22 12" fill="#D32F2F" opacity="0.5"/>
+                            </svg>
+                        </div>
+                        <h3>Tài nguyên mở</h3>
+                        <p>Tạo ra nhiều nguồn tài nguyên mở để chia sẻ tri thức rộng rãi, xây dựng cộng đồng học tập bền vững.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate CTA -->
+    <section class="donate-cta">
+        <div class="donate-container">
+            <div class="cta-content">
+                <h2 class="section-title">
+                    Cùng nhau <span class="highlight">lan tỏa tri thức</span>
+                </h2>
+                <div class="cta-text">
+                    <p>
+                        Chúng tôi trân trọng mọi sự đồng hành, dù lớn hay nhỏ, để cùng nhau lan tỏa tri thức – chắp cánh tương lai.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 </main>

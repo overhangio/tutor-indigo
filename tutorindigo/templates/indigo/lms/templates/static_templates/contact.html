@@ -3,20 +3,210 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("Contact Us")}</%block>
+<%block name="pagetitle">${_("Liên hệ")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
-    <section class="container about">
-        <h1>
-            <%block name="pageheader">${page_header or _("Contact")}</%block>
-        </h1>
-        <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
-        </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/contact.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/contact-dark.svg')}" alt="Runs on Tutor" />
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-container">
+            <div class="contact-hero-content">
+                <div class="contact-hero-badge">
+                    <span class="badge-text">Liên hệ</span>
+                </div>
+                <h1 class="contact-hero-title">
+                    Kết nối với
+                    <span class="highlight">Universe</span>
+                </h1>
+                <p class="contact-hero-subtitle">
+                    Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn trong quá trình học tập tại Universe – Nền tảng eLearning của Đại học Duy Tân.
+                </p>
+            </div>
+            <div class="contact-hero-visual">
+                <div class="contact-hero-image">
+                    <img src="${static.url('images/hero/contact.png')}" alt="Liên hệ Universe" />
+                    <img class="dark" src="${static.url('images/hero/contact.png')}" alt="Liên hệ Universe" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="contact-info">
+        <div class="contact-container">
+            <div class="info-content">
+                <h2 class="section-title">
+                    Thông tin <span class="highlight">liên hệ</span>
+                </h2>
+                
+                <div class="contact-grid">
+                    <!-- Address -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5.02944 7.02944 1 12 1C16.9706 1 21 5.02944 21 10Z" fill="#D32F2F"/>
+                                <circle cx="12" cy="10" r="3" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h3 class="contact-title">Địa chỉ</h3>
+                            <p class="contact-text">Đại học Duy Tân, 03 Quang Trung, TP. Đà Nẵng, Việt Nam</p>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" fill="#D32F2F"/>
+                                <polyline points="22,6 12,13 2,6" stroke="white" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h3 class="contact-title">Email</h3>
+                            <a href="mailto:universe@duytan.edu.vn" class="contact-link">universe@duytan.edu.vn</a>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M22 16.92V19.92C22 20.52 21.52 21 20.92 21C10.92 21 3 13.08 3 3.08C3 2.48 3.48 2 4.08 2H7.08C7.68 2 8.16 2.48 8.16 3.08C8.16 4.08 8.36 5.04 8.72 5.92C8.88 6.28 8.8 6.72 8.48 7.04L6.64 8.88C8.24 12.16 11.84 15.76 15.12 17.36L16.96 15.52C17.28 15.2 17.72 15.12 18.08 15.28C18.96 15.64 19.92 15.84 20.92 15.84C21.52 15.84 22 16.32 22 16.92Z" fill="#D32F2F"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h3 class="contact-title">Hotline</h3>
+                            <a href="tel:+842363650403" class="contact-link">(+84) 236 3650 403</a>
+                        </div>
+                    </div>
+
+                    <!-- Website -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" fill="#D32F2F"/>
+                                <path d="M8 12H16M12 8C13.5 10 13.5 14 12 16M12 8C10.5 10 10.5 14 12 16" stroke="white" stroke-width="2" fill="none"/>
+                                <path d="M2 12C2 6.48 6.48 2 12 2S22 6.48 22 12S17.52 22 12 22S2 17.52 2 12Z" stroke="white" stroke-width="2" fill="none" opacity="0.3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h3 class="contact-title">Website</h3>
+                            <a href="https://universe.duytan.edu.vn" target="_blank" class="contact-link">https://universe.duytan.edu.vn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Working Hours -->
+    <section class="working-hours">
+        <div class="contact-container">
+            <div class="hours-content">
+                <h2 class="section-title">
+                    Giờ <span class="highlight">làm việc</span>
+                </h2>
+                
+                <div class="hours-grid">
+                    <div class="hours-item active">
+                        <div class="hours-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#D32F2F" stroke-width="2"/>
+                                <polyline points="12,6 12,12 16,14" stroke="#D32F2F" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="hours-details">
+                            <h3 class="hours-title">Thứ Hai – Thứ Sáu</h3>
+                            <p class="hours-time">8:00 – 17:00</p>
+                        </div>
+                    </div>
+
+                    <div class="hours-item">
+                        <div class="hours-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#64748b" stroke-width="2"/>
+                                <polyline points="12,6 12,12 16,14" stroke="#64748b" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="hours-details">
+                            <h3 class="hours-title">Thứ Bảy</h3>
+                            <p class="hours-time">8:00 – 12:00</p>
+                        </div>
+                    </div>
+
+                    <div class="hours-item closed">
+                        <div class="hours-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="#94a3b8" stroke-width="2" opacity="0.5"/>
+                                <line x1="8" y1="8" x2="16" y2="16" stroke="#94a3b8" stroke-width="2" opacity="0.5"/>
+                                <line x1="16" y1="8" x2="8" y2="16" stroke="#94a3b8" stroke-width="2" opacity="0.5"/>
+                            </svg>
+                        </div>
+                        <div class="hours-details">
+                            <h3 class="hours-title">Chủ nhật và ngày lễ</h3>
+                            <p class="hours-time">Nghỉ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media & Additional Info -->
+    <section class="contact-social">
+        <div class="contact-container">
+            <div class="social-content">
+                <h2 class="section-title">
+                    Kết nối với <span class="highlight">chúng tôi</span>
+                </h2>
+                
+                <div class="social-intro">
+                    <p>Theo dõi Universe trên các kênh mạng xã hội để cập nhật thông tin mới nhất về khóa học, sự kiện và tin tức:</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.facebook.com/truongkhoahocmaytinh" target="_blank" class="social-link facebook">
+                        <div class="social-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.099 4.388 23.094 10.125 24V15.564H7.078V12.073H10.125V9.405C10.125 6.348 11.917 4.688 14.658 4.688C15.97 4.688 17.344 4.922 17.344 4.922V7.875H15.83C14.341 7.875 13.875 8.8 13.875 9.749V12.073H17.203L16.671 15.564H13.875V24C19.612 23.094 24 18.099 24 12.073Z" fill="#1877F2"/>
+                            </svg>
+                        </div>
+                        <div class="social-details">
+                            <h3>Facebook</h3>
+                            <p>Trường Khoa học Máy tính</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="additional-info">
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Địa chỉ khác</h4>
+                            <p>254 Nguyễn Văn Linh, P. Thanh Khê, Tp. Đà Nẵng, Việt Nam</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Website khác</h4>
+                            <a href="https://tuyensinh.duytan.edu.vn" target="_blank" class="info-link">tuyensinh.duytan.edu.vn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Footer -->
+    <section class="contact-footer">
+        <div class="contact-container">
+            <div class="footer-content">
+                <h2 class="section-title">
+                    Sẵn sàng <span class="highlight">hỗ trợ bạn</span>
+                </h2>
+                <div class="footer-text">
+                    <p>
+                        Đừng ngần ngại liên hệ với chúng tôi bất cứ khi nào bạn cần hỗ trợ. Team Universe luôn sẵn sàng đồng hành cùng bạn!
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 </main>

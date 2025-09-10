@@ -3,20 +3,72 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("Blog")}</%block>
+<%block name="pagetitle">${_("Blog Universe")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
-    <section class="container about">
-        <h1>
-            <%block name="pageheader">${page_header or _("Blog")}</%block>
-        </h1>
-        <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
-        </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/blog.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/blog-dark.svg')}" alt="Runs on Tutor" />
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="blog-hero-container">
+            <div class="blog-hero-content">
+                <div class="blog-hero-badge">
+                    <span class="badge-text">Blog Universe</span>
+                </div>
+                <h1 class="blog-hero-title">
+                    Không gian chia sẻ<br>
+                    <span class="highlight">Tri thức</span>
+                </h1>
+                <p class="blog-hero-subtitle">
+                    Khám phá kiến thức, kinh nghiệm và góc nhìn đa chiều về giáo dục, công nghệ và cuộc sống
+                </p>
+            </div>
+            <div class="blog-hero-visual">
+                <div class="blog-hero-image">
+                    <img src="${static.url('images/hero/blog.png')}" alt="Blog Universe" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Introduction -->
+        <!-- Blog Introduction -->
+    <section class="blog-intro">
+        <div class="blog-container">
+            <div class="intro-content">
+                <h2 class="section-title">
+                    Về <span class="highlight">Blog Universe</span>
+                </h2>
+                <div class="intro-text">
+                    <p>
+                        Universe là không gian chia sẻ tri thức, kinh nghiệm và góc nhìn đa chiều về giáo dục, công nghệ, kinh tế, y dược và nhiều lĩnh vực khác. Tại đây, bạn có thể tìm thấy những bài viết hữu ích về xu hướng học tập trực tuyến, phương pháp rèn luyện kỹ năng, kinh nghiệm nghề nghiệp, nghiên cứu mới nhất, cũng như các câu chuyện truyền cảm hứng từ giảng viên và học viên.
+                    </p>
+                    <p>
+                        Với mục tiêu trở thành nguồn tri thức mở, Blog Universe không chỉ cung cấp thông tin mà còn tạo nên diễn đàn kết nối, trao đổi và lan tỏa giá trị học tập. Mỗi bài viết là một cơ hội để cập nhật kiến thức, mở rộng tư duy và định hình tương lai.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Vision -->
+    <section class="blog-vision">
+        <div class="blog-container">
+            <div class="vision-content">
+                <h2 class="section-title">
+                    Hành trình <span class="highlight">khám phá tri thức</span>
+                </h2>
+                <div class="vision-text">
+                    <p>
+                        Tại Blog Universe, chúng tôi tin rằng tri thức là chìa khóa để mở ra những cơ hội vô hạn. Mỗi bài viết không chỉ là thông tin, mà còn là nguồn cảm hứng để bạn tiếp tục hành trình học tập và phát triển bản thân.
+                    </p>
+                    <p>
+                        Từ những xu hướng giáo dục mới nhất đến những phương pháp học tập hiệu quả, từ kinh nghiệm nghề nghiệp thực tế đến những nghiên cứu khoa học tiên phong - Blog Universe là nơi hội tụ của tri thức đa dạng, phong phú và luôn được cập nhật.
+                    </p>
+                    <p>
+                        Hãy cùng chúng tôi xây dựng một cộng đồng học tập năng động, nơi mỗi người đều có thể chia sẻ, học hỏi và cùng nhau tiến bộ trên con đường chinh phục tri thức.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 </main>
+

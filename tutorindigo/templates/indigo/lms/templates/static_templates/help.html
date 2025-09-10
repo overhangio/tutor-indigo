@@ -3,20 +3,178 @@
 <%! from django.utils.translation import gettext as _ %>
 <%inherit file="../main.html" />
 
-<%block name="pagetitle">${_("Help")}</%block>
+<%block name="pagetitle">${_("Trợ giúp")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
-    <section class="container about">
-        <h1>
-            <%block name="pageheader">${page_header or _("Help")}</%block>
-        </h1>
-        <p>
-            <%block name="pagecontent">${page_content or _("This page left intentionally blank. Feel free to add your own content.")}</%block>
-        </p>
-        <!-- NEW IN INDIGO: add graphic image -->
-        <div class="graphic-img">
-            <img src="${static.url('images/help.svg')}" alt="Runs on Tutor" />
-            <img class="dark" src="${static.url('images/help-dark.svg')}" alt="Runs on Tutor" />
+    <!-- Help Hero Section -->
+    <section class="help-hero">
+        <div class="help-hero-container">
+            <div class="help-hero-content">
+                <div class="help-hero-badge">
+                    <span class="badge-text">Trợ giúp</span>
+                </div>
+                <h1 class="help-hero-title">
+                    Hướng dẫn<br>
+                    <span class="highlight">Sử dụng Universe</span>
+                </h1>
+                <p class="help-hero-subtitle">
+                    Hướng dẫn chi tiết từ đăng ký tài khoản đến nhận chứng chỉ hoàn thành khóa học trên nền tảng Universe
+                </p>
+            </div>
+            <div class="help-hero-visual">
+                <div class="help-hero-image">
+                    <img src="${static.url('images/hero/help.png')}" alt="Trợ giúp Universe" />
+                    <img class="dark" src="${static.url('images/hero/help.png')}" alt="Trợ giúp Universe" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Steps -->
+    <section class="help-steps">
+        <div class="help-container">
+            <div class="steps-content">
+                <h2 class="section-title">
+                    Các bước <span class="highlight">bắt đầu học tập</span>
+                </h2>
+                
+                <div class="help-steps-list">
+                    <!-- Step 1 -->
+                    <div class="help-step">
+                        <div class="step-header">
+                            <div class="step-number">
+                                <span>1</span>
+                            </div>
+                            <h3 class="step-title">Hướng dẫn đăng ký & đăng nhập</h3>
+                        </div>
+                        <div class="step-content">
+                            <ul class="step-list">
+                                <li>Truy cập <strong>universe.duytan.edu.vn</strong></li>
+                                <li>Chọn <strong>Đăng ký</strong> để tạo tài khoản mới hoặc <strong>Đăng nhập</strong> nếu đã có tài khoản.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="help-step">
+                        <div class="step-header">
+                            <div class="step-number">
+                                <span>2</span>
+                            </div>
+                            <h3 class="step-title">Tìm và tham gia khóa học</h3>
+                        </div>
+                        <div class="step-content">
+                            <ul class="step-list">
+                                <li>Vào mục <strong>Courses</strong> để xem danh sách khóa học.</li>
+                                <li>Chọn khóa học phù hợp và bấm <strong>Enroll</strong> (Đăng ký học).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="help-step">
+                        <div class="step-header">
+                            <div class="step-number">
+                                <span>3</span>
+                            </div>
+                            <h3 class="step-title">Thanh toán (đối với khóa học trả phí)</h3>
+                        </div>
+                        <div class="step-content">
+                            <ul class="step-list">
+                                <li>Universe hỗ trợ nhiều hình thức thanh toán trực tuyến an toàn.</li>
+                                <li>Sau khi thanh toán thành công, bạn có thể học ngay.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="help-step">
+                        <div class="step-header">
+                            <div class="step-number">
+                                <span>4</span>
+                            </div>
+                            <h3 class="step-title">Quá trình học tập</h3>
+                        </div>
+                        <div class="step-content">
+                            <ul class="step-list">
+                                <li>Truy cập vào khóa học từ bảng điều khiển (<strong>Dashboard</strong>).</li>
+                                <li>Xem video, đọc tài liệu, làm bài tập và tham gia thảo luận.</li>
+                                <li>Kiểm tra tiến độ học tập qua mục <strong>Progress</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="help-step">
+                        <div class="step-header">
+                            <div class="step-number">
+                                <span>5</span>
+                            </div>
+                            <h3 class="step-title">Chứng chỉ hoàn thành</h3>
+                        </div>
+                        <div class="step-content">
+                            <ul class="step-list">
+                                <li>Hoàn thành đầy đủ nội dung và bài kiểm tra của khóa học.</li>
+                                <li>Nhận chứng chỉ điện tử được cấp bởi <strong>Đại học Duy Tân</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="help-step">
+                        <div class="step-header">
+                            <div class="step-number">
+                                <span>6</span>
+                            </div>
+                            <h3 class="step-title">Liên hệ hỗ trợ</h3>
+                        </div>
+                        <div class="step-content">
+                            <p class="step-intro">Nếu bạn cần thêm trợ giúp, vui lòng liên hệ:</p>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <svg viewBox="0 0 24 24" fill="none">
+                                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="#D32F2F" stroke-width="2" fill="none"/>
+                                            <polyline points="22,6 12,13 2,6" stroke="#D32F2F" stroke-width="2" fill="none"/>
+                                        </svg>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">Email:</span>
+                                        <a href="mailto:universe@duytan.edu.vn" class="contact-value">universe@duytan.edu.vn</a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <svg viewBox="0 0 24 24" fill="none">
+                                            <path d="M22 16.92V19.92C22 20.52 21.52 21 20.92 21C10.92 21 3 13.08 3 3.08C3 2.48 3.48 2 4.08 2H7.08C7.68 2 8.16 2.48 8.16 3.08C8.16 4.08 8.36 5.04 8.72 5.92C8.88 6.28 8.8 6.72 8.48 7.04L6.64 8.88C8.24 12.16 11.84 15.76 15.12 17.36L16.96 15.52C17.28 15.2 17.72 15.12 18.08 15.28C18.96 15.64 19.92 15.84 20.92 15.84C21.52 15.84 22 16.32 22 16.92Z" fill="#D32F2F"/>
+                                        </svg>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">Hotline:</span>
+                                        <a href="tel:+842363650403" class="contact-value">(+84) 236 3650 403</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Footer -->
+    <section class="help-footer">
+        <div class="help-container">
+            <div class="footer-content">
+                <h2 class="section-title">
+                    Sẵn sàng <span class="highlight">bắt đầu học tập?</span>
+                </h2>
+                <div class="footer-text">
+                    <p>
+                        Hãy khám phá ngay các khóa học đa dạng trên Universe và bắt đầu hành trình học tập của bạn!
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 </main>
