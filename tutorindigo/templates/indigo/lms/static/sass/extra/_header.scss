@@ -52,7 +52,7 @@ header.global-header {
             height: auto;
             @include media-breakpoint-up(lg) {
                 margin: 0;
-                margin: 20px 0 20px 0;
+                margin: 16px 0 16px 0;
             }
             .logo {
                 height: 36px;
@@ -69,8 +69,8 @@ header.global-header {
             margin: 0 0 0 38px;
             .nav-tab {
                 a {
-                    font-size: 14px;
-                    font-weight: 500;
+                    font-size: 18px;
+                    font-weight: 600;
                     line-height: 22px;
                     padding: 20px 0;
                     color: $light-dark;
