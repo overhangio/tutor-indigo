@@ -15,7 +15,7 @@ from lms.djangoapps.branding import api as branding_api
 <!-- NEW IN INDIGO update logo bar -->
 <h1 class="hd logo-header navbar-brand">
   <div class="logo">
-    <a class="navbar-brand" href="${branding_api.get_base_url()}" itemprop="url">
+    <a class="navbar-brand" href="${branding_api.get_base_url(request.is_secure())}" itemprop="url">
       <img class="logo-image" src="${static.url('images/future-x-logo.svg')}" alt="${_('{platform_name} Home Page').format(platform_name=static.get_platform_name())}" itemprop="logo" />
     </a>
   </div>
