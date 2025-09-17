@@ -1,7 +1,11 @@
+<%namespace name='static' file='../static_content.html'/>
 <%namespace name='fx_static' file='fx_static_content.html'/>
 
 <%
+import json
 import re
+
+conditional_registration_fields = json.dumps(getattr(settings, 'CONDITIONAL_REGISTRATION_FIELDS', {}))
 visual_identity = fx_static.get_fx_config_value('visual_identity', default_value={})
 project_settings = fx_static.get_fx_config_value('project_settings', default_value={})
 
@@ -89,6 +93,13 @@ html {
 
 % if meta_description:
 <meta name="description" content="${meta_description}">
+% endif
+
+% if conditional_registration_fields:
+    <script type="text/javascript">
+      const conditionalRegistrationFields = ${conditional_registration_fields | n};
+    </script>
+    <script type="text/javascript" src="${static.url('js/conditional-registration-fields.js')}" charset="utf-8"></script>
 % endif
 
 % if social_media_image:
