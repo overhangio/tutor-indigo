@@ -1,0 +1,6 @@
+{% raw %}
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans trimmed %}Your account has been blocked | {{platform_name}}{% endblocktrans %}
+{% endautoescape %}
+{% endraw %}

@@ -1,0 +1,6 @@
+{% raw %}
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans trimmed %}Password set on {{ platform_name }}{% endblocktrans %}
+{% endautoescape %}
+{% endraw %}

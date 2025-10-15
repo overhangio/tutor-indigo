@@ -1,0 +1,23 @@
+{% raw %}
+{% extends 'ace_common/edx_ace/common/base_body.html' %}
+
+{% load i18n %}
+{% load static %}
+{% block content %}
+<table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
+    <tr>
+        <td>
+            <h1>
+                {% blocktrans %}Hi {{ user }},{% endblocktrans %}
+            </h1>
+            <p style="color: rgba(0,0,0,.75);">
+                {% blocktrans %}Thank you for activating your {{ platform_name }} account. To start exploring, visit: {{ homepage_url }}. Enjoy your learning journey!{% endblocktrans %}
+                <br />
+            </p>
+            {% blocktrans %}The {{ platform_name }} team.{% endblocktrans %}
+            <br />
+        </td>
+    </tr>
+</table>
+{% endblock %}
+{% endraw %}

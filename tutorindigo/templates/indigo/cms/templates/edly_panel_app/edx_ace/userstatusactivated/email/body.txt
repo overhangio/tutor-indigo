@@ -1,0 +1,8 @@
+{% raw %}
+{% load i18n %}{% autoescape off %}
+{% blocktrans %}Hi {{ user }},{% endblocktrans %}
+{% blocktrans %}Thank you for activating your {{ platform_name }} account. To start exploring, visit: {{ homepage_url }}. Enjoy your learning journey!.{% endblocktrans %}
+
+{% blocktrans %}The {{ platform_name }} team.{% endblocktrans %}
+{% endautoescape %}
+{% endraw %}

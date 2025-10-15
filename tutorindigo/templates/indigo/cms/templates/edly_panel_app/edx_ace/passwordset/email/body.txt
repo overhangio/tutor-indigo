@@ -1,0 +1,17 @@
+{% raw %}
+
+{% load i18n %}{% autoescape off %}
+{% blocktrans %}An account has been created for you in {{ platform_name }}. Please use the link below to set your password and log in.{% endblocktrans %}
+
+{% if failed %}
+{% trans "If you don't want to join, you can ignore this email." %}
+{% else %}
+{% trans "Please go to the following page and choose a new password:" %}
+
+{{ reset_link }}
+
+{% trans "Thanks for using our site!" %}
+{% endif %}
+{% blocktrans %}The {{ platform_name }} Team{% endblocktrans %}
+{% endautoescape %}
+{% endraw %}

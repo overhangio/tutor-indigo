@@ -1,0 +1,8 @@
+{% raw %}
+{% load i18n %}{% autoescape off %}
+{% blocktrans %}Your account on {{ platform_name }} has been deactivated. If you think this was done in error, please reach out to us at {{ contact_email }}.{% endblocktrans %}
+
+{% trans "Thanks for using our site!" %}
+{% blocktrans %}The {{ platform_name }} Team{% endblocktrans %}
+{% endautoescape %}
+{% endraw %}

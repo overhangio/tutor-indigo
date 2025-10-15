@@ -1,0 +1,3 @@
+{% raw %}
+{{ platform_name }}
+{% endraw %}

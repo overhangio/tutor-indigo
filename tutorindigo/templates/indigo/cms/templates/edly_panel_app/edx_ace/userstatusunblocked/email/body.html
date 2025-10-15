@@ -1,0 +1,24 @@
+{% raw %}
+{% extends 'ace_common/edx_ace/common/base_body.html' %}
+
+{% load i18n %}
+{% load static %}
+{% block content %}
+<table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
+    <tr>
+        <td>
+            <h1>
+                {% blocktrans %}Hi {{ user }},{% endblocktrans %}
+            </h1>
+            <p style="color: rgba(0,0,0,.75);">
+                {% blocktrans %}Your account has been unblocked. Please reset your password to continue your learning. To reset password, visit: {{ password_reset_url }}{% endblocktrans %}
+                <br />
+            </p>
+            {% trans "Best," %}
+            <br />
+            {{ platform_name }}
+        </td>
+    </tr>
+</table>
+{% endblock %}
+{% endraw %}

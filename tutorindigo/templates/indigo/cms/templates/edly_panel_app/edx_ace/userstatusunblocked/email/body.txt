@@ -1,0 +1,8 @@
+{% raw %}
+{% load i18n %}{% autoescape off %}
+{% blocktrans %}Your account has been unblocked. Please reset your password to continue your learning. To reset password, visit: {{ password_reset_url }}{% endblocktrans %}
+
+{% trans "Best," %}
+{% blocktrans %}The {{ platform_name }} Team{% endblocktrans %}
+{% endautoescape %}
+{% endraw %}
