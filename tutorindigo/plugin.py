@@ -114,6 +114,7 @@ indigo_styled_mfes = [
     "discussions",
 ]
 
+# TODO: Update the brand package to ulmo branch or Install it from npm after brand-openedx/ulmo branch is ready.
 for mfe in indigo_styled_mfes:
     hooks.Filters.ENV_PATCHES.add_items(
         [
@@ -126,11 +127,11 @@ RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'
         ]
     )
 
-
+# TODO: Update the brand package to ulmo branch or Install it from npm after brand-openedx/ulmo branch is ready.
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'",
+        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ahmed-arb/ulmo-upgrade'",
     )
 )
 
