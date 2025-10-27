@@ -19,6 +19,18 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-21.0.0'></a>
+
+## v21.0.0 (2025-10-27)
+
+- 💥[Feature] Upgrade to ulmo. (by @HammadYousaf01)
+
+- 💥[Deprecation] Do not assign theme to preview site during initialization as the preview page has been migrated to the learning MFE. (by @Danyal-Faheem)
+
+- [Improvement] Make latex response editor background colours WCAG compliant in dark theme. (by @Danyal-Faheem)
+
+- [Improvement] Sync footer in both MFE pages and templates (by @zubairshakoorarbisoft)
+
 <a id='changelog-20.0.0'></a>
 
 ## v20.0.0 (2025-06-16)
