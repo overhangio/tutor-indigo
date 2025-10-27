@@ -27,6 +27,10 @@ instructions, because git commits are used to generate release notes:
 
 - 💥[Deprecation] Do not assign theme to preview site during initialization as the preview page has been migrated to the learning MFE. (by @Danyal-Faheem)
 
+<a id='changelog-20.0.1'></a>
+
+## v20.0.1 (2025-09-23)
+
 - [Improvement] Make latex response editor background colours WCAG compliant in dark theme. (by @Danyal-Faheem)
 
 - [Improvement] Sync footer in both MFE pages and templates (by @zubairshakoorarbisoft)
