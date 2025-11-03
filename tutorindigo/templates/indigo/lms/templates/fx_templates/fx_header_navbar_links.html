@@ -8,7 +8,7 @@ header_sections = fx_static.get_fx_link_sections(header.get('sections', []))
 <div id="fx-header" class="main">
 % for h_section in header_sections:
     <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-        <a class="${'active ' if h_section['link'] == request.path else ''}tab-nav-link" href="${h_section['link']}"
+        <a class="${'active ' if h_section['link'] == request.path else ''}tab-nav-link" href="${h_section['link']} ${h_section['new_tab']}"
             aria-current="${'page' if h_section['link'] == request.path else 'false'}">
             ${fx_static.t(h_section.get('link_title'))}
         </a>
