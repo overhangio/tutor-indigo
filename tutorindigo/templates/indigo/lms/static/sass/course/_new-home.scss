@@ -115,6 +115,8 @@ section.home {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  transition: background-color 0.3s ease;
+  
   &__heading {
     color: var(--fx-2025-indigo-white-color);
     text-shadow: 0 0 10px var(--fx-2025-indigo-black);
@@ -161,6 +163,16 @@ section.home {
 .platformMainWrap {
   margin-top: 64px;
   padding: 40px;
+  border-radius: 16px;
+  
+  // Add smooth transitions for background color changes
+  transition: background-color 0.3s ease;
+  
+  // Ensure proper spacing when background is applied
+  &[style*="background-color"]:not([style*="background-color: transparent"]) {
+    padding: 48px 40px;
+    margin-bottom: 24px;
+  }
 }
 .courseMainWrapper {
   background-color: $concrete-color;
@@ -842,5 +854,18 @@ section.home {
         }
       }
     }
+  }
+}
+
+// Paragraph section styling for background colors
+.fx-raw-html-paragraph-container {
+  border-radius: 16px;
+  transition: background-color 0.3s ease;
+  
+  // Add padding when background color is applied
+  &[style*="background-color"]:not([style*="background-color: transparent"]) {
+    padding: 40px;
+    margin-top: 64px;
+    margin-bottom: 24px;
   }
 }

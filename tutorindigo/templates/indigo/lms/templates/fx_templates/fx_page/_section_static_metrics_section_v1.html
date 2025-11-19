@@ -13,9 +13,12 @@ fx_list_of_static_metrics = page_contents.get('list_of_static_metrics')
 
 alignment = page_contents.get('alignment')
 alignment = alignment if alignment in ['start', 'end'] else 'center'
+
+background_color = page_contents.get('background_color', 'transparent')
+style = f"background-color: {background_color};"
 %>
 
-<div ${id_tag} class="platformMainWrap">
+<div ${id_tag} class="platformMainWrap" style="${style}">
     % if fx_title or fx_description:
     <div class="middleHeading">
         % if fx_title:

@@ -22,16 +22,19 @@ for faq_item in declared_faq_items:
         'answer': answer,
         'item_id': fx_static.fx_random_string(),
     })
+
+background_color = page_contents.get('background_color', 'transparent')
+style = f"background-color: {background_color};"
 %>
 
-<div ${id_tag} class="platformMainWrap">
+<div ${id_tag} class="platformMainWrap" style="${style}">
     <div class="middleHeading">
         <h2 class="sectionWrapper__sectionHeading text-center">
             ${fx_title | fx_static.br}
         </h2>
     </div>
-    <div class="platformMainWrap p-0">
-        <div class="faqWrapper platformMainWrap p-0">
+    <div class="p-0">
+        <div class="faqWrapper p-0">
             % for faq_item in fx_faq_items:
             <div class="accordion" id="faq-item-${faq_item['item_id']}">
                 <div class="accordion-item">

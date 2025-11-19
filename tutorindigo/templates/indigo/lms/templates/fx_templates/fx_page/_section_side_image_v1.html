@@ -17,6 +17,12 @@ is_reversed = page_contents.get('reversed', False)
 if isinstance(is_reversed, str):
     is_reversed = is_reversed.lower() == 'yes'
 fx_style = f'flex-direction: row-reverse' if is_reversed else ''
+
+background_color = page_contents.get('background_color', 'transparent')
+if fx_style:
+    fx_style = f"{fx_style}; background-color: {background_color};"
+else:
+    fx_style = f"background-color: {background_color};"
 %>
 
 <div ${id_tag} class="row platformMainWrap" style="${fx_style}">

@@ -14,9 +14,12 @@ declared_columns_section = page_contents.get('columns_section', [])
 columns_sections = []
 for i in range(min(3, len(declared_columns_section))):
     columns_sections.append(declared_columns_section[i])
+
+background_color = page_contents.get('background_color', 'transparent')
+style = f"background-color: {background_color};"
 %>
 
-<div ${id_tag} class="platformMainWrap px-0">
+<div ${id_tag} class="platformMainWrap px-0" style="${style}">
     % if fx_title:
         <h2 class="sectionWrapper__sectionHeading">
         ${fx_title | fx_static.br}
@@ -27,7 +30,7 @@ for i in range(min(3, len(declared_columns_section))):
             ${fx_description | fx_static.br}
         </p>
     % endif
-    <div class="row platformMainWrap px-0">
+    <div class="row px-0">
     % for columns_section in columns_sections:
         <div class="col-12 col-sm-6">
             <div class="platformProfile" style="text-align: ${columns_section.get('content_alignment', 'start') | fx_static.br}">

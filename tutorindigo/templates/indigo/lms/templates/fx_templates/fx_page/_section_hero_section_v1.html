@@ -10,10 +10,12 @@ if id_tag:
 fx_title = fx_static.t(page_contents.get('title'))
 fx_description = fx_static.t(page_contents.get('description'))
 image_url = page_contents.get('hero_image')
+background_color = page_contents.get('background_color', 'transparent')
+
 if image_url:
-    style = f"background-image: url({image_url}); background-repeat: no-repeat;"
+    style = f"background-image: url({image_url}); background-repeat: no-repeat; background-color: {background_color};"
 else:
-    style = "background-color: black;"
+    style = f"background-color: {background_color if background_color != 'transparent' else 'black'};"
 %>
 
 <div ${id_tag} class="mainBanner" style="${style}">

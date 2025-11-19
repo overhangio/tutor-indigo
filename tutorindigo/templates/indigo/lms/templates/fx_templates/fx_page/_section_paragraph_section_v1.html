@@ -8,9 +8,12 @@ if id_tag:
     id_tag = f'id="{id_tag}"'
 
 fx_html_content = fx_static.t(page_contents.get('paragraph'))
+
+background_color = page_contents.get('background_color', 'transparent')
+style = f"background-color: {background_color};"
 %>
 
-<div ${id_tag} class="fx-raw-html-paragraph-container">
+<div ${id_tag} class="fx-raw-html-paragraph-container" style="${style}">
 
     ${fx_html_content | n}
 
