@@ -1,6 +1,11 @@
 <%page args="page_contents"/>
 
 <%namespace name='fx_static' file='../fx_static_content.html'/>
+<%!
+from django.utils.translation import gettext as _
+import random
+import string
+%>
 
 <%
 id_tag = page_contents.get('div_id')
@@ -15,18 +20,54 @@ if fx_grid_type not in ['max-3', 'max-6', 'max-9', 'all', 'categorised']:
 
 background_color = page_contents.get('background_color', 'transparent')
 style = f"background-color: {background_color};"
+
+# Get course categories for categorised grid type
+fx_course_categories = []
+if fx_grid_type == 'categorised':
+    # Call the module-level function defined in fx_static_content.html
+    from futurex_openedx_extensions.helpers.tenants import get_config_current_request
+    from django.conf import settings
+    
+    config_key = getattr(settings, 'FX_COURSE_CATEGORY_CONFIG_KEY', 'course_categories')
+    config_value = get_config_current_request([config_key])
+    
+    if config_value:
+        result = config_value.get('values', {}).get(config_key, {})
+        if result and isinstance(result, dict):
+            categories = result.get('categories', {})
+            sorting = result.get('sorting', [])
+            
+            # Build ordered list of categories
+            for cat_id in sorting:
+                if cat_id in categories:
+                    cat_data = categories[cat_id]
+                    fx_course_categories.append({
+                        'id': cat_id,
+                        'label': cat_data.get('label', {}),
+                        'courses': cat_data.get('courses', []),
+                    })
+            
+            # Add any categories not in sorting list
+            for cat_id, cat_data in categories.items():
+                if cat_id not in sorting:
+                    fx_course_categories.append({
+                        'id': cat_id,
+                        'label': cat_data.get('label', {}),
+                        'courses': cat_data.get('courses', []),
+                    })
+
+# Generate unique ID for this section's tabs
+section_id = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
 %>
 
 
 <div ${id_tag} class="platformMainWrap courseMainWrapper" style="${style}">
-    <div class="middleHeading">
-        <h2 class="sectionWrapper__sectionHeading text-center">
-            ${fx_title | fx_static.br}
-        </h2>
-        <p class="sectionWrapper__description">
-            ${fx_description | fx_static.br}
-        </p>
-    </div>
-    <%include file="../../courses_list.html" args="fx_grid_type=fx_grid_type"/>
+    <!-- DEBUG: grid_type=${fx_grid_type}, categories_count=${len(fx_course_categories)} -->
+    
+    % if fx_grid_type == 'categorised' and fx_course_categories:
+        <%include file="../../courses_list_categorised.html" args="fx_course_categories=fx_course_categories, section_id=section_id, section_title=page_contents.get('title', ''), section_description=page_contents.get('description', '')"/>
+    % else:
+        <%include file="../../courses_list.html" args="fx_grid_type=fx_grid_type, section_title=page_contents.get('title', ''), section_description=page_contents.get('description', '')"/>
+    % endif
 
 </div>

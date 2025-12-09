@@ -1,4 +1,4 @@
-<%page args="fx_grid_type, section_title='', section_description=''" expression_filter="h"/>
+<%page args="fx_course_categories, section_id, section_title='', section_description=''" expression_filter="h"/>
 <%namespace name='fx_static' file='fx_templates/fx_static_content.html'/>
 <%! 
 from django.utils.translation import gettext as _ 
@@ -6,21 +6,38 @@ from django.urls import reverse
 %>
 
 <%
-if fx_grid_type == 'categorised':
-    homepage_course_max = 9999
-elif fx_grid_type in ['max-3', 'max-6', 'max-9']:
-    homepage_course_max = int(fx_grid_type[-1])
-else:
-    homepage_course_max = 9999
+import json
 
-no_courses = not courses
+# 1. CATEGORY LOGIC
+has_categories_with_courses = False
+for cat in fx_course_categories:
+    if cat.get('courses'):
+        has_categories_with_courses = True
+        break
+
+no_courses = not fx_course_categories or not has_categories_with_courses
+
+all_category_course_ids = set()
+course_to_categories = {}
+for cat in fx_course_categories:
+    cat_id = cat.get('id', '')
+    for cid in cat.get('courses', []):
+        all_category_course_ids.add(cid)
+        if cid not in course_to_categories:
+            course_to_categories[cid] = []
+        course_to_categories[cid].append(cat_id)
+
+categories_json = {}
+for cat in fx_course_categories:
+    cat_id = cat.get('id', '')
+    categories_json[cat_id] = cat.get('courses', [])
 
 # Use provided title/description or defaults
 display_title = fx_static.t(section_title) if section_title else _("Training courses")
 display_description = fx_static.t(section_description) if section_description else _("We aim to enable individuals to achieve their full potential through high-quality education that is accessible to all.")
 %>
 
-<div class="fx-new-design-section">
+<div class="fx-new-design-section" data-section-id="${section_id}">
     
     <div class="fx-section-header">
         <h2 class="fx-main-title">${display_title}</h2>
@@ -31,21 +48,43 @@ display_description = fx_static.t(section_description) if section_description el
         <div class="fx-no-content">
             <h3>${_("There are no courses available at this time!")}</h3>
         </div>
-    % elif settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+    % elif settings.FEATURES.get('COURSES_ARE_BROWSABLE') and fx_course_categories:
+        
+        <div class="fx-tabs-wrapper">
+            <div id="fx-tab-filter-${section_id}" class="fx-tabs-control">
+                <button class="fx-tab-btn active" data-filter="all">${_("All Courses")}</button>
+                % for category in fx_course_categories:
+                    <%
+                    cat_id = category.get('id', '')
+                    cat_label = fx_static.t(category.get('label', {}))
+                    cat_courses = category.get('courses', [])
+                    %>
+                    % if cat_label and cat_courses:
+                        <button class="fx-tab-btn" data-filter="${cat_id}">${cat_label}</button>
+                    % endif
+                % endfor
+            </div>
+        </div>
+
         <div class="fx-grid-wrapper">
-            <ul class="fx-custom-grid">
-                % for course in courses[:homepage_course_max]:
+            <ul class="fx-custom-grid" id="fx-courses-grid-${section_id}">
+                % for course in courses:
                     <%
                     course_id = str(course.id)
+                    course_categories = course_to_categories.get(course_id, [])
+                    categories_attr = ' '.join(course_categories)
+                    
+                    # Determine Course Link
                     course_target = reverse('about_course', args=[course_id])
                     
+                    # Format Date
                     if course.start:
                         start_date_str = course.start.strftime('%B %d, %Y')
                     else:
                         start_date_str = _("Self-paced")
                     %>
                     
-                    <li class="fx-card-item">
+                    <li class="fx-card-item" data-course-id="${course_id}" data-categories="${categories_attr}">
                         <a href="${course_target}" class="fx-card-link">
                             <div class="fx-card-inner">
                                 
@@ -88,17 +127,13 @@ display_description = fx_static.t(section_description) if section_description el
                 % endfor
             </ul>
         </div>
-
-        % if homepage_course_max and len(courses) > homepage_course_max:
-            <div class="fx-browse-all">
-                <a href="${marketing_link('COURSES')}" class="fx-browse-btn">${_("Browse all courses")}</a>
-            </div>
-        % endif
     % endif
 </div>
 
 <style>
-
+/* =========================================
+   FX TOTAL REDESIGN - NO OPENEDX STYLES
+   ========================================= */
 :root {
     --fx-bg: #F5F5F7;
     --fx-card-bg: #FFFFFF;
@@ -145,15 +180,69 @@ display_description = fx_static.t(section_description) if section_description el
     -moz-osx-font-smoothing: grayscale !important;
 }
 
-/* 3. NO CONTENT */
-.fx-no-content {
-    text-align: center !important;
-    padding: 40px 20px !important;
+/* 3. TABS */
+.fx-tabs-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 50px !important;
 }
 
-.fx-no-content h3 {
-    color: var(--fx-text-body) !important;
+.fx-tabs-control {
+    display: inline-flex !important;
+    background: #fff !important;
+    border: 1px solid var(--fx-border) !important;
+    border-radius: 6px !important;
+    padding: 4px !important;
+}
+
+.fx-tab-btn {
+    background: transparent !important;
+    border: none !important;
+    border-right: 1px solid var(--fx-border) !important;
+    padding: 10px 30px !important;
     font-weight: 600 !important;
+    color: #4B5563 !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s, color 0.2s !important;
+    outline: none !important;
+    user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    font-family: inherit !important;
+    font-size: 0.95rem !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    text-shadow: none !important;
+    -webkit-text-stroke: 0 !important;
+}
+
+.fx-tab-btn:focus,
+.fx-tab-btn:active,
+.fx-tab-btn:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: var(--fx-border) !important;
+}
+
+.fx-tab-btn:hover:not(.active) {
+    background: rgba(148, 113, 232, 0.1) !important;
+}
+
+.fx-tab-btn:last-child {
+    border-right: none !important;
+}
+
+.fx-tab-btn.active {
+    background: var(--fx-accent) !important;
+    color: #fff !important;
+    border-radius: 4px !important;
+    border-color: var(--fx-accent) !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* 4. GRID */
@@ -171,7 +260,7 @@ display_description = fx_static.t(section_description) if section_description el
     margin: 0 !important;
 }
 
-/* 5. NEW CARD DESIGN */
+/* 5. NEW CARD DESIGN (Pixel Perfect to Image) */
 .fx-card-item {
     margin: 0 !important;
     padding: 0 !important;
@@ -297,38 +386,91 @@ display_description = fx_static.t(section_description) if section_description el
     color: #9CA3AF !important;
 }
 
-/* Browse All Button */
-.fx-browse-all {
-    text-align: center !important;
-    margin-top: 50px !important;
+/* Animation Utilities */
+.fx-card-item.hidden {
+    display: none !important;
 }
 
-.fx-browse-btn {
-    display: inline-block !important;
-    padding: 14px 32px !important;
-    background: var(--fx-accent) !important;
-    color: #FFFFFF !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    text-decoration: none !important;
-    transition: all 0.2s !important;
+.fx-fade-out {
+    opacity: 0 !important;
+    transform: scale(0.95) !important;
 }
 
-.fx-browse-btn:hover {
-    background: #7C5DD1 !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 10px 15px -3px rgba(148, 113, 232, 0.3) !important;
+.fx-fade-in {
+    opacity: 1 !important;
+    transform: scale(1) !important;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-    .fx-main-title {
-        font-size: 2rem !important;
+    .fx-tabs-control {
+        flex-direction: column !important;
+        width: 100% !important;
     }
-    
-    .fx-custom-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
+    .fx-tab-btn {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--fx-border) !important;
     }
 }
 </style>
+
+<script>
+(function() {
+    'use strict';
+
+    var sectionId = '${section_id}';
+    var section = document.querySelector('[data-section-id="' + sectionId + '"]');
+    if (!section) return;
+
+    var buttons = section.querySelectorAll('.fx-tab-btn');
+    var courseItems = section.querySelectorAll('.fx-card-item');
+    var categories = ${json.dumps(categories_json) | n};
+
+    function filterCourses(filter) {
+        // Tab State
+        buttons.forEach(function(btn) {
+            if(btn.dataset.filter === filter) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Grid Animation
+        courseItems.forEach(function(item) {
+            var courseId = item.dataset.courseId;
+            var shouldShow = false;
+
+            if (filter === 'all') {
+                shouldShow = true;
+            } else if (categories[filter] && categories[filter].indexOf(courseId) > -1) {
+                shouldShow = true;
+            }
+
+            if (shouldShow) {
+                item.classList.remove('hidden');
+                void item.offsetWidth; // Reflow
+                item.classList.remove('fx-fade-out');
+                item.classList.add('fx-fade-in');
+            } else {
+                item.classList.add('fx-fade-out');
+                setTimeout(function() {
+                    item.classList.add('hidden');
+                    item.classList.remove('fx-fade-in');
+                }, 300);
+            }
+        });
+    }
+
+    buttons.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            filterCourses(this.dataset.filter);
+        });
+    });
+
+    // Start with all courses
+    filterCourses('all');
+})();
+</script>

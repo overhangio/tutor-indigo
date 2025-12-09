@@ -207,3 +207,40 @@ body.indigo-dark-theme {
         }
     }
 }
+
+// Course Category Tabs - Theme Integration
+.fx-course-categories-section {
+    .fx-category-tab-btn.active {
+        background: $primary;
+    }
+
+    .fx-category-tab-btn:focus {
+        outline-color: $primary;
+    }
+}
+
+body.indigo-dark-theme {
+    .fx-course-categories-section {
+        .fx-category-tabs {
+            background: $primary-light-d;
+        }
+
+        .fx-category-tab-btn {
+            color: $text-color-d;
+
+            &:hover {
+                background: rgba($primary-d, 0.3);
+                color: $text-color-d;
+            }
+
+            &.active {
+                background: $primary-d;
+                color: $btn-color-d;
+            }
+
+            &:focus {
+                outline-color: $primary-d;
+            }
+        }
+    }
+}

@@ -4,6 +4,57 @@ from futurex_openedx_extensions.helpers.tenants import get_config_current_reques
 from django.utils.translation import get_language
 from django.conf import settings
 from lms.djangoapps.branding import api as branding_api
+
+
+def get_course_categories_config():
+    """
+    Get course categories from tenant configuration.
+    Returns a dict with 'categories' and 'sorting' keys.
+    """
+    config_key = getattr(settings, 'FX_COURSE_CATEGORY_CONFIG_KEY', 'course_categories')
+    config_value = get_config_current_request([config_key])
+    if not config_value:
+        return {'categories': {}, 'sorting': []}
+    result = config_value['values'].get(config_key, {})
+    if not result or not isinstance(result, dict):
+        return {'categories': {}, 'sorting': []}
+    return {
+        'categories': result.get('categories', {}),
+        'sorting': result.get('sorting', []),
+    }
+
+
+def get_course_categories_list():
+    """
+    Get course categories configuration for the current tenant.
+    Returns a list of category dicts with 'id', 'label', and 'courses' keys,
+    sorted according to the tenant's sorting preference.
+    """
+    config = get_course_categories_config()
+    categories = config.get('categories', {})
+    sorting = config.get('sorting', [])
+
+    # Build ordered list of categories
+    ordered_categories = []
+    for cat_id in sorting:
+        if cat_id in categories:
+            cat_data = categories[cat_id]
+            ordered_categories.append({
+                'id': cat_id,
+                'label': cat_data.get('label', {}),
+                'courses': cat_data.get('courses', []),
+            })
+
+    # Add any categories not in sorting list
+    for cat_id, cat_data in categories.items():
+        if cat_id not in sorting:
+            ordered_categories.append({
+                'id': cat_id,
+                'label': cat_data.get('label', {}),
+                'courses': cat_data.get('courses', []),
+            })
+
+    return ordered_categories
 %>
 
 <%def name="br(text)" buffered="True"><%
@@ -144,3 +195,60 @@ from lms.djangoapps.branding import api as branding_api
     import string
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 %></%def>
+
+
+<%def name="get_fx_course_categories()" buffered="True"><%
+    """
+    Get course categories configuration for the current tenant.
+    Returns a list of category dicts with 'id', 'label', and 'courses' keys,
+    sorted according to the tenant's sorting preference.
+    """
+    config = get_course_categories_config()
+    categories = config.get('categories', {})
+    sorting = config.get('sorting', [])
+
+    # Build ordered list of categories
+    ordered_categories = []
+    for cat_id in sorting:
+        if cat_id in categories:
+            cat_data = categories[cat_id]
+            ordered_categories.append({
+                'id': cat_id,
+                'label': cat_data.get('label', {}),
+                'courses': cat_data.get('courses', []),
+            })
+
+    # Add any categories not in sorting list
+    for cat_id, cat_data in categories.items():
+        if cat_id not in sorting:
+            ordered_categories.append({
+                'id': cat_id,
+                'label': cat_data.get('label', {}),
+                'courses': cat_data.get('courses', []),
+            })
+
+    return ordered_categories
+%></%def>
+
+
+<%def name="get_fx_courses_by_category(all_courses, category_courses)" buffered="True"><%
+    """
+    Filter courses by category course IDs.
+    Returns a list of courses that match the category's course_ids.
+    """
+    if not category_courses:
+        return []
+
+    # Convert category_courses to set for faster lookup
+    category_course_set = set(category_courses)
+
+    # Filter courses that are in the category
+    filtered = []
+    for course in all_courses:
+        course_id = str(course.id)
+        if course_id in category_course_set:
+            filtered.append(course)
+
+    return filtered
+%></%def>
+
