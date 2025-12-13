@@ -2,151 +2,40 @@
 <%page expression_filter="h"/>
 <%!
   from datetime import datetime
-  from django.urls import reverse
-  from django.utils.translation import gettext as _
-  from lms.djangoapps.branding.api import get_footer
-  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
 %>
-<% footer = get_footer(is_secure=is_secure) %>
-<% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
+
 <%namespace name='static' file='static_content.html'/>
-<!-- NEW IN INDIGO update footer -->
-% if uses_bootstrap:
-<div class="wrapper wrapper-footer">
-  <footer id="footer" class="tutor-container"
-    ## When rendering the footer through the branding API,
-    ## the direction may not be set on the parent element,
-    ## so we set it here.
-    % if bidi:
-      dir=${bidi}
-    % endif
-  >
-  <div class="footer-top">
-    <div class="powered-area">
-      ## Please leave this link and use one of the logos provided
-      ## The OpenEdX link may be hidden when this view is served
-      ## through an API to partner sites (such as marketing sites or blogs),
-      ## which are not technically powered by OpenEdX.
-      % if not hide_openedx_link:
-      <ul class="logo-list">
-        <li>Powered by:</li>
-        <li>
-          <a href="https://docs.tutor.edly.io" rel="noopener" target="_blank">
-            <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" width="80" />
-          </a>
-        </li>
-        <li>
-          <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
-            <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="79" />
-          </a>
-        </li>
-      </ul>
-    </div>
-    {% if INDIGO_FOOTER_NAV_LINKS %}
-    <nav class="nav-colophon" aria-label="${_('About')}">
-      <ol>
-          {% for link in INDIGO_FOOTER_NAV_LINKS %}
-          <li>
-            <a href="{{ link['url'] }}">{{ link['title'] }}</a>
-          </li>
-          {% endfor %}
-      </ol>
-    </nav>
-    {% endif %}
-  </div>
-  <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
-  % endif
-    <div class="colophon">
 
-      % if context.get('include_language_selector', footer_language_selector_is_enabled()):
-          <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
-      % endif
+<div class="wrapper wrapper-footer teachsim-footer">
+  <footer>
+    <div class="teachsim-footer-inner">
 
-      ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
-        <p class="copyright">${footer['copyright']}
-            % if icp_license_info.get('icp_license'):
-              ${u" | {text}".format(text=icp_license_info.get('text'))}
-              <a href="${icp_license_info.get('icp_license_link', '#')}">
-                  ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}
-              </a>
-            % endif
+      <!-- Top Section -->
+      <div class="teachsim-footer-top">
+        <div class="teachsim-logo-section">
+          <a href="/">
+            <img src="${static.url('indigo/images/logo.png')}" alt="Teach SIM" class="teachsim-logo" />
+          </a>
+          <p class="teachsim-tagline">A practice-based curriculum for teacher learning</p>
+        </div>
+      </div>
+
+      <hr class="teachsim-footer-divider" />
+
+      <!-- Bottom Section -->
+      <div class="teachsim-footer-bottom">
+        <p class="teachsim-copyright">
+          © ${datetime.now().year} Teach SIM. All rights reserved.
         </p>
+
+        <div class="teachsim-powered-container">
+          <span class="teachsim-powered-text">Powered by</span>
+          <a href="https://www.mursion.com" target="_blank" class="teachsim-powered-logo">
+            <img src="${static.url('indigo/images/mursion.png')}" alt="Mursion" />
+          </a>
+        </div>
+      </div>
+
     </div>
   </footer>
 </div>
-% else:
-<!-- NEW IN INDIGO update footer -->
-  <div class="wrapper wrapper-footer">
-    <footer id="footer" class="tutor-container"
-      ## When rendering the footer through the branding API,
-      ## the direction may not be set on the parent element,
-      ## so we set it here.
-      % if bidi:
-        dir=${bidi}
-      % endif
-    >
-    <div class="footer-top">
-      <div class="powered-area">
-        ## Please leave this link and use one of the logos provided
-        ## The OpenEdX link may be hidden when this view is served
-        ## through an API to partner sites (such as marketing sites or blogs),
-        ## which are not technically powered by OpenEdX.
-        % if not hide_openedx_link:
-        <ul class="logo-list">
-          <li>Powered by:</li>
-          <li>
-            <a href="https://docs.tutor.edly.io" rel="noopener" target="_blank">
-              <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" width="80" />
-            </a>
-          </li>
-          <li>
-            <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
-              <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="79" />
-            </a>
-          </li>
-        </ul>
-      </div>
-      {% if INDIGO_FOOTER_NAV_LINKS %}
-      <nav class="nav-colophon" aria-label="${_('About')}">
-        <ol>
-            {% for link in INDIGO_FOOTER_NAV_LINKS %}
-            <li>
-              <a href="{{ link['url'] }}">{{ link['title'] }}</a>
-            </li>
-            {% endfor %}
-        </ol>
-      </nav>
-      {% endif %}
-    </div>
-    <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
-    % endif
-      <div class="colophon">
-
-        % if context.get('include_language_selector', footer_language_selector_is_enabled()):
-            <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
-        % endif
-
-        ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
-          <p class="copyright">${footer['copyright']}
-              % if icp_license_info.get('icp_license'):
-                ${u" | {text}".format(text=icp_license_info.get('text'))}
-                <a href="${icp_license_info.get('icp_license_link', '#')}">
-                    ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}
-                </a>
-              % endif
-          </p>
-      </div>
-    </footer>
-  </div>
-% endif
-% if include_dependencies:
-  <%static:js group='base_vendor'/>
-  <%static:css group='style-vendor'/>
-  <%include file="widgets/segment-io.html" />
-  <%include file="widgets/segment-io-footer.html" />
-% endif
-% if footer_css_urls:
-  % for url in footer_css_urls:
-    <link rel="stylesheet" type="text/css" href="${url}"></link>
-  % endfor
-% endif

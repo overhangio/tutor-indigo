@@ -52,10 +52,10 @@ header.global-header {
             height: auto;
             @include media-breakpoint-up(lg) {
                 margin: 0;
-                margin: 20px 0 0;
+                margin: 5px 0 0;
             }
             .logo {
-                height: 24px;
+                height: 50px;
                 margin: 0;
             }
         }
@@ -382,4 +382,15 @@ body.indigo-dark-theme {
             }
         }
     }
+}
+.header-logo a .logo-dark {
+    display: none; /* hide dark logo by default */
+}
+
+body.indigo-dark-theme .header-logo a .logo-light {
+    display: none; /* hide light logo in dark theme */
+}
+
+body.indigo-dark-theme .header-logo a .logo-dark {
+    display: inline-block; /* show dark logo in dark theme */
 }

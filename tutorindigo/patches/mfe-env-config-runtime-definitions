@@ -1,0 +1,160 @@
+const { useState, useEffect } = await import('react');
+const { getConfig } = await import('@edx/frontend-platform');
+
+const CustomFooter = () => {
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const body = document.body;
+
+    const checkTheme = () => setIsDarkTheme(body.classList.contains('indigo-dark-theme'));
+    checkTheme(); // initial check
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const footerStyle = {
+    backgroundColor: isDarkTheme ? '#1B1B1B' : '#F0F4F8',
+    padding: '50px 20px 55px',
+    borderTop: `1px solid ${isDarkTheme ? '#333' : '#D1DCE5'}`,
+  };
+
+  const containerStyle = { maxWidth: '1200px', margin: '0 auto', padding: '0 15px' };
+  const topSectionStyle = { display: 'flex', justifyContent: 'center', marginBottom: '35px' };
+  const logoSectionStyle = { textAlign: 'center' };
+  const logoStyle = { maxWidth: '380px', width: '100%', height: 'auto' };
+  const taglineStyle = {
+    marginTop: '15px',
+    color: isDarkTheme ? '#ffffff' : '#1e5ba8',
+    fontSize: '28px',
+    fontStyle: 'italic',
+    fontWeight: '500',
+  };
+  const dividerStyle = {
+    border: 'none',
+    borderTop: `1px solid ${isDarkTheme ? '#a9a9aa' : '#03254f'}`,
+    margin: '30px 0',
+  };
+  const bottomSectionStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  };
+  const poweredContainerStyle = { display: 'flex', alignItems: 'center', gap: '12px' };
+  const poweredTextStyle = {
+    fontSize: '18px',
+    fontWeight: '500',
+    color: isDarkTheme ? '#ffffff' : '#1e5ba8',
+    fontStyle: 'italic',
+    letterSpacing: '0.3px',
+    margin: 0,
+  };
+  const poweredLogoStyle = { maxWidth: '180px', display: 'block', height: 'auto' };
+  const copyrightStyle = {
+    color: isDarkTheme ? '#cccccc' : '#5f5f5f',
+    fontSize: '15px',
+    margin: 0,
+  };
+
+  const logoSrc = isDarkTheme
+    ? `${getConfig().LMS_BASE_URL}/static/indigo/images/logo-white.png`
+    : `${getConfig().LMS_BASE_URL}/static/indigo/images/logo.png`;
+
+  const poweredLogoSrc = isDarkTheme
+    ? `${getConfig().LMS_BASE_URL}/static/indigo/images/mursion-white.png`
+    : `${getConfig().LMS_BASE_URL}/static/indigo/images/mursion.png`;
+
+  return (
+    <footer style={footerStyle}>
+      <div style={containerStyle}>
+        {/* Top Section */}
+        <div style={topSectionStyle}>
+          <div style={logoSectionStyle}>
+            <a href="/">
+              <img src={logoSrc} alt="Teach SIM" style={logoStyle} />
+            </a>
+            <p style={taglineStyle}>A practice-based curriculum for teacher learning</p>
+          </div>
+        </div>
+
+        <hr style={dividerStyle} />
+
+        {/* Bottom Section */}
+        <div style={bottomSectionStyle}>
+          <p style={copyrightStyle}>
+            © {new Date().getFullYear()} Teach SIM. All rights reserved.
+          </p>
+
+          <div style={poweredContainerStyle}>
+            <span style={poweredTextStyle}>Powered by</span>
+            <a href="https://www.mursion.com" target="_blank" rel="noopener noreferrer">
+              <img src={poweredLogoSrc} alt="Mursion" style={poweredLogoStyle} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+const ThemedLogo = () => {
+  const BASE_URL = getConfig().LMS_BASE_URL;
+
+  return (
+    <>
+      <style>
+        {`
+          .header-logo {
+            margin: 0;
+          }
+
+          .header-logo a {
+            margin: 15px 0 15px 35px;
+            height: auto;
+            display: inline-block;
+          }
+
+          @media (min-width: 992px) {
+            .header-logo a {
+              margin: 5px 0 0;
+            }
+          }
+
+          .header-logo .logo {
+            height: 50px;
+            margin: 0;
+            display: block;
+          }
+
+          .header-logo .course-header {
+            display: none;
+          }
+
+          .themed-logo {
+            height: 50px;
+            width: auto;
+            background: no-repeat center / contain url("${BASE_URL}/static/indigo/images/logo.png");
+          }
+
+          body.indigo-dark-theme .themed-logo {
+            background-image: url("${BASE_URL}/static/indigo/images/logo-white.png");
+          }
+        `}
+      </style>
+
+      <div className="header-logo">
+        <a href={`${BASE_URL}/dashboard`} className="logo" title="Logo">
+          <div
+            className="themed-logo"
+            role="img"
+            aria-label="Teach SIM logo"
+          />
+        </a>
+      </div>
+    </>
+  );
+};

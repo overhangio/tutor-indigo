@@ -7,7 +7,7 @@ from glob import glob
 import importlib_resources
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
-from tutormfe.hooks import PLUGIN_SLOTS
+from tutormfe.hooks import PLUGIN_SLOTS, MFE_APPS
 
 from .__about__ import __version__
 
@@ -120,18 +120,11 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install @edly-io/indigo-frontend-component-footer@^3.0.0
 RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^4.0.0'
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'
+RUN npm install '@edx/brand@git+https://github.com/edly-io/brand-openedx.git#test-theme'
 
 """,  # noqa: E501
-            ),
-            (
-                f"mfe-env-config-runtime-definitions-{mfe}",
-                """
-const { default: IndigoFooter } = await import('@edly-io/indigo-frontend-component-footer');
-""",  # noqa: E501
-            ),
+            )
         ]
     )
 
@@ -212,7 +205,7 @@ for mfe in indigo_styled_mfes:
                     id: 'default_contents',
                     type: DIRECT_PLUGIN,
                     priority: 1,
-                    RenderWidget: <IndigoFooter />,
+                    RenderWidget: <CustomFooter />,
                 },
             },
             {
@@ -227,3 +220,28 @@ for mfe in indigo_styled_mfes:
   """,
         ),
     )
+@MFE_APPS.add()
+def _add_header(mfes):
+    for mfe in mfes:
+        PLUGIN_SLOTS.add_item(
+            (
+                str(mfe),
+                "logo_slot",
+                """
+                {
+                    op: PLUGIN_OPERATIONS.Hide,
+                    widgetId: 'default_contents',
+                },
+                {
+                    op: PLUGIN_OPERATIONS.Insert,
+                    widget: {
+                        id: 'custom_header',
+                        type: DIRECT_PLUGIN,
+                        RenderWidget: () => <ThemedLogo />,
+                    }
+                }
+            """,
+            )
+        )
+
+    return mfes
