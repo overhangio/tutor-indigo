@@ -53,7 +53,8 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     ],
 )
 
-# Force the rendering of scss files, even though they are included in a "partials" directory
+# Force the rendering of scss files, even though they are included in a
+# "partials" directory
 hooks.Filters.ENV_PATTERNS_INCLUDE.add_items(
     [
         r"indigo/lms/static/sass/partials/lms/theme/",
@@ -113,7 +114,6 @@ indigo_styled_mfes = [
     "discussions",
 ]
 
-
 for mfe in indigo_styled_mfes:
     hooks.Filters.ENV_PATCHES.add_items(
         [
@@ -123,7 +123,7 @@ for mfe in indigo_styled_mfes:
 RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^4.0.0'
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'
 
-""",
+""",  # noqa: E501
             ),
         ]
     )
