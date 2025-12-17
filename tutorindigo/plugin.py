@@ -205,7 +205,7 @@ for mfe in indigo_styled_mfes:
                     id: 'custom_footer',
                     type: DIRECT_PLUGIN,
                     priority: 1,
-                    RenderWidget: () => <IndigoFooter />,
+                    RenderWidget: IndigoFooter,
                 },
             },
             {
