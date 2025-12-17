@@ -131,7 +131,7 @@ RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ahmed-arb/ulmo-upgrade'",
+        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'",
     )
 )
 
