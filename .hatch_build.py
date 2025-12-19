@@ -16,5 +16,5 @@ class JSONMetaDataHook(MetadataHookInterface):
 def load_about() -> dict[str, str]:
     about: dict[str, str] = {}
     with open(os.path.join(HERE, "tutorindigo", "__about__.py"), "rt", encoding="utf-8") as f:
-        exec(f.read(), about)
+        exec(f.read(), about)  # pylint: disable=exec-used
     return about
