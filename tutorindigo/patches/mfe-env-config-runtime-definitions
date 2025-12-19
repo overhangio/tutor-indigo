@@ -1,0 +1,81 @@
+if (typeof useIntl === "undefined") {
+  const intl = await import("@edx/frontend-platform/i18n");
+  globalThis.useIntl = intl.useIntl;
+}
+
+const IndigoFooter = () => {
+  const intl = useIntl();
+  const config = getConfig();
+
+  const indigoFooterNavLinks = config.INDIGO_FOOTER_NAV_LINKS || [];
+
+  const messages = {
+    "footer.poweredby.text": {
+      id: "footer.poweredby.text",
+      defaultMessage: "Powered by",
+      description: "text for the footer",
+    },
+    "footer.tutorlogo.altText": {
+      id: "footer.tutorlogo.altText",
+      defaultMessage: "Runs on Tutor",
+      description: "alt text for the footer tutor logo",
+    },
+    "footer.logo.altText": {
+      id: "footer.logo.altText",
+      defaultMessage: "Powered by Open edX",
+      description: "alt text for the footer logo.",
+    },
+    "footer.copyright.text": {
+      id: "footer.copyright.text",
+      defaultMessage: `Copyrights ©${new Date().getFullYear()}. All Rights Reserved.`,
+      description: "copyright text for the footer",
+    },
+  };
+
+  return (
+    <div className="wrapper wrapper-footer">
+      <footer id="footer" className="tutor-container">
+        <div className="footer-top">
+          <div className="powered-area">
+            <ul className="logo-list">
+              <li>{intl.formatMessage(messages["footer.poweredby.text"])}</li>
+              <li>
+                <a
+                  href="https://edly.io/tutor/"
+                  rel="noreferrer"
+                  target="_blank"
+                ></a>
+                <img
+                  src={`${config.LMS_BASE_URL}/theming/asset/images/tutor-logo.png`}
+                  alt={intl.formatMessage(messages["footer.tutorlogo.altText"])}
+                  width="57"
+                />
+              </li>
+              <li>
+                <a href="https://open.edx.org" rel="noreferrer" target="_blank">
+                  <img
+                    src={`${config.LMS_BASE_URL}/theming/asset/images/openedx-logo.png`}
+                    alt={intl.formatMessage(messages["footer.logo.altText"])}
+                    width="79"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <nav className="nav-colophon">
+            <ol>
+              {indigoFooterNavLinks.map((link) => (
+                <li key={link.url}>
+                  <a href={`${config.LMS_BASE_URL}${link.url}`}>{link.title}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </div>
+        <span className="copyright-site">
+          {intl.formatMessage(messages["footer.copyright.text"])}
+        </span>
+      </footer>
+    </div>
+  );
+};

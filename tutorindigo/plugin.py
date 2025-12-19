@@ -53,7 +53,8 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     ],
 )
 
-# Force the rendering of scss files, even though they are included in a "partials" directory
+# Force the rendering of scss files, even though they are included in a
+# "partials" directory
 hooks.Filters.ENV_PATTERNS_INCLUDE.add_items(
     [
         r"indigo/lms/static/sass/partials/lms/theme/",
@@ -120,17 +121,10 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install @edly-io/indigo-frontend-component-footer@^3.0.0
 RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^5.0.0'
 RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'
 
-""",
-            ),
-            (
-                f"mfe-env-config-runtime-definitions-{mfe}",
-                """
-const { default: IndigoFooter } = await import('@edly-io/indigo-frontend-component-footer');
-""",
+""",  # noqa: E501
             ),
         ]
     )
@@ -200,7 +194,7 @@ for mfe in indigo_styled_mfes:
     PLUGIN_SLOTS.add_item(
         (
             mfe,
-            "footer_slot",
+            "org.openedx.frontend.layout.footer.v1",
             """ 
             {
                 op: PLUGIN_OPERATIONS.Hide,
@@ -209,10 +203,10 @@ for mfe in indigo_styled_mfes:
             {
                 op: PLUGIN_OPERATIONS.Insert,
                 widget: {
-                    id: 'default_contents',
+                    id: 'custom_footer',
                     type: DIRECT_PLUGIN,
                     priority: 1,
-                    RenderWidget: <IndigoFooter />,
+                    RenderWidget: IndigoFooter,
                 },
             },
             {

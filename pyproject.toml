@@ -32,8 +32,7 @@ dynamic = ["version"]
 [project.optional-dependencies]
 dev = [
   "tutor[dev]>=21.0.0,<22.0.0",
-  "pylint",
-  "black"
+  "ruff",
 ]
 
 [project.entry-points."tutor.plugin.v1"]
@@ -65,3 +64,19 @@ packages = ["/tutorindigo"]
 
 [tool.hatch.metadata.hooks.custom]
 path = ".hatch_build.py"
+
+[tool.ruff]
+exclude = ["templates", "docs/_ext"]
+
+[tool.ruff.lint]
+# E: pycodestyle errors
+# I: isort
+# N: pep8-naming
+select = ["E", "I", "N"]
+
+# F401: unused-import
+# F841: unused-variable
+# W292: missing-newline-at-end-of-file
+extend-select = ["F401", "F841", "W292"]
+
+[tool.ruff.format]
