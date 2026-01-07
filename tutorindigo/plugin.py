@@ -120,9 +120,7 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^5.0.0'
 RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'
-
 """,  # noqa: E501
             ),
         ]
@@ -220,3 +218,21 @@ for mfe in indigo_styled_mfes:
   """,
         ),
     )
+
+
+PLUGIN_SLOTS.add_item(
+    (
+        "learner-dashboard",
+        "desktop_secondary_menu_slot",
+        """ 
+        {
+            op: PLUGIN_OPERATIONS.Insert,
+            widget: {
+                id: 'theme_switch_button',
+                type: DIRECT_PLUGIN,
+                RenderWidget: ToggleThemeButton,
+            },
+        }
+"""
+    )
+)

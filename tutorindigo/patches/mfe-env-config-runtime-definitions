@@ -3,6 +3,26 @@ if (typeof useIntl === "undefined") {
   globalThis.useIntl = intl.useIntl;
 }
 
+if (typeof useState === "undefined") {
+  const react = await import("react");
+  globalThis.useState = react.useState;
+}
+
+if (typeof Icon === "undefined") {
+  const paragon = await import("@openedx/paragon");
+  globalThis.Icon = paragon.Icon;
+}
+
+if (typeof WbSunny === "undefined") {
+  const paragon = await import("@openedx/paragon/icons");
+  globalThis.WbSunny = paragon.WbSunny;
+}
+
+if (typeof Nightlight === "undefined") {
+  const paragon = await import("@openedx/paragon/icons");
+  globalThis.Nightlight = paragon.Nightlight;
+}
+
 const IndigoFooter = () => {
   const intl = useIntl();
   const config = getConfig();
@@ -76,6 +96,152 @@ const IndigoFooter = () => {
           {intl.formatMessage(messages["footer.copyright.text"])}
         </span>
       </footer>
+    </div>
+  );
+};
+
+const ToggleThemeButton = () => {
+  const intl = useIntl();
+  const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(false);
+
+  const themeCookie = "indigo-toggle-dark";
+  const themeCookieExpiry = 90; // days
+  const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
+
+  const getCookie = (name) => {
+    return document.cookie
+      .split("; ")
+      .find((row) => row.startsWith(name + "="))
+      ?.split("=")[1];
+  };
+
+  const setCookie = (name, value, { domain, path, expires }) => {
+    document.cookie = `${name}=${value}; domain=${domain}; path=${path}; expires=${expires.toUTCString()}; SameSite=Lax`;
+  };
+
+  const getCookieExpiry = () => {
+    const today = new Date();
+    return new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + themeCookieExpiry
+    );
+  };
+
+  const getCookieOptions = (serverURL) => ({
+    domain: serverURL.hostname,
+    path: "/",
+    expires: getCookieExpiry(),
+  });
+
+  const addDarkThemeToIframes = () => {
+    const iframes = document.getElementsByTagName("iframe");
+    const iframesLength = iframes.length;
+    if (iframesLength > 0) {
+      Array.from({ length: iframesLength }).forEach((_, ind) => {
+        const style = document.createElement("style");
+        style.textContent = `
+          body{
+            background-color: #0D0D0E;
+            color: #ccc;
+          }
+          a {color: #ccc;}
+          a:hover{color: #d3d3d3;}
+          `;
+        if (iframes[ind].contentDocument) {
+          iframes[ind].contentDocument.head.appendChild(style);
+        }
+      });
+    }
+  };
+
+  const removeDarkThemeFromiframes = () => {
+    const iframes = document.getElementsByTagName("iframe");
+    const iframesLength = iframes.length;
+
+    Array.from({ length: iframesLength }).forEach((_, ind) => {
+      if (iframes[ind].contentDocument) {
+        const iframeHead = iframes[ind].contentDocument.head;
+        const styleTag = Array.from(iframeHead.querySelectorAll("style")).find(
+          (style) =>
+            style.textContent.includes("background-color: #0D0D0E;") &&
+            style.textContent.includes("color: #ccc;")
+        );
+        if (styleTag) {
+          styleTag.remove();
+        }
+      }
+    });
+  };
+
+  const onToggleTheme = () => {
+    const serverURL = new URL(getConfig().LMS_BASE_URL);
+    let theme = "";
+
+    if (getCookie(themeCookie) === "dark") {
+      document.body.classList.remove("indigo-dark-theme");
+      removeDarkThemeFromiframes();
+      setIsDarkThemeEnabled(false);
+      theme = "light";
+    } else {
+      document.body.classList.add("indigo-dark-theme");
+      addDarkThemeToIframes();
+      setIsDarkThemeEnabled(true);
+      theme = "dark";
+    }
+    setCookie(themeCookie, theme, getCookieOptions(serverURL));
+
+    const learningMFEUnitIframe = document.getElementById("unit-iframe");
+    if (learningMFEUnitIframe) {
+      learningMFEUnitIframe.contentWindow.postMessage(
+        { "indigo-toggle-dark": theme },
+        serverURL.origin
+      );
+    }
+  };
+
+  const hanldeKeyUp = (event) => {
+    if (event.key === "Enter") {
+      onToggleTheme();
+    }
+  };
+
+  if (!isThemeToggleEnabled) {
+    return <div />;
+  }
+
+  const messages = {
+    "header.user.theme": {
+      id: "header.user.theme",
+      defaultMessage: "Toggle Theme",
+      description: "Toggle between light and dark theme",
+    },
+  };
+
+  return (
+    <div className="theme-toggle-button mr-3">
+      <div className="light-theme-icon">
+        <Icon src={WbSunny} />
+      </div>
+      <div className="toggle-switch">
+        <label htmlFor="theme-toggle-checkbox" className="switch">
+          <input
+            id="theme-toggle-checkbox"
+            defaultChecked={getCookie(themeCookie) === "dark"}
+            onChange={onToggleTheme}
+            onKeyUp={hanldeKeyUp}
+            type="checkbox"
+            title={intl.formatMessage(messages["header.user.theme"])}
+          />
+          <span className="slider round" />
+          <span id="theme-label" className="sr-only">{`Switch to ${
+            isDarkThemeEnabled ? "Light" : "Dark"
+          } Mode`}</span>
+        </label>
+      </div>
+      <div className="dark-theme-icon">
+        <Icon src={Nightlight} />
+      </div>
     </div>
   );
 };
