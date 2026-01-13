@@ -8,7 +8,7 @@ from glob import glob
 import importlib_resources
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
-from tutormfe.hooks import PLUGIN_SLOTS
+from tutormfe.hooks import PLUGIN_SLOTS, MFE_APPS
 
 from .__about__ import __version__
 
@@ -25,6 +25,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         "WELCOME_MESSAGE": "The place for all your online learning",
         "PRIMARY_COLOR": "#15376D",  # Indigo
         "ENABLE_DARK_TOGGLE": True,
+        "ENABLE_DARK_THEME_LOGO": True,
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[]
@@ -320,3 +321,30 @@ MFE_CONFIG["PARAGON_THEME_URLS"] = {json.dumps(paragon_theme_urls)}
 """
 
 hooks.Filters.ENV_PATCHES.add_item(("mfe-lms-common-settings", fstring))
+
+
+@MFE_APPS.add()
+def _add_themed_logo(mfes):
+    for mfe in mfes:
+        PLUGIN_SLOTS.add_item(
+            (
+                str(mfe),
+                "logo_slot",
+                """
+                {
+                    op: PLUGIN_OPERATIONS.Hide,
+                    widgetId: 'default_contents',
+                },
+                {
+                    op: PLUGIN_OPERATIONS.Insert,
+                    widget: {
+                        id: 'custom_header',
+                        type: DIRECT_PLUGIN,
+                        RenderWidget: ThemedLogo,
+                    }
+                }
+            """,
+            )
+        )
+
+    return mfes

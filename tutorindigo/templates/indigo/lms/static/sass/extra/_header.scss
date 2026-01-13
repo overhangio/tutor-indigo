@@ -283,9 +283,17 @@ header.global-header {
     }
 }
 
-
+.logo {
+    width: 36px;
+    background: no-repeat center/contain url("/static/indigo/images/logo.png");
+}
 
 body.indigo-dark-theme {
+    {% if ENABLE_DARK_THEME_LOGO %}
+        .logo {
+            background-image: url("/static/indigo/images/logo-white.png");
+        }
+    {% endif %}
     background: $body-bg-d !important;
     color: $text-color-d !important;
     .window-wrap {
