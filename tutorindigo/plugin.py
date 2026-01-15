@@ -240,22 +240,32 @@ for mfe in indigo_styled_mfes:
             )
         )
 
-    PLUGIN_SLOTS.add_item(
-        (
-            mfe,
-            "learning_help_slot",
-            """ 
-            {
-                op: PLUGIN_OPERATIONS.Insert,
-                widget: {
-                    id: 'theme_switch_button',
-                    type: DIRECT_PLUGIN,
-                    RenderWidget: ThemeToggleButtonIntl,
-                },
+PLUGIN_SLOTS.add_items([
+    (
+        # Hide the default Help Link added in plugin slot
+        "learning",
+        "learning_help_slot",
+        """
+        {
+          op: PLUGIN_OPERATIONS.Hide,
+          widgetId: 'default_contents',
+        }"""
+    ),
+    (
+        "learning",
+        "learning_help_slot",
+        """ 
+        {
+            op: PLUGIN_OPERATIONS.Insert,
+            widget: {
+                id: 'theme_switch_button',
+                type: DIRECT_PLUGIN,
+                RenderWidget: ThemeToggleButtonIntl,
             },
-    """,
-        )
+        },
+""",
     )
+])
 
 
 paragon_theme_urls = {
