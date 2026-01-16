@@ -188,6 +188,9 @@ for path in glob(
 
 
 for mfe in indigo_styled_mfes:
+    # TODO: move plugins from these patches(mfe-env-config-buildtime-definitions,
+    # mfe-env-config-runtime-definitions) into separate files and generate these
+    # patches on the fly to improve readability.
     PLUGIN_SLOTS.add_item(
         (
             mfe,
