@@ -1,28 +1,3 @@
-if (typeof useIntl === "undefined") {
-  const intl = await import("@edx/frontend-platform/i18n");
-  globalThis.useIntl = intl.useIntl;
-}
-
-if (typeof useState === "undefined") {
-  const react = await import("react");
-  globalThis.useState = react.useState;
-}
-
-if (typeof Icon === "undefined") {
-  const paragon = await import("@openedx/paragon");
-  globalThis.Icon = paragon.Icon;
-}
-
-if (typeof WbSunny === "undefined") {
-  const paragon = await import("@openedx/paragon/icons");
-  globalThis.WbSunny = paragon.WbSunny;
-}
-
-if (typeof Nightlight === "undefined") {
-  const paragon = await import("@openedx/paragon/icons");
-  globalThis.Nightlight = paragon.Nightlight;
-}
-
 const IndigoFooter = () => {
   const intl = useIntl();
   const config = getConfig();
@@ -64,12 +39,15 @@ const IndigoFooter = () => {
                   href="https://edly.io/tutor/"
                   rel="noreferrer"
                   target="_blank"
-                ></a>
-                <img
-                  src={`${config.LMS_BASE_URL}/theming/asset/images/tutor-logo.png`}
-                  alt={intl.formatMessage(messages["footer.tutorlogo.altText"])}
-                  width="57"
-                />
+                >
+                  <img
+                    src={`${config.LMS_BASE_URL}/theming/asset/images/tutor-logo.png`}
+                    alt={intl.formatMessage(
+                      messages["footer.tutorlogo.altText"]
+                    )}
+                    width="57"
+                  />
+                </a>
               </li>
               <li>
                 <a href="https://open.edx.org" rel="noreferrer" target="_blank">
@@ -242,6 +220,35 @@ const ToggleThemeButton = () => {
       <div className="dark-theme-icon">
         <Icon src={Nightlight} />
       </div>
+    </div>
+  );
+};
+
+const MobileViewHeader = () => {
+  const config = getConfig();
+  const intl = useIntl();
+  const messages = {
+    "mobile.view.header.logo.altText": {
+      id: "mobile.view.header.logo.altText",
+      defaultMessage: "My Open edX",
+      description: "Mobile view header logo altText",
+    },
+  };
+  return (
+    <div className="container-xl py-2 d-flex align-items-center justify-content-between">
+      <a
+        className="logo"
+        href={`${config.LMS_BASE_URL}/dashboard`}
+        style={Object.assign({}, { display: "flex", alignItems: "center" })}
+      >
+        <img
+          className="d-block"
+          src={`${config.LMS_BASE_URL}/theming/asset/images/logo.png`}
+          alt={intl.formatMessage(messages["mobile.view.header.logo.altText"])}
+          height={21}
+        />
+      </a>
+      <ToggleThemeButton />
     </div>
   );
 };

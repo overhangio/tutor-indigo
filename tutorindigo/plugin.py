@@ -218,13 +218,70 @@ for mfe in indigo_styled_mfes:
   """,
         ),
     )
+    if mfe != "learning":
+        PLUGIN_SLOTS.add_item(
+            (
+                mfe,
+                "desktop_secondary_menu_slot",
+                """ 
+                {
+                    op: PLUGIN_OPERATIONS.Insert,
+                    widget: {
+                        id: 'theme_switch_button',
+                        type: DIRECT_PLUGIN,
+                        RenderWidget: ToggleThemeButton,
+                    },
+                },
+        """,
+            )
+        )
+        PLUGIN_SLOTS.add_items(
+            [
+                (
+                    # Hide the default mobile header as it only shows logo
+                    mfe,
+                    "mobile_header_slot",
+                    """
+                {
+                    op: PLUGIN_OPERATIONS.Hide,
+                    widgetId: 'default_contents',
+                }
+                """,
+                ),
+                (
+                    mfe,
+                    "mobile_header_slot",
+                    """ 
+                {
+                    op: PLUGIN_OPERATIONS.Insert,
+                    widget: {
+                        id: 'theme_switch_button',
+                        type: DIRECT_PLUGIN,
+                        RenderWidget: MobileViewHeader,
+                    },
+                },
+                """,
+                ),
+            ]
+        )
 
-
-PLUGIN_SLOTS.add_item(
-    (
-        "learner-dashboard",
-        "desktop_secondary_menu_slot",
-        """ 
+PLUGIN_SLOTS.add_items(
+    [
+        (
+            # Hide the default Help Link added in plugin slot
+            "learning",
+            "learning_help_slot",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Hide,
+            widgetId: 'default_contents',
+        }
+        """,
+        ),
+        (
+            "learning",
+            "learning_help_slot",
+            """ 
         {
             op: PLUGIN_OPERATIONS.Insert,
             widget: {
@@ -232,7 +289,8 @@ PLUGIN_SLOTS.add_item(
                 type: DIRECT_PLUGIN,
                 RenderWidget: ToggleThemeButton,
             },
-        }
-"""
-    )
+        },
+        """,
+        ),
+    ]
 )
