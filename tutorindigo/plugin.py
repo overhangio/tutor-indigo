@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import typing as t
 from glob import glob
@@ -120,7 +121,7 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'
+RUN npm install '@edx/brand@github:@edly-io/brand-openedx#test_ulmo_brand'
 """,  # noqa: E501
             ),
         ]
@@ -129,7 +130,7 @@ RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'",
+        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#test_ulmo_brand'",
     )
 )
 
@@ -296,3 +297,26 @@ PLUGIN_SLOTS.add_items(
         ),
     ]
 )
+
+paragon_theme_urls = {
+    "variants": {
+        "light": {
+            "urls": {
+                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/a4c21a3d65c68e575ee27e6e7e69c54ebc2e83bf/dist/light.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/a4c21a3d65c68e575ee27e6e7e69c54ebc2e83bf/dist/light.min.css",
+            },
+        },
+        "dark": {
+            "urls": {
+                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/a4c21a3d65c68e575ee27e6e7e69c54ebc2e83bf/dist/dark.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/a4c21a3d65c68e575ee27e6e7e69c54ebc2e83bf/dist/dark.min.css",
+            }
+        },
+    }
+}
+
+fstring = f"""
+MFE_CONFIG["PARAGON_THEME_URLS"] = {json.dumps(paragon_theme_urls)}
+"""
+
+hooks.Filters.ENV_PATCHES.add_item(("mfe-lms-common-settings", fstring))
