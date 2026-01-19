@@ -1,22 +1,7 @@
-
-
-let themeCookie = 'indigo-toggle-dark';
-let themeCookieExpiry = 90; // days
+let themeVariant = 'selected-paragon-theme-variant';
 
 const AddDarkTheme = () => {
-  const cookies = new Cookies();
   const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
-
-  const getCookieExpiry = () => {
-    const today = new Date();
-    return new Date(today.getFullYear(), today.getMonth(), today.getDate() + themeCookieExpiry);
-  };
-
-  const getCookieOptions = () => {
-    const serverURL = new URL(getConfig().LMS_BASE_URL);
-    const options = { domain: serverURL.hostname, path: '/', expires: getCookieExpiry() };
-    return options;
-  };
 
   const addDarkThemeToIframes = () => {
     const iframes = document.getElementsByTagName('iframe');
@@ -25,20 +10,22 @@ const AddDarkTheme = () => {
       Array.from({ length: iframesLength }).forEach((_, index) => {
         const style = document.createElement('style');
         style.textContent = `
-          body{
+          body {
             background-color: #0D0D0E;
             color: #ccc;
           }
-          a {color: #ccc;}
-          a:hover{color: #d3d3d3;}
-          `;
-        if (iframes[index].contentDocument) { iframes[index].contentDocument.head.appendChild(style); }
+          a { color: #ccc; }
+          a:hover { color: #d3d3d3; }
+        `;
+        if (iframes[index].contentDocument) {
+          iframes[index].contentDocument.head.appendChild(style);
+        }
       });
     }
   };
 
   useEffect(() => {
-    const theme = cookies.get(themeCookie);
+    const theme = window.localStorage.getItem(themeVariant);
 
     // - When page loads, Footer loads before MFE content. Since there is no iframe on page,
     // it does not append any class. MutationObserver observes changes in DOM and hence appends dark
@@ -52,12 +39,10 @@ const AddDarkTheme = () => {
     });
 
     if (isThemeToggleEnabled && theme === 'dark') {
-      document.body.classList.add('indigo-dark-theme');
-      
+      document.documentElement.setAttribute('data-paragon-theme-variant', 'dark');
+
       observer.observe(document.body, { childList: true, subtree: true });
       setTimeout(() => observer?.disconnect(), 15000); // clear after 15 sec to avoid resource usage
-
-      cookies.set(themeCookie, theme, getCookieOptions());      //  on page load, update expiry
     }
 
     return () => observer?.disconnect();
