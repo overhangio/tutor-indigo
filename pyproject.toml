@@ -8,7 +8,8 @@ license = { text = "AGPLv3" }
 requires-python = ">=3.9"
 authors = [{ name = "Edly" }, { email = "hello@edly.io" }]
 maintainers = [
-    { name = "Hammad Yousaf" }, { email = "hammad.yousaf@arbisoft.com" }
+    { name = "Hammad Yousaf" }, { email = "hammad.yousaf@arbisoft.com" },
+    { name = "Muhammad Faraz Maqsood" }, { email = "faraz.maqsood@arbisoft.com" }
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
