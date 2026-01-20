@@ -1,26 +1,24 @@
 $(document).ready(function() {
     'use strict';
 
-    const themeCookie = 'indigo-toggle-dark';
+    const themeVariant = 'selected-paragon-theme-variant';
 
     function applyThemeOnPage(){
-      const theme = $.cookie(themeCookie);
+      const theme = window.localStorage.getItem(themeVariant);
       {% if INDIGO_ENABLE_DARK_TOGGLE %}
-      $('body').toggleClass("indigo-dark-theme", theme === 'dark');       // append or remove dark-class based on cookie-value
-      // update expiry
-      $.cookie(themeCookie, theme, { domain: window.location.hostname, expires: 90, path: '/' });
+      $('body').toggleClass("indigo-dark-theme", theme === 'dark');       // append or remove dark-class based on localStorage value
       {% endif %}
       updateAccessibility();
     }
 
     function setThemeToggleBtnState(){
-      const theme = $.cookie(themeCookie);
+      const theme = window.localStorage.getItem(themeVariant);
       $("#toggle-switch-input").prop("checked", theme === 'dark');
       updateAccessibility();
     }
 
     function updateAccessibility() {
-      const theme = $.cookie(themeCookie);
+      const theme = window.localStorage.getItem(themeVariant);
       const textWrapper = $('#theme-label');
       if (theme === 'dark') {
         textWrapper.text('Switch to Light Mode');
@@ -32,9 +30,8 @@ $(document).ready(function() {
     }
     
     function toggleTheme(){
-      const themeValue = $.cookie(themeCookie) === 'dark' ? 'light' : 'dark';
-      $.cookie(themeCookie, themeValue, { domain: window.location.hostname, expires: 90, path: '/' });
-        
+      const themeValue = window.localStorage.getItem(themeVariant) === 'dark' ? 'light' : 'dark';
+      window.localStorage.setItem(themeVariant, themeValue);
       applyThemeOnPage();
     }
 
