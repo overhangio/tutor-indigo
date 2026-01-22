@@ -19,7 +19,20 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-21.0.0'></a>
+
+## v21.0.0 (2026-01-16)
+
+- 💥[Feature] Upgrade to ulmo. (by @HammadYousaf01)
+
+- 💥[Deprecation] Do not assign theme to preview site during initialization as the preview page has been migrated to the learning MFE. (by @Danyal-Faheem)
+
+- [Improvement] Migrate from pylint and black to ruff. (by @HammadYousaf01)
+
+- 💥[Feature] Add indigo header through pluginSlot instead of installing it through fork(edly-io/indigo-frontend-component-header). (by @Faraz32123, @HammadYousaf01)
+
 <a id='changelog-20.0.1'></a>
+
 ## v20.0.1 (2025-09-23)
 
 - [Improvement] Make latex response editor background colours WCAG compliant in dark theme. (by @Danyal-Faheem)

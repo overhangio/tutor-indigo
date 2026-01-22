@@ -120,26 +120,16 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install @edly-io/indigo-frontend-component-footer@^3.0.0
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^4.0.0'
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'
-
-""",  # noqa: E501
-            ),
-            (
-                f"mfe-env-config-runtime-definitions-{mfe}",
-                """
-const { default: IndigoFooter } = await import('@edly-io/indigo-frontend-component-footer');
+RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'
 """,  # noqa: E501
             ),
         ]
     )
 
-
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'",
+        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'",
     )
 )
 
@@ -197,10 +187,13 @@ for path in glob(
 
 
 for mfe in indigo_styled_mfes:
+    # TODO: move plugins from these patches(mfe-env-config-buildtime-definitions,
+    # mfe-env-config-runtime-definitions) into separate files and generate these
+    # patches on the fly to improve readability.
     PLUGIN_SLOTS.add_item(
         (
             mfe,
-            "footer_slot",
+            "org.openedx.frontend.layout.footer.v1",
             """ 
             {
                 op: PLUGIN_OPERATIONS.Hide,
@@ -209,10 +202,10 @@ for mfe in indigo_styled_mfes:
             {
                 op: PLUGIN_OPERATIONS.Insert,
                 widget: {
-                    id: 'default_contents',
+                    id: 'custom_footer',
                     type: DIRECT_PLUGIN,
                     priority: 1,
-                    RenderWidget: <IndigoFooter />,
+                    RenderWidget: IndigoFooter,
                 },
             },
             {
@@ -227,3 +220,79 @@ for mfe in indigo_styled_mfes:
   """,
         ),
     )
+    if mfe != "learning":
+        PLUGIN_SLOTS.add_item(
+            (
+                mfe,
+                "desktop_secondary_menu_slot",
+                """ 
+                {
+                    op: PLUGIN_OPERATIONS.Insert,
+                    widget: {
+                        id: 'theme_switch_button',
+                        type: DIRECT_PLUGIN,
+                        RenderWidget: ToggleThemeButton,
+                    },
+                },
+        """,
+            )
+        )
+        PLUGIN_SLOTS.add_items(
+            [
+                (
+                    # Hide the default mobile header as it only shows logo
+                    mfe,
+                    "mobile_header_slot",
+                    """
+                {
+                    op: PLUGIN_OPERATIONS.Hide,
+                    widgetId: 'default_contents',
+                }
+                """,
+                ),
+                (
+                    mfe,
+                    "mobile_header_slot",
+                    """ 
+                {
+                    op: PLUGIN_OPERATIONS.Insert,
+                    widget: {
+                        id: 'theme_switch_button',
+                        type: DIRECT_PLUGIN,
+                        RenderWidget: MobileViewHeader,
+                    },
+                },
+                """,
+                ),
+            ]
+        )
+
+PLUGIN_SLOTS.add_items(
+    [
+        (
+            # Hide the default Help Link added in plugin slot
+            "learning",
+            "learning_help_slot",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Hide,
+            widgetId: 'default_contents',
+        }
+        """,
+        ),
+        (
+            "learning",
+            "learning_help_slot",
+            """ 
+        {
+            op: PLUGIN_OPERATIONS.Insert,
+            widget: {
+                id: 'theme_switch_button',
+                type: DIRECT_PLUGIN,
+                RenderWidget: ToggleThemeButton,
+            },
+        },
+        """,
+        ),
+    ]
+)
