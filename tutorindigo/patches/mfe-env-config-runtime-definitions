@@ -80,79 +80,72 @@ const IndigoFooter = () => {
 
 const ToggleThemeButton = () => {
   const intl = useIntl();
-  const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(
-    window.localStorage.getItem(themeVariant) === 'dark'
-  );
+  const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(false);
+
+  const themeCookie = 'selected-paragon-theme-variant';
+  const themeCookieExpiry = 90; // days
   const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
 
-  useEffect(() => {
-    const currentTheme = window.localStorage.getItem(themeVariant);
-    setIsDarkThemeEnabled(currentTheme === 'dark');
-  }, []);
-
-  const addDarkThemeToIframes = () => {
-    const iframes = document.getElementsByTagName('iframe');
-    const iframesLength = iframes.length;
-    if (iframesLength > 0) {
-      Array.from({ length: iframesLength }).forEach((_, index) => {
-        const style = document.createElement('style');
-        style.textContent = `
-          body {
-            background-color: #0D0D0E;
-            color: #ccc;
-          }
-          a { color: #ccc; }
-          a:hover { color: #d3d3d3; }
-        `;
-        if (iframes[index].contentDocument) {
-          iframes[index].contentDocument.head.appendChild(style);
-        }
-      });
-    }
+  const getCookie = (name) => {
+    return document.cookie
+      .split("; ")
+      .find((row) => row.startsWith(name + "="))
+      ?.split("=")[1];
   };
 
-  const removeDarkThemeFromIframes = () => {
-    const iframes = document.getElementsByTagName('iframe');
-    const iframesLength = iframes.length;
-
-    Array.from({ length: iframesLength }).forEach((_, index) => {
-      if (iframes[index].contentDocument) {
-        const iframeHead = iframes[index].contentDocument.head;
-        const styleTag = Array.from(iframeHead.querySelectorAll('style')).find(
-          (style) =>
-            style.textContent.includes('background-color: #0D0D0E;') &&
-            style.textContent.includes('color: #ccc;')
-        );
-        if (styleTag) {
-          styleTag.remove();
-        }
-      }
-    });
+  const setCookie = (name, value, { domain, path, expires }) => {
+    document.cookie = `${name}=${value}; domain=${domain}; path=${path}; expires=${expires.toUTCString()}; SameSite=Lax`;
   };
+
+  const serverURL = new URL(getConfig().LMS_BASE_URL);
+
+  const getCookieExpiry = () => {
+    const today = new Date();
+    return new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + themeCookieExpiry
+    );
+  };
+
+  const getCookieOptions = (serverURL) => ({
+    domain: serverURL.hostname,
+    path: '/',
+    expires: getCookieExpiry(),
+  });
 
   const onToggleTheme = () => {
-    const newTheme = isDarkThemeEnabled ? 'light' : 'dark';
-    window.localStorage.setItem(themeVariant, newTheme);
-    setIsDarkThemeEnabled(newTheme === 'dark');
+    let theme = '';
 
-    if (newTheme === 'dark') {
-      document.documentElement.setAttribute('data-paragon-theme-variant', 'dark');
-      addDarkThemeToIframes();
-    } else {
+    if (getCookie(themeCookie) === 'dark') {
       document.documentElement.setAttribute('data-paragon-theme-variant', 'light');
-      removeDarkThemeFromIframes();
+      setIsDarkThemeEnabled(false);
+      theme = 'light';
+    } else {
+      document.documentElement.setAttribute('data-paragon-theme-variant', 'dark');
+      setIsDarkThemeEnabled(true);
+      theme = 'dark';
     }
 
-    const serverURL = new URL(getConfig().LMS_BASE_URL);
-    const learningMFEUnitIframe = document.getElementById('unit-iframe');
-    if (learningMFEUnitIframe) {
-      learningMFEUnitIframe.contentWindow.postMessage({ 'indigo-toggle-dark': newTheme }, serverURL.origin);
-    }
-    window.location.reload();
+    window.localStorage.setItem(themeCookie, theme);
+    setTimeout(() => {
+      setCookie(themeCookie, theme, getCookieOptions(serverURL));
+      window.location.reload();
+    }, 1);
   };
 
+  useEffect(() => {
+    if (!getCookie(themeCookie) || getCookie(themeCookie) === 'undefined') {
+      return;
+    }
+    if (getCookie(themeCookie) !== window.localStorage.getItem(themeCookie)) {
+      window.localStorage.setItem(themeCookie, getCookie(themeCookie));
+      window.location.reload();
+    }
+  }, []);
+
   const handleKeyUp = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       onToggleTheme();
     }
   };
@@ -170,7 +163,7 @@ const ToggleThemeButton = () => {
   };
 
   return (
-    <div className={isDarkThemeEnabled ? 'dark-theme-toggle-button' : 'theme-toggle-button'}>
+    <div className="theme-toggle-button mr-3">
       <div className="light-theme-icon">
         <Icon src={WbSunny} />
       </div>
@@ -178,16 +171,16 @@ const ToggleThemeButton = () => {
         <label htmlFor="theme-toggle-checkbox" className="switch">
           <input
             id="theme-toggle-checkbox"
-            checked={isDarkThemeEnabled}
+            defaultChecked={getCookie(themeCookie) === "dark"}
             onChange={onToggleTheme}
             onKeyUp={handleKeyUp}
             type="checkbox"
             title={intl.formatMessage(messages["header.user.theme"])}
           />
           <span className="slider round" />
-          <span id="theme-label" className="sr-only">
-            {`Switch to ${isDarkThemeEnabled ? 'Light' : 'Dark'} Mode`}
-          </span>
+          <span id="theme-label" className="sr-only">{`Switch to ${
+            isDarkThemeEnabled ? "Light" : "Dark"
+          } Mode`}</span>
         </label>
       </div>
       <div className="dark-theme-icon">

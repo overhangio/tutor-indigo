@@ -1,24 +1,33 @@
 $(document).ready(function() {
     'use strict';
 
-    const themeVariant = 'selected-paragon-theme-variant';
+    const themeCookie = 'selected-paragon-theme-variant';
 
     function applyThemeOnPage(){
-      const theme = window.localStorage.getItem(themeVariant);
+      const theme = $.cookie(themeCookie);
+
+      if (theme === 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTimeout(() => {
+          $('body').addClass("indigo-dark-theme");
+          $("#toggle-switch-input").prop("checked", true);
+        }, 200)
+      }
       {% if INDIGO_ENABLE_DARK_TOGGLE %}
-      $('body').toggleClass("indigo-dark-theme", theme === 'dark');       // append or remove dark-class based on localStorage value
+      $('body').toggleClass("indigo-dark-theme", theme === 'dark');       // append or remove dark-class based on cookie-value
+      // update expiry
+      $.cookie(themeCookie, theme, { domain: window.location.hostname, expires: 90, path: '/' });
       {% endif %}
       updateAccessibility();
     }
 
     function setThemeToggleBtnState(){
-      const theme = window.localStorage.getItem(themeVariant);
+      const theme = $.cookie(themeCookie);
       $("#toggle-switch-input").prop("checked", theme === 'dark');
       updateAccessibility();
     }
 
     function updateAccessibility() {
-      const theme = window.localStorage.getItem(themeVariant);
+      const theme = $.cookie(themeCookie);
       const textWrapper = $('#theme-label');
       if (theme === 'dark') {
         textWrapper.text('Switch to Light Mode');
@@ -28,10 +37,11 @@ $(document).ready(function() {
         textWrapper.attr('aria-checked', 'false');
       }
     }
-    
+
     function toggleTheme(){
-      const themeValue = window.localStorage.getItem(themeVariant) === 'dark' ? 'light' : 'dark';
-      window.localStorage.setItem(themeVariant, themeValue);
+      const themeValue = $.cookie(themeCookie) === 'dark' ? 'light' : 'dark';
+      $.cookie(themeCookie, themeValue, { domain: window.location.hostname, expires: 90, path: '/' });
+      window.localStorage.setItem(themeCookie, themeValue);
       applyThemeOnPage();
     }
 
