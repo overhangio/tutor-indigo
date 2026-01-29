@@ -19,6 +19,13 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-21.0.1'></a>
+## v21.0.1 (2026-01-29)
+
+- [Chore] Redirect to tutor page(https://edly.io/tutor/) instead of tutor docs(https://docs.tutor.edly.io) on tutor logo click in legacy pages footer. (by @Faraz32123)
+
+- [Chore] Change indigo brand version that ships a user dropdown icon bug fix. (by @Faraz32123)
+
 <a id='changelog-21.0.0'></a>
 
 ## v21.0.0 (2026-01-16)
