@@ -8,7 +8,7 @@ from glob import glob
 import importlib_resources
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
-from tutormfe.hooks import PLUGIN_SLOTS, MFE_APPS
+from tutormfe.hooks import MFE_APPS, MFE_ATTRS_TYPE, PLUGIN_SLOTS
 
 from .__about__ import __version__
 
@@ -323,8 +323,10 @@ MFE_CONFIG["PARAGON_THEME_URLS"] = {json.dumps(paragon_theme_urls)}
 hooks.Filters.ENV_PATCHES.add_item(("mfe-lms-common-settings", fstring))
 
 
-@MFE_APPS.add()
-def _add_themed_logo(mfes):
+@MFE_APPS.add()  # type: ignore
+def _add_themed_logo(
+    mfes: dict[str, MFE_ATTRS_TYPE],
+) -> dict[str, MFE_ATTRS_TYPE]:
     for mfe in mfes:
         PLUGIN_SLOTS.add_item(
             (

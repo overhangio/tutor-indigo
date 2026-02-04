@@ -289,7 +289,7 @@ header.global-header {
 }
 
 body.indigo-dark-theme {
-    {% if ENABLE_DARK_THEME_LOGO %}
+    {% if INDIGO_ENABLE_DARK_THEME_LOGO %}
         .logo {
             background-image: url("/static/indigo/images/logo-white.png");
         }

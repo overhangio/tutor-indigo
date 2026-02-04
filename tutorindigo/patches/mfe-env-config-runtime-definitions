@@ -232,7 +232,7 @@ const ThemedLogo = () => {
             background: no-repeat center/contain url("${BASE_URL}/static/indigo/images/logo.png");
           }
 
-          {% if ENABLE_DARK_THEME_LOGO %}
+          {% if INDIGO_ENABLE_DARK_THEME_LOGO %}
             body.indigo-dark-theme .themed-logo {
               background-image: url("${BASE_URL}/static/indigo/images/logo-white.png");
             }
