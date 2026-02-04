@@ -245,20 +245,20 @@ const ThemedLogo = () => {
     <>
       <style>
         {`
-          #root header .logo.logo-white {
+          #root header .logo-image.logo-white {
             display: none;
           }
-          body.indigo-dark-theme #root header .logo {
+          body.indigo-dark-theme #root header .logo-image {
             display: none;
           }
           body.indigo-dark-theme #root header .logo-white {
-            display: inline-block;
+            display: block;
           }
         `}
       </style>
-      <a href={`${BASE_URL}/dashboard`} title="Open edX">
-        <img className="logo" src={`${BASE_URL}/static/indigo/images/logo.png`} alt="Open edX" />
-        <img className="logo logo-white" src={`${BASE_URL}/static/indigo/images/logo-white.png`} alt="Open edX" />
+      <a href={`${BASE_URL}/dashboard`} title="Open edX" className="logo">
+        <img className="logo-image" src={`${BASE_URL}/static/indigo/images/logo.png`} alt="Open edX" />
+        <img className="logo-image logo-white" src={`${BASE_URL}/static/indigo/images/logo-white.png`} alt="Open edX" />
       </a>
     </>
   );
