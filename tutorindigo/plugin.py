@@ -121,7 +121,7 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install '@edx/brand@github:@edly-io/brand-openedx#test_ulmo_brand'
+RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.0'
 """,  # noqa: E501
             ),
         ]
@@ -130,7 +130,7 @@ RUN npm install '@edx/brand@github:@edly-io/brand-openedx#test_ulmo_brand'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#test_ulmo_brand'",
+        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.0'",
     )
 )
 
@@ -302,14 +302,14 @@ paragon_theme_urls = {
     "variants": {
         "light": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/a4c21a3d65c68e575ee27e6e7e69c54ebc2e83bf/dist/light.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/a4c21a3d65c68e575ee27e6e7e69c54ebc2e83bf/dist/light.min.css",
+                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
             },
         },
         "dark": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/a4c21a3d65c68e575ee27e6e7e69c54ebc2e83bf/dist/dark.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/a4c21a3d65c68e575ee27e6e7e69c54ebc2e83bf/dist/dark.min.css",
+                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
             }
         },
     }
