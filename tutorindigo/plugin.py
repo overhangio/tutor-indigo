@@ -25,7 +25,6 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         "WELCOME_MESSAGE": "The place for all your online learning",
         "PRIMARY_COLOR": "#15376D",  # Indigo
         "ENABLE_DARK_TOGGLE": True,
-        "ENABLE_DARK_THEME_LOGO": True,
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[]
@@ -196,7 +195,7 @@ for mfe in indigo_styled_mfes:
         (
             mfe,
             "org.openedx.frontend.layout.footer.v1",
-            """ 
+            """
             {
                 op: PLUGIN_OPERATIONS.Hide,
                 widgetId: 'default_contents',
@@ -227,7 +226,7 @@ for mfe in indigo_styled_mfes:
             (
                 mfe,
                 "desktop_secondary_menu_slot",
-                """ 
+                """
                 {
                     op: PLUGIN_OPERATIONS.Insert,
                     widget: {
@@ -255,7 +254,7 @@ for mfe in indigo_styled_mfes:
                 (
                     mfe,
                     "mobile_header_slot",
-                    """ 
+                    """
                 {
                     op: PLUGIN_OPERATIONS.Insert,
                     widget: {
@@ -285,7 +284,7 @@ PLUGIN_SLOTS.add_items(
         (
             "learning",
             "learning_help_slot",
-            """ 
+            """
         {
             op: PLUGIN_OPERATIONS.Insert,
             widget: {
@@ -340,7 +339,7 @@ def _add_themed_logo(
                 {
                     op: PLUGIN_OPERATIONS.Insert,
                     widget: {
-                        id: 'custom_header',
+                        id: 'custom_logo',
                         type: DIRECT_PLUGIN,
                         RenderWidget: ThemedLogo,
                     }

@@ -57,6 +57,17 @@ header.global-header {
             .logo {
                 height: 24px;
                 margin: 0;
+
+                body.indigo-dark-theme & {
+                    display: none;
+                }
+            }
+            .logo-white {
+                display: none;
+
+                body.indigo-dark-theme & {
+                    display: inline-block;
+                }
             }
         }
         .course-header {
@@ -283,17 +294,7 @@ header.global-header {
     }
 }
 
-.logo {
-    width: 36px;
-    background: no-repeat center/contain url("/static/indigo/images/logo.png");
-}
-
 body.indigo-dark-theme {
-    {% if INDIGO_ENABLE_DARK_THEME_LOGO %}
-        .logo {
-            background-image: url("/static/indigo/images/logo-white.png");
-        }
-    {% endif %}
     background: $body-bg-d !important;
     color: $text-color-d !important;
     .window-wrap {

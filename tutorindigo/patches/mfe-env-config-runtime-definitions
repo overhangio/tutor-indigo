@@ -202,14 +202,33 @@ const MobileViewHeader = () => {
   };
   return (
     <div className="container-xl py-2 d-flex align-items-center justify-content-between">
+      <style>
+        {`
+          .logo-image-white {
+            display: none;
+          }
+          body.indigo-dark-theme .logo-image {
+            display: none;
+          }
+          body.indigo-dark-theme .logo-image-white {
+            display: block;
+          }
+        `}
+      </style>
       <a
         className="logo"
         href={`${config.LMS_BASE_URL}/dashboard`}
         style={Object.assign({}, { display: "flex", alignItems: "center" })}
       >
         <img
-          className="d-block"
+          className="logo-image"
           src={`${config.LMS_BASE_URL}/theming/asset/images/logo.png`}
+          alt={intl.formatMessage(messages["mobile.view.header.logo.altText"])}
+          height={21}
+        />
+        <img
+          className="logo-image-white"
+          src={`${config.LMS_BASE_URL}/theming/asset/images/logo-white.png`}
           alt={intl.formatMessage(messages["mobile.view.header.logo.altText"])}
           height={21}
         />
@@ -226,21 +245,20 @@ const ThemedLogo = () => {
     <>
       <style>
         {`
-          .themed-logo {
-            width: 36px;
-            height: 24px;
-            background: no-repeat center/contain url("${BASE_URL}/static/indigo/images/logo.png");
+          #root header .logo.logo-white {
+            display: none;
           }
-
-          {% if INDIGO_ENABLE_DARK_THEME_LOGO %}
-            body.indigo-dark-theme .themed-logo {
-              background-image: url("${BASE_URL}/static/indigo/images/logo-white.png");
-            }
-          {% endif %}
+          body.indigo-dark-theme #root header .logo {
+            display: none;
+          }
+          body.indigo-dark-theme #root header .logo-white {
+            display: inline-block;
+          }
         `}
       </style>
-      <a href={`${BASE_URL}/dashboard`} className="logo" title="Logo">
-        <div class="themed-logo" role="img" aria-label="Acme logo"></div>
+      <a href={`${BASE_URL}/dashboard`} title="Open edX">
+        <img className="logo" src={`${BASE_URL}/static/indigo/images/logo.png`} alt="Open edX" />
+        <img className="logo logo-white" src={`${BASE_URL}/static/indigo/images/logo-white.png`} alt="Open edX" />
       </a>
     </>
   );
