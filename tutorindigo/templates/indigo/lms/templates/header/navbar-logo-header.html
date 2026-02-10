@@ -29,7 +29,8 @@ enterprise_customer_link = get_enterprise_learner_portal(request)
   % else:
     <a href="${branding_api.get_home_url()}" title="${_("{platform_name} Learner Home Page").format(platform_name=static.get_platform_name())}">
       <%block name="navigation_logo">
-        <img  class="logo" src="${branding_api.get_logo_url(is_secure)}" alt="${_("{platform_name} Home Page").format(platform_name=static.get_platform_name())}"/>
+         <img  class="logo" src="${branding_api.get_logo_url(is_secure)}" alt="${_("{platform_name} Home Page").format(platform_name=static.get_platform_name())}"/>
+         <img  class="logo logo-white" src="${static.url('images/logo-white.png')}" alt="${_("{platform_name} Home Page").format(platform_name=static.get_platform_name())}"/>
       </%block>
         % if settings.LOGO_IMAGE_EXTRA_TEXT == 'edge':
             <span class="font-italic"> | EDGE</span>

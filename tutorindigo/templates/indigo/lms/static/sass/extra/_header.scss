@@ -57,6 +57,17 @@ header.global-header {
             .logo {
                 height: 24px;
                 margin: 0;
+
+                body.indigo-dark-theme & {
+                    display: none;
+                }
+            }
+            .logo-white {
+                display: none;
+
+                body.indigo-dark-theme & {
+                    display: inline-block;
+                }
             }
         }
         .course-header {
@@ -282,8 +293,6 @@ header.global-header {
         }
     }
 }
-
-
 
 body.indigo-dark-theme {
     background: $body-bg-d !important;
