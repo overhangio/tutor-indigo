@@ -82,7 +82,7 @@ const ToggleThemeButton = () => {
   const intl = useIntl();
   const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(false);
 
-  const themeCookie = "indigo-toggle-dark";
+  const themeCookie = 'selected-paragon-theme-variant';
   const themeCookieExpiry = 90; // days
   const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
 
@@ -97,6 +97,8 @@ const ToggleThemeButton = () => {
     document.cookie = `${name}=${value}; domain=${domain}; path=${path}; expires=${expires.toUTCString()}; SameSite=Lax`;
   };
 
+  const serverURL = new URL(getConfig().LMS_BASE_URL);
+
   const getCookieExpiry = () => {
     const today = new Date();
     return new Date(
@@ -108,77 +110,41 @@ const ToggleThemeButton = () => {
 
   const getCookieOptions = (serverURL) => ({
     domain: serverURL.hostname,
-    path: "/",
+    path: '/',
     expires: getCookieExpiry(),
   });
 
-  const addDarkThemeToIframes = () => {
-    const iframes = document.getElementsByTagName("iframe");
-    const iframesLength = iframes.length;
-    if (iframesLength > 0) {
-      Array.from({ length: iframesLength }).forEach((_, ind) => {
-        const style = document.createElement("style");
-        style.textContent = `
-          body{
-            background-color: #0D0D0E;
-            color: #ccc;
-          }
-          a {color: #ccc;}
-          a:hover{color: #d3d3d3;}
-          `;
-        if (iframes[ind].contentDocument) {
-          iframes[ind].contentDocument.head.appendChild(style);
-        }
-      });
-    }
-  };
-
-  const removeDarkThemeFromiframes = () => {
-    const iframes = document.getElementsByTagName("iframe");
-    const iframesLength = iframes.length;
-
-    Array.from({ length: iframesLength }).forEach((_, ind) => {
-      if (iframes[ind].contentDocument) {
-        const iframeHead = iframes[ind].contentDocument.head;
-        const styleTag = Array.from(iframeHead.querySelectorAll("style")).find(
-          (style) =>
-            style.textContent.includes("background-color: #0D0D0E;") &&
-            style.textContent.includes("color: #ccc;")
-        );
-        if (styleTag) {
-          styleTag.remove();
-        }
-      }
-    });
-  };
-
   const onToggleTheme = () => {
-    const serverURL = new URL(getConfig().LMS_BASE_URL);
-    let theme = "";
+    let theme = '';
 
-    if (getCookie(themeCookie) === "dark") {
-      document.body.classList.remove("indigo-dark-theme");
-      removeDarkThemeFromiframes();
+    if (getCookie(themeCookie) === 'dark') {
+      document.documentElement.setAttribute('data-paragon-theme-variant', 'light');
       setIsDarkThemeEnabled(false);
-      theme = "light";
+      theme = 'light';
     } else {
-      document.body.classList.add("indigo-dark-theme");
-      addDarkThemeToIframes();
+      document.documentElement.setAttribute('data-paragon-theme-variant', 'dark');
       setIsDarkThemeEnabled(true);
-      theme = "dark";
+      theme = 'dark';
     }
-    setCookie(themeCookie, theme, getCookieOptions(serverURL));
 
-    const learningMFEUnitIframe = document.getElementById("unit-iframe");
-    if (learningMFEUnitIframe) {
-      learningMFEUnitIframe.contentWindow.postMessage(
-        { "indigo-toggle-dark": theme },
-        serverURL.origin
-      );
-    }
+    window.localStorage.setItem(themeCookie, theme);
+    setTimeout(() => {
+      setCookie(themeCookie, theme, getCookieOptions(serverURL));
+      window.location.reload();
+    }, 1);
   };
 
-  const hanldeKeyUp = (event) => {
+  useEffect(() => {
+    if (!getCookie(themeCookie) || getCookie(themeCookie) === 'undefined') {
+      return;
+    }
+    if (getCookie(themeCookie) !== window.localStorage.getItem(themeCookie)) {
+      window.localStorage.setItem(themeCookie, getCookie(themeCookie));
+      window.location.reload();
+    }
+  }, []);
+
+  const handleKeyUp = (event) => {
     if (event.key === "Enter") {
       onToggleTheme();
     }
@@ -207,7 +173,7 @@ const ToggleThemeButton = () => {
             id="theme-toggle-checkbox"
             defaultChecked={getCookie(themeCookie) === "dark"}
             onChange={onToggleTheme}
-            onKeyUp={hanldeKeyUp}
+            onKeyUp={handleKeyUp}
             type="checkbox"
             title={intl.formatMessage(messages["header.user.theme"])}
           />
