@@ -207,10 +207,10 @@ const MobileViewHeader = () => {
           .logo-image-white {
             display: none;
           }
-          body.indigo-dark-theme .logo-image {
+          [data-paragon-theme-variant="dark"] .logo-image {
             display: none;
           }
-          body.indigo-dark-theme .logo-image-white {
+          [data-paragon-theme-variant="dark"] .logo-image-white {
             display: block;
           }
         `}
@@ -248,10 +248,10 @@ const ThemedLogo = () => {
           #root header .logo-image.logo-white {
             display: none;
           }
-          body.indigo-dark-theme #root header .logo-image {
+          [data-paragon-theme-variant="dark"] #root header .logo-image {
             display: none;
           }
-          body.indigo-dark-theme #root header .logo-white {
+          [data-paragon-theme-variant="dark"] #root header .logo-white {
             display: block;
           }
         `}
