@@ -1,10 +1,17 @@
 $(document).ready(function() {
     'use strict';
 
-    const themeCookie = 'indigo-toggle-dark';
+    const themeCookie = 'selected-paragon-theme-variant';
 
     function applyThemeOnPage(){
       const theme = $.cookie(themeCookie);
+
+      if (theme === 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTimeout(() => {
+          $('body').addClass("indigo-dark-theme");
+          $("#toggle-switch-input").prop("checked", true);
+        }, 200)
+      }
       {% if INDIGO_ENABLE_DARK_TOGGLE %}
       $('body').toggleClass("indigo-dark-theme", theme === 'dark');       // append or remove dark-class based on cookie-value
       // update expiry
@@ -30,11 +37,11 @@ $(document).ready(function() {
         textWrapper.attr('aria-checked', 'false');
       }
     }
-    
+
     function toggleTheme(){
       const themeValue = $.cookie(themeCookie) === 'dark' ? 'light' : 'dark';
       $.cookie(themeCookie, themeValue, { domain: window.location.hostname, expires: 90, path: '/' });
-        
+      window.localStorage.setItem(themeCookie, themeValue);
       applyThemeOnPage();
     }
 

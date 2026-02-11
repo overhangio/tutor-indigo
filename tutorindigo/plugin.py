@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import typing as t
 from glob import glob
@@ -7,7 +8,7 @@ from glob import glob
 import importlib_resources
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
-from tutormfe.hooks import PLUGIN_SLOTS
+from tutormfe.hooks import MFE_APPS, MFE_ATTRS_TYPE, PLUGIN_SLOTS
 
 from .__about__ import __version__
 
@@ -120,7 +121,7 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'
+RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.0'
 """,  # noqa: E501
             ),
         ]
@@ -129,7 +130,7 @@ RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#ulmo/indigo'",
+        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.0'",
     )
 )
 
@@ -194,7 +195,7 @@ for mfe in indigo_styled_mfes:
         (
             mfe,
             "org.openedx.frontend.layout.footer.v1",
-            """ 
+            """
             {
                 op: PLUGIN_OPERATIONS.Hide,
                 widgetId: 'default_contents',
@@ -225,7 +226,7 @@ for mfe in indigo_styled_mfes:
             (
                 mfe,
                 "desktop_secondary_menu_slot",
-                """ 
+                """
                 {
                     op: PLUGIN_OPERATIONS.Insert,
                     widget: {
@@ -253,7 +254,7 @@ for mfe in indigo_styled_mfes:
                 (
                     mfe,
                     "mobile_header_slot",
-                    """ 
+                    """
                 {
                     op: PLUGIN_OPERATIONS.Insert,
                     widget: {
@@ -283,7 +284,7 @@ PLUGIN_SLOTS.add_items(
         (
             "learning",
             "learning_help_slot",
-            """ 
+            """
         {
             op: PLUGIN_OPERATIONS.Insert,
             widget: {
@@ -296,3 +297,55 @@ PLUGIN_SLOTS.add_items(
         ),
     ]
 )
+
+paragon_theme_urls = {
+    "variants": {
+        "light": {
+            "urls": {
+                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
+            },
+        },
+        "dark": {
+            "urls": {
+                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
+            }
+        },
+    }
+}
+
+fstring = f"""
+MFE_CONFIG["PARAGON_THEME_URLS"] = {json.dumps(paragon_theme_urls)}
+"""
+
+hooks.Filters.ENV_PATCHES.add_item(("mfe-lms-common-settings", fstring))
+
+
+@MFE_APPS.add()  # type: ignore
+def _add_themed_logo(
+    mfes: dict[str, MFE_ATTRS_TYPE],
+) -> dict[str, MFE_ATTRS_TYPE]:
+    for mfe in mfes:
+        PLUGIN_SLOTS.add_item(
+            (
+                str(mfe),
+                "logo_slot",
+                """
+                {
+                    op: PLUGIN_OPERATIONS.Hide,
+                    widgetId: 'default_contents',
+                },
+                {
+                    op: PLUGIN_OPERATIONS.Insert,
+                    widget: {
+                        id: 'custom_logo',
+                        type: DIRECT_PLUGIN,
+                        RenderWidget: ThemedLogo,
+                    }
+                }
+            """,
+            )
+        )
+
+    return mfes
