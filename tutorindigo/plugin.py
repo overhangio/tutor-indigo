@@ -203,7 +203,7 @@ for mfe in indigo_styled_mfes:
             {
                 op: PLUGIN_OPERATIONS.Insert,
                 widget: {
-                    id: 'custom_footer',
+                    id: 'indigo_footer',
                     type: DIRECT_PLUGIN,
                     priority: 1,
                     RenderWidget: IndigoFooter,
