@@ -1,0 +1,16 @@
+
+if (config.pluginSlots && config.pluginSlots['org.openedx.frontend.layout.footer.v1']) {
+  const footerPluginsToInsert =
+    config.pluginSlots['org.openedx.frontend.layout.footer.v1'].plugins.filter(plugin => plugin.op === 'insert');
+
+  if (footerPluginsToInsert.length > 2) {
+  config.pluginSlots['org.openedx.frontend.layout.footer.v1'].plugins =
+    config.pluginSlots['org.openedx.frontend.layout.footer.v1'].plugins.filter(plugin => {
+      if (plugin.op === 'insert') {
+        const widgetId = plugin.widget?.id;
+        return widgetId !== 'indigo_footer';
+      }
+      return true;
+    });
+  }
+}
