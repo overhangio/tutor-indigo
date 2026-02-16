@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import itertools
 import json
 import os
 import typing as t
@@ -176,21 +177,18 @@ MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
 )
 
 
-# Apply patches from tutor-indigo
-for path in glob(
-    os.path.join(
-        str(importlib_resources.files("tutorindigo") / "patches"),
-        "*",
-    )
+# Add react components and patches from tutor-indigo
+for path in itertools.chain(
+    glob(
+        os.path.join(str(importlib_resources.files("tutorindigo") / "components"), "*")
+    ),
+    glob(os.path.join(str(importlib_resources.files("tutorindigo") / "patches"), "*")),
 ):
     with open(path, encoding="utf-8") as patch_file:
         hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
 
 
 for mfe in indigo_styled_mfes:
-    # TODO: move plugins from these patches(mfe-env-config-buildtime-definitions,
-    # mfe-env-config-runtime-definitions) into separate files and generate these
-    # patches on the fly to improve readability.
     PLUGIN_SLOTS.add_item(
         (
             mfe,
