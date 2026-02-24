@@ -115,6 +115,7 @@ indigo_styled_mfes = [
     "account",
     "discussions",
     "authoring",
+    "catalog",
 ]
 
 for mfe in indigo_styled_mfes:
@@ -384,3 +385,61 @@ def _add_themed_logo(
         PLUGIN_SLOTS.add_item((str(mfe), *INDIGO_LOGO_SLOT))
 
     return mfes
+
+
+PLUGIN_SLOTS.add_items(
+    [
+        (
+            "catalog",
+            "org.openedx.frontend.catalog.home_page.course_card",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Hide,
+            widgetId: 'default_contents',
+        }
+        """,
+        ),
+        (
+            "catalog",
+            "org.openedx.frontend.catalog.home_page.course_card",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Insert,
+            widget: {
+                id: 'indigo-catalog-home-course-card',
+                type: DIRECT_PLUGIN,
+                RenderWidget: (props) => (
+                  <CourseCard {...props} />
+                ),
+            },
+        },
+        """,
+        ),
+        (
+            "catalog",
+            "org.openedx.frontend.catalog.course_catalog_page.data_table.course_card",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Hide,
+            widgetId: 'default_contents',
+        }
+        """,
+        ),
+        (
+            "catalog",
+            "org.openedx.frontend.catalog.course_catalog_page.data_table.course_card",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Insert,
+            widget: {
+                id: 'indigo-catalog-course-card',
+                type: DIRECT_PLUGIN,
+                RenderWidget: (props) => (
+                  <CourseCard {...props} />
+                ),
+            },
+        },
+        """,
+        ),
+    ]
+)
