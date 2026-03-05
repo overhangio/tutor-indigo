@@ -1,0 +1,1 @@
+- [Improvement] External footer links now support both relative and absolute URLs. (by @CodeWithEmad)
