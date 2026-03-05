@@ -65,7 +65,7 @@ const IndigoFooter = () => {
             <ol>
               {indigoFooterNavLinks.map((link) => (
                 <li key={link.url}>
-                  <a href={`${config.LMS_BASE_URL}${link.url}`}>{link.title}</a>
+                  <a href={`${link.url.startsWith("http") ? link.url : config.LMS_BASE_URL + link.url}`}>{link.title}</a>
                 </li>
               ))}
             </ol>
