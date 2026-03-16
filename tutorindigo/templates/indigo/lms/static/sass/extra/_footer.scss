@@ -16,6 +16,7 @@ footer.tutor-container {
         text-align: left;
     }
     .footer-top {
+        display: none;
         margin: 0 0 15px;
         &:after {
             clear: both;
@@ -96,6 +97,7 @@ footer.tutor-container {
         font-size: 12px;
         line-height: 16px;
         color: $light-dark;
+        text-align: center;
     }
 }
 

@@ -52,10 +52,9 @@ header.global-header {
             height: auto;
             @include media-breakpoint-up(lg) {
                 margin: 0;
-                margin: 20px 0 0;
             }
             .logo {
-                height: 24px;
+                height: 60px;
                 margin: 0;
 
                 body.indigo-dark-theme & {
@@ -66,6 +65,7 @@ header.global-header {
                 display: none;
 
                 body.indigo-dark-theme & {
+                    height: 60px;
                     display: inline-block;
                 }
             }
