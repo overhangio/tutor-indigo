@@ -16,13 +16,13 @@ const MobileViewHeader = () => {
     <>
       <style>
         {`
-          #root header .logo-image.logo-white {
+          #root .logo-image.logo-white {
             display: none;
           }
-          [data-paragon-theme-variant="dark"] #root header .logo-image {
+          [data-paragon-theme-variant="dark"] #root .logo-image {
             display: none;
           }
-          [data-paragon-theme-variant="dark"] #root header .logo-white {
+          [data-paragon-theme-variant="dark"] #root .logo-white {
             display: block;
           }
         `}
