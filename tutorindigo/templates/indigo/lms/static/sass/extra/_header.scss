@@ -109,7 +109,7 @@ header.global-header {
                 margin: 12px 0;
                 &:after {
                     margin: 4px 0 0 4px;
-                    border: 2px solid #15376D;
+                    border: 2px solid $primary;
                     border-width: 2px 2px 0 0;
                     transform: rotate(135deg);
                     content: "";
