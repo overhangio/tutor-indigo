@@ -1,0 +1,1 @@
+- [Improvement] Changed the `$light-theme-switch-bg-color` variable from a hardcoded hex color value to use `$primary` for better consistency with the theme's primary color. (by @arbirali)
