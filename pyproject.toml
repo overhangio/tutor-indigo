@@ -23,15 +23,15 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-  "tutor-mfe>=21.0.0,<22.0.0", 
-  "tutor>=21.0.0,<22.0.0"
+  "tutor-mfe>=22.0.0,<23.0.0", 
+  "tutor>=22.0.0,<23.0.0"
 ]
 
 dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
-  "tutor[dev]>=21.0.0,<22.0.0",
+  "tutor[dev]>=22.0.0,<23.0.0",
   "ruff",
 ]
 
