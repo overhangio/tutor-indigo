@@ -1,1 +1,0 @@
-[Improvement] Enhanced the authoring MFE dark theme by refining styling and improving visual consistency across components, ensuring better alignment with the overall theme design and the light theme. (by @arbirali)
