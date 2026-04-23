@@ -1,1 +1,0 @@
-- [Improvement] Add dark theme logo support. (by @HammadYousaf01, @arbirali)

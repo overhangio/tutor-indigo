@@ -19,6 +19,22 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-21.1.1'></a>
+## v21.1.1 (2026-04-23)
+
+- [Improvement] Add dark theme logo support. (by @HammadYousaf01, @arbirali)
+
+- [Enhancement] Add support to override indigo footer using plugin slot. (by @Faraz32123)
+  Related conversation: https://github.com/overhangio/tutor-indigo/pull/181#issuecomment-3834617842.
+
+- [Improvement] Refactor indigo patches and separate react components from patches folder and render them cleanly. This also improves the development of react components in jsx files instead of patches. (by @Faraz32123)
+
+- [Improvement] External footer links now support both relative and absolute URLs. (by @CodeWithEmad)
+
+- [Improvement] Changed the `$light-theme-switch-bg-color` variable from a hardcoded hex color value to use `$primary` for better consistency with the theme's primary color. (by @arbirali)
+
+[Improvement] Enhanced the authoring MFE dark theme by refining styling and improving visual consistency across components, ensuring better alignment with the overall theme design and the light theme. (by @arbirali)
+
 <a id='changelog-21.1.0'></a>
 ## v21.1.0 (2026-02-10)
 
