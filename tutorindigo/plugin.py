@@ -297,27 +297,75 @@ PLUGIN_SLOTS.add_items(
 )
 
 paragon_theme_urls = {
+    "core": {
+        "urls": {
+            "brandOverride": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@ulmo/indigo/dist/core.min.css",
+        },
+    },
+    "defaults": {
+        "light": "light",
+        "dark": "dark",
+    },
     "variants": {
         "light": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
+                "brandOverride": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@ulmo/indigo/dist/light.min.css",
             },
         },
         "dark": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
-            }
+                "brandOverride": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@ulmo/indigo/dist/dark.min.css",
+            },
         },
-    }
+    },
 }
 
-fstring = f"""
-MFE_CONFIG["PARAGON_THEME_URLS"] = {json.dumps(paragon_theme_urls)}
-"""
+frontend_base_theme = {
+    "core": {
+        "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@ulmo/indigo/dist/core.min.css",
+    },
+    "defaults": {
+        "light": "light",
+        "dark": "dark",
+    },
+    "variants": {
+        "light": {
+            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@ulmo/indigo/dist/light.min.css",
+        },
+        "dark": {
+            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@ulmo/indigo/dist/dark.min.css",
+        },
+    },
+}
 
-hooks.Filters.ENV_PATCHES.add_item(("mfe-lms-common-settings", fstring))
+hooks.Filters.CONFIG_DEFAULTS.add_item(("PARAGON_THEME_URLS", paragon_theme_urls))
+
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "mfe-lms-common-settings",
+        """
+MFE_CONFIG["PARAGON_THEME_URLS"] = {{ PARAGON_THEME_URLS }}
+FRONTEND_SITE_CONFIG.setdefault("commonAppConfig", {})
+FRONTEND_SITE_CONFIG["theme"] = """
+        + json.dumps(frontend_base_theme)
+        + """
+FRONTEND_SITE_CONFIG["commonAppConfig"]["PARAGON_THEME_URLS"] = {{ PARAGON_THEME_URLS }}
+FRONTEND_SITE_CONFIG["commonAppConfig"]["INDIGO_ENABLE_DARK_TOGGLE"] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
+FRONTEND_SITE_CONFIG["commonAppConfig"]["INDIGO_FOOTER_NAV_LINKS"] = {{ INDIGO_FOOTER_NAV_LINKS }}
+""",
+    )
+)
+
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "mfe-env-config-runtime-final",
+        f"""
+config.PARAGON_THEME_URLS = {json.dumps(paragon_theme_urls)};
+window.__INDIGO_DEBUG_CONFIG__ = config;
+console.log("INDIGO runtime config", config);
+""",
+    )
+)
 
 
 @MFE_APPS.add()  # type: ignore
