@@ -360,17 +360,6 @@ FRONTEND_SITE_CONFIG["commonAppConfig"][
     )
 )
 
-hooks.Filters.ENV_PATCHES.add_item(
-    (
-        "mfe-env-config-runtime-final",
-        f"""
-config.PARAGON_THEME_URLS = {json.dumps(paragon_theme_urls)};
-window.__INDIGO_DEBUG_CONFIG__ = config;
-console.log("INDIGO runtime config", config);
-""",
-    )
-)
-
 
 @MFE_APPS.add()  # type: ignore
 def _add_themed_logo(
