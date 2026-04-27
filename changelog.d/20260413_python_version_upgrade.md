@@ -1,1 +1,1 @@
-- [Improvement] Drop Python 3.9 (EOL) support and add Python 3.13 and 3.14 compatibility. Minimum required Python version is now 3.10.
+- [Improvement] Drop Python 3.9 (EOL) support and add Python 3.13 and 3.14 compatibility. Minimum required Python version is now 3.10. (by @Syed-Ali-Abbas-568)
