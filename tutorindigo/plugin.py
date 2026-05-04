@@ -9,7 +9,7 @@ from glob import glob
 import importlib_resources
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
-from tutormfe.hooks import MFE_APPS, MFE_ATTRS_TYPE, PLUGIN_SLOTS
+from tutormfe.hooks import FRONTEND_COMPAT_SLOTS, MFE_APPS, MFE_ATTRS_TYPE, PLUGIN_SLOTS
 
 from .__about__ import __version__
 
@@ -122,7 +122,7 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.2'
+RUN npm install '@edx/brand@npm:@arbrandes/indigo-brand-openedx@^2.6.0'
 """,  # noqa: E501
             ),
         ]
@@ -131,7 +131,14 @@ RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.2'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.2'",
+        "RUN npm install '@edx/brand@npm:@arbrandes/indigo-brand-openedx@^2.6.0'",
+    )
+)
+
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "mfe-dockerfile-pre-npm-install-site",
+        "RUN npm pkg set 'dependencies.@edx/brand=npm:@arbrandes/indigo-brand-openedx@^2.6.0'",  # noqa: E501
     )
 )
 
@@ -188,83 +195,96 @@ for path in itertools.chain(
         hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
 
 
+INDIGO_FOOTER_SLOT = (
+    "org.openedx.frontend.layout.footer.v1",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Hide,
+        widgetId: 'default_contents',
+    },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'indigo_footer',
+            type: DIRECT_PLUGIN,
+            priority: 1,
+            RenderWidget: IndigoFooter,
+        },
+    },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'read_theme_cookie',
+            type: DIRECT_PLUGIN,
+            priority: 2,
+            RenderWidget: AddDarkTheme,
+        },
+    },
+""",
+)
+
+INDIGO_DESKTOP_SECONDARY_MENU_SLOT = (
+    "desktop_secondary_menu_slot",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'theme_switch_button',
+            type: DIRECT_PLUGIN,
+            RenderWidget: ToggleThemeButton,
+        },
+    },
+""",
+)
+
+# Hide the default mobile header (it only shows the logo) and replace it.
+INDIGO_MOBILE_HEADER_SLOT = (
+    "mobile_header_slot",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Hide,
+        widgetId: 'default_contents',
+    },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'theme_switch_button',
+            type: DIRECT_PLUGIN,
+            RenderWidget: MobileViewHeader,
+        },
+    },
+""",
+)
+
+INDIGO_LOGO_SLOT = (
+    "logo_slot",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Hide,
+        widgetId: 'default_contents',
+    },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'custom_logo',
+            type: DIRECT_PLUGIN,
+            RenderWidget: ThemedLogo,
+        }
+    }
+""",
+)
+
+# Frontend-base site compatibility
+FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_FOOTER_SLOT))
+FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_DESKTOP_SECONDARY_MENU_SLOT))
+FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_MOBILE_HEADER_SLOT))
+FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_LOGO_SLOT))
+
 for mfe in indigo_styled_mfes:
-    PLUGIN_SLOTS.add_item(
-        (
-            mfe,
-            "org.openedx.frontend.layout.footer.v1",
-            """
-            {
-                op: PLUGIN_OPERATIONS.Hide,
-                widgetId: 'default_contents',
-            },
-            {
-                op: PLUGIN_OPERATIONS.Insert,
-                widget: {
-                    id: 'indigo_footer',
-                    type: DIRECT_PLUGIN,
-                    priority: 1,
-                    RenderWidget: IndigoFooter,
-                },
-            },
-            {
-                op: PLUGIN_OPERATIONS.Insert,
-                widget: {
-                    id: 'read_theme_cookie',
-                    type: DIRECT_PLUGIN,
-                    priority: 2,
-                    RenderWidget: AddDarkTheme,
-                },
-            },
-  """,
-        ),
-    )
+    PLUGIN_SLOTS.add_item((mfe, *INDIGO_FOOTER_SLOT))
     if mfe != "learning":
-        PLUGIN_SLOTS.add_item(
-            (
-                mfe,
-                "desktop_secondary_menu_slot",
-                """
-                {
-                    op: PLUGIN_OPERATIONS.Insert,
-                    widget: {
-                        id: 'theme_switch_button',
-                        type: DIRECT_PLUGIN,
-                        RenderWidget: ToggleThemeButton,
-                    },
-                },
-        """,
-            )
-        )
-        PLUGIN_SLOTS.add_items(
-            [
-                (
-                    # Hide the default mobile header as it only shows logo
-                    mfe,
-                    "mobile_header_slot",
-                    """
-                {
-                    op: PLUGIN_OPERATIONS.Hide,
-                    widgetId: 'default_contents',
-                }
-                """,
-                ),
-                (
-                    mfe,
-                    "mobile_header_slot",
-                    """
-                {
-                    op: PLUGIN_OPERATIONS.Insert,
-                    widget: {
-                        id: 'theme_switch_button',
-                        type: DIRECT_PLUGIN,
-                        RenderWidget: MobileViewHeader,
-                    },
-                },
-                """,
-                ),
-            ]
-        )
+        PLUGIN_SLOTS.add_item((mfe, *INDIGO_DESKTOP_SECONDARY_MENU_SLOT))
+        PLUGIN_SLOTS.add_item((mfe, *INDIGO_MOBILE_HEADER_SLOT))
 
 PLUGIN_SLOTS.add_items(
     [
@@ -325,25 +345,6 @@ def _add_themed_logo(
     mfes: dict[str, MFE_ATTRS_TYPE],
 ) -> dict[str, MFE_ATTRS_TYPE]:
     for mfe in mfes:
-        PLUGIN_SLOTS.add_item(
-            (
-                str(mfe),
-                "logo_slot",
-                """
-                {
-                    op: PLUGIN_OPERATIONS.Hide,
-                    widgetId: 'default_contents',
-                },
-                {
-                    op: PLUGIN_OPERATIONS.Insert,
-                    widget: {
-                        id: 'custom_logo',
-                        type: DIRECT_PLUGIN,
-                        RenderWidget: ThemedLogo,
-                    }
-                }
-            """,
-            )
-        )
+        PLUGIN_SLOTS.add_item((str(mfe), *INDIGO_LOGO_SLOT))
 
     return mfes
