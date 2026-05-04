@@ -9,7 +9,7 @@ from glob import glob
 import importlib_resources
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
-from tutormfe.hooks import MFE_APPS, MFE_ATTRS_TYPE, PLUGIN_SLOTS
+from tutormfe.hooks import FRONTEND_SLOTS, MFE_APPS, MFE_ATTRS_TYPE, PLUGIN_SLOTS
 
 from .__about__ import __version__
 
@@ -45,7 +45,8 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
 
 # Theme templates
 hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
-    str(importlib_resources.files("tutorindigo") / "templates")
+    str(importlib_resources.files("tutorindigo") / "templates"),
+    priority=hooks.priorities.HIGH,
 )
 # This is where the theme is rendered in the openedx build directory
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
@@ -295,6 +296,82 @@ PLUGIN_SLOTS.add_items(
         ),
     ]
 )
+
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "mfe-site-custom-app-imports",
+        """
+import { useState, useEffect } from 'react';
+import { useIntl } from 'react-intl';
+import { Icon } from '@openedx/paragon';
+import { WbSunny, Nightlight } from '@openedx/paragon/icons';
+import { WidgetOperationTypes, getSiteConfig } from '@openedx/frontend-base';
+""",
+    )
+)
+
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "mfe-site-custom-app-definitions",
+        """
+const getConfig = () => {
+  const siteConfig = getSiteConfig() as any;
+  return {
+    ...siteConfig,
+    ...(siteConfig.commonAppConfig || {}),
+    LMS_BASE_URL: siteConfig.lmsBaseUrl,
+  };
+};
+""",
+    )
+)
+
+_SITE_RELEVANT_COMPONENTS = {
+    "ThemedLogo.jsx",
+    "ToggleThemeButton.jsx",
+    "IndigoFooter.jsx",
+}
+for path in sorted(
+    glob(os.path.join(str(importlib_resources.files("tutorindigo") / "components"), "*"))
+):
+    if os.path.basename(path) in _SITE_RELEVANT_COMPONENTS:
+        with open(path, encoding="utf-8") as component_file:
+            hooks.Filters.ENV_PATCHES.add_item(
+                ("mfe-site-custom-app-definitions", component_file.read())
+            )
+
+FRONTEND_SLOTS.add_items([
+    """
+    {
+      slotId: 'org.openedx.frontend.slot.header.desktopLeft.v1',
+      id: 'org.openedx.frontend.widget.header.indigoDesktopLogo.v1',
+      op: WidgetOperationTypes.REPLACE,
+      relatedId: 'org.openedx.frontend.widget.header.desktopLogo.v1',
+      component: ThemedLogo,
+    }""",
+    """
+    {
+      slotId: 'org.openedx.frontend.slot.header.mobileCenter.v1',
+      id: 'org.openedx.frontend.widget.header.indigoMobileLogo.v1',
+      op: WidgetOperationTypes.REPLACE,
+      relatedId: 'org.openedx.frontend.widget.header.mobileLogo.v1',
+      component: ThemedLogo,
+    }""",
+    """
+    {
+      slotId: 'org.openedx.frontend.slot.header.desktopRight.v1',
+      id: 'org.openedx.frontend.widget.header.indigoThemeToggle.v1',
+      op: WidgetOperationTypes.PREPEND,
+      component: ToggleThemeButton,
+    }""",
+    """
+    {
+      slotId: 'org.openedx.frontend.slot.footer.desktopRightLinks.v1',
+      id: 'org.openedx.frontend.widget.footer.indigoFooter.v1',
+      op: WidgetOperationTypes.APPEND,
+      component: IndigoFooter,
+    }""",
+])
 
 paragon_theme_urls = {
     "core": {

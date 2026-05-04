@@ -46,7 +46,7 @@ const IndigoFooter = () => {
                     alt={intl.formatMessage(
                       messages["footer.tutorlogo.altText"]
                     )}
-                    width="57"
+                    width="80"
                   />
                 </a>
               </li>
@@ -55,7 +55,7 @@ const IndigoFooter = () => {
                   <img
                     src={`${config.LMS_BASE_URL}/theming/asset/images/openedx-logo.png`}
                     alt={intl.formatMessage(messages["footer.logo.altText"])}
-                    width="79"
+                    width="80"
                   />
                 </a>
               </li>

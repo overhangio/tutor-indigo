@@ -3,7 +3,15 @@ const ToggleThemeButton = () => {
   const intl = useIntl();
   const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(false);
 
-  const themeCookie = 'selected-paragon-theme-variant';
+  const themeCookieNames = [
+    'selected-paragon-theme-variant',
+    'selected-theme-variant',
+  ];
+  const themeAttributeNames = [
+    'data-paragon-theme-variant',
+    'data-theme-variant',
+  ];
+  const primaryCookie = themeCookieNames[0];
   const themeCookieExpiry = 90; // days
   const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
 
@@ -14,8 +22,29 @@ const ToggleThemeButton = () => {
       ?.split("=")[1];
   };
 
+  const getThemeCookie = () => {
+    for (const name of themeCookieNames) {
+      const value = getCookie(name);
+      if (value !== undefined) {
+        return value;
+      }
+    }
+    return undefined;
+  };
+
   const setCookie = (name, value, { domain, path, expires }) => {
     document.cookie = `${name}=${value}; domain=${domain}; path=${path}; expires=${expires.toUTCString()}; SameSite=Lax`;
+  };
+
+  const setThemeCookies = (value, opts) => {
+    for (const name of themeCookieNames) {
+      setCookie(name, value, opts);
+    }
+  };
+  const setThemeAttribute = (theme) => {
+    for (const attr of themeAttributeNames) {
+      document.documentElement.setAttribute(attr, theme);
+    }
   };
 
   const serverURL = new URL(getConfig().LMS_BASE_URL);
@@ -38,31 +67,37 @@ const ToggleThemeButton = () => {
   const onToggleTheme = () => {
     let theme = '';
 
-    if (getCookie(themeCookie) === 'dark') {
-      document.documentElement.setAttribute('data-paragon-theme-variant', 'light');
+    if (getThemeCookie() === 'dark') {
+      setThemeAttribute('light');
       setIsDarkThemeEnabled(false);
       theme = 'light';
     } else {
-      document.documentElement.setAttribute('data-paragon-theme-variant', 'dark');
+      setThemeAttribute('dark');
       setIsDarkThemeEnabled(true);
       theme = 'dark';
     }
 
-    window.localStorage.setItem(themeCookie, theme);
+    for (const name of themeCookieNames) {
+        window.localStorage.setItem(name, theme);
+    }
     setTimeout(() => {
-      setCookie(themeCookie, theme, getCookieOptions(serverURL));
+      setThemeCookies(theme, getCookieOptions(serverURL));
       window.location.reload();
     }, 1);
   };
 
   useEffect(() => {
-    if (!getCookie(themeCookie) || getCookie(themeCookie) === 'undefined') {
+    const cookie = getThemeCookie();
+    if (!cookie || cookie === 'undefined') {
       return;
     }
-    if (getCookie(themeCookie) !== window.localStorage.getItem(themeCookie)) {
-      window.localStorage.setItem(themeCookie, getCookie(themeCookie));
+    if (cookie !== window.localStorage.getItem(primaryCookie)) {
+      for (const name of themeCookieNames) {
+          window.localStorage.setItem(name, cookie);
+      }
       window.location.reload();
     }
+    document.documentElement.setAttribute(themeAttributeNames[0], cookie);
   }, []);
 
   const handleKeyUp = (event) => {
@@ -92,7 +127,7 @@ const ToggleThemeButton = () => {
         <label htmlFor="theme-toggle-checkbox" className="switch">
           <input
             id="theme-toggle-checkbox"
-            defaultChecked={getCookie(themeCookie) === "dark"}
+            defaultChecked={getThemeCookie() === "dark"}
             onChange={onToggleTheme}
             onKeyUp={handleKeyUp}
             type="checkbox"
