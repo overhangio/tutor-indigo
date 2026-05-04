@@ -332,7 +332,9 @@ _SITE_RELEVANT_COMPONENTS = {
     "IndigoFooter.jsx",
 }
 for path in sorted(
-    glob(os.path.join(str(importlib_resources.files("tutorindigo") / "components"), "*"))
+    glob(
+        os.path.join(str(importlib_resources.files("tutorindigo") / "components"), "*")
+    )
 ):
     if os.path.basename(path) in _SITE_RELEVANT_COMPONENTS:
         with open(path, encoding="utf-8") as component_file:
@@ -340,8 +342,9 @@ for path in sorted(
                 ("mfe-site-custom-app-definitions", component_file.read())
             )
 
-FRONTEND_SLOTS.add_items([
-    """
+FRONTEND_SLOTS.add_items(
+    [
+        """
     {
       slotId: 'org.openedx.frontend.slot.header.desktopLeft.v1',
       id: 'org.openedx.frontend.widget.header.indigoDesktopLogo.v1',
@@ -349,7 +352,7 @@ FRONTEND_SLOTS.add_items([
       relatedId: 'org.openedx.frontend.widget.header.desktopLogo.v1',
       component: ThemedLogo,
     }""",
-    """
+        """
     {
       slotId: 'org.openedx.frontend.slot.header.mobileCenter.v1',
       id: 'org.openedx.frontend.widget.header.indigoMobileLogo.v1',
@@ -357,21 +360,22 @@ FRONTEND_SLOTS.add_items([
       relatedId: 'org.openedx.frontend.widget.header.mobileLogo.v1',
       component: ThemedLogo,
     }""",
-    """
+        """
     {
       slotId: 'org.openedx.frontend.slot.header.desktopRight.v1',
       id: 'org.openedx.frontend.widget.header.indigoThemeToggle.v1',
       op: WidgetOperationTypes.PREPEND,
       component: ToggleThemeButton,
     }""",
-    """
+        """
     {
       slotId: 'org.openedx.frontend.slot.footer.desktopRightLinks.v1',
       id: 'org.openedx.frontend.widget.footer.indigoFooter.v1',
       op: WidgetOperationTypes.APPEND,
       component: IndigoFooter,
     }""",
-])
+    ]
+)
 
 paragon_theme_urls = {
     "core": {
