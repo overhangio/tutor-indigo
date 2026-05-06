@@ -122,7 +122,7 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install '@edx/brand@npm:@arbrandes/indigo-brand-openedx@^2.6.0'
+RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.2'
 """,  # noqa: E501
             ),
         ]
@@ -131,14 +131,7 @@ RUN npm install '@edx/brand@npm:@arbrandes/indigo-brand-openedx@^2.6.0'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@npm:@arbrandes/indigo-brand-openedx@^2.6.0'",
-    )
-)
-
-hooks.Filters.ENV_PATCHES.add_item(
-    (
-        "mfe-dockerfile-pre-npm-install-site",
-        "RUN npm pkg set 'dependencies.@edx/brand=npm:@arbrandes/indigo-brand-openedx@^2.6.0'",  # noqa: E501
+        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.2'",
     )
 )
 
@@ -223,6 +216,21 @@ INDIGO_FOOTER_SLOT = (
 """,
 )
 
+INDIGO_FOOTER_COMPAT_SLOT = (
+    "org.openedx.frontend.layout.footer.v1",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'indigo_footer',
+            type: DIRECT_PLUGIN,
+            priority: 1,
+            RenderWidget: IndigoFooter,
+        },
+    },
+""",
+)
+
 INDIGO_DESKTOP_SECONDARY_MENU_SLOT = (
     "desktop_secondary_menu_slot",
     """
@@ -275,7 +283,7 @@ INDIGO_LOGO_SLOT = (
 )
 
 # Frontend-base site compatibility
-FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_FOOTER_SLOT))
+FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_FOOTER_COMPAT_SLOT))
 FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_DESKTOP_SECONDARY_MENU_SLOT))
 FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_MOBILE_HEADER_SLOT))
 FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_LOGO_SLOT))
@@ -333,12 +341,41 @@ paragon_theme_urls = {
     }
 }
 
-fstring = f"""
-MFE_CONFIG["PARAGON_THEME_URLS"] = {json.dumps(paragon_theme_urls)}
-"""
+frontend_base_theme = {
+    "core": {
+        "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@ulmo/indigo/dist/core.min.css",
+    },
+    "defaults": {
+        "light": "light",
+        "dark": "dark",
+    },
+    "variants": {
+        "light": {
+            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@ulmo/indigo/dist/light.min.css",
+        },
+        "dark": {
+            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@ulmo/indigo/dist/dark.min.css",
+        },
+    },
+}
 
-hooks.Filters.ENV_PATCHES.add_item(("mfe-lms-common-settings", fstring))
+hooks.Filters.CONFIG_DEFAULTS.add_item(("PARAGON_THEME_URLS", paragon_theme_urls))
 
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "mfe-lms-common-settings",
+        """
+MFE_CONFIG["PARAGON_THEME_URLS"] = {{ PARAGON_THEME_URLS }}
+FRONTEND_SITE_CONFIG.setdefault("commonAppConfig", {})
+FRONTEND_SITE_CONFIG["theme"] = """
+        + json.dumps(frontend_base_theme)
+        + """
+FRONTEND_SITE_CONFIG["commonAppConfig"]["PARAGON_THEME_URLS"] = {{ PARAGON_THEME_URLS }}
+FRONTEND_SITE_CONFIG["commonAppConfig"]["INDIGO_ENABLE_DARK_TOGGLE"] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
+FRONTEND_SITE_CONFIG["commonAppConfig"]["INDIGO_FOOTER_NAV_LINKS"] = {{ INDIGO_FOOTER_NAV_LINKS }}
+""",
+    )
+)
 
 @MFE_APPS.add()  # type: ignore
 def _add_themed_logo(
