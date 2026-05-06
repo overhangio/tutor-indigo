@@ -371,11 +371,16 @@ FRONTEND_SITE_CONFIG["theme"] = """
         + json.dumps(frontend_base_theme)
         + """
 FRONTEND_SITE_CONFIG["commonAppConfig"]["PARAGON_THEME_URLS"] = {{ PARAGON_THEME_URLS }}
-FRONTEND_SITE_CONFIG["commonAppConfig"]["INDIGO_ENABLE_DARK_TOGGLE"] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
-FRONTEND_SITE_CONFIG["commonAppConfig"]["INDIGO_FOOTER_NAV_LINKS"] = {{ INDIGO_FOOTER_NAV_LINKS }}
+FRONTEND_SITE_CONFIG["commonAppConfig"][
+    "INDIGO_ENABLE_DARK_TOGGLE"
+] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
+FRONTEND_SITE_CONFIG["commonAppConfig"][
+    "INDIGO_FOOTER_NAV_LINKS"
+] = {{ INDIGO_FOOTER_NAV_LINKS }}
 """,
     )
 )
+
 
 @MFE_APPS.add()  # type: ignore
 def _add_themed_logo(
