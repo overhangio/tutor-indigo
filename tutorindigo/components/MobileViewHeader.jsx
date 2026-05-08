@@ -19,10 +19,10 @@ const MobileViewHeader = () => {
           #root .logo-image.logo-white {
             display: none;
           }
-          [data-paragon-theme-variant="dark"] #root .logo-image {
+          [data-theme-variant="dark"] #root .logo-image {
             display: none;
           }
-          [data-paragon-theme-variant="dark"] #root .logo-white {
+          [data-theme-variant="dark"] #root .logo-white {
             display: block;
           }
         `}

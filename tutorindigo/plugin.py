@@ -321,13 +321,13 @@ paragon_theme_urls = {
         "light": {
             "urls": {
                 "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
+                "brandOverride": "https://cdn.jsdelivr.net/npm/@arbrandes/indigo-brand-openedx@2.6.0/dist/light.min.css",
             },
         },
         "dark": {
             "urls": {
                 "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
+                "brandOverride": "https://cdn.jsdelivr.net/npm/@arbrandes/indigo-brand-openedx@2.6.0/dist/dark.min.css",
             }
         },
     }

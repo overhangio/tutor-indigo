@@ -1,7 +1,7 @@
 $(document).ready(function() {
     'use strict';
 
-    const themeCookie = 'selected-paragon-theme-variant';
+    const themeCookie = 'selected-theme-variant';
 
     function applyThemeOnPage(){
       const theme = $.cookie(themeCookie);

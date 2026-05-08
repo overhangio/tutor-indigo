@@ -3,7 +3,7 @@ const ToggleThemeButton = () => {
   const intl = useIntl();
   const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(false);
 
-  const themeCookie = 'selected-paragon-theme-variant';
+  const themeCookie = 'selected-theme-variant';
   const themeCookieExpiry = 90; // days
   const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
 
@@ -39,11 +39,11 @@ const ToggleThemeButton = () => {
     let theme = '';
 
     if (getCookie(themeCookie) === 'dark') {
-      document.documentElement.setAttribute('data-paragon-theme-variant', 'light');
+      document.documentElement.setAttribute('data-theme-variant', 'light');
       setIsDarkThemeEnabled(false);
       theme = 'light';
     } else {
-      document.documentElement.setAttribute('data-paragon-theme-variant', 'dark');
+      document.documentElement.setAttribute('data-theme-variant', 'dark');
       setIsDarkThemeEnabled(true);
       theme = 'dark';
     }

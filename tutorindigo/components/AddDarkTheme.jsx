@@ -1,5 +1,5 @@
 
-let themeVariant = 'selected-paragon-theme-variant';
+let themeVariant = 'selected-theme-variant';
 
 const AddDarkTheme = () => {
   const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
@@ -40,7 +40,7 @@ const AddDarkTheme = () => {
     });
 
     if (isThemeToggleEnabled && theme === 'dark') {
-      document.documentElement.setAttribute('data-paragon-theme-variant', 'dark');
+      document.documentElement.setAttribute('data-theme-variant', 'dark');
 
       observer.observe(document.body, { childList: true, subtree: true });
       setTimeout(() => observer?.disconnect(), 15000); // clear after 15 sec to avoid resource usage

@@ -9,10 +9,10 @@ const ThemedLogo = () => {
           #root header .logo-image.logo-white {
             display: none;
           }
-          [data-paragon-theme-variant="dark"] #root header .logo-image {
+          [data-theme-variant="dark"] #root header .logo-image {
             display: none;
           }
-          [data-paragon-theme-variant="dark"] #root header .logo-white {
+          [data-theme-variant="dark"] #root header .logo-white {
             display: block;
           }
         `}
