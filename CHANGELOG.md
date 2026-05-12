@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-21.1.2'></a>
+## v21.1.2 (2026-05-12)
+
+- [Chore] Update brand version that replaces hardcoded primary color values with CSS variable. (by @Faraz32123)
+
 <a id='changelog-21.1.1'></a>
 ## v21.1.1 (2026-04-23)
 
