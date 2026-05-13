@@ -1,0 +1,1 @@
+- [Bugfix] Deduplicate `custom_logo` insert plugins in `logo_slot` at runtime to prevent multiple logos rendering when more than one insert operation is registered. (by @ahmed-arb)
