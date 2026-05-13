@@ -1,0 +1,1 @@
+- [Feature] Updated Indigo theme integration for `frontend-base` to use runtime theme configuration through `PARAGON_THEME_URLS`, enabling consistent MFE branding without rebuilds. (by @arbirali)
