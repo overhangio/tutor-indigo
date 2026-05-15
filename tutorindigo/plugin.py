@@ -9,7 +9,7 @@ from glob import glob
 import importlib_resources
 from tutor import hooks
 from tutor.__about__ import __version_suffix__
-from tutormfe.hooks import MFE_APPS, MFE_ATTRS_TYPE, PLUGIN_SLOTS
+from tutormfe.hooks import FRONTEND_COMPAT_SLOTS, MFE_APPS, MFE_ATTRS_TYPE, PLUGIN_SLOTS
 
 from .__about__ import __version__
 
@@ -122,7 +122,7 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.3'
+RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.0.0'
 """,  # noqa: E501
             ),
         ]
@@ -131,7 +131,7 @@ RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.3'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.3'",
+        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.0.0'",
     )
 )
 
@@ -188,83 +188,111 @@ for path in itertools.chain(
         hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
 
 
+INDIGO_FOOTER_SLOT = (
+    "org.openedx.frontend.layout.footer.v1",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Hide,
+        widgetId: 'default_contents',
+    },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'indigo_footer',
+            type: DIRECT_PLUGIN,
+            priority: 1,
+            RenderWidget: IndigoFooter,
+        },
+    },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'read_theme_cookie',
+            type: DIRECT_PLUGIN,
+            priority: 2,
+            RenderWidget: AddDarkTheme,
+        },
+    },
+""",
+)
+
+INDIGO_FOOTER_COMPAT_SLOT = (
+    "org.openedx.frontend.layout.footer.v1",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'indigo_footer',
+            type: DIRECT_PLUGIN,
+            priority: 1,
+            RenderWidget: IndigoFooter,
+        },
+    },
+""",
+)
+
+INDIGO_DESKTOP_SECONDARY_MENU_SLOT = (
+    "desktop_secondary_menu_slot",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'theme_switch_button',
+            type: DIRECT_PLUGIN,
+            RenderWidget: ToggleThemeButton,
+        },
+    },
+""",
+)
+
+# Hide the default mobile header (it only shows the logo) and replace it.
+INDIGO_MOBILE_HEADER_SLOT = (
+    "mobile_header_slot",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Hide,
+        widgetId: 'default_contents',
+    },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'theme_switch_button',
+            type: DIRECT_PLUGIN,
+            RenderWidget: MobileViewHeader,
+        },
+    },
+""",
+)
+
+INDIGO_LOGO_SLOT = (
+    "logo_slot",
+    """
+    {
+        op: PLUGIN_OPERATIONS.Hide,
+        widgetId: 'default_contents',
+    },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'custom_logo',
+            type: DIRECT_PLUGIN,
+            RenderWidget: ThemedLogo,
+        }
+    }
+""",
+)
+
+# Frontend-base site compatibility
+FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_FOOTER_COMPAT_SLOT))
+FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_DESKTOP_SECONDARY_MENU_SLOT))
+FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_MOBILE_HEADER_SLOT))
+FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_LOGO_SLOT))
+
 for mfe in indigo_styled_mfes:
-    PLUGIN_SLOTS.add_item(
-        (
-            mfe,
-            "org.openedx.frontend.layout.footer.v1",
-            """
-            {
-                op: PLUGIN_OPERATIONS.Hide,
-                widgetId: 'default_contents',
-            },
-            {
-                op: PLUGIN_OPERATIONS.Insert,
-                widget: {
-                    id: 'indigo_footer',
-                    type: DIRECT_PLUGIN,
-                    priority: 1,
-                    RenderWidget: IndigoFooter,
-                },
-            },
-            {
-                op: PLUGIN_OPERATIONS.Insert,
-                widget: {
-                    id: 'read_theme_cookie',
-                    type: DIRECT_PLUGIN,
-                    priority: 2,
-                    RenderWidget: AddDarkTheme,
-                },
-            },
-  """,
-        ),
-    )
+    PLUGIN_SLOTS.add_item((mfe, *INDIGO_FOOTER_SLOT))
     if mfe != "learning":
-        PLUGIN_SLOTS.add_item(
-            (
-                mfe,
-                "desktop_secondary_menu_slot",
-                """
-                {
-                    op: PLUGIN_OPERATIONS.Insert,
-                    widget: {
-                        id: 'theme_switch_button',
-                        type: DIRECT_PLUGIN,
-                        RenderWidget: ToggleThemeButton,
-                    },
-                },
-        """,
-            )
-        )
-        PLUGIN_SLOTS.add_items(
-            [
-                (
-                    # Hide the default mobile header as it only shows logo
-                    mfe,
-                    "mobile_header_slot",
-                    """
-                {
-                    op: PLUGIN_OPERATIONS.Hide,
-                    widgetId: 'default_contents',
-                }
-                """,
-                ),
-                (
-                    mfe,
-                    "mobile_header_slot",
-                    """
-                {
-                    op: PLUGIN_OPERATIONS.Insert,
-                    widget: {
-                        id: 'theme_switch_button',
-                        type: DIRECT_PLUGIN,
-                        RenderWidget: MobileViewHeader,
-                    },
-                },
-                """,
-                ),
-            ]
-        )
+        PLUGIN_SLOTS.add_item((mfe, *INDIGO_DESKTOP_SECONDARY_MENU_SLOT))
+        PLUGIN_SLOTS.add_item((mfe, *INDIGO_MOBILE_HEADER_SLOT))
 
 PLUGIN_SLOTS.add_items(
     [
@@ -300,24 +328,58 @@ paragon_theme_urls = {
     "variants": {
         "light": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
+                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/light.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/light.min.css",
             },
         },
         "dark": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
+                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/dark.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/dark.min.css",
             }
         },
     }
 }
 
-fstring = f"""
-MFE_CONFIG["PARAGON_THEME_URLS"] = {json.dumps(paragon_theme_urls)}
-"""
+frontend_base_theme = {
+    "core": {
+        "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/core.min.css",
+    },
+    "defaults": {
+        "light": "light",
+        "dark": "dark",
+    },
+    "variants": {
+        "light": {
+            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
+        },
+        "dark": {
+            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
+        },
+    },
+}
 
-hooks.Filters.ENV_PATCHES.add_item(("mfe-lms-common-settings", fstring))
+hooks.Filters.CONFIG_DEFAULTS.add_item(("PARAGON_THEME_URLS", paragon_theme_urls))
+
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "mfe-lms-common-settings",
+        """
+MFE_CONFIG["PARAGON_THEME_URLS"] = {{ PARAGON_THEME_URLS }}
+FRONTEND_SITE_CONFIG.setdefault("commonAppConfig", {})
+FRONTEND_SITE_CONFIG["theme"] = """
+        + json.dumps(frontend_base_theme)
+        + """
+FRONTEND_SITE_CONFIG["commonAppConfig"]["PARAGON_THEME_URLS"] = {{ PARAGON_THEME_URLS }}
+FRONTEND_SITE_CONFIG["commonAppConfig"][
+    "INDIGO_ENABLE_DARK_TOGGLE"
+] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
+FRONTEND_SITE_CONFIG["commonAppConfig"][
+    "INDIGO_FOOTER_NAV_LINKS"
+] = {{ INDIGO_FOOTER_NAV_LINKS }}
+""",
+    )
+)
 
 
 @MFE_APPS.add()  # type: ignore
@@ -325,25 +387,6 @@ def _add_themed_logo(
     mfes: dict[str, MFE_ATTRS_TYPE],
 ) -> dict[str, MFE_ATTRS_TYPE]:
     for mfe in mfes:
-        PLUGIN_SLOTS.add_item(
-            (
-                str(mfe),
-                "logo_slot",
-                """
-                {
-                    op: PLUGIN_OPERATIONS.Hide,
-                    widgetId: 'default_contents',
-                },
-                {
-                    op: PLUGIN_OPERATIONS.Insert,
-                    widget: {
-                        id: 'custom_logo',
-                        type: DIRECT_PLUGIN,
-                        RenderWidget: ThemedLogo,
-                    }
-                }
-            """,
-            )
-        )
+        PLUGIN_SLOTS.add_item((str(mfe), *INDIGO_LOGO_SLOT))
 
     return mfes
