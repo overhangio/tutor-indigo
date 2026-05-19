@@ -1,0 +1,4 @@
+# Prepend the indigo theme templates dir so it overrides app-directories templates
+# (e.g. ace_common, common/templates) which are otherwise found first by the app
+# directories loader before the comprehensive theme loader gets a chance.
+TEMPLATES[0]["DIRS"].insert(0, "/openedx/themes/indigo/lms/templates")
