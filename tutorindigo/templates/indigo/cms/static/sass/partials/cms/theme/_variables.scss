@@ -11,6 +11,14 @@ $m-blue-d6: mix(rgb(42, 134, 226), $primary, 40%) !default;
 
 $uxpl-blue-hover-active: lighten($primary, 7%) !default;
 
+$body-bg-d: #0d0d0e;
+$text-color-d: #f8f8f8;
+$primary-d: #aec7f6;
+$light-overlay-d: #292a2c;
+$drop-down-menu-bg-d: #36383b;
+
+$primary-base: $primary;
+
 $serif: 'Inter';
 $f-sans-serif: 'Inter', 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-family-title: 'Inter';

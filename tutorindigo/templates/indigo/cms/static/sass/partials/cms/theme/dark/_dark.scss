@@ -1,0 +1,7 @@
+body.indigo-dark-theme {
+  @import "./home";
+  @import "./xblock";
+
+  background: $body-bg-d;
+  color: $text-color-d;
+}
