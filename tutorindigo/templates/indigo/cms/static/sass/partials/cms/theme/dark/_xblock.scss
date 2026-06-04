@@ -1,0 +1,27 @@
+.xblock.xmodule_display.xmodule_HtmlBlock {
+  .boxed-image {
+    box-shadow: 0 0 40px rgba(255,255,255,0.2);
+  }
+  .course-structure {
+    h3 {
+      color: $primary-d;
+    }
+  }
+  .blue-text {
+    color: $primary-d;
+  }
+  ul {
+      li {
+      strong,
+      &::marker {
+        color: $primary-d;
+      }
+    }
+  }
+  a {
+    color: $primary-d;
+    &:focus {
+      outline: 2px solid $primary-d;
+    }
+  }
+}
