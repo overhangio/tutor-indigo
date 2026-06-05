@@ -1,45 +1,89 @@
-$primary: {{ INDIGO_PRIMARY_COLOR }};
-$primary-light: #F2F7F8;
+// ============================================================
+//  OpenLMS Brand Variables — drop-in override for tutor-indigo
+//  Place this file at:
+//    tutorindigo/templates/indigo/lms/static/sass/partials/lms/theme/_variables.scss
+// ============================================================
 
-// Theme fonts
+// ── Core brand ──────────────────────────────────────────────
+$primary:            #15376D;   // Primary dark navy (buttons, links, accents)
+$primary-light:      #F0F4FA;   // Soft blue-gray background tint
+
+// ── Navigation selected state (green) ───────────────────────
+$nav-selected-bg:    #ecfdf5;   // Light green pill background
+$nav-selected-color: #059669;   // Green text & icon
+$nav-hover-bg:       #ecfdf5;   // Lighter green on hover
+
+// ── Tab active state (teal) ──────────────────────────────────
+$tab-active-color:   #0F766E;   // Teal-700 text
+$tab-active-bg:      #CCFBF1;   // Light teal pill background
+
+// ── Progress bars ────────────────────────────────────────────
+$progress-active:    #15376D;   // In-progress fill (matches primary)
+$progress-complete:  #22C55E;   // Completed fill (green)
+
+// ── Status badge colors ──────────────────────────────────────
+$badge-overdue-bg:   #F97316;   // Orange
+$badge-overdue-text: #fff;
+$badge-due-soon-bg:  #F59E0B;   // Amber
+$badge-due-soon-text:#fff;
+$badge-complete-bg:  #22C55E;   // Green
+$badge-complete-text:#fff;
+
+// ── Content type chips (neutral) ─────────────────────────────
+$chip-neutral-bg:    #F3F4F6;
+$chip-neutral-text:  #374151;
+
+// ── Category chips (purple/indigo) ───────────────────────────
+$chip-category-bg:   #EDE9FE;
+$chip-category-text: #7C3AED;
+
+// ── Selected filter chips ────────────────────────────────────
+$chip-selected-bg:   #1E293B;
+$chip-selected-text: #fff;
+
+// ── Input field states ───────────────────────────────────────
+$input-focus-border: #3B82F6;   // Blue-500
+$input-error-border: #EF4444;   // Red-500
+$input-error-color:  #EF4444;
+
+// ── Button border radius ─────────────────────────────────────
+$btn-border-radius:  6px;
+
+// ── Typography ───────────────────────────────────────────────
 $font-family-title: 'Inter', sans-serif;
 $serif: Crimson;
-$f-sans-serif: Crimson, 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+$f-sans-serif: Crimson, 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-// Initialize the Open edX Bootstrap theme
+
+// ── Bootstrap / Open edX base ────────────────────────────────
 @import 'edx-bootstrap/sass/open-edx/theme';
 
+// ── Layout ───────────────────────────────────────────────────
+$dark:        #111827;
+$light-dark:  #1e293b;
+$big-screen:  1200px;
 
-// Introducing new variables
+// ── Dark-theme palette ───────────────────────────────────────
+$primary-d:         #AEC7F6;
+$primary-light-d:   #292A2C;
+$gray-light:        #E5E7EB;
+$gray-lighter:      #c8c8c8;
+$light-dark-d:      #374151;
+$text-color-d:      #F8F8F8;
+$text-color-primary:#DDDFE2;
+$border-color-d:    #777792;
+$light-overlay-d:   #36383B;
+$danger-d:          #FFA07A;
+$success-d:         #54CF5E;
+$btn-color-d:       #112F6B;
+$body-bg-d:         #0D0D0E;
 
-$dark: #111827;
-$light-dark: #374151;
-$big-screen: 1200px;
+$instructor-input-border-color:  $gray-lighter;
+$light-theme-switch-bg-color:    $primary;
+$dark-theme-switch-bg-color:     #717D8A;
 
-
-
-// Introducing dark-theme variables
-
-$primary-d: #AEC7F6;
-$primary-light-d: #292A2C;
-$gray-light: #E5E7EB;
-$gray-lighter: #c8c8c8;
-$light-dark-d: #374151;
-$text-color-d: #F8F8F8;
-$text-color-primary: #DDDFE2;
-$border-color-d: #777792;
-$light-overlay-d: #36383B;
-$danger-d: #FFA07A;
-$success-d: #54CF5E;
-$btn-color-d: #112F6B;
-$body-bg-d: #0D0D0E;
-
-$instructor-input-border-color: $gray-lighter;
-$light-theme-switch-bg-color: $primary;
-$dark-theme-switch-bg-color: #717D8A;
-
-$warning-400: #ffe340;
-$warning-700: #9c4607;
-$warning-accent-700: #fffcf5;
+$warning-400:       #ffe340;
+$warning-700:       #9c4607;
+$warning-accent-700:#fffcf5;
 
 $page-color-transition: transparent .2s ease, color .2s ease;

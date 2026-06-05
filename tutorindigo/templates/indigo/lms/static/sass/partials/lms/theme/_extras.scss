@@ -1721,3 +1721,1827 @@ body.indigo-dark-theme {
 @import '../../../views/teams';
 @import '../../../views/wiki';
 @import '../../../courseware/responsive-nav';
+// ============================================================
+//  OpenLMS Component Overrides — based on design system
+//  Append or merge this into:
+//    tutorindigo/templates/indigo/lms/static/sass/partials/lms/theme/_extras.scss
+// ============================================================
+
+
+// ── Buttons ─────────────────────────────────────────────────
+//  Override tutor-indigo's zero border-radius with rounded corners
+
+%btn-pl-default-base {
+  border-radius: $btn-border-radius !important;
+}
+
+.btn,
+.global-header .nav-links .secondary .btn {
+  border-radius: $btn-border-radius !important;
+}
+
+// Primary button
+.btn-primary,
+.btn.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: #fff;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary, 6%);
+    border-color: darken($primary, 6%);
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $gray-light;
+    border-color: $gray-light;
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Secondary button
+.btn-secondary,
+.btn.btn-secondary {
+  background-color: #fff;
+  border: 1px solid $gray-light;
+  color: $dark;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    border-color: $primary;
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $gray-light;
+    border-color: $gray-light;
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Ghost / tertiary button
+.btn-ghost,
+.btn.btn-tertiary,
+.btn-link.btn-ghost {
+  background-color: transparent;
+  border: none;
+  color: $dark;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Icon-only button
+.btn-icon {
+  background-color: transparent;
+  border: none;
+  border-radius: $btn-border-radius;
+  color: $dark;
+  padding: 6px;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: #fff;
+  }
+}
+
+
+// ── Input / Search field ─────────────────────────────────────
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+.input-text,
+.form-control {
+  border-radius: $btn-border-radius;
+  border: 1px solid $gray-light;
+  font-family: $font-family-title;
+  transition: border-color 0.15s ease;
+
+  &:focus,
+  &:focus-visible {
+    border-color: $input-focus-border;
+    box-shadow: 0 0 0 3px rgba($input-focus-border, 0.15);
+    outline: none;
+  }
+}
+
+// Error state
+.has-error input,
+.field-error input,
+input.is-invalid {
+  border-color: $input-error-border !important;
+  color: $input-error-color;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($input-error-border, 0.15);
+  }
+}
+
+.field-error .error-msg,
+.has-error .help-block,
+.invalid-feedback {
+  color: $input-error-color;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+
+// ── Main Navigation (selected / hover states) ────────────────
+
+header.global-header .nav-links .nav-item {
+  border-radius: $btn-border-radius;
+
+  &.active,
+  &.is-active,
+  > a.active,
+  > a[aria-current="page"] {
+    background-color: $nav-selected-bg;
+    color: $nav-selected-color !important;
+    border-radius: $btn-border-radius;
+
+    .icon,
+    svg {
+      color: $nav-selected-color;
+      fill: $nav-selected-color;
+    }
+  }
+
+  &:hover:not(.active) {
+    background-color: $nav-hover-bg;
+    border-radius: $btn-border-radius;
+  }
+}
+
+
+// ── Course / Page Tabs ───────────────────────────────────────
+
+.wrapper-course-material .tabs.course-tabs li {
+  a,
+  button {
+    border-width: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    color: $light-dark;
+
+    &:hover,
+    &:visited {
+      color: $dark;
+      border-color: transparent;
+    }
+
+    &.active {
+      color: $tab-active-color;
+      background-color: $tab-active-bg;
+      border-color: transparent;
+      border-radius: 20px;
+      padding: 4px 14px;
+    }
+  }
+}
+
+// Dashboard tabs (Continue Learning, Assigned Courses, etc.)
+.tab-bar,
+.tabs-container,
+nav[role="tablist"],
+.nav-tabs {
+  .tab,
+  .nav-item {
+    .tab-label,
+    .nav-link {
+      color: $light-dark;
+      font-weight: 500;
+      border-radius: 20px;
+      padding: 6px 16px;
+      border: none;
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+
+      &:hover {
+        color: $dark;
+        background: $chip-neutral-bg;
+      }
+    }
+
+    &.is-active .tab-label,
+    .nav-link.active,
+    .nav-link[aria-selected="true"] {
+      color: $tab-active-color;
+      background: $tab-active-bg;
+      font-weight: 600;
+    }
+  }
+}
+
+
+// ── Progress Bars ────────────────────────────────────────────
+
+.progress,
+.progress-bar-container {
+  background-color: #E5E7EB;
+  border-radius: 999px;
+  height: 6px;
+  overflow: hidden;
+
+  .progress-fill,
+  .progress-bar {
+    background-color: $progress-active;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+  }
+
+  &.completed .progress-bar,
+  &.is-complete .progress-fill {
+    background-color: $progress-complete;
+  }
+}
+
+// Course progress tracker — lesson list
+.course-progress-tracker {
+  .lesson-item {
+    &.completed .lesson-icon {
+      color: $progress-complete;
+    }
+    &.active {
+      background-color: #EFF6FF;
+      border-radius: $btn-border-radius;
+      font-weight: 600;
+    }
+  }
+}
+
+
+// ── Status Badges ────────────────────────────────────────────
+
+.badge,
+.status-badge,
+.enrollment-status {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  display: inline-block;
+  line-height: 1.4;
+
+  &.overdue,
+  &.badge-overdue {
+    background-color: $badge-overdue-bg;
+    color: $badge-overdue-text;
+  }
+
+  &.due-soon,
+  &.badge-due-soon {
+    background-color: $badge-due-soon-bg;
+    color: $badge-due-soon-text;
+  }
+
+  &.completed,
+  &.badge-complete {
+    background-color: $badge-complete-bg;
+    color: $badge-complete-text;
+  }
+}
+
+
+// ── Content Type Chips (neutral: Video, Course, etc.) ─────────
+
+.content-type-chip,
+.tag-chip,
+.chip-neutral {
+  display: inline-block;
+  background-color: $chip-neutral-bg;
+  color: $chip-neutral-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+}
+
+
+// ── Category Chips (purple: Machine Learning, Design, etc.) ──
+
+.category-chip,
+.chip-category,
+.topic-tag {
+  display: inline-block;
+  background-color: $chip-category-bg;
+  color: $chip-category-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+}
+
+
+// ── Selected / Active Filter Chips ───────────────────────────
+
+.chip-selected,
+.filter-chip.active,
+.tag-chip.selected {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: $chip-selected-bg;
+  color: $chip-selected-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+
+  .remove-icon,
+  .chip-remove {
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover { opacity: 1; }
+  }
+}
+
+
+// ── Accordion (course modules) ───────────────────────────────
+
+.accordion,
+.module-accordion {
+  .accordion-header {
+    font-weight: 600;
+    font-size: 14px;
+    color: $dark;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid $gray-light;
+    cursor: pointer;
+  }
+
+  .accordion-lesson {
+    font-size: 14px;
+    color: $light-dark;
+    padding: 6px 0 6px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      color: $dark;
+    }
+  }
+}
+
+
+// ── Course Progress Card ──────────────────────────────────────
+
+.course-progress-card {
+  border-radius: 12px;
+  border: 1px solid $gray-light;
+  padding: 20px;
+
+  .progress-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: $dark;
+    margin-bottom: 12px;
+  }
+
+  .lesson-count {
+    font-size: 13px;
+    color: $light-dark;
+  }
+
+  .section-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: $dark;
+    margin: 16px 0 8px;
+    text-transform: none;
+  }
+}
+
+
+// ── Dark theme overrides for new variables ────────────────────
+
+body.indigo-dark-theme {
+  .btn-primary,
+  .btn.btn-primary {
+    background-color: $primary-d;
+    border-color: $primary-d;
+    color: $btn-color-d;
+
+    &:hover:not(:disabled) {
+      background-color: lighten($primary-d, 8%);
+    }
+  }
+
+  .badge, .status-badge {
+    &.overdue, &.badge-overdue {
+      background-color: darken($badge-overdue-bg, 10%);
+    }
+    &.due-soon, &.badge-due-soon {
+      background-color: darken($badge-due-soon-bg, 10%);
+    }
+  }
+
+  .chip-selected,
+  .filter-chip.active {
+    background-color: lighten($chip-selected-bg, 15%);
+  }
+
+  .progress .progress-bar {
+    background-color: $primary-d;
+  }
+
+  .nav-item.active,
+  .nav-item > a.active {
+    background-color: rgba($nav-selected-bg, 0.15);
+    color: lighten($nav-selected-color, 20%) !important;
+  }
+}
+// ============================================================
+//  OpenLMS Component Overrides — based on design system
+//  Append or merge this into:
+//    tutorindigo/templates/indigo/lms/static/sass/partials/lms/theme/_extras.scss
+// ============================================================
+
+
+// ── Buttons ─────────────────────────────────────────────────
+//  Override tutor-indigo's zero border-radius with rounded corners
+
+%btn-pl-default-base {
+  border-radius: $btn-border-radius !important;
+}
+
+.btn,
+.global-header .nav-links .secondary .btn {
+  border-radius: $btn-border-radius !important;
+}
+
+// Primary button
+.btn-primary,
+.btn.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: #fff;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary, 6%);
+    border-color: darken($primary, 6%);
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $gray-light;
+    border-color: $gray-light;
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Secondary button
+.btn-secondary,
+.btn.btn-secondary {
+  background-color: #fff;
+  border: 1px solid $gray-light;
+  color: $dark;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    border-color: $primary;
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $gray-light;
+    border-color: $gray-light;
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Ghost / tertiary button
+.btn-ghost,
+.btn.btn-tertiary,
+.btn-link.btn-ghost {
+  background-color: transparent;
+  border: none;
+  color: $dark;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Icon-only button
+.btn-icon {
+  background-color: transparent;
+  border: none;
+  border-radius: $btn-border-radius;
+  color: $dark;
+  padding: 6px;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: #fff;
+  }
+}
+
+
+// ── Input / Search field ─────────────────────────────────────
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+.input-text,
+.form-control {
+  border-radius: $btn-border-radius;
+  border: 1px solid $gray-light;
+  font-family: $font-family-title;
+  transition: border-color 0.15s ease;
+
+  &:focus,
+  &:focus-visible {
+    border-color: $input-focus-border;
+    box-shadow: 0 0 0 3px rgba($input-focus-border, 0.15);
+    outline: none;
+  }
+}
+
+// Error state
+.has-error input,
+.field-error input,
+input.is-invalid {
+  border-color: $input-error-border !important;
+  color: $input-error-color;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($input-error-border, 0.15);
+  }
+}
+
+.field-error .error-msg,
+.has-error .help-block,
+.invalid-feedback {
+  color: $input-error-color;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+
+// ── Main Navigation (selected / hover states) ────────────────
+
+header.global-header .nav-links .nav-item {
+  border-radius: $btn-border-radius;
+
+  &.active,
+  &.is-active,
+  > a.active,
+  > a[aria-current="page"] {
+    background-color: $nav-selected-bg;
+    color: $nav-selected-color !important;
+    border-radius: $btn-border-radius;
+
+    .icon,
+    svg {
+      color: $nav-selected-color;
+      fill: $nav-selected-color;
+    }
+  }
+
+  &:hover:not(.active) {
+    background-color: $nav-hover-bg;
+    border-radius: $btn-border-radius;
+  }
+}
+
+
+// ── Course / Page Tabs ───────────────────────────────────────
+
+.wrapper-course-material .tabs.course-tabs li {
+  a,
+  button {
+    border-width: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    color: $light-dark;
+
+    &:hover,
+    &:visited {
+      color: $dark;
+      border-color: transparent;
+    }
+
+    &.active {
+      color: $tab-active-color;
+      background-color: $tab-active-bg;
+      border-color: transparent;
+      border-radius: 20px;
+      padding: 4px 14px;
+    }
+  }
+}
+
+// Dashboard tabs (Continue Learning, Assigned Courses, etc.)
+.tab-bar,
+.tabs-container,
+nav[role="tablist"],
+.nav-tabs {
+  .tab,
+  .nav-item {
+    .tab-label,
+    .nav-link {
+      color: $light-dark;
+      font-weight: 500;
+      border-radius: 20px;
+      padding: 6px 16px;
+      border: none;
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+
+      &:hover {
+        color: $dark;
+        background: $chip-neutral-bg;
+      }
+    }
+
+    &.is-active .tab-label,
+    .nav-link.active,
+    .nav-link[aria-selected="true"] {
+      color: $tab-active-color;
+      background: $tab-active-bg;
+      font-weight: 600;
+    }
+  }
+}
+
+
+// ── Progress Bars ────────────────────────────────────────────
+
+.progress,
+.progress-bar-container {
+  background-color: #E5E7EB;
+  border-radius: 999px;
+  height: 6px;
+  overflow: hidden;
+
+  .progress-fill,
+  .progress-bar {
+    background-color: $progress-active;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+  }
+
+  &.completed .progress-bar,
+  &.is-complete .progress-fill {
+    background-color: $progress-complete;
+  }
+}
+
+// Course progress tracker — lesson list
+.course-progress-tracker {
+  .lesson-item {
+    &.completed .lesson-icon {
+      color: $progress-complete;
+    }
+    &.active {
+      background-color: #EFF6FF;
+      border-radius: $btn-border-radius;
+      font-weight: 600;
+    }
+  }
+}
+
+
+// ── Status Badges ────────────────────────────────────────────
+
+.badge,
+.status-badge,
+.enrollment-status {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  display: inline-block;
+  line-height: 1.4;
+
+  &.overdue,
+  &.badge-overdue {
+    background-color: $badge-overdue-bg;
+    color: $badge-overdue-text;
+  }
+
+  &.due-soon,
+  &.badge-due-soon {
+    background-color: $badge-due-soon-bg;
+    color: $badge-due-soon-text;
+  }
+
+  &.completed,
+  &.badge-complete {
+    background-color: $badge-complete-bg;
+    color: $badge-complete-text;
+  }
+}
+
+
+// ── Content Type Chips (neutral: Video, Course, etc.) ─────────
+
+.content-type-chip,
+.tag-chip,
+.chip-neutral {
+  display: inline-block;
+  background-color: $chip-neutral-bg;
+  color: $chip-neutral-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+}
+
+
+// ── Category Chips (purple: Machine Learning, Design, etc.) ──
+
+.category-chip,
+.chip-category,
+.topic-tag {
+  display: inline-block;
+  background-color: $chip-category-bg;
+  color: $chip-category-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+}
+
+
+// ── Selected / Active Filter Chips ───────────────────────────
+
+.chip-selected,
+.filter-chip.active,
+.tag-chip.selected {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: $chip-selected-bg;
+  color: $chip-selected-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+
+  .remove-icon,
+  .chip-remove {
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover { opacity: 1; }
+  }
+}
+
+
+// ── Accordion (course modules) ───────────────────────────────
+
+.accordion,
+.module-accordion {
+  .accordion-header {
+    font-weight: 600;
+    font-size: 14px;
+    color: $dark;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid $gray-light;
+    cursor: pointer;
+  }
+
+  .accordion-lesson {
+    font-size: 14px;
+    color: $light-dark;
+    padding: 6px 0 6px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      color: $dark;
+    }
+  }
+}
+
+
+// ── Course Progress Card ──────────────────────────────────────
+
+.course-progress-card {
+  border-radius: 12px;
+  border: 1px solid $gray-light;
+  padding: 20px;
+
+  .progress-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: $dark;
+    margin-bottom: 12px;
+  }
+
+  .lesson-count {
+    font-size: 13px;
+    color: $light-dark;
+  }
+
+  .section-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: $dark;
+    margin: 16px 0 8px;
+    text-transform: none;
+  }
+}
+
+
+// ── Dark theme overrides for new variables ────────────────────
+
+body.indigo-dark-theme {
+  .btn-primary,
+  .btn.btn-primary {
+    background-color: $primary-d;
+    border-color: $primary-d;
+    color: $btn-color-d;
+
+    &:hover:not(:disabled) {
+      background-color: lighten($primary-d, 8%);
+    }
+  }
+
+  .badge, .status-badge {
+    &.overdue, &.badge-overdue {
+      background-color: darken($badge-overdue-bg, 10%);
+    }
+    &.due-soon, &.badge-due-soon {
+      background-color: darken($badge-due-soon-bg, 10%);
+    }
+  }
+
+  .chip-selected,
+  .filter-chip.active {
+    background-color: lighten($chip-selected-bg, 15%);
+  }
+
+  .progress .progress-bar {
+    background-color: $primary-d;
+  }
+
+  .nav-item.active,
+  .nav-item > a.active {
+    background-color: rgba($nav-selected-bg, 0.15);
+    color: lighten($nav-selected-color, 20%) !important;
+  }
+}
+
+// === OpenLMS custom START ===
+// ============================================================
+//  OpenLMS Component Overrides — based on design system
+//  Append or merge this into:
+//    tutorindigo/templates/indigo/lms/static/sass/partials/lms/theme/_extras.scss
+// ============================================================
+
+
+// ── Buttons ─────────────────────────────────────────────────
+//  Override tutor-indigo's zero border-radius with rounded corners
+
+%btn-pl-default-base {
+  border-radius: $btn-border-radius !important;
+}
+
+.btn,
+.global-header .nav-links .secondary .btn {
+  border-radius: $btn-border-radius !important;
+}
+
+// Primary button
+.btn-primary,
+.btn.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: #fff;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary, 6%);
+    border-color: darken($primary, 6%);
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $gray-light;
+    border-color: $gray-light;
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Secondary button
+.btn-secondary,
+.btn.btn-secondary {
+  background-color: #fff;
+  border: 1px solid $gray-light;
+  color: $dark;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    border-color: $primary;
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $gray-light;
+    border-color: $gray-light;
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Ghost / tertiary button
+.btn-ghost,
+.btn.btn-tertiary,
+.btn-link.btn-ghost {
+  background-color: transparent;
+  border: none;
+  color: $dark;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Icon-only button
+.btn-icon {
+  background-color: transparent;
+  border: none;
+  border-radius: $btn-border-radius;
+  color: $dark;
+  padding: 6px;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: #fff;
+  }
+}
+
+
+// ── Input / Search field ─────────────────────────────────────
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+.input-text,
+.form-control {
+  border-radius: $btn-border-radius;
+  border: 1px solid $gray-light;
+  font-family: $font-family-title;
+  transition: border-color 0.15s ease;
+
+  &:focus,
+  &:focus-visible {
+    border-color: $input-focus-border;
+    box-shadow: 0 0 0 3px rgba($input-focus-border, 0.15);
+    outline: none;
+  }
+}
+
+// Error state
+.has-error input,
+.field-error input,
+input.is-invalid {
+  border-color: $input-error-border !important;
+  color: $input-error-color;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($input-error-border, 0.15);
+  }
+}
+
+.field-error .error-msg,
+.has-error .help-block,
+.invalid-feedback {
+  color: $input-error-color;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+
+// ── Main Navigation (selected / hover states) ────────────────
+
+header.global-header .nav-links .nav-item {
+  border-radius: $btn-border-radius;
+
+  &.active,
+  &.is-active,
+  > a.active,
+  > a[aria-current="page"] {
+    background-color: $nav-selected-bg;
+    color: $nav-selected-color !important;
+    border-radius: $btn-border-radius;
+
+    .icon,
+    svg {
+      color: $nav-selected-color;
+      fill: $nav-selected-color;
+    }
+  }
+
+  &:hover:not(.active) {
+    background-color: $nav-hover-bg;
+    border-radius: $btn-border-radius;
+  }
+}
+
+
+// ── Course / Page Tabs ───────────────────────────────────────
+
+.wrapper-course-material .tabs.course-tabs li {
+  a,
+  button {
+    border-width: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    color: $light-dark;
+
+    &:hover,
+    &:visited {
+      color: $dark;
+      border-color: transparent;
+    }
+
+    &.active {
+      color: $tab-active-color;
+      background-color: $tab-active-bg;
+      border-color: transparent;
+      border-radius: 20px;
+      padding: 4px 14px;
+    }
+  }
+}
+
+// Dashboard tabs (Continue Learning, Assigned Courses, etc.)
+.tab-bar,
+.tabs-container,
+nav[role="tablist"],
+.nav-tabs {
+  .tab,
+  .nav-item {
+    .tab-label,
+    .nav-link {
+      color: $light-dark;
+      font-weight: 500;
+      border-radius: 20px;
+      padding: 6px 16px;
+      border: none;
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+
+      &:hover {
+        color: $dark;
+        background: $chip-neutral-bg;
+      }
+    }
+
+    &.is-active .tab-label,
+    .nav-link.active,
+    .nav-link[aria-selected="true"] {
+      color: $tab-active-color;
+      background: $tab-active-bg;
+      font-weight: 600;
+    }
+  }
+}
+
+
+// ── Progress Bars ────────────────────────────────────────────
+
+.progress,
+.progress-bar-container {
+  background-color: #E5E7EB;
+  border-radius: 999px;
+  height: 6px;
+  overflow: hidden;
+
+  .progress-fill,
+  .progress-bar {
+    background-color: $progress-active;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+  }
+
+  &.completed .progress-bar,
+  &.is-complete .progress-fill {
+    background-color: $progress-complete;
+  }
+}
+
+// Course progress tracker — lesson list
+.course-progress-tracker {
+  .lesson-item {
+    &.completed .lesson-icon {
+      color: $progress-complete;
+    }
+    &.active {
+      background-color: #EFF6FF;
+      border-radius: $btn-border-radius;
+      font-weight: 600;
+    }
+  }
+}
+
+
+// ── Status Badges ────────────────────────────────────────────
+
+.badge,
+.status-badge,
+.enrollment-status {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  display: inline-block;
+  line-height: 1.4;
+
+  &.overdue,
+  &.badge-overdue {
+    background-color: $badge-overdue-bg;
+    color: $badge-overdue-text;
+  }
+
+  &.due-soon,
+  &.badge-due-soon {
+    background-color: $badge-due-soon-bg;
+    color: $badge-due-soon-text;
+  }
+
+  &.completed,
+  &.badge-complete {
+    background-color: $badge-complete-bg;
+    color: $badge-complete-text;
+  }
+}
+
+
+// ── Content Type Chips (neutral: Video, Course, etc.) ─────────
+
+.content-type-chip,
+.tag-chip,
+.chip-neutral {
+  display: inline-block;
+  background-color: $chip-neutral-bg;
+  color: $chip-neutral-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+}
+
+
+// ── Category Chips (purple: Machine Learning, Design, etc.) ──
+
+.category-chip,
+.chip-category,
+.topic-tag {
+  display: inline-block;
+  background-color: $chip-category-bg;
+  color: $chip-category-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+}
+
+
+// ── Selected / Active Filter Chips ───────────────────────────
+
+.chip-selected,
+.filter-chip.active,
+.tag-chip.selected {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: $chip-selected-bg;
+  color: $chip-selected-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+
+  .remove-icon,
+  .chip-remove {
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover { opacity: 1; }
+  }
+}
+
+
+// ── Accordion (course modules) ───────────────────────────────
+
+.accordion,
+.module-accordion {
+  .accordion-header {
+    font-weight: 600;
+    font-size: 14px;
+    color: $dark;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid $gray-light;
+    cursor: pointer;
+  }
+
+  .accordion-lesson {
+    font-size: 14px;
+    color: $light-dark;
+    padding: 6px 0 6px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      color: $dark;
+    }
+  }
+}
+
+
+// ── Course Progress Card ──────────────────────────────────────
+
+.course-progress-card {
+  border-radius: 12px;
+  border: 1px solid $gray-light;
+  padding: 20px;
+
+  .progress-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: $dark;
+    margin-bottom: 12px;
+  }
+
+  .lesson-count {
+    font-size: 13px;
+    color: $light-dark;
+  }
+
+  .section-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: $dark;
+    margin: 16px 0 8px;
+    text-transform: none;
+  }
+}
+
+
+// ── Dark theme overrides for new variables ────────────────────
+
+body.indigo-dark-theme {
+  .btn-primary,
+  .btn.btn-primary {
+    background-color: $primary-d;
+    border-color: $primary-d;
+    color: $btn-color-d;
+
+    &:hover:not(:disabled) {
+      background-color: lighten($primary-d, 8%);
+    }
+  }
+
+  .badge, .status-badge {
+    &.overdue, &.badge-overdue {
+      background-color: darken($badge-overdue-bg, 10%);
+    }
+    &.due-soon, &.badge-due-soon {
+      background-color: darken($badge-due-soon-bg, 10%);
+    }
+  }
+
+  .chip-selected,
+  .filter-chip.active {
+    background-color: lighten($chip-selected-bg, 15%);
+  }
+
+  .progress .progress-bar {
+    background-color: $primary-d;
+  }
+
+  .nav-item.active,
+  .nav-item > a.active {
+    background-color: rgba($nav-selected-bg, 0.15);
+    color: lighten($nav-selected-color, 20%) !important;
+  }
+}
+
+// === OpenLMS custom END ===
+
+// === OpenLMS custom START ===
+// ============================================================
+//  OpenLMS Component Overrides — based on design system
+//  Append or merge this into:
+//    tutorindigo/templates/indigo/lms/static/sass/partials/lms/theme/_extras.scss
+// ============================================================
+
+
+// ── Buttons ─────────────────────────────────────────────────
+//  Override tutor-indigo's zero border-radius with rounded corners
+
+%btn-pl-default-base {
+  border-radius: $btn-border-radius !important;
+}
+
+.btn,
+.global-header .nav-links .secondary .btn {
+  border-radius: $btn-border-radius !important;
+}
+
+// Primary button
+.btn-primary,
+.btn.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: #fff;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary, 6%);
+    border-color: darken($primary, 6%);
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $gray-light;
+    border-color: $gray-light;
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Secondary button
+.btn-secondary,
+.btn.btn-secondary {
+  background-color: #fff;
+  border: 1px solid $gray-light;
+  color: $dark;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    border-color: $primary;
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $gray-light;
+    border-color: $gray-light;
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Ghost / tertiary button
+.btn-ghost,
+.btn.btn-tertiary,
+.btn-link.btn-ghost {
+  background-color: transparent;
+  border: none;
+  color: $dark;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: #fff;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: #9CA3AF;
+    opacity: 1;
+  }
+}
+
+// Icon-only button
+.btn-icon {
+  background-color: transparent;
+  border: none;
+  border-radius: $btn-border-radius;
+  color: $dark;
+  padding: 6px;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: #fff;
+  }
+}
+
+
+// ── Input / Search field ─────────────────────────────────────
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+.input-text,
+.form-control {
+  border-radius: $btn-border-radius;
+  border: 1px solid $gray-light;
+  font-family: $font-family-title;
+  transition: border-color 0.15s ease;
+
+  &:focus,
+  &:focus-visible {
+    border-color: $input-focus-border;
+    box-shadow: 0 0 0 3px rgba($input-focus-border, 0.15);
+    outline: none;
+  }
+}
+
+// Error state
+.has-error input,
+.field-error input,
+input.is-invalid {
+  border-color: $input-error-border !important;
+  color: $input-error-color;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($input-error-border, 0.15);
+  }
+}
+
+.field-error .error-msg,
+.has-error .help-block,
+.invalid-feedback {
+  color: $input-error-color;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+
+// ── Main Navigation (selected / hover states) ────────────────
+
+header.global-header .nav-links .nav-item {
+  border-radius: $btn-border-radius;
+
+  &.active,
+  &.is-active,
+  > a.active,
+  > a[aria-current="page"] {
+    background-color: $nav-selected-bg;
+    color: $nav-selected-color !important;
+    border-radius: $btn-border-radius;
+
+    .icon,
+    svg {
+      color: $nav-selected-color;
+      fill: $nav-selected-color;
+    }
+  }
+
+  &:hover:not(.active) {
+    background-color: $nav-hover-bg;
+    border-radius: $btn-border-radius;
+  }
+}
+
+
+// ── Course / Page Tabs ───────────────────────────────────────
+
+.wrapper-course-material .tabs.course-tabs li {
+  a,
+  button {
+    border-width: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    color: $light-dark;
+
+    &:hover,
+    &:visited {
+      color: $dark;
+      border-color: transparent;
+    }
+
+    &.active {
+      color: $tab-active-color;
+      background-color: $tab-active-bg;
+      border-color: transparent;
+      border-radius: 20px;
+      padding: 4px 14px;
+    }
+  }
+}
+
+// Dashboard tabs (Continue Learning, Assigned Courses, etc.)
+.tab-bar,
+.tabs-container,
+nav[role="tablist"],
+.nav-tabs {
+  .tab,
+  .nav-item {
+    .tab-label,
+    .nav-link {
+      color: $light-dark;
+      font-weight: 500;
+      border-radius: 20px;
+      padding: 6px 16px;
+      border: none;
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+
+      &:hover {
+        color: $dark;
+        background: $chip-neutral-bg;
+      }
+    }
+
+    &.is-active .tab-label,
+    .nav-link.active,
+    .nav-link[aria-selected="true"] {
+      color: $tab-active-color;
+      background: $tab-active-bg;
+      font-weight: 600;
+    }
+  }
+}
+
+
+// ── Progress Bars ────────────────────────────────────────────
+
+.progress,
+.progress-bar-container {
+  background-color: #E5E7EB;
+  border-radius: 999px;
+  height: 6px;
+  overflow: hidden;
+
+  .progress-fill,
+  .progress-bar {
+    background-color: $progress-active;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+  }
+
+  &.completed .progress-bar,
+  &.is-complete .progress-fill {
+    background-color: $progress-complete;
+  }
+}
+
+// Course progress tracker — lesson list
+.course-progress-tracker {
+  .lesson-item {
+    &.completed .lesson-icon {
+      color: $progress-complete;
+    }
+    &.active {
+      background-color: #EFF6FF;
+      border-radius: $btn-border-radius;
+      font-weight: 600;
+    }
+  }
+}
+
+
+// ── Status Badges ────────────────────────────────────────────
+
+.badge,
+.status-badge,
+.enrollment-status {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  display: inline-block;
+  line-height: 1.4;
+
+  &.overdue,
+  &.badge-overdue {
+    background-color: $badge-overdue-bg;
+    color: $badge-overdue-text;
+  }
+
+  &.due-soon,
+  &.badge-due-soon {
+    background-color: $badge-due-soon-bg;
+    color: $badge-due-soon-text;
+  }
+
+  &.completed,
+  &.badge-complete {
+    background-color: $badge-complete-bg;
+    color: $badge-complete-text;
+  }
+}
+
+
+// ── Content Type Chips (neutral: Video, Course, etc.) ─────────
+
+.content-type-chip,
+.tag-chip,
+.chip-neutral {
+  display: inline-block;
+  background-color: $chip-neutral-bg;
+  color: $chip-neutral-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+}
+
+
+// ── Category Chips (purple: Machine Learning, Design, etc.) ──
+
+.category-chip,
+.chip-category,
+.topic-tag {
+  display: inline-block;
+  background-color: $chip-category-bg;
+  color: $chip-category-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+}
+
+
+// ── Selected / Active Filter Chips ───────────────────────────
+
+.chip-selected,
+.filter-chip.active,
+.tag-chip.selected {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: $chip-selected-bg;
+  color: $chip-selected-text;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+
+  .remove-icon,
+  .chip-remove {
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover { opacity: 1; }
+  }
+}
+
+
+// ── Accordion (course modules) ───────────────────────────────
+
+.accordion,
+.module-accordion {
+  .accordion-header {
+    font-weight: 600;
+    font-size: 14px;
+    color: $dark;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid $gray-light;
+    cursor: pointer;
+  }
+
+  .accordion-lesson {
+    font-size: 14px;
+    color: $light-dark;
+    padding: 6px 0 6px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      color: $dark;
+    }
+  }
+}
+
+
+// ── Course Progress Card ──────────────────────────────────────
+
+.course-progress-card {
+  border-radius: 12px;
+  border: 1px solid $gray-light;
+  padding: 20px;
+
+  .progress-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: $dark;
+    margin-bottom: 12px;
+  }
+
+  .lesson-count {
+    font-size: 13px;
+    color: $light-dark;
+  }
+
+  .section-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: $dark;
+    margin: 16px 0 8px;
+    text-transform: none;
+  }
+}
+
+
+// ── Dark theme overrides for new variables ────────────────────
+
+body.indigo-dark-theme {
+  .btn-primary,
+  .btn.btn-primary {
+    background-color: $primary-d;
+    border-color: $primary-d;
+    color: $btn-color-d;
+
+    &:hover:not(:disabled) {
+      background-color: lighten($primary-d, 8%);
+    }
+  }
+
+  .badge, .status-badge {
+    &.overdue, &.badge-overdue {
+      background-color: darken($badge-overdue-bg, 10%);
+    }
+    &.due-soon, &.badge-due-soon {
+      background-color: darken($badge-due-soon-bg, 10%);
+    }
+  }
+
+  .chip-selected,
+  .filter-chip.active {
+    background-color: lighten($chip-selected-bg, 15%);
+  }
+
+  .progress .progress-bar {
+    background-color: $primary-d;
+  }
+
+  .nav-item.active,
+  .nav-item > a.active {
+    background-color: rgba($nav-selected-bg, 0.15);
+    color: lighten($nav-selected-color, 20%) !important;
+  }
+}
+
+// === OpenLMS custom END ===
