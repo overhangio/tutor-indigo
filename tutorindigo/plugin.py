@@ -164,6 +164,11 @@ for filename in javascript_files:
 
 MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
 MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
+
+# Ensure Mako templates from the theme are found by the comprehensive theming system.
+# The env var COMPREHENSIVE_THEME_DIRS=/openedx/themes is set in the Dockerfile but
+# may not be picked up by the dev settings chain; set it explicitly here.
+COMPREHENSIVE_THEME_DIRS = ['/openedx/themes']
 """,
         ),
         (
@@ -171,6 +176,8 @@ MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
             """
 MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
 MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
+
+COMPREHENSIVE_THEME_DIRS = ['/openedx/themes']
 """,
         ),
     ]
@@ -219,6 +226,27 @@ for mfe in indigo_styled_mfes:
   """,
         ),
     )
+    if mfe not in ("learning", "learner-dashboard"):
+        PLUGIN_SLOTS.add_item(
+            (
+                mfe,
+                "desktop_main_menu_slot",
+                """
+                {
+                    op: PLUGIN_OPERATIONS.Hide,
+                    widgetId: 'default_contents',
+                },
+                {
+                    op: PLUGIN_OPERATIONS.Insert,
+                    widget: {
+                        id: 'indigo_header_nav',
+                        type: DIRECT_PLUGIN,
+                        RenderWidget: IndigoHeader,
+                    },
+                },
+        """,
+            )
+        )
     if mfe != "learning":
         PLUGIN_SLOTS.add_item(
             (
