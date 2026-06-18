@@ -89,6 +89,8 @@
   --color-gray-700: #CCCCCC;
   --color-gray-800: #EBEBEB;
   --color-gray-900: #F8F8F8;
+  --pgn-color-white: #FFFFFFFF;
+  --pgn-color-black: #000000FF;
 }
 
 .text-primary-50 { color: var(--primary-50); }

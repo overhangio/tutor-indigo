@@ -1,60 +1,112 @@
 ## mako
 
-<%page expression_filter="h" args="online_help_token"/>
+<%page expression_filter="h" args="online_help_token" />
 
-<%namespace name='static' file='../static_content.html'/>
-<%namespace file='../main.html' import="login_query"/>
+<%namespace name='static' file='../static_content.html' />
+<%namespace file='../main.html' import="login_query" />
 <%!
 from django.urls import reverse
 from django.utils.translation import gettext as _
+from openedx.core.djangolib.markup import HTML
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
+
+ICON_PATHS = {
+    'Home': (
+        '<path stroke="none" d="M0 0h24v24H0z" fill="none"/>'
+        '<path d="M5 12l-2 0l9 -9l9 9l-2 0"/>'
+        '<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"/>'
+        '<path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"/>'
+    ),
+    'LibraryBooks': (
+        '<path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/>'
+        '<path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/>'
+        '<path d="M3 6l0 13"/>'
+        '<path d="M12 6l0 13"/>'
+        '<path d="M21 6l0 13"/>'
+    ),
+    'ClockHour3': (
+        '<path stroke="none" d="M0 0h24v24H0z" fill="none"/>'
+        '<circle cx="12" cy="12" r="9"/>'
+        '<path d="M12 12l4 0"/>'
+        '<path d="M12 8l0 4"/>'
+    ),
+    'Search': (
+        '<path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/>'
+        '<path d="M21 21l-6 -6"/>'
+    ),
+    'HelpHexagon': (
+        '<path stroke="none" d="M0 0h24v24H0z" fill="none"/>'
+        '<path d="M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 3.86a2.25 2.25 0 0 1 -2.184 0l-6.75 -3.86a2.225 2.225 0 0 1 -1.158 -1.948v-7.284c0 -.809 .443 -1.555 1.158 -1.948l6.75 -3.86a2.25 2.25 0 0 1 2.184 0l6.75 3.86h-.033z"/>'
+        '<path d="M12 16v.01"/>'
+        '<path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"/>'
+    ),
+}
+
+SVG_OPEN = (
+    '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"'
+    ' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"'
+    ' stroke-linejoin="round" class="lw-nav-icon" aria-hidden="true">'
+)
+SVG_CLOSE = '</svg>'
 %>
 
 <%
-  show_explore_courses = settings.FEATURES.get('COURSES_ARE_BROWSABLE')
   self.real_user = getattr(user, 'real_user', user)
-  enable_help_link = settings.FEATURES.get('ENABLE_HELP_LINK')
-
-  support_link = configuration_helpers.get_value('SUPPORT_SITE_LINK', settings.SUPPORT_SITE_LINK)
-  doc_link = get_online_help_info(online_help_token)['doc_url']
-
-  if online_help_token == "instructor":
-    help_link = doc_link
-  elif support_link:
-    help_link = support_link
-  else:
-    help_link = doc_link
+  nav_links = getattr(settings, 'HEADER_NAV_LINKS', [
+      {"title": "My Courses", "url": reverse('dashboard'), "icon": "Home"},
+      {"title": "Discover",   "url": "/courses",           "icon": "Search"},
+  ])
+  search_url = next((l['url'] for l in nav_links if l.get('icon') == 'Search'), '/courses')
 %>
 
 <div class="nav-links">
-  <div class="main">
-    % if show_dashboard_tabs:
-      <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-        <a class="${'active ' if reverse('dashboard') == request.path else ''}tab-nav-link" href="${reverse('dashboard')}"
-             aria-current="${'page' if reverse('dashboard') == request.path else 'false'}">
-             ${_("My Courses")}
-        </a>
+  <div class="main navigation-link">
+    % for link in nav_links:
+    <%
+      is_active = (link['url'] == request.path or
+                   request.path.startswith(link['url'].rstrip('/') + '/'))
+      icon_name = link.get('icon', 'Home')
+      icon_svg  = HTML(SVG_OPEN + ICON_PATHS.get(icon_name, ICON_PATHS['Home']) + SVG_CLOSE)
+    %>
+    <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
+      <a class="${'active ' if is_active else ''}tab-nav-link lw-nav-item"
+         href="${link['url']}"
+         aria-current="${'page' if is_active else 'false'}">
+        ${icon_svg}
+        <span>${_(link['title'])}</span>
+      </a>
+    </div>
+    % endfor
+
+    ## Search — last mainMenu item, matches MFE lw-search-item
+    <div class="nav-item lw-search-item hidden-mobile">
+      <div class="lw-search-wrapper">
+        ${HTML(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"'
+          ' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"'
+          ' stroke-linejoin="round" class="lw-search-icon" aria-hidden="true">'
+          '<path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/>'
+          '<path d="M21 21l-6 -6"/>'
+          '</svg>'
+        )}
+        <input class="lw-search-input" type="search"
+               aria-label="${_('Search courses...')}"
+               placeholder="${_('Search courses...')}"
+               onkeydown="if(event.key==='Enter'&&this.value.trim()){window.location.href='${search_url}?q='+encodeURIComponent(this.value.trim())}" />
       </div>
-      % if show_program_listing:
-        <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-          <a class="${'active ' if reverse('program_listing_view') in request.path else ''}tab-nav-link" href="${reverse('program_listing_view')}"
-             aria-current="${'page' if reverse('program_listing_view') == request.path else 'false'}">
-             ${_("Programs")}
-          </a>
-        </div>
-      % endif
-    % endif
-    % if show_explore_courses:
-      <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-          <a class="${'active ' if reverse('courses') == request.path else ''}tab-nav-link discover-new-link" href="${marketing_link('COURSES')}"
-             aria-current="${'page' if '/courses' in request.path else 'false'}">
-             ${_('Discover')}
-          </a>
-      </div>
-    % endif
+    </div>
   </div>
-  <div class="secondary d-flex align-items-center">
-    <%include file="./theme-toggle-button.html" />
-    <%include file="user_dropdown.html"/>
-  </div>
+</div>
+
+<div class="secondary d-flex align-items-center">
+  ## Bell — matches MFE secondaryMenu (lw-notification-btn)
+  <button class="lw-notification-btn" aria-label="${_('Notifications')}">
+    ${HTML(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-bell ">'
+      '<path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"/>'
+      '<path d="M9 17v1a3 3 0 0 0 6 0v-1"/>'
+      '</svg>'
+    )}
+  </button>
+  <%include file="user_dropdown.html" />
 </div>

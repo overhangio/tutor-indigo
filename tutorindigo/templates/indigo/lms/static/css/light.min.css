@@ -479,4 +479,6 @@
   --pgn-color-nav-pills-base-link-hover-bg: #ecfdf5;
   --pgn-color-bg-active: #ecfdf5;
   --pgn-color-active: #059669;
+  --pgn-color-white: #FFFFFFFF;
+  --pgn-color-black: #000000FF;
 }
