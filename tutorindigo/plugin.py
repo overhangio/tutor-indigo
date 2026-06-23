@@ -188,7 +188,10 @@ for filename in ['base_application', 'application', 'certificates_wv']:
     if filename in PIPELINE['JAVASCRIPT']:
         PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
 
-if 'base_application' not in PIPELINE['JAVASCRIPT'] and 'base_vendor' in PIPELINE['JAVASCRIPT']:
+if (
+    'base_application' not in PIPELINE['JAVASCRIPT']
+    and 'base_vendor' in PIPELINE['JAVASCRIPT']
+):
     PIPELINE['JAVASCRIPT']['base_vendor']['source_filenames'] += dark_theme_filepath
 """,
         ),
@@ -218,7 +221,9 @@ MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
             "openedx-cms-common-settings",
             """
 if 'base_vendor' in PIPELINE['JAVASCRIPT']:
-    PIPELINE['JAVASCRIPT']['base_vendor']['source_filenames'] += ['indigo/js/dark-theme.js']
+    PIPELINE['JAVASCRIPT']['base_vendor']['source_filenames'] += [
+        'indigo/js/dark-theme.js'
+    ]
 """,
         ),
     ]
