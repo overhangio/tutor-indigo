@@ -1,4 +1,23 @@
 
+if (config.pluginSlots && config.pluginSlots['logo_slot']) {
+  config.pluginSlots['logo_slot'].keepDefault = false;
+
+  const logoInsertPlugins =
+    config.pluginSlots['logo_slot'].plugins.filter(plugin => plugin.op === 'insert' && plugin.widget?.id === 'custom_logo');
+
+  if (logoInsertPlugins.length > 1) {
+    let kept = false;
+    config.pluginSlots['logo_slot'].plugins =
+      config.pluginSlots['logo_slot'].plugins.filter(plugin => {
+        if (plugin.op === 'insert' && plugin.widget?.id === 'custom_logo') {
+          if (kept) return false;
+          kept = true;
+        }
+        return true;
+      });
+  }
+}
+
 if (config.pluginSlots && config.pluginSlots['org.openedx.frontend.layout.footer.v1']) {
   const footerPluginsToInsert =
     config.pluginSlots['org.openedx.frontend.layout.footer.v1'].plugins.filter(plugin => plugin.op === 'insert');
