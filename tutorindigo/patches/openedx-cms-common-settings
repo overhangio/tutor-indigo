@@ -1,0 +1,4 @@
+if 'base_vendor' in PIPELINE['JAVASCRIPT']:
+    PIPELINE['JAVASCRIPT']['base_vendor']['source_filenames'] += [
+        'indigo/js/dark-theme.js'
+    ]
