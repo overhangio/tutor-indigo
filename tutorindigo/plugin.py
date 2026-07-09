@@ -136,16 +136,6 @@ hooks.Filters.ENV_PATCHES.add_item(
     )
 )
 
-hooks.Filters.ENV_PATCHES.add_item(
-    (
-        "mfe-lms-common-settings",
-        """
-MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
-MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
-""",
-    )
-)
-
 # Add react components and patches from tutor-indigo
 for path in itertools.chain(
     glob(
