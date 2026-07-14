@@ -221,7 +221,7 @@
                         line-height: 26px;
                         text-align: center;
                         padding: 6px;
-                        height: 38px;
+                        height: 40px;
                         border-radius: 6px;
                         background: $primary;
                         font-family: $font-family-title;
@@ -237,34 +237,68 @@
                     }
                 }
                 .input-holder {
+                    box-sizing: border-box;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
                     flex-grow: 1;
+                    height: 40px;
+                    padding: 8px 12px;
                     border-radius: 6px;
-                    background: $primary-light;
-                    padding: 0 0 0 33px;
+                    border: 1px solid #E2E8F0;
+                    background: #F8FAFC;
                     position: relative;
-                    svg {
-                        position: absolute;
-                        left: 12px;
-                        font-size: 20px;
-                        top: 10px;
+                    transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
 
-                        path {
-                          fill: #4a5564;
+                    &:focus-within {
+                        border-color: #059669;
+                        background: #fff;
+                        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.16);
+
+                        svg {
+                            color: #059669;
                         }
                     }
+
+                    svg {
+                        position: static;
+                        flex-shrink: 0;
+                        width: 18px;
+                        height: 18px;
+                        color: #64748B;
+
+                        path {
+                            stroke-width: 1.7px;
+                        }
+                    }
+
                     input {
-                        border: none;
-                        box-shadow: none;
-                        height: 38px;
+                        flex: 1;
+                        min-width: 0;
+                        height: 21px;
                         width: 100%;
-                        background: none;
+                        border: none;
+                        border-radius: 0;
+                        box-shadow: none;
+                        padding: 0;
+                        margin: 0;
+                        background: transparent;
                         outline: none;
                         font-size: 14px;
-                        line-height: 20px;
-                        padding: 9px 10px;
+                        line-height: 21px;
+                        color: #64748B;
+
+                        &:focus,
+                        &:focus-visible {
+                            border: none;
+                            box-shadow: none;
+                            outline: none;
+                            background: transparent;
+                        }
 
                         &::placeholder {
-                            color: #4a5564;
+                            color: #64748B;
+                            opacity: 1;
                         }
                     }
                 }
@@ -437,14 +471,25 @@ body.indigo-dark-theme {
                         }
                     }
                     .input-holder {
-                        background: $primary-light-d;
-                        svg {
-                           path {
-                                color: $text-color-d;
-                           }
+                        background: #2d2d2d;
+                        border-color: #404040;
+
+                        &:focus-within {
+                            border-color: #6ee7b7;
+                            background: #2d2d2d;
+                            box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.2);
+
+                            svg {
+                                color: #6ee7b7;
+                            }
                         }
+
                         input {
                             color: $text-color-d;
+
+                            &::placeholder {
+                                color: #888;
+                            }
                         }
                     }
                 }

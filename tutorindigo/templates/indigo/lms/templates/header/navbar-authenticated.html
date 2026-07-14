@@ -5,6 +5,7 @@
 <%namespace name='static' file='../static_content.html' />
 <%namespace file='../main.html' import="login_query" />
 <%!
+from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from openedx.core.djangolib.markup import HTML
@@ -56,7 +57,7 @@ SVG_CLOSE = '</svg>'
       {"title": "My Courses", "url": reverse('dashboard'), "icon": "Home"},
       {"title": "Discover",   "url": "/courses",           "icon": "Search"},
   ])
-  search_url = next((l['url'] for l in nav_links if l.get('icon') == 'Search'), '/courses')
+  search_catalog_url = settings.MFE_CONFIG.get('SEARCH_CATALOG_URL')
 %>
 
 <div class="nav-links">
@@ -78,23 +79,24 @@ SVG_CLOSE = '</svg>'
     </div>
     % endfor
 
+    % if search_catalog_url:
     ## Search — last mainMenu item, matches MFE lw-search-item
     <div class="nav-item lw-search-item hidden-mobile">
       <div class="lw-search-wrapper">
         ${HTML(
-          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"'
-          ' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"'
-          ' stroke-linejoin="round" class="lw-search-icon" aria-hidden="true">'
-          '<path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/>'
-          '<path d="M21 21l-6 -6"/>'
+          '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20"'
+          ' fill="none" class="lw-search-icon" aria-hidden="true">'
+          '<path d="M18.665 18.665L12.665 12.665M0.665039 7.66504C0.665039 8.58429 0.846099 9.49454 1.19788 10.3438C1.54967 11.1931 2.06528 11.9648 2.71529 12.6148C3.3653 13.2648 4.13698 13.7804 4.98626 14.1322C5.83553 14.484 6.74579 14.665 7.66504 14.665C8.58429 14.665 9.49454 14.484 10.3438 14.1322C11.1931 13.7804 11.9648 13.2648 12.6148 12.6148C13.2648 11.9648 13.7804 11.1931 14.1322 10.3438C14.484 9.49454 14.665 8.58429 14.665 7.66504C14.665 6.74579 14.484 5.83553 14.1322 4.98626C13.7804 4.13698 13.2648 3.3653 12.6148 2.71529C11.9648 2.06528 11.1931 1.54967 10.3438 1.19788C9.49454 0.846099 8.58429 0.665039 7.66504 0.665039C6.74579 0.665039 5.83553 0.846099 4.98626 1.19788C4.13698 1.54967 3.3653 2.06528 2.71529 2.71529C2.06528 3.3653 1.54967 4.13698 1.19788 4.98626C0.846099 5.83553 0.665039 6.74579 0.665039 7.66504Z"'
+          ' stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>'
           '</svg>'
         )}
         <input class="lw-search-input" type="search"
                aria-label="${_('Search courses...')}"
                placeholder="${_('Search courses...')}"
-               onkeydown="if(event.key==='Enter'&&this.value.trim()){window.location.href='${search_url}?q='+encodeURIComponent(this.value.trim())}" />
+               onkeydown="if(event.key==='Enter'){var q=this.value.trim();window.location.href='${search_catalog_url}'+(q?'?q='+encodeURIComponent(q):'');}" />
       </div>
     </div>
+    % endif
   </div>
 </div>
 

@@ -132,45 +132,77 @@ header.global-header {
                 margin-left: 0.75rem;
 
                 // Suppress pill highlight on the search nav item
-                &:hover,
-                &:focus-within {
+                &:hover {
                     background: none !important;
                     color: inherit !important;
                 }
 
                 .lw-search-wrapper {
-                    position: relative;
+                    box-sizing: border-box;
                     display: inline-flex;
                     align-items: center;
+                    gap: 8px;
+                    width: 233px;
+                    height: 40px;
+                    padding: 8px 12px;
                     margin-right: 0.5rem;
+                    border-radius: 6px;
+                    border: 1px solid #E2E8F0;
+                    background: #F8FAFC;
+                    transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+
+                    &:focus-within {
+                        border-color: #059669;
+                        background: #fff;
+                        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.16);
+
+                        .lw-search-icon {
+                            color: #059669;
+                        }
+                    }
 
                     .lw-search-icon {
-                        position: absolute;
-                        left: 0.625rem;
-                        width: 1rem;
-                        height: 1rem;
+                        position: static;
+                        flex-shrink: 0;
+                        width: 18px;
+                        height: 18px;
                         color: #64748B;
                         pointer-events: none;
+
+                        path {
+                            stroke-width: 1.7px;
+                        }
                     }
 
                     .lw-search-input {
-                        border-radius: 6px;
-                        border: 1.5px solid #F8FAFC;
-                        padding: 0.375rem 1rem 0.375rem 2.125rem;
-                        font-size: 0.875rem;
-                        color: #374151;
-                        background: #f9fafb;
-                        width: 8rem;
+                        flex: 1;
+                        min-width: 0;
+                        width: auto;
+                        height: 21px;
+                        border: none;
+                        border-radius: 0;
+                        padding: 0;
+                        margin: 0;
+                        background: transparent;
                         outline: none;
-                        transition: border-color 150ms ease, background 150ms ease;
+                        font-size: 14px;
+                        line-height: 21px;
+                        letter-spacing: 0;
+                        color: #64748B;
 
                         &:focus {
-                            border-color: #9ca3af;
-                            background: #fff;
+                            border: none;
+                            background: transparent;
                         }
 
                         &::placeholder {
+                            font-family: inherit;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 21px;
+                            letter-spacing: 0;
                             color: #64748B;
+                            opacity: 1;
                         }
 
                         &::-webkit-search-decoration,
@@ -403,13 +435,28 @@ body.indigo-dark-theme {
                     }
                 }
 
-                .lw-search-item .lw-search-wrapper .lw-search-input {
+                .lw-search-item .lw-search-wrapper {
                     background: #2d2d2d;
-                    border-color: #444;
-                    color: $text-color-d;
+                    border-color: #404040;
 
-                    &::placeholder {
-                        color: #888;
+                    &:focus-within {
+                        border-color: #6ee7b7;
+                        background: #2d2d2d;
+                        box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.2);
+
+                        .lw-search-icon {
+                            color: #6ee7b7;
+                        }
+                    }
+
+                    .lw-search-input {
+                        background: transparent;
+                        border: none;
+                        color: $text-color-d;
+
+                        &::placeholder {
+                            color: #888;
+                        }
                     }
                 }
             }

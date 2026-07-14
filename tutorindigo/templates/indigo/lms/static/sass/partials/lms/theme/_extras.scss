@@ -1846,6 +1846,24 @@ input[type="search"],
   }
 }
 
+// Wrapper-owned search fields — keep border/focus on container, not the input
+header.global-header .lw-search-wrapper .lw-search-input,
+.find-courses .discover-search .input-holder input {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-family: inherit;
+
+  &:focus,
+  &:focus-visible {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+    background: transparent !important;
+  }
+}
+
 // Error state
 .has-error input,
 .field-error input,
@@ -2297,6 +2315,24 @@ input[type="search"],
     border-color: $input-focus-border;
     box-shadow: 0 0 0 3px rgba($input-focus-border, 0.15);
     outline: none;
+  }
+}
+
+// Wrapper-owned search fields — keep border/focus on container, not the input
+header.global-header .lw-search-wrapper .lw-search-input,
+.find-courses .discover-search .input-holder input {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-family: inherit;
+
+  &:focus,
+  &:focus-visible {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+    background: transparent !important;
   }
 }
 
@@ -2753,6 +2789,24 @@ input[type="search"],
     border-color: $input-focus-border;
     box-shadow: 0 0 0 3px rgba($input-focus-border, 0.15);
     outline: none;
+  }
+}
+
+// Wrapper-owned search fields — keep border/focus on container, not the input
+header.global-header .lw-search-wrapper .lw-search-input,
+.find-courses .discover-search .input-holder input {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-family: inherit;
+
+  &:focus,
+  &:focus-visible {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+    background: transparent !important;
   }
 }
 
@@ -3211,6 +3265,24 @@ input[type="search"],
     border-color: $input-focus-border;
     box-shadow: 0 0 0 3px rgba($input-focus-border, 0.15);
     outline: none;
+  }
+}
+
+// Wrapper-owned search fields — keep border/focus on container, not the input
+header.global-header .lw-search-wrapper .lw-search-input,
+.find-courses .discover-search .input-holder input {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-family: inherit;
+
+  &:focus,
+  &:focus-visible {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+    background: transparent !important;
   }
 }
 
