@@ -114,6 +114,7 @@ indigo_styled_mfes = [
     "profile",
     "account",
     "discussions",
+    "authoring",
 ]
 
 for mfe in indigo_styled_mfes:
@@ -134,48 +135,6 @@ hooks.Filters.ENV_PATCHES.add_item(
         "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.0.0'",
     )
 )
-
-# Include js file in lms main.html, main_django.html, and certificate.html
-
-hooks.Filters.ENV_PATCHES.add_items(
-    [
-        # for production
-        (
-            "openedx-common-assets-settings",
-            """
-javascript_files = ['base_application', 'application', 'certificates_wv']
-dark_theme_filepath = ['indigo/js/dark-theme.js']
-
-for filename in javascript_files:
-    if filename in PIPELINE['JAVASCRIPT']:
-        PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
-""",
-        ),
-        # for development
-        (
-            "openedx-lms-development-settings",
-            """
-javascript_files = ['base_application', 'application', 'certificates_wv']
-dark_theme_filepath = ['indigo/js/dark-theme.js']
-
-for filename in javascript_files:
-    if filename in PIPELINE['JAVASCRIPT']:
-        PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
-
-MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
-MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
-""",
-        ),
-        (
-            "openedx-lms-production-settings",
-            """
-MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
-MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
-""",
-        ),
-    ]
-)
-
 
 # Add react components and patches from tutor-indigo
 for path in itertools.chain(
@@ -319,6 +278,41 @@ PLUGIN_SLOTS.add_items(
                 RenderWidget: ToggleThemeButton,
             },
         },
+        """,
+        ),
+    ]
+)
+
+PLUGIN_SLOTS.add_items(
+    [
+        (
+            "authoring",
+            "org.openedx.frontend.layout.studio_header_search_button_slot.v1",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Insert,
+            widget: {
+                priority: 10,
+                id: 'custom_notification_tray_before',
+                type: DIRECT_PLUGIN,
+                RenderWidget: ToggleThemeButton,
+            },
+        },
+        """,
+        ),
+        (
+            "authoring",
+            "org.openedx.frontend.layout.studio_footer.v1",
+            """
+            {
+                op: PLUGIN_OPERATIONS.Insert,
+                widget: {
+                    id: 'read_theme_cookie',
+                    type: DIRECT_PLUGIN,
+                    priority: 2,
+                    RenderWidget: AddDarkTheme,
+                },
+            },
         """,
         ),
     ]

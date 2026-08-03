@@ -1,0 +1,397 @@
+.wrapper-content.wrapper {
+  background: $body-bg-d;
+}
+
+.tooltip {
+  background-color: $primary-d;
+  &:after {
+    color: $primary-d;
+  }
+}
+.xmodule_display.xmodule_ProblemBlock {
+  div.problem-progress {
+    color: $text-color-d;
+  }
+}
+
+.wrapper {
+  .wrapper-xblock {
+    .studio-xblock-wrapper {
+      &.is-selected {
+        border-color: $primary-d;
+        box-shadow: 0 0 3px 3px $primary-d;
+      }
+    }
+    &.level-element {
+      .xblock-render {
+        background: $light-overlay-d;
+      }
+      .xblock-header-primary {
+        background: $light-overlay-d;
+      }
+    }
+    .xblock-header-primary {
+      .header-details {
+        .xblock-display-name {
+          color: $text-color-d;
+        }
+      }
+    }
+    .xblock-render {
+      .xblock {
+        .xblock-render {
+          .xblock {
+            .hd-1,
+            .hd-2,
+            .hd-3,
+            .hd-4,
+            .hd-5,
+            .hd-6,
+            .hd-7,
+            .hd-8 {
+              color: $text-color-d;
+            }
+            a {
+              color: $primary-d;
+              &:focus {
+                box-shadow: inset 0 0 0 2px $primary-d;
+              }
+            }
+          }
+        }
+      }
+    }
+    .wrapper-xblock {
+      .header-actions {
+        .actions-list {
+          .action-item {
+            .action-button {
+              color: $primary-d;
+              &:hover {
+                background-color: $primary-d;
+              }
+              &:focus {
+                color: $primary-d;
+                box-shadow: inset 0 0 0 2px $primary-d;
+              }
+            }
+          }
+        }
+      }
+    }
+    .xblock-header-primary {
+      .header-actions {
+        .nav-dd {
+          .nav-sub {
+            border-color: $text-color-d;
+          }
+        }
+
+        .wrapper-nav-sub {
+          .nav-item {
+            padding: 0;
+            a {
+              color: $text-color-d;
+
+              &:focus {
+                box-shadow: inset 0 0 0 2px $primary-d;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    select {
+      background-color: transparent;
+      color: $text-color-d;
+
+      &:focus {
+        box-shadow: inset 0 0 0 2px $primary-d;
+      }
+    }
+
+    .problem__header {
+      color: $text-color-d;
+    }
+  }
+}
+
+.btn-brand {
+  background-color: $primary-d;
+  border-color: $primary-d;
+  color: $text-color-d;
+
+  &:hover {
+    background-color: darken($primary-d,
+    10%) !important;
+    border-color: $primary-d !important;
+  }
+}
+
+#feedback-container {
+  background: lighten($light-overlay-d,
+  5%);
+}
+
+.emoji-button {
+  background: $light-overlay-d;
+}
+
+#feedback-container {
+  p {
+    color: $text-color-d;
+  }
+}
+[data-init="HtmlBlock"] {
+  p,
+  ul,
+  ol,
+  pre {
+    color: $text-color-d;
+  }
+}
+
+.video {
+  background-color: transparent;
+}
+
+.ui-loading {
+  background: $light-overlay-d;
+  .spin,
+  .copy {
+    color: $primary-d;
+  }
+}
+
+.nav-dd {
+  .nav-sub {
+    background: $drop-down-menu-bg-d;
+  }
+}
+
+.xblock {
+  &.xmodule_display {
+    &.xmodule_ProblemBlock {
+      .problem {
+        .action {
+          .problem-action-btn {
+            background: $primary-d;
+            color: $text-color-d;
+          }
+        }
+        input {
+          background: $body-bg-d;
+          color: $text-color-d;
+          &:focus {
+            border-color: $primary-d;
+          }
+        }
+      }
+      div.problem {
+        .notification {
+          &.problem-hint {
+            background: $body-bg-d;
+            .icon {
+              color: $primary-d;
+            }
+            li[class*="hint-index-"] {
+              color: $text-color-d;
+              strong {
+                color: $primary-d;
+              }
+            }
+          }
+        }
+        div.equation {
+          span.MathJax_SVG {
+            background: none;
+          }
+        }
+      }
+    }
+    &.xmodule_HtmlBlock {
+      h3 {
+        color: $primary-d;
+      }
+      .tabbed-box {
+        .tab-header {
+          background: $primary-d;
+
+          &:after {
+            border-top-width: 73px;
+            border-color: transparent transparent transparent $primary-d;
+          }
+
+          h3 {
+            margin: 0;
+            color: $body-bg-d;
+          }
+        }
+        .tab-content {
+          background: $body-bg-d;
+          box-shadow: inset 0 0 0 2px $primary-d;
+        }
+      }
+
+      .table-demox {
+        tr {
+          th {
+            background: $primary-d;
+            border-color: $primary-d;
+          }
+          td {
+            border-color: $primary-d;
+          }
+        }
+      }
+
+      .best-practice {
+        ul {
+          li {
+            &::before {
+              background: $primary-d;
+              color: $body-bg-d;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-default {
+  color: $primary-d;
+  &:hover,
+  &:focus {
+    border-color: $primary-d;
+  }
+}
+
+.MathJax_SVG {
+  .mjx-svg-mtext {
+    fill: $primary-d;
+  }
+}
+
+.xblock--drag-and-drop {
+  .btn-link {
+    color: $primary-d;
+  }
+  .modal-dismiss-button {
+    color: $text-color-d;
+  }
+  .modal-window {
+    background: $light-overlay-d;
+    .modal-content {
+      background: $body-bg-d;
+    }
+  }
+}
+
+.openassessment {
+  .ui-slidable__container {
+    .ui-slidable {
+      &:not([disabled]) {
+        color: $primary-d;
+      }
+    }
+  }
+  .message {
+    .message__content {
+      color: $text-color-d;
+    }
+  }
+
+  .answer__tip,
+  .answer__label,
+  .answer__points,
+  .answer__points__label {
+    color: $text-color-d !important;
+  }
+  .response__submission__label {
+    color: $primary-d !important;
+  }
+
+  .submission__answer__display__title,
+  .submission__answer__part__prompt__copy {
+    color: $text-color-d;
+  }
+  .step--response {
+    .response__submission {
+      background: $light-overlay-d;
+
+      .action--save,
+      .action--upload,
+      .action--submit,
+      .delete__uploaded__file {
+        background: none;
+        color: $primary-d;
+        border-color: $primary-d;
+
+        &:hover {
+          background: $primary-d;
+          color: $text-color-d;
+        }
+        &:focus {
+          color: $text-color-d;
+          background: none;
+          box-shadow: inset 0 0 0 2px $primary-d;
+        }
+      }
+    }
+  }
+  .openassessment__steps__step {
+    background: $body-bg-d;
+
+    .step__header {
+      .step__label,
+      .step__title .step__counter:before {
+        color: $text-color-d;
+      }
+      .step__deadline {
+        color: $primary-d;
+      }
+    }
+
+    .step__instruction {
+      color: $text-color-d;
+    }
+
+    .step__rubric {
+      background: $light-overlay-d;
+    }
+
+    .submission__answer__part__prompt {
+      background: $body-bg-d;
+    }
+
+    &.is--in-progress {
+      border-top-color: $primary-d;
+      .step__status__value {
+        background-color: $primary-d;
+      }
+    }
+  }
+
+  .action--submit,
+  .action--submit-username {
+    background: $primary-d;
+
+    &:hover,
+    &:focus {
+      background: darken($primary-d, 10%);
+      border-color: darken($primary-d, 10%);
+    }
+  }
+}
+
+div.lti {
+  .wrapper-lti-link {
+    background: none;
+  }
+}
+
+.hint-title {
+  background: none;
+}
