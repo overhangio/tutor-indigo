@@ -19,11 +19,16 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-21.2.1'></a>
+## v21.2.1 (2026-08-04)
+
+- [Bugfix] Fix the mfe_config settings override by using the right patch. (by @arbirali)
+
 <a id='changelog-21.2.0'></a>
 ## v21.2.0 (2026-07-07)
 
 - 💥[Feature] Add theme toggle to the Authoring MFE (by @arbirali)
-- [Bugfix] Apply primary color to activation email (by @Faraz32123)
+- [BugFix] Apply primary color to activation email button & heading. (by @Faraz32123)
 
 <a id='changelog-21.1.3'></a>
 ## v21.1.3 (2026-05-14)
