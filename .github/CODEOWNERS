@@ -1,0 +1,7 @@
+# Code owners for this repository.
+# Listed owners are automatically requested for review when a matching file
+# changes. This also drives reviewer assignment for automated (e.g. Dependabot)
+# workflow PRs.
+# https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+/.github/workflows/ @HammadYousaf01 @Faraz32123
