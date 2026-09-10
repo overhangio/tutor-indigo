@@ -12,7 +12,7 @@ html {
 }
 body, body.view-profile {
   min-height: initial;
-  background-color: #fff;
+  background-color: #fafaf8;
   -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -55,11 +55,11 @@ section.wiki .btn.btn-primary {
 }
 
 %btn-pl-default-base {
-  border-radius: 0;
+  border-radius: 8px;
 }
 
 .btn, .global-header .nav-links .secondary .btn {
-  border-radius: 0;
+  border-radius: 8px;
 }
 
 %t-title {
@@ -68,6 +68,32 @@ section.wiki .btn.btn-primary {
 
 h1, h2, h3, h1 span, h2 span, h3 span, .nav-item {
   font-family: $font-family-title;
+}
+
+// Brand typography is reserved for short UI copy so course reading stays calm.
+.global-header .nav-links,
+.mobile-menu,
+.theme-toggle-button,
+.wrapper-footer .nav-colophon,
+.course-search button,
+.discover-search button,
+.courses-listing .learn-more {
+  font-family: $font-family-brand !important;
+  letter-spacing: 0.015em;
+}
+
+#main .home.style-logout .heading-group h1 {
+  font-family: $font-family-display !important;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.course-heading-area .course-count,
+.courses-listing .course-organization,
+.courses-listing .course-date {
+  font-family: $font-family-accent;
+  letter-spacing: 0.02em;
 }
 
 // It is necessary to specify `:not(.courseware) >` in order to not affect the style

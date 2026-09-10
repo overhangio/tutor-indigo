@@ -1,38 +1,40 @@
 $primary: {{ INDIGO_PRIMARY_COLOR }};
-$primary-light: #F2F7F8;
+$primary-light: #F5F5F2;
 
 // Theme fonts
-$font-family-title: 'Inter', sans-serif;
-$serif: Crimson;
-$f-sans-serif: Crimson, 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+$font-family-title: 'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+$font-family-brand: 'CS Genio Mono', 'IBM Plex Sans', monospace;
+$font-family-display: 'Dx Monstral', 'IBM Plex Sans', sans-serif;
+$font-family-accent: 'Dozed', 'IBM Plex Sans', sans-serif;
+$serif: 'IBM Plex Sans';
+$f-sans-serif: 'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
 // Initialize the Open edX Bootstrap theme
 @import 'edx-bootstrap/sass/open-edx/theme';
 
 
 // Introducing new variables
 
-$dark: #111827;
-$light-dark: #374151;
+$dark: #202222;
+$light-dark: #515452;
 $big-screen: 1200px;
 
 
 
 // Introducing dark-theme variables
 
-$primary-d: #AEC7F6;
-$primary-light-d: #292A2C;
-$gray-light: #E5E7EB;
-$gray-lighter: #c8c8c8;
-$light-dark-d: #374151;
-$text-color-d: #F8F8F8;
-$text-color-primary: #DDDFE2;
-$border-color-d: #777792;
-$light-overlay-d: #36383B;
+$primary-d: #F5F5F2;
+$primary-light-d: #202222;
+$gray-light: #D5D5D0;
+$gray-lighter: #A3A3A0;
+$light-dark-d: #D5D5D0;
+$text-color-d: #F5F5F2;
+$text-color-primary: #D5D5D0;
+$border-color-d: #515452;
+$light-overlay-d: #202222;
 $danger-d: #FFA07A;
 $success-d: #54CF5E;
-$btn-color-d: #112F6B;
-$body-bg-d: #0D0D0E;
+$btn-color-d: #050505;
+$body-bg-d: #0B0B0B;
 
 $instructor-input-border-color: $gray-lighter;
 $light-theme-switch-bg-color: $primary;

@@ -1,5 +1,5 @@
 $primary: {{ INDIGO_PRIMARY_COLOR }};
-$secondary: #F2F7F8;
+$secondary: #F5F5F2;
 
 $blue: $primary !default;
 $m-blue-d1: mix(white, $primary, 5%) !default;
@@ -11,18 +11,18 @@ $m-blue-d6: mix(rgb(42, 134, 226), $primary, 40%) !default;
 
 $uxpl-blue-hover-active: lighten($primary, 7%) !default;
 
-$body-bg-d: #0d0d0e;
-$text-color-d: #f8f8f8;
-$primary-d: #aec7f6;
-$light-overlay-d: #292a2c;
-$drop-down-menu-bg-d: #36383b;
+$body-bg-d: #0b0b0b;
+$text-color-d: #f5f5f2;
+$primary-d: #f5f5f2;
+$light-overlay-d: #202222;
+$drop-down-menu-bg-d: #202222;
 
 $primary-base: $primary;
 
-$serif: 'Inter';
-$f-sans-serif: 'Inter', 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-family-title: 'Inter';
-$font-family-sans-serif: 'Inter', 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+$serif: 'Segoe UI';
+$f-sans-serif: 'Segoe UI', Arial, sans-serif;
+$font-family-title: 'Segoe UI', Arial, sans-serif;
+$font-family-sans-serif: 'Segoe UI', Arial, sans-serif;
 
 // Initialize the Open edX Bootstrap theme
 @import 'edx-bootstrap/sass/open-edx/theme';
