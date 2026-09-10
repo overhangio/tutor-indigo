@@ -19,7 +19,17 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
+        env:
+          TARGET_BRANCH: ${{ github.base_ref || github.ref_name }}
         run: |
+          # On main this plugin requires the upcoming Tutor major version, which
+          # has no PyPI release yet: install Tutor from its main branch first. The
+          # sibling plugins come from their main branches too, with --no-deps, so
+          # that their own Tutor pin cannot pull a released Tutor back over it.
+          if [ "$TARGET_BRANCH" = "main" ]; then
+            pip install "tutor[dev] @ git+https://github.com/overhangio/tutor@main"
+            pip install --no-deps "tutor-mfe @ git+https://github.com/overhangio/tutor-mfe@main"
+          fi
           pip install .[dev]
       - name: Test lint, types, and format
         run: make test

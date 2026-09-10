@@ -25,14 +25,14 @@ classifiers = [
 ]
 dependencies = [
   "tutor-mfe>=22.0.0,<23.0.0", 
-  "tutor>=22.0.0,<23.0.0"
+  "tutor>=23.0.0,<24.0.0"
 ]
 
 dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
-  "tutor[dev]>=22.0.0,<23.0.0",
+  "tutor[dev]>=23.0.0,<24.0.0",
   "ruff",
 ]
 
