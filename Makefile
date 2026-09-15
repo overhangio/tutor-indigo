@@ -26,6 +26,16 @@ format: ## Format code automatically
 fix-lint: ## Fix lint errors automatically
 	ruff check --fix ${SRC_DIRS}
 
+bootstrap-dev: ## Install dev requirements
+	pip install .[dev]
+
+# On the main branch the sibling plugins below report the same version as their PyPI
+# release, so no version specifier can name their main branch and they have to be
+# installed from git. --no-deps keeps their own Tutor pin out of this resolution.
+bootstrap-dev-main: ## Install dev requirements against the plugin main branches
+	pip install --no-deps "tutor-mfe @ git+https://github.com/overhangio/tutor-mfe@main"
+	$(MAKE) bootstrap-dev
+
 changelog-entry: ## Create a new changelog entry.
 	scriv create
 
