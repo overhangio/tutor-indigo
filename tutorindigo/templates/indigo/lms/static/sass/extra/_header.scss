@@ -190,17 +190,73 @@ header.global-header {
         justify-content: end;
         gap: 0.5rem;
 
-        // Bell — matches MFE .custom-header-container .lw-notification-btn
+        // Notifications bell — matches MFE .lw-notification-btn-wrapper
+        .lw-notification-btn-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
         .lw-notification-btn {
             border: 0;
-            background: none;
+            background: transparent;
             padding: 0;
             padding-right: 8px;
-            color: #374151;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             box-shadow: none;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+
+            &:hover,
+            &:focus,
+            &:active {
+                background: transparent;
+                box-shadow: none;
+                outline: none;
+            }
+
+            svg {
+                display: block;
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .lw-notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(25%, -25%);
+            border: 2px solid #fff;
+            font-size: 10px;
+            font-weight: 600;
+            font-variant-numeric: lining-nums tabular-nums;
+            background: $primary;
+            color: #fff;
+            line-height: 20px;
+            min-width: 20px;
+            min-height: 20px;
+            border-radius: 50%;
+            pointer-events: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            &--hidden {
+                display: none;
+            }
+
+            &--wide {
+                min-width: 23px;
+                height: 16px;
+                min-height: 16px;
+                border-radius: 54px;
+                padding-left: 4px;
+                padding-right: 4px;
+            }
         }
 
         // Avatar button
@@ -416,12 +472,20 @@ body.indigo-dark-theme {
 
             .secondary {
                 .lw-notification-btn {
-                    color: $text-color-d;
+                    background: transparent;
 
                     &:hover,
-                    &:focus {
-                        color: #6ee7b7;
+                    &:focus,
+                    &:active {
+                        background: transparent;
+                        color: inherit;
                     }
+                }
+
+                .lw-notification-badge {
+                    border-color: $body-bg-d;
+                    background: $primary-d !important;
+                    color: $btn-color-d;
                 }
 
                 .lw-avatar-btn {
@@ -498,4 +562,582 @@ body.indigo-dark-theme {
             }
         }
     }
+}
+
+// Notifications drawer — mirrors frontend-plugin-notifications/notification.scss
+// ---------------------------------------------------------------------------
+// Shell (live) — drawer chrome, mark-all, empty list container
+// ---------------------------------------------------------------------------
+$lw-notification-font-family: 'Google Sans Flex', sans-serif;
+
+.lw-notifications-drawer__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1040;
+    background-color: #000;
+    opacity: 0;
+    pointer-events: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+
+    &--open {
+        opacity: 0.45;
+        pointer-events: auto;
+        transition-timing-function: ease-out;
+    }
+}
+
+.lw-notifications-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    max-width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    font-family: $lw-notification-font-family;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Off-canvas to the right; open slides onto the viewport (toward the left).
+     * rtl:ignore keeps closed/open transforms at equal specificity if rtlcss runs. */
+    /* rtl:ignore */
+    transform: translateX(100%);
+    visibility: hidden;
+    transition-property: transform, visibility;
+    transition-duration: 250ms;
+    transition-timing-function: ease-in;
+
+    &--open {
+        /* rtl:ignore */
+        transform: translateX(0);
+        visibility: visible;
+        transition-duration: 300ms;
+        transition-timing-function: ease-out;
+    }
+}
+
+.lw-notifications-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 69px;
+    padding: 16px;
+    border-bottom: 1px solid var(--slate-neutral-slate-200, #E2E8F0);
+    background-color: #fff;
+}
+
+.lw-notifications-drawer__heading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.lw-notifications-drawer__heading-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.lw-notifications-drawer__header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.lw-notifications-drawer__title {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: $lw-notification-font-family !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    line-height: 18px !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #1E293B;
+}
+
+.lw-notifications-drawer__count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    margin: 0 0 0 4px !important;
+    padding: 0 !important;
+    border-radius: 999px;
+    background-color: #DC2626;
+    color: #fff;
+    font-family: $lw-notification-font-family !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    font-style: normal !important;
+    font-variant-numeric: lining-nums tabular-nums !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center;
+    gap: 0;
+    // Single-digit glyphs (especially 1) sit optically right in a circle; nudge left.
+    padding-right: 1px !important;
+
+    &--wide {
+        width: auto;
+        min-width: 23px;
+        padding: 0 4px !important;
+    }
+
+    &--hidden {
+        display: none;
+    }
+}
+
+// Use button.selector + !important so LMS globals
+// (body/button { font-family: Rockford !important }, reboot borders, etc.) cannot restyle these.
+button.lw-notifications-drawer__mark-all {
+    box-sizing: border-box !important;
+    min-width: 137px !important;
+    height: 37px !important;
+    border: 0 !important;
+    border-radius: 6px !important;
+    background: #003366 !important;
+    background-color: #003366 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    color: #F8FAFC !important;
+    cursor: pointer;
+    font-family: $lw-notification-font-family !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    line-height: 21px !important;
+    letter-spacing: 0 !important;
+    padding: 8px 12px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px;
+    text-transform: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: #00264d !important;
+        background-color: #00264d !important;
+        background-image: none !important;
+        color: #F8FAFC !important;
+        text-decoration: none !important;
+        box-shadow: none !important;
+        outline: none;
+    }
+}
+
+button.lw-notifications-drawer__close {
+    flex-shrink: 0;
+    box-sizing: border-box !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    border: 0 !important;
+    background: #F1F5F9 !important;
+    background-color: #F1F5F9 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    border-radius: 6px !important;
+    padding: 8px !important;
+    cursor: pointer;
+    color: #1E293B !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: #e2e8f0 !important;
+        background-color: #e2e8f0 !important;
+        background-image: none !important;
+        box-shadow: none !important;
+        outline: none;
+    }
+
+    svg {
+        display: block;
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+    }
+}
+
+.lw-notifications-drawer__list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+}
+
+// ---------------------------------------------------------------------------
+// List (reserved for remount) — cards, empty/load-more states
+// Used when LMS notifications.js renders list items into __list.
+// ---------------------------------------------------------------------------
+
+.lw-notifications-drawer__section {
+    padding: 0;
+}
+
+.lw-notification-card {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 150ms ease;
+
+    &:not(.lw-notification-card--assigned) {
+        margin-bottom: 0.5rem;
+        padding: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.375rem;
+        background-color: #fff;
+
+        &:hover,
+        &:focus {
+            background-color: $primary-light;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        &.lw-notification-card--unread {
+            border-left: 3px solid $primary;
+            background-color: $primary-light;
+        }
+    }
+}
+
+.lw-notification-card--assigned {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 426px;
+    min-height: 179px;
+    margin-bottom: 8px;
+    padding: 0;
+    border: none !important;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #fff;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover,
+    &:focus {
+        background-color: #fff;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .lw-notification-card__accent {
+        flex-shrink: 0;
+        width: 4px;
+        min-height: 179px;
+        align-self: stretch;
+        background-color: #10B981;
+        border-radius: 12px;
+    }
+
+    .lw-notification-card__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        min-width: 0;
+        padding: 24px;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .lw-notification-card__header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+    }
+
+    .lw-notification-card__icon {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+    }
+
+    .lw-notification-card__heading {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $lw-notification-font-family !important;
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        font-style: normal !important;
+        line-height: 18px !important;
+        letter-spacing: 0 !important;
+        color: #1E293B;
+    }
+
+    .lw-notification-card__message {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $lw-notification-font-family !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        font-style: normal !important;
+        line-height: 21px !important;
+        letter-spacing: 0 !important;
+        color: #1E293B;
+    }
+
+    .lw-notification-card__content > span {
+        font-family: $lw-notification-font-family !important;
+        font-size: 12px !important;
+        font-weight: 400 !important;
+        font-style: normal !important;
+        line-height: 18px !important;
+        letter-spacing: 0 !important;
+        color: #475569 !important;
+    }
+
+    .lw-notification-card__timestamp {
+        font-size: 12px !important;
+        font-weight: 400 !important;
+        font-style: normal !important;
+        line-height: 18px !important;
+        letter-spacing: 0.08em !important;
+        color: #475569 !important;
+    }
+}
+
+// Beat LMS reboot/global link styles so list cards mirror MFE (no hover underline).
+.lw-notifications-drawer {
+    h2.lw-notifications-drawer__title {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $lw-notification-font-family !important;
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        font-style: normal !important;
+        line-height: 18px !important;
+        letter-spacing: 0 !important;
+        text-transform: none !important;
+    }
+
+    .lw-notifications-drawer__count-badge {
+        margin: 0 !important;
+        padding: 0 1px 0 0 !important;
+        width: 20px !important;
+        min-width: 20px !important;
+        font-family: $lw-notification-font-family !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        font-style: normal !important;
+        line-height: 1 !important;
+        letter-spacing: 0 !important;
+        font-variant-numeric: lining-nums tabular-nums !important;
+        text-align: center;
+
+        &.lw-notifications-drawer__count-badge--wide {
+            width: auto !important;
+            min-width: 23px !important;
+            padding: 0 4px !important;
+        }
+    }
+
+    a.lw-notification-card {
+        text-decoration: none !important;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none !important;
+            color: inherit;
+        }
+
+        .lw-notification-card__heading,
+        .lw-notification-card__message,
+        .lw-notification-card__content > span,
+        .lw-notification-card__timestamp,
+        .lw-notification-card__legacy-content,
+        .lw-notification-card__legacy-footer {
+            text-decoration: none !important;
+            font-family: $lw-notification-font-family !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .lw-notification-card__heading {
+            font-size: 18px !important;
+            font-weight: 500 !important;
+            line-height: 18px !important;
+            letter-spacing: 0 !important;
+        }
+
+        p.lw-notification-card__message {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            line-height: 21px !important;
+            letter-spacing: 0 !important;
+        }
+
+        .lw-notification-card__content > span,
+        .lw-notification-card__timestamp {
+            font-size: 12px !important;
+            font-weight: 400 !important;
+            line-height: 18px !important;
+            color: #475569 !important;
+        }
+
+        .lw-notification-card__timestamp {
+            letter-spacing: 0.08em !important;
+        }
+    }
+
+    a.lw-notification-card.lw-notification-card--assigned {
+        border: none !important;
+        border-top-right-radius: 12px !important;
+        border-bottom-right-radius: 12px !important;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        box-shadow: none !important;
+        outline: none !important;
+
+        &:hover,
+        &:focus,
+        &:active {
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+            text-decoration: none !important;
+        }
+
+        .lw-notification-card__content {
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+    }
+}
+
+.lw-notification-card__unread-dot {
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $primary;
+}
+
+.lw-notification-card__legacy-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    color: #374151;
+
+    p {
+        margin-bottom: 0;
+    }
+
+    strong,
+    b {
+        color: $primary;
+        font-weight: 600;
+    }
+}
+
+.lw-notification-card__legacy-footer {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.lw-notifications-drawer__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.lw-notifications-drawer__empty-icon {
+    color: $primary;
+}
+
+.lw-notifications-drawer__empty-title {
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $primary;
+}
+
+.lw-notifications-drawer__empty-help {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.lw-notifications-drawer__load-more {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-radius: 0.375rem;
+    background-color: $primary;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        opacity: 0.9;
+    }
+}
+
+.lw-notifications-drawer__loading {
+    text-align: center;
+    color: #6b7280;
+    padding: 1.5rem;
 }

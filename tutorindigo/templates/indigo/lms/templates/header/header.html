@@ -74,6 +74,11 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
     </div>
 </header>
 
+## Inline (not js_extra): page templates like courses.html override js_extra and would drop this script.
+% if user.is_authenticated:
+<script src="${static.url('js/notifications.js')}"></script>
+% endif
+
 % if course:
 <!--[if lte IE 9]>
 <div class="ie-banner" aria-hidden="true">${Text(_('{begin_strong}Warning:{end_strong} Your browser is not fully supported. We strongly recommend using {chrome_link} or {ff_link}.')).format(
