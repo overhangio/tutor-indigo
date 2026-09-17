@@ -117,25 +117,6 @@ indigo_styled_mfes = [
     "authoring",
 ]
 
-for mfe in indigo_styled_mfes:
-    hooks.Filters.ENV_PATCHES.add_items(
-        [
-            (
-                f"mfe-dockerfile-post-npm-install-{mfe}",
-                """
-RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.0.0'
-""",  # noqa: E501
-            ),
-        ]
-    )
-
-hooks.Filters.ENV_PATCHES.add_item(
-    (
-        "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.0.0'",
-    )
-)
-
 # Add react components and patches from tutor-indigo
 for path in itertools.chain(
     glob(
@@ -318,26 +299,36 @@ PLUGIN_SLOTS.add_items(
     ]
 )
 
+# After every change in edly-io/brand-openedx, a new tag must be used to avoid using cached changes
+BRAND_VERSION = "indigo-3.0.0"
+BRAND_CSS_BASE_URL = (
+    f"https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@{BRAND_VERSION}/dist"
+)
+
+
 paragon_theme_urls = {
+    "core": {
+        "urls": {
+            "brandOverride": f"{BRAND_CSS_BASE_URL}/core.min.css",
+        },
+    },
     "variants": {
         "light": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/light.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/light.min.css",
+                "brandOverride": f"{BRAND_CSS_BASE_URL}/light.min.css",
             },
         },
         "dark": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/dark.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/dark.min.css",
-            }
+                "brandOverride": f"{BRAND_CSS_BASE_URL}/dark.min.css",
+            },
         },
-    }
+    },
 }
 
 frontend_base_theme = {
     "core": {
-        "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/core.min.css",
+        "url": f"{BRAND_CSS_BASE_URL}/core.min.css",
     },
     "defaults": {
         "light": "light",
@@ -345,10 +336,10 @@ frontend_base_theme = {
     },
     "variants": {
         "light": {
-            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
+            "url": f"{BRAND_CSS_BASE_URL}/light.min.css",
         },
         "dark": {
-            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
+            "url": f"{BRAND_CSS_BASE_URL}/dark.min.css",
         },
     },
 }
