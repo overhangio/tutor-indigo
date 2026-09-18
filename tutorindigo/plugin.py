@@ -213,27 +213,6 @@ for mfe in indigo_styled_mfes:
   """,
         ),
     )
-    if mfe not in ("learning", "learner-dashboard"):
-        PLUGIN_SLOTS.add_item(
-            (
-                mfe,
-                "desktop_main_menu_slot",
-                """
-                {
-                    op: PLUGIN_OPERATIONS.Hide,
-                    widgetId: 'default_contents',
-                },
-                {
-                    op: PLUGIN_OPERATIONS.Insert,
-                    widget: {
-                        id: 'indigo_header_nav',
-                        type: DIRECT_PLUGIN,
-                        RenderWidget: IndigoHeader,
-                    },
-                },
-        """,
-            )
-        )
     if mfe != "learning":
         PLUGIN_SLOTS.add_item(
             (
