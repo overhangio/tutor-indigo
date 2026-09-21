@@ -1,1 +1,2 @@
 {{- patch("AddDarkTheme.jsx") }}
+{{- patch("IndigoTheme.jsx") }}

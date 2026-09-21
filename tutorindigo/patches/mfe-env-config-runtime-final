@@ -19,10 +19,13 @@ if (config.pluginSlots && config.pluginSlots['logo_slot']) {
 }
 
 if (config.pluginSlots && config.pluginSlots['org.openedx.frontend.layout.footer.v1']) {
-  const footerPluginsToInsert =
-    config.pluginSlots['org.openedx.frontend.layout.footer.v1'].plugins.filter(plugin => plugin.op === 'insert');
+  const indigoFooterWidgetIds = ['indigo_footer', 'read_theme_cookie', 'indigo_user_theme'];
 
-  if (footerPluginsToInsert.length > 2) {
+  const foreignFooterPlugins =
+    config.pluginSlots['org.openedx.frontend.layout.footer.v1'].plugins.filter(
+      plugin => plugin.op === 'insert' && !indigoFooterWidgetIds.includes(plugin.widget?.id));
+
+  if (foreignFooterPlugins.length > 0) {
   config.pluginSlots['org.openedx.frontend.layout.footer.v1'].plugins =
     config.pluginSlots['org.openedx.frontend.layout.footer.v1'].plugins.filter(plugin => {
       if (plugin.op === 'insert') {

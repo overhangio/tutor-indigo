@@ -26,6 +26,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         "WELCOME_MESSAGE": "The place for all your online learning",
         "PRIMARY_COLOR": "#15376D",  # Indigo
         "ENABLE_DARK_TOGGLE": True,
+        "ENABLE_DYNAMIC_THEME": True,
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[]
@@ -63,6 +64,8 @@ hooks.Filters.ENV_PATTERNS_INCLUDE.add_items(
         r"indigo/cms/static/sass/partials/cms/theme/",
     ]
 )
+
+hooks.Filters.MOUNTED_DIRECTORIES.add_item(("openedx", "indigo_theme"))
 
 
 # init script: set theme automatically
@@ -172,6 +175,15 @@ INDIGO_FOOTER_SLOT = (
             RenderWidget: AddDarkTheme,
         },
     },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'indigo_user_theme',
+            type: DIRECT_PLUGIN,
+            priority: 3,
+            RenderWidget: ApplyUserTheme,
+        },
+    },
 """,
 )
 
@@ -185,6 +197,15 @@ INDIGO_FOOTER_COMPAT_SLOT = (
             type: DIRECT_PLUGIN,
             priority: 1,
             RenderWidget: IndigoFooter,
+        },
+    },
+    {
+        op: PLUGIN_OPERATIONS.Insert,
+        widget: {
+            id: 'indigo_user_theme',
+            type: DIRECT_PLUGIN,
+            priority: 2,
+            RenderWidget: ApplyUserTheme,
         },
     },
 """,
@@ -313,9 +334,36 @@ PLUGIN_SLOTS.add_items(
                     RenderWidget: AddDarkTheme,
                 },
             },
+            {
+                op: PLUGIN_OPERATIONS.Insert,
+                widget: {
+                    id: 'indigo_user_theme',
+                    type: DIRECT_PLUGIN,
+                    priority: 3,
+                    RenderWidget: ApplyUserTheme,
+                },
+            },
         """,
         ),
     ]
+)
+
+PLUGIN_SLOTS.add_item(
+    (
+        "account",
+        "org.openedx.frontend.account.additional_profile_fields.v1",
+        """
+        {
+            op: PLUGIN_OPERATIONS.Insert,
+            widget: {
+                id: 'indigo_theme_settings',
+                type: DIRECT_PLUGIN,
+                priority: 50,
+                RenderWidget: ThemeSettings,
+            },
+        },
+        """,
+    )
 )
 
 paragon_theme_urls = {
@@ -371,6 +419,9 @@ FRONTEND_SITE_CONFIG["commonAppConfig"][
 FRONTEND_SITE_CONFIG["commonAppConfig"][
     "INDIGO_FOOTER_NAV_LINKS"
 ] = {{ INDIGO_FOOTER_NAV_LINKS }}
+FRONTEND_SITE_CONFIG["commonAppConfig"][
+    "INDIGO_ENABLE_DYNAMIC_THEME"
+] = {{ INDIGO_ENABLE_DYNAMIC_THEME }}
 """,
     )
 )
