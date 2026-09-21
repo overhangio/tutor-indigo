@@ -30,6 +30,7 @@ Configuration
 - ``INDIGO_PRIMARY_COLOR`` (default: "#3b85ff")
 - ``INDIGO_FOOTER_NAV_LINKS`` (default: ``[{"title": "About", "url": "/about"}, {"title": "Contact", "url": "/contact"}]``)
 - ``INDIGO_ENABLE_DARK_TOGGLE`` (default: True)
+- ``INDIGO_ENABLE_DYNAMIC_THEME`` (default: True)
 - ``INDIGO_BRAND_CSS_BASE_URL`` (default: ``"https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@<version>/dist"``): base URL of the compiled brand-openedx CSS loaded by the MFEs (see `Using your own brand in production`_)
 - ``INDIGO_BRAND_OPENEDX_PATH`` (default: ``""``): path to a local checkout of your brand-openedx repository, used in development mode only (see `Developing the brand-openedx theme`_)
 - ``INDIGO_BRAND_OPENEDX_DEV_PORT`` (default: ``3000``)
@@ -92,6 +93,31 @@ The MFEs load the compiled ``core.min.css``, ``light.min.css`` and ``dark.min.cs
     tutor local restart lms
 
 Any server that serves these files with the ``text/css`` content type and CORS headers works too, such as your own CDN or object storage. Prefer tags over branch names in jsDelivr URLs: jsDelivr caches branches for up to 12 hours, but tags are served immediately and never change.
+
+
+Dynamic theme
+-------------
+
+Every learner can pick their own theme. From the Account settings page, in the "Profile Information" section, users choose an appearance preset (Light or Dark) and, if they want, personalize five core `Paragon <https://github.com/openedx/paragon>`__ colours: primary, primary light, secondary, text and info. The appearance choice is saved as soon as it is picked, while colour changes are previewed live and only stored with the "Save" button. Colours are kept separately for each preset. Preferences are saved per user and applied across the micro-frontends, so they follow the learner from one device to another.
+
+While this feature is enabled the light/dark toggle in the header is hidden, because the appearance preset in the Account settings page replaces it.
+
+The preferences are stored by the ``indigo_theme`` Django app, which is installed into the ``openedx`` image and serves them from ``/api/indigo/v1/theme/``. The presets table is prefilled with the default token values for the light and dark variants by a database migration.
+
+After enabling the plugin, rebuild the images and relaunch the platform so that the app is installed and its migrations are applied::
+
+    tutor images build openedx mfe
+    tutor local launch
+
+Developers working on the Django app can mount their local copy instead of the version installed from git::
+
+    tutor mounts add ./indigo_theme
+
+To disable the feature, run::
+
+    tutor config save --set INDIGO_ENABLE_DYNAMIC_THEME=false
+    tutor images build mfe
+    tutor local start -d
 
 Customization
 -------------

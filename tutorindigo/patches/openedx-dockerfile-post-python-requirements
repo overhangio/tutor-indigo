@@ -1,0 +1,4 @@
+{% if "indigo_theme" not in iter_mounted_directories(MOUNTS, "openedx") %}
+RUN --mount=type=cache,target=/openedx/.cache/pip,sharing=shared \
+    $PIP_COMMAND install "git+https://github.com/overhangio/tutor-indigo.git@release#egg=indigo-theme&subdirectory=indigo_theme"
+{% endif %}
