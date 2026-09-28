@@ -169,18 +169,7 @@ nav.wrapper-preview-menu {
     }
 }
 
-////////////////// Course about page
-.course-info header.course-profile {
-  background: #fff;
-  box-shadow: none;
-  border-bottom: none;
-
-  .intro-inner-wrapper {
-    border: none;
-    box-shadow: none;
-  }
-}
-
+////////////////// Course about page (Course Details styles live in courseware/_about.scss)
 .course-info {
   .container {
     padding-bottom: 0;

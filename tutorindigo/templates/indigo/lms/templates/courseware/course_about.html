@@ -1,23 +1,30 @@
 <%page expression_filter="h"/>
 <%namespace name='static' file='../static_content.html'/>
 <%!
+from django.apps import apps
 from django.utils.translation import gettext as _
 from django.utils.translation import pgettext
 from django.urls import reverse
+from django.utils import timezone
 from lms.djangoapps.courseware.courses import get_course_about_section
-from django.conf import settings
-from common.djangoapps.edxmako.shortcuts import marketing_link
 from openedx.core.djangolib.js_utils import js_escaped_string
-from openedx.core.djangolib.markup import clean_dangerous_html, HTML, Text
-from openedx.core.lib.courses import course_image_url
+from openedx.core.djangolib.markup import clean_dangerous_html, HTML
+
+## Matches DUE_SOON_WINDOW_DAYS in frontend-app-learner-dashboard.
+DUE_SOON_WINDOW_DAYS = 7
+
+AssignmentStatus = CourseAssignment = CourseExtraInfo = None
+if apps.is_installed('course_assignments'):
+    from course_assignments.models import AssignmentStatus, CourseAssignment, CourseExtraInfo
 %>
 
 <%inherit file="../main.html" />
 <%block name="headextra">
-  ## OG (Open Graph) title and description added below to give social media info to display
-  ## (https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags)
   <meta property="og:title" content="${course.display_name_with_default}" />
   <meta property="og:description" content="${get_course_about_section(request, course, 'short_description')}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,400;8..144,500;8..144,700&display=swap" />
 </%block>
 
 <%block name="js_extra">
@@ -37,7 +44,6 @@ from openedx.core.lib.courses import course_image_url
           location.href = xhr.responseText;
         }
       } else if (xhr.status == 403) {
-        // redirect unauthenticated user to the login page
         location.replace("${reverse('signin_user') | n, js_escaped_string}?next=" + encodeURIComponent("${request.path | n, js_escaped_string}"));
       } else {
         $('#register_error').text(
@@ -46,231 +52,350 @@ from openedx.core.lib.courses import course_image_url
       }
     });
 
+    $('.course-details-outline-toggle').on('click', function() {
+      var $section = $(this).closest('.course-details-outline-section');
+      var expanded = $section.hasClass('is-expanded');
+      $section.toggleClass('is-expanded', !expanded);
+      $(this).attr('aria-expanded', !expanded);
+    });
   })(this)
   </script>
-
   <script src="${static.url('js/course_info.js')}"></script>
 </%block>
 
 <%block name="pagetitle">${course.display_name_with_default}</%block>
 
-<section class="course-info about container" id="main">
+<%
+  extra_info = None
+  assignment = None
+  try:
+      if CourseExtraInfo is not None:
+          extra_info = CourseExtraInfo.objects.filter(course_id=course.id).first()
+      if CourseAssignment is not None and user.is_authenticated:
+          assignment = CourseAssignment.objects.filter(course_id=course.id, user=user).first()
+  except Exception:
+      extra_info = None
+      assignment = None
 
-  <%block name="course_about_header">
-  <!-- Course profile header is updated inclusive of course heading and course image. -->
-  <header class="course-profile">
-    <div class="intro-inner-wrapper">
-      <div class="profile-top">
-        % if get_course_about_section(request, course, "video"):
-        <a href="#video-modal" class="media" rel="leanModal">
-          <div class="hero">
-            <img src="${course_image_urls['large']}" alt="" aria-hidden="true" />
-            <div class="play-intro"></div>
-          </div>
-        </a>
-        %else:
-        <div class="media">
-          <div class="hero">
-            <!-- NEW IN INDIGO: Add fallback image in case of no course-image using onerror -->
-            <img src="${course_image_urls['large']}" onerror="this.src='/theming/asset/images/no_course_image.png';" alt="" aria-hidden="true" />
-          </div>
+  provider_name = course.display_org_with_default
+  content_type_label = _("Video")
+  duration_hours = None
+  if extra_info is not None:
+      provider_name = extra_info.get_provider_display()
+      content_type_label = extra_info.get_content_type_display()
+      duration_hours = extra_info.estimated_duration_hours
+  effort = get_course_about_section(request, course, "effort")
+
+  due_date = assignment.due_date if assignment is not None else None
+  is_overdue = bool(due_date and assignment.is_overdue)
+  is_due_soon = bool(
+      due_date and not is_overdue
+      and assignment.status != AssignmentStatus.COMPLETED
+      and (due_date - timezone.now().date()).days <= DUE_SOON_WINDOW_DAYS
+  )
+  due_label = due_date.strftime('%b %d, %Y') if due_date else "\u2014"
+
+  published_label = "\u2014"
+  if not course.start_date_is_still_default:
+      course_start_date = course.advertised_start or course.start
+      if isinstance(course_start_date, str):
+          published_label = course_start_date
+      else:
+          published_label = course_start_date.strftime('%b %d, %Y')
+
+  short_description = get_course_about_section(request, course, "short_description")
+  overview_html = get_course_about_section(request, course, "overview")
+  has_video = bool(get_course_about_section(request, course, "video"))
+
+  hero_title = HTML('<br />').join(course.display_name_with_default.split())
+%>
+
+<section class="course-info course-details-page" id="main">
+
+  <div class="course-details-inner">
+
+    <nav class="course-details-back" aria-label="${_('Course navigation')}">
+      <a href="${reverse('dashboard')}" class="course-details-back-link">
+        <img class="course-details-back-icon" src="${static.url('images/course-about/back.svg')}" alt="" aria-hidden="true" width="24" height="24" />
+        <span class="course-details-back-label">${_("Back")}</span>
+      </a>
+    </nav>
+
+    <header class="course-details-meta">
+      <h1 class="course-details-title">${course.display_name_with_default}</h1>
+
+      <div class="course-details-rating" aria-label="${_('Course rating')}">
+        <img src="${static.url('images/course-about/star.svg')}" alt="" aria-hidden="true" width="24" height="24" />
+        <span class="course-details-rating-value">0.0</span>
+        <span class="course-details-rating-count">(0 ${_("Ratings")})</span>
+      </div>
+
+      <div class="course-details-published">
+        <span class="course-details-published-date">${_("Published")} ${published_label}</span>
+        <span class="course-details-provider">${_("By")} ${provider_name}</span>
+      </div>
+
+      <div class="course-details-stats">
+        <span class="course-details-stat course-details-stat-duration">
+          <img src="${static.url('images/course-about/clock.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+          % if duration_hours:
+          ${duration_hours} ${_("hours est. duration")}
+          % elif effort:
+          ${effort}
+          % else:
+          ${"\u2014"} ${_("est. duration")}
+          % endif
+        </span>
+        <span class="course-details-stat course-details-stat-due">
+          <img src="${static.url('images/course-about/calendar.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+          ${_("Due:")} ${due_label}
+        </span>
+      </div>
+
+      <div class="course-details-tags" role="list">
+        <span class="course-details-tag" role="listitem">
+          <img src="${static.url('images/course-about/video.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+          ${content_type_label}
+        </span>
+        <span class="course-details-tag" role="listitem">
+          <img src="${static.url('images/course-about/gauge.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+          ${_("EASY")}
+        </span>
+        <span class="course-details-tag course-details-tag-muted" role="listitem">${_("UI DESIGN")}</span>
+      </div>
+    </header>
+
+    <aside class="course-details-note" aria-labelledby="course-details-note-heading">
+      <div class="course-details-note-accent" aria-hidden="true"></div>
+      <div class="course-details-note-body">
+        <div class="course-details-note-heading">
+          <img src="${static.url('images/course-about/info.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+          <h2 id="course-details-note-heading">${_("A note before you begin")}</h2>
         </div>
+        <p>${_("The materials in this course are for internal use only and remain the intellectual property of OpsWerks. Do not share, reproduce, or distribute any course content outside the organization in any form. By proceeding to access this course, you acknowledge your responsibility to handle its contents with confidentiality.")}</p>
+      </div>
+    </aside>
+
+    <section class="course-details-hero-block" aria-labelledby="course-details-hero-heading">
+      % if has_video:
+      <a href="#video-modal" class="course-details-hero course-details-hero-link" rel="leanModal">
+      % else:
+      <div class="course-details-hero">
+      % endif
+        <img class="course-details-hero-bg" src="${course_image_urls['large']}" onerror="this.src='${static.url('images/no_course_image.png')}';" alt="" />
+        <div class="course-details-hero-gradient" aria-hidden="true"></div>
+        <div class="course-details-hero-overlay">
+          <p id="course-details-hero-heading" class="course-details-hero-title">${hero_title}</p>
+        </div>
+      % if has_video:
+        <div class="course-details-hero-play" aria-hidden="true"></div>
+      </a>
+      % else:
+      </div>
+      % endif
+
+      % if due_date:
+      <div class="course-details-status-row">
+        <p class="course-details-status-text">
+          % if user.is_authenticated and registered:
+          ${_("You are enrolled in this course.")}
+          % else:
+          ${_("You have not started this course.")}
+          % endif
+          ${_("Course is Due")} ${due_label}
+        </p>
+        % if is_overdue:
+        <span class="course-details-status-badge course-details-status-badge-overdue">${_("Overdue")}</span>
+        % elif is_due_soon:
+        <span class="course-details-status-badge course-details-status-badge-due-soon">${_("Due Soon")}</span>
         % endif
-        <div class="info-profile">
-          <h1>
-            ${course.display_name_with_default}
-          </h1>
-          <span class="org">${course.display_org_with_default}</span>
-        </div>
       </div>
-      <div class="main-cta">
-        %if user.is_authenticated and registered:
-        <span class="register disabled">${_("Already Enrolled")}</span>
-          %if show_courseware_link:
-            <a href="${course_target}">
-          %endif
-          %if show_courseware_link:
-            <strong>${_("View Course")}</strong>
-            </a>
-          %endif
-
-        % elif is_course_full:
-          <span class="register disabled">
-            ${_("Course is full")}
-          </span>
-        % elif invitation_only and not can_enroll:
-          <span class="register disabled">${_("Enrollment in this course is by invitation only")}</span>
-        ## Shib courses need the enrollment button to be displayed even when can_enroll is False,
-        ## because AnonymousUsers cause can_enroll for shib courses to be False, but we need them to be able to click
-        ## so that they can register and become a real user that can enroll.
-        % elif not is_shib_course and not can_enroll:
-        <span class="register closed disabled"><i class="fa fa-lock" aria-hidden="true"></i> ${_("Enrollment is Closed")}</span>
-        %elif allow_anonymous:
-          %if show_courseware_link:
-            <a href="${course_target}">
-            <strong>${_("View Course")}</strong>
-            </a>
-          %endif
-        %else:
-          <%
-            if ecommerce_checkout:
-              reg_href = ecommerce_checkout_link
-            else:
-              reg_href="#"
-            if single_paid_mode:
-              href_class = "add-to-cart"
-            else:
-              href_class = "register"
-          %>
-          <a href="${reg_href}" class="${href_class}">
-            ${_("Enroll Now")}
-          </a>
-          <div id="register_error"></div>
-        %endif
-        </div>
-      </div>
-  </header>
-  </%block>
-
-  <div class="about-content">
-
-    <%block name="course_about_details">
-    <div class="details">
-      % if staff_access and studio_url is not None:
-        <div class="wrap-instructor-info studio-view">
-          <a class="instructor-info-action" href="${studio_url}">${_("View About Page in studio")}</a>
-        </div>
       % endif
 
-      <div class="inner-wrapper">
-        ${clean_dangerous_html(get_course_about_section(request, course, "overview"))}
-      </div>
-    </div>
-    </%block>
-
-    <!-- NEW IN INDIGO sidebar is improved with better icons -->
-
-    <div class="course-sidebar">
-      <div class="course-summary">
-        <h2>Course Summary</h2>
-        <%block name="course_about_important_dates">
-        <ol class="important-dates">
-          <li class="important-dates-item">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L1 9L5 11.18V17.18L12 21L19 17.18V11.18L21 10.09V17H23V9L12 3ZM18.8201 8.99997L12.0001 12.72L5.18007 8.99997L12.0001 5.27997L18.8201 8.99997ZM12 18.72L17 15.99V12.27L12 15L7 12.27V15.99L12 18.72Z" fill="#9CA3AF"/>
-              </svg>
-            <p class="important-dates-item-title">${_("Course Number")}</p><span class="important-dates-item-text course-number">${course.display_number_with_default}</span></li>
-          % if not course.start_date_is_still_default:
-              <%
-                  course_start_date = course.advertised_start or course.start
-              %>
-            <li class="important-dates-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M18 4H19C20.1 4 21 4.9 21 6V20C21 21.1 20.1 22 19 22H5C3.89 22 3 21.1 3 20L3.01 6C3.01 4.9 3.89 4 5 4H6V2H8V4H16V2H18V4ZM5 10V20H19V10H5ZM19 8H5V6H19V8ZM17 13H12V18H17V13Z" fill="#9CA3AF"/>
-                </svg>
-              <p class="important-dates-item-title">${_("Classes Start")}</p>
-              % if isinstance(course_start_date, str):
-                  <span class="important-dates-item-text start-date">${course_start_date}</span>
-              % else:
-                  <%
-                     course_date_string = course_start_date.strftime('%Y-%m-%dT%H:%M:%S%z')
-                  %>
-                  <span class="important-dates-item-text start-date localized_datetime" data-format="shortDate" data-datetime="${course_date_string}" data-language="${LANGUAGE_CODE}"></span>
-              % endif
-            </li>
-          % endif
-            ## We plan to ditch end_date (which is not stored in course metadata),
-            ## but for backwards compatibility, show about/end_date blob if it exists.
-            % if course.end:
-                <%
-                    course_end_date = course.end
-                %>
-
-            <li class="important-dates-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M18 4H19C20.1 4 21 4.9 21 6V20C21 21.1 20.1 22 19 22H5C3.89 22 3 21.1 3 20L3.01 6C3.01 4.9 3.89 4 5 4H6V2H8V4H16V2H18V4ZM5 10V20H19V10H5ZM19 8H5V6H19V8ZM17 13H12V18H17V13Z" fill="#9CA3AF"/>
-                </svg>
-                <p class="important-dates-item-title">${_("Classes End")}</p>
-                  % if isinstance(course_end_date, str):
-                      <span class="important-dates-item-text final-date">${course_end_date}</span>
-                  % else:
-                    <%
-                        course_date_string = course_end_date.strftime('%Y-%m-%dT%H:%M:%S%z')
-                    %>
-                    <span class="important-dates-item-text final-date localized_datetime" data-format="shortDate" data-datetime="${course_date_string}" data-language="${LANGUAGE_CODE}"></span>
-                  % endif
-            </li>
+      <div class="course-details-cta-row">
+        <div class="course-details-cta-primary">
+          %if user.is_authenticated and registered:
+            %if show_courseware_link:
+            <a href="${course_target}" class="course-details-btn course-details-btn-primary">
+              <img src="${static.url('images/course-about/play.svg')}" alt="" aria-hidden="true" width="24" height="24" />
+              <span>${_("View Course")}</span>
+            </a>
+            % else:
+            <span class="course-details-btn course-details-btn-disabled">${_("Already Enrolled")}</span>
             % endif
-
-          % if get_course_about_section(request, course, "effort"):
-            <li class="important-dates-item"><span class="icon fa fa-pencil" aria-hidden="true"></span><p class="important-dates-item-title">${_("Estimated Effort")}</p><span class="important-dates-item-text effort">${get_course_about_section(request, course, "effort")}</span></li>
-          % endif
-
-          ##<li class="important-dates-item"><span class="icon fa fa-clock-o" aria-hidden="true"></span><p class="important-dates-item-title">${_('Course Length')}</p><span class="important-dates-item-text course-length">${_('{number} weeks').format(number=15)}</span></li>
-
-          %if course_price and (is_cosmetic_price_enabled):
-            <li class="important-dates-item">
-              <span class="icon fa fa-money" aria-hidden="true"></span>
-              <p class="important-dates-item-title">${_("Price")}</p>
-              <span class="important-dates-item-text">${course_price}</span>
-            </li>
+          % elif is_course_full:
+            <span class="course-details-btn course-details-btn-disabled">${_("Course is full")}</span>
+          % elif invitation_only and not can_enroll:
+            <span class="course-details-btn course-details-btn-disabled">${_("Enrollment in this course is by invitation only")}</span>
+          % elif not is_shib_course and not can_enroll:
+            <span class="course-details-btn course-details-btn-disabled"><i class="fa fa-lock" aria-hidden="true"></i> ${_("Enrollment is Closed")}</span>
+          %elif allow_anonymous:
+            %if show_courseware_link:
+            <a href="${course_target}" class="course-details-btn course-details-btn-primary">
+              <img src="${static.url('images/course-about/play.svg')}" alt="" aria-hidden="true" width="24" height="24" />
+              <span>${_("View Course")}</span>
+            </a>
+            % endif
+          %else:
+            <%
+              if ecommerce_checkout:
+                reg_href = ecommerce_checkout_link
+              else:
+                reg_href="#"
+              if single_paid_mode:
+                href_class = "add-to-cart"
+              else:
+                href_class = "register"
+            %>
+            <a href="${reg_href}" class="course-details-btn course-details-btn-primary ${href_class}">
+              <img src="${static.url('images/course-about/play.svg')}" alt="" aria-hidden="true" width="24" height="24" />
+              <span>${_("Enroll and Start")}</span>
+            </a>
+            <div id="register_error" class="course-details-register-error"></div>
           %endif
-
-          % if pre_requisite_courses:
-          <% prc_target = reverse('about_course', args=[str(pre_requisite_courses[0]['key'])]) %>
-          <li class="prerequisite-course important-dates-item">
-            <span class="icon fa fa-list-ul" aria-hidden="true"></span>
-            <p class="important-dates-item-title">${_("Prerequisites")}</p>
-            ## Multiple pre-requisite courses are not supported on frontend that's why we are pulling first element
-            <span class="important-dates-item-text pre-requisite"><a href="${prc_target}">${pre_requisite_courses[0]['display']}</a></span>
-            <p class="tip">
-            ${Text(_("You must successfully complete {link_start}{prc_display}{link_end} before you begin this course.")).format(
-              link_start=HTML('<a href="{}">').format(prc_target),
-              link_end=HTML('</a>'),
-              prc_display=pre_requisite_courses[0]['display'],
-            )}
-            </p>
-          </li>
-          % endif
-
-          % if get_course_about_section(request, course, "prerequisites"):
-            <li class="important-dates-item"><span class="icon fa fa-book" aria-hidden="true"></span><p class="important-dates-item-title">${_("Requirements")}</p><span class="important-dates-item-text prerequisites">${get_course_about_section(request, course, "prerequisites")}</span></li>
-          % endif
-        </ol>
-        </%block>
-        <%include file="course_about_sidebar_header.html" />
-    </div>
-
-      ## For now, ocw links are the only thing that goes in additional resources
-      % if get_course_about_section(request, course, "ocw_links"):
-      <div class="additional-resources">
-        <header>
-          <h1>${_("Additional Resources")}</h1>
-      </div>
-
-        <div>
-          ## "MITOpenCourseware" should *not* be translated
-          <h2 class="opencourseware">MITOpenCourseware</h2>
-             ${get_course_about_section(request, course, "ocw_links")}
         </div>
-    </div>
-      %endif
+        <button type="button" class="course-details-btn course-details-btn-secondary">
+          <img src="${static.url('images/course-about/bookmark.svg')}" alt="" aria-hidden="true" width="24" height="24" />
+          <span>${_("Add to list")}</span>
+        </button>
+      </div>
+    </section>
 
-    % if sidebar_html_enabled:
-      % if get_course_about_section(request, course, "about_sidebar_html"):
-        <section class="about-sidebar-html">
-          ${get_course_about_section(request, course, "about_sidebar_html")}
-        </section>
+    <section class="course-details-section" aria-labelledby="course-details-description-heading">
+      <h2 id="course-details-description-heading" class="course-details-section-heading">${_("Description")}</h2>
+      % if short_description:
+      <p class="course-details-body-text">${short_description}</p>
+      % elif overview_html:
+      <div class="course-details-body-text">${clean_dangerous_html(overview_html)}</div>
+      % else:
+      <p class="course-details-body-text">${_("Learn how to use Figma to create professional designs and prototypes.")}</p>
       % endif
-    %endif
-  </div>
+    </section>
+
+    <section class="course-details-section" aria-labelledby="course-details-objectives-heading">
+      <h2 id="course-details-objectives-heading" class="course-details-section-heading">${_("Course Objectives")}</h2>
+      <p class="course-details-body-text">${_("Gain practical knowledge and hands-on experience in using Figma's core tools and features to design user interfaces, build interactive prototypes, and apply modern design workflows for real-world projects.")}</p>
+    </section>
+
+    <section class="course-details-section course-details-outline" aria-labelledby="course-details-outline-heading">
+      <h2 id="course-details-outline-heading" class="course-details-section-heading">${_("Course Outline")}</h2>
+      <div class="course-details-outline-list">
+        <div class="course-details-outline-section is-expanded">
+          <button type="button" class="course-details-outline-toggle" aria-expanded="true">
+            <img src="${static.url('images/course-about/book.svg')}" alt="" aria-hidden="true" width="24" height="24" />
+            <span class="course-details-outline-title">${_("Interface Basics")}</span>
+            <span class="course-details-outline-count">(3 ${_("Lessons")})</span>
+            <img class="course-details-outline-chevron" src="${static.url('images/course-about/chevron.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+          </button>
+          <ul class="course-details-outline-lessons">
+            <li><img src="${static.url('images/course-about/lesson-marker.svg')}" alt="" aria-hidden="true" width="16" height="16" />${_("Navigating Figma")}</li>
+            <li><img src="${static.url('images/course-about/lesson-marker.svg')}" alt="" aria-hidden="true" width="16" height="16" />${_("Creating Frames")}</li>
+            <li><img src="${static.url('images/course-about/lesson-marker.svg')}" alt="" aria-hidden="true" width="16" height="16" />${_("Working with Shapes")}</li>
+          </ul>
+        </div>
+        <div class="course-details-outline-section">
+          <button type="button" class="course-details-outline-toggle" aria-expanded="false">
+            <img src="${static.url('images/course-about/book.svg')}" alt="" aria-hidden="true" width="24" height="24" />
+            <span class="course-details-outline-title">${_("Advanced Features")}</span>
+            <span class="course-details-outline-count">(2 ${_("Lessons")})</span>
+            <img class="course-details-outline-chevron" src="${static.url('images/course-about/chevron.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+          </button>
+          <ul class="course-details-outline-lessons">
+            <li><img src="${static.url('images/course-about/lesson-marker.svg')}" alt="" aria-hidden="true" width="16" height="16" />${_("Components and Variants")}</li>
+            <li><img src="${static.url('images/course-about/lesson-marker.svg')}" alt="" aria-hidden="true" width="16" height="16" />${_("Prototyping Basics")}</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="course-details-section course-details-related" aria-labelledby="course-details-related-heading">
+      <h2 id="course-details-related-heading" class="course-details-section-heading">${_("Related Courses - Mock recommendations · coming soon")}</h2>
+      <div class="course-details-related-grid">
+        <article class="course-details-related-card">
+          <div class="course-details-related-card-hero course-details-related-card-hero--ux">
+            <img class="course-details-related-card-hero-art" src="${static.url('images/course-about/related-hero-ux.png')}" alt="" aria-hidden="true" width="274" height="274" />
+            <p class="course-details-related-card-hero-title">${_("UX Design")}<br />${_("Fundamentals")}</p>
+          </div>
+          <div class="course-details-related-card-body">
+            <div class="course-details-related-card-top">
+              <div class="course-details-related-card-title-block">
+                <div class="course-details-related-card-header">
+                  <h3 class="course-details-related-card-title">${_("UX Design Fundamentals")}</h3>
+                  <span class="course-details-related-rating">
+                    <img src="${static.url('images/course-about/star.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+                    4.5
+                  </span>
+                </div>
+                <p class="course-details-related-provider">${_("By")} SSED</p>
+              </div>
+              <p class="course-details-related-desc">${_("Discover the principles of user experience design and create intuitive, user-friendly interfaces.")}</p>
+              <div class="course-details-related-meta">
+                <span class="course-details-related-tag">${_("Video")}</span>
+                <span class="course-details-related-duration">
+                  <img src="${static.url('images/course-about/clock.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+                  4 ${_("hours")}
+                </span>
+              </div>
+            </div>
+            <div class="course-details-related-card-footer">
+              <div class="course-details-related-progress">
+                <div class="course-details-related-progress-labels">
+                  <span>${_("In Progress")}</span>
+                  <span class="course-details-related-progress-value">35%</span>
+                </div>
+                <div class="course-details-progress-bar"><span style="width: 35%;"></span></div>
+              </div>
+              <div class="course-details-related-actions">
+                <button type="button" class="course-details-btn course-details-btn-primary course-details-btn-sm" disabled aria-disabled="true">
+                  <img src="${static.url('images/course-about/play.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+                  ${_("Resume")}
+                </button>
+                <button type="button" class="course-details-btn course-details-btn-icon" disabled aria-disabled="true" aria-label="${_('Add to list')}">
+                  <img src="${static.url('images/course-about/bookmark.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="course-details-related-card">
+          <div class="course-details-related-card-hero course-details-related-card-hero--design-systems">
+            <img class="course-details-related-card-hero-art" src="${static.url('images/course-about/related-hero-design-systems.png')}" alt="" aria-hidden="true" width="276" height="276" />
+            <p class="course-details-related-card-hero-title">${_("Design")}<br />${_("Systems")}<br />${_("Masterclass")}</p>
+          </div>
+          <div class="course-details-related-card-body">
+            <div class="course-details-related-card-top">
+              <div class="course-details-related-card-title-block">
+                <h3 class="course-details-related-card-title">${_("Design Systems Masterclass")}</h3>
+                <p class="course-details-related-provider">${_("By")} SSED</p>
+              </div>
+              <p class="course-details-related-desc">${_("Learn how to build and maintain comprehensive design systems.")}</p>
+              <div class="course-details-related-meta">
+                <span class="course-details-related-tag">${_("Video")}</span>
+                <span class="course-details-related-duration">
+                  <img src="${static.url('images/course-about/clock.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+                  4 ${_("hours")}
+                </span>
+              </div>
+            </div>
+            <div class="course-details-related-card-footer">
+              <div class="course-details-related-actions">
+                <button type="button" class="course-details-btn course-details-btn-primary course-details-btn-sm" disabled aria-disabled="true">
+                  <img src="${static.url('images/course-about/play.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+                  ${_("Enroll and Start")}
+                </button>
+                <button type="button" class="course-details-btn course-details-btn-icon" disabled aria-disabled="true" aria-label="${_('Add to list')}">
+                  <img src="${static.url('images/course-about/bookmark.svg')}" alt="" aria-hidden="true" width="16" height="16" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
   </div>
-</div>
+</section>
 
-## Need to put this hidden form on the page so that the registration button works.
-## Since it's no harm to display a hidden form, we display it with the most permissive conditional
-## which is when the student is not registered.
 %if active_reg_button or is_shib_course:
   <div style="display: none;">
     <form id="class_enroll_form" method="post" data-remote="true" action="${reverse('change_enrollment')}">
@@ -287,7 +412,3 @@ from openedx.core.lib.courses import course_image_url
 %endif
 
 <%include file="../video_modal.html" />
-
-<%static:require_module_async module_name="js/dateutil_factory" class_name="DateUtilFactory">
-    DateUtilFactory.transform(iterationKey=".localized_datetime");
-</%static:require_module_async>
