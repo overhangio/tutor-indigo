@@ -485,15 +485,20 @@ indigo-brand:
           # Unlike "make build", keep dist/ so that the CSS is served while rebuilding
           FULL_BUILD="npm run build-tokens && npm run build-scss"
           # core.css only, for SCSS changes
-          CORE_BUILD="npx paragon build-scss --corePath ./paragon/core.scss --themesPath /tmp/indigo-no-themes"
+          CORE_BUILD="npx paragon build-scss --corePath ./paragon/core.scss \\
+            --themesPath /tmp/indigo-no-themes"
           if [ -f dist/theme-urls.json ]; then
             sh -c "$$FULL_BUILD" &
           else
             sh -c "$$FULL_BUILD"
           fi
-          npx nodemon --legacy-watch --on-change-only --watch paragon --ignore 'paragon/build/**' --ignore 'paragon/tokens/**' --ext scss,css --exec "$$CORE_BUILD" &
-          npx nodemon --legacy-watch --on-change-only --watch paragon/tokens --ext json --exec "$$FULL_BUILD" &
-          exec npx paragon serve-theme-css -h 0.0.0.0 -p {{ INDIGO_BRAND_OPENEDX_DEV_PORT }}
+          npx nodemon --legacy-watch --on-change-only --watch paragon \\
+            --ignore 'paragon/build/**' --ignore 'paragon/tokens/**' \\
+            --ext scss,css --exec "$$CORE_BUILD" &
+          npx nodemon --legacy-watch --on-change-only --watch paragon/tokens \\
+            --ext json --exec "$$FULL_BUILD" &
+          exec npx paragon serve-theme-css -h 0.0.0.0 \\
+            -p {{ INDIGO_BRAND_OPENEDX_DEV_PORT }}
     ports:
         - "{{ INDIGO_BRAND_OPENEDX_DEV_PORT }}:{{ INDIGO_BRAND_OPENEDX_DEV_PORT }}"
     volumes:
