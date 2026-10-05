@@ -323,14 +323,14 @@ paragon_theme_urls = {
     "variants": {
         "light": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/light.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/light.min.css",
+                "default": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
+                "brandOverride": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
             },
         },
         "dark": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/dark.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/verawood/indigo/dist/dark.min.css",
+                "default": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
+                "brandOverride": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
             }
         },
     }
