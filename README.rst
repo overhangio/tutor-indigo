@@ -30,6 +30,9 @@ Configuration
 - ``INDIGO_PRIMARY_COLOR`` (default: "#3b85ff")
 - ``INDIGO_FOOTER_NAV_LINKS`` (default: ``[{"title": "About", "url": "/about"}, {"title": "Contact", "url": "/contact"}]``)
 - ``INDIGO_ENABLE_DARK_TOGGLE`` (default: True)
+- ``INDIGO_BRAND_OPENEDX_PATH`` (default: ``""``): path to a local checkout of your brand-openedx repository, used in development mode only (see `Developing the brand-openedx theme`_)
+- ``INDIGO_BRAND_OPENEDX_DEV_PORT`` (default: ``3000``)
+- ``INDIGO_BRAND_OPENEDX_DEV_DOCKER_IMAGE`` (default: ``"docker.io/node:22"``)
 
 The ``INDIGO_*`` settings listed above may be modified by running ``tutor config save --set INDIGO_...=...``. For instance, to remove all links from the footer, run::
 
@@ -49,6 +52,32 @@ The theme toggle button is enabled by default when Tutor Indigo is installed. Th
     tutor images build openedx
     tutor local start -d
 
+
+Developing the brand-openedx theme
+----------------------------------
+
+The MFE styles (Paragon design tokens and SCSS overrides) live in a brand-openedx repository. By default, Indigo uses `edly-io/brand-openedx <https://github.com/edly-io/brand-openedx>`__ and the MFEs load its compiled CSS from jsDelivr. To customize the styles, fork that repository (or use your own brand package with the same structure).
+
+To work on a local checkout, point Indigo to it and launch the development environment::
+
+    git clone <brand-openedx-repository-url> /path/to/brand-openedx
+    tutor config save --set INDIGO_BRAND_OPENEDX_PATH=/path/to/brand-openedx
+    tutor dev launch
+
+In development mode, this:
+
+- starts an ``indigo-brand`` container that builds the brand-openedx CSS and serves it at http://localhost:3000 (see ``INDIGO_BRAND_OPENEDX_DEV_PORT``);
+- rebuilds ``core.css`` within a few seconds when you edit the ``paragon/*.scss`` files, and rebuilds all the CSS (about 2 minutes) when you edit the design tokens in ``paragon/tokens/``;
+- makes all MFEs load the theme CSS from http://localhost:3000 instead of GitHub/jsDelivr.
+
+Refresh the page in your browser to see your changes. Build logs are available with ``tutor dev logs -f indigo-brand``. Note that the builds update the ``dist/`` and ``paragon/build/`` folders of your checkout.
+
+Production (``tutor local``, ``tutor k8s``) is not affected by this setting and always loads the CSS from GitHub/jsDelivr. To go back to the remote CSS in development, run::
+
+    tutor config save --unset INDIGO_BRAND_OPENEDX_PATH
+    tutor dev launch
+
+If the ``paragon`` plugin (tutor-contrib-paragon) is enabled, the local brand-openedx CSS takes precedence over its themes in development mode.
 
 Customization
 -------------
