@@ -72,6 +72,9 @@ In development mode, this:
 
 Refresh the page in your browser to see your changes. Build logs are available with ``tutor dev logs -f indigo-brand``. Note that the builds update the ``dist/`` and ``paragon/build/`` folders of your checkout.
 
+.. note::
+    Before committing your brand-openedx changes, wait for the build to finish so that the ``dist/`` folder reflects your edits: a few seconds after editing SCSS files, and around 2 minutes after editing design tokens. You can follow the build progress with ``tutor dev logs -f indigo-brand``.
+
 Production (``tutor local``, ``tutor k8s``) is not affected by this setting and always loads the CSS from GitHub/jsDelivr. To go back to the remote CSS in development, run::
 
     tutor config save --unset INDIGO_BRAND_OPENEDX_PATH
