@@ -67,7 +67,7 @@ To work on a local checkout, point Indigo to it and launch the development envir
 In development mode, this:
 
 - starts an ``indigo-brand`` container that builds the brand-openedx CSS and serves it at http://localhost:3000 (see ``INDIGO_BRAND_OPENEDX_DEV_PORT``);
-- rebuilds ``core.css`` within a few seconds when you edit the ``paragon/*.scss`` files, and rebuilds all the CSS (about 2 minutes) when you edit the design tokens in ``paragon/tokens/``;
+- rebuilds ``core.css`` within a few seconds when you edit the SCSS files in ``paragon/`` or ``themes/``, and rebuilds all the CSS (about 2 minutes) when you edit the design tokens in ``paragon/tokens/``;
 - makes all MFEs load the theme CSS from http://localhost:3000 instead of GitHub/jsDelivr.
 
 Refresh the page in your browser to see your changes. Build logs are available with ``tutor dev logs -f indigo-brand``. Note that the builds update the ``dist/`` and ``paragon/build/`` folders of your checkout.

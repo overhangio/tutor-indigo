@@ -492,7 +492,7 @@ indigo-brand:
           else
             sh -c "$$FULL_BUILD"
           fi
-          npx nodemon --legacy-watch --on-change-only --watch paragon \\
+          npx nodemon --legacy-watch --on-change-only --watch paragon --watch themes \\
             --ignore 'paragon/build/**' --ignore 'paragon/tokens/**' \\
             --ext scss,css --exec "$$CORE_BUILD" &
           npx nodemon --legacy-watch --on-change-only --watch paragon/tokens \\
