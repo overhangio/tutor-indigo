@@ -1,0 +1,1 @@
+- [Improvement] Use brand-openedx `indigo-3.1.1`, which fixes the position of the account menu in the mobile header. (by @arbirali)

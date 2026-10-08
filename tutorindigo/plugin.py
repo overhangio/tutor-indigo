@@ -289,7 +289,7 @@ PLUGIN_SLOTS.add_items(
 )
 
 # After every change in edly-io/brand-openedx, a new tag must be used to avoid using cached changes
-BRAND_VERSION = "indigo-3.0.0"
+BRAND_VERSION = "indigo-3.1.1"
 BRAND_CSS_BASE_URL = (
     f"https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@{BRAND_VERSION}/dist"
 )
