@@ -1,0 +1,1 @@
+- [Improvement] Upgrade the brand-openedx package to `indigo-3.1.1` (mobile header account menu fix), and load the theme CSS from that tag instead of the `verawood/indigo` branch, so that each Indigo release always uses the same, tested brand CSS. (by @arbirali)

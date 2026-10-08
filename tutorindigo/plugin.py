@@ -116,6 +116,18 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
 hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
 
 
+# brand-openedx package used for the MFE styles. To upgrade it, change the tag
+# below: it is used both for the npm package and for the theme CSS URLs.
+BRAND_OPENEDX_REPO = "edly-io/brand-openedx"
+BRAND_OPENEDX_TAG = "indigo-3.1.1"
+BRAND_OPENEDX_NPM_INSTALL = (
+    f"RUN npm install '@edx/brand@github:@{BRAND_OPENEDX_REPO}#{BRAND_OPENEDX_TAG}'"
+)
+BRAND_OPENEDX_CSS_URL = (
+    f"https://cdn.jsdelivr.net/gh/{BRAND_OPENEDX_REPO}@{BRAND_OPENEDX_TAG}/dist"
+)
+
+
 #  MFEs that are styled using Indigo
 indigo_styled_mfes = [
     "learning",
@@ -132,9 +144,7 @@ for mfe in indigo_styled_mfes:
         [
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
-                """
-RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.1.0'
-""",  # noqa: E501
+                f"\n{BRAND_OPENEDX_NPM_INSTALL}\n",
             ),
         ]
     )
@@ -142,7 +152,7 @@ RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.1.0'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.1.0'",
+        BRAND_OPENEDX_NPM_INSTALL,
     )
 )
 
@@ -311,14 +321,14 @@ paragon_theme_urls = {
     "variants": {
         "light": {
             "urls": {
-                "default": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
-                "brandOverride": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
+                "default": f"{BRAND_OPENEDX_CSS_URL}/light.min.css",
+                "brandOverride": f"{BRAND_OPENEDX_CSS_URL}/light.min.css",
             },
         },
         "dark": {
             "urls": {
-                "default": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
-                "brandOverride": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
+                "default": f"{BRAND_OPENEDX_CSS_URL}/dark.min.css",
+                "brandOverride": f"{BRAND_OPENEDX_CSS_URL}/dark.min.css",
             }
         },
     }
@@ -326,7 +336,7 @@ paragon_theme_urls = {
 
 frontend_base_theme = {
     "core": {
-        "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/core.min.css",
+        "url": f"{BRAND_OPENEDX_CSS_URL}/core.min.css",
     },
     "defaults": {
         "light": "light",
@@ -334,10 +344,10 @@ frontend_base_theme = {
     },
     "variants": {
         "light": {
-            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
+            "url": f"{BRAND_OPENEDX_CSS_URL}/light.min.css",
         },
         "dark": {
-            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
+            "url": f"{BRAND_OPENEDX_CSS_URL}/dark.min.css",
         },
     },
 }
