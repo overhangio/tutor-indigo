@@ -1,1 +1,1 @@
-- [Bugfix] Load the legacy MFE theme CSS (`PARAGON_THEME_URLS`) from jsDelivr instead of raw.githubusercontent.com, which serves files as `text/plain` with `nosniff`, so that browsers refused them as stylesheets. (by @rahat-ali)
+- [Bugfix] Load the legacy MFE theme CSS (`PARAGON_THEME_URLS`) from jsDelivr instead of raw.githubusercontent.com, which serves files as `text/plain` with `nosniff`, so that browsers refused them as stylesheets. (by @arbirali)
