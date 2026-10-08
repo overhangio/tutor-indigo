@@ -7,9 +7,14 @@ import typing as t
 from glob import glob
 
 import importlib_resources
-from tutor import hooks
+from tutor import exceptions, hooks
 from tutor.__about__ import __version_suffix__
-from tutormfe.hooks import FRONTEND_COMPAT_SLOTS, MFE_APPS, MFE_ATTRS_TYPE, PLUGIN_SLOTS
+from tutormfe.hooks import (
+    FRONTEND_COMPAT_SLOTS,
+    MFE_APPS,
+    MFE_ATTRS_TYPE,
+    PLUGIN_SLOTS,
+)
 
 from .__about__ import __version__
 
@@ -38,6 +43,10 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
             {"title": "Help", "url": "/help"},
             {"title": "Contact Us", "url": "/contact"},
         ],
+        # Local brand-openedx checkout, used by "tutor dev" only
+        "BRAND_OPENEDX_PATH": "",
+        "BRAND_OPENEDX_DEV_PORT": 3000,
+        "BRAND_OPENEDX_DEV_DOCKER_IMAGE": "docker.io/node:22",
     },
     "unique": {},
     "overrides": {},
@@ -115,6 +124,7 @@ indigo_styled_mfes = [
     "account",
     "discussions",
     "authoring",
+    "catalog",
 ]
 
 # Add react components and patches from tutor-indigo
@@ -185,25 +195,6 @@ INDIGO_DESKTOP_SECONDARY_MENU_SLOT = (
 """,
 )
 
-# Hide the default mobile header (it only shows the logo) and replace it.
-INDIGO_MOBILE_HEADER_SLOT = (
-    "mobile_header_slot",
-    """
-    {
-        op: PLUGIN_OPERATIONS.Hide,
-        widgetId: 'default_contents',
-    },
-    {
-        op: PLUGIN_OPERATIONS.Insert,
-        widget: {
-            id: 'theme_switch_button',
-            type: DIRECT_PLUGIN,
-            RenderWidget: MobileViewHeader,
-        },
-    },
-""",
-)
-
 INDIGO_LOGO_SLOT = (
     "logo_slot",
     """
@@ -225,14 +216,12 @@ INDIGO_LOGO_SLOT = (
 # Frontend-base site compatibility
 FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_FOOTER_COMPAT_SLOT))
 FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_DESKTOP_SECONDARY_MENU_SLOT))
-FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_MOBILE_HEADER_SLOT))
 FRONTEND_COMPAT_SLOTS.add_item(("all", *INDIGO_LOGO_SLOT))
 
 for mfe in indigo_styled_mfes:
     PLUGIN_SLOTS.add_item((mfe, *INDIGO_FOOTER_SLOT))
     if mfe != "learning":
         PLUGIN_SLOTS.add_item((mfe, *INDIGO_DESKTOP_SECONDARY_MENU_SLOT))
-        PLUGIN_SLOTS.add_item((mfe, *INDIGO_MOBILE_HEADER_SLOT))
 
 PLUGIN_SLOTS.add_items(
     [
@@ -375,3 +364,162 @@ def _add_themed_logo(
         PLUGIN_SLOTS.add_item((str(mfe), *INDIGO_LOGO_SLOT))
 
     return mfes
+
+
+PLUGIN_SLOTS.add_items(
+    [
+        (
+            "catalog",
+            "org.openedx.frontend.catalog.home_page.course_card",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Hide,
+            widgetId: 'default_contents',
+        }
+        """,
+        ),
+        (
+            "catalog",
+            "org.openedx.frontend.catalog.home_page.course_card",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Insert,
+            widget: {
+                id: 'indigo-catalog-home-course-card',
+                type: DIRECT_PLUGIN,
+                RenderWidget: (props) => (
+                  <CourseCard {...props} />
+                ),
+            },
+        },
+        """,
+        ),
+        (
+            "catalog",
+            "org.openedx.frontend.catalog.course_catalog_page.data_table.course_card",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Hide,
+            widgetId: 'default_contents',
+        }
+        """,
+        ),
+        (
+            "catalog",
+            "org.openedx.frontend.catalog.course_catalog_page.data_table.course_card",
+            """
+        {
+            op: PLUGIN_OPERATIONS.Insert,
+            widget: {
+                id: 'indigo-catalog-course-card',
+                type: DIRECT_PLUGIN,
+                RenderWidget: (props) => (
+                  <CourseCard {...props} />
+                ),
+            },
+        },
+        """,
+        ),
+    ]
+)
+
+
+################# Local brand-openedx for development
+
+
+def _indigo_brand_path(path: str) -> str:
+    """Resolve INDIGO_BRAND_OPENEDX_PATH to an absolute brand-openedx checkout path."""
+    resolved = os.path.abspath(os.path.expanduser(str(path)))
+    if not os.path.isfile(os.path.join(resolved, "package.json")):
+        raise exceptions.TutorError(
+            f"INDIGO_BRAND_OPENEDX_PATH={path!r} does not point to a brand-openedx "
+            "checkout (no package.json found). Set it to the absolute path of your "
+            "local brand-openedx clone, or unset it with:\n\n"
+            "    tutor config save --unset INDIGO_BRAND_OPENEDX_PATH"
+        )
+    return resolved
+
+
+hooks.Filters.ENV_TEMPLATE_FILTERS.add_item(("indigo_brand_path", _indigo_brand_path))
+
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "local-docker-compose-dev-services",
+        """
+{%- if INDIGO_BRAND_OPENEDX_PATH %}
+indigo-brand:
+    image: "{{ INDIGO_BRAND_OPENEDX_DEV_DOCKER_IMAGE }}"
+    working_dir: /openedx/brand-openedx
+    command:
+        - sh
+        - -c
+        - |
+          set -e
+          npm install --no-audit --no-fund
+          mkdir -p dist /tmp/indigo-no-themes
+          # Unlike "make build", keep dist/ so that the CSS is served while rebuilding
+          FULL_BUILD="npm run build-tokens && npm run build-scss"
+          # core.css only, for SCSS changes
+          CORE_BUILD="npx paragon build-scss --corePath ./paragon/core.scss \\
+            --themesPath /tmp/indigo-no-themes"
+          if [ -f dist/theme-urls.json ]; then
+            sh -c "$$FULL_BUILD" &
+          else
+            sh -c "$$FULL_BUILD"
+          fi
+          npx nodemon --legacy-watch --on-change-only --watch paragon --watch themes \\
+            --ignore 'paragon/build/**' --ignore 'paragon/tokens/**' \\
+            --ext scss,css --exec "$$CORE_BUILD" &
+          npx nodemon --legacy-watch --on-change-only --watch paragon/tokens \\
+            --ext json --exec "$$FULL_BUILD" &
+          exec npx paragon serve-theme-css -h 0.0.0.0 \\
+            -p {{ INDIGO_BRAND_OPENEDX_DEV_PORT }}
+    ports:
+        - "{{ INDIGO_BRAND_OPENEDX_DEV_PORT }}:{{ INDIGO_BRAND_OPENEDX_DEV_PORT }}"
+    volumes:
+        - "{{ INDIGO_BRAND_OPENEDX_PATH|indigo_brand_path }}:/openedx/brand-openedx"
+        # Don't use the host's node_modules
+        - /openedx/brand-openedx/node_modules
+    restart: unless-stopped
+{%- endif %}
+""",
+    )
+)
+
+# Low priority: override the theme URLs set by tutor-mfe and other plugins
+hooks.Filters.ENV_PATCHES.add_item(
+    (
+        "openedx-lms-development-settings",
+        """
+{%- if INDIGO_BRAND_OPENEDX_PATH %}
+_INDIGO_BRAND_URL = "http://localhost:{{ INDIGO_BRAND_OPENEDX_DEV_PORT }}"
+MFE_CONFIG["PARAGON_THEME_URLS"] = {
+    # Legacy MFEs build the brand overrides in; load them at runtime too
+    "core": {"urls": {"brandOverride": f"{_INDIGO_BRAND_URL}/core.css"}},
+    "variants": {
+        variant: {
+            "urls": {
+                "default": f"{_INDIGO_BRAND_URL}/{variant}.css",
+                "brandOverride": f"{_INDIGO_BRAND_URL}/{variant}.css",
+            }
+        }
+        for variant in ("light", "dark")
+    },
+}
+FRONTEND_SITE_CONFIG.setdefault("commonAppConfig", {})
+FRONTEND_SITE_CONFIG["commonAppConfig"]["PARAGON_THEME_URLS"] = MFE_CONFIG[
+    "PARAGON_THEME_URLS"
+]
+FRONTEND_SITE_CONFIG["theme"] = {
+    "core": {"url": f"{_INDIGO_BRAND_URL}/core.css"},
+    "defaults": {"light": "light", "dark": "dark"},
+    "variants": {
+        variant: {"url": f"{_INDIGO_BRAND_URL}/{variant}.css"}
+        for variant in ("light", "dark")
+    },
+}
+{%- endif %}
+""",
+    ),
+    priority=hooks.priorities.LOW,
+)

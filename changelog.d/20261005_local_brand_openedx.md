@@ -1,0 +1,1 @@
+- [Feature] Add `INDIGO_BRAND_OPENEDX_PATH` to develop a local brand-openedx checkout: in `tutor dev`, an `indigo-brand` service builds its CSS, rebuilds it on change and serves it at http://localhost:3000, and the MFEs load the theme CSS from there instead of GitHub/jsDelivr. Production is not affected. (by @arbirali)
