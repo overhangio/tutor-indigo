@@ -23,6 +23,10 @@ if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
 
+# brand-openedx version used for the MFE styles. After every change in
+# edly-io/brand-openedx, a new tag must be used to avoid using cached changes
+BRAND_VERSION = "indigo-3.1.1"
+
 ################# Configuration
 config: t.Dict[str, t.Dict[str, t.Any]] = {
     # Add here your new settings
@@ -43,6 +47,11 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
             {"title": "Help", "url": "/help"},
             {"title": "Contact Us", "url": "/contact"},
         ],
+        # Base URL of the compiled brand-openedx CSS (core, light and dark
+        # .min.css files) loaded by the MFEs
+        "BRAND_CSS_BASE_URL": (
+            f"https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@{BRAND_VERSION}/dist"
+        ),
         # Local brand-openedx checkout, used by "tutor dev" only
         "BRAND_OPENEDX_PATH": "",
         "BRAND_OPENEDX_DEV_PORT": 3000,
@@ -288,29 +297,21 @@ PLUGIN_SLOTS.add_items(
     ]
 )
 
-# After every change in edly-io/brand-openedx, a new tag must be used to avoid
-# using cached changes
-BRAND_VERSION = "indigo-3.1.1"
-BRAND_CSS_BASE_URL = (
-    f"https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@{BRAND_VERSION}/dist"
-)
-
-
 paragon_theme_urls = {
     "core": {
         "urls": {
-            "brandOverride": f"{BRAND_CSS_BASE_URL}/core.min.css",
+            "brandOverride": "{{ INDIGO_BRAND_CSS_BASE_URL }}/core.min.css",
         },
     },
     "variants": {
         "light": {
             "urls": {
-                "brandOverride": f"{BRAND_CSS_BASE_URL}/light.min.css",
+                "brandOverride": "{{ INDIGO_BRAND_CSS_BASE_URL }}/light.min.css",
             },
         },
         "dark": {
             "urls": {
-                "brandOverride": f"{BRAND_CSS_BASE_URL}/dark.min.css",
+                "brandOverride": "{{ INDIGO_BRAND_CSS_BASE_URL }}/dark.min.css",
             },
         },
     },
@@ -318,7 +319,7 @@ paragon_theme_urls = {
 
 frontend_base_theme = {
     "core": {
-        "url": f"{BRAND_CSS_BASE_URL}/core.min.css",
+        "url": "{{ INDIGO_BRAND_CSS_BASE_URL }}/core.min.css",
     },
     "defaults": {
         "light": "light",
@@ -326,10 +327,10 @@ frontend_base_theme = {
     },
     "variants": {
         "light": {
-            "url": f"{BRAND_CSS_BASE_URL}/light.min.css",
+            "url": "{{ INDIGO_BRAND_CSS_BASE_URL }}/light.min.css",
         },
         "dark": {
-            "url": f"{BRAND_CSS_BASE_URL}/dark.min.css",
+            "url": "{{ INDIGO_BRAND_CSS_BASE_URL }}/dark.min.css",
         },
     },
 }
