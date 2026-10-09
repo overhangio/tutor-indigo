@@ -23,6 +23,10 @@ if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
 
+# brand-openedx version used for the MFE styles. After every change in
+# edly-io/brand-openedx, a new tag must be used to avoid using cached changes
+BRAND_VERSION = "indigo-3.1.1"
+
 ################# Configuration
 config: t.Dict[str, t.Dict[str, t.Any]] = {
     # Add here your new settings
@@ -43,6 +47,11 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
             {"title": "Help", "url": "/help"},
             {"title": "Contact Us", "url": "/contact"},
         ],
+        # Base URL of the compiled brand-openedx CSS (core, light and dark
+        # .min.css files) loaded by the MFEs
+        "BRAND_CSS_BASE_URL": (
+            f"https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@{BRAND_VERSION}/dist"
+        ),
         # Local brand-openedx checkout, used by "tutor dev" only
         "BRAND_OPENEDX_PATH": "",
         "BRAND_OPENEDX_DEV_PORT": 3000,
@@ -126,25 +135,6 @@ indigo_styled_mfes = [
     "authoring",
     "catalog",
 ]
-
-for mfe in indigo_styled_mfes:
-    hooks.Filters.ENV_PATCHES.add_items(
-        [
-            (
-                f"mfe-dockerfile-post-npm-install-{mfe}",
-                """
-RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.1.0'
-""",  # noqa: E501
-            ),
-        ]
-    )
-
-hooks.Filters.ENV_PATCHES.add_item(
-    (
-        "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-3.1.0'",
-    )
-)
 
 # Add react components and patches from tutor-indigo
 for path in itertools.chain(
@@ -308,25 +298,28 @@ PLUGIN_SLOTS.add_items(
 )
 
 paragon_theme_urls = {
+    "core": {
+        "urls": {
+            "brandOverride": "{{ INDIGO_BRAND_CSS_BASE_URL }}/core.min.css",
+        },
+    },
     "variants": {
         "light": {
             "urls": {
-                "default": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
-                "brandOverride": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
+                "brandOverride": "{{ INDIGO_BRAND_CSS_BASE_URL }}/light.min.css",
             },
         },
         "dark": {
             "urls": {
-                "default": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
-                "brandOverride": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
-            }
+                "brandOverride": "{{ INDIGO_BRAND_CSS_BASE_URL }}/dark.min.css",
+            },
         },
-    }
+    },
 }
 
 frontend_base_theme = {
     "core": {
-        "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/core.min.css",
+        "url": "{{ INDIGO_BRAND_CSS_BASE_URL }}/core.min.css",
     },
     "defaults": {
         "light": "light",
@@ -334,10 +327,10 @@ frontend_base_theme = {
     },
     "variants": {
         "light": {
-            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/light.min.css",
+            "url": "{{ INDIGO_BRAND_CSS_BASE_URL }}/light.min.css",
         },
         "dark": {
-            "url": "https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@refs/heads/verawood/indigo/dist/dark.min.css",
+            "url": "{{ INDIGO_BRAND_CSS_BASE_URL }}/dark.min.css",
         },
     },
 }
@@ -502,16 +495,11 @@ hooks.Filters.ENV_PATCHES.add_item(
         """
 {%- if INDIGO_BRAND_OPENEDX_PATH %}
 _INDIGO_BRAND_URL = "http://localhost:{{ INDIGO_BRAND_OPENEDX_DEV_PORT }}"
+# Same structure as the production theme URLs, served from the local service
 MFE_CONFIG["PARAGON_THEME_URLS"] = {
-    # Legacy MFEs build the brand overrides in; load them at runtime too
     "core": {"urls": {"brandOverride": f"{_INDIGO_BRAND_URL}/core.css"}},
     "variants": {
-        variant: {
-            "urls": {
-                "default": f"{_INDIGO_BRAND_URL}/{variant}.css",
-                "brandOverride": f"{_INDIGO_BRAND_URL}/{variant}.css",
-            }
-        }
+        variant: {"urls": {"brandOverride": f"{_INDIGO_BRAND_URL}/{variant}.css"}}
         for variant in ("light", "dark")
     },
 }

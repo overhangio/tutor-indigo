@@ -1,0 +1,1 @@
+- [Feature] Add the `INDIGO_BRAND_CSS_BASE_URL` setting, to load the MFE brand CSS from your own brand-openedx fork or CDN in production, without patching the plugin. It defaults to the jsDelivr URL of the brand-openedx tag used by Indigo. (by @arbirali)

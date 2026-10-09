@@ -30,6 +30,7 @@ Configuration
 - ``INDIGO_PRIMARY_COLOR`` (default: "#3b85ff")
 - ``INDIGO_FOOTER_NAV_LINKS`` (default: ``[{"title": "About", "url": "/about"}, {"title": "Contact", "url": "/contact"}]``)
 - ``INDIGO_ENABLE_DARK_TOGGLE`` (default: True)
+- ``INDIGO_BRAND_CSS_BASE_URL`` (default: ``"https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@<version>/dist"``): base URL of the compiled brand-openedx CSS loaded by the MFEs (see `Using your own brand in production`_)
 - ``INDIGO_BRAND_OPENEDX_PATH`` (default: ``""``): path to a local checkout of your brand-openedx repository, used in development mode only (see `Developing the brand-openedx theme`_)
 - ``INDIGO_BRAND_OPENEDX_DEV_PORT`` (default: ``3000``)
 - ``INDIGO_BRAND_OPENEDX_DEV_DOCKER_IMAGE`` (default: ``"docker.io/node:22"``)
@@ -56,7 +57,7 @@ The theme toggle button is enabled by default when Tutor Indigo is installed. Th
 Developing the brand-openedx theme
 ----------------------------------
 
-The MFE styles (Paragon design tokens and SCSS overrides) live in a brand-openedx repository. By default, Indigo uses `edly-io/brand-openedx <https://github.com/edly-io/brand-openedx>`__ and the MFEs load its compiled CSS from jsDelivr. To customize the styles, fork that repository (or use your own brand package with the same structure).
+The MFE styles (Paragon design tokens and SCSS overrides) live in a brand-openedx repository. By default, Indigo uses a tagged version of `edly-io/brand-openedx <https://github.com/edly-io/brand-openedx>`__ and the MFEs load its compiled CSS from jsDelivr. To customize the styles, fork that repository (or use your own brand package with the same structure).
 
 To work on a local checkout, point Indigo to it and launch the development environment::
 
@@ -68,19 +69,29 @@ In development mode, this:
 
 - starts an ``indigo-brand`` container that builds the brand-openedx CSS and serves it at http://localhost:3000 (see ``INDIGO_BRAND_OPENEDX_DEV_PORT``);
 - rebuilds ``core.css`` within a few seconds when you edit the SCSS files in ``paragon/`` or ``themes/``, and rebuilds all the CSS (about 2 minutes) when you edit the design tokens in ``paragon/tokens/``;
-- makes all MFEs load the theme CSS from http://localhost:3000 instead of GitHub/jsDelivr.
+- makes all MFEs load the theme CSS from http://localhost:3000 instead of ``INDIGO_BRAND_CSS_BASE_URL``.
 
 Refresh the page in your browser to see your changes. Build logs are available with ``tutor dev logs -f indigo-brand``. Note that the builds update the ``dist/`` and ``paragon/build/`` folders of your checkout.
 
 .. note::
     Before committing your brand-openedx changes, wait for the build to finish so that the ``dist/`` folder reflects your edits: a few seconds after editing SCSS files, and around 2 minutes after editing design tokens. You can follow the build progress with ``tutor dev logs -f indigo-brand``.
 
-Production (``tutor local``, ``tutor k8s``) is not affected by this setting and always loads the CSS from GitHub/jsDelivr. To go back to the remote CSS in development, run::
+Production (``tutor local``, ``tutor k8s``) is not affected by this setting and always loads the CSS from ``INDIGO_BRAND_CSS_BASE_URL``. To go back to the remote CSS in development, run::
 
     tutor config save --unset INDIGO_BRAND_OPENEDX_PATH
     tutor dev launch
 
 If the ``paragon`` plugin (tutor-contrib-paragon) is enabled, the local brand-openedx CSS takes precedence over its themes in development mode.
+
+Using your own brand in production
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The MFEs load the compiled ``core.min.css``, ``light.min.css`` and ``dark.min.css`` files from ``INDIGO_BRAND_CSS_BASE_URL``. To use your own brand-openedx fork in production, build it, publish its ``dist/`` folder, and point Indigo to it. For instance, after committing ``dist/`` to your fork and pushing a tag::
+
+    tutor config save --set INDIGO_BRAND_CSS_BASE_URL=https://cdn.jsdelivr.net/gh/<your-org>/<your-brand-repo>@<your-tag>/dist
+    tutor local restart lms
+
+Any server that serves these files with the ``text/css`` content type and CORS headers works too, such as your own CDN or object storage. Prefer tags over branch names in jsDelivr URLs: jsDelivr caches branches for up to 12 hours, but tags are served immediately and never change.
 
 Customization
 -------------
@@ -148,20 +159,19 @@ This new template will then be used to render the /donate url.
 Troubleshooting
 ---------------
 
-Can't override styles using Indigo Theme for MFEs
--------------------------------------------------
+Changes to the MFE styles are not applied
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The indigo theme can’t override styles for MFEs directly. It overrides the styles for edx-platform. In case of MFEs, `@edx/brand <https://github.com/openedx/brand-openedx>`_ is used to override the styles. Customize the ``@edx/brand`` package to your preferences and include this customized package in `tutor-indigo` plugin. In this way, styles can be overidden::
+Indigo styles the LMS/CMS pages and the MFEs in two different ways:
 
+- The LMS and CMS pages are styled by the Indigo theme itself (see `Customization`_), including ``INDIGO_PRIMARY_COLOR``. Changes to these files require rebuilding the "openedx" image.
+- The MFEs are styled by the compiled CSS of a brand-openedx repository, which they load at runtime from ``INDIGO_BRAND_CSS_BASE_URL``. Changes to the Indigo theme files and to ``INDIGO_PRIMARY_COLOR`` do not affect the MFEs.
 
-    hooks.Filters.ENV_PATCHES.add_item((
-                "mfe-dockerfile-post-npm-install",
-                """
-    RUN npm install '@edx/brand@npm:custom-brand-package'
-    RUN npm install '@edx/brand@git+https://github.com/username/brand-openedx.git#custom-branch'
-    """,
-            ))
+To change the MFE styles, edit your brand-openedx fork and preview your changes with ``INDIGO_BRAND_OPENEDX_PATH`` (see `Developing the brand-openedx theme`_). Then publish it and point ``INDIGO_BRAND_CSS_BASE_URL`` to it (see `Using your own brand in production`_). There is no need to rebuild the "mfe" image.
 
+Earlier versions of this documentation recommended installing a custom ``@edx/brand`` package in the MFE image with the ``mfe-dockerfile-post-npm-install`` patch. This no longer changes the styles: the MFEs only use that package as a fallback, when the CSS from ``INDIGO_BRAND_CSS_BASE_URL`` cannot be loaded.
+
+If your changes still do not show up, reload the page without the browser cache, and check in the "Network" tab of your browser's developer tools that the ``core.min.css``, ``light.min.css`` and ``dark.min.css`` files are loaded from the URL that you expect. jsDelivr may serve files from a branch URL from its cache for up to 12 hours, so prefer tags.
 
 This Tutor plugin is maintained by Muhammad Faraz Maqsood and Hammad Yousaf from `Edly <https://edly.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
 
