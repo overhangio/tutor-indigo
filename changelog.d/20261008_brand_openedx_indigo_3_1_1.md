@@ -1,1 +1,1 @@
-- [Improvement] Use brand-openedx `indigo-3.1.1`, which fixes the position of the account menu in the mobile header. (by @arbirali)
+- [Improvement] Use brand-openedx `indigo-3.1.1`. It fixes the account menu in the mobile header (it no longer covers the logo and opens next to its trigger), makes the masquerade bar responsive on phones, fixes wrapping in the learning MFE, fixes the masquerade bar and white text colors of the dark theme in frontend-base apps, and adds a dark theme token for the navbar toggler. (by @arbirali)
