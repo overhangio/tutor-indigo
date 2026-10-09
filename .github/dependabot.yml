@@ -1,0 +1,15 @@
+# Version updates run on demand, to keep the number of open pull requests
+# manageable: trigger them from Insights > Dependency graph > Dependabot >
+# "Check for updates". Dependabot has no manual-only schedule, so the
+# semiannual interval below (every six months) is only a fallback.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "semiannually"
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "semiannually"
