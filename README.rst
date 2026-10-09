@@ -159,20 +159,19 @@ This new template will then be used to render the /donate url.
 Troubleshooting
 ---------------
 
-Can't override styles using Indigo Theme for MFEs
--------------------------------------------------
+Changes to the MFE styles are not applied
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The indigo theme can’t override styles for MFEs directly. It overrides the styles for edx-platform. In case of MFEs, `@edx/brand <https://github.com/openedx/brand-openedx>`_ is used to override the styles. Customize the ``@edx/brand`` package to your preferences and include this customized package in `tutor-indigo` plugin. In this way, styles can be overidden::
+Indigo styles the LMS/CMS pages and the MFEs in two different ways:
 
+- The LMS and CMS pages are styled by the Indigo theme itself (see `Customization`_), including ``INDIGO_PRIMARY_COLOR``. Changes to these files require rebuilding the "openedx" image.
+- The MFEs are styled by the compiled CSS of a brand-openedx repository, which they load at runtime from ``INDIGO_BRAND_CSS_BASE_URL``. Changes to the Indigo theme files and to ``INDIGO_PRIMARY_COLOR`` do not affect the MFEs.
 
-    hooks.Filters.ENV_PATCHES.add_item((
-                "mfe-dockerfile-post-npm-install",
-                """
-    RUN npm install '@edx/brand@npm:custom-brand-package'
-    RUN npm install '@edx/brand@git+https://github.com/username/brand-openedx.git#custom-branch'
-    """,
-            ))
+To change the MFE styles, edit your brand-openedx fork and preview your changes with ``INDIGO_BRAND_OPENEDX_PATH`` (see `Developing the brand-openedx theme`_). Then publish it and point ``INDIGO_BRAND_CSS_BASE_URL`` to it (see `Using your own brand in production`_). There is no need to rebuild the "mfe" image.
 
+Earlier versions of this documentation recommended installing a custom ``@edx/brand`` package in the MFE image with the ``mfe-dockerfile-post-npm-install`` patch. This no longer changes the styles: the MFEs only use that package as a fallback, when the CSS from ``INDIGO_BRAND_CSS_BASE_URL`` cannot be loaded.
+
+If your changes still do not show up, reload the page without the browser cache, and check in the "Network" tab of your browser's developer tools that the ``core.min.css``, ``light.min.css`` and ``dark.min.css`` files are loaded from the URL that you expect. jsDelivr may serve files from a branch URL from its cache for up to 12 hours, so prefer tags.
 
 This Tutor plugin is maintained by Muhammad Faraz Maqsood and Hammad Yousaf from `Edly <https://edly.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
 
