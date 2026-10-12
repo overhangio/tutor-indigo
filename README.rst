@@ -169,7 +169,7 @@ Indigo styles the LMS/CMS pages and the MFEs in two different ways:
 
 To change the MFE styles, edit your brand-openedx fork and preview your changes with ``INDIGO_BRAND_OPENEDX_PATH`` (see `Developing the brand-openedx theme`_). Then publish it and point ``INDIGO_BRAND_CSS_BASE_URL`` to it (see `Using your own brand in production`_). There is no need to rebuild the "mfe" image.
 
-Earlier versions of this documentation recommended installing a custom ``@edx/brand`` package in the MFE image with the ``mfe-dockerfile-post-npm-install`` patch. This no longer changes the styles: the MFEs only use that package as a fallback, when the CSS from ``INDIGO_BRAND_CSS_BASE_URL`` cannot be loaded.
+Earlier versions of this documentation recommended installing a custom ``@edx/brand`` package in the MFE image with the ``mfe-dockerfile-post-npm-install`` patch. You should remove this patch: the MFE styles now come from ``INDIGO_BRAND_CSS_BASE_URL``. With the default MFEs, the ``@edx/brand`` package installed in the image is only used as a fallback, when the CSS from ``INDIGO_BRAND_CSS_BASE_URL`` cannot be loaded. However, if you build MFEs from forks or older versions whose stylesheets still import ``@edx/brand``, that package is compiled into the MFE bundles, and the CSS from ``INDIGO_BRAND_CSS_BASE_URL`` only overrides the rules that it also defines: rules from a custom package may then still apply.
 
 If your changes still do not show up, reload the page without the browser cache, and check in the "Network" tab of your browser's developer tools that the ``core.min.css``, ``light.min.css`` and ``dark.min.css`` files are loaded from the URL that you expect. jsDelivr may serve files from a branch URL from its cache for up to 12 hours, so prefer tags.
 
