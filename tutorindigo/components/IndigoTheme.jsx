@@ -332,12 +332,10 @@ const applyCachedTheme = () => {
 
 applyCachedTheme();
 
-subscribe(APP_READY, () => {
-  if (!getConfig().INDIGO_ENABLE_DYNAMIC_THEME) {
-    clearThemeTokens();
-    clearThemeCache();
-  }
-});
+// ApplyUserTheme's effect below already clears the tokens and cache whenever
+// INDIGO_ENABLE_DYNAMIC_THEME is off, and it reads getConfig() at render time,
+// so it needs no APP_READY gate. frontend-base-compat exports neither
+// APP_READY nor subscribe.
 
 let indigoThemeRequest = null;
 
@@ -358,7 +356,6 @@ const fetchUserTheme = () => {
 };
 
 const ApplyUserTheme = () => {
-  const { paragonTheme } = useContext(AppContext);
   const isDynamicThemeEnabled = getConfig().INDIGO_ENABLE_DYNAMIC_THEME;
 
   useEffect(() => {
@@ -379,7 +376,6 @@ const ApplyUserTheme = () => {
         const appliedVariant = document.documentElement.getAttribute('data-paragon-theme-variant');
         if (data.variant && data.variant !== appliedVariant) {
           persistThemeVariant(data.variant);
-          paragonTheme?.setThemeVariant?.(data.variant);
         }
         applyThemeTokens(effectiveTokensFor(data, data.preset));
       })

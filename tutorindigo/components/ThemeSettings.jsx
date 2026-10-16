@@ -154,7 +154,6 @@ const swatchStyle = (color) => ({ backgroundColor: color });
 
 const ThemeSettings = () => {
   const intl = useIntl();
-  const { paragonTheme } = useContext(AppContext);
   const isDynamicThemeEnabled = getConfig().INDIGO_ENABLE_DYNAMIC_THEME;
   const authenticatedUser = getAuthenticatedUser();
   const apiUrl = `${getConfig().LMS_BASE_URL}${INDIGO_THEME_API_PATH}`;
@@ -310,7 +309,6 @@ const ThemeSettings = () => {
     applyThemeTokens(effectiveTokensFor(payload, payload.preset));
     if (payload.variant) {
       persistThemeVariant(payload.variant);
-      paragonTheme?.setThemeVariant?.(payload.variant);
     }
   };
 
@@ -377,7 +375,6 @@ const ThemeSettings = () => {
     updateDraft(nextDraft);
     if (preset?.variant) {
       persistThemeVariant(preset.variant);
-      paragonTheme?.setThemeVariant?.(preset.variant);
     }
     previewDraft(nextDraft);
   };
