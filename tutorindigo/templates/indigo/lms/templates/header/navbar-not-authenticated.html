@@ -24,14 +24,14 @@ from django.utils.translation import gettext as _
   ])
 %>
 
-<nav class="nav-links" aria-label=${_("Supplemental Links")}>
+<nav class="nav-links" id="lw-header-nav" aria-label=${_("Supplemental Links")}>
   <div class="main">
     % for link in nav_links:
       <%
         ## Dropdown entries (children) show as a plain link to their fallback url here
         is_active = not link.get('children') and link['url'] == request.path
       %>
-      <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
+      <div class="nav-item nav-tab">
         <a class="${'active ' if is_active else ''}tab-nav-link"
            href="${link['url']}"
            aria-current="${'page' if is_active else 'false'}">
@@ -46,11 +46,11 @@ from django.utils.translation import gettext as _
     <div class="btn-holder">
       % if allows_login:
         % if allow_public_account_creation and not disable_register_button:
-          <div class="mobile-nav-item hidden-mobile nav-item">
+          <div class="nav-item">
             <a class="register-btn btn" href="/register${login_query()}">${_("Register for free")}</a>
           </div>
         % endif
-        <div class="mobile-nav-item hidden-mobile nav-item">
+        <div class="nav-item">
           <a class="sign-in-btn btn" href="/login${login_query()}">${_("Sign in")}</a>
         </div>
       % endif

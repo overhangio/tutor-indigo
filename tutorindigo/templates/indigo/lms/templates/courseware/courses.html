@@ -3,134 +3,136 @@
   import json
   from django.conf import settings
   from django.utils.translation import gettext as _
-  from openedx.core.djangolib.js_utils import js_escaped_string, dump_js_escaped_json
+  from openedx.core.djangolib.js_utils import js_escaped_string
 %>
 <%inherit file="../main.html" />
 <%
   course_discovery_enabled = settings.FEATURES.get('ENABLE_COURSE_DISCOVERY')
+  search_catalog_url = getattr(settings, 'SEARCH_CATALOG_URL', '/search') or '/search'
+  ## Only http(s) or a site path ("/search"): escaping does not stop a javascript: URL in an href.
+  if not search_catalog_url.lower().startswith(('https://', 'http://', '/')) or search_catalog_url.startswith('//'):
+    search_catalog_url = '/search'
+
+  ## Card "Share to Facebook / Twitter": the same settings the learner dashboard gets from its
+  ## init API (SOCIAL_SHARING_SETTINGS DASHBOARD_FACEBOOK / DASHBOARD_TWITTER, brand, UTM params).
+  ## Off by default; if edx-platform moves this helper, sharing just stays hidden.
+  try:
+    from lms.djangoapps.learner_home.views import get_social_share_settings
+    share_config = {
+      site: {
+        'isEnabled': bool(config.get('is_enabled')),
+        'socialBrand': config.get('brand') or settings.PLATFORM_NAME,
+        'utmParams': config.get('utm_params') or '',
+      }
+      for site, config in get_social_share_settings().items()
+    }
+  except Exception:
+    share_config = {}
+
+  ## Learning Library tabs (key, label). The ?tab= one renders active, so the first paint
+  ## already matches what lw-courses-tabs.js loads (no tab or heading jump).
+  library_tabs = [
+    ('continue', _("Continue Learning")),
+    ('assigned', _("Assigned Courses")),
+    ('suggested', _("Suggested")),
+    ('new', _("New Courses")),
+    ('mylist', _("My List")),
+  ]
+  active_tab = request.GET.get('tab', 'continue')
+  if active_tab not in dict(library_tabs):
+    active_tab = 'continue'
+  active_heading = dict(library_tabs)[active_tab]
 %>
 
 <%namespace name='static' file='../static_content.html'/>
 <%block name="js_extra">
   <script type="text/javascript" src="${static.url('common/js/vendor/bootstrap.bundle.js')}"></script>
+  ## Course cards: byline / chips / badges use Google Sans Code (same id as the learner dashboard).
+  <link id="lw-google-sans-code-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;700&display=swap" />
+  <script type="text/javascript" src="${static.url('js/lw-course-cards.js')}"></script>
+  <script type="text/javascript" src="${static.url('js/lw-course-rating.js')}"></script>
+  <script type="text/javascript" src="${static.url('js/lw-course-unenroll.js')}"></script>
+  <script type="text/javascript" src="${static.url('js/lw-courses-tabs.js')}"></script>
   % if course_discovery_enabled:
-  <%
-    search_catalog_url = getattr(settings, 'SEARCH_CATALOG_URL', '/search')
-  %>
+  ## Old /courses?search_query=… links (e.g. the homepage search form) go to the search page.
   <script type="text/javascript">
     (function () {
       var searchUrl = "${search_catalog_url | n, js_escaped_string}";
-      var params = new URLSearchParams(window.location.search);
-      var searchQuery = params.get('search_query');
+      var searchQuery = new URLSearchParams(window.location.search).get('search_query');
       if (searchQuery && searchQuery.trim()) {
-        window.location.replace(
-          searchUrl + '?q=' + encodeURIComponent(searchQuery.trim())
-        );
-        return;
+        window.location.replace(searchUrl + '?q=' + encodeURIComponent(searchQuery.trim()));
       }
-
-      document.addEventListener('DOMContentLoaded', function () {
-        var form = document.querySelector('#discovery-form form');
-        if (!form) {
-          return;
-        }
-        form.addEventListener('submit', function (event) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          var input = document.getElementById('discovery-input');
-          var query = input ? input.value.trim() : '';
-          if (query) {
-            window.location.href = searchUrl + '?q=' + encodeURIComponent(query);
-          }
-        }, true);
-      });
     }());
   </script>
   % endif
 </%block>
-% if course_discovery_enabled:
-<%block name="header_extras">
-  % for template_name in ["course_card", "filter_bar", "filter", "facet", "facet_option"]:
-  <script type="text/template" id="${template_name}-tpl">
-      <%static:include path="discovery/${template_name}.underscore" />
-  </script>
-  % endfor
-  <%static:require_module module_name="js/discovery/discovery_factory" class_name="DiscoveryFactory">
-    DiscoveryFactory(
-      ${course_discovery_meanings | n, dump_js_escaped_json},
-      getParameterByName('search_query'),
-      "${user_language | n, js_escaped_string}",
-      "${user_timezone | n, js_escaped_string}",
-      ${set_default_filter | n, dump_js_escaped_json}
-    );
-  </%static:require_module>
-</%block>
-% endif
 
 <%block name="pagetitle">${_("Courses")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
+    <!-- Courses banner (Figma 1469:4329). Full-bleed, so it sits outside .find-courses (max-width 1600px). -->
+    <section class="lw-courses-banner" aria-labelledby="lw-courses-banner-title"
+             style="--lw-courses-banner-image: url('${static.url('images/courses-banner.png')}');">
+      <div class="lw-courses-banner__inner">
+        <h1 id="lw-courses-banner-title" class="lw-courses-banner__title">${_("Expand Your Skills")}</h1>
+        <p class="lw-courses-banner__subtitle">${_("Discover new courses and advance your career with expert-led training")}</p>
+      </div>
+    </section>
     <section class="find-courses">
       <section class="courses-container">
-        <!-- NEW IN INDIGO Heading was added. -->
-        <div class="course-heading-area">
-          <h2>Unlock Your Potential: Discover New Courses Today!</h2>
-          <p>Explore a world of knowledge and enhance your skills with our diverse range of courses</p>
-        </div>
-        <!-- NEW IN INDIGO Modified search bar and filters. -->
-        % if course_discovery_enabled:
-          <div class="saerch-bar-discover">
-            <div class="dropdown filter-block">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M2 3C2 2.44772 2.44772 2 3 2H13C13.5523 2 14 2.44772 14 3V4.25245C14 4.51767 13.8946 4.77202 13.7071 4.95956L9.62623 9.04044C9.43869 9.22798 9.33333 9.48233 9.33333 9.74755V11.3333L6.66667 14V9.74755C6.66667 9.48233 6.56131 9.22798 6.37377 9.04044L2.29289 4.95956C2.10536 4.77202 2 4.51767 2 4.25245V3Z" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Filters</span>
-                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.7071 7.29289L9.99999 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68341 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z" fill="#9CA3AF"/>
-                  </svg>
-              </a>
-              <div class="dropdown-menu search-facets-lists" aria-labelledby="dropdownMenuLink">
-                  <aside aria-label="${_('Refine Your Search')}" class="search-facets phone-menu">
-                    <h2 class="header-search-facets">${_('Refine Your Search')}</h2>
-                    <section class="search-facets-lists">
-                    </section>
-                  </aside>
-              </div>
-            </div>
-            <div class="discover-search">
-            <div id="discovery-form" role="search" aria-label="course" class="wrapper-search-context">
-              <form class="wrapper-search-input">
-                <label for="discovery-input" class="sr">${_('Search for a course')}</label>
-                <div class="input-holder">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <path d="M18.665 18.665L12.665 12.665M0.665039 7.66504C0.665039 8.58429 0.846099 9.49454 1.19788 10.3438C1.54967 11.1931 2.06528 11.9648 2.71529 12.6148C3.3653 13.2648 4.13698 13.7804 4.98626 14.1322C5.83553 14.484 6.74579 14.665 7.66504 14.665C8.58429 14.665 9.49454 14.484 10.3438 14.1322C11.1931 13.7804 11.9648 13.2648 12.6148 12.6148C13.2648 11.9648 13.7804 11.1931 14.1322 10.3438C14.484 9.49454 14.665 8.58429 14.665 7.66504C14.665 6.74579 14.484 5.83553 14.1322 4.98626C13.7804 4.13698 13.2648 3.3653 12.6148 2.71529C11.9648 2.06528 11.1931 1.54967 10.3438 1.19788C9.49454 0.846099 8.58429 0.665039 7.66504 0.665039C6.74579 0.665039 5.83553 0.846099 4.98626 1.19788C4.13698 1.54967 3.3653 2.06528 2.71529 2.71529C2.06528 3.3653 1.54967 4.13698 1.19788 4.98626C0.846099 5.83553 0.665039 6.74579 0.665039 7.66504Z"
-                      stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <input id="discovery-input" class="discovery-input" placeholder="${_('Explore course')}" type="text"/>
-                </div>
-                <div class="button-holder">
-                  <button type="submit" class="button postfix discovery-submit" title="${_('Search')}">
-                    Search
-                  </button>
-                </div>
-              </form>
-              <div id="discovery-message" class="search-status-label"></div>
-            </div>
-            <div id="filter-bar" class="filters hide-phone is-collapsed">>
-            </div>
-          </div>
-        </div>
-      % endif
 
-        <div class="course-holder courses${'' if course_discovery_enabled else ' no-course-discovery'}" role="region" aria-label="${_('List of Courses')}">
-          <ul class="courses-listing courses-list">
-            %for course in courses:
-            <li class="courses-listing-item">
-              <%include file="../course.html" args="course=course" />
+        <!-- Learning Library (Figma 662:236): tabs + section + empty state -->
+        <div class="lw-courses-tabs" role="tablist" aria-label="${_('Course collections')}">
+          % for tab_key, tab_label in library_tabs:
+          <button type="button" class="lw-courses-tabs__tab${' lw-courses-tabs__tab--active' if tab_key == active_tab else ''}" role="tab"
+                  id="lw-tab-${tab_key}" aria-selected="${'true' if tab_key == active_tab else 'false'}"
+                  tabindex="${'0' if tab_key == active_tab else '-1'}" aria-controls="lw-courses-panel"
+                  data-tab="${tab_key}" data-heading="${tab_label}">
+            ${tab_label}
+          </button>
+          % endfor
+        </div>
+
+        <h2 class="lw-courses-section-title" id="lw-courses-section-title" tabindex="-1">${active_heading}</h2>
+        <div class="course-holder courses lw-courses-library no-course-discovery" role="tabpanel"
+             id="lw-courses-panel" aria-labelledby="lw-courses-section-title"
+             data-discover-url="${search_catalog_url}"
+             data-share-settings="${json.dumps(share_config)}"
+             data-username="${user.username if user.is_authenticated else ''}"
+             aria-busy="true">
+          ## Shown by lw-courses-tabs.js once the tab's API response says it is empty.
+          <div class="lw-courses-empty" data-lw-library="empty" hidden>
+            <h3 class="lw-courses-empty__title" data-lw-empty="title">${_("No ongoing courses.")}</h3>
+            <p class="lw-courses-empty__body" data-lw-empty="body">${_("Browse available courses to find what interests you!")}</p>
+            <a class="lw-courses-empty__cta" data-lw-empty="cta" href="${search_catalog_url}">
+              <span class="lw-icon lw-icon--book-open" aria-hidden="true"></span>
+              <span data-lw-empty="cta-label">${_("Discover Courses")}</span>
+            </a>
+          </div>
+          <p class="lw-courses-library__message" data-lw-library="message" hidden></p>
+          ## Loading skeleton until the first response (same markup as skeletonHtml() in
+          ## lw-courses-tabs.js).
+          <ul class="courses-listing courses-list" id="lw-courses-listing">
+            % for skeleton_slot in range(3):
+            <li class="courses-listing-item lw-course-skeleton-item" aria-hidden="true">
+              <div class="lw-course-card lw-course-card--skeleton">
+                <div class="lw-course-card__image"></div>
+                <div class="lw-course-card__body">
+                  <span class="lw-skeleton lw-skeleton--title"></span>
+                  <span class="lw-skeleton lw-skeleton--text"></span>
+                  <span class="lw-skeleton lw-skeleton--text lw-skeleton--short"></span>
+                  <span class="lw-skeleton lw-skeleton--button"></span>
+                </div>
+              </div>
             </li>
-            %endfor
+            % endfor
           </ul>
+          <div class="lw-courses-pagination" data-lw-library="pagination" hidden>
+            <p class="lw-courses-pagination__summary" data-lw-pagination="summary" aria-live="polite"></p>
+            <nav class="lw-courses-pagination__pages" aria-label="${_('Course pages')}">
+              <ul class="lw-courses-pagination__list" data-lw-pagination="pages"></ul>
+            </nav>
+          </div>
         </div>
       </section>
     </section>

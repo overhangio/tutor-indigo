@@ -22,6 +22,10 @@ ICON_PATHS = {
         '<path stroke="none" d="M0 0h24v24H0z" fill="none"/>'
         '<path d="M8 16l2 -6l6 -2l-2 6l-6 2"/>'
         '<path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/>'
+        '<path d="M12 3l0 2"/>'
+        '<path d="M12 19l0 2"/>'
+        '<path d="M3 12l2 0"/>'
+        '<path d="M19 12l2 0"/>'
     ),
     'LibraryBooks': (
         '<path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/>'
@@ -94,7 +98,25 @@ HELP_SVG = (
   search_url = getattr(settings, 'SEARCH_CATALOG_URL', '/search')
 %>
 
-<div class="nav-links">
+## Help icon dropdown — mirrors the MFE header HEADER_HELP_LINKS menu. Rendered in the
+## bar (>= 1024px) and at the end of the compact menu panel (< 1024px), like the MFE.
+<%def name="help_menu(variant, links)">
+  <div class="lw-nav-dropdown lw-help-menu lw-help-menu--${variant}">
+    <button type="button" class="lw-nav-dropdown__toggle lw-help-menu__toggle"
+            aria-expanded="false" aria-controls="lw-help-menu-${variant}" aria-label="${_('Help')}">
+      ${HTML(HELP_SVG)}
+      <span class="lw-help-label">${_('Help')}</span>
+      ${HTML(CHEVRON_SVG)}
+    </button>
+    <div class="lw-nav-dropdown__menu" id="lw-help-menu-${variant}">
+      % for child in links:
+      <a class="lw-nav-dropdown__item" href="${child['url']}">${_(child['title'])}</a>
+      % endfor
+    </div>
+  </div>
+</%def>
+
+<div class="nav-links" id="lw-header-nav">
   <div class="main navigation-link">
     % for link in nav_links:
     <%
@@ -103,11 +125,11 @@ HELP_SVG = (
     %>
     % if link.get('children'):
     ## Dropdown (e.g. Browse) — mirrors the MFE header type: 'menu' item
-    <div class="hidden-mobile nav-item nav-tab lw-nav-dropdown">
+    <div class="nav-item nav-tab lw-nav-dropdown">
       <button type="button" class="tab-nav-link lw-nav-item lw-nav-dropdown__toggle"
               aria-expanded="false" aria-controls="lw-nav-dropdown-${loop.index}">
         ${icon_svg}
-        <span>${_(link['title'])}</span>
+        <span class="lw-nav-label" data-label="${_(link['title'])}">${_(link['title'])}</span>
         ${HTML(CHEVRON_SVG)}
       </button>
       <div class="lw-nav-dropdown__menu" id="lw-nav-dropdown-${loop.index}">
@@ -116,30 +138,27 @@ HELP_SVG = (
         % endfor
       </div>
     </div>
-    ## Flat copies for the LMS mobile menu (header.js clones .mobile-nav-item)
-    % for child in link['children']:
-    <div class="mobile-nav-item lw-mobile-only nav-item">
-      <a href="${child['url']}">${_(child['title'])}</a>
-    </div>
-    % endfor
     % else:
     <%
       is_active = (link['url'] == request.path or
                    request.path.startswith(link['url'].rstrip('/') + '/'))
     %>
-    <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
+    <div class="nav-item nav-tab">
       <a class="${'active ' if is_active else ''}tab-nav-link lw-nav-item"
          href="${link['url']}"
-         aria-current="${'page' if is_active else 'false'}">
+         % if is_active:
+         aria-current="page"
+         % endif
+         >
         ${icon_svg}
-        <span>${_(link['title'])}</span>
+        <span class="lw-nav-label" data-label="${_(link['title'])}">${_(link['title'])}</span>
       </a>
     </div>
     % endif
     % endfor
 
     ## Search — last mainMenu item, matches MFE lw-search-item
-    <div class="nav-item lw-search-item hidden-mobile">
+    <div class="nav-item lw-search-item">
       <div class="lw-search-wrapper">
         ${HTML(
           '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"'
@@ -155,29 +174,16 @@ HELP_SVG = (
                onkeydown="if(event.key==='Enter'&&this.value.trim()){window.location.href='${search_url}?q='+encodeURIComponent(this.value.trim())}" />
       </div>
     </div>
+
+    % if help_links:
+    ${help_menu('panel', help_links)}
+    % endif
   </div>
 </div>
 
 <div class="secondary d-flex align-items-center">
   % if help_links:
-  ## Help icon dropdown — mirrors the MFE header HEADER_HELP_LINKS menu
-  <div class="lw-nav-dropdown lw-help-menu hidden-mobile">
-    <button type="button" class="lw-nav-dropdown__toggle lw-help-menu__toggle"
-            aria-expanded="false" aria-controls="lw-help-menu" aria-label="${_('Help')}">
-      ${HTML(HELP_SVG)}
-      ${HTML(CHEVRON_SVG)}
-    </button>
-    <div class="lw-nav-dropdown__menu" id="lw-help-menu">
-      % for child in help_links:
-      <a class="lw-nav-dropdown__item" href="${child['url']}">${_(child['title'])}</a>
-      % endfor
-    </div>
-  </div>
-  % for child in help_links:
-  <div class="mobile-nav-item lw-mobile-only nav-item">
-    <a href="${child['url']}">${_(child['title'])}</a>
-  </div>
-  % endfor
+  ${help_menu('bar', help_links)}
   % endif
   ## Notifications bell + drawer — mirrors MFE HeaderNotificationsSlot
   <div class="lw-notification-btn-wrapper" id="lw-notifications-root">

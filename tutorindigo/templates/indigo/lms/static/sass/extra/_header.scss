@@ -1,13 +1,26 @@
 // Include custom header
-// Header geometry + nav colours mirror the MFE header (frontend-component-header
-// src/index.scss), which follows the OpenLMS Figma navbar frame.
+// Mirrored by frontend-component-header src/index.scss — keep in sync:
+// pills #D9F9E7 / #43946C, 65/40 bar, 233px search, 1024 compact breakpoint,
+// Help bar toggle 8px pad, desktop grid 1fr auto 1fr (separate compile; no shared pkg).
 $lw-header-font-family: 'Google Sans Flex', sans-serif;
 $lw-header-height: 65px;
 $lw-header-item-height: 40px;
 $lw-nav-color: #1E293B;
-$lw-nav-pill-bg: #D9EFE8;
-$lw-nav-pill-color: #009368;
+$lw-nav-pill-bg: #D9F9E7;
+$lw-nav-pill-color: #43946C;
 $lw-nav-pill-radius: 6px;
+$lw-header-divider: #E2E8F0; // Slate 200
+$lw-header-focus-ring: 0 0 0 3px rgba(5, 150, 105, 0.16); // same ring as the search box
+$lw-search-width: 233px;
+// Compact header below 1024px — same breakpoint as the MFE header (Header.jsx DESKTOP_MIN_WIDTH)
+$lw-header-compact-max: 1023.98px;
+$lw-header-phone-max: 575.98px;
+
+// Same gutter the learner-dashboard header reserves, so the bar does not jump
+// by the scrollbar width when moving between LMS pages and MFEs.
+html {
+    scrollbar-gutter: stable;
+}
 
 body {
     .nav-skip {
@@ -36,6 +49,10 @@ body {
 }
 
 header.global-header {
+    // Match the MFE header so the same label measures the same width on macOS.
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
     // Whole header uses Google Sans Flex (linked in header.html), like the MFE header.
     // !important + every descendant: LMS globals force Rockford on body/button.
     &,
@@ -55,12 +72,18 @@ header.global-header {
     }
 
     .main-header {
-        display: flex;
+        // Equal side columns centre the nav on the bar, matching the prototype
+        // (logo | nav group | actions). Centring inside the leftover gap sat the
+        // pills a few pixels left of that frame.
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
+        gap: 24px;
         min-height: $lw-header-height;
     }
 
     .header-logo {
+        justify-self: start;
         margin: 0;
         flex-shrink: 0;
 
@@ -95,15 +118,20 @@ header.global-header {
     }
 
     .nav-links {
-        flex: 1;
+        justify-self: center;
         display: flex;
         align-items: center;
         height: 100%;
         justify-content: center;
 
         .main {
+            // Hug the pills and the fixed-width search. The grid column then sits on
+            // the centre of the bar, which is where the prototype places them.
             display: flex;
+            flex: 0 0 auto;
             align-items: center;
+            justify-content: flex-start;
+            width: max-content;
             margin: 0;
             gap: 20px;
 
@@ -129,6 +157,7 @@ header.global-header {
                     color: $lw-nav-color;
                     border-bottom: none;
                     text-decoration: none;
+                    white-space: nowrap;
                     transition: background 150ms ease, color 150ms ease;
 
                     // Hover keeps the regular weight; only the colours change
@@ -174,6 +203,9 @@ header.global-header {
             .lw-search-item {
                 display: inline-flex;
                 align-items: center;
+                // Prototype search is a fixed-width pill in the centred nav group.
+                flex: 0 0 $lw-search-width;
+                width: $lw-search-width;
                 margin: 0;
 
                 // Suppress pill highlight on the search nav item
@@ -190,7 +222,7 @@ header.global-header {
                     display: inline-flex;
                     align-items: center;
                     gap: 8px;
-                    width: 233px;
+                    width: 100%;
                     height: 40px;
                     padding: 8px 12px;
                     margin: 0;
@@ -201,7 +233,7 @@ header.global-header {
 
                     &:focus-within {
                         background: #fff;
-                        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.16);
+                        box-shadow: $lw-header-focus-ring;
 
                         .lw-search-icon {
                             color: #059669;
@@ -282,6 +314,7 @@ header.global-header {
             border-radius: $lw-nav-pill-radius;
             background: none;
             color: $lw-nav-color;
+            white-space: nowrap;
             cursor: pointer;
             transition: background 150ms ease, color 150ms ease;
             // Undo LMS global <button> styles (navy fill, inset shadow, text-shadow)
@@ -375,7 +408,12 @@ header.global-header {
 
             .lw-help-menu__toggle {
                 gap: 8px;
+                height: $lw-header-item-height;
+                // Icon + chevron only. Labeled pills use 8px 12px; that extra
+                // 4px on each side made this control 68px and sat the icon
+                // left of the MFE header and the prototype.
                 padding: 8px;
+                box-sizing: border-box;
             }
 
             .lw-help-icon {
@@ -388,15 +426,26 @@ header.global-header {
                 left: auto;
                 right: 0;
             }
+
+            // Icon-only in the bar; label stays for the compact menu panel
+            .lw-help-label {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+            }
+        }
+
+        // The panel copy of Help only exists for the compact header
+        &.lw-help-menu--panel {
+            display: none;
         }
     }
 
-    // Mobile-only flat copies of dropdown links; header.js clones them into .mobile-menu
-    .lw-mobile-only {
-        display: none !important;
-    }
-
     .secondary {
+        justify-self: end;
         margin: 0;
         position: relative;
         justify-content: end;
@@ -431,13 +480,19 @@ header.global-header {
             outline: none;
             -webkit-appearance: none;
             appearance: none;
+            transition: background 150ms ease;
 
             &:hover,
             &:focus,
             &:active {
-                background: transparent;
                 box-shadow: none;
                 outline: none;
+            }
+
+            // Same pill highlight as the nav links and the MFE header bell
+            &:hover,
+            &:focus-visible {
+                background: $lw-nav-pill-bg;
             }
 
             svg {
@@ -592,59 +647,54 @@ header.global-header {
         }
     }
 
-    .hamburger-menu {
-        height: 17px;
-        width: 20px;
-        left: 15px;
-        top: 18px;
-        background: none;
+    // Compact header menu button (header.html); hidden on desktop. 40px pill like the
+    // MFE header .icon-button. Undo LMS global <button> styles (navy fill, shadows).
+    .lw-menu-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: $lw-header-item-height;
+        height: $lw-header-item-height;
+        padding: 8px;
+        margin: 0;
         border: 0;
-        padding: 0;
+        border-radius: $lw-nav-pill-radius;
+        background: transparent;
+        background-image: none;
         box-shadow: none;
+        text-shadow: none;
+        color: $lw-nav-color;
+        cursor: pointer;
+        transition: background 150ms ease, color 150ms ease;
 
-        .line {
-            height: 2px;
-
-            &:nth-child(2),
-            &:nth-child(3) {
-                top: 6px;
-            }
-
-            &:nth-child(4) {
-                top: 12px;
-            }
+        &:focus,
+        &:active {
+            background-image: none;
+            box-shadow: none;
+            text-shadow: none;
+            outline: none;
         }
-    }
-}
 
-.global-header .mobile-menu .mobile-nav-link.lw-mobile-only {
-    display: block !important;
-}
+        &:focus {
+            background: transparent;
+        }
 
-.mobile-menu {
-    position: absolute;
-    left: 0;
-    top: 54px;
-    z-index: 9999;
-    margin: 0;
-    border: none;
-    border-bottom: 2px solid $primary;
-    width: 100%;
+        &:hover,
+        &:focus-visible,
+        &[aria-expanded="true"] {
+            background: $lw-nav-pill-bg;
+            color: $lw-nav-pill-color;
+        }
 
-    .mobile-nav-link {
-        a {
-            font-weight: normal;
-            padding: 16px;
-            font-size: 14px;
-            line-height: 20px;
-            color: $light-dark;
-            border: none;
+        &:focus-visible {
+            box-shadow: $lw-header-focus-ring;
+        }
 
-            &:hover,
-            &.active {
-                background: $primary-light;
-                color: $dark;
-            }
+        svg {
+            display: block;
+            width: 24px;
+            height: 24px;
         }
     }
 }
@@ -668,30 +718,6 @@ body.indigo-dark-theme {
 
     .window-wrap {
         background: $body-bg-d;
-    }
-
-    .mobile-menu {
-        position: absolute;
-        left: 0;
-        top: 54px;
-        z-index: 9999;
-        margin: 0;
-        border: none;
-        border-bottom: 2px solid $primary;
-        width: 100%;
-
-        .mobile-nav-link {
-            a {
-                background: #454545;
-                color: $text-color-d;
-
-                &:hover,
-                &.active {
-                    background: #323232;
-                    color: $text-color-d;
-                }
-            }
-        }
     }
 
     header.global-header .lw-nav-dropdown {
@@ -786,9 +812,8 @@ body.indigo-dark-theme {
                 }
 
                 &:hover,
-                &:focus,
-                &:active {
-                    background: transparent;
+                &:focus-visible {
+                    background: rgba(209, 250, 229, 0.15);
                     color: inherit;
                 }
             }
@@ -840,9 +865,14 @@ body.indigo-dark-theme {
             }
         }
 
-        .hamburger-menu {
-            .line {
-                background: $text-color-d;
+        .lw-menu-toggle {
+            color: $text-color-d;
+
+            &:hover,
+            &:focus-visible,
+            &[aria-expanded="true"] {
+                background: rgba(209, 250, 229, 0.15);
+                color: #6ee7b7;
             }
         }
     }
@@ -875,6 +905,327 @@ body.indigo-dark-theme {
                     }
                 }
             }
+        }
+    }
+}
+
+// ─── Compact header (< 1024px) — mirrors the MFE header's compact layout ────────
+// Menu | logo | bell + account. .nav-links (#lw-header-nav) turns into a full-width panel
+// under the bar, opened by .lw-menu-toggle (header.html sets .lw-menu-open); the account
+// menu opens as a matching panel. Pure media queries, so it follows live resizes.
+@media (max-width: $lw-header-compact-max) {
+    @media (max-width: 991.98px) {
+        .window-wrap {
+            padding-top: $lw-header-height;
+        }
+    }
+
+    header.global-header {
+        background: #fff;
+
+        // Below lg the header would be in normal flow. .window-wrap is overflow:hidden,
+        // which breaks position:sticky, so pin it and pad the wrap by the bar height.
+        @media (max-width: 991.98px) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 200;
+        }
+
+        .header-container {
+            padding-left: 24px;
+            padding-right: 24px;
+
+            @media (max-width: $lw-header-phone-max) {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+
+        // Panels span the full header width, so nothing in between may anchor them
+        .header-container,
+        .main-header {
+            position: static;
+        }
+
+        // Equal outer columns keep the logo centred whatever sits on the right
+        .main-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 8px;
+        }
+
+        .lw-menu-toggle {
+            display: inline-flex;
+            grid-column: 1;
+            justify-self: start;
+        }
+
+        .header-logo {
+            grid-column: 2;
+            min-width: 0;
+
+            a .logo,
+            a .logo-white {
+                max-width: 100%;
+                object-fit: contain;
+
+                @media (max-width: $lw-header-phone-max) {
+                    height: 26px;
+                }
+            }
+        }
+
+        .secondary {
+            grid-column: 3;
+            justify-self: end;
+            // Panels anchor to the header, not the icon group
+            position: static;
+            gap: 4px;
+
+            // Help moves into the menu panel
+            .lw-help-menu--bar {
+                display: none;
+            }
+
+            .lw-user-dropdown {
+                position: static;
+            }
+
+            // Account menu: full-width panel under the bar, rows like the menu panel
+            .dropdown-user-menu {
+                left: 0;
+                right: 0;
+                top: 100%;
+                width: auto;
+                min-width: 0;
+                margin: 0;
+                padding: 12px 24px 16px;
+                border-top: 1px solid $lw-header-divider;
+                border-radius: 0;
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
+
+                @media (max-width: $lw-header-phone-max) {
+                    padding: 12px 12px 16px;
+                }
+
+                .dropdown-item a {
+                    display: flex;
+                    align-items: center;
+                    min-height: 48px;
+                    padding: 0 12px;
+                    font-size: 16px;
+                    line-height: 24px;
+                    white-space: normal;
+
+                    &:hover,
+                    &:focus-visible {
+                        background: $lw-nav-pill-bg;
+                        color: $lw-nav-pill-color;
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        // ─── Menu panel ─────────────────────────────────────────────────────
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            flex-direction: column;
+            align-items: stretch;
+            height: auto;
+            max-height: calc(100vh - #{$lw-header-height});
+            max-height: calc(100dvh - #{$lw-header-height});
+            overflow-y: auto;
+            padding: 12px 24px 16px;
+            background: #fff;
+            border-top: 1px solid $lw-header-divider;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
+
+            @media (max-width: $lw-header-phone-max) {
+                padding: 12px 12px 16px;
+            }
+
+            .main {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+
+                .nav-tab {
+                    display: block;
+                    width: 100%;
+
+                    // Rows: desktop pill colours, 48px touch targets
+                    a {
+                        display: flex;
+                        width: 100%;
+                        height: auto;
+                        min-height: 48px;
+                        gap: 12px;
+                        padding: 0 12px;
+                        font-size: 16px;
+                        line-height: 24px;
+                        white-space: normal;
+
+                        &:focus-visible {
+                            background: $lw-nav-pill-bg;
+                            color: $lw-nav-pill-color;
+                            outline: none;
+                        }
+                    }
+
+                    &.lw-nav-dropdown a.lw-nav-dropdown__item {
+                        display: flex;
+                        align-items: center;
+                        min-height: 44px;
+                        padding: 0 12px;
+                        font-size: 15px;
+                        line-height: 22px;
+                    }
+                }
+
+                // Search goes first and spans the panel
+                .lw-search-item {
+                    order: -1;
+                    display: block;
+                    flex: none;
+                    min-width: 0;
+                    margin-bottom: 8px;
+
+                    .lw-search-wrapper {
+                        width: 100%;
+                        height: 48px;
+                    }
+
+                    .lw-search-input,
+                    .lw-search-input::placeholder {
+                        font-size: 16px; // 16px stops iOS zooming on focus
+                    }
+                }
+            }
+
+            // Logged-out: Register / Sign in sit under the links
+            .secondary {
+                flex-direction: column;
+                align-items: stretch;
+                justify-self: auto;
+                margin-top: 8px;
+                padding-top: 8px;
+                border-top: 1px solid $lw-header-divider;
+
+                .btn-holder,
+                .btn {
+                    width: 100%;
+                }
+            }
+        }
+
+        &.lw-menu-open .nav-links {
+            display: flex;
+        }
+
+        // Dropdowns (Browse, Help) expand in place; chevron turns while open
+        .nav-links .lw-nav-dropdown {
+            display: block;
+            width: 100%;
+
+            .lw-nav-dropdown__toggle {
+                width: 100%;
+                height: auto;
+                min-height: 48px;
+                gap: 12px;
+                padding: 0 12px;
+                font-size: 16px;
+                line-height: 24px;
+                text-align: left;
+
+                &:focus-visible {
+                    background: $lw-nav-pill-bg;
+                    color: $lw-nav-pill-color;
+                    box-shadow: none;
+                    outline: none;
+                }
+
+                .lw-nav-chevron {
+                    width: 16px;
+                    height: 16px;
+                    margin-left: auto;
+                    transition: transform 150ms ease;
+                }
+            }
+
+            &.is-open .lw-nav-chevron {
+                transform: rotate(180deg);
+            }
+
+            .lw-nav-dropdown__menu {
+                position: static;
+                width: auto;
+                min-width: 0;
+                margin: 0;
+                padding: 4px 0 4px 36px; // under the label, past the 24px icon + 12px gap
+                background: transparent;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .lw-nav-dropdown__item {
+                display: flex;
+                align-items: center;
+                min-height: 44px;
+                padding: 0 12px;
+                font-size: 15px;
+                line-height: 22px;
+                white-space: normal;
+
+                &:focus-visible {
+                    box-shadow: $lw-header-focus-ring;
+                    outline: none;
+                }
+            }
+        }
+
+        // Help (panel copy) sits below the main links, with its label
+        .nav-links .lw-nav-dropdown.lw-help-menu--panel {
+            display: block;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid $lw-header-divider;
+
+            .lw-help-label {
+                position: static;
+                width: auto;
+                height: auto;
+                overflow: visible;
+                clip: auto;
+            }
+        }
+    }
+
+    body.indigo-dark-theme header.global-header {
+        background: $body-bg-d;
+
+        .nav-links,
+        .secondary .dropdown-user-menu {
+            background: $body-bg-d;
+            border-top-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .nav-links .lw-nav-dropdown .lw-nav-dropdown__menu {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .nav-links .lw-nav-dropdown.lw-help-menu--panel,
+        .nav-links .secondary {
+            border-top-color: rgba(255, 255, 255, 0.12);
         }
     }
 }

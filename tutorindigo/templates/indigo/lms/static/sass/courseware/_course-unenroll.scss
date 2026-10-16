@@ -1,0 +1,132 @@
+// Unenroll dialog on /courses (js/lw-course-unenroll.js): the learner dashboard
+// UnenrollConfirmModal (confirm -> reason survey -> finished). Frame from .lw-dialog in
+// _course-dialog.scss. !important on button paint: the LMS global <button>/<input> styles
+// otherwise win.
+
+.lw-unenroll-dialog {
+    max-width: 32rem;
+
+    .lw-dialog__header {
+        padding: 1.5rem 1.5rem 0;
+    }
+
+    .lw-dialog__title {
+        font-size: 1.25rem;
+        text-align: left;
+    }
+
+    &__body {
+        padding: 0.5rem 1.5rem 1.5rem;
+        font-family: $lw-card-font-flex !important;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    &__text {
+        margin: 0.5rem 0 0;
+    }
+
+    &__course {
+        font-style: italic;
+    }
+
+    &__reasons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 0.75rem 0 0;
+        padding: 0;
+        border: 0;
+    }
+
+    &__reason {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+        font-size: 0.875rem;
+        cursor: pointer;
+
+        input[type="radio"] {
+            flex: 0 0 auto;
+            margin: 0;
+            accent-color: $lw-card-blue-600;
+        }
+    }
+
+    input.lw-unenroll-dialog__custom {
+        flex: 1 1 auto;
+        min-width: 0;
+        box-sizing: border-box;
+        height: 2.25rem;
+        padding: 0 0.75rem !important;
+        border: 1px solid $lw-card-slate-200 !important;
+        border-radius: $lw-card-control-radius !important;
+        box-shadow: none !important;
+        font-size: 0.875rem;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    button.lw-unenroll-dialog__button {
+        min-width: 5rem;
+        height: 2.5rem;
+        padding: 0 1rem !important;
+        border: 0 !important;
+        border-radius: $lw-card-control-radius !important;
+        background: $lw-card-blue-600 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        font-family: $lw-card-font-flex !important;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: $lw-card-slate-50 !important;
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(1.15);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $lw-card-blue-600;
+            outline-offset: 2px;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        // Paragon "tertiary": text-only.
+        &--tertiary {
+            background: transparent !important;
+            color: $lw-card-blue-600 !important;
+
+            &:hover {
+                filter: none;
+                background: $lw-card-slate-100 !important;
+            }
+        }
+    }
+}
+
+body.indigo-dark-theme .lw-unenroll-dialog {
+    input.lw-unenroll-dialog__custom {
+        border-color: $border-color-d !important;
+        background: $light-overlay-d;
+        color: $text-color-d;
+    }
+
+    button.lw-unenroll-dialog__button--tertiary {
+        color: $text-color-d !important;
+
+        &:hover {
+            background: $light-overlay-d !important;
+        }
+    }
+}

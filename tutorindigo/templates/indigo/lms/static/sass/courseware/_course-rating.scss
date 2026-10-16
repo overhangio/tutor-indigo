@@ -1,0 +1,124 @@
+// Rating dialog on /courses (js/lw-course-rating.js): the learner dashboard CourseRatingModal
+// (src/containers/CourseRatingModal/index.scss, OpenLMS Figma). The dialog frame (box, header,
+// title, close button, error) is .lw-dialog in _course-dialog.scss.
+// !important on button paint: the LMS global <button> styles otherwise win.
+
+$lw-rating-star-empty: $lw-card-slate-50;
+
+.lw-rating-dialog {
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    &__code {
+        margin: 0;
+        font-family: $lw-card-font-code !important;
+        font-size: 1rem;
+        letter-spacing: 0.14em;
+        color: $lw-card-slate-800;
+    }
+
+    // Vertical rhythm (Figma): prompt -> stars 16px, stars -> count 24px, count -> avatars 12px.
+    &__stars {
+        display: inline-flex;
+        gap: 0.25rem;
+        margin: 1rem 0 1.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        background: $lw-card-blue-600;
+    }
+
+    button.lw-rating-dialog__star {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: $lw-dialog-control-size;
+        height: $lw-dialog-control-size;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0.375rem !important;
+        background: none !important;
+        box-shadow: none !important;
+        color: $lw-rating-star-empty;
+        cursor: pointer;
+        transition: color 120ms ease-out, transform 120ms ease-out;
+
+        .lw-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+        }
+
+        &.is-filled {
+            color: $lw-card-star;
+        }
+
+        &:hover {
+            transform: scale(1.08);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $lw-card-star;
+            outline-offset: 1px;
+        }
+    }
+
+    &__raters {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.75rem;
+        padding-left: 0.5rem;
+    }
+
+    // Overlapping circles, each ringed so the stack reads clearly.
+    &__avatar {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 2rem;
+        height: 2rem;
+        margin-left: -0.5rem;
+        border: 2px solid $lw-rating-star-empty;
+        border-radius: 50%;
+        object-fit: cover;
+        background: $lw-card-slate-200;
+        color: $lw-card-slate-500;
+
+        .lw-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        &--more {
+            width: auto;
+            min-width: 2rem;
+            padding: 0 0.5rem;
+            border-radius: 1rem;
+            font-family: $lw-card-font-code !important;
+            font-size: 0.75rem;
+            color: $lw-card-slate-800;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        button.lw-rating-dialog__star {
+            transition: none;
+
+            &:hover {
+                transform: none;
+            }
+        }
+    }
+}
+
+body.indigo-dark-theme .lw-rating-dialog {
+    &__code,
+    &__avatar--more {
+        color: $text-color-d;
+    }
+}

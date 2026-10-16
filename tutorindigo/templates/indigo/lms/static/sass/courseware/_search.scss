@@ -1,0 +1,301 @@
+// Course search page (/search, openlms_search: templates/search/search.html, <body class="search">).
+// It reuses the pre-Learning-Library /courses markup, so it keeps the release look: white page
+// in the 1600px column, the "Search Courses" heading, the search bar and the release card list.
+// Scoped to body.search so the Learning Library's /courses styles (_discover.scss) never apply.
+// Cards share the homepage rules in _discover.scss (.home / body.search .courses-container).
+
+body.search {
+    // Same column as /courses (_discover.scss): 1344px content, 36px / 48px gutters.
+    .find-courses {
+        max-width: none;
+        padding-bottom: 0 !important;
+        padding-left: 36px !important;
+        padding-right: 36px !important;
+        background-color: #fff;
+        @include media-breakpoint-up(md) {
+            padding-left: 48px !important;
+            padding-right: 48px !important;
+        }
+
+        .courses-container {
+            max-width: $lw-courses-content-max-width;
+            margin: 0 auto;
+            padding: 25px 0;
+            @include media-breakpoint-up(md) {
+                padding: 30px 0;
+            }
+        }
+    }
+
+    // Results grid: same columns as the /courses cards (at most 437px, 3 across the 1344px column,
+    // then 2, then 1 full-width card on phones). Beats the homepage percentage widths.
+    .find-courses .courses-container .courses .courses-listing {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(#{"min(100%, 320px)"}, 437px));
+        justify-content: start;
+        gap: 24px 16px;
+        margin: 0;
+        padding: 0;
+        letter-spacing: normal;
+
+        > li {
+            display: block !important;
+            width: auto !important;
+            margin: 0 !important;
+
+            .course {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid #E2E8F0;
+                border-radius: 8px;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.10);
+
+                .course-image .cover-image {
+                    height: auto;
+                    // Interpolated: libsass would otherwise divide 437 / 212.
+                    aspect-ratio: #{"437 / 212"};
+                }
+
+                .course-info {
+                    flex: 1 1 auto;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 20px 26px 26px;
+
+                    h2 {
+                        height: auto;
+                        margin: 0 0 24px;
+                    }
+                    .course-title {
+                        margin: 0 0 12px;
+                        color: #111827;
+                        font-size: 18px;
+                        line-height: 24px;
+                    }
+                    .course-organization {
+                        margin: 0;
+                        color: #6B7280;
+                        font-size: 16px;
+                        line-height: 22px;
+                    }
+                    // Full-width button pinned to the card bottom, so a row of cards lines up.
+                    .learn-more {
+                        margin: auto 0 0;
+                        padding: 12px 17px;
+                        border-radius: 6px;
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+                }
+            }
+        }
+    }
+
+    .course-heading-area {
+        margin: 0 0 20px;
+        font-size: 14px;
+        color: #515661;
+        @include media-breakpoint-up(md) {
+            margin: 0 0 30px;
+            font-size: 16px;
+            line-height: 20px;
+        }
+        h2 {
+            color: #111827;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 30px;
+            margin: 0 0 8px;
+            @include media-breakpoint-up(md) {
+                font-size: 24px;
+                margin: 0 0 12px;
+            }
+        }
+        p {
+            margin: 0;
+        }
+    }
+
+    .saerch-bar-discover {
+        display: flex;
+        margin: 0 0 25px;
+        @include media-breakpoint-up(md) {
+            margin: 0 0 30px;
+        }
+        &:after {
+            display: block;
+            clear: both;
+            content: "";
+        }
+        .discover-search {
+            width: 100%;
+            .wrapper-search-context .wrapper-search-input {
+                float: none;
+                display: flex;
+                margin: 0;
+                width: auto;
+                &:after {
+                    display: block;
+                    clear: both;
+                    content: "";
+                }
+                .button-holder {
+                    float: right;
+                    button {
+                        position: static;
+                        margin: 0 0 0 16px;
+                        min-width: 90px;
+                        height: 40px;
+                        padding: 6px;
+                        border: none;
+                        border-radius: 6px;
+                        background: $primary;
+                        box-shadow: none !important;
+                        color: #fff;
+                        font-family: $font-family-title;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 26px;
+                        text-align: center;
+                        @include media-breakpoint-up(sm) {
+                            min-width: 100px;
+                        }
+                        &:hover {
+                            background: $primary;
+                            opacity: .8;
+                        }
+                    }
+                }
+                .input-holder {
+                    position: relative;
+                    box-sizing: border-box;
+                    display: inline-flex;
+                    flex-grow: 1;
+                    align-items: center;
+                    gap: 8px;
+                    height: 40px;
+                    padding: 8px 12px;
+                    border: 1px solid #E2E8F0;
+                    border-radius: 6px;
+                    background: #F8FAFC;
+                    transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+
+                    &:focus-within {
+                        border-color: #059669;
+                        background: #fff;
+                        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.16);
+                        svg {
+                            color: #059669;
+                        }
+                    }
+                    svg {
+                        position: static;
+                        flex-shrink: 0;
+                        width: 18px;
+                        height: 18px;
+                        color: #64748B;
+                        path {
+                            stroke-width: 1.7px;
+                        }
+                    }
+                    input {
+                        flex: 1;
+                        min-width: 0;
+                        width: 100%;
+                        height: 21px;
+                        margin: 0;
+                        padding: 0;
+                        border: none;
+                        border-radius: 0;
+                        background: transparent;
+                        box-shadow: none;
+                        outline: none;
+                        color: #64748B;
+                        font-size: 14px;
+                        line-height: 21px;
+                        &:focus,
+                        &:focus-visible {
+                            border: none;
+                            background: transparent;
+                            box-shadow: none;
+                            outline: none;
+                        }
+                        &::placeholder {
+                            color: #64748B;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            .search-status-label {
+                float: none;
+                width: 100%;
+                height: auto;
+                min-height: auto;
+                padding: 10px 0 0;
+                color: #515661;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+body.indigo-dark-theme.search {
+    .find-courses {
+        background-color: $body-bg-d;
+    }
+    // The results grid above sets light colours at the same specificity; restate the dark ones.
+    .find-courses .courses-container .courses .courses-listing > li .course {
+        border-color: $border-color-d;
+        box-shadow: none;
+        .course-info {
+            .course-title {
+                color: $text-color-d;
+            }
+            .course-organization {
+                color: $text-color-primary;
+            }
+        }
+    }
+    .course-heading-area {
+        color: $text-color-primary;
+        h2 {
+            color: $text-color-d;
+        }
+    }
+    .saerch-bar-discover .discover-search {
+        .wrapper-search-context .wrapper-search-input {
+            .button-holder button {
+                background: $primary-d;
+                color: $btn-color-d;
+                &:hover {
+                    background: $primary-d;
+                    color: $btn-color-d;
+                }
+            }
+            .input-holder {
+                border-color: #404040;
+                background: #2d2d2d;
+                &:focus-within {
+                    border-color: #6ee7b7;
+                    background: #2d2d2d;
+                    box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.2);
+                    svg {
+                        color: #6ee7b7;
+                    }
+                }
+                input {
+                    color: $text-color-d;
+                    &::placeholder {
+                        color: #888;
+                    }
+                }
+            }
+        }
+        .search-status-label {
+            color: $text-color-primary;
+        }
+    }
+}

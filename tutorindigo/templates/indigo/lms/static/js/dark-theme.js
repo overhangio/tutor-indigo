@@ -4,18 +4,17 @@ $(document).ready(function() {
     const themeCookie = 'selected-paragon-theme-variant';
 
     function applyThemeOnPage(){
-      const theme = $.cookie(themeCookie);
+      let theme = $.cookie(themeCookie);
 
-      if (theme === 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTimeout(() => {
-          $('body').addClass("indigo-dark-theme");
-          $("#toggle-switch-input").prop("checked", true);
-        }, 200)
+      // A missing cookie comes back as undefined, and writing that value
+      // stores the string "undefined", which used to follow the OS dark setting.
+      if (!theme || theme === 'undefined') {
+        theme = 'light';
       }
       {% if INDIGO_ENABLE_DARK_TOGGLE %}
-      $('body').toggleClass("indigo-dark-theme", theme === 'dark');       // append or remove dark-class based on cookie-value
-      // update expiry
+      $('body').toggleClass("indigo-dark-theme", theme === 'dark');
       $.cookie(themeCookie, theme, { domain: window.location.hostname, expires: 90, path: '/' });
+      window.localStorage.setItem(themeCookie, theme);
       {% endif %}
       updateAccessibility();
     }

@@ -1,43 +1,141 @@
-// Include custom discover
-.window-wrap #content.content-wrapper {
-    padding: 0 !important;
-    margin: 0 !important;
-    max-width: 100%;
-    @include media-breakpoint-up(lg) {
-        margin-top: 64px !important;
-    }
-}
-.course-heading-area {
-    margin: 0 0 20px;
-    font-size: 14px;
-    color: #515661;
+// Courses banner (Figma 1469:4329). Dark green #00412E with the photo at 10% on top.
+// Google Sans Flex is loaded for every LMS page by header/header.html.
+// The image URL comes from the template (--lw-courses-banner-image) so it goes through static.url().
+$lw-courses-banner-bg: #00412E;
+$lw-courses-banner-image-opacity: 0.1;
+$lw-courses-banner-min-height: 267px;
+// Shared 1344px content column (learner-dashboard / profile): banner text and course list.
+$lw-courses-content-max-width: 1344px;
+$lw-courses-banner-text: #fff;
+$lw-courses-font: 'Google Sans Flex', $font-family-title;
+
+.lw-courses-banner {
+    position: relative;
+    overflow: hidden;
+    background-color: $lw-courses-banner-bg;
+    color: $lw-courses-banner-text;
+    // Side gutters live on the full-bleed banner so __inner can be exactly 1344px.
+    padding: 0 36px;
+
     @include media-breakpoint-up(md) {
-        margin: 0 0 30px;
-        font-size: 16px;
-        line-height: 20px;
+        // Figma 1484:4094 is a fixed 1440×267 bar. min-height alone lets the
+        // title block grow the band and push the tabs down.
+        height: $lw-courses-banner-min-height;
+        min-height: $lw-courses-banner-min-height;
+        padding: 0 48px;
     }
-    h2 {
-        color: #111827;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 30px;
-        margin: 0 0 8px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--lw-courses-banner-image);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: $lw-courses-banner-image-opacity;
+        pointer-events: none;
+    }
+
+    // Text sits in the same 1344px column as the course list below.
+    &__inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        max-width: $lw-courses-content-max-width;
+        margin: 0 auto;
+        padding: 32px 0;
+        text-align: left;
+
         @include media-breakpoint-up(md) {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0 0 12px;
+            padding: 48px 0;
         }
     }
-    p {
+
+    &__title {
         margin: 0;
+        color: $lw-courses-banner-text;
+        text-align: left;
+        // _extras.scss sets `h1 { font-family: Rockford Sans !important }`.
+        // Figma 1469:4331 renders Google Sans Flex Regular (400) via character overrides,
+        // not the Bold (700) on the text-style token.
+        font-family: $lw-courses-font !important;
+        font-size: 32px;
+        font-weight: 400 !important;
+        line-height: 40px;
+        letter-spacing: 0;
+        // Figma renders Google Sans Flex at its default optical size; `auto` would pick the
+        // 48px opsz cut, which is ~5% narrower than the frame.
+        font-optical-sizing: none;
+
+        @include media-breakpoint-up(md) {
+            font-size: 48px;
+            line-height: 60.096px;
+        }
+    }
+
+    &__subtitle {
+        margin: 0;
+        padding-left: 4px;
+        color: rgba($lw-courses-banner-text, 0.9);
+        font-family: $font-family-title;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: -0.02em;
+
+        @include media-breakpoint-up(md) {
+            min-height: 28px;
+            font-size: 18px;
+            line-height: 24.91px;
+            letter-spacing: -0.36px;
+        }
     }
 }
+
+// display:flex blocks below would otherwise ignore the hidden attribute.
+.find-courses [hidden] {
+    display: none !important;
+}
+
+// Full-bleed #F8FAFC background; only .courses-container is capped at the 1344px column
+// (learner-dashboard / profile). 36px / 48px gutters. Beats _extras.scss (1600px, 15px !important).
 .find-courses {
+    max-width: none;
     padding-bottom: 0 !important;
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+    background-color: #F8FAFC;
+
+    @include media-breakpoint-up(md) {
+        padding-left: 48px !important;
+        padding-right: 48px !important;
+    }
+
     .courses-container {
-        padding: 25px 0;
+        max-width: $lw-courses-content-max-width;
+        margin: 0 auto;
+        padding: 32px 0 48px;
         @include media-breakpoint-up(md) {
-            padding: 30px 0;
+            padding: 48px 0 64px;
+        }
+
+        &.lw-courses-container--empty {
+            display: flex;
+            flex-direction: column;
+            min-height: unquote('min(720px, calc(100vh - 320px))');
+
+            .lw-courses-section-title {
+                margin-bottom: 32px;
+            }
+
+            .lw-courses-library.lw-courses-library--has-empty {
+                flex: 1 1 auto;
+                display: flex;
+                flex-direction: column;
+            }
         }
     }
     .course-holder {
@@ -45,7 +143,339 @@
         float: none !important;
     }
 }
-.courses-container {
+// Learning Library tab bar (Figma 662:237) — segmented control on 662:236
+$lw-tabs-slate-200: #E2E8F0;
+$lw-tabs-slate-500: #64748B;
+$lw-tabs-slate-700: #334155;
+$lw-tabs-slate-800: #1E293B;
+$lw-tabs-active-bg: #E5EDF9; // reference: soft periwinkle, not the cyan blue-50
+$lw-tabs-blue-600: #003366;
+// Same glyph as the header "Browse" nav item (ICON_PATHS['LibraryBooks'] in
+// header/navbar-authenticated.html): 24px, 1.33 stroke.
+$lw-icon-book-open: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6l0 13"/><path d="M12 6l0 13"/><path d="M21 6l0 13"/></svg>');
+
+.lw-courses-tabs {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 2px;
+    // Hug the tabs: the empty-state container is a flex column, which would stretch it.
+    align-self: flex-start;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 0 40px;
+    padding: 3px;
+    border: 1px solid $lw-tabs-slate-200;
+    border-radius: 8px;
+    background: #fff;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &__tab {
+        flex: 0 0 auto;
+        margin: 0;
+        padding: 8px 12px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        // LMS base `button` adds gradients / shadows / text-shadow.
+        background-image: none;
+        box-shadow: none;
+        text-shadow: none;
+        color: $lw-tabs-slate-800;
+        font-family: $lw-courses-font !important;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0;
+        white-space: nowrap;
+        cursor: pointer;
+        text-align: center;
+        appearance: none;
+        -webkit-appearance: none;
+
+        &:focus-visible {
+            outline: 2px solid $lw-tabs-blue-600;
+            outline-offset: 2px;
+        }
+
+        // Hover matches the selected pill colours, but stays regular weight.
+        // :not(:disabled) beats the LMS `button:hover` navy gradient.
+        &:hover:not(:disabled),
+        &:focus:not(:disabled),
+        &:active:not(:disabled) {
+            background-color: $lw-tabs-active-bg;
+            background-image: none;
+            color: $lw-tabs-blue-600;
+            font-weight: 400;
+            box-shadow: none;
+            text-shadow: none;
+        }
+
+        &--active,
+        &--active:hover:not(:disabled),
+        &--active:focus:not(:disabled),
+        &--active:active:not(:disabled) {
+            background-color: $lw-tabs-active-bg;
+            background-image: none;
+            color: $lw-tabs-blue-600;
+            font-weight: 700;
+            box-shadow: none;
+            text-shadow: none;
+        }
+    }
+}
+
+// Pager under the card grid: "Showing N of M items" + page numbers. Mirrors the tab bar
+// segmented control (white box, slate-200 border, active page = periwinkle pill, bold navy).
+.lw-courses-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px 24px;
+    margin: 32px 0 0;
+
+    &__summary {
+        margin: 0;
+        font-family: $lw-courses-font !important;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0;
+        color: $lw-tabs-slate-500;
+    }
+
+    &__list {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        margin: 0;
+        padding: 3px;
+        border: 1px solid $lw-tabs-slate-200;
+        border-radius: 8px;
+        background: #fff;
+        list-style: none;
+
+        > li {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    &__page {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 36px;
+        margin: 0;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        background-image: none;
+        box-shadow: none;
+        text-shadow: none;
+        color: $lw-tabs-slate-800;
+        font-family: $lw-courses-font !important;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+
+        &:focus-visible {
+            outline: 2px solid $lw-tabs-blue-600;
+            outline-offset: 2px;
+        }
+
+        &:hover:not(:disabled),
+        &:focus:not(:disabled),
+        &:active:not(:disabled) {
+            background-color: $lw-tabs-active-bg;
+            background-image: none;
+            color: $lw-tabs-blue-600;
+            box-shadow: none;
+            text-shadow: none;
+        }
+
+        &--active,
+        &--active:hover:not(:disabled),
+        &--active:focus:not(:disabled),
+        &--active:active:not(:disabled) {
+            background-color: $lw-tabs-active-bg;
+            color: $lw-tabs-blue-600;
+            font-weight: 700;
+            cursor: default;
+        }
+    }
+
+    &__ellipsis {
+        min-width: 24px;
+        color: $lw-tabs-slate-500;
+        font-size: 14px;
+        line-height: 36px;
+        text-align: center;
+    }
+}
+
+// Empty collection (Figma 662:236 — Continue Learning / no courses)
+.lw-courses-empty {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 32px 24px 64px;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+        padding: 40px 24px 80px;
+    }
+
+    // LMS base h3/p add uppercase, tracking and Rockford/Open Sans; pin the Figma type.
+    &__title {
+        margin: 0 0 12px;
+        font-family: $lw-courses-font !important;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 27px;
+        letter-spacing: 0;
+        text-transform: none;
+        color: $lw-tabs-slate-800;
+    }
+
+    &__body {
+        margin: 0 0 24px;
+        max-width: 420px;
+        font-family: $lw-courses-font !important;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 21px;
+        letter-spacing: 0;
+        text-transform: none;
+        color: #475569;
+    }
+
+    &__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        // Figma: 40px tall, sm/md padding (8px/16px), 8px gap, 6px radius.
+        gap: 8px;
+        box-sizing: border-box;
+        height: 40px;
+        padding: 8px 16px;
+        border: 0;
+        border-radius: 6px;
+        background: $lw-tabs-blue-600;
+        color: #fff !important;
+        font-family: $lw-courses-font !important;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: 0;
+        text-transform: none;
+        text-decoration: none !important;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            background: darken($lw-tabs-blue-600, 6%);
+            color: #fff !important;
+            text-decoration: none !important;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $lw-tabs-blue-600;
+            outline-offset: 2px;
+        }
+
+        .lw-icon--book-open {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            background-color: currentColor;
+            mask: $lw-icon-book-open center / contain no-repeat;
+            -webkit-mask: $lw-icon-book-open center / contain no-repeat;
+        }
+    }
+}
+
+.lw-courses-library {
+    &__message {
+        margin: 0 0 16px;
+        color: $lw-tabs-slate-500;
+        font-family: $font-family-title;
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    &--has-empty {
+        .courses-listing,
+        .lw-courses-pagination {
+            display: none !important;
+        }
+    }
+
+}
+
+.find-courses .courses-container {
+    // Section title above the cards — same "Page Heading" as the learner dashboard
+    // (CoursesPanel .assigned-courses-title). !important: _extras.scss forces Rockford on h2.
+    .lw-courses-section-title {
+        margin: 0 0 24px;
+        font-family: $lw-courses-font !important;
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0;
+        color: $lw-tabs-slate-800;
+
+        @include media-breakpoint-up(md) {
+            font-size: 1.875rem;
+        }
+    }
+
+    // Card grid (cards: _course-card.scss). Columns are at most 437px (Figma), so the 1344px
+    // column fits exactly 3; narrower screens drop to 2, then 1 full-width card on phones.
+    // Undoes the base theme's inline-block / float listing.
+    .courses .courses-listing {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(#{"min(100%, 320px)"}, 437px));
+        justify-content: start;
+        gap: 16px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        letter-spacing: normal;
+
+        > li {
+            display: block !important;
+            float: none !important;
+            width: auto !important;
+            max-height: none !important;
+            margin: 0 !important;
+            padding: 0;
+            border: 0;
+            box-shadow: none;
+        }
+    }
+}
+
+// Homepage course list (edx-platform courses_list.html inside index.html's section.home),
+// cards from templates/course.html, and the /search results (same markup, _search.scss).
+// Unchanged from release; scoped so it never reaches /courses.
+.home .courses-container,
+body.search .courses-container {
     .courses {
         .courses-listing {
             letter-spacing: -.32em;
@@ -162,392 +592,93 @@
         }
     }
 }
-.saerch-bar-discover {
-    margin:  0 0 25px;
-    display: flex;
-    @include media-breakpoint-up(md) {
-        margin:  0 0 30px;
-    }
-    &:after {
-        display: block;
-        clear: both;
-        content: "";
-    }
-    .filters {
-        .filters-inner {
-            border: none;
-            .clear-filters {
-                display: none;
-            }
-            ul {
-                li {
-                    padding: 0;
-                    margin: 0 7px 5px 0;
-                    background: none;
-                    button {
-                        padding: 2px 10px;
-                        border-radius: 12px;
-                        background: $primary !important;
-                        color: #fff;
-                        font-size: 14px;
-                        line-height: 20px;
-                    }
-                }
-            }
-        }
-    }
-    .discover-search {
-        width: 100%;
-        .wrapper-search-context {
-            .wrapper-search-input {
-                float: none;
-                display: flex;
-                margin: 0;
-                width: auto;
-                &:after {
-                    display: block;
-                    clear: both;
-                    content: "";
-                }
-                .button-holder {
-                    float: right;
-                    button {
-                        position: static;
-                        margin: 0 0 0 16px;
-                        min-width: 90px;
-                        color: #fff;
-                        font-size: 16px;
-                        font-weight: 500;
-                        line-height: 26px;
-                        text-align: center;
-                        padding: 6px;
-                        height: 40px;
-                        border-radius: 6px;
-                        background: $primary;
-                        font-family: $font-family-title;
-                        border: none;
-                        box-shadow: none !important;
-                        @include media-breakpoint-up(sm) {
-                            min-width: 100px;
-                        }
-                        &:hover {
-                            background: $primary;
-                            opacity: .8;
-                        }
-                    }
-                }
-                .input-holder {
-                    box-sizing: border-box;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                    flex-grow: 1;
-                    height: 40px;
-                    padding: 8px 12px;
-                    border-radius: 6px;
-                    border: 1px solid #E2E8F0;
-                    background: #F8FAFC;
-                    position: relative;
-                    transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
-
-                    &:focus-within {
-                        border-color: #059669;
-                        background: #fff;
-                        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.16);
-
-                        svg {
-                            color: #059669;
-                        }
-                    }
-
-                    svg {
-                        position: static;
-                        flex-shrink: 0;
-                        width: 18px;
-                        height: 18px;
-                        color: #64748B;
-
-                        path {
-                            stroke-width: 1.7px;
-                        }
-                    }
-
-                    input {
-                        flex: 1;
-                        min-width: 0;
-                        height: 21px;
-                        width: 100%;
-                        border: none;
-                        border-radius: 0;
-                        box-shadow: none;
-                        padding: 0;
-                        margin: 0;
-                        background: transparent;
-                        outline: none;
-                        font-size: 14px;
-                        line-height: 21px;
-                        color: #64748B;
-
-                        &:focus,
-                        &:focus-visible {
-                            border: none;
-                            box-shadow: none;
-                            outline: none;
-                            background: transparent;
-                        }
-
-                        &::placeholder {
-                            color: #64748B;
-                            opacity: 1;
-                        }
-                    }
-                }
-            }
-        }
-        .search-status-label {
-            font-size: 14px;
-            line-height: 20px;
-            padding: 10px 0 0;
-            height: auto;
-            min-height: auto;
-            width: 100%;
-            float: none;
-            color: #515661;
-        }
-    }
-}
-.filter-block {
-    flex: 0 0 80px;
-    position: relative;
-    z-index: 9;
-    @include media-breakpoint-up(sm) {
-      flex: 0 0 130px;
-    }
-    &.show {
-        .dropdown-menu {
-            display: block;
-        }
-    }
-    >a {
-        display: block;
-        background-color: $primary-light;
-        text-decoration: none !important;
-        font-size: 14px;
-        line-height: 20px;
-        margin: 0 16px 0 0;
-        font-weight: 500;
-        padding: 8px 10px;
-        border-radius: 6px;
-        color: #4B5563;
-        &:hover {
-            text-decoration: none;
-            color: #4B5563;
-        }
-        svg {
-            display: inline-block;
-            vertical-align: middle;
-        }
-        span {
-            padding: 0 3px;
-            display: none;
-            @include media-breakpoint-up(sm) {
-                display: inline;
-            }
-        }
-    }
-    .dropdown-menu {
-        display: none;
-        width: 200px;
-        left: 0;
-        top: 48px !important;
-        transform: none !important;
-        border-radius: 6px;
-        background: $primary-light;
-        padding: 10px 10px 0;
-        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
-    }
-    .search-facets {
-        float: none;
-        width: 100%;
-        margin: 0;
-        box-shadow: none;
-        background: none;
-        h2 {
-            display: none;
-        }
-        .search-facets-lists {
-            h3 {
-                border: none;
-                padding: 0;
-                margin: 0 0 10px;
-                color: #191B23;
-                font-size: 14px;
-                font-weight: 700;
-            }
-            ul.facet-list {
-                padding: 0 0 0 25px;
-                max-height: 100px;
-                overflow-y: auto;
-                li {
-                    height: auto;
-                    margin: 0 0 10px;
-                    button.facet-option {
-                        position: relative;
-                        float: none;
-                        width: auto;
-                        background: none !important;
-                        padding: 0 0 0 24px;
-                        font-size: 14px;
-                        line-height: 20px;
-                        color: #191B23;
-                        &.selected {
-                            .count {
-                                background: $primary;
-                                border-color: $primary;
-                                &:before {
-                                    content: "\f00c";
-                                    width: auto;
-                                    top: 0;
-                                    left: 2px;
-                                    display: block;
-                                    font-size: 10px;
-                                    line-height: 14px;
-                                    color: #fff;
-                                }
-                            }
-                        }
-                        .count {
-                            position: absolute;
-                            left: 0;
-                            right: auto;
-                            top: 2px;
-                            width: 16px;
-                            height: 16px;
-                            border-radius: 4px;
-                            border: 1px solid #C4C7CF;
-                            background: #fff;
-                            .count-number {
-                                display: none;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 body.indigo-dark-theme {
-    .course-heading-area {
-        color: $text-color-primary;
-        h2 {
+    .find-courses {
+        background-color: $body-bg-d;
+    }
+    .lw-courses-section-title {
+        color: $text-color-d;
+    }
+    .lw-courses-tabs {
+        background: $body-bg-d;
+        border-color: $border-color-d;
+
+        &__tab {
+            color: $text-color-primary;
+
+            &:hover:not(:disabled),
+            &:focus:not(:disabled),
+            &:active:not(:disabled) {
+                background-color: $light-overlay-d;
+                background-image: none;
+                color: $primary-d;
+                font-weight: 400;
+                box-shadow: none;
+                text-shadow: none;
+            }
+
+            &--active,
+            &--active:hover:not(:disabled),
+            &--active:focus:not(:disabled),
+            &--active:active:not(:disabled) {
+                background-color: $light-overlay-d;
+                background-image: none;
+                color: $primary-d;
+                font-weight: 700;
+                box-shadow: none;
+                text-shadow: none;
+            }
+        }
+    }
+    .lw-courses-empty {
+        &__title {
             color: $text-color-d;
         }
-    }
-    .saerch-bar-discover {
-        .filters {
-            .filters-inner {
-                ul {
-                    li {
-                        button {
-                            background: $primary-d !important;
-                            color: $btn-color-d;
-                        }
-                    }
-                }
-            }
+
+        &__body {
+            color: $text-color-primary;
         }
-        .discover-search {
-            .wrapper-search-context {
-                .wrapper-search-input {
-                    .button-holder {
-                        button {
-                            background: $primary-d;
-                            color: $btn-color-d;
-                            &:hover {
-                                background: $primary-d;
-                                color: $btn-color-d;
-                            }
-                        }
-                    }
-                    .input-holder {
-                        background: #2d2d2d;
-                        border-color: #404040;
 
-                        &:focus-within {
-                            border-color: #6ee7b7;
-                            background: #2d2d2d;
-                            box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.2);
+        &__cta {
+            background: $btn-color-d;
+            color: $text-color-d !important;
 
-                            svg {
-                                color: #6ee7b7;
-                            }
-                        }
-
-                        input {
-                            color: $text-color-d;
-
-                            &::placeholder {
-                                color: #888;
-                            }
-                        }
-                    }
-                }
-            }
-            .search-status-label {
-                color: $text-color-primary;
-            }
-        }
-        .filter-block {
-
-            >a {
-                background-color: $primary-light-d;
-                color: $text-color-d;
-                &:hover {
-                    color: $text-color-d;
-                }
-                svg {
-                    fill: transparent;
-                    stroke: $text-color-d;
-                    &.arrow {
-                        fill: $text-color-d;
-                        stroke: none;
-                    }
-                }
-            }
-            .dropdown-menu {
-                background: $primary-light-d;
-            }
-            .search-facets {
-                .search-facets-lists {
-                    h3 {
-                        color: $text-color-d;
-                    }
-                    ul.facet-list {
-                        li {
-                            button.facet-option {
-                                color: $text-color-d;
-                                &.selected {
-                                    .count {
-                                        background: $primary-d;
-                                        border-color: $primary-d;
-                                        &:before {
-                                            color: $btn-color-d;
-                                        }
-                                    }
-                                }
-                                .count {
-                                    border: 1px solid $text-color-d;
-                                    background: $text-color-d;
-                                }
-                            }
-                        }
-                    }
-                }
+            &:hover,
+            &:focus {
+                background: lighten($btn-color-d, 8%);
             }
         }
     }
-    .courses-container {
+    .lw-courses-library__message {
+        color: $text-color-primary;
+    }
+    .lw-courses-pagination {
+        &__summary,
+        &__ellipsis {
+            color: $text-color-primary;
+        }
+
+        &__list {
+            background: $body-bg-d;
+            border-color: $border-color-d;
+        }
+
+        &__page {
+            color: $text-color-primary;
+
+            &:hover:not(:disabled),
+            &:focus:not(:disabled),
+            &:active:not(:disabled),
+            &--active,
+            &--active:hover:not(:disabled) {
+                background-color: $light-overlay-d;
+                color: $primary-d;
+            }
+        }
+    }
+    .home .courses-container,
+    &.search .courses-container {
         .courses {
             .courses-listing {
                 li {

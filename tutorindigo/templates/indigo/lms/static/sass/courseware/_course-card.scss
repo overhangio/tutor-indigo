@@ -1,0 +1,561 @@
+// Course card — same card as the learner dashboard (frontend-app-learner-dashboard
+// src/containers/CourseCard/CourseCard.scss + CourseCardMeta/index.scss, OpenLMS Figma 82:2140).
+// Markup: cardHtml() in js/lw-courses-tabs.js. On /courses, js/lw-course-cards.js fills the
+// learner-specific parts (rating, status badge, progress, CTA, actions menu).
+
+$lw-card-slate-50: #F8FAFC;
+$lw-card-slate-100: #F1F5F9;
+$lw-card-slate-200: #E2E8F0;
+$lw-card-slate-500: #64748B;
+$lw-card-slate-800: #1E293B;
+$lw-card-blue-50: #E6F2FF;
+$lw-card-blue-600: #003366;
+$lw-card-orange-500: #F97316;
+// Status badge fills and text (learner dashboard CourseCard.scss): 700-step text so the 12px
+// labels clear WCAG AA on the light fills.
+$lw-card-badge-overdue-bg: #FFF7ED;
+$lw-card-badge-overdue-text: #C2410C;
+$lw-card-badge-due-soon-bg: #FFFBEB;
+$lw-card-badge-due-soon-text: #B45309;
+$lw-card-badge-completed-bg: #F0FDF4;
+$lw-card-badge-completed-text: #15803D;
+$lw-card-star: #F5A623;
+$lw-card-font-flex: 'Google Sans Flex', $font-family-title;
+$lw-card-font-code: 'Google Sans Code', monospace;
+$lw-card-image-height: 193px;
+$lw-card-max-width: 437px; // Figma library frame: 3 cards in the 1344px column
+$lw-card-control-size: 40px;
+$lw-card-radius: 8px;
+$lw-card-control-radius: 6px;
+// Actions menu: Paragon 23 dropdown values (min width, border, item text and hover).
+$lw-menu-min-width: 18rem;
+$lw-menu-border: rgba(0, 0, 0, 0.15);
+$lw-menu-item-text: #212529;
+$lw-menu-item-hover-bg: #F0EEED;
+
+// Tabler icons (same SVGs as the learner dashboard assets), drawn with currentColor via mask
+// so both card templates share one copy.
+@function lw-svg($body, $size: 24) {
+    @return url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$size} #{$size}" fill="none" stroke="black" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round">#{$body}</svg>');
+}
+
+$lw-icon-clock: lw-svg('<path d="M8 4.667V8l2 2M2 8a6 6 0 1 0 12 0A6 6 0 0 0 2 8"/>', 16);
+// Paragon MoreHoriz / Person (filled), as in the learner dashboard card menu and rating dialog.
+$lw-icon-more: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2Zm2 0c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2Zm6 0c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2Z"/></svg>');
+$lw-icon-person: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4Z"/></svg>');
+$lw-icon-play: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4"/></svg>');
+$lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
+
+%lw-code-small {
+    font-family: $lw-card-font-code !important;
+    font-size: 0.75rem;
+    line-height: 18px;
+    letter-spacing: 0.14em;
+}
+
+// !important: _extras.scss forces Rockford Sans on body, h1–h6, p, label and button.
+%lw-body-text {
+    font-family: $lw-card-font-flex !important;
+    font-size: 0.875rem;
+    line-height: 21px;
+    letter-spacing: 0;
+}
+
+.lw-icon {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    background-color: currentColor;
+    mask: center / contain no-repeat;
+    -webkit-mask: center / contain no-repeat;
+
+    &--clock { mask-image: $lw-icon-clock; -webkit-mask-image: $lw-icon-clock; }
+    &--more { width: 24px; height: 24px; mask-image: $lw-icon-more; -webkit-mask-image: $lw-icon-more; }
+    &--person { mask-image: $lw-icon-person; -webkit-mask-image: $lw-icon-person; }
+    &--play { width: 24px; height: 24px; mask-image: $lw-icon-play; -webkit-mask-image: $lw-icon-play; }
+    &--star { mask-image: $lw-icon-star; -webkit-mask-image: $lw-icon-star; }
+}
+
+// Visually hidden, still read by screen readers.
+.lw-sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.lw-course-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: $lw-card-max-width;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    background-color: #fff;
+    border: 1px solid $lw-card-slate-200;
+    border-radius: $lw-card-radius;
+    box-shadow: none;
+    text-align: left;
+
+    [hidden] {
+        display: none !important;
+    }
+
+    &__image {
+        position: relative;
+        flex: 0 0 $lw-card-image-height;
+        height: $lw-card-image-height;
+        background: $lw-card-slate-100;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: opacity 0.2s ease-out;
+
+            // Fades in over the slate placeholder instead of painting in strips
+            // (data-loaded is set by the img onload in lw-courses-tabs.js cardHtml).
+            &:not([data-loaded]) {
+                opacity: 0;
+            }
+        }
+    }
+
+    // Badges on the image, stacked at the top right: the status ("Completed – date",
+    // "Overdue for N days – date", "Due in N days – date") and, for completed courses, the score.
+    &__badges {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+        max-width: calc(100% - 20px);
+    }
+
+    // Small Text - code
+    &__badge {
+        @extend %lw-code-small;
+        box-sizing: border-box;
+        max-width: 100%;
+        padding: 2px 8px;
+        overflow: hidden;
+        border-radius: $lw-card-radius;
+        font-weight: 500;
+        text-transform: uppercase;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &--overdue,
+        &--failed { background-color: $lw-card-badge-overdue-bg; color: $lw-card-badge-overdue-text; }
+        &--due-soon { background-color: $lw-card-badge-due-soon-bg; color: $lw-card-badge-due-soon-text; }
+        &--completed { background-color: $lw-card-badge-completed-bg; color: $lw-card-badge-completed-text; }
+    }
+
+    &__body {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    &__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-width: 0;
+    }
+
+    &__heading {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-width: 0;
+    }
+
+    // Section Heading. !important: _extras.scss forces Rockford Sans on every h1–h6.
+    &__title {
+        min-width: 0;
+        margin: 0;
+        font-family: $lw-card-font-flex !important;
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0;
+        color: $lw-card-slate-800;
+
+        // !important: LMS global link colour (blue) otherwise wins over the slate title
+        a {
+            color: $lw-card-slate-800 !important;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__rating {
+        @extend %lw-body-text;
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+        gap: 8px;
+        color: $lw-card-slate-800;
+
+        .lw-icon--star {
+            color: $lw-card-star;
+        }
+    }
+
+    // Small Text - code
+    &__provider {
+        @extend %lw-code-small;
+        color: $lw-card-slate-500;
+    }
+
+    // Body Text, 2-line clamp
+    &__description {
+        @extend %lw-body-text;
+        display: -webkit-box;
+        margin: 0;
+        overflow: hidden;
+        color: $lw-card-slate-500;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    &__chips {
+        @extend %lw-code-small;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 16px;
+        color: $lw-card-slate-500;
+    }
+
+    &__chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 2px;
+        background-color: $lw-card-slate-100;
+
+        // Assigned-tab completion-state tags, in the status badge palette.
+        &--in_progress { background-color: $lw-card-blue-50; color: $lw-card-blue-600; }
+        &--failed { background-color: $lw-card-badge-overdue-bg; color: $lw-card-badge-overdue-text; }
+    }
+
+    &__chip-plain {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+
+    &__bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &__progress {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__progress-label {
+        @extend %lw-code-small;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $lw-card-slate-500;
+    }
+
+    // Body Text
+    &__progress-value {
+        @extend %lw-body-text;
+        color: $lw-card-slate-800;
+    }
+
+    &__progress-track {
+        height: 8px;
+        overflow: hidden;
+        border-radius: 999px;
+        background-color: $lw-card-blue-50;
+    }
+
+    &__progress-bar {
+        height: 100%;
+        border-radius: 999px;
+        background-color: $lw-card-blue-600;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    // Primary CTA (Resume / Enroll and Start / View Course): 40px navy button, 24px icon.
+    // `a` + !important on the paint: LMS global link styles (colour, underline, hover) otherwise win.
+    a.lw-course-card__cta {
+        display: inline-flex;
+        flex: 1 1 0;
+        // The LMS has no global border-box: without this the 8px padding makes it 56px tall
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-width: 0;
+        height: $lw-card-control-size;
+        padding: 8px 16px;
+        margin: 0;
+        border: 0 !important;
+        border-radius: $lw-card-control-radius;
+        background: $lw-card-blue-600 !important;
+        box-shadow: none !important;
+        font-family: $lw-card-font-flex !important;
+        font-size: 0.875rem;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: 0;
+        white-space: nowrap;
+        color: $lw-card-slate-50 !important;
+        text-decoration: none !important;
+        text-shadow: none;
+
+        &:hover,
+        &:focus {
+            filter: brightness(1.15);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $lw-card-blue-600;
+            outline-offset: 2px;
+        }
+    }
+
+    // Completed course: "Revisit Course" as a light secondary button (slate-100 fill, navy text).
+    a.lw-course-card__cta.lw-course-card__cta--revisit {
+        background: $lw-card-slate-100 !important;
+        color: $lw-card-blue-600 !important;
+
+        &:hover,
+        &:focus {
+            filter: none;
+            background: $lw-card-slate-200 !important;
+        }
+    }
+
+    // Actions menu (learner dashboard CourseCardMenu): "..." toggle next to the CTA and a
+    // small list that opens above it. !important on the paint: the LMS global <button>
+    // styles (navy gradient fill, inset shadow, border, padding) otherwise win.
+    &__menu {
+        position: relative;
+        flex: 0 0 auto;
+    }
+
+    button.lw-course-card__menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 44px;
+        height: 44px;
+        padding: 0 !important;
+        margin: 0;
+        border: 0 !important;
+        border-radius: $lw-card-control-radius !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        line-height: 0;
+        color: $lw-card-slate-800 !important;
+        cursor: pointer;
+
+        &:hover,
+        &[aria-expanded="true"] {
+            background: $lw-card-slate-200 !important;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $lw-card-blue-600;
+            outline-offset: 2px;
+        }
+    }
+
+    &__menu-list {
+        position: absolute;
+        right: 0;
+        bottom: calc(100% + 4px);
+        z-index: 10;
+        // Paragon 23 Dropdown.Menu, as the learner dashboard card menu renders it.
+        min-width: $lw-menu-min-width;
+        padding: 0.5rem 0;
+        margin: 0;
+        list-style: none;
+        border: 1px solid $lw-menu-border;
+        border-radius: 0.375rem;
+        background: #fff;
+        box-shadow: none;
+    }
+
+    // Paragon Dropdown.Item: base font size (1.125rem) and 0.25rem x 1rem padding.
+    button.lw-course-card__menu-item {
+        @extend %lw-body-text;
+        display: block;
+        width: 100%;
+        padding: 0.25rem 1rem !important;
+        font-size: 1.125rem;
+        line-height: 1.5556;
+        margin: 0;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        text-align: left;
+        color: $lw-menu-item-text !important;
+        cursor: pointer;
+
+        // Opening the menu focuses its first item; only show the highlight on hover or
+        // keyboard focus, so a mouse-opened menu has no item that looks active.
+        &:hover,
+        &:focus-visible {
+            background: $lw-menu-item-hover-bg !important;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+// Loading skeleton (courses.html + skeletonHtml() in lw-courses-tabs.js): the card's own frame
+// and image box, with placeholder bars for the title, byline lines and button.
+.lw-course-card--skeleton {
+    .lw-course-card__body {
+        justify-content: flex-start;
+        gap: 12px;
+    }
+}
+
+.lw-skeleton {
+    display: block;
+    height: 14px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, $lw-card-slate-100 25%, $lw-card-slate-200 50%, $lw-card-slate-100 75%);
+    background-size: 200% 100%;
+    animation: lw-skeleton-shimmer 1.4s ease-in-out infinite;
+
+    &--title { width: 70%; height: 20px; }
+    &--text { width: 90%; }
+    &--short { width: 55%; }
+    &--button {
+        width: 100%;
+        height: $lw-card-control-size;
+        margin-top: 24px;
+        border-radius: $lw-card-control-radius;
+    }
+}
+
+.lw-course-card--skeleton .lw-course-card__image {
+    height: $lw-card-image-height;
+    background: linear-gradient(90deg, $lw-card-slate-100 25%, $lw-card-slate-200 50%, $lw-card-slate-100 75%);
+    background-size: 200% 100%;
+    animation: lw-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes lw-skeleton-shimmer {
+    from { background-position: 100% 0; }
+    to { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lw-skeleton,
+    .lw-course-card--skeleton .lw-course-card__image {
+        animation: none;
+    }
+
+    .lw-course-card__image img {
+        transition: none;
+    }
+}
+
+body.indigo-dark-theme .lw-course-card {
+    background: $primary-light-d;
+    border-color: $border-color-d;
+
+    &__title,
+    &__rating,
+    &__progress-value {
+        color: $text-color-d;
+    }
+
+    &__title a {
+        color: $text-color-d !important;
+    }
+
+    &__provider,
+    &__description,
+    &__chips,
+    &__progress-label {
+        color: $text-color-primary;
+    }
+
+    &__chip {
+        background: $light-overlay-d;
+        color: $text-color-d;
+    }
+
+    a.lw-course-card__cta.lw-course-card__cta--revisit {
+        background: $light-overlay-d !important;
+        color: $text-color-d !important;
+    }
+
+    button.lw-course-card__menu-toggle,
+    button.lw-course-card__menu-item {
+        color: $text-color-d !important;
+    }
+
+    button.lw-course-card__menu-toggle:hover,
+    button.lw-course-card__menu-toggle[aria-expanded="true"],
+    button.lw-course-card__menu-item:hover,
+    button.lw-course-card__menu-item:focus-visible {
+        background: $light-overlay-d !important;
+    }
+
+    &__menu-list {
+        border-color: $border-color-d;
+        background: $primary-light-d;
+    }
+}
+
+body.indigo-dark-theme .lw-skeleton,
+body.indigo-dark-theme .lw-course-card--skeleton .lw-course-card__image {
+    background: linear-gradient(90deg, $primary-light-d 25%, $light-overlay-d 50%, $primary-light-d 75%);
+    background-size: 200% 100%;
+}

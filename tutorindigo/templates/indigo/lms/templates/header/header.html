@@ -62,11 +62,16 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
         )}
     % endif
     <div class="main-header">
-      <button class="hamburger-menu" role="button" aria-label=${_("Options Menu")} aria-expanded="false" aria-controls="mobile-menu" tabindex="0">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
+      ## Compact header (< 1024px) menu button; same icon as the MFE header MenuIcon
+      <button type="button" class="lw-menu-toggle" aria-label="${_('Main menu')}" title="${_('Main menu')}"
+              aria-expanded="false" aria-controls="lw-header-nav">
+        ${HTML(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+          '<rect fill="currentColor" x="2" y="5" width="20" height="2"/>'
+          '<rect fill="currentColor" x="2" y="11" width="20" height="2"/>'
+          '<rect fill="currentColor" x="2" y="17" width="20" height="2"/>'
+          '</svg>'
+        )}
       </button>
       <%include file="navbar-logo-header.html" args="online_help_token=online_help_token"/>
         % if user.is_authenticated:
@@ -75,9 +80,46 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
             <%include file="navbar-not-authenticated.html" args="online_help_token=online_help_token"/>
         % endif
     </div>
-    <div class="mobile-menu hidden" aria-label=${_("More Options")} role="menu" id="mobile-menu"></div>
     </div>
 </header>
+
+## Compact header menu: below 1024px .nav-links (#lw-header-nav) is a panel under the bar.
+## Escape and click-away close it; widening to desktop closes it too.
+<script type="text/javascript">
+  (function () {
+    var header = document.querySelector('header.global-header');
+    var toggle = header && header.querySelector('.lw-menu-toggle');
+    var panel = toggle && document.getElementById(toggle.getAttribute('aria-controls'));
+    if (!panel) {
+      if (toggle) { toggle.hidden = true; }
+      return;
+    }
+    function isOpen() { return header.classList.contains('lw-menu-open'); }
+    function setOpen(open) {
+      header.classList.toggle('lw-menu-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function () { setOpen(!isOpen()); });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    document.addEventListener('click', function (event) {
+      if (isOpen() && !panel.contains(event.target) && !toggle.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+    var desktop = window.matchMedia('(min-width: 1024px)');
+    var onBreakpoint = function () { if (desktop.matches) { setOpen(false); } };
+    if (desktop.addEventListener) {
+      desktop.addEventListener('change', onBreakpoint);
+    } else {
+      desktop.addListener(onBreakpoint);
+    }
+  }());
+</script>
 
 ## Inline (not js_extra): page templates like courses.html override js_extra and would drop this script.
 % if user.is_authenticated:
