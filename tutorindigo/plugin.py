@@ -36,6 +36,12 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         "PRIMARY_COLOR": "#15376D",  # Indigo
         "ENABLE_DARK_TOGGLE": True,
         "ENABLE_DYNAMIC_THEME": True,
+        # Source of the indigo_theme Django app installed into the openedx
+        # image. Point these at a branch or a fork to try the app out before
+        # the corresponding changes are merged, for instance:
+        # tutor config save --set INDIGO_THEME_APP_VERSION=my-branch
+        "THEME_APP_REPOSITORY": "https://github.com/overhangio/tutor-indigo.git",
+        "THEME_APP_VERSION": "release",
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[]
