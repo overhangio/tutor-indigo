@@ -1,138 +1,87 @@
-// Include custom Footer
-.wrapper-footer {
-    padding: 25px 0;
-    border-top: 1px solid $gray-light;
-    @include media-breakpoint-up(md) {
-        padding: 45px 0;
-    }
-}
-footer.tutor-container {
-    margin: 0 auto;
-    padding: 0 15px;
-    max-width: 1600px;
-    text-align: center;
+// Mirrors the learner dashboard MFE footer (OpenLMS-frontend-component-footer
+// SiteFooter), so legacy LMS pages and MFEs share one footer design. The MFE
+// gets its look from Paragon utility classes plus the Indigo brand CSS
+// (static/css/light.min.css); legacy pages can't rely on those, so the computed
+// values are spelled out here in px:
+//   footer.border-top.py-3 > .container-fluid (48px sides) > .py-4,
+//   legal lines .small.text-gray-500 (87.5% of 18px, line-height 1.5556).
+footer.site-footer {
+    margin: 0;
+    padding: 16px 0;
+    border-top: 1px solid #cccccc;
+    background-color: #fdfdfd;
     box-sizing: border-box;
-    @include media-breakpoint-up(lg) {
-        text-align: left;
+    font-family: 'Rockford Sans', 'Segoe UI', Roboto, 'Open Sans', -apple-system, sans-serif;
+    text-align: left;
+
+    .site-footer__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px 0;
+        padding: 24px 48px;
     }
-    .footer-top {
-        margin: 0 0 15px;
-        &:after {
-            clear: both;
+
+    .site-footer__logo {
+        display: block;
+        margin-bottom: 24px;
+
+        img {
             display: block;
-            content: "";
-        }
-        .powered-area {
-            margin: 0 0 10px;
-            @include media-breakpoint-up(md) {
-                margin: 0 0 15px;
-            }
-            @include media-breakpoint-up(lg) {
-                float: left;
-            }
+            max-height: 45px;
+            width: auto;
         }
     }
-    .logo-list {
-        list-style: none;
+
+    .site-footer__legal {
         margin: 0;
-        padding: 0;
-        letter-spacing: -.3em;
-        li {
-            display: inline-block;
-            vertical-align: middle;
-            padding: 0 5px;
-            letter-spacing: normal;
-            position: relative;
-            font-size: 12px;
-            line-height: 18px;
-            color: #515661;
-            &:first-child {
-                padding-left: 0;
-            }
-            &:last-child {
-                padding-left: 20px;
-                &:after {
-                    position: absolute;
-                    left: 5px;
-                    top: 50%;
-                    content: "";
-                    width: 1px;
-                    height: 29px;
-                    margin: -14px 0 0;
-                    background: #515661;;
-                }
-            }
-        }
+        font-size: 15.75px;
+        font-weight: 400;
+        line-height: 24.5px;
+        letter-spacing: normal;
+        color: #707070;
     }
-    .nav-colophon {
-        display: block;
-        overflow: hidden;
-        ol {
-            text-align: center;
-            @include media-breakpoint-up(lg) {
-              text-align: right;
-            }
-            li {
-                display: inline-block;
-                vertical-align: top;
-                padding: 0 8px;
-                font-size: 14px;
-                line-height: 20px;
-                @include media-breakpoint-up(md) {
-                    padding: 0 12px;
-                    font-size: 16px;
-                    line-height: 24px;
-                }
-                a {
-                    color: $light-dark;
-                    text-decoration: none;
-                    &:hover {
-                        color: $dark;
-                        text-decoration: none;
-                    }
-                }
-            }
-        }
+
+    .site-footer__links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
     }
-    .copyright-site {
-        display: block;
-        font-size: 12px;
-        line-height: 16px;
-        color: $light-dark;
+
+    .site-footer__link {
+        margin-left: 24px;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #000;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: #000;
+            text-decoration: underline;
+        }
     }
 }
 
 body.indigo-dark-theme {
-    .wrapper-footer {
-        border-top: 1px solid $border-color-d;
-        background: $body-bg-d;
-    }
-    footer.tutor-container {
-        .logo-list {
-            li {
-                color: $text-color-primary;
-                &:last-child {
-                    &:after {
-                        background: $text-color-primary;
-                    }
-                }
-            }
-        }
-        .nav-colophon {
-            ol {
-                li {
-                    a {
-                        color:$text-color-primary;
-                        &:hover {
-                            color: $text-color-d;
-                        }
-                    }
-                }
-            }
-        }
-        .copyright-site {
+    footer.site-footer {
+        border-top-color: $border-color-d;
+        background-color: $body-bg-d;
+
+        .site-footer__legal {
             color: $text-color-primary;
         }
 
+        .site-footer__link {
+            color: $text-color-primary;
+
+            &:hover,
+            &:focus {
+                color: $text-color-d;
+            }
+        }
     }
 }
