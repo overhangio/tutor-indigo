@@ -38,6 +38,15 @@ const INDIGO_THEME_SHADE_MIX = {
   800: ['#000000', 0.25],
   900: ['#000000', 0.30],
 };
+const INDIGO_THEME_ICON_TOKENS = {
+  '--pgn-other-content-form-control-checkbox-indicator-icon-checked-base':
+    "url(\"data:image/svg+xml,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M21 3H3V21H21V3ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z' fill='%%HEX%%'/></svg>\")",
+  '--pgn-other-content-form-control-radio-indicator-icon-checked-base':
+    "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%%HEX%%'/%3e%3c/svg%3e\")",
+  '--pgn-other-content-form-control-switch-indicator-icon-off':
+    "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%%HEX%%'/%3e%3c/svg%3e\")",
+};
+
 const INDIGO_THEME_HEX_RE = /^#[0-9a-fA-F]{6}$/;
 
 const hexToRgb = (hex) => {
@@ -160,6 +169,13 @@ const buildThemeTokens = (tokens) => {
       result[`--pgn-color-action-default-${family}-${shade}`] = darkenColor(value, 0.1);
     });
   });
+  const primary = result['--pgn-color-primary-base'];
+  if (hexToRgb(primary)) {
+    const encoded = `%23${primary.replace('#', '').toUpperCase()}FF`;
+    Object.keys(INDIGO_THEME_ICON_TOKENS).forEach((name) => {
+      result[name] = INDIGO_THEME_ICON_TOKENS[name].replace('%%HEX%%', encoded);
+    });
+  }
   return result;
 };
 
