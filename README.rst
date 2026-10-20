@@ -27,8 +27,8 @@ Configuration
 -------------
 
 - ``INDIGO_WELCOME_MESSAGE`` (default: "The place for all your online learning")
-- ``INDIGO_PRIMARY_COLOR`` (default: "#3b85ff")
-- ``INDIGO_FOOTER_NAV_LINKS`` (default: ``[{"title": "About", "url": "/about"}, {"title": "Contact", "url": "/contact"}]``)
+- ``INDIGO_PRIMARY_COLOR`` (default: "#15376D")
+- ``INDIGO_FOOTER_NAV_LINKS`` (default: links to About Us, Blog, Donate, Terms of Service, Privacy Policy, Help and Contact Us)
 - ``INDIGO_ENABLE_DARK_TOGGLE`` (default: True)
 - ``INDIGO_ENABLE_DYNAMIC_THEME`` (default: True)
 - ``INDIGO_THEME_APP_REPOSITORY`` (default: ``"https://github.com/overhangio/tutor-indigo.git"``): repository the ``indigo_theme`` Django app is installed from
@@ -102,7 +102,10 @@ Dynamic theme
 
 Every learner can pick their own theme. From the Account settings page, in the "Profile Information" section, users choose an appearance preset (Light or Dark) and, if they want, personalize five core `Paragon <https://github.com/openedx/paragon>`__ colours: primary, primary light, secondary, text and info. The appearance choice is saved as soon as it is picked, while colour changes are previewed live and only stored with the "Save" button. Colours are kept separately for each preset. Preferences are saved per user and applied across the micro-frontends, so they follow the learner from one device to another.
 
-While this feature is enabled the light/dark toggle in the header is hidden, because the appearance preset in the Account settings page replaces it.
+.. image:: ./screenshots/02-dynamic-themes.png
+    :alt: Theme settings in the Account page
+
+While this feature is enabled the light/dark toggle is hidden, both in the micro-frontend header and on the legacy pages, because the appearance preset in the Account settings page replaces it.
 
 The preferences are stored by the ``indigo_theme`` Django app, which is installed into the ``openedx`` image and serves them from ``/api/indigo/v1/theme/``. The presets table is prefilled with the default token values for the light and dark variants by a database migration.
 
@@ -123,7 +126,7 @@ To install the app from a branch or a fork instead, for instance to try out chan
 To disable the feature, run::
 
     tutor config save --set INDIGO_ENABLE_DYNAMIC_THEME=false
-    tutor images build mfe
+    tutor images build openedx mfe
     tutor local start -d
 
 Customization
