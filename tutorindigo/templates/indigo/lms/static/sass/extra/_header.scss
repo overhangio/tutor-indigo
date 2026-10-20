@@ -225,7 +225,7 @@ header.global-header {
 
 .theme-toggle-button{
     position: relative;
-    display: {% if INDIGO_ENABLE_DARK_TOGGLE %}flex{% else %}none{% endif %};
+    display: {% if INDIGO_ENABLE_DARK_TOGGLE and not INDIGO_ENABLE_DYNAMIC_THEME %}flex{% else %}none{% endif %};
     align-items: center;
     margin-right: 0 !important;
 

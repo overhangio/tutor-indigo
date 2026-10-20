@@ -593,7 +593,7 @@ const ThemeSettings = () => {
         {intl.formatMessage(messages["theme.settings.colors.help"])}
       </p>
 
-      <div className="row row-cols-2 row-cols-md-3 row-cols-lg-5 mb-4">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 mb-4">
         {INDIGO_THEME_TOKENS.map((entry) => (
           <div
             className="col mb-3"
