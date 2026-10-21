@@ -105,6 +105,9 @@ Every learner can pick their own theme. From the Account settings page, in the "
 
 The light/dark toggle in the header stays available alongside this feature: it switches between the Light and Dark presets, while the Account settings page is where the presets are personalized.
 
+.. note::
+    The theme settings block is registered through the legacy plugin slots of the Account micro-frontend. Sites running the frontend-base version of ``frontend-app-account`` will not see it, because the compatibility layer does not map that slot. Learners on those sites can still switch between Light and Dark with the header toggle, but cannot personalize colours.
+
 The preferences are stored by the ``indigo_theme`` Django app, which ships with this plugin and is installed into the ``openedx`` image and serves them from ``/api/indigo/v1/theme/``. The presets table is prefilled with the default token values for the light and dark variants by a database migration.
 
 After enabling the plugin, rebuild the images and relaunch the platform so that the app is installed and its migrations are applied::
