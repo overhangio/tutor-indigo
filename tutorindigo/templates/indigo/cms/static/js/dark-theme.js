@@ -10,7 +10,7 @@ $(document).ready(function() {
         $('body').addClass("indigo-dark-theme");
         $("#toggle-switch-input").prop("checked", true);
       }
-      {% if INDIGO_ENABLE_DARK_TOGGLE %}
+      {% if INDIGO_ENABLE_DARK_TOGGLE or INDIGO_ENABLE_DYNAMIC_THEME %}
       $('body').toggleClass("indigo-dark-theme", theme === 'dark');       // append or remove dark-class based on cookie-value
       {% endif %}
       updateAccessibility();

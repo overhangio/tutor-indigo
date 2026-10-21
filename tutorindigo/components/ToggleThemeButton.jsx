@@ -1,7 +1,9 @@
 
 const ToggleThemeButton = () => {
   const intl = useIntl();
-  const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(false);
+  const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(
+    () => getStoredThemeVariant() === 'dark',
+  );
 
   const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
 
@@ -10,9 +12,9 @@ const ToggleThemeButton = () => {
     setIsDarkThemeEnabled(theme === 'dark');
     persistThemeVariant(theme);
 
-    setTimeout(() => {
+    saveThemeVariant(theme).then(() => {
       window.location.reload();
-    }, 1);
+    });
   };
 
   useEffect(() => {
@@ -27,13 +29,27 @@ const ToggleThemeButton = () => {
     document.documentElement.setAttribute(INDIGO_THEME_ATTRIBUTE_NAMES[0], variant);
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    const observer = new MutationObserver(() => {
+      setIsDarkThemeEnabled(
+        root.getAttribute(INDIGO_THEME_ATTRIBUTE_NAMES[0]) === 'dark',
+      );
+    });
+    observer.observe(root, {
+      attributes: true,
+      attributeFilter: INDIGO_THEME_ATTRIBUTE_NAMES,
+    });
+    return () => observer.disconnect();
+  }, []);
+
   const handleKeyUp = (event) => {
     if (event.key === "Enter") {
       onToggleTheme();
     }
   };
 
-  if (!isThemeToggleEnabled || getConfig().INDIGO_ENABLE_DYNAMIC_THEME) {
+  if (!isThemeToggleEnabled) {
     return <div />;
   }
 
@@ -54,15 +70,14 @@ const ToggleThemeButton = () => {
         <label htmlFor="theme-toggle-checkbox" className="switch">
           <input
             id="theme-toggle-checkbox"
-            defaultChecked={getStoredThemeVariant() === "dark"}
+            checked={isDarkThemeEnabled}
             onChange={onToggleTheme}
             onKeyUp={handleKeyUp}
             type="checkbox"
             title={intl.formatMessage(messages["header.user.theme"])}
           />
           <span className="slider round" />
-          <span id="theme-label" className="sr-only">{`Switch to ${isDarkThemeEnabled ? "Light" : "Dark"
-            } Mode`}</span>
+          <span id="theme-label" className="sr-only">{`Switch to ${isDarkThemeEnabled ? "Light" : "Dark"} Mode`}</span>
         </label>
       </div>
       <div className="dark-theme-icon">

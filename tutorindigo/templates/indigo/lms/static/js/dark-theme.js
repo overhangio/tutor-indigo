@@ -12,7 +12,7 @@ $(document).ready(function() {
           $("#toggle-switch-input").prop("checked", true);
         }, 200)
       }
-      {% if INDIGO_ENABLE_DARK_TOGGLE %}
+      {% if INDIGO_ENABLE_DARK_TOGGLE or INDIGO_ENABLE_DYNAMIC_THEME %}
       $('body').toggleClass("indigo-dark-theme", theme === 'dark');       // append or remove dark-class based on cookie-value
       // update expiry
       $.cookie(themeCookie, theme, { domain: window.location.hostname, expires: 90, path: '/' });
