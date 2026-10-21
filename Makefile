@@ -15,7 +15,7 @@ test-lint: ## Run code linting tests
 	ruff check ${SRC_DIRS}
 
 test-types: ## Run type checks.
-	mypy --exclude='templates/indigo/' --ignore-missing-imports --implicit-reexport --strict ${SRC_DIRS}
+	mypy --exclude=templates --ignore-missing-imports --implicit-reexport --strict ${SRC_DIRS}
 
 build-pythonpackage: ## Build the "tutor-indigo" python package for upload to pypi
 	python -m build --sdist

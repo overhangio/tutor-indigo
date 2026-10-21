@@ -69,7 +69,7 @@ packages = ["/tutorindigo"]
 path = "tutorindigo/__about__.py"
 
 [tool.ruff]
-exclude = ["tutorindigo/templates/indigo", "docs/_ext"]
+exclude = ["tutorindigo/templates/indigo/", "docs/_ext"]
 
 [tool.ruff.lint]
 # E: pycodestyle errors
