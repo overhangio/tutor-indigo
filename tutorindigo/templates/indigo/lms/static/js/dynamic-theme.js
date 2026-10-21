@@ -272,21 +272,24 @@
         };
     }
 
-    function saveVariant(variant) {
-        if (!currentUsername()) {
-            return Promise.resolve(null);
-        }
-        var payload = readCache();
+    function presetFor(payload, variant) {
         var presets = (payload && payload.presets) || [];
-        var target = null;
+        var match = null;
         for (var i = 0; i < presets.length; i += 1) {
-            if (presets[i].variant === variant) {
-                target = presets[i];
+            if (presets[i].variant !== variant) {
+                continue;
+            }
+            if (presets[i].slug === variant) {
+                return presets[i];
+            }
+            if (!match) {
+                match = presets[i];
             }
         }
-        if (!target || (payload && target.slug === payload.preset)) {
-            return Promise.resolve(null);
-        }
+        return match;
+    }
+
+    function patchPreset(slug) {
         return window.fetch(API_PATH, {
             method: 'PATCH',
             credentials: 'same-origin',
@@ -295,7 +298,7 @@
                 'Content-Type': 'application/json',
                 'X-CSRFToken': readCookie('csrftoken') || ''
             },
-            body: JSON.stringify({ preset: target.slug })
+            body: JSON.stringify({ preset: slug })
         }).then(function (response) {
             return response.ok ? response.json() : null;
         }).then(function (updated) {
@@ -304,6 +307,18 @@
                 apply(updated);
             }
             return updated;
+        });
+    }
+
+    function saveVariant(variant) {
+        if (!currentUsername()) {
+            return Promise.resolve(null);
+        }
+        var cached = readCache();
+        var known = cached && cacheIsFresh() ? Promise.resolve(cached) : fetchTheme();
+        return known.then(function (payload) {
+            var target = presetFor(payload, variant);
+            return target ? patchPreset(target.slug) : null;
         }).catch(function () {
             return null;
         });
@@ -316,8 +331,8 @@
         }
     }
 
-    function load() {
-        window.fetch(API_PATH, {
+    function fetchTheme() {
+        return window.fetch(API_PATH, {
             credentials: 'same-origin',
             headers: { Accept: 'application/json' }
         }).then(function (response) {
@@ -330,7 +345,11 @@
                 return null;
             }
             return response.ok ? response.json() : null;
-        }).then(function (payload) {
+        });
+    }
+
+    function load() {
+        fetchTheme().then(function (payload) {
             if (payload) {
                 writeCache(payload);
                 apply(payload);
