@@ -10,11 +10,17 @@
   var DEFAULT_NOTIFICATION_APP = 'assignments';
   var LEGACY_NOTIFICATION_APP = 'discussion';
   var PAGE_SIZE = 10;
+  var COUNT_REFRESH_MS = 60000;
 
   var STR = {
     assignedTitle: 'New Course Assigned',
+    reminderTitle: 'Due Date Reminder',
+    overdueTitle: 'Course Overdue',
+    completedTitle: 'Course Completed',
+    badgeEarned: 'You earned the %s badge. View it on your profile.',
+    certificateAvailable: 'Your certificate is available on your profile.',
     loading: 'Loading…',
-    loadMore: 'Load more notifications',
+    loadMore: 'Load more',
     emptyTitle: 'No notifications yet',
     emptyHelp: 'When you receive notifications they\u2019ll show up here',
     unreadLabel: 'Unread notification',
@@ -37,13 +43,74 @@
     ['%s years ago', 'in %s years'],
   ];
 
-  var NEW_COURSE_ICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="lw-notification-card__icon" aria-hidden="true"><path d="M10 4.99993C11.1401 4.34166 12.4335 3.99512 13.75 3.99512C15.0665 3.99512 16.3599 4.34166 17.5 4.99993V15.8333C16.3599 15.175 15.0665 14.8285 13.75 14.8285C12.4335 14.8285 11.1401 15.175 10 15.8333C8.85986 15.175 7.56652 14.8285 6.25 14.8285C4.93347 14.8285 3.64014 15.175 2.5 15.8333V4.99993C3.64014 4.34166 4.93347 3.99512 6.25 3.99512C7.56652 3.99512 8.85986 4.34166 10 4.99993ZM10 15.8333V4.99993" stroke="#059669" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var NEW_COURSE_ICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="lw-notification-card__icon" aria-hidden="true"><path d="M10 4.99993C11.1401 4.34166 12.4335 3.99512 13.75 3.99512C15.0665 3.99512 16.3599 4.34166 17.5 4.99993V15.8333C16.3599 15.175 15.0665 14.8285 13.75 14.8285C12.4335 14.8285 11.1401 15.175 10 15.8333C8.85986 15.175 7.56652 14.8285 6.25 14.8285C4.93347 14.8285 3.64014 15.175 2.5 15.8333V4.99993C3.64014 4.34166 4.93347 3.99512 6.25 3.99512C7.56652 3.99512 8.85986 4.34166 10 4.99993ZM10 15.8333V4.99993" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  // 24-unit line icons drawn at 20px; colour comes from the card variant (currentColor).
+  function cardIconSvg(paths) {
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" '
+      + 'stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" '
+      + 'class="lw-notification-card__icon" aria-hidden="true">' + paths + '</svg>';
+  }
+
+  var DUE_REMINDER_ICON_SVG = cardIconSvg(
+    '<rect x="3" y="4" width="18" height="18" rx="2"/>'
+    + '<path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>'
+  );
+  var OVERDUE_ICON_SVG = cardIconSvg(
+    '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/>'
+    + '<path d="M12 9v4M12 17h.01"/>'
+  );
+  var COMPLETED_ICON_SVG = cardIconSvg('<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>');
+
+  function reminderBody(courseTitle, days) {
+    if (days <= 0) {
+      return courseTitle + ' is due today';
+    }
+    if (days === 1) {
+      return courseTitle + ' is due tomorrow';
+    }
+    return courseTitle + ' is due in ' + days + ' days';
+  }
+
+  // Structured card types; everything else renders as a legacy card. Mirrors the plugin's
+  // notificationTypes.ts (frontend-plugin-notifications), keep the two in sync.
+  var TYPE_CONFIG = {
+    course_assigned: {
+      variant: 'assigned',
+      icon: NEW_COURSE_ICON_SVG,
+      title: STR.assignedTitle,
+      body: function (title) { return title + ' has been assigned to you'; },
+    },
+    course_due_reminder: {
+      variant: 'reminder',
+      icon: DUE_REMINDER_ICON_SVG,
+      title: STR.reminderTitle,
+      body: function (title, context) {
+        var days = typeof context.days_until_due === 'number' ? context.days_until_due : 1;
+        return reminderBody(title, days);
+      },
+    },
+    course_overdue: {
+      variant: 'overdue',
+      icon: OVERDUE_ICON_SVG,
+      title: STR.overdueTitle,
+      body: function (title) { return title + ' is now overdue'; },
+    },
+    course_completed: {
+      variant: 'completed',
+      icon: COMPLETED_ICON_SVG,
+      title: STR.completedTitle,
+      body: function (title) { return 'Congratulations! You have completed ' + title; },
+    },
+  };
 
   var EMPTY_BELL_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" class="lw-notifications-drawer__empty-icon" aria-hidden="true"><path d="M9 17V18C9 18.7957 9.31607 19.5587 9.87868 20.1213C10.4413 20.6839 11.2044 21 12 21C12.7956 21 13.5587 20.6839 14.1213 20.1213C14.6839 19.5587 15 18.7957 15 18V17M10 5C10 4.46957 10.2107 3.96086 10.5858 3.58579C10.9609 3.21071 11.4696 3 12 3C12.5304 3 13.0391 3.21071 13.4142 3.58579C13.7893 3.96086 14 4.46957 14 5C15.1484 5.54303 16.1274 6.38833 16.8321 7.4453C17.5367 8.50227 17.9404 9.73107 18 11V14C18.0753 14.6217 18.2954 15.2171 18.6428 15.7381C18.9902 16.2592 19.4551 16.6914 20 17H4C4.54494 16.6914 5.00981 16.2592 5.35719 15.7381C5.70457 15.2171 5.92474 14.6217 6 14V11C6.05956 9.73107 6.4633 8.50227 7.16795 7.4453C7.8726 6.38833 8.85159 5.54303 10 5Z" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   var root = document.getElementById('lw-notifications-root');
   var bell = document.getElementById('lw-notification-bell');
   var drawerCount = document.getElementById('lw-notifications-drawer-count');
+  var bellBadge = document.getElementById('lw-notification-bell-badge');
+  var bellLabel = bell ? bell.getAttribute('aria-label') : '';
   var backdrop = document.getElementById('lw-notifications-backdrop');
   var drawer = document.getElementById('lw-notifications-drawer');
   var closeBtn = document.getElementById('lw-notifications-close');
@@ -67,6 +134,7 @@
     isDrawerOpen: false,
     closeTimer: null,
     csrfToken: null,
+    urlParamsApplied: false,
   };
 
   var listState = {
@@ -268,7 +336,7 @@
   function collectCourseIds(notifications) {
     var ids = {};
     notifications.forEach(function (notification) {
-      if (notification.notification_type !== 'course_assigned') {
+      if (!TYPE_CONFIG[notification.notification_type]) {
         return;
       }
       var context = notification.content_context || {};
@@ -391,8 +459,26 @@
     }
   }
 
+  // Corner badge on the bell: hidden at 0, otherwise the unread count (99+ cap).
+  function updateBellBadge(count) {
+    var safeCount = typeof count === 'number' && count >= 0 ? count : 0;
+    var unreadLabel = bell.getAttribute('data-unread-label');
+    if (safeCount > 0 && unreadLabel) {
+      bell.setAttribute('aria-label', unreadLabel.replace('{count}', String(safeCount)));
+    } else {
+      bell.setAttribute('aria-label', bellLabel);
+    }
+    if (!bellBadge) {
+      return;
+    }
+    bellBadge.textContent = safeCount >= 100 ? '99+' : String(safeCount);
+    bellBadge.classList.toggle('lw-notification-badge--hidden', safeCount === 0);
+    bellBadge.classList.toggle('lw-notification-badge--wide', safeCount >= 10);
+  }
+
   function updateBadges(count) {
     updateCountBadge(drawerCount, count);
+    updateBellBadge(count);
   }
 
   function mountDrawerPortal() {
@@ -440,20 +526,32 @@
     section.appendChild(empty);
   }
 
-  function buildAssignedCard(notification) {
+  function appendMeta(content, testId, text, className) {
+    var span = document.createElement('span');
+    if (className) {
+      span.className = className;
+    }
+    span.setAttribute('data-testid', testId);
+    span.textContent = text;
+    content.appendChild(span);
+  }
+
+  function buildStructuredCard(notification, config) {
     var context = notification.content_context || {};
     var courseTitle = getCourseTitle(context, notification.content_url, listState.courseTitleMap);
     var dueDateLabel = formatDueDate(context.due_date);
-    var assignedBy = context.assigned_by;
+    var isUnread = !notification.last_read;
     var safeUrl = getSafeNotificationUrl(notification.content_url) || '#';
     var relativeTime = formatRelativeTime(notification.created);
+    var id = notification.id;
 
     var link = document.createElement('a');
     link.href = safeUrl;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.className = 'lw-notification-card lw-notification-card--assigned';
-    link.setAttribute('data-testid', 'notification-' + notification.id);
+    link.className = 'lw-notification-card lw-notification-card--structured lw-notification-card--'
+      + config.variant + (isUnread ? ' lw-notification-card--unread' : '');
+    link.setAttribute('data-testid', 'notification-' + id);
 
     var accent = document.createElement('span');
     accent.className = 'lw-notification-card__accent';
@@ -464,38 +562,51 @@
 
     var header = document.createElement('div');
     header.className = 'lw-notification-card__header';
-    header.innerHTML = NEW_COURSE_ICON_SVG
-      + '<span class="lw-notification-card__heading" data-testid="notification-assigned-title-' + notification.id + '">'
-      + escapeHtml(STR.assignedTitle)
-      + '</span>';
+    header.innerHTML = (isUnread
+      ? '<span class="lw-notification-card__unread-dot" role="img" data-testid="unread-notification-'
+        + id + '" aria-label="' + escapeHtml(STR.unreadLabel) + '"></span>'
+      : '')
+      + config.icon
+      + '<span class="lw-notification-card__heading" data-testid="notification-' + config.variant
+      + '-title-' + id + '">' + escapeHtml(config.title) + '</span>';
 
     var message = document.createElement('p');
     message.className = 'lw-notification-card__message';
-    message.setAttribute('data-testid', 'notification-course-' + notification.id);
-    message.textContent = courseTitle + ' has been assigned to you';
+    message.setAttribute('data-testid', 'notification-course-' + id);
+    message.textContent = config.body(courseTitle, context);
 
     content.appendChild(header);
     content.appendChild(message);
 
     if (dueDateLabel) {
-      var due = document.createElement('span');
-      due.setAttribute('data-testid', 'notification-due-date-' + notification.id);
-      due.textContent = 'Due: ' + dueDateLabel;
-      content.appendChild(due);
+      appendMeta(content, 'notification-due-date-' + id, 'Due: ' + dueDateLabel);
     }
 
+    // The design shows the course provider as the assigning authority; older rows fall back to
+    // the admin who assigned the course.
+    var assignedBy = config.variant === 'assigned' ? (context.provider || context.assigned_by) : '';
     if (assignedBy) {
-      var by = document.createElement('span');
-      by.setAttribute('data-testid', 'notification-assigned-by-' + notification.id);
-      by.textContent = 'Assigned by: ' + assignedBy;
-      content.appendChild(by);
+      appendMeta(content, 'notification-assigned-by-' + id, 'Assigned by: ' + assignedBy);
     }
 
-    var created = document.createElement('span');
-    created.className = 'lw-notification-card__timestamp';
-    created.setAttribute('data-testid', 'notification-created-date-' + notification.id);
-    created.textContent = relativeTime;
-    content.appendChild(created);
+    if (config.variant === 'completed' && context.badge_name) {
+      appendMeta(
+        content,
+        'notification-badge-' + id,
+        STR.badgeEarned.replace('%s', function () { return context.badge_name; }),
+        'lw-notification-card__award'
+      );
+    }
+    if (config.variant === 'completed' && context.has_certificate) {
+      appendMeta(
+        content,
+        'notification-certificate-' + id,
+        STR.certificateAvailable,
+        'lw-notification-card__award'
+      );
+    }
+
+    appendMeta(content, 'notification-created-date-' + id, relativeTime, 'lw-notification-card__timestamp');
 
     link.appendChild(accent);
     link.appendChild(content);
@@ -563,8 +674,9 @@
   }
 
   function buildCard(notification) {
-    if (notification.notification_type === 'course_assigned') {
-      return buildAssignedCard(notification);
+    var config = TYPE_CONFIG[notification.notification_type];
+    if (config) {
+      return buildStructuredCard(notification, config);
     }
     return buildLegacyCard(notification);
   }
@@ -650,7 +762,15 @@
     }
 
     listState.isFetching = true;
-    setLoading(true);
+    // Loading the next page keeps the button in place (disabled) so the list does not jump.
+    var pendingBtn = reset ? null : listState.loadMoreBtn;
+    if (pendingBtn) {
+      pendingBtn.disabled = true;
+      pendingBtn.setAttribute('aria-busy', 'true');
+      pendingBtn.textContent = STR.loading;
+    } else {
+      setLoading(true);
+    }
 
     var nextPage = reset ? 1 : listState.currentPage + 1;
 
@@ -677,6 +797,12 @@
       .then(function () {
         listState.isFetching = false;
         setLoading(false);
+        // A successful load re-renders a fresh button; restore the old one only if the fetch failed.
+        if (pendingBtn && pendingBtn === listState.loadMoreBtn) {
+          pendingBtn.disabled = false;
+          pendingBtn.removeAttribute('aria-busy');
+          pendingBtn.textContent = STR.loadMore;
+        }
       });
   }
 
@@ -756,17 +882,27 @@
       state.tabsCount = Object.assign({ count: data.count || 0 }, countByApp);
       state.showNotificationsTray = !!data.show_notifications_tray;
 
-      var params = new URLSearchParams(window.location.search);
-      state.appName = resolveDefaultAppName(appsId, params.get('app'));
-
       if (state.showNotificationsTray) {
         updateBadges(state.tabsCount.count);
       }
 
-      if (params.get('showNotifications') === 'true' && state.showNotificationsTray) {
-        openDrawer();
+      if (!state.urlParamsApplied) {
+        state.urlParamsApplied = true;
+        applyUrlParams(appsId);
       }
     });
+  }
+
+  // The ?app= and ?showNotifications= deep-link params, applied once on the first successful
+  // count fetch (as the MFE plugin does). fetchCounts() also runs on every refresh, card click
+  // and mark-all, which must not reset the tab or reopen (and reload) the drawer.
+  function applyUrlParams(appsId) {
+    var params = new URLSearchParams(window.location.search);
+    state.appName = resolveDefaultAppName(appsId, params.get('app'));
+
+    if (params.get('showNotifications') === 'true' && state.showNotificationsTray) {
+      openDrawer();
+    }
   }
 
   bell.addEventListener('click', toggleDrawer);
@@ -790,4 +926,13 @@
   fetchCounts().catch(function () {
     // Notifications API unavailable: keep the bell visible but inert.
   });
+
+  // Keep the badge fresh on long-lived pages, so a new assignment shows within a minute.
+  function refreshCounts() {
+    if (document.visibilityState === 'visible') {
+      fetchCounts().catch(function () {});
+    }
+  }
+  window.setInterval(refreshCounts, COUNT_REFRESH_MS);
+  document.addEventListener('visibilitychange', refreshCounts);
 })();

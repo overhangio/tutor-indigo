@@ -511,7 +511,8 @@ header.global-header {
             font-size: 10px;
             font-weight: 600;
             font-variant-numeric: lining-nums tabular-nums;
-            background: $primary;
+            // Red unread count (Figma), same as the drawer's count badge.
+            background: #DC2626;
             color: #fff;
             line-height: 20px;
             min-width: 20px;
@@ -820,8 +821,8 @@ body.indigo-dark-theme {
 
             .lw-notification-badge {
                 border-color: $body-bg-d;
-                background: $primary-d !important;
-                color: $btn-color-d;
+                background: #DC2626 !important;
+                color: #fff;
             }
 
             .lw-avatar-btn {
@@ -1484,7 +1485,7 @@ button.lw-notifications-drawer__close {
     color: inherit;
     transition: background-color 150ms ease;
 
-    &:not(.lw-notification-card--assigned) {
+    &:not(.lw-notification-card--structured) {
         margin-bottom: 0.5rem;
         padding: 1rem;
         border: 1px solid #e5e7eb;
@@ -1505,7 +1506,13 @@ button.lw-notifications-drawer__close {
     }
 }
 
-.lw-notification-card--assigned {
+// Structured cards (TYPE_CONFIG in notifications.js; mirrors frontend-plugin-notifications).
+// Each variant sets the accent bar, tint and icon colours from the design mock-up.
+.lw-notification-card--structured {
+    --lw-card-accent: #10B981;
+    --lw-card-bg: #fff;
+    --lw-card-icon: #059669;
+
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -1520,14 +1527,14 @@ button.lw-notifications-drawer__close {
     border-bottom-right-radius: 12px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    background-color: #fff;
+    background-color: var(--lw-card-bg);
     overflow: hidden;
     text-decoration: none;
     color: inherit;
 
     &:hover,
     &:focus {
-        background-color: #fff;
+        background-color: var(--lw-card-bg);
         text-decoration: none;
         color: inherit;
     }
@@ -1537,10 +1544,47 @@ button.lw-notifications-drawer__close {
         width: 4px;
         min-height: 179px;
         align-self: stretch;
-        background-color: #10B981;
+        background-color: var(--lw-card-accent);
         border-radius: 12px;
     }
 
+    .lw-notification-card__icon {
+        color: var(--lw-card-icon);
+    }
+
+    .lw-notification-card__unread-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #0B2E59;
+    }
+
+    .lw-notification-card__award {
+        color: #065F46 !important;
+        font-weight: 500 !important;
+    }
+}
+
+.lw-notification-card--reminder {
+    --lw-card-accent: #F59E0B;
+    --lw-card-bg: #FFFBEB;
+    --lw-card-icon: #D97706;
+}
+
+// Visually distinct warning (spec): orange bar, warm tint, warning icon.
+.lw-notification-card--overdue {
+    --lw-card-accent: #F97316;
+    --lw-card-bg: #FFF7ED;
+    --lw-card-icon: #EA580C;
+}
+
+.lw-notification-card--completed {
+    --lw-card-accent: #10B981;
+    --lw-card-bg: #ECFDF5;
+    --lw-card-icon: #059669;
+}
+
+// Layout and type shared by every structured variant.
+.lw-notification-card--structured {
     .lw-notification-card__content {
         flex: 1;
         display: flex;
@@ -1697,7 +1741,7 @@ button.lw-notifications-drawer__close {
         }
     }
 
-    a.lw-notification-card.lw-notification-card--assigned {
+    a.lw-notification-card.lw-notification-card--structured {
         border: none !important;
         border-top-right-radius: 12px !important;
         border-bottom-right-radius: 12px !important;
@@ -1713,6 +1757,12 @@ button.lw-notifications-drawer__close {
             box-shadow: none !important;
             outline: none !important;
             text-decoration: none !important;
+        }
+
+        // Keep a visible keyboard focus ring despite the resets above.
+        &:focus-visible {
+            outline: 2px solid var(--lw-card-accent) !important;
+            outline-offset: -2px;
         }
 
         .lw-notification-card__content {
@@ -1784,21 +1834,65 @@ button.lw-notifications-drawer__close {
     color: #6b7280;
 }
 
-.lw-notifications-drawer__load-more {
-    width: 100%;
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: 0;
-    border-radius: 0.375rem;
-    background-color: $primary;
-    color: #fff;
-    font-size: 0.875rem;
-    font-weight: 500;
+// Neutral secondary button (same tokens as the drawer close button), inset 16px.
+// button.selector + !important like mark-all/close, so LMS button globals cannot restyle it.
+button.lw-notifications-drawer__load-more {
+    display: block !important;
+    box-sizing: border-box !important;
+    width: calc(100% - 32px) !important;
+    height: 37px !important;
+    margin: 12px auto !important;
+    padding: 8px 12px !important;
+    border: 0 !important;
+    border-radius: 6px !important;
+    background: #F1F5F9 !important;
+    background-color: #F1F5F9 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    color: #1E293B !important;
+    font-family: $lw-notification-font-family !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    line-height: 21px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    text-transform: none !important;
     cursor: pointer;
+    transition: background-color 150ms ease;
+    -webkit-appearance: none !important;
+    appearance: none !important;
 
     &:hover,
+    &:active {
+        background: #e2e8f0 !important;
+        background-color: #e2e8f0 !important;
+        background-image: none !important;
+        color: #1E293B !important;
+        box-shadow: none !important;
+    }
+
     &:focus {
-        opacity: 0.9;
+        box-shadow: none !important;
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: 2px solid #003366;
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        background: #F1F5F9 !important;
+        background-color: #F1F5F9 !important;
+        color: #1E293B !important;
+        opacity: 1 !important;
+        cursor: progress;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
     }
 }
 
