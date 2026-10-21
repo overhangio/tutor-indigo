@@ -2,7 +2,9 @@
     'use strict';
 
     var ENABLED = {% if INDIGO_ENABLE_DYNAMIC_THEME %}true{% else %}false{% endif %};
-    var CACHE_KEY = 'indigo-user-theme';
+    var CACHE_KEY = 'indigo-user-theme-legacy';
+    var CACHE_TTL_MS = 5 * 60 * 1000;
+    var lastFetched = 0;
     var API_PATH = '/api/indigo/v1/theme/';
     var HEX_RE = /^#[0-9a-f]{6}$/;
 
@@ -50,10 +52,15 @@
                 clearCache();
                 return null;
             }
+            lastFetched = cache.fetched || 0;
             return cache.payload;
         } catch (error) {
             return null;
         }
+    }
+
+    function cacheIsFresh() {
+        return lastFetched > 0 && (Date.now() - lastFetched) < CACHE_TTL_MS;
     }
 
     function writeCache(payload) {
@@ -63,8 +70,10 @@
                 clearCache();
                 return;
             }
+            lastFetched = Date.now();
             window.localStorage.setItem(CACHE_KEY, JSON.stringify({
                 username: username,
+                fetched: lastFetched,
                 payload: payload
             }));
         } catch (error) {}
@@ -112,33 +121,42 @@
             + '|rgba?\\(\\s*' + rgb[0] + sep + rgb[1] + sep + rgb[2] + '(?=\\s*[,)\\/])';
     }
 
-    function replacerFor(change) {
-        var rgb = channels(change.to);
-        return function (match, alpha, first, second) {
-            if (match.charAt(0) === '#') {
-                return change.to + (alpha || '');
-            }
-            var head = match.slice(0, match.indexOf('('));
-            return head + '(' + rgb[0] + first + rgb[1] + second + rgb[2];
-        };
-    }
-
-    function buildMatchers(changes) {
-        return changes.map(function (change) {
-            return {
-                re: new RegExp(patternFor(change), 'gi'),
-                fn: replacerFor(change)
-            };
+    function hexKey(r, g, b) {
+        var parts = [r, g, b].map(function (channel) {
+            var hex = Number(channel).toString(16);
+            return hex.length === 1 ? '0' + hex : hex;
         });
+        return '#' + parts.join('');
     }
 
-    function remap(value, matchers) {
-        var next = value;
-        for (var i = 0; i < matchers.length; i += 1) {
-            matchers[i].re.lastIndex = 0;
-            next = next.replace(matchers[i].re, matchers[i].fn);
+    var COLOR_RE = new RegExp(
+        '#([0-9a-f]{6})([0-9a-f]{2})?(?![0-9a-f])'
+        + '|rgba?\\(\\s*(\\d{1,3})(\\s*[,\\s]\\s*)(\\d{1,3})(\\s*[,\\s]\\s*)(\\d{1,3})(?=\\s*[,)\\/])',
+        'gi'
+    );
+
+    function buildColorMap(changes) {
+        var map = {};
+        for (var i = 0; i < changes.length; i += 1) {
+            map[changes[i].from.toLowerCase()] = changes[i].to;
         }
-        return next;
+        return map;
+    }
+
+    function remap(value, colorMap) {
+        COLOR_RE.lastIndex = 0;
+        return value.replace(COLOR_RE, function (match, hex, alpha, r, sep1, g, sep2, b) {
+            if (hex) {
+                var toHex = colorMap['#' + hex.toLowerCase()];
+                return toHex ? toHex + (alpha || '') : match;
+            }
+            var toRgb = colorMap[hexKey(r, g, b)];
+            if (!toRgb) {
+                return match;
+            }
+            var rgb = channels(toRgb);
+            return match.slice(0, match.indexOf('(')) + '(' + rgb[0] + sep1 + rgb[1] + sep2 + rgb[2];
+        });
     }
 
     function revert() {
@@ -164,7 +182,7 @@
             var name = style[i];
             var value = style.getPropertyValue(name);
             context.declarations += 1;
-            var next = remap(value, context.matchers);
+            var next = remap(value, context.colorMap);
             if (next === value) {
                 continue;
             }
@@ -197,7 +215,7 @@
 
     function retint(changes) {
         var context = {
-            matchers: buildMatchers(changes),
+            colorMap: buildColorMap(changes),
             probe: new RegExp(changes.map(patternFor).join('|'), 'i'),
             sheets: 0,
             blocked: 0,
@@ -301,7 +319,9 @@
         }
         window.addEventListener('load', refresh);
         if (currentUsername()) {
-            load();
+            if (!cacheIsFresh()) {
+                load();
+            }
         } else {
             clearCache();
             revert();
