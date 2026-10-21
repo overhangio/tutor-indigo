@@ -38,11 +38,22 @@ $(document).ready(function() {
       }
     }
 
+    function saveThemeVariant(variant){
+      {% if INDIGO_ENABLE_DYNAMIC_THEME %}
+      const dynamicTheme = window.indigoDynamicTheme;
+      if (dynamicTheme && typeof dynamicTheme.saveVariant === 'function') {
+        return dynamicTheme.saveVariant(variant);
+      }
+      {% endif %}
+      return Promise.resolve();
+    }
+
     function toggleTheme(){
       const themeValue = $.cookie(themeCookie) === 'dark' ? 'light' : 'dark';
       $.cookie(themeCookie, themeValue, { domain: window.location.hostname, expires: 90, path: '/' });
       window.localStorage.setItem(themeCookie, themeValue);
       applyThemeOnPage();
+      saveThemeVariant(themeValue);
     }
 
     // Listener for updating the theme inside an iframe

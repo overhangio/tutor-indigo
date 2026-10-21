@@ -272,6 +272,43 @@
         };
     }
 
+    function saveVariant(variant) {
+        if (!currentUsername()) {
+            return Promise.resolve(null);
+        }
+        var payload = readCache();
+        var presets = (payload && payload.presets) || [];
+        var target = null;
+        for (var i = 0; i < presets.length; i += 1) {
+            if (presets[i].variant === variant) {
+                target = presets[i];
+            }
+        }
+        if (!target || (payload && target.slug === payload.preset)) {
+            return Promise.resolve(null);
+        }
+        return window.fetch(API_PATH, {
+            method: 'PATCH',
+            credentials: 'same-origin',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRFToken': readCookie('csrftoken') || ''
+            },
+            body: JSON.stringify({ preset: target.slug })
+        }).then(function (response) {
+            return response.ok ? response.json() : null;
+        }).then(function (updated) {
+            if (updated) {
+                writeCache(updated);
+                apply(updated);
+            }
+            return updated;
+        }).catch(function () {
+            return null;
+        });
+    }
+
     function refresh() {
         var payload = readCache();
         if (payload) {
@@ -311,7 +348,8 @@
                 return stats;
             },
             refresh: refresh,
-            revert: revert
+            revert: revert,
+            saveVariant: saveVariant
         };
         refresh();
         if (document.readyState === 'loading') {
