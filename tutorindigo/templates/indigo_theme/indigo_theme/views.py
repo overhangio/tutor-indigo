@@ -1,12 +1,21 @@
+from django.conf import settings
 from edx_rest_framework_extensions.auth.jwt.authentication import JwtAuthentication
-from edx_rest_framework_extensions.auth.session.authentication import SessionAuthenticationAllowInactiveUser
+from edx_rest_framework_extensions.auth.session.authentication import (
+    SessionAuthenticationAllowInactiveUser,
+)
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from .constants import PRIMARY_TOKEN, VARIANT_LIGHT
 from .models import ThemePreset, UserTheme
 from .serializers import ThemePresetSerializer, UserThemeSerializer
+
+
+def platform_primary_color():
+    color = getattr(settings, "INDIGO_PRIMARY_COLOR", "") or ""
+    return color.strip()
 
 
 def build_payload(user):
@@ -22,14 +31,27 @@ def build_payload(user):
     overrides = {
         item.slug: dict(stored_overrides.get(item.slug) or {}) for item in presets
     }
-    tokens = dict(preset.tokens or {}) if preset else {}
+    serialized = ThemePresetSerializer(presets, many=True).data
+
+    primary = platform_primary_color()
+    if primary:
+        for item in serialized:
+            if item.get("variant") == VARIANT_LIGHT:
+                item["tokens"] = {**(item.get("tokens") or {}), PRIMARY_TOKEN: primary}
+
+    defaults = {}
+    if preset:
+        for item in serialized:
+            if item.get("slug") == preset.slug:
+                defaults = dict(item.get("tokens") or {})
+    tokens = defaults
     if preset:
         tokens.update(overrides.get(preset.slug) or {})
 
     return {
         "preset": preset.slug if preset else None,
         "variant": preset.variant if preset else None,
-        "presets": ThemePresetSerializer(presets, many=True).data,
+        "presets": serialized,
         "overrides": overrides,
         "tokens": tokens,
     }
@@ -71,12 +93,15 @@ class UserThemeView(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
+        overrides = dict(user_theme.overrides or {}) if user_theme else {}
         if "overrides" in data:
-            overrides = data["overrides"]
-        elif user_theme:
-            overrides = user_theme.overrides or {}
-        else:
-            overrides = {}
+            if partial:
+                for slug, tokens in data["overrides"].items():
+                    merged = dict(overrides.get(slug) or {})
+                    merged.update(tokens)
+                    overrides[slug] = merged
+            else:
+                overrides = data["overrides"]
 
         UserTheme.objects.update_or_create(
             user=request.user,

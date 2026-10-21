@@ -3,7 +3,10 @@
 SRC_DIRS = ./tutorindigo
 
 # Warning: These checks are not necessarily run on every PR.
-test: test-lint test-types test-format test-pythonpackage # Run some static checks.
+test: test-lint test-types test-format test-pythonpackage test-indigo-theme # Run some static checks.
+
+test-indigo-theme: ## Run the indigo_theme unit tests
+	cd tutorindigo/templates/indigo_theme && python -m django test tests --settings=tests.settings --pythonpath=.
 
 test-format: ## Run code formatting tests
 	ruff format --check --diff $(SRC_DIRS)
@@ -12,7 +15,7 @@ test-lint: ## Run code linting tests
 	ruff check ${SRC_DIRS}
 
 test-types: ## Run type checks.
-	mypy --exclude=templates --ignore-missing-imports --implicit-reexport --strict ${SRC_DIRS}
+	mypy --exclude='templates/indigo/' --ignore-missing-imports --implicit-reexport --strict ${SRC_DIRS}
 
 build-pythonpackage: ## Build the "tutor-indigo" python package for upload to pypi
 	python -m build --sdist

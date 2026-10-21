@@ -2,8 +2,10 @@ VARIANT_LIGHT = "light"
 VARIANT_DARK = "dark"
 VARIANT_CHOICES = [(VARIANT_LIGHT, "Light"), (VARIANT_DARK, "Dark")]
 
+PRIMARY_TOKEN = "--pgn-color-primary-base"
+
 CUSTOMIZABLE_TOKENS = [
-    "--pgn-color-primary-base",
+    PRIMARY_TOKEN,
     "--pgn-color-primary-light",
     "--pgn-color-brand-base",
     "--pgn-color-text-base",

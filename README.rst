@@ -31,8 +31,6 @@ Configuration
 - ``INDIGO_FOOTER_NAV_LINKS`` (default: links to About Us, Blog, Donate, Terms of Service, Privacy Policy, Help and Contact Us)
 - ``INDIGO_ENABLE_DARK_TOGGLE`` (default: True)
 - ``INDIGO_ENABLE_DYNAMIC_THEME`` (default: True)
-- ``INDIGO_THEME_APP_REPOSITORY`` (default: ``"https://github.com/overhangio/tutor-indigo.git"``): repository the ``indigo_theme`` Django app is installed from
-- ``INDIGO_THEME_APP_VERSION`` (default: ``"release"``): git reference of that repository
 - ``INDIGO_BRAND_CSS_BASE_URL`` (default: ``"https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@<version>/dist"``): base URL of the compiled brand-openedx CSS loaded by the MFEs (see `Using your own brand in production`_)
 - ``INDIGO_BRAND_OPENEDX_PATH`` (default: ``""``): path to a local checkout of your brand-openedx repository, used in development mode only (see `Developing the brand-openedx theme`_)
 - ``INDIGO_BRAND_OPENEDX_DEV_PORT`` (default: ``3000``)
@@ -105,9 +103,9 @@ Every learner can pick their own theme. From the Account settings page, in the "
 .. image:: ./screenshots/02-dynamic-themes.png
     :alt: Theme settings in the Account page
 
-While this feature is enabled the light/dark toggle is hidden, both in the micro-frontend header and on the legacy pages, because the appearance preset in the Account settings page replaces it.
+The light/dark toggle in the header stays available alongside this feature: it switches between the Light and Dark presets, while the Account settings page is where the presets are personalized.
 
-The preferences are stored by the ``indigo_theme`` Django app, which is installed into the ``openedx`` image and serves them from ``/api/indigo/v1/theme/``. The presets table is prefilled with the default token values for the light and dark variants by a database migration.
+The preferences are stored by the ``indigo_theme`` Django app, which ships with this plugin and is installed into the ``openedx`` image and serves them from ``/api/indigo/v1/theme/``. The presets table is prefilled with the default token values for the light and dark variants by a database migration.
 
 After enabling the plugin, rebuild the images and relaunch the platform so that the app is installed and its migrations are applied::
 
@@ -116,12 +114,7 @@ After enabling the plugin, rebuild the images and relaunch the platform so that 
 
 Developers working on the Django app can mount their local copy instead of the version installed from git::
 
-    tutor mounts add ./indigo_theme
-
-To install the app from a branch or a fork instead, for instance to try out changes that are not merged yet::
-
-    tutor config save --set INDIGO_THEME_APP_VERSION=my-branch
-    tutor images build openedx
+    tutor mounts add ./tutorindigo/templates/indigo_theme
 
 To disable the feature, run::
 

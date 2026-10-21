@@ -1,7 +1,10 @@
+import re
+
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 
-from .constants import VARIANT_CHOICES
+from .constants import CUSTOMIZABLE_TOKENS, HEX_COLOR_RE, VARIANT_CHOICES
 
 
 class ThemePreset(models.Model):
@@ -17,6 +20,24 @@ class ThemePreset(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        tokens = self.tokens or {}
+        if not isinstance(tokens, dict):
+            raise ValidationError({"tokens": "Tokens must be an object."})
+        for token, color in tokens.items():
+            if token not in CUSTOMIZABLE_TOKENS:
+                raise ValidationError({"tokens": f"Token {token} is not customizable."})
+            if not isinstance(color, str) or not re.match(HEX_COLOR_RE, color):
+                raise ValidationError(
+                    {"tokens": f"Value for {token} must be a #RRGGBB colour."}
+                )
+        if self.is_default:
+            clash = ThemePreset.objects.filter(is_default=True).exclude(pk=self.pk)
+            if clash.exists():
+                raise ValidationError(
+                    {"is_default": "Another preset is already the default."}
+                )
 
     @classmethod
     def get_default(cls):
