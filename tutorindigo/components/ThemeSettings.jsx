@@ -485,8 +485,9 @@ const ThemeSettings = () => {
     setIsSubmitting(true);
     setSubmitError('');
     setOpenToken(null);
+    const cleared = { ...overridesFromPayload(saved), [draft.preset]: {} };
     getAuthenticatedHttpClient()
-      .delete(apiUrl)
+      .put(apiUrl, { preset: draft.preset, overrides: cleared })
       .then(({ data }) => {
         adoptPayload(data);
         writeThemeCache(data);
