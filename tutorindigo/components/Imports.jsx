@@ -8,7 +8,7 @@ import { getAuthenticatedHttpClient, getAuthenticatedUser } from '@edx/frontend-
 import {
   ActionRow, Alert, Badge, breakpoints, Button, Card, Form, Icon, ModalPopup, Spinner, useMediaQuery,
 } from '@openedx/paragon';
-import { Calendar, Nightlight, WbSunny } from '@openedx/paragon/icons';
+import { Calendar, Edit, Nightlight, WbSunny } from '@openedx/paragon/icons';
 import { useIntl } from '@edx/frontend-platform/i18n';
 
 // @openedx/frontend-base-compat stands in for @edx/frontend-platform in

@@ -89,7 +89,26 @@ const INDIGO_THEME_SETTINGS_CSS = `
 .indigo-theme-settings .indigo-theme-swatch {
   border-bottom: 1px solid var(--pgn-color-border, var(--pgn-color-form-control-indicator-border, #c4c7cf));
   height: 56px;
+  position: relative;
   width: 100%;
+}
+.indigo-theme-settings .indigo-theme-swatch-edit {
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, .25);
+  border-radius: 50%;
+  bottom: .375rem;
+  color: #111827;
+  display: flex;
+  height: 1.25rem;
+  justify-content: center;
+  position: absolute;
+  right: .375rem;
+  width: 1.25rem;
+}
+.indigo-theme-settings .indigo-theme-swatch-edit .pgn__icon {
+  height: .75rem;
+  width: .75rem;
 }
 .indigo-theme-settings .indigo-theme-hex {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -202,7 +221,7 @@ const ThemeSettings = () => {
     },
     "theme.settings.colors.help": {
       id: "theme.settings.colors.help",
-      defaultMessage: "Personalize the core colors of this theme. Colors are saved separately for Light and Dark.",
+      defaultMessage: "Click any color to change it. Colors are saved separately for Light and Dark.",
       description: "helper text of the theme colors sub-section",
     },
     "theme.settings.color.button": {
@@ -620,7 +639,11 @@ const ThemeSettings = () => {
                 }
               }}
             >
-              <div className="indigo-theme-swatch" style={swatchStyle(colorFor(entry.token))} />
+              <div className="indigo-theme-swatch" style={swatchStyle(colorFor(entry.token))}>
+                <span className="indigo-theme-swatch-edit" aria-hidden="true">
+                  <Icon src={Edit} />
+                </span>
+              </div>
               <div className="p-2">
                 <div className="small font-weight-bold">{tokenLabel(entry)}</div>
                 <div className="indigo-theme-hex indigo-theme-muted">{colorFor(entry.token)}</div>
