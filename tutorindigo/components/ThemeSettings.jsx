@@ -532,11 +532,9 @@ const ThemeSettings = () => {
     );
   }
 
-  const tokenLabel = (entry) => intl.formatMessage({
-    id: `theme.settings.token.${entry.token}`,
-    defaultMessage: entry.label,
-    description: `label of the ${entry.label} theme color`,
-  });
+  const tokenLabel = (entry) => (INDIGO_TOKEN_MESSAGES[entry.token]
+    ? intl.formatMessage(INDIGO_TOKEN_MESSAGES[entry.token])
+    : entry.label);
   const isHexInvalid = hexDraft !== '' && !normalizeHexInput(hexDraft);
   const tileClassName = (slug) => (slug === draft.preset
     ? 'indigo-theme-tile indigo-theme-tile--selected'

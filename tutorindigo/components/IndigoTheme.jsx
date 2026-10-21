@@ -1,5 +1,5 @@
 
-const INDIGO_THEME_STORAGE_KEY = 'indigo-user-theme';
+const INDIGO_THEME_STORAGE_KEY = 'indigo-user-theme-mfe';
 const INDIGO_THEME_STYLE_ID = 'indigo-user-theme';
 const INDIGO_THEME_API_PATH = '/api/indigo/v1/theme/';
 
@@ -10,6 +10,34 @@ const INDIGO_THEME_TOKENS = [
   { token: '--pgn-color-text-base', label: 'Text' },
   { token: '--pgn-color-info-base', label: 'Info' },
 ];
+
+const INDIGO_TOKEN_MESSAGES = {
+  '--pgn-color-primary-base': {
+    id: 'theme.settings.token.primary',
+    defaultMessage: 'Primary',
+    description: 'label of the primary theme color',
+  },
+  '--pgn-color-primary-light': {
+    id: 'theme.settings.token.primaryLight',
+    defaultMessage: 'Primary light',
+    description: 'label of the light primary theme color',
+  },
+  '--pgn-color-brand-base': {
+    id: 'theme.settings.token.secondary',
+    defaultMessage: 'Secondary',
+    description: 'label of the secondary theme color',
+  },
+  '--pgn-color-text-base': {
+    id: 'theme.settings.token.text',
+    defaultMessage: 'Text',
+    description: 'label of the text theme color',
+  },
+  '--pgn-color-info-base': {
+    id: 'theme.settings.token.info',
+    defaultMessage: 'Info',
+    description: 'label of the info theme color',
+  },
+};
 
 const INDIGO_THEME_COOKIE_NAMES = [
   'selected-paragon-theme-variant',
@@ -331,12 +359,24 @@ const writeThemeCache = (payload) => {
 
 const effectiveTokensFor = (payload, presetSlug) => {
   const preset = (payload?.presets || []).find((item) => item.slug === presetSlug);
+  const defaults = preset?.tokens || {};
   const overrides = (payload?.overrides || {})[presetSlug] || {};
-  return { ...(preset?.tokens || {}), ...overrides };
+  const result = {};
+  Object.keys(overrides).forEach((token) => {
+    if (overrides[token] && overrides[token] !== defaults[token]) {
+      result[token] = overrides[token];
+    }
+  });
+  return result;
 };
 
 const applyCachedTheme = () => {
   try {
+    if (getConfig().INDIGO_ENABLE_DYNAMIC_THEME === false) {
+      clearThemeTokens();
+      clearThemeCache();
+      return;
+    }
     const cache = readThemeCache();
     if (cache && cache.preset) {
       applyThemeTokens(effectiveTokensFor(cache, cache.preset));
@@ -369,6 +409,29 @@ const fetchUserTheme = () => {
       });
   }
   return indigoThemeRequest;
+};
+
+const saveThemeVariant = (variant) => {
+  if (!getConfig().INDIGO_ENABLE_DYNAMIC_THEME || !getAuthenticatedUser()) {
+    return Promise.resolve();
+  }
+  return fetchUserTheme()
+    .then(({ data }) => {
+      const preset = (data?.presets || []).find((item) => item.variant === variant);
+      if (!preset || preset.slug === data.preset) {
+        return null;
+      }
+      return getAuthenticatedHttpClient()
+        .patch(`${getConfig().LMS_BASE_URL}${INDIGO_THEME_API_PATH}`, { preset: preset.slug })
+        .then(({ data: updated }) => {
+          resetUserThemeRequest();
+          writeThemeCache(updated);
+          return updated;
+        });
+    })
+    .catch((error) => {
+      logError(error);
+    });
 };
 
 const ApplyUserTheme = () => {
