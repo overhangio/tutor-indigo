@@ -376,9 +376,7 @@
         }
         window.addEventListener('load', refresh);
         if (currentUsername()) {
-            if (!cacheIsFresh()) {
-                load();
-            }
+            load();
         } else {
             clearCache();
             revert();

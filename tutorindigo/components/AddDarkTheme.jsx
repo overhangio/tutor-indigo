@@ -2,8 +2,7 @@
 let themeVariant = 'selected-paragon-theme-variant';
 
 const AddDarkTheme = () => {
-  const isDarkVariantEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE
-    || getConfig().INDIGO_ENABLE_DYNAMIC_THEME;
+  const isDarkVariantEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
 
   const addDarkThemeToIframes = () => {
     const iframes = document.getElementsByTagName('iframe');
