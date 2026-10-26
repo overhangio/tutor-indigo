@@ -187,6 +187,7 @@ const ThemeSettings = () => {
   const [openToken, setOpenToken] = useState(null);
   const [pickerTarget, setPickerTarget] = useState(null);
   const [hexDraft, setHexDraft] = useState('');
+  const [isConfirmingReset, setIsConfirmingReset] = useState(false);
 
   const savedRef = useRef(null);
   const draftRef = useRef(null);
@@ -289,6 +290,26 @@ const ThemeSettings = () => {
       defaultMessage: "Discard changes",
       description: "label of the button that discards unsaved theme changes",
     },
+    "theme.settings.contrast.error": {
+      id: "theme.settings.contrast.error",
+      defaultMessage: "{labels} would be hard to read against the page background. Pick a darker or lighter value, or use the default.",
+      description: "error shown when chosen colours fail the contrast check",
+    },
+    "theme.settings.reset.confirm": {
+      id: "theme.settings.reset.confirm",
+      defaultMessage: "Reset {preset} to its default colors? Your custom colors for this appearance will be lost.",
+      description: "confirmation shown before resetting a preset",
+    },
+    "theme.settings.reset.confirm.action": {
+      id: "theme.settings.reset.confirm.action",
+      defaultMessage: "Yes, reset",
+      description: "label of the button that confirms resetting a preset",
+    },
+    "theme.settings.reset.cancel": {
+      id: "theme.settings.reset.cancel",
+      defaultMessage: "Cancel",
+      description: "label of the button that cancels resetting a preset",
+    },
   };
 
   const overridesFromPayload = (payload) => {
@@ -374,8 +395,13 @@ const ThemeSettings = () => {
   }, [showSavedAlert]);
 
   const activePreset = (saved?.presets || []).find((preset) => preset.slug === draft?.preset);
-  const presetTokens = activePreset?.tokens || {};
+  const presetTokens = { ...(activePreset?.tokens || {}), ...baseTokensFor(activePreset?.variant) };
   const activeOverrides = (draft?.overrides || {})[draft?.preset] || {};
+  const availablePresets = (saved?.presets || []).filter(
+    (preset) => getConfig().INDIGO_ENABLE_DARK_TOGGLE || preset.variant !== 'dark',
+  );
+  const savedActiveOverrides = (overridesFromPayload(saved) || {})[draft?.preset] || {};
+  const canReset = Object.keys(savedActiveOverrides).length > 0;
 
   const overrideFor = (token) => activeOverrides[token];
   const colorFor = (token) => overrideFor(token) || presetTokens[token] || '#000000';
@@ -478,7 +504,30 @@ const ThemeSettings = () => {
     setOpenToken(token);
   };
 
+  const contrastFailures = () => {
+    const tokens = { ...presetTokens, ...activeOverrides };
+    const background = activePreset?.variant === 'dark' ? '#0D0D0E' : '#FFFFFF';
+    const thresholds = {
+      '--pgn-color-text-base': INDIGO_CONTRAST_AA,
+      '--pgn-color-primary-base': 3,
+      '--pgn-color-brand-base': 3,
+      '--pgn-color-info-base': 3,
+    };
+    return INDIGO_THEME_TOKENS
+      .filter((entry) => thresholds[entry.token] && tokens[entry.token]
+        && (contrastRatio(tokens[entry.token], background) || 0) < thresholds[entry.token])
+      .map((entry) => tokenLabel(entry));
+  };
+
   const onSave = () => {
+    const failures = contrastFailures();
+    if (failures.length) {
+      setSubmitError(intl.formatMessage(
+        messages["theme.settings.contrast.error"],
+        { labels: failures.join(', ') },
+      ));
+      return;
+    }
     setIsSubmitting(true);
     setSubmitError('');
     setOpenToken(null);
@@ -501,6 +550,7 @@ const ThemeSettings = () => {
   };
 
   const onReset = () => {
+    setIsConfirmingReset(false);
     setIsSubmitting(true);
     setSubmitError('');
     setOpenToken(null);
@@ -591,7 +641,7 @@ const ThemeSettings = () => {
         aria-label={intl.formatMessage(messages["theme.settings.preset.label"])}
         className="indigo-theme-tiles mb-4"
       >
-        {(saved.presets || []).map((preset) => (
+        {availablePresets.map((preset) => (
           <Form.Radio
             key={preset.slug}
             value={preset.slug}
@@ -708,8 +758,31 @@ const ThemeSettings = () => {
         ))}
       </div>
 
+      {isConfirmingReset && (
+        <Alert variant="warning">
+          <p className="mb-3">
+            {intl.formatMessage(
+              messages["theme.settings.reset.confirm"],
+              { preset: activePreset?.name || '' },
+            )}
+          </p>
+          <ActionRow>
+            <Button variant="tertiary" onClick={() => setIsConfirmingReset(false)} disabled={isSubmitting}>
+              {intl.formatMessage(messages["theme.settings.reset.cancel"])}
+            </Button>
+            <Button variant="danger" onClick={onReset} disabled={isSubmitting}>
+              {intl.formatMessage(messages["theme.settings.reset.confirm.action"])}
+            </Button>
+          </ActionRow>
+        </Alert>
+      )}
+
       <ActionRow>
-        <Button variant="outline-primary" onClick={onReset} disabled={isSubmitting}>
+        <Button
+          variant="outline-primary"
+          onClick={() => setIsConfirmingReset(true)}
+          disabled={isSubmitting || !canReset || isConfirmingReset}
+        >
           {intl.formatMessage(messages["theme.settings.reset"])}
         </Button>
         <ActionRow.Spacer />
