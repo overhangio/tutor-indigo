@@ -1,3 +1,7 @@
+import hashlib
+import json
+import re
+
 from django.conf import settings
 from edx_rest_framework_extensions.auth.jwt.authentication import JwtAuthentication
 from edx_rest_framework_extensions.auth.session.authentication import (
@@ -8,14 +12,16 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .constants import PRIMARY_TOKEN, VARIANT_LIGHT
+from .constants import HEX_COLOR_RE, PRIMARY_TOKEN, VARIANT_LIGHT
 from .models import ThemePreset, UserTheme
 from .serializers import ThemePresetSerializer, UserThemeSerializer
 
 
 def platform_primary_color():
-    color = getattr(settings, "INDIGO_PRIMARY_COLOR", "") or ""
-    return color.strip()
+    color = (getattr(settings, "INDIGO_PRIMARY_COLOR", "") or "").strip()
+    if not re.match(HEX_COLOR_RE, color):
+        return ""
+    return color.upper()
 
 
 def build_payload(user):
@@ -51,10 +57,30 @@ def build_payload(user):
     return {
         "preset": preset.slug if preset else None,
         "variant": preset.variant if preset else None,
+        "stored": user_theme is not None,
         "presets": serialized,
         "overrides": overrides,
         "tokens": tokens,
     }
+
+
+def payload_etag(payload):
+    digest = hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    return f'W/"{digest[:32]}"'
+
+
+def themed_response(payload, request=None, status_code=status.HTTP_200_OK):
+    etag = payload_etag(payload)
+    if request is not None and request.headers.get("If-None-Match") == etag:
+        response = Response(status=status.HTTP_304_NOT_MODIFIED)
+    else:
+        response = Response(payload, status=status_code)
+    response["ETag"] = etag
+    response["Cache-Control"] = "private, max-age=0, must-revalidate"
+    response["Vary"] = "Cookie, Authorization"
+    return response
 
 
 class UserThemeView(APIView):
@@ -62,7 +88,7 @@ class UserThemeView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        return Response(build_payload(request.user))
+        return themed_response(build_payload(request.user), request)
 
     def put(self, request):
         return self._save(request, partial=False)
@@ -72,7 +98,7 @@ class UserThemeView(APIView):
 
     def delete(self, request):
         UserTheme.objects.filter(user=request.user).delete()
-        return Response(build_payload(request.user), status=status.HTTP_200_OK)
+        return themed_response(build_payload(request.user))
 
     def _save(self, request, partial):
         serializer = UserThemeSerializer(data=request.data, partial=partial)
@@ -107,4 +133,4 @@ class UserThemeView(APIView):
             user=request.user,
             defaults={"preset": preset, "overrides": overrides},
         )
-        return Response(build_payload(request.user))
+        return themed_response(build_payload(request.user))
