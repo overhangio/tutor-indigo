@@ -4,38 +4,38 @@ const INDIGO_THEME_STYLE_ID = 'indigo-user-theme';
 const INDIGO_THEME_API_PATH = '/api/indigo/v1/theme/';
 
 const INDIGO_THEME_TOKENS = [
-  { token: '--pgn-color-primary-base', label: 'Primary' },
-  { token: '--pgn-color-primary-light', label: 'Primary light' },
-  { token: '--pgn-color-brand-base', label: 'Secondary' },
-  { token: '--pgn-color-text-base', label: 'Text' },
-  { token: '--pgn-color-info-base', label: 'Info' },
+  { token: '--pgn-color-primary-base', label: 'Buttons and links' },
+  { token: '--pgn-color-primary-light', label: 'Button and link highlights' },
+  { token: '--pgn-color-brand-base', label: 'Brand accents' },
+  { token: '--pgn-color-text-base', label: 'Body text' },
+  { token: '--pgn-color-info-base', label: 'Navigation links' },
 ];
 
 const INDIGO_TOKEN_MESSAGES = {
   '--pgn-color-primary-base': {
-    id: 'theme.settings.token.primary',
-    defaultMessage: 'Primary',
-    description: 'label of the primary theme color',
+    id: 'theme.settings.token.primary.v2',
+    defaultMessage: 'Buttons and links',
+    description: 'label of the colour used for buttons and links',
   },
   '--pgn-color-primary-light': {
-    id: 'theme.settings.token.primaryLight',
-    defaultMessage: 'Primary light',
-    description: 'label of the light primary theme color',
+    id: 'theme.settings.token.primaryLight.v2',
+    defaultMessage: 'Button and link highlights',
+    description: 'label of the colour used for button and link highlights',
   },
   '--pgn-color-brand-base': {
-    id: 'theme.settings.token.secondary',
-    defaultMessage: 'Secondary',
-    description: 'label of the secondary theme color',
+    id: 'theme.settings.token.secondary.v2',
+    defaultMessage: 'Brand accents',
+    description: 'label of the colour used for brand accents',
   },
   '--pgn-color-text-base': {
-    id: 'theme.settings.token.text',
-    defaultMessage: 'Text',
-    description: 'label of the text theme color',
+    id: 'theme.settings.token.text.v2',
+    defaultMessage: 'Body text',
+    description: 'label of the colour used for body text',
   },
   '--pgn-color-info-base': {
-    id: 'theme.settings.token.info',
-    defaultMessage: 'Info',
-    description: 'label of the info theme color',
+    id: 'theme.settings.token.info.v2',
+    defaultMessage: 'Navigation links',
+    description: 'label of the colour used for navigation links',
   },
 };
 
@@ -76,6 +76,12 @@ const INDIGO_THEME_ICON_TOKENS = {
 };
 
 const INDIGO_THEME_HEX_RE = /^#[0-9a-fA-F]{6}$/;
+const INDIGO_CONTRAST_AA = 4.5;
+const INDIGO_THEME_RESET_PARAM = 'indigo-theme-reset';
+const INDIGO_RUNTIME_POLL_MS = 50;
+const INDIGO_RUNTIME_TIMEOUT_MS = 10000;
+
+let indigoBaseTokens = {};
 
 const hexToRgb = (hex) => {
   if (typeof hex !== 'string') {
@@ -182,6 +188,58 @@ const darkenColor = (hex, amount) => {
   return rgbToHex(hslToRgb(hsl));
 };
 
+const relativeLuminance = (hex) => {
+  const rgb = hexToRgb(hex);
+  if (!rgb) {
+    return null;
+  }
+  const channel = (value) => {
+    const c = value / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * channel(rgb.r) + 0.7152 * channel(rgb.g) + 0.0722 * channel(rgb.b);
+};
+
+const contrastRatio = (hex, otherHex) => {
+  const a = relativeLuminance(hex);
+  const b = relativeLuminance(otherHex);
+  if (a === null || b === null) {
+    return null;
+  }
+  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+};
+
+const readableTextOn = (hex) => (
+  (contrastRatio(hex, '#FFFFFF') || 0) >= INDIGO_CONTRAST_AA ? '#FFFFFF' : '#111827'
+);
+
+const liveTokenDefaults = () => {
+  const result = {};
+  try {
+    const computed = window.getComputedStyle(document.documentElement);
+    INDIGO_THEME_TOKENS.forEach((entry) => {
+      const value = (computed.getPropertyValue(entry.token) || '').trim();
+      if (INDIGO_THEME_HEX_RE.test(value)) {
+        result[entry.token] = value.toUpperCase();
+      }
+    });
+  } catch (error) {}
+  return result;
+};
+
+const captureBaseTokens = () => {
+  try {
+    const variant = document.documentElement.getAttribute(INDIGO_THEME_ATTRIBUTE_NAMES[0])
+      || getStoredThemeVariant()
+      || 'light';
+    if (!indigoBaseTokens[variant]) {
+      indigoBaseTokens[variant] = liveTokenDefaults();
+    }
+  } catch (error) {}
+};
+
+const baseTokensFor = (variant) => indigoBaseTokens[variant] || {};
+
 const buildThemeTokens = (tokens) => {
   const result = { ...(tokens || {}) };
   INDIGO_THEME_FAMILIES.forEach((family) => {
@@ -203,6 +261,7 @@ const buildThemeTokens = (tokens) => {
     Object.keys(INDIGO_THEME_ICON_TOKENS).forEach((name) => {
       result[name] = INDIGO_THEME_ICON_TOKENS[name].replace('%%HEX%%', encoded);
     });
+    result['--pgn-color-btn-text-primary'] = readableTextOn(primary);
   }
   return result;
 };
@@ -358,40 +417,15 @@ const writeThemeCache = (payload) => {
 };
 
 const effectiveTokensFor = (payload, presetSlug) => {
-  const preset = (payload?.presets || []).find((item) => item.slug === presetSlug);
-  const defaults = preset?.tokens || {};
   const overrides = (payload?.overrides || {})[presetSlug] || {};
   const result = {};
   Object.keys(overrides).forEach((token) => {
-    if (overrides[token] && overrides[token] !== defaults[token]) {
+    if (overrides[token]) {
       result[token] = overrides[token];
     }
   });
   return result;
 };
-
-const applyCachedTheme = () => {
-  try {
-    if (getConfig().INDIGO_ENABLE_DYNAMIC_THEME === false) {
-      clearThemeTokens();
-      clearThemeCache();
-      return;
-    }
-    const cache = readThemeCache();
-    if (cache && cache.preset) {
-      applyThemeTokens(effectiveTokensFor(cache, cache.preset));
-    } else {
-      clearThemeTokens();
-    }
-  } catch (error) {}
-};
-
-applyCachedTheme();
-
-// ApplyUserTheme's effect below already clears the tokens and cache whenever
-// INDIGO_ENABLE_DYNAMIC_THEME is off, and it reads getConfig() at render time,
-// so it needs no APP_READY gate. frontend-base-compat exports neither
-// APP_READY nor subscribe.
 
 let indigoThemeRequest = null;
 
@@ -434,36 +468,140 @@ const saveThemeVariant = (variant) => {
     });
 };
 
-const ApplyUserTheme = () => {
-  const isDynamicThemeEnabled = getConfig().INDIGO_ENABLE_DYNAMIC_THEME;
+const runtimeIfReady = () => {
+  let config = null;
+  try {
+    config = getConfig() || null;
+  } catch (error) {
+    return null;
+  }
+  if (!config || !config.LMS_BASE_URL) {
+    return null;
+  }
+  try {
+    getAuthenticatedHttpClient();
+  } catch (error) {
+    return null;
+  }
+  return config;
+};
 
-  useEffect(() => {
-    if (!isDynamicThemeEnabled || !getAuthenticatedUser()) {
+const whenRuntimeReady = () => new Promise((resolve) => {
+  const started = Date.now();
+  const check = () => {
+    const config = runtimeIfReady();
+    if (config) {
+      resolve(config);
+      return;
+    }
+    if (Date.now() - started > INDIGO_RUNTIME_TIMEOUT_MS) {
+      resolve(null);
+      return;
+    }
+    window.setTimeout(check, INDIGO_RUNTIME_POLL_MS);
+  };
+  check();
+});
+
+const resetRequested = () => {
+  try {
+    return new URLSearchParams(window.location.search).has(INDIGO_THEME_RESET_PARAM);
+  } catch (error) {
+    return false;
+  }
+};
+
+const dropResetParam = () => {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.delete(INDIGO_THEME_RESET_PARAM);
+    window.location.replace(url.toString());
+  } catch (error) {}
+};
+
+const resetStoredTheme = () => getAuthenticatedHttpClient()
+  .delete(`${getConfig().LMS_BASE_URL}${INDIGO_THEME_API_PATH}`)
+  .then(() => {
+    resetUserThemeRequest();
+    clearThemeTokens();
+    clearThemeCache();
+  })
+  .catch((error) => {
+    logError(error);
+  })
+  .then(dropResetParam);
+
+const adoptThemeVariant = (variant, data) => {
+  const preset = (data?.presets || []).find((item) => item.variant === variant);
+  if (!preset) {
+    return;
+  }
+  persistThemeVariant(variant);
+  getAuthenticatedHttpClient()
+    .patch(`${getConfig().LMS_BASE_URL}${INDIGO_THEME_API_PATH}`, { preset: preset.slug })
+    .then(({ data: updated }) => {
+      resetUserThemeRequest();
+      writeThemeCache(updated);
+      applyThemeTokens(effectiveTokensFor(updated, updated.preset));
+    })
+    .catch((error) => {
+      logError(error);
+    });
+};
+
+const applyThemePayload = (data) => {
+  writeThemeCache(data);
+  const applied = document.documentElement.getAttribute(INDIGO_THEME_ATTRIBUTE_NAMES[0]);
+  const browserVariant = getStoredThemeVariant() || applied;
+  if (!data.stored && browserVariant && data.variant && browserVariant !== data.variant) {
+    adoptThemeVariant(browserVariant, data);
+    return;
+  }
+  if (data.variant && data.variant !== applied) {
+    persistThemeVariant(data.variant);
+  }
+  applyThemeTokens(effectiveTokensFor(data, data.preset));
+};
+
+let indigoThemeStarted = false;
+
+const startIndigoTheme = () => {
+  if (indigoThemeStarted) {
+    return;
+  }
+  indigoThemeStarted = true;
+  captureBaseTokens();
+  whenRuntimeReady().then((config) => {
+    if (!config || config.INDIGO_ENABLE_DYNAMIC_THEME === false || !getCookieUsername()) {
       clearThemeTokens();
       clearThemeCache();
       resetUserThemeRequest();
-      return undefined;
+      return;
     }
-
-    let cancelled = false;
+    if (resetRequested()) {
+      resetStoredTheme();
+      return;
+    }
+    const cache = readThemeCache();
+    if (cache && cache.preset) {
+      applyThemeTokens(effectiveTokensFor(cache, cache.preset));
+    }
     fetchUserTheme()
       .then(({ data }) => {
-        if (cancelled) {
-          return;
-        }
-        writeThemeCache(data);
-        const appliedVariant = document.documentElement.getAttribute('data-paragon-theme-variant');
-        if (data.variant && data.variant !== appliedVariant) {
-          persistThemeVariant(data.variant);
-        }
-        applyThemeTokens(effectiveTokensFor(data, data.preset));
+        applyThemePayload(data);
       })
       .catch((error) => {
         logError(error);
       });
+  });
+};
 
-    return () => { cancelled = true; };
-  }, [isDynamicThemeEnabled]);
+startIndigoTheme();
+
+const ApplyUserTheme = () => {
+  useEffect(() => {
+    startIndigoTheme();
+  }, []);
 
   return (<div />);
 };
