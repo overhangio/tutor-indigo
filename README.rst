@@ -98,15 +98,22 @@ Any server that serves these files with the ``text/css`` content type and CORS h
 Dynamic theme
 -------------
 
-Every learner can pick their own theme. From the Account settings page, in the "Profile Information" section, users choose an appearance preset (Light or Dark) and, if they want, personalize five core `Paragon <https://github.com/openedx/paragon>`__ colours: primary, primary light, secondary, text and info. The appearance choice is saved as soon as it is picked, while colour changes are previewed live and only stored with the "Save" button. Colours are kept separately for each preset. Preferences are saved per user and applied across the micro-frontends, so they follow the learner from one device to another.
+Every learner can pick their own theme. From the Account settings page, in the "Profile Information" section, users choose an appearance preset (Light or Dark) and, if they want, personalize five core `Paragon <https://github.com/openedx/paragon>`__ colours, labelled by what they change: buttons and links, button and link highlights, brand accents, body text, and navigation links. The appearance choice is saved as soon as it is picked, while colour changes are previewed live and only stored with the "Save" button. Colours are kept separately for each preset. Preferences are saved per user and applied across the micro-frontends, so they follow the learner from one device to another.
 
 .. image:: ./screenshots/02-dynamic-themes.png
     :alt: Theme settings in the Account page
 
 The light/dark toggle in the header stays available alongside this feature: it switches between the Light and Dark presets, while the Account settings page is where the presets are personalized.
 
+Colours chosen this way are rejected if they would be unreadable: on save, body text is checked against the page background at the WCAG AA ratio (4.5:1) and the accent colours at 3:1. If a learner still ends up with a theme they cannot read, appending ``?indigo-theme-reset=1`` to any micro-frontend URL clears their stored colours without needing to read the settings page.
+
 .. note::
-    The theme settings block is registered through the legacy plugin slots of the Account micro-frontend. Sites running the frontend-base version of ``frontend-app-account`` will not see it, because the compatibility layer does not map that slot. Learners on those sites can still switch between Light and Dark with the header toggle, but cannot personalize colours.
+    The theme settings block is registered through the legacy plugin slots of the Account micro-frontend, in the only slot it offers for this (``additional_profile_fields``), which is why it appears under "Profile Information" rather than "Site Preferences". Sites running the frontend-base version of ``frontend-app-account`` will not see the block at all, because the compatibility layer does not map that slot. Learners on those sites can still switch between Light and Dark with the header toggle, but cannot personalize colours.
+
+.. note::
+    The chosen colours are applied in every micro-frontend, including those Indigo does not otherwise style, because the theme script runs on load rather than waiting for a slot to render. The runtime retint of the legacy Django pages is more limited: it rewrites the colours it finds in stylesheets the browser lets it read, so it covers the primary colour but not brand accents or navigation links, whose defaults do not occur in the compiled legacy CSS, and it is skipped entirely for stylesheets served from another domain, such as a CDN.
+
+    Dark appearance follows ``INDIGO_ENABLE_DARK_TOGGLE``. When that setting is off, the Dark preset is not offered and no dark styling is applied.
 
 The preferences are stored by the ``indigo_theme`` Django app, which ships with this plugin and is installed into the ``openedx`` image and serves them from ``/api/indigo/v1/theme/``. The presets table is prefilled with the default token values for the light and dark variants by a database migration.
 
@@ -115,7 +122,7 @@ After enabling the plugin, rebuild the images and relaunch the platform so that 
     tutor images build openedx mfe
     tutor local launch
 
-Developers working on the Django app can mount their local copy instead of the version installed from git::
+Developers working on the Django app can mount their local copy in place of the one copied from the plugin's build context::
 
     tutor mounts add ./tutorindigo/templates/indigo_theme
 
