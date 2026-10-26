@@ -2,6 +2,7 @@
 <%namespace name='static' file='../static_content.html'/>
 <%!
 from django.apps import apps
+from django.conf import settings
 from django.utils.translation import gettext as _
 from django.utils.translation import pgettext
 from django.urls import reverse
@@ -28,6 +29,13 @@ if apps.is_installed('course_assignments'):
 </%block>
 
 <%block name="js_extra">
+  <%
+    ## Same target as the CTA below (named blocks don't see the page body's variables).
+    enroll_mfe_url = getattr(settings, "LEARNING_MICROFRONTEND_URL", None)
+    enroll_launch_url = (
+        "{}/course/{}".format(enroll_mfe_url.rstrip("/"), course.id) if enroll_mfe_url else reverse('dashboard')
+    )
+  %>
   <script type="text/javascript">
   (function() {
     $(".register").click(function(event) {
@@ -38,7 +46,8 @@ if apps.is_installed('course_assignments'):
     $('#class_enroll_form').on('ajax:complete', function(event, xhr) {
       if (xhr.status == 200) {
         if (xhr.responseText == "") {
-          location.href = "${reverse('dashboard') | n, js_escaped_string}";
+          // LMS 9.3: a successful enrollment launches the course content, not the dashboard.
+          location.href = "${enroll_launch_url | n, js_escaped_string}";
         }
         else {
           location.href = xhr.responseText;
@@ -108,6 +117,36 @@ if apps.is_installed('course_assignments'):
   has_video = bool(get_course_about_section(request, course, "video"))
 
   hero_title = HTML('<br />').join(course.display_name_with_default.split())
+
+  ## PRD LMS 9.3/9.4: the enrolled learner's CTA follows their progress, by the same rules as
+  ## the Learning Library and dashboard cards (openlms_apis): started = the card's rounded
+  ## completion above 0%; Review = completed (passed, or 100% without failing) or failed (100%
+  ## done, never passed), as the cards show "Revisit Course" for both. If the progress lookup
+  ## fails the CTA is "Start"; if only the grade lookup fails a passed course may show "Resume".
+  course_started = False
+  course_revisit = False
+  if user.is_authenticated and registered:
+      try:
+          from openlms_apis.completion_helpers import _completion_percent
+          from openlms_apis.library_helpers import (
+              _completed_course_keys, _course_aggregates, _failed_course_keys,
+          )
+          course_keys = [course.id]
+          aggregates = _course_aggregates(user, course_keys)
+          course_revisit = (
+              course.id in _completed_course_keys(user, course_keys, aggregates)
+              or course.id in _failed_course_keys(user, course_keys, aggregates)
+          )
+          course_started = _completion_percent(aggregates.get(course.id)) > 0
+      except Exception:
+          course_started = False
+          course_revisit = False
+  ## The Learning MFE's /course/<id> opens the learner's last unit, or the first unit when
+  ## they have not started: "launches the course content" (9.3) and "Resume" (9.4).
+  learning_mfe_url = getattr(settings, "LEARNING_MICROFRONTEND_URL", None)
+  launch_course_url = (
+      "{}/course/{}".format(learning_mfe_url.rstrip("/"), course.id) if learning_mfe_url else course_target
+  )
 %>
 
 <section class="course-info course-details-page" id="main">
@@ -216,10 +255,19 @@ if apps.is_installed('course_assignments'):
         <div class="course-details-cta-primary">
           %if user.is_authenticated and registered:
             %if show_courseware_link:
+            ## LMS 9.4: Review once completed or failed (course outline), Resume once started (last unit),
+            ## otherwise Start (first unit), e.g. a newly assigned course.
+            %if course_revisit:
             <a href="${course_target}" class="course-details-btn course-details-btn-primary">
               <img src="${static.url('images/course-about/play.svg')}" alt="" aria-hidden="true" width="24" height="24" />
-              <span>${_("View Course")}</span>
+              <span>${_("Review")}</span>
             </a>
+            %else:
+            <a href="${launch_course_url}" class="course-details-btn course-details-btn-primary">
+              <img src="${static.url('images/course-about/play.svg')}" alt="" aria-hidden="true" width="24" height="24" />
+              <span>${_("Resume") if course_started else _("Start")}</span>
+            </a>
+            %endif
             % else:
             <span class="course-details-btn course-details-btn-disabled">${_("Already Enrolled")}</span>
             % endif

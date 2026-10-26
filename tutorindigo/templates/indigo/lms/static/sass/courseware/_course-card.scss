@@ -6,6 +6,7 @@
 $lw-card-slate-50: #F8FAFC;
 $lw-card-slate-100: #F1F5F9;
 $lw-card-slate-200: #E2E8F0;
+$lw-card-slate-400: #94A3B8;
 $lw-card-slate-500: #64748B;
 $lw-card-slate-800: #1E293B;
 $lw-card-blue-50: #E6F2FF;
@@ -16,14 +17,13 @@ $lw-card-orange-500: #F97316;
 $lw-card-badge-overdue-bg: #FFF7ED;
 $lw-card-badge-overdue-text: #C2410C;
 $lw-card-badge-due-soon-bg: #FFFBEB;
-$lw-card-badge-due-soon-text: #B45309;
+$lw-card-badge-due-soon-text: #D97706; // Figma badge colour (amber-600)
 $lw-card-badge-completed-bg: #F0FDF4;
 $lw-card-badge-completed-text: #15803D;
 $lw-card-star: #F5A623;
 $lw-card-font-flex: 'Google Sans Flex', $font-family-title;
 $lw-card-font-code: 'Google Sans Code', monospace;
 $lw-card-image-height: 193px;
-$lw-card-max-width: 437px; // Figma library frame: 3 cards in the 1344px column
 $lw-card-control-size: 40px;
 $lw-card-radius: 8px;
 $lw-card-control-radius: 6px;
@@ -44,6 +44,11 @@ $lw-icon-clock: lw-svg('<path d="M8 4.667V8l2 2M2 8a6 6 0 1 0 12 0A6 6 0 0 0 2 8
 $lw-icon-more: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2Zm2 0c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2Zm6 0c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2Z"/></svg>');
 $lw-icon-person: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4Z"/></svg>');
 $lw-icon-play: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4"/></svg>');
+// Carousel arrows (18x18 filled outlines). Same paths as static/images/learning-library/
+// icon-{left,right}-arrow.svg, inlined so the CSS mask never depends on a (possibly
+// cross-origin CDN) static URL; the fill is only the mask's alpha, the colour is currentColor.
+$lw-icon-arrow-left: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.91548 4.08119C5.23502 3.78225 5.753 3.78211 6.07244 4.08119C6.39166 4.38029 6.39166 4.8653 6.07244 5.16439L2.79332 8.23446H17.1818C17.6337 8.23446 18 8.57742 18 9.00048C17.9998 9.42335 17.6335 9.76651 17.1818 9.76651H2.79332L6.07244 12.8351C6.39177 13.1341 6.39139 13.6191 6.07244 13.9183C5.75292 14.2174 5.235 14.2174 4.91548 13.9183L0.239702 9.54209C0.0863706 9.39853 0.000121002 9.20349 0 9.00048C0 8.79742 0.0864059 8.60252 0.239702 8.45888L4.91548 4.08119Z" fill="black"/></svg>');
+$lw-icon-arrow-right: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11.9276 4.08119C12.247 3.78211 12.765 3.78225 13.0845 4.08119L17.7603 8.45888C17.9136 8.60252 18 8.79742 18 9.00048C17.9999 9.20349 17.9136 9.39853 17.7603 9.54209L13.0845 13.9183C12.765 14.2174 12.2471 14.2174 11.9276 13.9183C11.6086 13.6191 11.6082 13.1341 11.9276 12.8351L15.2067 9.76651H0.818182C0.366465 9.76651 0.000247013 9.42335 0 9.00048C0 8.57742 0.366312 8.23446 0.818182 8.23446H15.2067L11.9276 5.16439C11.6083 4.8653 11.6083 4.38029 11.9276 4.08119Z" fill="black"/></svg>');
 $lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
 
 %lw-code-small {
@@ -75,6 +80,8 @@ $lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/s
     &--person { mask-image: $lw-icon-person; -webkit-mask-image: $lw-icon-person; }
     &--play { width: 24px; height: 24px; mask-image: $lw-icon-play; -webkit-mask-image: $lw-icon-play; }
     &--star { mask-image: $lw-icon-star; -webkit-mask-image: $lw-icon-star; }
+    &--arrow-left { width: 18px; height: 18px; mask-image: $lw-icon-arrow-left; -webkit-mask-image: $lw-icon-arrow-left; }
+    &--arrow-right { width: 18px; height: 18px; mask-image: $lw-icon-arrow-right; -webkit-mask-image: $lw-icon-arrow-right; }
 }
 
 // Visually hidden, still read by screen readers.
@@ -94,7 +101,6 @@ $lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/s
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: $lw-card-max-width;
     height: 100%;
     overflow: hidden;
     margin: 0;
@@ -103,6 +109,15 @@ $lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/s
     border-radius: $lw-card-radius;
     box-shadow: none;
     text-align: left;
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+
+    // Hover / focus (Figma): 2px slate-400 border, 4px 4px 20px shadow. The 2px is the 1px border
+    // plus a 1px ring, so the card's content does not shift by a pixel. Not for the skeleton.
+    &:not(.lw-course-card--skeleton):hover,
+    &:not(.lw-course-card--skeleton):focus-within {
+        border-color: $lw-card-slate-400;
+        box-shadow: 0 0 0 1px $lw-card-slate-400, 4px 4px 20px 0 rgba(0, 0, 0, 0.1);
+    }
 
     [hidden] {
         display: none !important;
@@ -144,7 +159,9 @@ $lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/s
         max-width: calc(100% - 20px);
     }
 
-    // Small Text - code
+    // Badge: Google Sans Code, 10px on a 15.52px line, regular weight, 14% tracking, uppercase;
+    // 2px 8px padding hugs to a 20px-high pill. The family (!important, from %lw-code-small)
+    // is restated so it stays explicit.
     &__badge {
         @extend %lw-code-small;
         box-sizing: border-box;
@@ -152,7 +169,10 @@ $lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/s
         padding: 2px 8px;
         overflow: hidden;
         border-radius: $lw-card-radius;
-        font-weight: 500;
+        font-family: $lw-card-font-code !important;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 15.52px;
         text-transform: uppercase;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -500,6 +520,7 @@ $lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/s
         animation: none;
     }
 
+    .lw-course-card,
     .lw-course-card__image img {
         transition: none;
     }
@@ -508,6 +529,14 @@ $lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/s
 body.indigo-dark-theme .lw-course-card {
     background: $primary-light-d;
     border-color: $border-color-d;
+
+    // The light-theme hover rule loses to the border colour above; restate it, with a stronger
+    // shadow because a 10% black one is invisible on a dark page.
+    &:not(.lw-course-card--skeleton):hover,
+    &:not(.lw-course-card--skeleton):focus-within {
+        border-color: $lw-card-slate-400;
+        box-shadow: 0 0 0 1px $lw-card-slate-400, 4px 4px 20px 0 rgba(0, 0, 0, 0.4);
+    }
 
     &__title,
     &__rating,

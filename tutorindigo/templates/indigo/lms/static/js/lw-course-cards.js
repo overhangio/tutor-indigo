@@ -104,18 +104,27 @@
 
   // Card info is cached per course id as a promise, so a card rendered while its request
   // is still in flight waits for it. Only ids not requested yet are fetched.
+  var CARD_INFO_CHUNK = 50;
   var cardInfoRequests = {};
   function loadCardInfo(courseIds) {
     var missing = courseIds.filter(function (id) { return !(id in cardInfoRequests); });
-    if (missing.length) {
-      var query = missing.map(function (id) { return 'course_id=' + encodeURIComponent(id); }).join('&');
+    // /courses renders every course of a tab, so ask in chunks: one URL with hundreds of ids
+    // would pass proxy URL limits and the server's per-request id cap.
+    for (var start = 0; start < missing.length; start += CARD_INFO_CHUNK) {
+      var chunk = missing.slice(start, start + CARD_INFO_CHUNK);
+      var query = chunk.map(function (id) { return 'course_id=' + encodeURIComponent(id); }).join('&');
       var request = getJson(CARD_INFO_URL + '?' + query).then(function (data) {
+        if (!data) { return null; }
         var byId = {};
-        ((data && data.results) || []).forEach(function (info) { byId[info.course_id] = info; });
+        (data.results || []).forEach(function (info) { byId[info.course_id] = info; });
         return byId;
       });
-      missing.forEach(function (id) {
-        cardInfoRequests[id] = request.then(function (byId) { return byId[id] || null; });
+      chunk.forEach(function (id) {
+        cardInfoRequests[id] = request.then(function (byId) {
+          // A failed request is not cached, so the next render asks again.
+          if (!byId) { delete cardInfoRequests[id]; return null; }
+          return byId[id] || null;
+        });
       });
     }
     return Promise.all(courseIds.map(function (id) { return cardInfoRequests[id]; }))
@@ -263,6 +272,20 @@
     if (element) { element.hidden = !visible; }
   }
 
+  // Links on an enrolled learner's card. By default the title and the action open the course
+  // player (PRD LMS 5.2 for Continue Learning; the other tabs keep that behaviour). On the
+  // Assigned tab, as on the learner dashboard (PRD LMS 4.2), the title opens the course detail
+  // page and so does "Enroll and Start"; Resume and Revisit still open the course player.
+  function enrolledCardLinks(courseId, tab, hasStarted, isRevisit) {
+    var coursewareUrl = '/courses/' + encodeURIComponent(courseId) + '/courseware';
+    var aboutUrl = '/courses/' + encodeURIComponent(courseId) + '/about';
+    var isAssignedTab = tab === 'assigned';
+    return {
+      title: isAssignedTab ? aboutUrl : coursewareUrl,
+      cta: isAssignedTab && !hasStarted && !isRevisit ? aboutUrl : coursewareUrl,
+    };
+  }
+
   function renderCard(card, completionById, cardInfoById, certificateDateById, now) {
     var courseId = card.getAttribute('data-course-id');
     var completion = completionById[courseId];
@@ -328,10 +351,10 @@
     show(field(card, 'progress'), showProgress);
 
     if (completion) {
-      var coursewareUrl = '/courses/' + encodeURIComponent(courseId) + '/courseware';
-      field(card, 'cta').setAttribute('href', coursewareUrl);
-      // PRD LMS 5.2: for an enrolled learner, the card opens the course player, not the about page.
-      field(card, 'title-link').setAttribute('href', coursewareUrl);
+      var tabItem = card.closest('[data-lw-tab]');
+      var links = enrolledCardLinks(courseId, tabItem && tabItem.getAttribute('data-lw-tab'), hasStarted, isRevisit);
+      field(card, 'cta').setAttribute('href', links.cta);
+      field(card, 'title-link').setAttribute('href', links.title);
       var ctaLabel = gettext('Enroll and Start');
       if (isRevisit) {
         ctaLabel = gettext('Revisit Course');
@@ -643,4 +666,9 @@
 
   // Exposed for lw-courses-tabs.js after it injects card markup.
   window.lwCourseCardsEnhance = enhance;
+
+  // Pure helpers for tests/js/lw-course-cards.test.js.
+  if (window.__LW_TEST__) {
+    window.__LW_TEST__.courseCards = { enrolledCardLinks: enrolledCardLinks };
+  }
 }());

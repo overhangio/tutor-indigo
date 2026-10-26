@@ -6,6 +6,13 @@ $lw-courses-banner-image-opacity: 0.1;
 $lw-courses-banner-min-height: 267px;
 // Shared 1344px content column (learner-dashboard / profile): banner text and course list.
 $lw-courses-content-max-width: 1344px;
+// Figma library card: fixed width, never compressed (the row scrolls instead).
+$lw-courses-card-width: 437.33px;
+// .find-courses side padding (36px, 48px from md): the row bleeds back out by this much.
+$lw-courses-gutter: 36px;
+$lw-courses-gutter-md: 48px;
+// Lowest opacity of a card outside the 3-card column (read by lw-courses-tabs.js via --lw-fade).
+$lw-courses-list-fade: 0.35;
 $lw-courses-banner-text: #fff;
 $lw-courses-font: 'Google Sans Flex', $font-family-title;
 
@@ -104,14 +111,18 @@ $lw-courses-font: 'Google Sans Flex', $font-family-title;
 // (learner-dashboard / profile). 36px / 48px gutters. Beats _extras.scss (1600px, 15px !important).
 .find-courses {
     max-width: none;
+    // The card row bleeds to 100vw, which includes the scrollbar: clip, don't scroll the page.
+    // `hidden` is only the fallback for browsers without `clip` (Safari before 16).
+    overflow-x: hidden;
+    overflow-x: clip;
     padding-bottom: 0 !important;
-    padding-left: 36px !important;
-    padding-right: 36px !important;
+    padding-left: $lw-courses-gutter !important;
+    padding-right: $lw-courses-gutter !important;
     background-color: #F8FAFC;
 
     @include media-breakpoint-up(md) {
-        padding-left: 48px !important;
-        padding-right: 48px !important;
+        padding-left: $lw-courses-gutter-md !important;
+        padding-right: $lw-courses-gutter-md !important;
     }
 
     .courses-container {
@@ -226,102 +237,6 @@ $lw-icon-book-open: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2
     }
 }
 
-// Pager under the card grid: "Showing N of M items" + page numbers. Mirrors the tab bar
-// segmented control (white box, slate-200 border, active page = periwinkle pill, bold navy).
-.lw-courses-pagination {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 12px 24px;
-    margin: 32px 0 0;
-
-    &__summary {
-        margin: 0;
-        font-family: $lw-courses-font !important;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 20px;
-        letter-spacing: 0;
-        color: $lw-tabs-slate-500;
-    }
-
-    &__list {
-        display: inline-flex;
-        align-items: center;
-        gap: 2px;
-        margin: 0;
-        padding: 3px;
-        border: 1px solid $lw-tabs-slate-200;
-        border-radius: 8px;
-        background: #fff;
-        list-style: none;
-
-        > li {
-            margin: 0;
-            padding: 0;
-        }
-    }
-
-    &__page {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 36px;
-        height: 36px;
-        margin: 0;
-        padding: 0 8px;
-        border: 0;
-        border-radius: 6px;
-        background: transparent;
-        background-image: none;
-        box-shadow: none;
-        text-shadow: none;
-        color: $lw-tabs-slate-800;
-        font-family: $lw-courses-font !important;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 20px;
-        letter-spacing: 0;
-        cursor: pointer;
-        appearance: none;
-        -webkit-appearance: none;
-
-        &:focus-visible {
-            outline: 2px solid $lw-tabs-blue-600;
-            outline-offset: 2px;
-        }
-
-        &:hover:not(:disabled),
-        &:focus:not(:disabled),
-        &:active:not(:disabled) {
-            background-color: $lw-tabs-active-bg;
-            background-image: none;
-            color: $lw-tabs-blue-600;
-            box-shadow: none;
-            text-shadow: none;
-        }
-
-        &--active,
-        &--active:hover:not(:disabled),
-        &--active:focus:not(:disabled),
-        &--active:active:not(:disabled) {
-            background-color: $lw-tabs-active-bg;
-            color: $lw-tabs-blue-600;
-            font-weight: 700;
-            cursor: default;
-        }
-    }
-
-    &__ellipsis {
-        min-width: 24px;
-        color: $lw-tabs-slate-500;
-        font-size: 14px;
-        line-height: 36px;
-        text-align: center;
-    }
-}
-
 // Empty collection (Figma 662:236 — Continue Learning / no courses)
 .lw-courses-empty {
     display: flex;
@@ -420,12 +335,42 @@ $lw-icon-book-open: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2
     }
 
     &--has-empty {
-        .courses-listing,
-        .lw-courses-pagination {
+        .courses-listing {
             display: none !important;
         }
     }
 
+}
+
+// Retry on the load-error state. !important: the LMS global button styles otherwise win.
+button.lw-courses-library__retry {
+    margin: 0 0 24px;
+    padding: 8px 16px !important;
+    border: 1px solid $lw-tabs-blue-600 !important;
+    border-radius: 6px !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    font-family: $lw-courses-font !important;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    color: $lw-tabs-blue-600 !important;
+    cursor: pointer;
+
+    &[hidden] {
+        display: none !important;
+    }
+
+    &:hover,
+    &:focus-visible {
+        background: $lw-tabs-active-bg !important;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $lw-tabs-blue-600;
+        outline-offset: 2px;
+    }
 }
 
 .find-courses .courses-container {
@@ -445,28 +390,163 @@ $lw-icon-book-open: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2
         }
     }
 
-    // Card grid (cards: _course-card.scss). Columns are at most 437px (Figma), so the 1344px
-    // column fits exactly 3; narrower screens drop to 2, then 1 full-width card on phones.
+    // Card row (cards: _course-card.scss): one horizontal scroll row, no pager. Cards keep a
+    // fixed 437.33px width (Figma) and never shrink. The row is full-bleed (viewport edge to
+    // edge); the 1344px column in the middle holds exactly 3 cards. lw-courses-tabs.js sets each
+    // card's opacity from how much of it is inside the column (1 inside, dimming as it leaves),
+    // so the next / previous card is hinted but never cut by a fixed overlay. Scrolling snaps
+    // card by card, and the prev / next buttons move one card per click. The scrollbar is hidden.
     // Undoes the base theme's inline-block / float listing.
-    .courses .courses-listing {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(#{"min(100%, 320px)"}, 437px));
-        justify-content: start;
+    // .lw-courses-library: only the Learning Library row, not the /search results grid.
+    .courses.lw-courses-library .courses-listing {
+        // Gap between the viewport edge and the column (= .find-courses gutter on narrow screens).
+        --lw-edge: #{$lw-courses-gutter};
+        --lw-fade: #{$lw-courses-list-fade};
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: stretch;
         gap: 16px;
-        margin: 0;
-        padding: 0;
+        // The card's hover shadow (4px 4px 20px) reaches ~16px above and ~24px below, and the scroll
+        // box clips at its padding: pad for it, and pull the margins back so the layout is unchanged.
+        margin: -16px calc(-1 * var(--lw-edge)) -12px;
+        padding: 20px var(--lw-edge) 28px;
+        overflow-x: auto;
+        overflow-y: hidden;
         list-style: none;
         letter-spacing: normal;
+        scroll-padding-inline: var(--lw-edge);
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        // Mouse drag (lw-courses-tabs.js initRowGestures): the row follows the pointer 1:1 with
+        // no snapping or smoothing; after release it animates to a card with snap still off, and
+        // snap returns once it has landed.
+        &.lw-courses-listing--dragging,
+        &.lw-courses-listing--settling {
+            scroll-snap-type: none;
+        }
+
+        // Grab hand only over the centre column (set by initRowGestures); the side areas keep
+        // the normal cursor because the wheel and drag are not active there.
+        &.lw-courses-listing--grab {
+            cursor: grab;
+        }
+
+        &.lw-courses-listing--dragging {
+            scroll-behavior: auto;
+            cursor: grabbing;
+            user-select: none;
+            -webkit-user-select: none;
+
+            // Links and the card menu must not react to the pointer mid-drag.
+            a,
+            button {
+                pointer-events: none;
+            }
+        }
+
+        @include media-breakpoint-up(md) {
+            --lw-edge: #{$lw-courses-gutter-md};
+        }
+
+        @media (min-width: #{$lw-courses-content-max-width + 2 * $lw-courses-gutter-md}) {
+            --lw-edge: calc((100vw - #{$lw-courses-content-max-width}) / 2);
+        }
 
         > li {
             display: block !important;
             float: none !important;
-            width: auto !important;
+            flex: 0 0 $lw-courses-card-width;
+            width: $lw-courses-card-width !important;
             max-height: none !important;
             margin: 0 !important;
             padding: 0;
             border: 0;
             box-shadow: none;
+            scroll-snap-align: start;
+
+            // Set inline by lw-courses-tabs.js (updateCardFocus). Hovering a dimmed card does not
+            // change it; keyboard focus does, so a focused card is never left dimmed.
+            transition: opacity 0.2s ease-out;
+
+            &:focus-within {
+                opacity: 1 !important;
+            }
+
+            // A flex item: z-index works without position. The hovered card's shadow sits above
+            // its neighbours instead of under them.
+            &:hover,
+            &:focus-within {
+                z-index: 1;
+            }
+        }
+
+        // First dimming pass after the cards are inserted: no fade in from fully opaque.
+        &.lw-courses-listing--instant > li {
+            transition: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            scroll-behavior: auto;
+
+            > li {
+                transition: none;
+            }
+        }
+    }
+
+    // Prev / next, right-aligned on the heading row.
+    .lw-courses-section-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .lw-courses-nav {
+        display: flex;
+        flex: 0 0 auto;
+        gap: 8px;
+
+        &__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            // Figma 34x34 frame: white tile, no border.
+            width: 34px;
+            height: 34px;
+            margin: 0;
+            padding: 0 !important;
+            border: 0 !important;
+            border-radius: 8px !important;
+            background: #fff !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+            color: $lw-tabs-slate-800 !important;
+            cursor: pointer;
+
+            &:hover:not([aria-disabled="true"]),
+            &:focus-visible {
+                background: $lw-tabs-active-bg !important;
+                color: $lw-tabs-blue-600 !important;
+            }
+
+            &:focus-visible {
+                outline: 2px solid $lw-tabs-blue-600;
+                outline-offset: 2px;
+            }
+
+            &[aria-disabled="true"] {
+                opacity: 0.4;
+                cursor: default;
+            }
         }
     }
 }
@@ -653,28 +733,33 @@ body.indigo-dark-theme {
     .lw-courses-library__message {
         color: $text-color-primary;
     }
-    .lw-courses-pagination {
-        &__summary,
-        &__ellipsis {
-            color: $text-color-primary;
+    button.lw-courses-library__retry {
+        border-color: $primary-d !important;
+        background: $primary-light-d !important;
+        color: $primary-d !important;
+
+        &:hover,
+        &:focus-visible {
+            background: $light-overlay-d !important;
         }
 
-        &__list {
-            background: $body-bg-d;
-            border-color: $border-color-d;
+        &:focus-visible {
+            outline-color: $primary-d;
+        }
+    }
+    .lw-courses-nav__btn {
+        // $primary-light-d: visibly lighter than the page ($body-bg-d), like the dark cards.
+        background: $primary-light-d !important;
+        color: $text-color-primary !important;
+
+        &:hover:not([aria-disabled="true"]),
+        &:focus-visible {
+            background: $light-overlay-d !important;
+            color: $primary-d !important;
         }
 
-        &__page {
-            color: $text-color-primary;
-
-            &:hover:not(:disabled),
-            &:focus:not(:disabled),
-            &:active:not(:disabled),
-            &--active,
-            &--active:hover:not(:disabled) {
-                background-color: $light-overlay-d;
-                color: $primary-d;
-            }
+        &:focus-visible {
+            outline-color: $primary-d;
         }
     }
     .home .courses-container,

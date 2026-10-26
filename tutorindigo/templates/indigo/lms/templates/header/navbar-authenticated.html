@@ -140,8 +140,11 @@ HELP_SVG = (
     </div>
     % else:
     <%
-      is_active = (link['url'] == request.path or
-                   request.path.startswith(link['url'].rstrip('/') + '/'))
+      ## /courses (Discover, the Learning Library) matches only itself: /courses/<course id>/...
+      ## are single course pages (e.g. the about page), not part of the Library.
+      link_path = link['url'].rstrip('/')
+      is_active = (link['url'] == request.path or request.path.rstrip('/') == link_path or
+                   (link_path != '/courses' and request.path.startswith(link_path + '/')))
     %>
     <div class="nav-item nav-tab">
       <a class="${'active ' if is_active else ''}tab-nav-link lw-nav-item"
