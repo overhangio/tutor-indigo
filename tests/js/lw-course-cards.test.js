@@ -63,6 +63,7 @@ const startedCases = [
   ['Older API without hasStarted: falls back to completion > 0', { completion: 12 }, true],
   ['Older API without hasStarted, 0%: Enroll and Start', { completion: 0 }, false],
   ['Nothing completed: Enroll and Start', { hasStarted: false, completion: 0 }, false],
+  ['The backend decides when it sends hasStarted', { hasStarted: false, completion: 12 }, false],
   ['Not enrolled (no row): not started', undefined, false],
 ];
 startedCases.forEach(([name, row, expected]) => {
@@ -160,8 +161,34 @@ async function failedRefetchCase() {
   }
 }
 
-cacheCase().then(failedFetchCase).then(failedRefetchCase).then(() => {
-  const total = cases.length + startedCases.length + 3;
+// A slow, older response that resolves after a newer one never replaces the newer list.
+async function outOfOrderCase() {
+  const name = 'An older response does not replace a newer completion list';
+  let now = 0;
+  class FakeDate extends Date { static now() { return now; } }
+  const pending = [];
+  const fetch = () => new Promise((resolve) => { pending.push(resolve); });
+  const respond = (index, completion) => pending[index]({
+    ok: true, json: () => Promise.resolve([{ courseId: COURSE, completion }]),
+  });
+  const cards = load({ Date: FakeDate, fetch });
+  try {
+    const older = cards.getCompletionById();
+    now += 31 * 1000;
+    const newer = cards.getCompletionById();
+    respond(1, 60);
+    assert.strictEqual((await newer)[COURSE].completion, 60);
+    respond(0, 10);
+    assert.strictEqual((await older)[COURSE].completion, 60, 'older resolves to the newer list');
+    console.log(`  ok   ${name}`);
+  } catch (error) {
+    failed += 1;
+    console.log(`  FAIL ${name}\n       ${error && error.message}`);
+  }
+}
+
+cacheCase().then(failedFetchCase).then(failedRefetchCase).then(outOfOrderCase).then(() => {
+  const total = cases.length + startedCases.length + 4;
   console.log(`\n${total - failed} passed, ${failed} failed`);
   process.exit(failed ? 1 : 0);
 });

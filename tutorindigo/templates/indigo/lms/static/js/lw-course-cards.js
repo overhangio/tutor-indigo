@@ -68,9 +68,13 @@
   // every card, and refreshShownCards keeps the cards it already drew.
   var COMPLETION_UNAVAILABLE = {};
   var lastCompletionById = null;
+  // Requests are numbered so a slow, older response never replaces a newer list.
+  var completionRequestCount = 0;
+  var lastCompletionRequest = 0;
   function getCompletionById() {
     if (!completionPromise || Date.now() - completionFetchedAt > COMPLETION_MAX_AGE_MS) {
       completionFetchedAt = Date.now();
+      var requestNumber = ++completionRequestCount;
       var request = getJson(COMPLETION_URL).then(function (rows) {
         // A failed request is not kept: the next render asks again rather than showing every
         // enrolled card as not enrolled until the cache expires. Only this request is dropped,
@@ -79,11 +83,13 @@
           if (completionPromise === request) { completionPromise = null; }
           return lastCompletionById || COMPLETION_UNAVAILABLE;
         }
+        if (requestNumber < lastCompletionRequest) { return lastCompletionById; }
         var byId = {};
         rows.forEach(function (row) {
           byId[row.courseId] = row;
         });
         lastCompletionById = byId;
+        lastCompletionRequest = requestNumber;
         return byId;
       });
       completionPromise = request;
@@ -311,10 +317,13 @@
   }
 
   // Resume vs Enroll and Start. hasStarted comes from BlockCompletion and updates at once, even
-  // while the % still rounds to 0. The % check keeps the old behaviour against an API that does
-  // not send hasStarted yet.
+  // while the % still rounds to 0; the backend (completion_helpers.has_started) decides it.
+  // The % check is only for an API that does not send hasStarted yet.
   function isStarted(completion) {
-    return Boolean(completion) && (completion.hasStarted === true || completion.completion > 0);
+    if (!completion) { return false; }
+    return typeof completion.hasStarted === 'boolean'
+      ? completion.hasStarted
+      : completion.completion > 0;
   }
 
   function renderCard(card, completionById, cardInfoById, certificateDateById, now) {
@@ -393,6 +402,13 @@
         ctaLabel = gettext('Resume');
       }
       field(card, 'cta-label').textContent = ctaLabel;
+    } else {
+      // Not enrolled (any more): the card's first state, as lw-courses-tabs.js draws it. A card
+      // drawn again after an unenroll elsewhere must not keep its Resume link.
+      var aboutUrl = '/courses/' + encodeURIComponent(courseId) + '/about';
+      field(card, 'cta').setAttribute('href', aboutUrl);
+      field(card, 'title-link').setAttribute('href', aboutUrl);
+      field(card, 'cta-label').textContent = gettext('View Course');
     }
     field(card, 'cta').classList.toggle('lw-course-card__cta--revisit', isRevisit);
     show(field(card, 'cta-icon'), hasStarted);
@@ -439,13 +455,16 @@
   // lw-courses-tabs.js only redraws a tab when its list of courses changed, which starting a
   // course does not do on My List, New or Suggested. renderCard only sets fields, so drawing a
   // card again is safe.
+  // Returning more than this long after the last fetch refetches: long enough to merge the
+  // focus and visibilitychange of one return, short enough for "opened a course, completed a
+  // block, came back".
+  var RETURN_REFETCH_MS = 5 * 1000;
   function refreshShownCards(force) {
     if (document.visibilityState === 'hidden') { return; }
-    if (force) {
-      completionPromise = null;
-    } else if (completionPromise && Date.now() - completionFetchedAt <= COMPLETION_MAX_AGE_MS) {
+    if (!force && completionPromise && Date.now() - completionFetchedAt <= RETURN_REFETCH_MS) {
       return;
     }
+    completionPromise = null;
     var cards = Array.prototype.slice.call(
       document.querySelectorAll('.lw-course-card[data-course-id][data-lw-ready]')
     );
@@ -654,6 +673,7 @@
         // Enrollments changed: drop the cached completion list, then let lw-courses-tabs.js
         // reload the open tab (its new cards fetch fresh data).
         completionPromise = null;
+        lastCompletionById = null;
         document.dispatchEvent(new CustomEvent('lw:enrollment-changed', { detail: { courseId: courseId } }));
       },
     });
