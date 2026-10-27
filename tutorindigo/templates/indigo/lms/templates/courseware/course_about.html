@@ -119,10 +119,11 @@ if apps.is_installed('course_assignments'):
   hero_title = HTML('<br />').join(course.display_name_with_default.split())
 
   ## PRD LMS 9.3/9.4: the enrolled learner's CTA follows their progress, by the same rules as
-  ## the Learning Library and dashboard cards (openlms_apis): started = the card's rounded
-  ## completion above 0%; Review = completed (passed, or 100% without failing) or failed (100%
-  ## done, never passed), as the cards show "Revisit Course" for both. If the progress lookup
-  ## fails the CTA is "Start"; if only the grade lookup fails a passed course may show "Resume".
+  ## the Learning Library and dashboard cards (openlms_apis): started = has_started (a completed
+  ## block, or completion above 0%; _course_aggregates(fresh=True) recalculates a stale % on read);
+  ## Review = completed (passed, or 100% without failing) or failed (100% done, never passed),
+  ## as the cards show "Revisit Course" for both. If the progress lookup fails the CTA is
+  ## "Start"; if only the grade lookup fails a passed course may show "Resume".
   course_started = False
   course_revisit = False
   if user.is_authenticated and registered:
@@ -132,12 +133,24 @@ if apps.is_installed('course_assignments'):
               _completed_course_keys, _course_aggregates, _failed_course_keys,
           )
           course_keys = [course.id]
-          aggregates = _course_aggregates(user, course_keys)
+          try:
+              aggregates = _course_aggregates(user, course_keys, fresh=True)
+          except TypeError:
+              ## openlms-apis without fresh (theme deployed first): the stored row.
+              aggregates = _course_aggregates(user, course_keys)
           course_revisit = (
               course.id in _completed_course_keys(user, course_keys, aggregates)
               or course.id in _failed_course_keys(user, course_keys, aggregates)
           )
-          course_started = _completion_percent(aggregates.get(course.id)) > 0
+          try:
+              from openlms_apis.completion_helpers import has_started
+              from openlms_apis.library_helpers import _last_activity
+              course_started = has_started(
+                  aggregates.get(course.id), course.id in _last_activity(user, course_keys)
+              )
+          except ImportError:
+              ## openlms-apis without has_started (theme deployed first): the old % rule.
+              course_started = _completion_percent(aggregates.get(course.id)) > 0
       except Exception:
           course_started = False
           course_revisit = False

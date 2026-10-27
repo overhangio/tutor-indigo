@@ -10,8 +10,11 @@
  * Status badge on the image (CourseCardImage useStatusBadge): Completed (with its date) wins,
  * then "Overdue for N days", then "Due in N days", each with the due date.
  *
- * Enrolled + started  -> "In Progress" bar + Resume
- * Enrolled, 0%        -> Enroll and Start (learner dashboard BeginCourseButton label)
+ * Enrolled + started  -> "In Progress" bar + Resume. Started is the API's hasStarted (a block
+ *                        completed; real time) or completion > 0, so a started course shows a
+ *                        0% bar while its % still rounds to 0 (or before a backend that
+ *                        recalculates it on read).
+ * Enrolled, no block  -> Enroll and Start (learner dashboard BeginCourseButton label)
  * Not enrolled        -> View Course (about page), no progress
  *
  * Signed-in learners also get the actions menu: "Add to / Remove from my list" (POST/DELETE
@@ -52,17 +55,38 @@
       .catch(function () { return null; });
   }
 
-  // One request per page: every active enrollment with its completion %.
+  // Every active enrollment with its completion %. Shared by all cards rendered together, and
+  // refetched once older than COMPLETION_MAX_AGE_MS: lw-courses-tabs.js re-renders a tab when the
+  // learner returns to the page, and those cards must not reuse progress from before they left.
+  // Matches lw-courses-tabs.js FOCUS_REVALIDATE_MS.
+  var COMPLETION_MAX_AGE_MS = 30 * 1000;
   var completionPromise = null;
+  var completionFetchedAt = 0;
+  // A failed refetch (expired session, server error) resolves the last good list, so cards that
+  // lw-courses-tabs.js redraws on page return keep their progress. Only when no request has
+  // succeeded yet does it resolve COMPLETION_UNAVAILABLE: empty, so a first render still draws
+  // every card, and refreshShownCards keeps the cards it already drew.
+  var COMPLETION_UNAVAILABLE = {};
+  var lastCompletionById = null;
   function getCompletionById() {
-    if (!completionPromise) {
-      completionPromise = getJson(COMPLETION_URL).then(function (rows) {
+    if (!completionPromise || Date.now() - completionFetchedAt > COMPLETION_MAX_AGE_MS) {
+      completionFetchedAt = Date.now();
+      var request = getJson(COMPLETION_URL).then(function (rows) {
+        // A failed request is not kept: the next render asks again rather than showing every
+        // enrolled card as not enrolled until the cache expires. Only this request is dropped,
+        // not a newer one started meanwhile.
+        if (!Array.isArray(rows)) {
+          if (completionPromise === request) { completionPromise = null; }
+          return lastCompletionById || COMPLETION_UNAVAILABLE;
+        }
         var byId = {};
-        (Array.isArray(rows) ? rows : []).forEach(function (row) {
+        rows.forEach(function (row) {
           byId[row.courseId] = row;
         });
+        lastCompletionById = byId;
         return byId;
       });
+      completionPromise = request;
     }
     return completionPromise;
   }
@@ -286,6 +310,13 @@
     };
   }
 
+  // Resume vs Enroll and Start. hasStarted comes from BlockCompletion and updates at once, even
+  // while the % still rounds to 0. The % check keeps the old behaviour against an API that does
+  // not send hasStarted yet.
+  function isStarted(completion) {
+    return Boolean(completion) && (completion.hasStarted === true || completion.completion > 0);
+  }
+
   function renderCard(card, completionById, cardInfoById, certificateDateById, now) {
     var courseId = card.getAttribute('data-course-id');
     var completion = completionById[courseId];
@@ -340,7 +371,7 @@
     // progress bar and a "Revisit Course" action instead; so does a failed one (not "In Progress").
     var isCompleted = Boolean(completion) && due.isCompleted;
     var isRevisit = isCompleted || (Boolean(completion) && due.isFailed);
-    var hasStarted = Boolean(completion) && completion.completion > 0 && !isRevisit;
+    var hasStarted = isStarted(completion) && !isRevisit;
     var showProgress = hasStarted;
     if (showProgress) {
       var percent = Math.max(0, Math.min(100, Math.round(completion.completion)));
@@ -402,6 +433,37 @@
       cards.forEach(function (card) { renderCard(card, results[0], results[1], results[2], now); });
     });
   }
+
+  // Coming back to the page (another browser tab, or Back from the course): redraw the cards
+  // already shown with fresh progress, so a course the learner just started says Resume.
+  // lw-courses-tabs.js only redraws a tab when its list of courses changed, which starting a
+  // course does not do on My List, New or Suggested. renderCard only sets fields, so drawing a
+  // card again is safe.
+  function refreshShownCards(force) {
+    if (document.visibilityState === 'hidden') { return; }
+    if (force) {
+      completionPromise = null;
+    } else if (completionPromise && Date.now() - completionFetchedAt <= COMPLETION_MAX_AGE_MS) {
+      return;
+    }
+    var cards = Array.prototype.slice.call(
+      document.querySelectorAll('.lw-course-card[data-course-id][data-lw-ready]')
+    );
+    if (!cards.length) { return; }
+    var ids = cards.map(function (card) { return card.getAttribute('data-course-id'); });
+    Promise.all([getCompletionById(), loadCardInfo(ids), getCertificateDateById()]).then(function (results) {
+      // No completion list has loaded yet: keep the cards as drawn.
+      if (results[0] === COMPLETION_UNAVAILABLE) { return; }
+      var now = Date.now();
+      cards.forEach(function (card) { renderCard(card, results[0], results[1], results[2], now); });
+    });
+  }
+  document.addEventListener('visibilitychange', function () { refreshShownCards(false); });
+  window.addEventListener('focus', function () { refreshShownCards(false); });
+  // Restored from the back/forward cache: the page's scripts did not run again.
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) { refreshShownCards(true); }
+  });
 
   // A saved rating returns the course's new average and count; merge them into the cached
   // card info and redraw that course's rating wherever it is shown.
@@ -669,6 +731,11 @@
 
   // Pure helpers for tests/js/lw-course-cards.test.js.
   if (window.__LW_TEST__) {
-    window.__LW_TEST__.courseCards = { enrolledCardLinks: enrolledCardLinks };
+    window.__LW_TEST__.courseCards = {
+      enrolledCardLinks: enrolledCardLinks,
+      getCompletionById: getCompletionById,
+      completionUnavailable: COMPLETION_UNAVAILABLE,
+      isStarted: isStarted,
+    };
   }
 }());

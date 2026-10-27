@@ -4,8 +4,8 @@
  * Run from the theme repo root, no dependencies:
  *   node tests/js/lw-course-cards.test.js
  *
- * Only the pure link choice behind `window.__LW_TEST__` is exercised; rendering is checked in
- * the browser.
+ * Only the pure logic behind `window.__LW_TEST__` is exercised (link choice, started state and
+ * the completion cache); rendering is checked in the browser.
  */
 'use strict';
 
@@ -18,10 +18,13 @@ const SOURCE = path.join(
   __dirname, '..', '..', 'tutorindigo', 'templates', 'indigo', 'lms', 'static', 'js', 'lw-course-cards.js'
 );
 
-function load() {
-  const window = { __LW_TEST__: {} };
+function load(sandbox) {
+  const window = { __LW_TEST__: {}, addEventListener() {} };
   const document = { addEventListener() {} };
-  vm.runInContext(fs.readFileSync(SOURCE, 'utf8'), vm.createContext({ window, document }));
+  vm.runInContext(
+    fs.readFileSync(SOURCE, 'utf8'),
+    vm.createContext(Object.assign({ window, document }, sandbox)),
+  );
   return window.__LW_TEST__.courseCards;
 }
 
@@ -53,5 +56,112 @@ cases.forEach(([name, tab, hasStarted, isRevisit, title, cta]) => {
     console.log(`  FAIL ${name}\n       ${error && error.message}`);
   }
 });
-console.log(`\n${cases.length - failed} passed, ${failed} failed`);
-process.exit(failed ? 1 : 0);
+
+// [name, course-completion row, expected started]
+const startedCases = [
+  ['Block completed, % still rounds to 0: Resume at 0%', { hasStarted: true, completion: 0 }, true],
+  ['Older API without hasStarted: falls back to completion > 0', { completion: 12 }, true],
+  ['Older API without hasStarted, 0%: Enroll and Start', { completion: 0 }, false],
+  ['Nothing completed: Enroll and Start', { hasStarted: false, completion: 0 }, false],
+  ['Not enrolled (no row): not started', undefined, false],
+];
+startedCases.forEach(([name, row, expected]) => {
+  try {
+    assert.strictEqual(api.isStarted(row), expected);
+    console.log(`  ok   ${name}`);
+  } catch (error) {
+    failed += 1;
+    console.log(`  FAIL ${name}\n       ${error && error.message}`);
+  }
+});
+
+// The completion list is shared by cards rendered together but refetched after 30s, so cards
+// re-rendered when the learner returns to the page show their new progress.
+async function cacheCase() {
+  const name = 'Completion list is reused within 30s and refetched after';
+  const clock = { now: 1000000 };
+  class FakeDate extends Date {
+    static now() { return clock.now; }
+  }
+  let calls = 0;
+  const fetch = () => {
+    calls += 1;
+    return Promise.resolve({ ok: true, json: () => Promise.resolve([{ courseId: COURSE, completion: calls }]) });
+  };
+  const cards = load({ Date: FakeDate, fetch });
+  try {
+    const first = await cards.getCompletionById();
+    clock.now += 10 * 1000;
+    await cards.getCompletionById();
+    assert.strictEqual(calls, 1, 'one request within 30s');
+    clock.now += 25 * 1000;
+    const later = await cards.getCompletionById();
+    assert.strictEqual(calls, 2, 'refetched after 30s');
+    assert.strictEqual(first[COURSE].completion, 1);
+    assert.strictEqual(later[COURSE].completion, 2);
+    console.log(`  ok   ${name}`);
+  } catch (error) {
+    failed += 1;
+    console.log(`  FAIL ${name}\n       ${error && error.message}`);
+  }
+}
+
+// A failed request is retried on the next render instead of being kept for 30s.
+async function failedFetchCase() {
+  const name = 'A failed completion request is not cached';
+  let calls = 0;
+  const fetch = () => {
+    calls += 1;
+    return Promise.resolve(calls === 1
+      ? { ok: false }
+      : { ok: true, json: () => Promise.resolve([{ courseId: COURSE, completion: 40 }]) });
+  };
+  const cards = load({ fetch });
+  try {
+    const failedLoad = await cards.getCompletionById();
+    assert.strictEqual(Object.keys(failedLoad).length, 0);
+    // Marked, so a redraw on page return keeps the cards it already drew.
+    assert.strictEqual(failedLoad, cards.completionUnavailable);
+    const retried = await cards.getCompletionById();
+    assert.strictEqual(calls, 2, 'retried');
+    assert.strictEqual(retried[COURSE].completion, 40);
+    assert.notStrictEqual(retried, cards.completionUnavailable);
+    console.log(`  ok   ${name}`);
+  } catch (error) {
+    failed += 1;
+    console.log(`  FAIL ${name}\n       ${error && error.message}`);
+  }
+}
+
+// A failed refetch on page return keeps the last good progress instead of blanking the cards.
+async function failedRefetchCase() {
+  const name = 'A failed refetch keeps the last good completion list';
+  let now = 0;
+  class FakeDate extends Date { static now() { return now; } }
+  let calls = 0;
+  const fetch = () => {
+    calls += 1;
+    return Promise.resolve(calls === 1
+      ? { ok: true, json: () => Promise.resolve([{ courseId: COURSE, completion: 40 }]) }
+      : { ok: false });
+  };
+  const cards = load({ Date: FakeDate, fetch });
+  try {
+    const first = await cards.getCompletionById();
+    now += 31 * 1000;
+    const refetched = await cards.getCompletionById();
+    assert.strictEqual(calls, 2, 'refetched after 30s');
+    assert.strictEqual(refetched, first);
+    assert.strictEqual(refetched[COURSE].completion, 40);
+    console.log(`  ok   ${name}`);
+  } catch (error) {
+    failed += 1;
+    console.log(`  FAIL ${name}\n       ${error && error.message}`);
+  }
+}
+
+cacheCase().then(failedFetchCase).then(failedRefetchCase).then(() => {
+  const total = cases.length + startedCases.length + 3;
+  console.log(`\n${total - failed} passed, ${failed} failed`);
+  process.exit(failed ? 1 : 0);
+});
