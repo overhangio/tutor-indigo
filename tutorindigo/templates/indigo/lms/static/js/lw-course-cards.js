@@ -78,10 +78,8 @@
   function forgetCompletionList(courseId) {
     completionPromise = null;
     if (lastCompletionById) {
-      var kept = {};
-      Object.keys(lastCompletionById).forEach(function (id) {
-        if (id !== courseId) { kept[id] = lastCompletionById[id]; }
-      });
+      var kept = Object.assign({}, lastCompletionById);
+      delete kept[courseId];
       lastCompletionById = kept;
     }
     lastCompletionRequest = completionRequestCount + 1;
@@ -93,10 +91,10 @@
       var requestNumber = ++completionRequestCount;
       var request = getJson(COMPLETION_URL).then(function (rows) {
         // Outdated (sent before an enrollment change, or overtaken by a newer request), whether
-        // it succeeded or failed: use the newer list if there is one, otherwise ask again. Never
-        // draw cards from this response.
+        // it succeeded or failed: wait for the current request instead (getCompletionById reuses
+        // it while fresh, or asks again). Never draw cards from this response.
         if (requestNumber < lastCompletionRequest) {
-          return lastCompletionById || getCompletionById();
+          return getCompletionById();
         }
         // A failed request is not kept: the next render asks again rather than showing every
         // enrolled card as not enrolled until the cache expires. Only this request is dropped,
@@ -718,8 +716,8 @@
       courseName: title ? title.textContent.trim() : '',
       returnFocus: toggle,
       onUnenrolled: function () {
-        // Enrollments changed: drop the cached completion list, then let lw-courses-tabs.js
-        // reload the open tab (its new cards fetch fresh data).
+        // Enrollments changed: refetch completion (dropping this course from the fallback
+        // list), then let lw-courses-tabs.js reload the open tab.
         forgetCompletionList(courseId);
         document.dispatchEvent(new CustomEvent('lw:enrollment-changed', { detail: { courseId: courseId } }));
       },

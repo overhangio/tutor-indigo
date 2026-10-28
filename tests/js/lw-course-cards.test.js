@@ -242,6 +242,17 @@ async function unenrollRaceCase() {
     assert.notStrictEqual(fallback, cards.completionUnavailable, 'not the empty list');
     assert.strictEqual(fallback[COURSE], undefined, 'the unenrolled course is gone');
     assert.strictEqual(fallback[OTHER].completion, 60, 'the other course keeps its progress');
+
+    // A request in flight when the learner unenrolls, while a good list exists, still waits for
+    // a fresh request (not the older trimmed list), so progress made meanwhile shows.
+    now += 31 * 1000;
+    const inFlight = cards.getCompletionById();
+    cards.forgetCompletionList(COURSE);
+    respond(4, [{ courseId: OTHER, completion: 60 }]);
+    await tick();
+    assert.strictEqual(pending.length, 6, 'a fresh request was sent');
+    respond(5, [{ courseId: OTHER, completion: 80 }]);
+    assert.strictEqual((await inFlight)[OTHER].completion, 80, 'the fresh list is used');
     console.log(`  ok   ${name}`);
   } catch (error) {
     failed += 1;
