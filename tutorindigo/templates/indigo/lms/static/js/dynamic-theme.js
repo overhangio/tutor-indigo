@@ -3,6 +3,8 @@
 
     var ENABLED = {% if INDIGO_ENABLE_DYNAMIC_THEME %}true{% else %}false{% endif %};
     var CACHE_KEY = 'indigo-user-theme-legacy';
+    var SHARED_COOKIE = 'indigo-theme';
+    var COOKIE_DAYS = 90;
     var CACHE_TTL_MS = 5 * 60 * 1000;
     var lastFetched = 0;
     var API_PATH = '/api/indigo/v1/theme/';
@@ -64,6 +66,7 @@
     }
 
     function writeCache(payload) {
+        writeShared(payload);
         try {
             var username = currentUsername();
             if (!username) {
@@ -242,8 +245,80 @@
         return context;
     }
 
+    function sharedFromPayload(payload) {
+        var presets = (payload && payload.presets) || [];
+        var active = null;
+        for (var i = 0; i < presets.length; i += 1) {
+            if (presets[i].slug === payload.preset) {
+                active = presets[i];
+            }
+        }
+        var defaults = (active && active.tokens) || {};
+        var overrides = ((payload && payload.overrides) || {})[payload && payload.preset] || {};
+        var colors = {};
+        Object.keys(overrides).forEach(function (token) {
+            var to = String(overrides[token] || '').trim();
+            if (!HEX_RE.test(to.toLowerCase())) {
+                return;
+            }
+            colors[token] = [String(defaults[token] || '').toUpperCase(), to.toUpperCase()];
+        });
+        return {
+            u: currentUsername() || '',
+            v: (payload && payload.variant) || '',
+            p: (payload && payload.preset) || '',
+            c: colors
+        };
+    }
+
+    function writeShared(payload) {
+        try {
+            var expires = new Date(Date.now() + COOKIE_DAYS * 86400000);
+            var value = encodeURIComponent(JSON.stringify(sharedFromPayload(payload)));
+            document.cookie = SHARED_COOKIE + '=' + value
+                + '; domain=' + window.location.hostname
+                + '; path=/; expires=' + expires.toUTCString() + '; SameSite=Lax';
+        } catch (error) {}
+    }
+
+    function readShared() {
+        try {
+            var raw = readCookie(SHARED_COOKIE);
+            if (!raw) {
+                return null;
+            }
+            var shared = JSON.parse(decodeURIComponent(raw));
+            return shared && typeof shared === 'object' ? shared : null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function sharedChanges(shared) {
+        var colors = (shared && shared.c) || {};
+        var seen = {};
+        var changes = [];
+        Object.keys(colors).forEach(function (token) {
+            var pair = colors[token];
+            if (!pair || pair.length !== 2) {
+                return;
+            }
+            var from = String(pair[0] || '').trim().toLowerCase();
+            var to = String(pair[1] || '').trim().toLowerCase();
+            if (!HEX_RE.test(from) || !HEX_RE.test(to) || from === to || seen[from]) {
+                return;
+            }
+            seen[from] = true;
+            changes.push({ from: from, to: to });
+        });
+        return changes;
+    }
+
     function apply(payload) {
-        var changes = colorChanges(payload);
+        applyChanges(colorChanges(payload));
+    }
+
+    function applyChanges(changes) {
         var key = JSON.stringify(changes);
         if (key !== appliedChanges) {
             revert();
@@ -370,6 +445,11 @@
             revert: revert,
             saveVariant: saveVariant
         };
+        var shared = readShared();
+        var username = currentUsername();
+        if (shared && (!username || shared.u === username)) {
+            applyChanges(sharedChanges(shared));
+        }
         refresh();
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', refresh);
