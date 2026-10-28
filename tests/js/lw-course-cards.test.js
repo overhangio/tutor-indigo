@@ -205,10 +205,10 @@ const NOW = Date.parse('2026-10-28T00:00:00Z');
   }
 });
 
-// A request sent before an unenroll never becomes the "last good" list, and never resolves
-// to nothing (cards would fail to draw).
+// A response sent before an unenroll is used without the unenrolled course; responses to
+// requests sent after it reflect the real enrollment.
 async function unenrollRaceCase() {
-  const name = 'An unenrolled course is removed from every response; nothing good is discarded';
+  const name = 'An unenroll removes the course from earlier requests only; re-enrolling shows it';
   let now = 0;
   class FakeDate extends Date { static now() { return now; } }
   const pending = [];
@@ -237,11 +237,12 @@ async function unenrollRaceCase() {
     assert.strictEqual(b[COURSE], undefined);
     assert.strictEqual(b[OTHER].completion, 55);
 
-    // C: a later response still listing the course (stale server data) never brings it back.
+    // C: the learner enrolled again (e.g. on the detail page, then Back): a request sent after
+    // the unenroll lists the course, and it shows again.
     const later = cards.getCompletionById();
-    respond(2, [{ courseId: COURSE, completion: 90 }, { courseId: OTHER, completion: 70 }]);
+    respond(2, [{ courseId: COURSE, completion: 0 }, { courseId: OTHER, completion: 70 }]);
     const c = await later;
-    assert.strictEqual(c[COURSE], undefined);
+    assert.strictEqual(c[COURSE].completion, 0, 'the re-enrolled course is back');
     assert.strictEqual(c[OTHER].completion, 70);
     console.log(`  ok   ${name}`);
   } catch (error) {

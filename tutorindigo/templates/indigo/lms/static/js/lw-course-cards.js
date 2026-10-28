@@ -72,16 +72,18 @@
   // Requests are numbered so a slow, older response never replaces a newer list.
   var completionRequestCount = 0;
   var lastCompletionRequest = 0;
-  // Courses the learner unenrolled from on this page. A response sent before the unenroll still
-  // lists them: they are removed from every response, which is otherwise used as usual.
-  var unenrolledCourseIds = {};
+  // Course id -> number of the last request sent before the learner unenrolled from it on this
+  // page. Responses to those requests still list the course, so it is removed from them; any
+  // request sent after the unenroll reflects the real enrollment (e.g. enrolled again).
+  var unenrolledBeforeRequest = {};
 
-  // After an unenroll: remove the course from the last good list and from every later response,
-  // and drop the cached request so the next render (lw-courses-tabs.js reloads the tab) refetches.
+  // After an unenroll: remove the course from the last good list and from responses to requests
+  // already sent, and drop the cached request so the next render (lw-courses-tabs.js reloads the
+  // tab) refetches.
   function forgetCompletionList(courseId) {
-    if (courseId) { unenrolledCourseIds[courseId] = true; }
+    unenrolledBeforeRequest[courseId] = completionRequestCount;
     completionPromise = null;
-    if (lastCompletionById && courseId) {
+    if (lastCompletionById) {
       var kept = Object.assign({}, lastCompletionById);
       delete kept[courseId];
       lastCompletionById = kept;
@@ -104,7 +106,8 @@
         if (requestNumber < lastCompletionRequest) { return lastCompletionById; }
         var byId = {};
         rows.forEach(function (row) {
-          if (!unenrolledCourseIds[row.courseId]) { byId[row.courseId] = row; }
+          var sentBeforeUnenroll = requestNumber <= unenrolledBeforeRequest[row.courseId];
+          if (!sentBeforeUnenroll) { byId[row.courseId] = row; }
         });
         lastCompletionById = byId;
         lastCompletionRequest = requestNumber;
