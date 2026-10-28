@@ -105,7 +105,7 @@ Every learner can pick their own theme. From the Account settings page, in the "
 
 The light/dark toggle in the header stays available alongside this feature: it switches between the Light and Dark presets, while the Account settings page is where the presets are personalized.
 
-Colours chosen this way are rejected if they would be unreadable: on save, body text is checked against the page background at the WCAG AA ratio (4.5:1) and the accent colours at 3:1. If a learner still ends up with a theme they cannot read, appending ``?indigo-theme-reset=1`` to any micro-frontend URL clears their stored colours without needing to read the settings page.
+The colour picker shows the contrast ratio of the colour being edited against the page background, with the WCAG levels that apply to it (4.5:1 and 7:1 for body text, 3:1 for the accent colours) and threshold lines drawn over the picker. Colours below those levels are still saved, with a warning naming them. If a learner still ends up with a theme they cannot read, appending ``?indigo-theme-reset=1`` to any micro-frontend URL clears their stored colours without needing to read the settings page.
 
 .. note::
     The theme settings block is registered through the legacy plugin slots of the Account micro-frontend, in the only slot it offers for this (``additional_profile_fields``), which is why it appears under "Profile Information" rather than "Site Preferences". Sites running the frontend-base version of ``frontend-app-account`` will not see the block at all, because the compatibility layer does not map that slot. Learners on those sites can still switch between Light and Dark with the header toggle, but cannot personalize colours.
