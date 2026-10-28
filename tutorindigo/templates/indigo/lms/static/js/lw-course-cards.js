@@ -14,7 +14,8 @@
  *                        completed; real time) or completion > 0, so a started course shows a
  *                        0% bar while its % still rounds to 0 (or before a backend that
  *                        recalculates it on read).
- * Enrolled, no block  -> Enroll and Start (learner dashboard BeginCourseButton label)
+ * Enrolled, no block  -> Start (learner dashboard BeginCourseButton label; "Enroll and Start"
+ *                        is for a learner not enrolled yet, PRD LMS 9.3)
  * Not enrolled        -> View Course (about page), no progress
  *
  * Signed-in learners also get the actions menu: "Add to / Remove from my list" (POST/DELETE
@@ -302,21 +303,20 @@
     if (element) { element.hidden = !visible; }
   }
 
-  // Links on an enrolled learner's card. By default the title and the action open the course
-  // player (PRD LMS 5.2 for Continue Learning; the other tabs keep that behaviour). On the
-  // Assigned tab, as on the learner dashboard (PRD LMS 4.2), the title opens the course detail
-  // page and so does "Enroll and Start"; Resume and Revisit still open the course player.
-  function enrolledCardLinks(courseId, tab, hasStarted, isRevisit) {
+  // Links on an enrolled learner's card. The action (Start, Resume, Revisit) always opens the
+  // course player, as PRD LMS 9.3's CTA and Resume (4.5, 5.2) do. The title opens the player too,
+  // except on the Assigned tab, where, as on the learner dashboard, clicking the course opens its
+  // detail page (PRD LMS 4.2).
+  function enrolledCardLinks(courseId, tab) {
     var coursewareUrl = '/courses/' + encodeURIComponent(courseId) + '/courseware';
     var aboutUrl = '/courses/' + encodeURIComponent(courseId) + '/about';
-    var isAssignedTab = tab === 'assigned';
     return {
-      title: isAssignedTab ? aboutUrl : coursewareUrl,
-      cta: isAssignedTab && !hasStarted && !isRevisit ? aboutUrl : coursewareUrl,
+      title: tab === 'assigned' ? aboutUrl : coursewareUrl,
+      cta: coursewareUrl,
     };
   }
 
-  // Resume vs Enroll and Start. hasStarted comes from BlockCompletion and updates at once, even
+  // Resume vs Start. hasStarted comes from BlockCompletion and updates at once, even
   // while the % still rounds to 0; the backend (completion_helpers.has_started) decides it.
   // The % check is only for an API that does not send hasStarted yet.
   function isStarted(completion) {
@@ -392,10 +392,10 @@
 
     if (completion) {
       var tabItem = card.closest('[data-lw-tab]');
-      var links = enrolledCardLinks(courseId, tabItem && tabItem.getAttribute('data-lw-tab'), hasStarted, isRevisit);
+      var links = enrolledCardLinks(courseId, tabItem && tabItem.getAttribute('data-lw-tab'));
       field(card, 'cta').setAttribute('href', links.cta);
       field(card, 'title-link').setAttribute('href', links.title);
-      var ctaLabel = gettext('Enroll and Start');
+      var ctaLabel = gettext('Start');
       if (isRevisit) {
         ctaLabel = gettext('Revisit Course');
       } else if (hasStarted) {

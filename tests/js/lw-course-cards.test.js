@@ -34,7 +34,7 @@ const COURSEWARE = `/courses/${encodeURIComponent(COURSE)}/courseware`;
 
 const cases = [
   // [name, tab, hasStarted, isRevisit, expected title, expected cta]
-  ['Assigned, not started: title and Enroll and Start open the detail page', 'assigned', false, false, ABOUT, ABOUT],
+  ['Assigned, not started: title opens the detail page, Start opens the player', 'assigned', false, false, ABOUT, COURSEWARE],
   ['Assigned, started: title opens the detail page, Resume opens the player', 'assigned', true, false, ABOUT, COURSEWARE],
   ['Assigned, completed or failed: Revisit opens the player', 'assigned', false, true, ABOUT, COURSEWARE],
   ['Continue Learning: card opens the player (PRD LMS 5.2)', 'continue', true, false, COURSEWARE, COURSEWARE],
@@ -61,8 +61,8 @@ cases.forEach(([name, tab, hasStarted, isRevisit, title, cta]) => {
 const startedCases = [
   ['Block completed, % still rounds to 0: Resume at 0%', { hasStarted: true, completion: 0 }, true],
   ['Older API without hasStarted: falls back to completion > 0', { completion: 12 }, true],
-  ['Older API without hasStarted, 0%: Enroll and Start', { completion: 0 }, false],
-  ['Nothing completed: Enroll and Start', { hasStarted: false, completion: 0 }, false],
+  ['Older API without hasStarted, 0%: Start', { completion: 0 }, false],
+  ['Nothing completed: Start', { hasStarted: false, completion: 0 }, false],
   ['The backend decides when it sends hasStarted', { hasStarted: false, completion: 12 }, false],
   ['Not enrolled (no row): not started', undefined, false],
 ];
