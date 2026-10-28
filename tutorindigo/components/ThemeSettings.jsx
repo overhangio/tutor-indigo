@@ -115,6 +115,37 @@ const INDIGO_THEME_SETTINGS_CSS = `
   font-size: .75rem;
 }
 .indigo-theme-settings .indigo-theme-muted { opacity: .7; }
+.indigo-theme-contrast {
+  border-top: 1px solid var(--pgn-color-border, var(--pgn-color-form-control-indicator-border, #c4c7cf));
+  margin-top: .75rem;
+  padding-top: .75rem;
+}
+.indigo-theme-contrast-row {
+  align-items: baseline;
+  display: flex;
+  gap: .5rem;
+  justify-content: space-between;
+}
+.indigo-theme-picker { position: relative; }
+.indigo-theme-picker .react-colorful { height: 200px; width: 100%; }
+.indigo-theme-picker-guides {
+  height: calc(100% - 36px);
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.indigo-theme-picker-guides polyline {
+  fill: none;
+  opacity: .85;
+  stroke: #FFFFFF;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.indigo-theme-contrast-pass { color: var(--pgn-color-success-base, #0D7D4D); font-weight: 600; }
+.indigo-theme-contrast-fail { color: var(--pgn-color-danger-base, #C32D3A); font-weight: 600; }
 .indigo-theme-settings .indigo-theme-badge {
   background: transparent;
   border: 1px solid currentColor;
@@ -188,6 +219,8 @@ const ThemeSettings = () => {
   const [pickerTarget, setPickerTarget] = useState(null);
   const [hexDraft, setHexDraft] = useState('');
   const [isConfirmingReset, setIsConfirmingReset] = useState(false);
+  const [baseTokenVersion, setBaseTokenVersion] = useState(0);
+  const [contrastWarning, setContrastWarning] = useState('');
 
   const savedRef = useRef(null);
   const draftRef = useRef(null);
@@ -290,10 +323,35 @@ const ThemeSettings = () => {
       defaultMessage: "Discard changes",
       description: "label of the button that discards unsaved theme changes",
     },
-    "theme.settings.contrast.error": {
-      id: "theme.settings.contrast.error",
-      defaultMessage: "{labels} would be hard to read against the page background. Pick a darker or lighter value, or use the default.",
-      description: "error shown when chosen colours fail the contrast check",
+    "theme.settings.contrast.ratio": {
+      id: "theme.settings.contrast.ratio",
+      defaultMessage: "Contrast ratio: {ratio}",
+      description: "contrast ratio of the chosen colour against the page background",
+    },
+    "theme.settings.contrast.pass": {
+      id: "theme.settings.contrast.pass",
+      defaultMessage: "Pass",
+      description: "shown when a colour meets a contrast level",
+    },
+    "theme.settings.contrast.fail": {
+      id: "theme.settings.contrast.fail",
+      defaultMessage: "Fail",
+      description: "shown when a colour does not meet a contrast level",
+    },
+    "theme.settings.contrast.against": {
+      id: "theme.settings.contrast.against",
+      defaultMessage: "Measured against the {variant} page background.",
+      description: "explains what the contrast ratio is measured against",
+    },
+    "theme.settings.contrast.against.text": {
+      id: "theme.settings.contrast.against.text",
+      defaultMessage: "Measured against Body text, which is shown on this color.",
+      description: "explains that a surface colour is measured against the text drawn on it",
+    },
+    "theme.settings.contrast.warning": {
+      id: "theme.settings.contrast.warning",
+      defaultMessage: "Saved. {labels} may be hard to read against the page background — you can pick another value, or use the default.",
+      description: "warning shown after saving colours that fall below the recommended contrast",
     },
     "theme.settings.reset.confirm": {
       id: "theme.settings.reset.confirm",
@@ -355,6 +413,7 @@ const ThemeSettings = () => {
   useEffect(() => { savedRef.current = saved; }, [saved]);
   useEffect(() => { isDirtyRef.current = isDirty; }, [isDirty]);
   useEffect(() => { ensureThemeSettingsCss(); }, []);
+  useEffect(() => onBaseTokensCaptured(() => setBaseTokenVersion((value) => value + 1)), []);
 
   useEffect(() => {
     if (!isDynamicThemeEnabled || !authenticatedUser) {
@@ -395,7 +454,10 @@ const ThemeSettings = () => {
   }, [showSavedAlert]);
 
   const activePreset = (saved?.presets || []).find((preset) => preset.slug === draft?.preset);
-  const presetTokens = { ...(activePreset?.tokens || {}), ...baseTokensFor(activePreset?.variant) };
+  const presetTokens = useMemo(
+    () => ({ ...(activePreset?.tokens || {}), ...baseTokensFor(activePreset?.variant) }),
+    [activePreset, baseTokenVersion],
+  );
   const activeOverrides = (draft?.overrides || {})[draft?.preset] || {};
   const availablePresets = (saved?.presets || []).filter(
     (preset) => getConfig().INDIGO_ENABLE_DARK_TOGGLE || preset.variant !== 'dark',
@@ -504,32 +566,72 @@ const ThemeSettings = () => {
     setOpenToken(token);
   };
 
-  const contrastFailures = () => {
-    const tokens = { ...presetTokens, ...activeOverrides };
-    const background = activePreset?.variant === 'dark' ? '#0D0D0E' : '#FFFFFF';
-    const thresholds = {
-      '--pgn-color-text-base': INDIGO_CONTRAST_AA,
-      '--pgn-color-primary-base': 3,
-      '--pgn-color-brand-base': 3,
-      '--pgn-color-info-base': 3,
-    };
-    return INDIGO_THEME_TOKENS
-      .filter((entry) => thresholds[entry.token] && tokens[entry.token]
-        && (contrastRatio(tokens[entry.token], background) || 0) < thresholds[entry.token])
-      .map((entry) => tokenLabel(entry));
+  const contrastBackground = () => (activePreset?.variant === 'dark' ? '#0D0D0E' : '#FFFFFF');
+
+  const contrastLevelsFor = () => [
+    { label: 'AA', min: INDIGO_CONTRAST_AA },
+    { label: 'AAA', min: 7 },
+  ];
+
+  const contrastPeerFor = (token) => {
+    if (token !== '--pgn-color-primary-light') {
+      return { color: contrastBackground(), onText: false };
+    }
+    const text = activeOverrides['--pgn-color-text-base']
+      || presetTokens['--pgn-color-text-base'];
+    return { color: text || contrastBackground(), onText: Boolean(text) };
   };
+
+  const pickerGuides = (token, color) => {
+    const levels = contrastLevelsFor(token);
+    const rgb = hexToRgb(color);
+    if (!levels.length || !rgb) {
+      return [];
+    }
+    const { h } = rgbToHsv(rgb);
+    const peer = contrastPeerFor(token);
+    return levels
+      .map((level) => ({
+        label: level.label,
+        points: contrastGuidePoints(h, level.min, peer.color),
+      }))
+      .filter((guide) => guide.points);
+  };
+
+  const contrastReport = (token, color) => {
+    const levels = contrastLevelsFor(token);
+    const peer = contrastPeerFor(token);
+    const ratio = contrastRatio(color, peer.color);
+    if (!levels.length || !ratio) {
+      return null;
+    }
+    return {
+      ratio: Math.round(ratio * 100) / 100,
+      onText: peer.onText,
+      levels: levels.map((level) => ({ ...level, pass: ratio >= level.min })),
+    };
+  };
+
+  const openGuides = useMemo(
+    () => (openToken ? pickerGuides(openToken, colorFor(openToken)) : []),
+    [openToken, activeOverrides, presetTokens, activePreset],
+  );
+
+  const contrastFailures = () => INDIGO_THEME_TOKENS
+    .filter((entry) => {
+      if (!activeOverrides[entry.token]) {
+        return false;
+      }
+      const report = contrastReport(entry.token, activeOverrides[entry.token]);
+      return report && !report.levels[0].pass;
+    })
+    .map((entry) => tokenLabel(entry));
 
   const onSave = () => {
     const failures = contrastFailures();
-    if (failures.length) {
-      setSubmitError(intl.formatMessage(
-        messages["theme.settings.contrast.error"],
-        { labels: failures.join(', ') },
-      ));
-      return;
-    }
     setIsSubmitting(true);
     setSubmitError('');
+    setContrastWarning('');
     setOpenToken(null);
     getAuthenticatedHttpClient()
       .put(apiUrl, { preset: draft.preset, overrides: draft.overrides })
@@ -537,7 +639,14 @@ const ThemeSettings = () => {
         adoptPayload(data);
         writeThemeCache(data);
         applyThemeTokens(effectiveTokensFor(data, data.preset));
-        setShowSavedAlert(true);
+        if (failures.length) {
+          setContrastWarning(intl.formatMessage(
+            messages["theme.settings.contrast.warning"],
+            { labels: failures.join(', ') },
+          ));
+        } else {
+          setShowSavedAlert(true);
+        }
       })
       .catch((error) => {
         logError(error);
@@ -632,6 +741,11 @@ const ThemeSettings = () => {
           {submitError}
         </Alert>
       )}
+      {contrastWarning && (
+        <Alert variant="warning" onClose={() => setContrastWarning('')} dismissible>
+          {contrastWarning}
+        </Alert>
+      )}
 
       <Form.RadioSet
         name="indigo-theme-preset"
@@ -719,10 +833,22 @@ const ThemeSettings = () => {
                     label: tokenLabel(entry),
                   })}
                 >
-                  <HexColorPicker
-                    color={colorFor(entry.token)}
-                    onChange={(value) => onPickerChange(entry.token, value)}
-                  />
+                  <div className="indigo-theme-picker">
+                    <HexColorPicker
+                      color={colorFor(entry.token)}
+                      onChange={(value) => onPickerChange(entry.token, value)}
+                    />
+                    <svg
+                      className="indigo-theme-picker-guides"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      {openGuides.map((guide) => (
+                        <polyline key={guide.label} points={guide.points} />
+                      ))}
+                    </svg>
+                  </div>
                   <Form.Group className="mt-3 mb-0" isInvalid={isHexInvalid}>
                     <Form.Label className="small mb-1">
                       {intl.formatMessage(messages["theme.settings.color.hex"])}
@@ -742,6 +868,43 @@ const ThemeSettings = () => {
                       </Form.Control.Feedback>
                     )}
                   </Form.Group>
+                  {(() => {
+                    const report = contrastReport(entry.token, colorFor(entry.token));
+                    if (!report) {
+                      return null;
+                    }
+                    return (
+                      <div className="indigo-theme-contrast small">
+                        <div className="font-weight-bold mb-1">
+                          {intl.formatMessage(
+                            messages["theme.settings.contrast.ratio"],
+                            { ratio: report.ratio.toFixed(2) },
+                          )}
+                        </div>
+                        {report.levels.map((level) => (
+                          <div className="indigo-theme-contrast-row" key={level.label}>
+                            <span>{`${level.label}: ${level.min}`}</span>
+                            <span className={level.pass
+                              ? 'indigo-theme-contrast-pass'
+                              : 'indigo-theme-contrast-fail'}
+                            >
+                              {intl.formatMessage(messages[level.pass
+                                ? "theme.settings.contrast.pass"
+                                : "theme.settings.contrast.fail"])}
+                            </span>
+                          </div>
+                        ))}
+                        <div className="indigo-theme-muted mt-1">
+                          {report.onText
+                            ? intl.formatMessage(messages["theme.settings.contrast.against.text"])
+                            : intl.formatMessage(
+                              messages["theme.settings.contrast.against"],
+                              { variant: activePreset?.name || '' },
+                            )}
+                        </div>
+                      </div>
+                    );
+                  })()}
                   <Button
                     variant="link"
                     size="sm"
