@@ -32,21 +32,23 @@ const COURSE = 'course-v1:SSED+CS101+2026';
 const ABOUT = `/courses/${encodeURIComponent(COURSE)}/about`;
 const COURSEWARE = `/courses/${encodeURIComponent(COURSE)}/courseware`;
 
+const ROW_ABOUT = '/courses/custom-about-link';
 const cases = [
-  // [name, tab, expected title, expected action]. The action (Start, Resume, Revisit) always
-  // opens the player; only the title depends on the tab.
-  ['Assigned: title opens the detail page (PRD LMS 4.2), the action opens the player', 'assigned', ABOUT, COURSEWARE],
-  ['Continue Learning: title and action open the player (PRD LMS 5.2)', 'continue', COURSEWARE, COURSEWARE],
-  ['Other tabs: title and action open the player', 'new', COURSEWARE, COURSEWARE],
-  ['A card outside a tab: title and action open the player', null, COURSEWARE, COURSEWARE],
+  // [name, tab, row about URL, not open yet, expected title, expected action]
+  ['Assigned: title opens the detail page (PRD LMS 4.2), the action opens the player', 'assigned', null, false, ABOUT, COURSEWARE],
+  ['Continue Learning: title and action open the player (PRD LMS 5.2)', 'continue', null, false, COURSEWARE, COURSEWARE],
+  ['Other tabs: title and action open the player', 'new', null, false, COURSEWARE, COURSEWARE],
+  ['A card outside a tab: title and action open the player', null, null, false, COURSEWARE, COURSEWARE],
+  ['Course not open yet: Start and the title open the detail page', 'new', null, true, ABOUT, ABOUT],
+  ["The row's own detail-page URL is used", 'assigned', ROW_ABOUT, true, ROW_ABOUT, ROW_ABOUT],
 ];
 
 const api = load();
 let failed = 0;
-cases.forEach(([name, tab, title, cta]) => {
+cases.forEach(([name, tab, rowAbout, notOpenYet, title, cta]) => {
   try {
     // Compare fields: objects made inside the VM have another realm's prototype.
-    const links = api.enrolledCardLinks(COURSE, tab);
+    const links = api.enrolledCardLinks(COURSE, tab, rowAbout, notOpenYet);
     assert.strictEqual(links.title, title, 'title link');
     assert.strictEqual(links.cta, cta, 'action link');
     console.log(`  ok   ${name}`);
@@ -186,13 +188,13 @@ async function outOfOrderCase() {
   }
 }
 
-// Start is greyed out while the course has not opened yet; staff are never locked out.
+// A course that has not opened yet sends Start to the detail page; staff go to the course.
 const NOW = Date.parse('2026-10-28T00:00:00Z');
 [
-  ['Course opens next month: greyed out', '2026-11-28T00:00:00+00:00', false, true],
-  ['Course already open: clickable', '2026-01-01T00:00:00+00:00', false, false],
-  ['No start date: clickable', '', false, false],
-  ['Staff before the start date: clickable', '2026-11-28T00:00:00+00:00', true, false],
+  ['Course opens next month: not open yet', '2026-11-28T00:00:00+00:00', false, true],
+  ['Course already open', '2026-01-01T00:00:00+00:00', false, false],
+  ['No start date: treated as open', '', false, false],
+  ['Staff before the start date: treated as open', '2026-11-28T00:00:00+00:00', true, false],
 ].forEach(([name, start, isStaff, expected]) => {
   try {
     assert.strictEqual(api.isNotOpenYet(start, NOW, isStaff), expected);
@@ -206,7 +208,7 @@ const NOW = Date.parse('2026-10-28T00:00:00Z');
 // A request sent before an unenroll never becomes the "last good" list, and never resolves
 // to nothing (cards would fail to draw).
 async function unenrollRaceCase() {
-  const name = 'A request in flight during an unenroll is dropped, not kept or empty';
+  const name = 'A request in flight during an unenroll hands off to a fresh request';
   let now = 0;
   class FakeDate extends Date { static now() { return now; } }
   const pending = [];
@@ -214,19 +216,17 @@ async function unenrollRaceCase() {
   const respond = (index, rows) => pending[index](
     rows ? { ok: true, json: () => Promise.resolve(rows) } : { ok: false },
   );
+  const tick = () => new Promise((resolve) => { setImmediate(resolve); });
   const cards = load({ Date: FakeDate, fetch });
   try {
     const before = cards.getCompletionById();
     cards.forgetCompletionList();
     respond(0, [{ courseId: COURSE, completion: 40 }]);
-    const stale = await before;
-    assert.ok(stale, 'never resolves to null');
-    assert.strictEqual(stale[COURSE], undefined, 'the pre-unenroll list is not used');
-    // The next request fails: no stale list to fall back to.
-    now += 31 * 1000;
-    const after = cards.getCompletionById();
-    respond(1, null);
-    assert.strictEqual(await after, cards.completionUnavailable);
+    // The outdated response starts a fresh request instead of drawing from its own list.
+    await tick();
+    assert.strictEqual(pending.length, 2, 'a fresh request was sent');
+    respond(1, [{ courseId: COURSE, completion: 55 }]);
+    assert.strictEqual((await before)[COURSE].completion, 55, 'the fresh list is used');
     console.log(`  ok   ${name}`);
   } catch (error) {
     failed += 1;

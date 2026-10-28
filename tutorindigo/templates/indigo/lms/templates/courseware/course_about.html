@@ -282,10 +282,7 @@ if apps.is_installed('course_assignments'):
             </a>
             %endif
             % else:
-            ## Enrolled but no courseware access yet (show_courseware_link from the LMS about view:
-            ## e.g. the course has not opened): a disabled Start, as the course card and the
-            ## learner dashboard show.
-            <span class="course-details-btn course-details-btn-disabled" aria-disabled="true">${_("Start")}</span>
+            <span class="course-details-btn course-details-btn-disabled">${_("Already Enrolled")}</span>
             % endif
           % elif is_course_full:
             <span class="course-details-btn course-details-btn-disabled">${_("Course is full")}</span>

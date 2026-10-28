@@ -93,7 +93,9 @@
           return lastCompletionById || COMPLETION_UNAVAILABLE;
         }
         if (requestNumber < lastCompletionRequest) {
-          return lastCompletionById || COMPLETION_UNAVAILABLE;
+          // Outdated (sent before an enrollment change, or overtaken by a newer request): hand
+          // off to the current request instead of drawing cards from this list.
+          return getCompletionById();
         }
         var byId = {};
         rows.forEach(function (row) {
@@ -317,12 +319,14 @@
   // course player, as PRD LMS 9.3's CTA and Resume (4.5, 5.2) do. The title opens the player too,
   // except on the Assigned tab, where, as on the learner dashboard, clicking the course opens its
   // detail page (PRD LMS 4.2).
-  function enrolledCardLinks(courseId, tab, aboutUrlOverride) {
+  // A course that has not opened yet (start date in the future) is not greyed out: Start and the
+  // title open the detail page, which shows the date, instead of a "not started" courseware page.
+  function enrolledCardLinks(courseId, tab, aboutUrlOverride, notOpenYet) {
     var coursewareUrl = '/courses/' + encodeURIComponent(courseId) + '/courseware';
     var aboutUrl = aboutUrlOverride || defaultAboutUrl(courseId);
     return {
-      title: tab === 'assigned' ? aboutUrl : coursewareUrl,
-      cta: coursewareUrl,
+      title: tab === 'assigned' || notOpenYet ? aboutUrl : coursewareUrl,
+      cta: notOpenYet ? aboutUrl : coursewareUrl,
     };
   }
 
@@ -346,8 +350,8 @@
   }
 
   // Not open yet: the course's start date is in the future. Open edX keeps learners out until
-  // then (staff excepted), so the learner dashboard disables its Start button
-  // (coursewareAccess.isTooEarly); the Library card does the same. Prerequisites are not checked.
+  // then (staff excepted), so Start opens the detail page instead of the courseware.
+  // Prerequisites are not checked.
   function isNotOpenYet(courseStart, now, isStaff) {
     var start = Date.parse(courseStart || '');
     return !isStaff && isFinite(start) && start > now;
@@ -424,8 +428,11 @@
 
     if (completion) {
       var tabItem = card.closest('[data-lw-tab]');
+      var notOpenYet = !hasStarted && !isRevisit
+        && isNotOpenYet(card.getAttribute('data-course-start'), now, isStaffViewer());
       var links = enrolledCardLinks(
-        courseId, tabItem && tabItem.getAttribute('data-lw-tab'), cardAboutUrl(card, courseId)
+        courseId, tabItem && tabItem.getAttribute('data-lw-tab'), cardAboutUrl(card, courseId),
+        notOpenYet
       );
       field(card, 'cta').setAttribute('href', links.cta);
       field(card, 'title-link').setAttribute('href', links.title);
@@ -436,33 +443,11 @@
         ctaLabel = gettext('Resume');
       }
       field(card, 'cta-label').textContent = ctaLabel;
-      // Start greyed out and not clickable until the course opens.
-      var locked = !hasStarted && !isRevisit
-        && isNotOpenYet(card.getAttribute('data-course-start'), now, isStaffViewer());
-      var cta = field(card, 'cta');
-      cta.classList.toggle('lw-course-card__cta--disabled', locked);
-      if (locked) {
-        // Without an href an <a> loses its link role: keep it, so the disabled state is announced.
-        cta.removeAttribute('href');
-        cta.setAttribute('role', 'link');
-        cta.setAttribute('aria-disabled', 'true');
-        cta.setAttribute('tabindex', '-1');
-        // The title must not open the courseware either: it shows the detail page (start date).
-        field(card, 'title-link').setAttribute('href', cardAboutUrl(card, courseId));
-      } else {
-        cta.removeAttribute('role');
-        cta.removeAttribute('aria-disabled');
-        cta.removeAttribute('tabindex');
-      }
     } else {
       // Not enrolled (any more): the card's first state, as lw-courses-tabs.js draws it. A card
       // drawn again after an unenroll elsewhere must not keep its Resume link.
       var aboutUrl = cardAboutUrl(card, courseId);
       field(card, 'cta').setAttribute('href', aboutUrl);
-      field(card, 'cta').classList.remove('lw-course-card__cta--disabled');
-      field(card, 'cta').removeAttribute('role');
-      field(card, 'cta').removeAttribute('aria-disabled');
-      field(card, 'cta').removeAttribute('tabindex');
       field(card, 'title-link').setAttribute('href', aboutUrl);
       field(card, 'cta-label').textContent = gettext('View Course');
     }
