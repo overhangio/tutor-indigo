@@ -72,6 +72,14 @@
   // Requests are numbered so a slow, older response never replaces a newer list.
   var completionRequestCount = 0;
   var lastCompletionRequest = 0;
+  // After an enrollment change: drop the list, and outdate requests already in flight, which
+  // were sent before the change and must never become the "last good" list.
+  function forgetCompletionList() {
+    completionPromise = null;
+    lastCompletionById = null;
+    lastCompletionRequest = completionRequestCount + 1;
+  }
+
   function getCompletionById() {
     if (!completionPromise || Date.now() - completionFetchedAt > COMPLETION_MAX_AGE_MS) {
       completionFetchedAt = Date.now();
@@ -84,7 +92,9 @@
           if (completionPromise === request) { completionPromise = null; }
           return lastCompletionById || COMPLETION_UNAVAILABLE;
         }
-        if (requestNumber < lastCompletionRequest) { return lastCompletionById; }
+        if (requestNumber < lastCompletionRequest) {
+          return lastCompletionById || COMPLETION_UNAVAILABLE;
+        }
         var byId = {};
         rows.forEach(function (row) {
           byId[row.courseId] = row;
@@ -307,13 +317,22 @@
   // course player, as PRD LMS 9.3's CTA and Resume (4.5, 5.2) do. The title opens the player too,
   // except on the Assigned tab, where, as on the learner dashboard, clicking the course opens its
   // detail page (PRD LMS 4.2).
-  function enrolledCardLinks(courseId, tab) {
+  function enrolledCardLinks(courseId, tab, aboutUrlOverride) {
     var coursewareUrl = '/courses/' + encodeURIComponent(courseId) + '/courseware';
-    var aboutUrl = '/courses/' + encodeURIComponent(courseId) + '/about';
+    var aboutUrl = aboutUrlOverride || defaultAboutUrl(courseId);
     return {
       title: tab === 'assigned' ? aboutUrl : coursewareUrl,
       cta: coursewareUrl,
     };
+  }
+
+  function defaultAboutUrl(courseId) {
+    return '/courses/' + encodeURIComponent(courseId) + '/about';
+  }
+
+  // The card's detail-page link as lw-courses-tabs.js first drew it (the row's url).
+  function cardAboutUrl(card, courseId) {
+    return card.getAttribute('data-about-url') || defaultAboutUrl(courseId);
   }
 
   // Resume vs Start. hasStarted comes from BlockCompletion and updates at once, even
@@ -405,7 +424,9 @@
 
     if (completion) {
       var tabItem = card.closest('[data-lw-tab]');
-      var links = enrolledCardLinks(courseId, tabItem && tabItem.getAttribute('data-lw-tab'));
+      var links = enrolledCardLinks(
+        courseId, tabItem && tabItem.getAttribute('data-lw-tab'), cardAboutUrl(card, courseId)
+      );
       field(card, 'cta').setAttribute('href', links.cta);
       field(card, 'title-link').setAttribute('href', links.title);
       var ctaLabel = gettext('Start');
@@ -421,19 +442,25 @@
       var cta = field(card, 'cta');
       cta.classList.toggle('lw-course-card__cta--disabled', locked);
       if (locked) {
+        // Without an href an <a> loses its link role: keep it, so the disabled state is announced.
         cta.removeAttribute('href');
+        cta.setAttribute('role', 'link');
         cta.setAttribute('aria-disabled', 'true');
         cta.setAttribute('tabindex', '-1');
+        // The title must not open the courseware either: it shows the detail page (start date).
+        field(card, 'title-link').setAttribute('href', cardAboutUrl(card, courseId));
       } else {
+        cta.removeAttribute('role');
         cta.removeAttribute('aria-disabled');
         cta.removeAttribute('tabindex');
       }
     } else {
       // Not enrolled (any more): the card's first state, as lw-courses-tabs.js draws it. A card
       // drawn again after an unenroll elsewhere must not keep its Resume link.
-      var aboutUrl = '/courses/' + encodeURIComponent(courseId) + '/about';
+      var aboutUrl = cardAboutUrl(card, courseId);
       field(card, 'cta').setAttribute('href', aboutUrl);
       field(card, 'cta').classList.remove('lw-course-card__cta--disabled');
+      field(card, 'cta').removeAttribute('role');
       field(card, 'cta').removeAttribute('aria-disabled');
       field(card, 'cta').removeAttribute('tabindex');
       field(card, 'title-link').setAttribute('href', aboutUrl);
@@ -701,8 +728,7 @@
       onUnenrolled: function () {
         // Enrollments changed: drop the cached completion list, then let lw-courses-tabs.js
         // reload the open tab (its new cards fetch fresh data).
-        completionPromise = null;
-        lastCompletionById = null;
+        forgetCompletionList();
         document.dispatchEvent(new CustomEvent('lw:enrollment-changed', { detail: { courseId: courseId } }));
       },
     });
@@ -784,6 +810,7 @@
       enrolledCardLinks: enrolledCardLinks,
       getCompletionById: getCompletionById,
       isNotOpenYet: isNotOpenYet,
+      forgetCompletionList: forgetCompletionList,
       completionUnavailable: COMPLETION_UNAVAILABLE,
       isStarted: isStarted,
     };

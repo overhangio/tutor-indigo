@@ -237,7 +237,8 @@
     return (
       '<article class="lw-course-card" aria-label="' + title + '"'
       + ' data-course-id="' + courseId + '"'
-      + ' data-course-start="' + escapeHtml(row.courseStart || '') + '">'
+      + ' data-course-start="' + escapeHtml(row.courseStart || '') + '"'
+      + ' data-about-url="' + aboutUrl + '">'
       + '<div class="lw-course-card__image">'
       + '<img src="' + imageUrl + '" alt="" decoding="async"'
       + ' loading="' + (index < EAGER_IMAGES ? 'eager' : 'lazy') + '"'

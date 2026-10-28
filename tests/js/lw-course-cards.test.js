@@ -203,8 +203,40 @@ const NOW = Date.parse('2026-10-28T00:00:00Z');
   }
 });
 
-cacheCase().then(failedFetchCase).then(failedRefetchCase).then(outOfOrderCase).then(() => {
-  const total = cases.length + startedCases.length + 4 + 4;
+// A request sent before an unenroll never becomes the "last good" list, and never resolves
+// to nothing (cards would fail to draw).
+async function unenrollRaceCase() {
+  const name = 'A request in flight during an unenroll is dropped, not kept or empty';
+  let now = 0;
+  class FakeDate extends Date { static now() { return now; } }
+  const pending = [];
+  const fetch = () => new Promise((resolve) => { pending.push(resolve); });
+  const respond = (index, rows) => pending[index](
+    rows ? { ok: true, json: () => Promise.resolve(rows) } : { ok: false },
+  );
+  const cards = load({ Date: FakeDate, fetch });
+  try {
+    const before = cards.getCompletionById();
+    cards.forgetCompletionList();
+    respond(0, [{ courseId: COURSE, completion: 40 }]);
+    const stale = await before;
+    assert.ok(stale, 'never resolves to null');
+    assert.strictEqual(stale[COURSE], undefined, 'the pre-unenroll list is not used');
+    // The next request fails: no stale list to fall back to.
+    now += 31 * 1000;
+    const after = cards.getCompletionById();
+    respond(1, null);
+    assert.strictEqual(await after, cards.completionUnavailable);
+    console.log(`  ok   ${name}`);
+  } catch (error) {
+    failed += 1;
+    console.log(`  FAIL ${name}\n       ${error && error.message}`);
+  }
+}
+
+cacheCase().then(failedFetchCase).then(failedRefetchCase).then(outOfOrderCase)
+  .then(unenrollRaceCase).then(() => {
+  const total = cases.length + startedCases.length + 5 + 4;
   console.log(`\n${total - failed} passed, ${failed} failed`);
   process.exit(failed ? 1 : 0);
 });

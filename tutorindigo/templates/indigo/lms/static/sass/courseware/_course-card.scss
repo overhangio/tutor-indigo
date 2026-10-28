@@ -391,16 +391,10 @@ $lw-icon-star: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/s
     }
 
     // Course not open yet (start date in the future): Start greyed out and not clickable, like the
-    // learner dashboard's disabled Paragon button (opacity .5, no pointer).
+    // learner dashboard's disabled Paragon button (opacity .5, no pointer events).
     a.lw-course-card__cta.lw-course-card__cta--disabled {
         opacity: 0.5;
-        cursor: not-allowed;
         pointer-events: none;
-
-        &:hover,
-        &:focus {
-            filter: none;
-        }
     }
 
     // Actions menu (learner dashboard CourseCardMenu): "..." toggle next to the CTA and a
