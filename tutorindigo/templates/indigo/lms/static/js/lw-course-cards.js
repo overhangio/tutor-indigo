@@ -81,6 +81,7 @@
   // already sent, and drop the cached request so the next render (lw-courses-tabs.js reloads the
   // tab) refetches.
   function forgetCompletionList(courseId) {
+    if (!courseId) { return; }
     unenrolledBeforeRequest[courseId] = completionRequestCount;
     completionPromise = null;
     if (lastCompletionById) {
@@ -106,7 +107,8 @@
         if (requestNumber < lastCompletionRequest) { return lastCompletionById; }
         var byId = {};
         rows.forEach(function (row) {
-          var sentBeforeUnenroll = requestNumber <= unenrolledBeforeRequest[row.courseId];
+          var sentBeforeUnenroll = Object.prototype.hasOwnProperty.call(unenrolledBeforeRequest, row.courseId)
+            && requestNumber <= unenrolledBeforeRequest[row.courseId];
           if (!sentBeforeUnenroll) { byId[row.courseId] = row; }
         });
         lastCompletionById = byId;
