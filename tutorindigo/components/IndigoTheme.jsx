@@ -76,12 +76,24 @@ const INDIGO_THEME_ICON_TOKENS = {
 };
 
 const INDIGO_THEME_HEX_RE = /^#[0-9a-fA-F]{6}$/;
+const INDIGO_THEME_COMPUTED_HEX_RE = /^#([0-9a-fA-F]{6})(?:[0-9a-fA-F]{2})?$/;
 const INDIGO_CONTRAST_AA = 4.5;
 const INDIGO_THEME_RESET_PARAM = 'indigo-theme-reset';
+const INDIGO_THEME_SHARED_COOKIE = 'indigo-theme';
 const INDIGO_RUNTIME_POLL_MS = 50;
 const INDIGO_RUNTIME_TIMEOUT_MS = 10000;
+const INDIGO_CAPTURE_DELAYS_MS = [0, 150, 500, 1200, 2500];
 
 let indigoBaseTokens = {};
+let lastCapturedVariant = null;
+let baseTokenListeners = [];
+
+const onBaseTokensCaptured = (listener) => {
+  baseTokenListeners.push(listener);
+  return () => {
+    baseTokenListeners = baseTokenListeners.filter((item) => item !== listener);
+  };
+};
 
 const hexToRgb = (hex) => {
   if (typeof hex !== 'string') {
@@ -188,16 +200,91 @@ const darkenColor = (hex, amount) => {
   return rgbToHex(hslToRgb(hsl));
 };
 
-const relativeLuminance = (hex) => {
-  const rgb = hexToRgb(hex);
-  if (!rgb) {
-    return null;
-  }
+const luminanceFromRgb = (rgb) => {
   const channel = (value) => {
     const c = value / 255;
     return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
   };
   return 0.2126 * channel(rgb.r) + 0.7152 * channel(rgb.g) + 0.0722 * channel(rgb.b);
+};
+
+const relativeLuminance = (hex) => {
+  const rgb = hexToRgb(hex);
+  return rgb ? luminanceFromRgb(rgb) : null;
+};
+
+const rgbToHsv = (rgb) => {
+  const r = rgb.r / 255;
+  const g = rgb.g / 255;
+  const b = rgb.b / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const delta = max - min;
+  let h = 0;
+  if (delta) {
+    if (max === r) {
+      h = ((g - b) / delta) % 6;
+    } else if (max === g) {
+      h = (b - r) / delta + 2;
+    } else {
+      h = (r - g) / delta + 4;
+    }
+    h *= 60;
+    if (h < 0) {
+      h += 360;
+    }
+  }
+  return { h, s: max ? delta / max : 0, v: max };
+};
+
+const hsvToRgb = (h, s, v) => {
+  const c = v * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = v - c;
+  let parts = [c, 0, x];
+  if (h < 60) {
+    parts = [c, x, 0];
+  } else if (h < 120) {
+    parts = [x, c, 0];
+  } else if (h < 180) {
+    parts = [0, c, x];
+  } else if (h < 240) {
+    parts = [0, x, c];
+  } else if (h < 300) {
+    parts = [x, 0, c];
+  }
+  return { r: (parts[0] + m) * 255, g: (parts[1] + m) * 255, b: (parts[2] + m) * 255 };
+};
+
+const contrastGuidePoints = (hue, threshold, backgroundHex) => {
+  const background = relativeLuminance(backgroundHex);
+  if (background === null) {
+    return '';
+  }
+  const ratioAt = (s, v) => {
+    const value = luminanceFromRgb(hsvToRgb(hue, s, v));
+    return (Math.max(value, background) + 0.05) / (Math.min(value, background) + 0.05);
+  };
+  const points = [];
+  const samples = 24;
+  for (let i = 0; i <= samples; i += 1) {
+    const s = i / samples;
+    if ((ratioAt(s, 0) - threshold) * (ratioAt(s, 1) - threshold) <= 0) {
+      let low = 0;
+      let high = 1;
+      for (let step = 0; step < 16; step += 1) {
+        const mid = (low + high) / 2;
+        if ((ratioAt(s, mid) - threshold) * (ratioAt(s, low) - threshold) <= 0) {
+          high = mid;
+        } else {
+          low = mid;
+        }
+      }
+      const v = (low + high) / 2;
+      points.push(`${(s * 100).toFixed(2)},${((1 - v) * 100).toFixed(2)}`);
+    }
+  }
+  return points.length > 1 ? points.join(' ') : '';
 };
 
 const contrastRatio = (hex, otherHex) => {
@@ -213,29 +300,59 @@ const readableTextOn = (hex) => (
   (contrastRatio(hex, '#FFFFFF') || 0) >= INDIGO_CONTRAST_AA ? '#FFFFFF' : '#111827'
 );
 
+const normalizeHexToken = (value) => {
+  const match = INDIGO_THEME_COMPUTED_HEX_RE.exec((value || '').trim());
+  return match ? `#${match[1].toUpperCase()}` : null;
+};
+
 const liveTokenDefaults = () => {
   const result = {};
   try {
     const computed = window.getComputedStyle(document.documentElement);
     INDIGO_THEME_TOKENS.forEach((entry) => {
-      const value = (computed.getPropertyValue(entry.token) || '').trim();
-      if (INDIGO_THEME_HEX_RE.test(value)) {
-        result[entry.token] = value.toUpperCase();
+      const value = normalizeHexToken(computed.getPropertyValue(entry.token));
+      if (value) {
+        result[entry.token] = value;
       }
     });
   } catch (error) {}
   return result;
 };
 
-const captureBaseTokens = () => {
+const captureBaseTokens = (variantHint) => {
   try {
-    const variant = document.documentElement.getAttribute(INDIGO_THEME_ATTRIBUTE_NAMES[0])
+    const variant = variantHint
+      || document.documentElement.getAttribute(INDIGO_THEME_ATTRIBUTE_NAMES[0])
       || getStoredThemeVariant()
       || 'light';
-    if (!indigoBaseTokens[variant]) {
-      indigoBaseTokens[variant] = liveTokenDefaults();
+    const style = document.getElementById(INDIGO_THEME_STYLE_ID);
+    const wasDisabled = style ? style.disabled : false;
+    if (style) {
+      style.disabled = true;
     }
+    const tokens = liveTokenDefaults();
+    if (style) {
+      style.disabled = wasDisabled;
+    }
+    if (!Object.keys(tokens).length) {
+      return;
+    }
+    if (JSON.stringify(indigoBaseTokens[variant]) === JSON.stringify(tokens)) {
+      return;
+    }
+    indigoBaseTokens[variant] = tokens;
+    baseTokenListeners.forEach((listener) => {
+      try {
+        listener();
+      } catch (error) {}
+    });
   } catch (error) {}
+};
+
+const recaptureBaseTokens = (variant) => {
+  INDIGO_CAPTURE_DELAYS_MS.forEach((delay) => {
+    window.setTimeout(() => captureBaseTokens(variant), delay);
+  });
 };
 
 const baseTokensFor = (variant) => indigoBaseTokens[variant] || {};
@@ -271,7 +388,7 @@ const buildThemeCss = (tokens) => {
   const declarations = Object.keys(built)
     .map((name) => `${name}:${built[name]};`)
     .join('');
-  return `:root{${declarations}}`;
+  return `:root:root{${declarations}}`;
 };
 
 const applyThemeTokens = (tokens) => {
@@ -346,6 +463,50 @@ const notifyThemeVariantIframes = (variant) => {
   } catch (error) {}
 };
 
+const applyThemeVariant = (variant) => {
+  try {
+    INDIGO_THEME_ATTRIBUTE_NAMES.forEach((attribute) => {
+      document.documentElement.setAttribute(attribute, variant);
+    });
+  } catch (error) {}
+  syncThemeVariantStylesheets(variant);
+};
+
+const appliedThemeVariant = () => {
+  const values = INDIGO_THEME_ATTRIBUTE_NAMES
+    .map((attribute) => document.documentElement.getAttribute(attribute))
+    .filter(Boolean);
+  if (values.length !== INDIGO_THEME_ATTRIBUTE_NAMES.length) {
+    return null;
+  }
+  return values.every((value) => value === values[0]) ? values[0] : null;
+};
+
+const watchThemeVariantAttributes = () => {
+  try {
+    const root = document.documentElement;
+    const observer = new MutationObserver(() => {
+      const primary = root.getAttribute(INDIGO_THEME_ATTRIBUTE_NAMES[0]);
+      if (!primary) {
+        return;
+      }
+      INDIGO_THEME_ATTRIBUTE_NAMES.slice(1).forEach((attribute) => {
+        if (root.getAttribute(attribute) !== primary) {
+          root.setAttribute(attribute, primary);
+        }
+      });
+      if (primary !== lastCapturedVariant) {
+        lastCapturedVariant = primary;
+        recaptureBaseTokens(primary);
+      }
+    });
+    observer.observe(root, {
+      attributes: true,
+      attributeFilter: INDIGO_THEME_ATTRIBUTE_NAMES,
+    });
+  } catch (error) {}
+};
+
 const persistThemeVariant = (variant) => {
   try {
     const serverURL = new URL(getConfig().LMS_BASE_URL);
@@ -359,11 +520,8 @@ const persistThemeVariant = (variant) => {
       document.cookie = `${name}=${variant}; domain=${serverURL.hostname}; path=/; expires=${expires.toUTCString()}; SameSite=Lax`;
       window.localStorage.setItem(name, variant);
     });
-    INDIGO_THEME_ATTRIBUTE_NAMES.forEach((attribute) => {
-      document.documentElement.setAttribute(attribute, variant);
-    });
   } catch (error) {}
-  syncThemeVariantStylesheets(variant);
+  applyThemeVariant(variant);
   notifyThemeVariantIframes(variant);
 };
 
@@ -387,6 +545,7 @@ const getCookieUsername = () => {
 const clearThemeCache = () => {
   try {
     window.localStorage.removeItem(INDIGO_THEME_STORAGE_KEY);
+    window.localStorage.removeItem('indigo-user-theme');
   } catch (error) {}
 };
 
@@ -406,6 +565,7 @@ const readThemeCache = () => {
 };
 
 const writeThemeCache = (payload) => {
+  writeSharedTheme(payload);
   try {
     const username = getAuthenticatedUser()?.username || getCookieUsername();
     if (!username) {
@@ -414,6 +574,74 @@ const writeThemeCache = (payload) => {
     }
     window.localStorage.setItem(INDIGO_THEME_STORAGE_KEY, JSON.stringify({ ...payload, username }));
   } catch (error) {}
+};
+
+const sharedThemeFromPayload = (payload) => {
+  const preset = (payload?.presets || []).find((item) => item.slug === payload?.preset);
+  const defaults = preset?.tokens || {};
+  const overrides = (payload?.overrides || {})[payload?.preset] || {};
+  const colors = {};
+  Object.keys(overrides).forEach((token) => {
+    const to = overrides[token];
+    if (!INDIGO_THEME_HEX_RE.test(to || '')) {
+      return;
+    }
+    colors[token] = [String(defaults[token] || '').toUpperCase(), to.toUpperCase()];
+  });
+  return {
+    u: getAuthenticatedUser()?.username || getCookieUsername() || '',
+    v: payload?.variant || '',
+    p: payload?.preset || '',
+    c: colors,
+  };
+};
+
+const writeSharedTheme = (payload) => {
+  try {
+    const serverURL = new URL(getConfig().LMS_BASE_URL);
+    const today = new Date();
+    const expires = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + INDIGO_THEME_COOKIE_EXPIRY_DAYS,
+    );
+    const value = encodeURIComponent(JSON.stringify(sharedThemeFromPayload(payload)));
+    document.cookie = `${INDIGO_THEME_SHARED_COOKIE}=${value}; domain=${serverURL.hostname}; path=/; expires=${expires.toUTCString()}; SameSite=Lax`;
+  } catch (error) {}
+};
+
+const clearSharedTheme = () => {
+  try {
+    const serverURL = new URL(getConfig().LMS_BASE_URL);
+    document.cookie = `${INDIGO_THEME_SHARED_COOKIE}=; domain=${serverURL.hostname}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax`;
+  } catch (error) {}
+};
+
+const readSharedTheme = () => {
+  try {
+    const raw = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith(`${INDIGO_THEME_SHARED_COOKIE}=`))
+      ?.slice(INDIGO_THEME_SHARED_COOKIE.length + 1);
+    if (!raw) {
+      return null;
+    }
+    const shared = JSON.parse(decodeURIComponent(raw));
+    return shared && typeof shared === 'object' ? shared : null;
+  } catch (error) {
+    return null;
+  }
+};
+
+const sharedThemeTokens = (shared) => {
+  const result = {};
+  Object.keys(shared?.c || {}).forEach((token) => {
+    const pair = shared.c[token];
+    if (Array.isArray(pair) && INDIGO_THEME_HEX_RE.test(pair[1] || '')) {
+      result[token] = pair[1];
+    }
+  });
+  return result;
 };
 
 const effectiveTokensFor = (payload, presetSlug) => {
@@ -468,30 +696,30 @@ const saveThemeVariant = (variant) => {
     });
 };
 
-const runtimeIfReady = () => {
+const configIfReady = () => {
   let config = null;
   try {
     config = getConfig() || null;
   } catch (error) {
     return null;
   }
-  if (!config || !config.LMS_BASE_URL) {
-    return null;
-  }
+  return config && config.LMS_BASE_URL ? config : null;
+};
+
+const authIfReady = () => {
   try {
-    getAuthenticatedHttpClient();
+    return getAuthenticatedHttpClient() ? true : null;
   } catch (error) {
     return null;
   }
-  return config;
 };
 
-const whenRuntimeReady = () => new Promise((resolve) => {
+const whenReady = (probe) => new Promise((resolve) => {
   const started = Date.now();
   const check = () => {
-    const config = runtimeIfReady();
-    if (config) {
-      resolve(config);
+    const value = probe();
+    if (value) {
+      resolve(value);
       return;
     }
     if (Date.now() - started > INDIGO_RUNTIME_TIMEOUT_MS) {
@@ -525,6 +753,7 @@ const resetStoredTheme = () => getAuthenticatedHttpClient()
     resetUserThemeRequest();
     clearThemeTokens();
     clearThemeCache();
+    clearSharedTheme();
   })
   .catch((error) => {
     logError(error);
@@ -551,7 +780,7 @@ const adoptThemeVariant = (variant, data) => {
 
 const applyThemePayload = (data) => {
   writeThemeCache(data);
-  const applied = document.documentElement.getAttribute(INDIGO_THEME_ATTRIBUTE_NAMES[0]);
+  const applied = appliedThemeVariant();
   const browserVariant = getStoredThemeVariant() || applied;
   if (!data.stored && browserVariant && data.variant && browserVariant !== data.variant) {
     adoptThemeVariant(browserVariant, data);
@@ -570,29 +799,58 @@ const startIndigoTheme = () => {
     return;
   }
   indigoThemeStarted = true;
-  captureBaseTokens();
-  whenRuntimeReady().then((config) => {
-    if (!config || config.INDIGO_ENABLE_DYNAMIC_THEME === false || !getCookieUsername()) {
+  watchThemeVariantAttributes();
+  recaptureBaseTokens();
+  window.addEventListener('load', () => recaptureBaseTokens());
+  whenReady(configIfReady).then((config) => {
+    if (!config || config.INDIGO_ENABLE_DYNAMIC_THEME === false) {
       clearThemeTokens();
+      clearThemeCache();
+      clearSharedTheme();
+      resetUserThemeRequest();
+      return;
+    }
+
+    const username = getCookieUsername();
+    const shared = readSharedTheme();
+    const sharedIsUsable = Boolean(shared) && (!username || shared.u === username);
+
+    if (sharedIsUsable) {
+      applyThemeTokens(sharedThemeTokens(shared));
+      if (!username && shared.v && (shared.v !== 'dark' || config.INDIGO_ENABLE_DARK_TOGGLE)) {
+        applyThemeVariant(shared.v);
+      }
+    } else {
+      clearThemeTokens();
+    }
+
+    if (!username) {
       clearThemeCache();
       resetUserThemeRequest();
       return;
     }
+
     if (resetRequested()) {
       resetStoredTheme();
       return;
     }
+
     const cache = readThemeCache();
     if (cache && cache.preset) {
       applyThemeTokens(effectiveTokensFor(cache, cache.preset));
     }
-    fetchUserTheme()
-      .then(({ data }) => {
-        applyThemePayload(data);
-      })
-      .catch((error) => {
-        logError(error);
-      });
+    whenReady(authIfReady).then((ready) => {
+      if (!ready) {
+        return;
+      }
+      fetchUserTheme()
+        .then(({ data }) => {
+          applyThemePayload(data);
+        })
+        .catch((error) => {
+          logError(error);
+        });
+    });
   });
 };
 
