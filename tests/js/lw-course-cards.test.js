@@ -186,8 +186,25 @@ async function outOfOrderCase() {
   }
 }
 
+// Start is greyed out while the course has not opened yet; staff are never locked out.
+const NOW = Date.parse('2026-10-28T00:00:00Z');
+[
+  ['Course opens next month: greyed out', '2026-11-28T00:00:00+00:00', false, true],
+  ['Course already open: clickable', '2026-01-01T00:00:00+00:00', false, false],
+  ['No start date: clickable', '', false, false],
+  ['Staff before the start date: clickable', '2026-11-28T00:00:00+00:00', true, false],
+].forEach(([name, start, isStaff, expected]) => {
+  try {
+    assert.strictEqual(api.isNotOpenYet(start, NOW, isStaff), expected);
+    console.log(`  ok   ${name}`);
+  } catch (error) {
+    failed += 1;
+    console.log(`  FAIL ${name}\n       ${error && error.message}`);
+  }
+});
+
 cacheCase().then(failedFetchCase).then(failedRefetchCase).then(outOfOrderCase).then(() => {
-  const total = cases.length + startedCases.length + 4;
+  const total = cases.length + startedCases.length + 4 + 4;
   console.log(`\n${total - failed} passed, ${failed} failed`);
   process.exit(failed ? 1 : 0);
 });

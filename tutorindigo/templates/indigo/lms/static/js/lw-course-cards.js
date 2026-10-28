@@ -326,6 +326,19 @@
       : completion.completion > 0;
   }
 
+  // Not open yet: the course's start date is in the future. Open edX keeps learners out until
+  // then (staff excepted), so the learner dashboard disables its Start button
+  // (coursewareAccess.isTooEarly); the Library card does the same. Prerequisites are not checked.
+  function isNotOpenYet(courseStart, now, isStaff) {
+    var start = Date.parse(courseStart || '');
+    return !isStaff && isFinite(start) && start > now;
+  }
+
+  function isStaffViewer() {
+    var main = document.getElementById('main');
+    return Boolean(main && main.getAttribute('data-lw-staff') === 'true');
+  }
+
   function renderCard(card, completionById, cardInfoById, certificateDateById, now) {
     var courseId = card.getAttribute('data-course-id');
     var completion = completionById[courseId];
@@ -402,11 +415,27 @@
         ctaLabel = gettext('Resume');
       }
       field(card, 'cta-label').textContent = ctaLabel;
+      // Start greyed out and not clickable until the course opens.
+      var locked = !hasStarted && !isRevisit
+        && isNotOpenYet(card.getAttribute('data-course-start'), now, isStaffViewer());
+      var cta = field(card, 'cta');
+      cta.classList.toggle('lw-course-card__cta--disabled', locked);
+      if (locked) {
+        cta.removeAttribute('href');
+        cta.setAttribute('aria-disabled', 'true');
+        cta.setAttribute('tabindex', '-1');
+      } else {
+        cta.removeAttribute('aria-disabled');
+        cta.removeAttribute('tabindex');
+      }
     } else {
       // Not enrolled (any more): the card's first state, as lw-courses-tabs.js draws it. A card
       // drawn again after an unenroll elsewhere must not keep its Resume link.
       var aboutUrl = '/courses/' + encodeURIComponent(courseId) + '/about';
       field(card, 'cta').setAttribute('href', aboutUrl);
+      field(card, 'cta').classList.remove('lw-course-card__cta--disabled');
+      field(card, 'cta').removeAttribute('aria-disabled');
+      field(card, 'cta').removeAttribute('tabindex');
       field(card, 'title-link').setAttribute('href', aboutUrl);
       field(card, 'cta-label').textContent = gettext('View Course');
     }
@@ -754,6 +783,7 @@
     window.__LW_TEST__.courseCards = {
       enrolledCardLinks: enrolledCardLinks,
       getCompletionById: getCompletionById,
+      isNotOpenYet: isNotOpenYet,
       completionUnavailable: COMPLETION_UNAVAILABLE,
       isStarted: isStarted,
     };

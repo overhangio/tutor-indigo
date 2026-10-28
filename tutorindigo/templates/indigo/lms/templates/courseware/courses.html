@@ -69,7 +69,9 @@
 
 <%block name="pagetitle">${_("Courses")}</%block>
 
-<main id="main" aria-label="Content" tabindex="-1">
+## data-lw-staff: global staff can open a course before its start date, so lw-course-cards.js
+## does not grey out their Start button (as the learner dashboard's isStaff check).
+<main id="main" aria-label="Content" tabindex="-1" data-lw-staff="${'true' if user.is_authenticated and user.is_staff else 'false'}">
     <!-- Courses banner (Figma 1469:4329). Full-bleed, so it sits outside .find-courses (max-width 1600px). -->
     <section class="lw-courses-banner" aria-labelledby="lw-courses-banner-title"
              style="--lw-courses-banner-image: url('${static.url('images/courses-banner.png')}');">
