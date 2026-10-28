@@ -227,6 +227,16 @@ async function unenrollRaceCase() {
     assert.strictEqual(pending.length, 2, 'a fresh request was sent');
     respond(1, [{ courseId: COURSE, completion: 55 }]);
     assert.strictEqual((await before)[COURSE].completion, 55, 'the fresh list is used');
+
+    // Same when the outdated request fails: no empty list, no list from before the unenroll.
+    now += 31 * 1000;
+    const failing = cards.getCompletionById();
+    cards.forgetCompletionList();
+    respond(2, null);
+    await tick();
+    assert.strictEqual(pending.length, 4, 'a fresh request was sent');
+    respond(3, [{ courseId: COURSE, completion: 70 }]);
+    assert.strictEqual((await failing)[COURSE].completion, 70);
     console.log(`  ok   ${name}`);
   } catch (error) {
     failed += 1;

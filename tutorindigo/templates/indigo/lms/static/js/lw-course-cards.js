@@ -85,17 +85,18 @@
       completionFetchedAt = Date.now();
       var requestNumber = ++completionRequestCount;
       var request = getJson(COMPLETION_URL).then(function (rows) {
+        // Outdated (sent before an enrollment change, or overtaken by a newer request), whether
+        // it succeeded or failed: use the newer list if there is one, otherwise ask again. Never
+        // draw cards from this response.
+        if (requestNumber < lastCompletionRequest) {
+          return lastCompletionById || getCompletionById();
+        }
         // A failed request is not kept: the next render asks again rather than showing every
         // enrolled card as not enrolled until the cache expires. Only this request is dropped,
         // not a newer one started meanwhile.
         if (!Array.isArray(rows)) {
           if (completionPromise === request) { completionPromise = null; }
           return lastCompletionById || COMPLETION_UNAVAILABLE;
-        }
-        if (requestNumber < lastCompletionRequest) {
-          // Outdated (sent before an enrollment change, or overtaken by a newer request): hand
-          // off to the current request instead of drawing cards from this list.
-          return getCompletionById();
         }
         var byId = {};
         rows.forEach(function (row) {
@@ -315,12 +316,11 @@
     if (element) { element.hidden = !visible; }
   }
 
-  // Links on an enrolled learner's card. The action (Start, Resume, Revisit) always opens the
-  // course player, as PRD LMS 9.3's CTA and Resume (4.5, 5.2) do. The title opens the player too,
-  // except on the Assigned tab, where, as on the learner dashboard, clicking the course opens its
-  // detail page (PRD LMS 4.2).
-  // A course that has not opened yet (start date in the future) is not greyed out: Start and the
-  // title open the detail page, which shows the date, instead of a "not started" courseware page.
+  // Links on an enrolled learner's card. The action (Start, Resume, Revisit) opens the course
+  // player, as PRD LMS 9.3's CTA and Resume (4.5, 5.2) do; so does the title, except on the
+  // Assigned tab, where, as on the learner dashboard, clicking the course opens its detail page
+  // (PRD LMS 4.2). Exception: for a course that has not opened yet (start date in the future)
+  // Start and the title both open the detail page (product decision: not greyed out).
   function enrolledCardLinks(courseId, tab, aboutUrlOverride, notOpenYet) {
     var coursewareUrl = '/courses/' + encodeURIComponent(courseId) + '/courseware';
     var aboutUrl = aboutUrlOverride || defaultAboutUrl(courseId);
