@@ -72,18 +72,20 @@
   // Requests are numbered so a slow, older response never replaces a newer list.
   var completionRequestCount = 0;
   var lastCompletionRequest = 0;
-  // After an unenroll: drop only that course from the last good list (the others keep their
-  // progress if the refetch fails), outdate requests already in flight (sent before the change,
-  // they must never become the "last good" list), and refetch now.
+  // Courses the learner unenrolled from on this page. A response sent before the unenroll still
+  // lists them: they are removed from every response, which is otherwise used as usual.
+  var unenrolledCourseIds = {};
+
+  // After an unenroll: remove the course from the last good list and from every later response,
+  // and drop the cached request so the next render (lw-courses-tabs.js reloads the tab) refetches.
   function forgetCompletionList(courseId) {
+    if (courseId) { unenrolledCourseIds[courseId] = true; }
     completionPromise = null;
-    if (lastCompletionById) {
+    if (lastCompletionById && courseId) {
       var kept = Object.assign({}, lastCompletionById);
       delete kept[courseId];
       lastCompletionById = kept;
     }
-    lastCompletionRequest = completionRequestCount + 1;
-    getCompletionById();
   }
 
   function getCompletionById() {
@@ -91,13 +93,6 @@
       completionFetchedAt = Date.now();
       var requestNumber = ++completionRequestCount;
       var request = getJson(COMPLETION_URL).then(function (rows) {
-        // Outdated (sent before an unenroll, or overtaken by a newer request), whether it
-        // succeeded or failed: never draw cards from this response. Wait for the current request
-        // (the refetch after the unenroll, or the newer one); if that already failed, use the
-        // last good list. Never starts another request.
-        if (requestNumber < lastCompletionRequest) {
-          return completionPromise || lastCompletionById || COMPLETION_UNAVAILABLE;
-        }
         // A failed request is not kept: the next render asks again rather than showing every
         // enrolled card as not enrolled until the cache expires. Only this request is dropped,
         // not a newer one started meanwhile.
@@ -105,9 +100,11 @@
           if (completionPromise === request) { completionPromise = null; }
           return lastCompletionById || COMPLETION_UNAVAILABLE;
         }
+        // Overtaken: a newer request already succeeded, so its list is newer than this one.
+        if (requestNumber < lastCompletionRequest) { return lastCompletionById; }
         var byId = {};
         rows.forEach(function (row) {
-          byId[row.courseId] = row;
+          if (!unenrolledCourseIds[row.courseId]) { byId[row.courseId] = row; }
         });
         lastCompletionById = byId;
         lastCompletionRequest = requestNumber;
@@ -718,8 +715,8 @@
       courseName: title ? title.textContent.trim() : '',
       returnFocus: toggle,
       onUnenrolled: function () {
-        // Enrollments changed: refetch completion (dropping this course from the fallback
-        // list), then let lw-courses-tabs.js reload the open tab.
+        // Enrollments changed: forget this course's progress, then let lw-courses-tabs.js
+        // reload the open tab (its render refetches completion).
         forgetCompletionList(courseId);
         document.dispatchEvent(new CustomEvent('lw:enrollment-changed', { detail: { courseId: courseId } }));
       },
