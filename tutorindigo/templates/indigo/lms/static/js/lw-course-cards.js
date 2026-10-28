@@ -81,9 +81,9 @@
   // already sent, and drop the cached request so the next render (lw-courses-tabs.js reloads the
   // tab) refetches.
   function forgetCompletionList(courseId) {
+    completionPromise = null;
     if (!courseId) { return; }
     unenrolledBeforeRequest[courseId] = completionRequestCount;
-    completionPromise = null;
     if (lastCompletionById) {
       var kept = Object.assign({}, lastCompletionById);
       delete kept[courseId];
