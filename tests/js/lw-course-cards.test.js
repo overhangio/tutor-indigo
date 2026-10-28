@@ -33,21 +33,20 @@ const ABOUT = `/courses/${encodeURIComponent(COURSE)}/about`;
 const COURSEWARE = `/courses/${encodeURIComponent(COURSE)}/courseware`;
 
 const cases = [
-  // [name, tab, hasStarted, isRevisit, expected title, expected cta]
-  ['Assigned, not started: title opens the detail page, Start opens the player', 'assigned', false, false, ABOUT, COURSEWARE],
-  ['Assigned, started: title opens the detail page, Resume opens the player', 'assigned', true, false, ABOUT, COURSEWARE],
-  ['Assigned, completed or failed: Revisit opens the player', 'assigned', false, true, ABOUT, COURSEWARE],
-  ['Continue Learning: card opens the player (PRD LMS 5.2)', 'continue', true, false, COURSEWARE, COURSEWARE],
-  ['Other tabs keep the player links', 'new', false, false, COURSEWARE, COURSEWARE],
-  ['A card outside a tab keeps the player links', null, false, false, COURSEWARE, COURSEWARE],
+  // [name, tab, expected title, expected action]. The action (Start, Resume, Revisit) always
+  // opens the player; only the title depends on the tab.
+  ['Assigned: title opens the detail page (PRD LMS 4.2), the action opens the player', 'assigned', ABOUT, COURSEWARE],
+  ['Continue Learning: title and action open the player (PRD LMS 5.2)', 'continue', COURSEWARE, COURSEWARE],
+  ['Other tabs: title and action open the player', 'new', COURSEWARE, COURSEWARE],
+  ['A card outside a tab: title and action open the player', null, COURSEWARE, COURSEWARE],
 ];
 
 const api = load();
 let failed = 0;
-cases.forEach(([name, tab, hasStarted, isRevisit, title, cta]) => {
+cases.forEach(([name, tab, title, cta]) => {
   try {
     // Compare fields: objects made inside the VM have another realm's prototype.
-    const links = api.enrolledCardLinks(COURSE, tab, hasStarted, isRevisit);
+    const links = api.enrolledCardLinks(COURSE, tab);
     assert.strictEqual(links.title, title, 'title link');
     assert.strictEqual(links.cta, cta, 'action link');
     console.log(`  ok   ${name}`);
