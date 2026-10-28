@@ -26,7 +26,7 @@ const ToggleThemeButton = () => {
       persistThemeVariant(variant);
       window.location.reload();
     }
-    document.documentElement.setAttribute(INDIGO_THEME_ATTRIBUTE_NAMES[0], variant);
+    applyThemeVariant(variant);
   }, []);
 
   useEffect(() => {

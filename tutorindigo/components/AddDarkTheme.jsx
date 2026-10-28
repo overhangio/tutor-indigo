@@ -40,7 +40,7 @@ const AddDarkTheme = () => {
     });
 
     if (isDarkVariantEnabled && theme === 'dark') {
-      document.documentElement.setAttribute('data-paragon-theme-variant', 'dark');
+      applyThemeVariant('dark');
 
       observer.observe(document.body, { childList: true, subtree: true });
       setTimeout(() => observer?.disconnect(), 15000); // clear after 15 sec to avoid resource usage
