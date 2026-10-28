@@ -63,20 +63,27 @@
   var COMPLETION_MAX_AGE_MS = 30 * 1000;
   var completionPromise = null;
   var completionFetchedAt = 0;
-  // A failed refetch (expired session, server error) resolves the last good list, so cards that
-  // lw-courses-tabs.js redraws on page return keep their progress. Only when no request has
-  // succeeded yet does it resolve COMPLETION_UNAVAILABLE: empty, so a first render still draws
-  // every card, and refreshShownCards keeps the cards it already drew.
+  // A failed refetch (expired session, server error) resolves the last good list (after an
+  // unenroll, minus that course), so cards that lw-courses-tabs.js redraws keep their progress.
+  // Only when no request has succeeded yet does it resolve COMPLETION_UNAVAILABLE: empty, so a
+  // first render still draws every card, and refreshShownCards keeps the cards it already drew.
   var COMPLETION_UNAVAILABLE = {};
   var lastCompletionById = null;
   // Requests are numbered so a slow, older response never replaces a newer list.
   var completionRequestCount = 0;
   var lastCompletionRequest = 0;
-  // After an enrollment change: drop the list, and outdate requests already in flight, which
-  // were sent before the change and must never become the "last good" list.
-  function forgetCompletionList() {
+  // After an unenroll: refetch, drop only that course from the last good list (the others keep
+  // their progress if the refetch fails), and outdate requests already in flight, which were
+  // sent before the change and must never become the "last good" list.
+  function forgetCompletionList(courseId) {
     completionPromise = null;
-    lastCompletionById = null;
+    if (lastCompletionById) {
+      var kept = {};
+      Object.keys(lastCompletionById).forEach(function (id) {
+        if (id !== courseId) { kept[id] = lastCompletionById[id]; }
+      });
+      lastCompletionById = kept;
+    }
     lastCompletionRequest = completionRequestCount + 1;
   }
 
@@ -713,7 +720,7 @@
       onUnenrolled: function () {
         // Enrollments changed: drop the cached completion list, then let lw-courses-tabs.js
         // reload the open tab (its new cards fetch fresh data).
-        forgetCompletionList();
+        forgetCompletionList(courseId);
         document.dispatchEvent(new CustomEvent('lw:enrollment-changed', { detail: { courseId: courseId } }));
       },
     });

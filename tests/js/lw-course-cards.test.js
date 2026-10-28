@@ -208,7 +208,7 @@ const NOW = Date.parse('2026-10-28T00:00:00Z');
 // A request sent before an unenroll never becomes the "last good" list, and never resolves
 // to nothing (cards would fail to draw).
 async function unenrollRaceCase() {
-  const name = 'A request in flight during an unenroll hands off to a fresh request';
+  const name = 'An unenroll drops only that course; requests sent before it are never used';
   let now = 0;
   class FakeDate extends Date { static now() { return now; } }
   const pending = [];
@@ -228,15 +228,20 @@ async function unenrollRaceCase() {
     respond(1, [{ courseId: COURSE, completion: 55 }]);
     assert.strictEqual((await before)[COURSE].completion, 55, 'the fresh list is used');
 
-    // Same when the outdated request fails: no empty list, no list from before the unenroll.
+    // The learner unenrolls from COURSE while enrolled in OTHER too, and the refetch fails: the
+    // unenrolled course is gone, OTHER keeps its progress, and the list is never empty.
+    const OTHER = 'course-v1:SSED+CS102+2026';
     now += 31 * 1000;
-    const failing = cards.getCompletionById();
-    cards.forgetCompletionList();
-    respond(2, null);
-    await tick();
-    assert.strictEqual(pending.length, 4, 'a fresh request was sent');
-    respond(3, [{ courseId: COURSE, completion: 70 }]);
-    assert.strictEqual((await failing)[COURSE].completion, 70);
+    const both = cards.getCompletionById();
+    respond(2, [{ courseId: COURSE, completion: 55 }, { courseId: OTHER, completion: 60 }]);
+    await both;
+    cards.forgetCompletionList(COURSE);
+    const afterUnenroll = cards.getCompletionById();
+    respond(3, null);
+    const fallback = await afterUnenroll;
+    assert.notStrictEqual(fallback, cards.completionUnavailable, 'not the empty list');
+    assert.strictEqual(fallback[COURSE], undefined, 'the unenrolled course is gone');
+    assert.strictEqual(fallback[OTHER].completion, 60, 'the other course keeps its progress');
     console.log(`  ok   ${name}`);
   } catch (error) {
     failed += 1;
