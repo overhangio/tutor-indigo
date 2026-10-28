@@ -208,7 +208,7 @@ const NOW = Date.parse('2026-10-28T00:00:00Z');
 // A request sent before an unenroll never becomes the "last good" list, and never resolves
 // to nothing (cards would fail to draw).
 async function unenrollRaceCase() {
-  const name = 'An unenroll drops only that course; requests sent before it are never used';
+  const name = 'An unenroll refetches and drops only that course; old responses are never used';
   let now = 0;
   class FakeDate extends Date { static now() { return now; } }
   const pending = [];
@@ -216,21 +216,20 @@ async function unenrollRaceCase() {
   const respond = (index, rows) => pending[index](
     rows ? { ok: true, json: () => Promise.resolve(rows) } : { ok: false },
   );
-  const tick = () => new Promise((resolve) => { setImmediate(resolve); });
+  const OTHER = 'course-v1:SSED+CS102+2026';
   const cards = load({ Date: FakeDate, fetch });
   try {
+    // A: a request in flight during the unenroll waits for the refetch the unenroll starts.
     const before = cards.getCompletionById();
-    cards.forgetCompletionList();
+    cards.forgetCompletionList(COURSE);
+    assert.strictEqual(pending.length, 2, 'the unenroll refetches at once');
     respond(0, [{ courseId: COURSE, completion: 40 }]);
-    // The outdated response starts a fresh request instead of drawing from its own list.
-    await tick();
-    assert.strictEqual(pending.length, 2, 'a fresh request was sent');
-    respond(1, [{ courseId: COURSE, completion: 55 }]);
-    assert.strictEqual((await before)[COURSE].completion, 55, 'the fresh list is used');
+    respond(1, [{ courseId: OTHER, completion: 55 }]);
+    const a = await before;
+    assert.strictEqual(a[COURSE], undefined, 'the response from before the unenroll is not used');
+    assert.strictEqual(a[OTHER].completion, 55);
 
-    // The learner unenrolls from COURSE while enrolled in OTHER too, and the refetch fails: the
-    // unenrolled course is gone, OTHER keeps its progress, and the list is never empty.
-    const OTHER = 'course-v1:SSED+CS102+2026';
+    // B: the refetch after an unenroll fails: the other course keeps its progress, never empty.
     now += 31 * 1000;
     const both = cards.getCompletionById();
     respond(2, [{ courseId: COURSE, completion: 55 }, { courseId: OTHER, completion: 60 }]);
@@ -238,21 +237,23 @@ async function unenrollRaceCase() {
     cards.forgetCompletionList(COURSE);
     const afterUnenroll = cards.getCompletionById();
     respond(3, null);
-    const fallback = await afterUnenroll;
-    assert.notStrictEqual(fallback, cards.completionUnavailable, 'not the empty list');
-    assert.strictEqual(fallback[COURSE], undefined, 'the unenrolled course is gone');
-    assert.strictEqual(fallback[OTHER].completion, 60, 'the other course keeps its progress');
+    const b = await afterUnenroll;
+    assert.notStrictEqual(b, cards.completionUnavailable, 'not the empty list');
+    assert.strictEqual(b[COURSE], undefined, 'the unenrolled course is gone');
+    assert.strictEqual(b[OTHER].completion, 60, 'the other course keeps its progress');
 
-    // A request in flight when the learner unenrolls, while a good list exists, still waits for
-    // a fresh request (not the older trimmed list), so progress made meanwhile shows.
+    // C: the refetch failed before the old response arrived: the old response uses the
+    // fallback list and sends no extra request.
     now += 31 * 1000;
-    const inFlight = cards.getCompletionById();
+    const old = cards.getCompletionById();
     cards.forgetCompletionList(COURSE);
-    respond(4, [{ courseId: OTHER, completion: 60 }]);
-    await tick();
-    assert.strictEqual(pending.length, 6, 'a fresh request was sent');
-    respond(5, [{ courseId: OTHER, completion: 80 }]);
-    assert.strictEqual((await inFlight)[OTHER].completion, 80, 'the fresh list is used');
+    respond(5, null);
+    await new Promise((resolve) => { setImmediate(resolve); });
+    respond(4, [{ courseId: COURSE, completion: 90 }, { courseId: OTHER, completion: 70 }]);
+    const c = await old;
+    assert.strictEqual(pending.length, 6, 'no extra request');
+    assert.strictEqual(c[COURSE], undefined);
+    assert.strictEqual(c[OTHER].completion, 60, 'the last good list, not the old response');
     console.log(`  ok   ${name}`);
   } catch (error) {
     failed += 1;

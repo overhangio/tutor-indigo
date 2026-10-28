@@ -72,9 +72,9 @@
   // Requests are numbered so a slow, older response never replaces a newer list.
   var completionRequestCount = 0;
   var lastCompletionRequest = 0;
-  // After an unenroll: refetch, drop only that course from the last good list (the others keep
-  // their progress if the refetch fails), and outdate requests already in flight, which were
-  // sent before the change and must never become the "last good" list.
+  // After an unenroll: drop only that course from the last good list (the others keep their
+  // progress if the refetch fails), outdate requests already in flight (sent before the change,
+  // they must never become the "last good" list), and refetch now.
   function forgetCompletionList(courseId) {
     completionPromise = null;
     if (lastCompletionById) {
@@ -83,6 +83,7 @@
       lastCompletionById = kept;
     }
     lastCompletionRequest = completionRequestCount + 1;
+    getCompletionById();
   }
 
   function getCompletionById() {
@@ -90,11 +91,12 @@
       completionFetchedAt = Date.now();
       var requestNumber = ++completionRequestCount;
       var request = getJson(COMPLETION_URL).then(function (rows) {
-        // Outdated (sent before an enrollment change, or overtaken by a newer request), whether
-        // it succeeded or failed: wait for the current request instead (getCompletionById reuses
-        // it while fresh, or asks again). Never draw cards from this response.
+        // Outdated (sent before an unenroll, or overtaken by a newer request), whether it
+        // succeeded or failed: never draw cards from this response. Wait for the current request
+        // (the refetch after the unenroll, or the newer one); if that already failed, use the
+        // last good list. Never starts another request.
         if (requestNumber < lastCompletionRequest) {
-          return getCompletionById();
+          return completionPromise || lastCompletionById || COMPLETION_UNAVAILABLE;
         }
         // A failed request is not kept: the next render asks again rather than showing every
         // enrolled card as not enrolled until the cache expires. Only this request is dropped,
