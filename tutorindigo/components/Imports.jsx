@@ -9,7 +9,7 @@ import {
   ActionRow, Alert, Badge, breakpoints, Button, Card, Form, Icon, ModalPopup, Spinner, useMediaQuery,
 } from '@openedx/paragon';
 import { Calendar, Edit, Nightlight, WbSunny } from '@openedx/paragon/icons';
-import { useIntl } from '@edx/frontend-platform/i18n';
+import { defineMessages, getMessages, useIntl } from '@edx/frontend-platform/i18n';
 
 // @openedx/frontend-base-compat stands in for @edx/frontend-platform in
 // frontend-base site builds and exports only ".", "./auth" and "./i18n".

@@ -80,7 +80,11 @@ const INDIGO_CSS_NAME_RE = /^--[a-z0-9-]+$/;
 const INDIGO_THEME_COMPUTED_HEX_RE = /^#([0-9a-fA-F]{6})(?:[0-9a-fA-F]{2})?$/;
 const INDIGO_CONTRAST_AA = 4.5;
 const INDIGO_THEME_RESET_PARAM = 'indigo-theme-reset';
-const INDIGO_THEME_RESET_PROMPT = 'Reset your saved theme colors to the site defaults?';
+const INDIGO_THEME_RESET_MESSAGE = {
+  id: 'theme.reset.confirm',
+  defaultMessage: 'Reset your saved theme colors to the site defaults?',
+  description: 'confirmation shown before the reset link clears the saved colours',
+};
 const INDIGO_THEME_SHARED_COOKIE = 'indigo-theme';
 const INDIGO_RUNTIME_POLL_MS = 50;
 const INDIGO_RUNTIME_TIMEOUT_MS = 10000;
@@ -739,6 +743,14 @@ const whenReady = (probe) => new Promise((resolve) => {
   check();
 });
 
+const translate = (message) => {
+  try {
+    return getMessages()[message.id] || message.defaultMessage;
+  } catch (error) {
+    return message.defaultMessage;
+  }
+};
+
 const resetRequested = () => {
   try {
     return new URLSearchParams(window.location.search).has(INDIGO_THEME_RESET_PARAM);
@@ -839,7 +851,7 @@ const startIndigoTheme = () => {
     }
 
     if (resetRequested()) {
-      const prompt = config.INDIGO_THEME_RESET_PROMPT || INDIGO_THEME_RESET_PROMPT;
+      const prompt = translate(INDIGO_THEME_RESET_MESSAGE);
       if (window.confirm(prompt)) {
         resetStoredTheme();
       } else {

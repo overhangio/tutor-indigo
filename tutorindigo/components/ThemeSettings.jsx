@@ -232,7 +232,7 @@ const ThemeSettings = () => {
     setDraft(next);
   };
 
-  const messages = {
+  const messages = defineMessages({
     "theme.settings.heading": {
       id: "theme.settings.heading",
       defaultMessage: "Theme",
@@ -368,7 +368,7 @@ const ThemeSettings = () => {
       defaultMessage: "Cancel",
       description: "label of the button that cancels resetting a preset",
     },
-  };
+  });
 
   const overridesFromPayload = (payload) => {
     const result = {};
