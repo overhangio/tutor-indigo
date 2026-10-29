@@ -76,9 +76,11 @@ const INDIGO_THEME_ICON_TOKENS = {
 };
 
 const INDIGO_THEME_HEX_RE = /^#[0-9a-fA-F]{6}$/;
+const INDIGO_CSS_NAME_RE = /^--[a-z0-9-]+$/;
 const INDIGO_THEME_COMPUTED_HEX_RE = /^#([0-9a-fA-F]{6})(?:[0-9a-fA-F]{2})?$/;
 const INDIGO_CONTRAST_AA = 4.5;
 const INDIGO_THEME_RESET_PARAM = 'indigo-theme-reset';
+const INDIGO_THEME_RESET_PROMPT = 'Reset your saved theme colors to the site defaults?';
 const INDIGO_THEME_SHARED_COOKIE = 'indigo-theme';
 const INDIGO_RUNTIME_POLL_MS = 50;
 const INDIGO_RUNTIME_TIMEOUT_MS = 10000;
@@ -386,6 +388,7 @@ const buildThemeTokens = (tokens) => {
 const buildThemeCss = (tokens) => {
   const built = buildThemeTokens(tokens);
   const declarations = Object.keys(built)
+    .filter((name) => INDIGO_CSS_NAME_RE.test(name))
     .map((name) => `${name}:${built[name]};`)
     .join('');
   return `:root:root{${declarations}}`;
@@ -633,11 +636,16 @@ const readSharedTheme = () => {
   }
 };
 
+const INDIGO_CUSTOMIZABLE_TOKENS = INDIGO_THEME_TOKENS.map((entry) => entry.token);
+
 const sharedThemeTokens = (shared) => {
   const result = {};
   Object.keys(shared?.c || {}).forEach((token) => {
     const pair = shared.c[token];
-    if (Array.isArray(pair) && INDIGO_THEME_HEX_RE.test(pair[1] || '')) {
+    if (!INDIGO_CUSTOMIZABLE_TOKENS.includes(token) || !Array.isArray(pair)) {
+      return;
+    }
+    if (INDIGO_THEME_HEX_RE.test(pair[1] || '')) {
       result[token] = pair[1];
     }
   });
@@ -831,7 +839,12 @@ const startIndigoTheme = () => {
     }
 
     if (resetRequested()) {
-      resetStoredTheme();
+      const prompt = config.INDIGO_THEME_RESET_PROMPT || INDIGO_THEME_RESET_PROMPT;
+      if (window.confirm(prompt)) {
+        resetStoredTheme();
+      } else {
+        dropResetParam();
+      }
       return;
     }
 
