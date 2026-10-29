@@ -2,7 +2,7 @@
 let themeVariant = 'selected-paragon-theme-variant';
 
 const AddDarkTheme = () => {
-  const isThemeToggleEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
+  const isDarkVariantEnabled = getConfig().INDIGO_ENABLE_DARK_TOGGLE;
 
   const addDarkThemeToIframes = () => {
     const iframes = document.getElementsByTagName('iframe');
@@ -39,8 +39,8 @@ const AddDarkTheme = () => {
       addDarkThemeToIframes();
     });
 
-    if (isThemeToggleEnabled && theme === 'dark') {
-      document.documentElement.setAttribute('data-paragon-theme-variant', 'dark');
+    if (isDarkVariantEnabled && theme === 'dark') {
+      applyThemeVariant('dark');
 
       observer.observe(document.body, { childList: true, subtree: true });
       setTimeout(() => observer?.disconnect(), 15000); // clear after 15 sec to avoid resource usage

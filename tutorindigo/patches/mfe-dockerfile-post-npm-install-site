@@ -1,0 +1,4 @@
+{% if INDIGO_ENABLE_DYNAMIC_THEME %}
+RUN --mount=type=cache,target=/root/.npm,sharing=shared \
+    npm install --no-audit --no-fund --registry=$NPM_REGISTRY react-colorful@5.6.1
+{% endif %}

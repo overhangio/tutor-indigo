@@ -27,9 +27,10 @@ Configuration
 -------------
 
 - ``INDIGO_WELCOME_MESSAGE`` (default: "The place for all your online learning")
-- ``INDIGO_PRIMARY_COLOR`` (default: "#3b85ff")
-- ``INDIGO_FOOTER_NAV_LINKS`` (default: ``[{"title": "About", "url": "/about"}, {"title": "Contact", "url": "/contact"}]``)
+- ``INDIGO_PRIMARY_COLOR`` (default: "#15376D")
+- ``INDIGO_FOOTER_NAV_LINKS`` (default: links to About Us, Blog, Donate, Terms of Service, Privacy Policy, Help and Contact Us)
 - ``INDIGO_ENABLE_DARK_TOGGLE`` (default: True)
+- ``INDIGO_ENABLE_DYNAMIC_THEME`` (default: True)
 - ``INDIGO_BRAND_CSS_BASE_URL`` (default: ``"https://cdn.jsdelivr.net/gh/edly-io/brand-openedx@<version>/dist"``): base URL of the compiled brand-openedx CSS loaded by the MFEs (see `Using your own brand in production`_)
 - ``INDIGO_BRAND_OPENEDX_PATH`` (default: ``""``): path to a local checkout of your brand-openedx repository, used in development mode only (see `Developing the brand-openedx theme`_)
 - ``INDIGO_BRAND_OPENEDX_DEV_PORT`` (default: ``3000``)
@@ -92,6 +93,44 @@ The MFEs load the compiled ``core.min.css``, ``light.min.css`` and ``dark.min.cs
     tutor local restart lms
 
 Any server that serves these files with the ``text/css`` content type and CORS headers works too, such as your own CDN or object storage. Prefer tags over branch names in jsDelivr URLs: jsDelivr caches branches for up to 12 hours, but tags are served immediately and never change.
+
+
+Dynamic theme
+-------------
+
+Every learner can pick their own theme. From the Account settings page, in the "Profile Information" section, users choose an appearance preset (Light or Dark) and, if they want, personalize five core `Paragon <https://github.com/openedx/paragon>`__ colours, labelled by what they change: buttons and links, button and link highlights, brand accents, body text, and navigation links. The appearance choice is saved as soon as it is picked, while colour changes are previewed live and only stored with the "Save" button. Colours are kept separately for each preset. Preferences are saved per user and applied across the micro-frontends, so they follow the learner from one device to another.
+
+.. image:: ./screenshots/02-dynamic-themes.png
+    :alt: Theme settings in the Account page
+
+The light/dark toggle in the header stays available alongside this feature: it switches between the Light and Dark presets, while the Account settings page is where the presets are personalized.
+
+The colour picker shows the contrast ratio of the colour being edited against the page background, against the WCAG AA (4.5:1) and AAA (7:1) levels, with threshold lines drawn over the picker. Colours below AA are still saved, with a warning naming the ones the learner changed. The colour used behind button and link highlights is measured against the body text drawn on it rather than against the page background. If a learner still ends up with a theme they cannot read, appending ``?indigo-theme-reset=1`` to any micro-frontend URL offers to clear their stored colours, without needing to read the settings page. The confirmation is a browser dialog, so it stays legible whatever colours the learner has chosen, and it means a link sent by someone else cannot wipe their choices silently.
+
+.. note::
+    The theme settings block is registered through the legacy plugin slots of the Account micro-frontend, in the only slot it offers for this (``additional_profile_fields``), which is why it appears under "Profile Information" rather than "Site Preferences". Sites running the frontend-base version of ``frontend-app-account`` will not see the block at all, because the compatibility layer does not map that slot. Learners on those sites can still switch between Light and Dark with the header toggle, but cannot personalize colours.
+
+.. note::
+    The chosen colours are applied in every micro-frontend, including those Indigo does not otherwise style, because the theme script runs on load rather than waiting for a slot to render. The runtime retint of the legacy Django pages is more limited: it rewrites the colours it finds in stylesheets the browser lets it read, so it covers the primary colour but not brand accents or navigation links, whose defaults do not occur in the compiled legacy CSS, and it is skipped entirely for stylesheets served from another domain, such as a CDN.
+
+    Dark appearance follows ``INDIGO_ENABLE_DARK_TOGGLE``. When that setting is off, the Dark preset is not offered and the dark variant is not applied to new choices. Learners whose browser already holds a dark preference from an earlier install keep it, as they do without this plugin.
+
+The preferences are stored by the ``indigo_theme`` Django app, which ships with this plugin and is installed into the ``openedx`` image and serves them from ``/api/indigo/v1/theme/``. The presets table is prefilled with the default token values for the light and dark variants by a database migration.
+
+After enabling the plugin, rebuild the images and relaunch the platform so that the app is installed and its migrations are applied::
+
+    tutor images build openedx mfe
+    tutor local launch
+
+Developers working on the Django app can mount their local copy in place of the one copied from the plugin's build context::
+
+    tutor mounts add ./tutorindigo/templates/indigo_theme
+
+To disable the feature, run::
+
+    tutor config save --set INDIGO_ENABLE_DYNAMIC_THEME=false
+    tutor images build openedx mfe
+    tutor local start -d
 
 Customization
 -------------
