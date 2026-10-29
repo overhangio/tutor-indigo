@@ -12,8 +12,8 @@
  *
  * Enrolled + started  -> "In Progress" bar + Resume. Started is the API's hasStarted (a block
  *                        completed; real time) or completion > 0, so a started course shows a
- *                        0% bar while its % still rounds to 0 or awaits the next aggregator run
- *                        (every 10 minutes on deployed environments).
+ *                        0% bar while its % still rounds to 0 or awaits the backend's refresh
+ *                        (seconds; up to 10 minutes after a course publish).
  * Enrolled, no block  -> Start (learner dashboard BeginCourseButton label; "Enroll and Start"
  *                        is for a learner not enrolled yet, PRD LMS 9.3)
  * Not enrolled        -> View Course (about page), no progress
