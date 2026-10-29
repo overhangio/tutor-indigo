@@ -120,7 +120,7 @@ if apps.is_installed('course_assignments'):
 
   ## PRD LMS 9.3/9.4: the enrolled learner's CTA follows their progress, by the same rules as
   ## the Learning Library and dashboard cards (openlms_apis): started = has_started (a completed
-  ## block, or completion above 0%; _course_aggregates(fresh=True) recalculates a stale % on read);
+  ## block, or completion above 0%, which can lag the aggregator run by up to 10 minutes);
   ## Review = completed (passed, or 100% without failing) or failed (100% done, never passed),
   ## as the cards show "Revisit Course" for both. If the progress lookup fails the CTA is
   ## "Start"; if only the grade lookup fails a passed course may show "Resume".
@@ -133,11 +133,7 @@ if apps.is_installed('course_assignments'):
               _completed_course_keys, _course_aggregates, _failed_course_keys,
           )
           course_keys = [course.id]
-          try:
-              aggregates = _course_aggregates(user, course_keys, fresh=True)
-          except TypeError:
-              ## openlms-apis without fresh (theme deployed first): the stored row.
-              aggregates = _course_aggregates(user, course_keys)
+          aggregates = _course_aggregates(user, course_keys)
           course_revisit = (
               course.id in _completed_course_keys(user, course_keys, aggregates)
               or course.id in _failed_course_keys(user, course_keys, aggregates)
