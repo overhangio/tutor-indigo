@@ -141,8 +141,9 @@ if apps.is_installed('course_assignments'):
           try:
               from openlms_apis.completion_helpers import has_started
               from openlms_apis.library_helpers import _last_activity
+              ## The latest completed block's time (older openlms-apis only checks that it is set).
               course_started = has_started(
-                  aggregates.get(course.id), course.id in _last_activity(user, course_keys)
+                  aggregates.get(course.id), _last_activity(user, course_keys).get(course.id)
               )
           except ImportError:
               ## openlms-apis without has_started (theme deployed first): the old % rule.
