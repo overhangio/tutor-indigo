@@ -120,7 +120,8 @@ if apps.is_installed('course_assignments'):
 
   ## PRD LMS 9.3/9.4: the enrolled learner's CTA follows their progress, by the same rules as
   ## the Learning Library and dashboard cards (openlms_apis): started = has_started (a completed
-  ## block, or completion above 0%, which the backend refreshes seconds after each block);
+  ## block newer than the saved %, or a saved % above 0; the backend refreshes the % seconds
+  ## after each block);
   ## Review = completed (passed, or 100% without failing) or failed (100% done, never passed),
   ## as the cards show "Revisit Course" for both. If the progress lookup fails the CTA is
   ## "Start"; if only the grade lookup fails a passed course may show "Resume".
