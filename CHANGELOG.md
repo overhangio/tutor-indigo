@@ -19,6 +19,25 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-v22.2.0'></a>
+## vv22.2.0 (2026-11-02)
+
+- [Improvement] Stop installing the `@edx/brand` package into every MFE image. Indigo's compiled stylesheets are now delivered to the MFEs as URLs, through `PARAGON_THEME_URLS` and the frontend-base site theme, which is what those settings are for. The same files reach the browser, so the theme is unchanged, but MFE images no longer need to reach GitHub to build. Note that, because `PARAGON_THEME_URLS` is shared by all MFEs, Indigo's core stylesheet is now also loaded by the MFEs that Indigo did not style before (e.g. gradebook, ORA grading, communications), which used to get only the light and dark variants. (by @HammadYousaf01)
+
+- [Feature] Add a per-user dynamic theme: learners can pick a Light or Dark appearance preset and personalize five core Paragon colours from a new theme settings block in the Profile Information section of the Account MFE. The appearance preset is saved as soon as it is picked, while colour changes are previewed live and stored with the "Save" button; the picker shows each colour's contrast ratio against the page background and whether it meets WCAG AA and AAA, and colours below AA are saved with a warning naming them. The header light/dark toggle stays available and is kept in sync with the appearance preset, in both directions. Choices are stored per user by the new `indigo_theme` Django app, which ships with this plugin, is installed into the `openedx` image from the build context, and serves them from `/api/indigo/v1/theme/`. Legacy LMS pages and the courseware unit iframe, whose stylesheets are compiled from SASS with literal colours, are retinted at runtime by a new theme script. The feature is controlled by the new `INDIGO_ENABLE_DYNAMIC_THEME` setting (default: True), and only colours a learner has actually chosen are applied, so sites with their own brand CSS are unaffected until a learner customizes something. (by @HammadYousaf01)
+
+- [Bugfix] Stop replacing the whole mobile header with a logo, so the navigation and account menus (including Logout) are reachable on phones. Enlarge the LMS hamburger tap target to 44px. (by @edly-io)
+
+- [Bugfix] Load the legacy MFE theme CSS (`PARAGON_THEME_URLS`) from jsDelivr instead of raw.githubusercontent.com, which serves files as `text/plain` with `nosniff`, so that browsers refused them as stylesheets. (by @arbirali)
+
+- [Feature] Add `INDIGO_BRAND_OPENEDX_PATH` to develop a local brand-openedx checkout: in `tutor dev`, an `indigo-brand` service builds its CSS, rebuilds it on change and serves it at http://localhost:3000, and the MFEs load the theme CSS from there instead of GitHub/jsDelivr. Production is not affected. (by @arbirali)
+
+- [Improvement] Use brand-openedx `indigo-3.1.1`. It fixes the account menu in the mobile header (it no longer covers the logo and opens next to its trigger), makes the masquerade bar responsive on phones, fixes wrapping in the learning MFE, fixes the masquerade bar and white text colors of the dark theme in frontend-base apps, and adds a dark theme token for the navbar toggler. (by @arbirali)
+
+- [Feature] Add the `INDIGO_BRAND_CSS_BASE_URL` setting, to load the MFE brand CSS from your own brand-openedx fork or CDN in production, without patching the plugin. It defaults to the jsDelivr URL of the brand-openedx tag used by Indigo. (by @arbirali)
+
+- [Improvement] Let the theme colour cards wrap on narrow viewports instead of staying on a single row. (by @arbirali)
+
 <a id='changelog-22.0.0'></a>
 ## v22.0.0 (2026-08-06)
 
