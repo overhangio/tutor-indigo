@@ -19,8 +19,8 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
-<a id='changelog-v22.2.0'></a>
-## vv22.2.0 (2026-11-02)
+<a id='changelog-22.1.0'></a>
+## v22.1.0 (2026-11-02)
 
 - [Improvement] Stop installing the `@edx/brand` package into every MFE image. Indigo's compiled stylesheets are now delivered to the MFEs as URLs, through `PARAGON_THEME_URLS` and the frontend-base site theme, which is what those settings are for. The same files reach the browser, so the theme is unchanged, but MFE images no longer need to reach GitHub to build. Note that, because `PARAGON_THEME_URLS` is shared by all MFEs, Indigo's core stylesheet is now also loaded by the MFEs that Indigo did not style before (e.g. gradebook, ORA grading, communications), which used to get only the light and dark variants. (by @HammadYousaf01)
 
