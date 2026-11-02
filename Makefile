@@ -3,7 +3,10 @@
 SRC_DIRS = ./tutorindigo
 
 # Warning: These checks are not necessarily run on every PR.
-test: test-lint test-types test-format test-pythonpackage # Run some static checks.
+test: test-lint test-types test-format test-pythonpackage test-indigo-theme # Run some static checks.
+
+test-indigo-theme: ## Run the indigo_theme unit tests
+	cd tutorindigo/templates/indigo_theme && python -m django test tests --settings=tests.settings --pythonpath=.
 
 test-format: ## Run code formatting tests
 	ruff format --check --diff $(SRC_DIRS)

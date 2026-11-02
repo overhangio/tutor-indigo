@@ -1,4 +1,13 @@
 .view-teams {
+  .page-content-nav .nav-item.is-active {
+    border-bottom-color: $primary;
+    color: $dark;
+  }
+
+  .card .card-actions .action-view {
+    border-color: $primary;
+    color: $primary;
+  }
 
   .topics-paging-header {
 
