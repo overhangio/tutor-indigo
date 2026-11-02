@@ -1,0 +1,5 @@
+{% if "indigo_theme" not in iter_mounted_directories(MOUNTS, "openedx") %}
+COPY ./indigo_theme /openedx/indigo_theme
+RUN --mount=type=cache,target=/openedx/.cache/pip,sharing=shared \
+    $PIP_COMMAND install /openedx/indigo_theme
+{% endif %}
