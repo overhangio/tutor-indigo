@@ -1,0 +1,8 @@
+## Indigo app icons. favicon.ico itself is already linked by lms/templates/main.html.
+<%namespace name='static' file='static_content.html'/>
+<link rel="icon" type="image/svg+xml" href="${static.url('images/icon.svg')}">
+<link rel="icon" type="image/png" sizes="96x96" href="${static.url('images/favicon-96x96.png')}">
+<link rel="apple-touch-icon" href="${static.url('images/apple-touch-icon.png')}">
+<meta name="apple-mobile-web-app-title" content="{{ PLATFORM_NAME | e }}">
+<link rel="manifest" href="${static.url('images/manifest.webmanifest')}">
+<meta name="theme-color" content="{{ INDIGO_PRIMARY_COLOR }}">

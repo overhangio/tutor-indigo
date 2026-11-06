@@ -1,3 +1,13 @@
 MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
 MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
 MFE_CONFIG['INDIGO_ENABLE_DYNAMIC_THEME'] = {{ INDIGO_ENABLE_DYNAMIC_THEME }}
+
+# Favicon for legacy MFEs. <LMS>/favicon.ico redirects to STATIC_URL + FAVICON_PATH, which
+# is the platform default (/static/images/favicon.ico), not the theme's copy. Point the MFEs
+# straight at the Indigo theme favicon instead.
+_INDIGO_STATIC_ROOT = (
+    STATIC_URL
+    if STATIC_URL.startswith(("http://", "https://", "//"))
+    else LMS_ROOT_URL + STATIC_URL
+)
+MFE_CONFIG["FAVICON_URL"] = _INDIGO_STATIC_ROOT + "indigo/images/favicon.ico"
