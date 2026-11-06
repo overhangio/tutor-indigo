@@ -1,0 +1,1 @@
+- [Bugfix] Fix the LMS header crashing with "No module named 'openedx.features.enterprise_support'" on Open edX master, where that module was removed: the header templates now import it only when it exists. (by @arbirali)
