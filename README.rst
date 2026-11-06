@@ -163,6 +163,14 @@ Changing the default logo and other images
 
 The theme images are stored in `tutorindigo/templates/indigo/lms/static/images <https://github.com/overhangio/tutor-indigo/tree/release/tutorindigo/templates/indigo/lms/static/images>`__ for the LMS, and in `tutorindigo/templates/indigo/cms/static/images <https://github.com/overhangio/tutor-indigo/tree/release/tutorindigo/templates/indigo/cms/static/images>`__ for the CMS. To use custom images in your theme, just replace the files stored in these folders with your own.
 
+The LMS images folder also holds the favicon and app icons, which are used by the LMS, the legacy MFEs and the frontend-base site alike, so replacing them changes the icon everywhere:
+
+- ``favicon.ico``, ``favicon-96x96.png`` and ``icon.svg``: browser tab icons. ``icon.svg`` turns white when the browser uses a dark colour scheme, through a ``prefers-color-scheme`` media query in the SVG itself.
+- ``apple-touch-icon.png`` (180x180, opaque): iOS home screen icon.
+- ``icon-192.png``, ``icon-512.png`` and ``icon-maskable-512.png``: Android home screen and install icons, listed in ``manifest.webmanifest``. The maskable icon keeps the logo inside the central 80% safe zone, so that launchers can crop it to any shape.
+
+``manifest.webmanifest`` takes its name from ``PLATFORM_NAME`` and its colour from ``INDIGO_PRIMARY_COLOR``, which also sets the ``theme-color`` meta tag. On the frontend-base site, these icons are linked through the ``mfe-site-index-html-head`` patch of tutor-mfe.
+
 Overriding the default "about", "contact", etc. static pages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

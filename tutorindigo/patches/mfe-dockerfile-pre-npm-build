@@ -1,0 +1,6 @@
+# Legacy MFEs render <link rel="shortcut icon" href="<%=htmlWebpackPlugin.options.FAVICON_URL%>">
+# from this build-time variable; unset, the built index.html has no href at all (crawlers and
+# favicon checkers do not run the runtime <Helmet> that fills it in). /favicon.ico is served
+# from the MFE host root by the frontend-base site (Indigo's favicon, see the
+# mfe-dockerfile-post-npm-install-site patch), so a root-relative URL works in dev and prod.
+ENV FAVICON_URL=/favicon.ico

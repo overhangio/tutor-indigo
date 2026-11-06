@@ -1,0 +1,12 @@
+{% if get_frontend_apps() %}
+# Indigo app icons and web app manifest for the frontend-base site, served from its root
+# and linked from index.html (see the mfe-site-index-html-head patch).
+COPY indigo/lms/static/images/icon.svg \
+     indigo/lms/static/images/favicon-96x96.png \
+     indigo/lms/static/images/apple-touch-icon.png \
+     indigo/lms/static/images/icon-192.png \
+     indigo/lms/static/images/icon-512.png \
+     indigo/lms/static/images/icon-maskable-512.png \
+     indigo/lms/static/images/manifest.webmanifest \
+     /openedx/dist/site/
+{% endif %}
