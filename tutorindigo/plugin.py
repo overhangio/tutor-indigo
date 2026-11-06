@@ -11,6 +11,8 @@ from tutor import exceptions, hooks
 from tutor.__about__ import __version_suffix__
 from tutormfe.hooks import (
     FRONTEND_COMPAT_SLOTS,
+    FRONTEND_ROUTE_COMPAT_MAPS,
+    FRONTEND_SLOT_COMPAT_MAPS,
     MFE_APPS,
     MFE_ATTRS_TYPE,
     PLUGIN_SLOTS,
@@ -328,11 +330,9 @@ PLUGIN_SLOTS.add_items(
     ]
 )
 
-PLUGIN_SLOTS.add_item(
-    (
-        "account",
-        "org.openedx.frontend.account.additional_profile_fields.v1",
-        """
+INDIGO_THEME_SETTINGS_SLOT = (
+    "org.openedx.frontend.account.additional_profile_fields.v1",
+    """
         {
             op: PLUGIN_OPERATIONS.Insert,
             widget: {
@@ -343,8 +343,23 @@ PLUGIN_SLOTS.add_item(
             },
         },
         """,
+)
+# Legacy account MFE
+PLUGIN_SLOTS.add_item(("account", *INDIGO_THEME_SETTINGS_SLOT))
+# frontend-base site: the compat shim has no built-in mapping for the account
+# app yet, so declare the slot rename and the routes the account app serves.
+FRONTEND_COMPAT_SLOTS.add_item(("account", *INDIGO_THEME_SETTINGS_SLOT))
+FRONTEND_SLOT_COMPAT_MAPS.add_item(
+    (
+        "org.openedx.frontend.account.additional_profile_fields.v1",
+        {
+            "targetSlotId": (
+                "org.openedx.frontend.slot.account.additionalProfileFields.v1"
+            )
+        },
     )
 )
+FRONTEND_ROUTE_COMPAT_MAPS.add_item(("account", ["org.openedx.frontend.role.account"]))
 
 paragon_theme_urls = {
     "core": {
@@ -420,11 +435,20 @@ def _add_themed_logo(
     return mfes
 
 
-PLUGIN_SLOTS.add_items(
-    [
+INDIGO_CATALOG_COURSE_CARD_SLOTS = []
+for _slot_name, _widget_id in (
+    (
+        "org.openedx.frontend.catalog.home_page.course_card",
+        "indigo-catalog-home-course-card",
+    ),
+    (
+        "org.openedx.frontend.catalog.course_catalog_page.data_table.course_card",
+        "indigo-catalog-course-card",
+    ),
+):
+    INDIGO_CATALOG_COURSE_CARD_SLOTS += [
         (
-            "catalog",
-            "org.openedx.frontend.catalog.home_page.course_card",
+            _slot_name,
             """
         {
             op: PLUGIN_OPERATIONS.Hide,
@@ -433,49 +457,30 @@ PLUGIN_SLOTS.add_items(
         """,
         ),
         (
-            "catalog",
-            "org.openedx.frontend.catalog.home_page.course_card",
-            """
-        {
+            _slot_name,
+            f"""
+        {{
             op: PLUGIN_OPERATIONS.Insert,
-            widget: {
-                id: 'indigo-catalog-home-course-card',
+            widget: {{
+                id: '{_widget_id}',
                 type: DIRECT_PLUGIN,
                 RenderWidget: (props) => (
-                  <CourseCard {...props} />
+                  <CourseCard {{...props}} />
                 ),
-            },
-        },
-        """,
-        ),
-        (
-            "catalog",
-            "org.openedx.frontend.catalog.course_catalog_page.data_table.course_card",
-            """
-        {
-            op: PLUGIN_OPERATIONS.Hide,
-            widgetId: 'default_contents',
-        }
-        """,
-        ),
-        (
-            "catalog",
-            "org.openedx.frontend.catalog.course_catalog_page.data_table.course_card",
-            """
-        {
-            op: PLUGIN_OPERATIONS.Insert,
-            widget: {
-                id: 'indigo-catalog-course-card',
-                type: DIRECT_PLUGIN,
-                RenderWidget: (props) => (
-                  <CourseCard {...props} />
-                ),
-            },
-        },
+            }},
+        }},
         """,
         ),
     ]
-)
+
+for _slot in INDIGO_CATALOG_COURSE_CARD_SLOTS:
+    # Legacy catalog MFE
+    PLUGIN_SLOTS.add_item(("catalog", *_slot))
+    # frontend-base site (catalog app served on the "site" port): route the same
+    # contribution through the compat shim, which maps the legacy slot ids to
+    # org.openedx.frontend.slot.catalog.homeCourseCard.v1 and
+    # org.openedx.frontend.slot.catalog.courseCatalogDataTableCourseCard.v1
+    FRONTEND_COMPAT_SLOTS.add_item(("catalog", *_slot))
 
 
 ################# Local brand-openedx for development
