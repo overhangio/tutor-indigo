@@ -11,7 +11,16 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 
 from openedx.core.djangoapps.user_api.accounts.image_helpers import get_profile_image_urls_for_user
-from openedx.features.enterprise_support.utils import get_enterprise_learner_generic_name, get_enterprise_learner_portal
+# openedx.features.enterprise_support was removed from edx-platform (Verawood / main).
+# Keep the enterprise links on releases that still ship it, and no-op on newer ones.
+try:
+    from openedx.features.enterprise_support.utils import get_enterprise_learner_generic_name, get_enterprise_learner_portal
+except ImportError:
+    def get_enterprise_learner_generic_name(request):
+        return None
+
+    def get_enterprise_learner_portal(request):
+        return None
 %>
 
 <%

@@ -1,0 +1,1 @@
+- [Feature] Show the Indigo catalog course card and the theme settings of the dynamic theme in the frontend-base site, where the Catalog and Account apps now run. Both contributions are routed through the compat shim of tutor-mfe (`FRONTEND_COMPAT_SLOTS`), with a slot and route mapping for the Account app, which the shim does not map yet. (by @arbirali)
