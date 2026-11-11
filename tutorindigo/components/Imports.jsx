@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+// Namespace import so optional hooks (e.g. useHref, react-router v6+) don't break builds of MFEs on older versions.
+import * as ReactRouterDom from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { HexColorPicker } from 'react-colorful';
 

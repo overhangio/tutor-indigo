@@ -75,6 +75,25 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     ],
 )
 
+# Indigo favicon and app icons, copied into the frontend-base site build
+# (see the mfe-dockerfile-post-npm-install-site and mfe-dockerfile-production-final
+# patches)
+hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
+    [
+        (f"indigo/lms/static/images/{_icon}", "plugins/mfe/build/mfe")
+        for _icon in (
+            "favicon.ico",
+            "favicon-96x96.png",
+            "icon.svg",
+            "apple-touch-icon.png",
+            "icon-192.png",
+            "icon-512.png",
+            "icon-maskable-512.png",
+            "manifest.webmanifest",
+        )
+    ]
+)
+
 # Force the rendering of scss files, even though they are included in a
 # "partials" directory
 hooks.Filters.ENV_PATTERNS_INCLUDE.add_items(
